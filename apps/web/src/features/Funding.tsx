@@ -3,11 +3,11 @@ import Link from 'next/link';
 import {useDemoFunding} from './useDemoFunding';
 export default function Funding(){
  const s=useDemoFunding();
- return <section className="page"><div className="page-head"><div><div className="eyebrow">{s.network}</div><h1>Get ready to trade.</h1><p>Fund your wallet, then return to swaps or liquidity.</p></div></div><div className="form-panel panel" style={{marginLeft:0}}>
+ return <section className="page" style={{maxWidth:570}}><div className="page-head"><div><div className="eyebrow">{s.network}</div><h1>Demo funding</h1></div></div><div className="panel">
  <p className="notice">Demo tokens have no redemption value. The faucet gives 1,000 units per token, once every 24 hours.</p>
  {s.address&&<p className="mono">Your wallet: {s.address}</p>}
  {!s.local&&<p>Get testnet USDC for settlement and gas from the <a href="https://faucet.circle.com" target="_blank" rel="noreferrer">Circle faucet</a>. Select Arc Testnet and use your wallet address above.</p>}
- {s.local&&<p className="hint">Local wallets use test ETH for gas. USDC here is a local fixture. The development wallet accounts already have test ETH.</p>}
+ {s.local&&<p className="hint">Local USDC is a demo token. Your local wallet has test ETH for gas.</p>}
  {!s.connected?<button className="button full" onClick={s.connect}>Connect wallet</button>:<>
  <>{s.wrongChain&&<button className="button full" onClick={s.switchNetwork}>Switch to {s.network}</button>}</><div className="stack">{s.assets.map(t=><div key={t.address}><div className="row"><h3>{t.symbol}</h3><span>Balance: {t.balance}</span></div><button className="button secondary" disabled={!s.enabled||s.busy||!!s.pending||!!s.review} onClick={()=>s.prepare(t.address)}>Review {t.symbol} faucet</button></div>)}</div>
  {!s.assets.length&&<p className="notice">Demo token claims become available when a verified deployment is configured.</p>}

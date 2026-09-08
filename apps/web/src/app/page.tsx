@@ -1,6 +1,35 @@
 import Link from 'next/link';
+import {ArrowDownRight, ArrowUpRight} from 'lucide-react';
+import OrbitalVisual from '../components/OrbitalVisual';
 import {copy} from '../content';
 import styles from './page.module.css';
-export default function Home(){return <><section className={styles.hero}><div className={styles.heroCopy}><span className={styles.tag}><i/> Built for stablecoin liquidity</span><h1>Liquidity,<br/>in your orbit.</h1><p>{copy.heroBody}</p><div className={styles.actions}><Link className="button" href="/swap">Start a swap <span aria-hidden="true">↗</span></Link><Link className={styles.secondary} href="/liquidity/new">Provide liquidity <span aria-hidden="true">→</span></Link></div><div className={styles.note}>Wallet-held liquidity <span>·</span> Multi-token strategies</div></div><div className={styles.visual} aria-hidden="true"><div className={styles.glow}/><div className={styles.orbit1}/><div className={styles.orbit2}/><div className={styles.orbit3}/><div className={styles.planet}/><span className={styles.coin1}>$</span><span className={styles.coin2}>6</span><span className={styles.coin3}>18</span><span className={styles.caption}>An illustration of concentrated liquidity</span></div></section>
- <section className={styles.intro} id="how-it-works"><div><div className="eyebrow">A shared curve. Your own strategy.</div><h2>More focus.<br/>Still your tokens.</h2></div><p>Orbital brings concentrated liquidity to three or more stablecoins. Nested ranges let you choose how closely your liquidity follows the equal-price region.</p></section>
- <section className={styles.steps}>{[['01','Keep custody','Aqua records your allocation. Assets stay in your wallet until a swap settles.'],['02','Choose your concentration','Combine broad coverage and focused ranges in one maker-owned strategy.'],['03','Settle in USDC','Trade through Orbital, then use the same curve to settle an invoice on Arc.']].map(([n,title,body])=><article key={n}><span>{n}</span><h3>{title}</h3><p>{body}</p></article>)}</section><div className={styles.proofLink}><span>Built from research. Evidence recorded openly.</span><Link href="/proof">Inspect the build evidence →</Link></div></>;}
+
+const journeys = [
+  {number:'01', name:'Swap', description:'Move between stablecoins.', href:'/swap'},
+  {number:'02', name:'Provide liquidity', description:'Find your concentration.', href:'/liquidity/new'},
+  {number:'03', name:'Get paid', description:'Create an invoice. Settle in USDC.', href:'/pay'},
+];
+
+export default function Home(){return <div className={styles.landing}>
+  <section className={styles.hero} aria-labelledby="hero-title">
+    <div className={styles.heroCopy}>
+      <div className={styles.tag}><span/>Multi-token concentrated liquidity</div>
+      <h1 id="hero-title">A new shape<br/>for <em>liquidity.</em></h1>
+      <p>{copy.heroBody}</p>
+      <div className={styles.actions}>
+        <Link className="button" href="/swap">Start a swap <ArrowUpRight size={18} aria-hidden="true"/></Link>
+        <Link className={styles.secondaryAction} href="/liquidity/new">Provide liquidity <ArrowUpRight size={16} aria-hidden="true"/></Link>
+      </div>
+      <a className={styles.paperLink} href="https://www.paradigm.xyz/writing/orbital" target="_blank" rel="noreferrer">Inspired by the Orbital paper <ArrowUpRight size={13} aria-hidden="true"/></a>
+    </div>
+    <OrbitalVisual/>
+  </section>
+  <section className={styles.explore} aria-label="Explore Orbital">
+    <div className={styles.exploreLabel}>Your next move <ArrowDownRight size={16} aria-hidden="true"/></div>
+    <div className={styles.journeys}>{journeys.map(journey=><Link key={journey.number} href={journey.href} className={styles.journey}>
+      <span className={styles.number}>{journey.number}</span>
+      <div><h2>{journey.name}</h2><p>{journey.description}</p></div>
+      <ArrowUpRight size={20} aria-hidden="true"/>
+    </Link>)}</div>
+  </section>
+</div>;}

@@ -4,6 +4,7 @@ Updated 2026-09-09. Initially all checks were not started. The table below recor
 
 | Requirement | Status | Implementation / evidence | Blocker |
 | --- | --- | --- | --- |
+| Supplied-media frontend | Light visual/build checkpoint passed | [Design, media controls, mobile layouts and local review](frontend-design.md) | Broad browser/accessibility/performance checks, live Privy/Arc and local RPC stability remain separate |
 | Connected local product | Local integration smoke passed | [Contracts, browser receipts, restart recovery and limits](local-integration.md) | Live Privy/Arc, broad regressions and release campaigns outstanding |
 | G0 tools/sources | Local scaffold pass | [toolchain](toolchain.json), [upstream hashes](upstream.json), [frozen offline install](install.txt), [container build](docker-build.txt), [container startup](docker-runtime.json), docs/sources/orbital.json | Original pnpm/Docker failures repaired; Arc identity remains explicitly unverified |
 | Reference geometry/duality/crossings | 129 tests pass | `python scripts/audit-reference.py`; [run manifest](reference-audit/manifest.json), [raw results](reference-audit/tests.txt), [segment corpus](slack-segment-differential.md); red: reference-red.txt/events-red.txt | Includes mixed-pilot consistency/actual baskets and exact lower-sheet oracle checks; bounded evidence, not complete production certification |

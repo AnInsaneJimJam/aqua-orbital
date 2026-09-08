@@ -1,6 +1,6 @@
 # Master build prompt — Orbital on Aqua and Arc
 
-Version 2.1 · September 8, 2026 · Financial behavior is normative; visual defaults are editable.
+Version 2.2 · September 9, 2026 · Financial behavior is normative; visual defaults are editable.
 
 Use this prompt in the repository containing the linked mathematical and test documents. Those files are part of the prompt's input, not optional background. Implementation status is recorded in PROGRESS.md and test/evidence/INDEX.md; this specification does not imply implementation or deployment completion.
 
@@ -152,7 +152,7 @@ Use a pnpm workspace without a separate monorepo task framework:
 
 Use Node 22 LTS and pnpm 10. Resolve patched compatible exact package versions once in the scaffold milestone, record them in the lockfile/toolchain manifest, then use frozen installs. The version-family selection above is fixed; selecting a security-patched compatible patch is a mechanical verification step. No ethers/viem duplication, Redux, Redis, GraphQL, application account database/service, or third-party indexing service. Privy authentication and user-controlled embedded wallets are explicitly allowed; application-held keys and backend signing remain excluded.
 
-Frontend wallet state uses wagmi and TanStack Query; forms use React Hook Form and shared Zod schemas; accessible primitives use Radix for dialogs, popovers, tabs, and tooltips. Use Lucide for functional icons. Use CSS transitions for ordinary UI and an optional CSS/vector Saturn illustration initially. Lazy GSAP 3/Three.js may enhance the educational illustration within performance limits; no smooth-scroll library or competing animation runtime. See docs/FRONTEND.md for editable presentation guidance.
+Frontend wallet state uses wagmi and TanStack Query; forms use React Hook Form and shared Zod schemas; accessible primitives use Radix for dialogs, popovers, tabs, and tooltips. Use Lucide for functional icons. Use CSS transitions for ordinary UI and the owner-supplied Orbital video for the landing illustration. Keep a poster, keyboard-accessible playback control and reduced-motion behavior. No additional animation runtime is needed; do not add smooth-scroll interception. See docs/FRONTEND.md for editable presentation guidance.
 
 ### 5.2 Contract modules
 
@@ -362,38 +362,24 @@ The following visual values are initial defaults, not immutable acceptance requi
 
 ### 10.1 Identity
 
-Create an original Saturn-like identity inspired by Orbital's spherical-cap geometry: a softly lit pearl-lavender planet, three thin inclined rings, and token medallions moving around them. It must read as a precise stablecoin instrument rather than a generic space game. Do not copy the paper's logo or animations pixel-for-pixel, or imply that Paradigm built this app.
-
-The signature is the planet-and-rings story. Give it room; keep typography, controls and secondary surfaces disciplined. Landing hero/story use a midnight environment, while transaction pages use a pale periwinkle background with the same ring mark, lavender accent and typography. No random layout generation, stock astronaut art, starfield wallpaper, faux trading terminals, scrolling logo marquee, animated numeric balances, or decorative cards without content.
+The owner's latest September 9 instruction supersedes both the lavender template and the interim monochrome/neumorphic direction: build the identity around the supplied Orbital paper video and SVG logo. Use a deep blue canvas matching the video, warm light text, restrained chartreuse accents, editorial display type and fine diagram rules. Do not imply that Paradigm built or endorsed this application.
 
 | Token | Value / use |
 | --- | --- |
-| `space` | `#101527`, landing scene, dark navigation |
-| `paper` | `#F4F2FA`, application page background |
-| `surface` | `#FFFFFF`, transactional panels |
-| `surface-muted` | `#ECE9F5`, input/group background |
-| `ink` | `#20243A`, primary text on light backgrounds |
-| `text-secondary` | `#61667D`, secondary text; verify contrast at actual size |
-| `on-space` | `#F6F5FC`, text on midnight |
-| `accent` | `#6653CF`, primary buttons/selected controls |
-| `accent-hover` | `#5141B1`, hover/pressed emphasis |
-| `ring-lavender` | `#BEB5F0`, decorative narrow orbit |
-| `ring-cyan` | `#68C7D7`, decorative medium orbit |
-| `ring-gold` | `#D3B47B`, decorative full-range orbit |
-| `border` | `#DEDCEA`, separators/panel borders |
-| `success` | `#247451`, text plus icon/label |
-| `warning` | `#875512`, text on pale amber panel |
-| `danger` | `#B3374C`, text on pale rose panel |
+| `paper` | `#00131B`, video-matched page background |
+| `surface` | `#0A222B`, transaction panels |
+| `inset` | `#061A22`, input wells |
+| `ink` | `#F2F0E7`, primary text |
+| `accent` | `#C5F36B`, primary actions and selected states |
+| `on-accent` | `#102019`, text on accent buttons |
+| `muted` | `#A0B2B9`, secondary text |
+| `outline` / `border` | `#45616B` / `#29414B`, control edges and separators |
 
-Use Sora 500/600 for display/headings, Manrope 400/500/600 for body/controls, and IBM Plex Mono 400/500 for addresses/data. Self-host only needed WOFF2 subsets through pinned font packages; total transferred fonts <=250 KiB. Use tabular figures for amounts. If a font fails, preserve layout with a declared sans/mono fallback, not a blocking loading screen.
+These are editable defaults. Self-host Space Grotesk and Instrument Serif with their OFL notices; retain sans-serif, serif and monospace fallbacks. Keep critical financial values at least 14px, AA contrast, visible focus, 44px control targets, reduced motion and responsive layouts. Status and errors must use clear words and semantic alerts, not rely on color alone.
 
-Type scale: hero `clamp(44px,5.5vw,80px)` at 1.04 line height and -0.045em letter spacing; section heading 40/44 desktop, 28/34 mobile; page title 32/40; card title 20/28; body 16/26; compact body 14/22; utility 12/18; swap amount 36/44. Hero headline is two lines on desktop and at most three on 390px mobile. Never shrink critical financial text below 14px.
+Keep the landing introduction focused on liquidity, with immediate Swap/Provide liquidity actions, the actual supplied video and a short navigation rail for trading, providing and payments. Credit the visualization beside its playback control. Header navigation covers Swap, Liquidity and Payments; the supplied logo and wallet control remain visible on mobile. The footer retains protocol notes (`/proof`), the paper, selected network, attribution from section 4 and the concise testnet/risk disclosure. Funding remains available from swap and wallet controls.
 
-Spacing follows 4, 8, 12, 16, 24, 32, 48, 64, 96px. Maximum page width 1240px; desktop horizontal inset 40px; tablet 24px; mobile 16px. Form cards radius 24px; nested inputs 16px; buttons 12px; status badges 999px. One subtle shadow on primary floating panels: 0 12px 40px at 6% ink plus a 1px border. Numeric rows remain flat; no nested shadow stack.
-
-Header height 76px desktop/64px mobile. Wordmark left, links `Swap`, `Provide liquidity`, `Payments`, `How it works`; `Connect wallet` right. “How it works” links `/#how-it-works`. Active application route has a 2px accent underline. Mobile uses a labeled menu button and accessible dialog; wallet control remains visible. No route change waits for a page-exit animation.
-
-The footer links paper, source code, `/proof`, deployment explorer and testnet faucet. Include attribution from section 4 and the concise disclosure “Testnet application. Demo tokens have no redemption value. Concentrated liquidity can lose value.” Deployment/source links are enabled only when their real targets exist.
+Use typed state and callbacks to redesign screens. Keep transaction reviews, warnings, pending hashes, recovery controls and truthful balances. Put raw identifiers, index observations, exact sub-token principal and backing details behind accessible disclosures. Do not remove underlying capabilities or silently change financial values while simplifying presentation. Optional invoice splits/reference fields may be collapsed before review; recipients and amounts must be visible in the signing review.
 
 ### 10.2 UI building blocks
 
@@ -405,13 +391,13 @@ Disabled controls explain the next action. Successful copy uses text/icon for 1.
 
 ## 11. Compact, optional visual explanation
 
-The initial landing page uses a compact Saturn identity with immediate Swap and Provide liquidity actions. Explain wallet-held allocation, concentrated ticks, actual curve execution, and USDC settlement in short accessible sections. Illustrations must be labeled and must never masquerade as quotes or live performance.
+The landing page features the owner-supplied Orbital video and SVG logo with immediate Swap and Provide liquidity actions. The figure includes descriptive still-image text and a linked Paradigm credit. It is an illustration, never a quote or live pool chart. Educational detail remains available through the paper and protocol notes.
 
-The old mandatory 420svh pin, exact timeline percentages and hard-coded camera choreography are superseded. Use optional CSS/vector illustration first; retain accessible equivalent text and reduced motion. Typography, spacing, exact copy, layout, section order, and decorative motion are editable defaults. Keep financial behavior, accessibility, route capabilities and truthful evidence mandatory. See [Frontend](docs/FRONTEND.md).
+The old mandatory 420svh pin, exact timeline percentages and hard-coded camera choreography are superseded. Use the supplied video with a visible play/pause button; reduced motion starts on its still poster and offscreen/background playback pauses. Retain accessible equivalent text, poster fallback and no-script public browsing. Typography, spacing, exact copy, layout, section order, and decorative motion are editable defaults. Keep financial behavior, accessibility, route capabilities and truthful evidence mandatory. See [Frontend](docs/FRONTEND.md).
 
 ## 12. Swap page `/swap`
 
-Light application background with dark shared header. Center a 480px maximum-width swap card; at >=1200px place a 280px route-information panel to its right with a 24px gap. On smaller screens the route information is a disclosure below the card. Page heading: “Swap stablecoins”. Subcopy: “Wallet-owned liquidity. Settlement on Arc.” A visible testnet banner identifies the network and demo-token status.
+Use a centered dark swap panel with two inset asset wells and the shared video-derived visual tokens. Keep settings beside the title and route details in a disclosure. The network and demo-token status remain visible. Exact layout dimensions are editable; no separate route sidebar is mandatory.
 
 Card order: title + settings button; `You pay` amount/token/balance/Max; direction-switch button; `You receive` readonly quoted amount/token; route maker/preset row; price/fee/minimum-received/gas breakdown; main action; inline error/transaction stepper. Default display pair USDC → oUSD6; initial amount blank. A token switch swaps tokens and clears the computed output; it does not treat the previous estimated output as a confirmed new input.
 
@@ -548,7 +534,7 @@ This plan supersedes the older pooled-contract P0–P8 plan. Each row starts wit
 | **G3: Aqua lifecycle/settlement** | Official Aqua local deployment; maker approval/ship/activate/retire/dock; controlled settlement and security | AQ-LIFE/SETTLE/DONATION/SHARED/SECURITY pass; no pooled deposits or contract fee claims |
 | **G4: Arc payments** | Invoice adapter and real USDC chain adapter, local analog tests then target verification | PAY-ATOMIC/REPLAY/DIRECT pass; Arc identity/dual-unit tests; deployment eligibility clearly recorded |
 | **G5: SDK/backend** | Canonical SDK, indexer, database, quotes, metrics, SSE, proof DTOs | Hash/calldata golden tests; ingestion/reorg/caller-context/rate/error tests; no signing service |
-| **G6: complete application UI** | All routes, wallet/form state machines, compact optional Saturn illustration, fallback/reduced motion, Privy and external-wallet integration | All specified pages/states rendered; complete local wallet E2E; responsive/accessibility screenshots and checks |
+| **G6: complete application UI** | All routes, wallet/form state machines, supplied Orbital media and logo, fallback/reduced motion, Privy and external-wallet integration | All specified pages/states rendered; complete local wallet E2E; responsive/accessibility screenshots and checks |
 | **G7: integrated qualification demo** | Seed distinct makers/taker/merchant/treasury; execute full scenario and build evidence | Actual source-backed opcode trace, all-pairs/crossing/custody proof, invoice split receipt, UI connects to that deployment |
 | **G8: release candidate** | Full fuzz/invariant/mutation, gas/bytecode/performance/dependency review; target deployment when authorized and funded | Tests and measurements recorded, official target Aqua verified, custom deployment identity recorded, no hidden failed criteria |
 

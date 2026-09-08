@@ -1,7 +1,7 @@
 export const copy={
  brand:'Orbital',
- heroTitle:'Liquidity, in your orbit.',
- heroBody:'Concentrate stablecoin liquidity around the peg. Keep your tokens in your wallet. Trade through a shared, multi-token curve.',
+ heroTitle:'A new shape for liquidity.',
+ heroBody:'Trade stablecoins. Put your liquidity to work. With Aqua, your tokens stay in your wallet until a trade settles.',
  disclosure:'Testnet application. Demo tokens have no redemption value. Concentrated liquidity can lose value.',
  attribution:'Powered by SwapVM — © Degensoft Ltd 2025',
  strategy:{
@@ -28,6 +28,7 @@ export const copy={
   demoInput:'The input asset in this test receipt is a demo token with no redemption value.',
  },
 };
+export const motion={autoplayIllustration:true,visibilityThreshold:0.15} as const;
 export const presets=[
  {name:'Wide',description:'More room for changing prices.',shares:[50,30,20],thresholds:['Full range','0.90 reference','0.99 reference']},
  {name:'Balanced',description:'A measured balance of focus and coverage.',shares:[10,30,60],thresholds:['Full range','0.95 reference','0.99 reference']},

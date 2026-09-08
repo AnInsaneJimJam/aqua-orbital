@@ -1,0 +1,36 @@
+
+> @orbital/web@0.1.0 build C:\Users\gujja\aqua-orbital\apps\web
+> next build
+
+▲ Next.js 16.3.4 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 271ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 12.6s
+  Running TypeScript ...
+  Finished TypeScript in 53s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/9) ...
+  Generating static pages using 7 workers (2/9) 
+  Generating static pages using 7 workers (4/9) 
+  Generating static pages using 7 workers (6/9) 
+✓ Generating static pages using 7 workers (9/9) in 2.4s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /fund
+├ ○ /liquidity
+├ ƒ /liquidity/[strategyHash]
+├ ○ /liquidity/new
+├ ○ /pay
+├ ƒ /pay/[invoiceId]
+├ ○ /proof
+└ ○ /swap
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

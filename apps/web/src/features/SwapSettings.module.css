@@ -1,0 +1,7 @@
+ .settings { position: relative; margin: 0; z-index: 5; }
+.settings > summary { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--raised-small); color: var(--ink); list-style: none; }
+.settings > summary::-webkit-details-marker { display: none; }
+.settings[open] > summary { box-shadow: var(--pressed); }
+.settings > fieldset { position: absolute; top: 50px; right: 0; width: min(320px, calc(100vw - 72px)); background: var(--surface); border: 1px solid var(--outline); border-radius: 16px; box-shadow: 8px 8px 24px #0002; margin: 0; }
+.settings > fieldset legend { background: var(--surface); }
+.settings > p { position: absolute; top: 44px; right: 0; width: 260px; }

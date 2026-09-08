@@ -28,7 +28,7 @@ function Bridge({children}:{children:ReactNode}){
 }
 export default function PrivyWallet({appId,children}:{appId:string;children:ReactNode}){
  const [query]=useState(()=>new QueryClient());
- return <PrivyProvider appId={appId} config={{loginMethods:['email','wallet'],defaultChain:selectedChain,supportedChains:[selectedChain],embeddedWallets:{ethereum:{createOnLogin:'users-without-wallets'},showWalletUIs:true},appearance:{theme:'light',accentColor:'#6653CF'}}}>
+ return <PrivyProvider appId={appId} config={{loginMethods:['email','wallet'],defaultChain:selectedChain,supportedChains:[selectedChain],embeddedWallets:{ethereum:{createOnLogin:'users-without-wallets'},showWalletUIs:true},appearance:{theme:'dark',accentColor:'#c5f36b'}}}>
   <QueryClientProvider client={query}><WagmiProvider config={config}><Bridge>{children}</Bridge></WagmiProvider></QueryClientProvider>
  </PrivyProvider>;
 }

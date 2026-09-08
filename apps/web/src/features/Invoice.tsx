@@ -13,9 +13,9 @@ import styles from './Invoice.module.css';
 export function InvoiceView({state,payment,administration}: {state: InvoiceViewState;payment?:ReactNode;administration?:ReactNode}) {
   const {phase, terms, observation} = state;
   const unavailable = phase === 'unavailable', invalid = phase === 'invalid', absent = phase === 'not-found';
-  return <section className="page">
+  return <section className={`page ${styles.page}`}>
     <Link href="/pay">← Payments</Link>
-    <div className={styles.header}><h1>Invoice</h1><p className="mono">{state.id}</p></div>
+    <div className={styles.header}><h1>Invoice</h1></div>
     <div className={`panel ${styles.card}`} aria-busy={state.refreshing}>
       {phase !== 'loaded' ? <div className="empty" role="status">
         <h2>{invalid ? 'Invalid identifier' : unavailable ? 'Invoice unavailable' : absent ? 'Invoice not found' : 'Checking invoice history…'}</h2>
@@ -40,19 +40,19 @@ export function InvoiceView({state,payment,administration}: {state: InvoiceViewS
             <div><dt>USDC refund</dt><dd className="mono">{terms.payment.refund}</dd></div></dl>
           {terms.payment.inputDemo && <p className="hint">{copy.invoice.demoInput}</p>}
         </div>}
-        <p className="hint">{copy.invoice.readOnly}</p>
+
         {payment}
         {administration}
-        <details><summary>Receipt details</summary><div className="stack">
+        <details><summary>Receipt details</summary><p className="mono">Invoice: {state.id}</p><div className="stack">
           {terms.receipts.map(r => <div key={r.label}>{r.href ? <a href={r.href} target="_blank" rel="noopener noreferrer">{r.label}</a> : <span>{r.label}</span>}<div className="mono">{r.hash}</div></div>)}
           <div>Invoice adapter<div className="mono">{terms.adapter}</div></div>
           <div>Reference hash<div className="mono">{terms.memoHash}</div></div>
         </div></details>
       </>}
       {observation && <div className={styles.observation} role="status">
-        <p>{observation.historical ? `Historical observation at block ${observation.block}.` : `Indexed through block ${observation.block}.`}</p>
+
         {observation.stale && <p className="notice">{copy.invoice.stale}</p>}
-        <details><summary>Index observation</summary><p className="mono">{observation.hash}</p><p>Index checked: {observation.indexedAt}</p></details>
+        <details><summary>Index observation</summary><p>{observation.historical ? `Historical observation at block ${observation.block}.` : `Indexed through block ${observation.block}.`}</p><p className="mono">{observation.hash}</p><p>Index checked: {observation.indexedAt}</p></details>
       </div>}
       <button className={`button secondary ${styles.refresh}`} disabled={invalid || state.refreshing} onClick={state.refresh}>Refresh invoice</button>
     </div>
@@ -66,5 +66,5 @@ export default function Invoice({id}: {id: string}) {
  const paymentView=state.terms?.status==='Unpaid at indexed block'||payment.pending||payment.confirmation?<PaymentView state={payment}/>:null;
  const adminView=merchant&&invoice?.status==='unpaid'||admin.pending||admin.confirmation?<InvoiceAdminView state={admin}/>:null;
  // Keep submitted receipt recovery visible even if an invoice refresh fails.
- return <><InvoiceView state={state} payment={paymentView} administration={adminView}/>{state.phase!=='loaded'&&(payment.pending||admin.pending)&&<section className="page"><div className="panel">{payment.pending&&<PaymentView state={payment}/>} {admin.pending&&<InvoiceAdminView state={admin}/>}</div></section>}</>;
+ return <><InvoiceView state={state} payment={paymentView} administration={adminView}/>{state.phase!=='loaded'&&(payment.pending||admin.pending)&&<section className={`page ${styles.page}`}><div className="panel">{payment.pending&&<PaymentView state={payment}/>} {admin.pending&&<InvoiceAdminView state={admin}/>}</div></section>}</>;
 }

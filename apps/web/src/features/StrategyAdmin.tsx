@@ -5,7 +5,7 @@ export function StrategyAdminView({state:s,publication=false}:{state:StrategyAdm
  if(!s.owner&&!s.pending&&!s.confirmation)return null;
  const r=s.review;
  return <section aria-label="Strategy administration" className={styles.observation}>
-  <h3>{publication?'Publication steps':'Manage your strategy'}</h3><p>{publication?'Review bounded approvals, publish the Aqua allocation, then activate Orbital. Each step requires its own wallet confirmation. Reload this page to resume your saved draft.':'Deactivation first retires the Orbital strategy, then docks its Aqua allocation. Each step needs its own review and wallet confirmation. Tokens are already in your wallet.'}</p>
+  <h3>{publication?'Publication steps':'Manage your strategy'}</h3><p>{publication?'Approve, publish, then activate. Review and confirm each step in your wallet.':'Retire the strategy, then dock its Aqua allocation. Each step needs a separate confirmation.'}</p>
   {r&&<div aria-label="Strategy action review"><h3>{r.title}</h3><dl className={styles.amounts}>
    <div><dt>Maker</dt><dd className="mono">{r.maker}</dd></div><div><dt>Network</dt><dd>{r.network}</dd></div><div><dt>Gas budget</dt><dd>{r.gas}</dd></div>
    {r.amount&&<div><dt>Allowance cap</dt><dd>{r.amount}</dd></div>}{r.spender&&<div><dt>Approval spender</dt><dd className="mono">{r.spender}</dd></div>}

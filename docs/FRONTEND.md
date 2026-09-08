@@ -10,11 +10,17 @@ Use Next.js App Router, React, CSS Modules, Radix primitives, and the shared big
 
 Keep color, spacing, typography and motion tokens centralized. Keep copy in one content module. Route layouts compose small domain components; do not build a generic page-builder framework. Behavior tests use accessible names and outcomes; screenshots capture current design without making every pixel immutable.
 
-## Initial direction
+## Current direction — September 9, 2026
 
-Use a compact midnight Saturn hero with Swap and Provide liquidity actions immediately available. Use pale periwinkle transaction backgrounds, lavender accents, restrained typography, flat data rows, and whitespace. Keep orbital illustrations optional and clearly labeled educational; no mandatory 420svh pin, autoplay spectacle, or delay before financial actions. CSS/vector geometry is sufficient for the initial illustration. Add optional lazy Three.js/GSAP only if it improves explanation within the performance budget.
+The owner's latest instruction replaces the interim monochrome/neumorphic direction with an identity built around their **Orbital paper video and SVG logo**. The page background matches the video at `#00131B`; warm light text, chartreuse actions and fine diagram rules connect landing and product screens. Self-hosted Instrument Serif supplies the landing headline; Space Grotesk handles navigation, forms and transaction values. `globals.css` owns palette, radii, shadows and duration; `content.ts` owns the media motion defaults. Keep 14px critical financial values, AA contrast, visible focus and 44px controls.
 
-Retain the master’s colors, fonts and sizes as starting values, not a restriction on subsequent redesign. Preserve AA contrast, 44px targets, visible focus, mobile layout, reduced-motion behavior, and performance budgets.
+The landing page leads with a short headline, two direct actions and the supplied 4:3 video in a figure with Paradigm credit. A three-link navigation rail exposes swaps, liquidity and payments. The supplied SVG is the shared header mark and favicon; do not substitute a generated Saturn. See [asset provenance](ASSETS.md) for originals, poster generation, checksums and font notices.
+
+`components/OrbitalVisual.tsx` isolates media behavior from financial workflows. It uses a still poster before hydration and under reduced motion, explicit play/pause, muted inline playback, viewport/background pausing, and a still-image error fallback. It never loads an animation framework or treats the paper visualization as live financial state. Public content and links work without wallet setup.
+
+Swap uses two asset wells with inline balance/Max controls; settings and raw routing information use disclosures. Payments pairs a focused creation form with invoice history. Optional splits and references expand on demand, while the signing review always shows recipients and amounts.
+
+Strategy cards show available output and fees; exact principal and backing remain available in named disclosures. Stale/unavailable warnings stay visible. Empty incomplete-shipment sections disappear while their query continues to refresh. The short local-development banner remains explicit about test assets. No quote, spender, approval, signature or recovery controller is redesigned here.
 
 ## Journeys
 
@@ -39,7 +45,7 @@ Changing tokens, copy, layout or decorative motion must leave SDK and transactio
 
 ## Current implementation map
 
-- `apps/web/src/app/globals.css`: central visual tokens and basic controls. Page/component CSS Modules own local layout. System fonts are the current fallback; final font/performance selection remains open.
+- `apps/web/src/app/globals.css`: central visual tokens and basic controls. Page/component CSS Modules own local layout. Local fonts and source notices live in `src/fonts`; no Google font network request is required at runtime or build time.
 - `apps/web/src/content.ts`: shared product copy. Some feature copy remains colocated in presentation and can move here as the workflows are completed.
 - `features/useSwap.ts`: debounced and periodically refreshed public quote observations with fresh deployment checks, exact SDK decoding/formatting, bounded cancellation, context invalidation and automatic expiry. `features/Swap.tsx:SwapView` receives typed state/callbacks and builds no calldata. Fees, minimum output and recipient remain visible; coverage and alternatives use the existing disclosure pattern.
 - `features/useInvoice.ts`: public canonical invoice reads, coherent deployment refresh, exact SDK amount formatting, observation labels and receipt links. `features/Invoice.tsx:InvoiceView` receives typed state/callbacks and stays within the existing presentation template; it never selects a spender or prepares a payment. `features/api.ts:requestPayload` bounds headers/body reads to 30 seconds and forwards navigation cancellation.
@@ -61,8 +67,12 @@ Strategy owner actions use `useStrategyAdmin.ts`, typed `StrategyAdminView`, SDK
 
 ## Connected local workflows (2026-09-08)
 
-The current template is retained. `useStrategyPublication` owns preset preparation, nonce reads and draft persistence; `useStrategyAdmin` owns each approval/ship/activate/retire/dock review. `Liquidity` and `StrategyAdminView` receive display data and callbacks. Tokens remain in the maker wallet throughout publication.
+The connected workflow predates the monochrome redesign. `useStrategyPublication` owns preset preparation, nonce reads and draft persistence; `useStrategyAdmin` owns each approval/ship/activate/retire/dock review. `Liquidity` and `StrategyAdminView` receive display data and callbacks. Tokens remain in the maker wallet throughout publication.
 
 `/fund` provides demo funding through `useDemoFunding`. Invoice history uses `useInvoices`; unactivated Aqua allocations use a separate canonical, paginated shipment read. These views do not construct calldata. Registered strategy details expose current principal, cumulative fees and funding separately. A new configuration uses a new maker nonce; retired orders are terminal.
 
 The local fixture wallet is restricted to a loopback development build on chain 31337. Privy and external-wallet providers use the same transaction ports. A slow wallet initialization exposes a retry after 15 seconds. In-place fee increases are followed only when the replacement matches the original sender, nonce, destination, calldata and value. An unavailable original transaction remains a recovery limitation; it cannot be labeled as the requested action merely from a different hash.
+
+## Latest light checkpoint
+
+The September 9 supplied-media redesign has a passing production build and focused Chromium/mobile/media/keyboard checks. The local swap quote and exact approval review were rechecked without a signature. Full browser, accessibility and performance release campaigns remain deferred. See [checkpoint and retained failures](../test/evidence/frontend-design.md).

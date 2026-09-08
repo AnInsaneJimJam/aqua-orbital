@@ -1,0 +1,12 @@
+ .workspace { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: start; }
+.workspace h2 { font-size: 24px; }
+.history { min-width: 0; display: grid; gap: 18px; }
+.history h2 { margin: 0; }
+.historyHeader { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
+.refresh { min-width: 44px; min-height: 44px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); color: var(--ink); box-shadow: var(--raised-small); }
+.invoice { padding: 22px; }
+.invoice h3 { margin: 0; font-size: 22px; }
+.invoice p { font-size: 12px; margin: 12px 0; }
+.invoice > a { min-height: 44px; display: inline-flex; align-items: center; font-size: 12px; text-decoration: none; }
+.empty { padding: 28px; border: 1px dashed var(--border); border-radius: 18px; color: var(--muted); font-size: 13px; }
+@media (max-width: 800px) { .workspace { grid-template-columns: 1fr; gap: 36px; } }

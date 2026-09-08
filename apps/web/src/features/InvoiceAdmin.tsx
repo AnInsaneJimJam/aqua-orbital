@@ -18,7 +18,7 @@ export function InvoiceAdminView({state:s}:{state:InvoiceAdminViewState}){
   <div role="status" aria-live="polite">{s.message&&<p className="notice">{s.message}</p>}
    {s.phase==='preparing'&&<p>Checking invoice state and transaction gas…</p>}
    {s.phase==='submitting'&&<p>Rechecking the invoice action. Confirm in your wallet when prompted.</p>}
-   {s.phase==='stale'&&!s.pending&&<p className="hint">Review the current terms again before signing.</p>}
+   {s.phase==='stale'&&s.connected&&!s.pending&&<p className="hint">Review the current terms again before signing.</p>}
   </div>
   {c&&<div><details><summary>{c.status==='success'?'Confirmed invoice transaction':'Reverted invoice transaction'}</summary><p className="mono">{c.hash}</p><p>Gas paid: {c.gas}</p></details>
    {c.invoiceId&&c.kind==='create'&&<><Link className="button full" href={`/pay/${c.invoiceId}`}>Open shareable invoice</Link><p className="hint">The indexed invoice page may take a moment to catch up with this receipt. Copy its page URL to share.</p></>}

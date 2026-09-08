@@ -1,7 +1,9 @@
 'use client';
+import {SlidersHorizontal} from 'lucide-react';
+import styles from './SwapSettings.module.css';
 import type {useSwapSettings} from './useSwapSettings';
 export function SwapSettings({state:s}:{state:ReturnType<typeof useSwapSettings>}){
- return <details><summary>Swap settings</summary>
+ return <details className={styles.settings}><summary aria-label="Swap settings" title="Swap settings"><SlidersHorizontal size={19} aria-hidden="true"/></summary>
   <fieldset disabled={!s.ready}><legend>Slippage tolerance</legend><div className="row">
    {[10,50,100].map(bps=><button key={bps} type="button" className="button secondary compact" aria-pressed={s.bps===String(bps)} onClick={()=>s.setBps(String(bps))}>{bps/100}%</button>)}
   </div><label className="field">Custom slippage (basis points)<input inputMode="numeric" value={s.bps} onChange={e=>s.setBps(e.target.value)} aria-invalid={s.invalid} aria-describedby="slippage-help"/></label>

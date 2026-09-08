@@ -1,2 +1,19 @@
-.header{margin:32px 0}.card{max-width:640px}.amount{overflow-wrap:anywhere;font-variant-numeric:tabular-nums;font-size:clamp(20px,4.7vw,30px)}.terms{display:grid;gap:18px;margin:24px 0}.terms div{display:grid;gap:4px;min-width:0}.terms dt{font-size:13px;color:var(--muted)}.terms dd{margin:0;overflow-wrap:anywhere}.recipients{list-style:none;margin:0 0 28px;padding:0}.recipients li{padding:16px 0;border-bottom:1px solid var(--border);font-size:14px}.split{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:10px}.payment,.observation{margin-top:28px}.observation{border-top:1px solid var(--border);padding-top:24px;font-size:14px}.refresh{margin-top:24px}
-.fields{display:grid;gap:16px;margin:24px 0}.fields label{display:grid;gap:8px;font-size:14px}.fields input,.fields select{width:100%;min-width:0;min-height:48px;border:1px solid var(--border);border-radius:12px;padding:12px;background:var(--surface);color:var(--ink)}
+ .header { margin: 26px 0; }
+.page { max-width: 670px; }
+.card { max-width: 640px; }
+.amount { overflow-wrap: anywhere; font-variant-numeric: tabular-nums; font-size: clamp(30px, 5vw, 44px); letter-spacing: -.05em; }
+.terms { display: grid; gap: 16px; margin: 24px 0; }
+.terms div { display: grid; gap: 5px; min-width: 0; }
+.terms dt { font-size: 12px; color: var(--muted); }
+.terms dd { margin: 0; overflow-wrap: anywhere; font-size: 14px; }
+.recipients { list-style: none; margin: 0 0 24px; padding: 0; }
+.recipients li { padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+.split { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.payment, .observation { margin-top: 28px; }
+.payment { border-top: 1px solid var(--border); padding-top: 24px; }
+.payment .payment { border: 0; padding: 0; }
+.observation { border-top: 1px solid var(--border); padding-top: 12px; font-size: 12px; }
+.refresh { margin-top: 16px; }
+.fields { display: grid; gap: 16px; margin: 24px 0; }
+.fields label { display: grid; gap: 8px; font-size: 13px; }
+.fields input, .fields select { width: 100%; min-width: 0; min-height: 48px; border: 1px solid var(--border); border-radius: var(--control-radius); padding: 12px; background: var(--inset); color: var(--ink); box-shadow: var(--pressed); }

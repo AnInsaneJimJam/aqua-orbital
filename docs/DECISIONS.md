@@ -44,3 +44,11 @@ Implement working end-to-end flows using the authenticated local graph and an ex
 ### D33 — Separate incomplete receipts from registered inventory
 
 The liquidity screen combines the existing paginated registered-strategy endpoint with `GET /makers/:address/shipments`, a second canonical paginated history derived from Aqua raw receipts. This keeps records with unknown config parameters out of the registered financial-state schema. It still exposes incomplete and pre-activation docked orders, their commitment and receipt; local unsigned drafts supply the missing parameters for resumption. No synthetic activation is written by an API.
+
+## D34 — Monochrome neumorphism (2026-09-09, superseded by D35)
+
+The owner replaced the instruction to retain the lavender template with black-and-white neumorphism and less frontend clutter. Use central shadow/color tokens, static vector geometry, focused workflows and progressive disclosure. Keep critical financial review data, explicit development labeling, errors and recovery actions. This changes presentation and Privy's appearance setting; the SDK, contracts, financial controllers and signing ports remain unchanged.
+
+## D35 — Identity built around supplied Orbital media (2026-09-09)
+
+The owner supplied the Orbital paper visualization and SVG logo and explicitly replaced previous visual directions. Use the original video and logo, a matching deep blue canvas, chartreuse accents, local editorial/sans typography and restrained diagram framing throughout the frontend. Keep media optional with poster, pause and reduced-motion behavior; credit Paradigm without implying endorsement or using the illustration as live data. Preserve D34's useful decluttering and the established financial review/recovery boundaries. [Frontend](FRONTEND.md), [asset provenance](ASSETS.md).

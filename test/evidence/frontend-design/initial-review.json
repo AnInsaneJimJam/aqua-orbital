@@ -1,0 +1,82 @@
+{
+  "checks": [
+    {
+      "name": "reduced-motion",
+      "paused": true,
+      "videoRequests": 0
+    },
+    {
+      "name": "home-desktop",
+      "overflow": false
+    },
+    {
+      "name": "skip-to-content",
+      "activeId": "main"
+    },
+    {
+      "name": "swap-desktop",
+      "overflow": false
+    },
+    {
+      "name": "liquidity-desktop",
+      "overflow": false
+    },
+    {
+      "name": "new-strategy-desktop",
+      "overflow": false
+    },
+    {
+      "name": "payments-desktop",
+      "overflow": false
+    },
+    {
+      "name": "funding-desktop",
+      "overflow": false
+    },
+    {
+      "name": "proof-desktop",
+      "overflow": false
+    },
+    {
+      "name": "invoice-desktop",
+      "overflow": false
+    },
+    {
+      "name": "settings-keyboard",
+      "open": true
+    },
+    {
+      "name": "swap-quote",
+      "overflow": false
+    },
+    {
+      "name": "swap-review",
+      "overflow": false
+    },
+    {
+      "name": "swap-review",
+      "signatureSubmitted": false,
+      "text": "Swap\nLocal Anvil\nYou pay\noUSD18\nUSDC\noUSD6\nBalance: 999.01549 USDC\nMax\nYou receive\n—\noUSD18\noUSD6\n\nSee the reviewed amounts below.\n\nReview token approval\nNetwork\nLocal Anvil\nYou pay\n1 USDC\nMinimum received\n0.99921 oUSD6\nTrading fee · included\n0.0005 USDC\nRecipient\n0x90f79bf6eb2c4f870365e785982e1f101e93b906\nApproval\n1 USDC\nApproval gas budget\n0.000055096000440768 ETH\nTransaction deadline\n2026-09-08 19:29:47 UTC\nRouter / spender\n0x610178da211fef7d417bc0e6fed39f05609ad788\n\nThis is an exact token approval. A fresh swap quote, gas estimate and separate signature follow its confirmation.\n\nSelected strategy\nApprove 1 USDC\nTokens stay in the maker’s wallet until settlement.\nGet demo tokens ↗"
+    },
+    {
+      "name": "wallet",
+      "overflow": false
+    },
+    {
+      "name": "home-mobile",
+      "overflow": false
+    },
+    {
+      "name": "swap-mobile",
+      "overflow": false
+    },
+    {
+      "name": "liquidity-mobile",
+      "overflow": true
+    },
+    {
+      "error": "liquidity-mobile has horizontal overflow"
+    }
+  ],
+  "errors": []
+}

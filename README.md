@@ -29,7 +29,7 @@ pnpm local:setup
 pnpm dev:local
 ```
 
-Open http://127.0.0.1:3000. API: http://127.0.0.1:3001. `local:setup` starts PostgreSQL and persistent Cancun Anvil, compiles the authenticated contract graph, applies migrations, verifies/reuses the local deployment and seeds two makers plus a split invoice. `dev:local` starts the API, indexer and current frontend template together. No Privy credentials or application private keys are needed for this explicit local fixture profile.
+Open http://127.0.0.1:3000. API: http://127.0.0.1:3001. `local:setup` starts PostgreSQL and persistent Cancun Anvil, compiles the authenticated contract graph, applies migrations, verifies/reuses the local deployment and seeds two makers plus a split invoice. `dev:local` starts the API, indexer and frontend together. No Privy credentials or application private keys are needed for this explicit local fixture profile.
 
 Use the wallet control to choose an unlocked local test account. The default taker is funded; `/fund` exposes reviewed demo-token claims. Swaps, invoice creation/payment/cancellation, publication, retirement and docking use the ordinary SDK transaction controls. `pnpm demo:judge` prints current demo links and checks the API's indexed records. See [LOCAL_DEMO](docs/LOCAL_DEMO.md) for roles, recovery and limitations.
 
@@ -72,7 +72,7 @@ The optional app container profile is `docker compose up --build` (stop host ser
 
 ## Implemented scope
 
-The repository contains a high-precision explicit-tick oracle, retained counterexamples, signed wide intervals, endpoint/slack certificates, scalar and both-root event enclosures, a global support-gap certificate, a minimal SwapVM fork, maker lifecycle on official Aqua, an atomic invoice adapter, resumable SDK transaction plans, bounded PostgreSQL reorg recovery, API readiness/SSE invalidations and all frontend routes. The UI separates swap orchestration from presentation and isolates Privy in the wallet module. The current frontend template is retained while protocol implementation continues.
+The repository contains a high-precision explicit-tick oracle, retained counterexamples, signed wide intervals, endpoint/slack certificates, scalar and both-root event enclosures, a global support-gap certificate, a minimal SwapVM fork, maker lifecycle on official Aqua, an atomic invoice adapter, resumable SDK transaction plans, bounded PostgreSQL reorg recovery, API readiness/SSE invalidations and all frontend routes. The UI separates swap orchestration from presentation and isolates Privy in the wallet module. The frontend is built around the supplied Orbital visualization and SVG logo, with a shared dark palette and local typography. Technical detail remains available through disclosures. See [frontend design](docs/FRONTEND.md) and [asset provenance](docs/ASSETS.md).
 
 `GET /ready` checks the verified deployment identity, canonical RPC block and fresh confirmed raw and deployment projection cursors. Lifecycle/invoice projections support canonical rollback; a raw cursor alone cannot satisfy readiness. The local setup generates a verified chain-31337 deployment; Arc remains unconfigured. Public API observations do not grant signing authority; payment reviews separately check wallet identity, live state, funding and simulation. `GET /events` emits committed invalidations when these dependencies are ready; clients must refresh canonical reads and cannot treat notifications as balances or payment receipts.
 

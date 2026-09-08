@@ -28,6 +28,8 @@ Updated 2026-09-09. Status records observed implementation, never planned succes
 
 ## Working log
 
+- September 9 frontend redesign: the owner supplied the Orbital video and SVG logo, superseding the interim monochrome direction before release. Implemented a matching deep blue identity, local fonts, diagram framing, optional video playback and focused swap/liquidity/payment presentation. Financial controllers and signing ports remain unchanged. Final build and focused desktop/mobile, video, keyboard and local quote/review checks pass. A mobile overflow was fixed; transient local RPC/database failures and the successful quote recheck are retained in the [light frontend checkpoint](test/evidence/frontend-design.md). Earlier monochrome screenshots are not final-design evidence.
+
 - Local setup now compiles application artifacts without compiling the full test suite, verifies/reuses the deployed graph, migrates and seeds idempotently. Repaired interrupted Anvil persistence with atomic snapshots; retained complete accounts/blocks/transactions and reverified their identities. The app runner starts API/indexer/web together and stops only its owned processes. [Runbook](docs/LOCAL_DEMO.md).
 
 - Connected the persistent local contract graph to the API, indexer and browser. Added idempotent deployment verification, local setup/seed/demo commands and an explicit loopback-only Anvil wallet fixture with per-transaction confirmation. Live Privy and Arc verification remain separate.
@@ -128,6 +130,6 @@ Updated 2026-09-09. Status records observed implementation, never planned succes
 
 ## Next concrete work
 
-The local application is connected at http://127.0.0.1:3000; use `pnpm local:setup` and `pnpm dev:local` to reproduce it. Next configure/verify live Privy authentication and wallet execution, resolve the target Arc deployment/signer prerequisites, then run the deferred numerical, security, regression and release campaigns. Recorded local evidence cannot close those gates. Keep the current frontend template; pushing remains with the user.
+The local application is connected at http://127.0.0.1:3000; use `pnpm local:setup` and `pnpm dev:local` to reproduce it. Next configure/verify live Privy authentication and wallet execution, resolve the target Arc deployment/signer prerequisites, then run the deferred numerical, security, regression and release campaigns. Recorded local evidence cannot close those gates. The supplied-media frontend is now the editable design baseline; pushing remains with the user.
 
 Detailed commands and outcomes belong in [the evidence index](test/evidence/INDEX.md).
