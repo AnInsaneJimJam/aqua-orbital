@@ -9,8 +9,9 @@ import {routingFixture} from './route-selection-fixture.js';
 import {address,hash} from './strategies-fixture.js';
 
 /** Deterministic unit responses; no live balances, quotes or canonical claims. */
-export function paymentServiceFixture(direct=false,count=2){
- const f=contextFixture(direct),routing=routingFixture(count),timestamp=1700000003n,now=Number(timestamp)*1000;
+export function paymentServiceFixture(direct=false,count=2,chainId=31337){
+ const f=contextFixture(direct),routing=routingFixture(count,chainId),timestamp=1700000003n,now=Number(timestamp)*1000;
+ f.input.manifest=routing.input.manifest;
  const context=decodePaymentContext(f.input,f.observations());
  if(!direct){f.input.request.tokenIn=address(2);context.decimals=6;}
  f.input.request.maxInputRaw='1000';context.balanceRaw=1000n;context.invoice.amountDueRaw=100n;context.invoice.expiresAt=timestamp+1000n;

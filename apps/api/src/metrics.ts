@@ -1,6 +1,7 @@
 import {manifestSchema, type DeploymentManifest} from '@orbital/shared';
 import type {MetricsBlock, ReceiptMetricsSnapshot, ReceiptPairTotals} from '@orbital/db';
 import {readinessDeploymentScope} from './deployment-scope.js';
+import {isFreshIndexedHead} from './index-freshness.js';
 
 export type MetricsDependencies = {
   readDatabase(manifest: DeploymentManifest): Promise<ReceiptMetricsSnapshot>;
@@ -116,7 +117,7 @@ export async function getMetrics(input: DeploymentManifest | null, dependencies?
     if (JSON.stringify(after) !== JSON.stringify(snapshot)) return unavailable('METRICS_SNAPSHOT_CHANGED', snapshot);
   } catch { return unavailable('DATABASE_UNAVAILABLE', snapshot); }
   const ageMs = Math.max(0, Math.ceil(now + performance.now() - started - indexedTime));
-  const stale = ageMs > 10000 || rpc.head > BigInt(cursor.height) + 2n;
+  const stale = ageMs > 10000 || !isFreshIndexedHead(manifest.chainId,rpc.head,BigInt(cursor.height));
   return {schemaVersion: 1, status: stale ? 'stale' : 'available', code: stale ? (ageMs > 10000 ? 'INDEXER_STALE' : 'INDEXER_CATCHING_UP') : 'METRICS_AVAILABLE',
     financialExecutionEnabled: false, chainId: manifest.chainId, deploymentId: scope.id, cursor,
     coverage: {...snapshot.coverage, complete: true}, freshness: {indexedAt: snapshot.indexedAt, ageMs, head: rpc.head.toString(), stale},

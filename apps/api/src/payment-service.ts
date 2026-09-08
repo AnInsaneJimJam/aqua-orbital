@@ -1,4 +1,5 @@
 import {isDeepStrictEqual} from 'node:util';
+import {isFreshIndexedHead,cursorFollows} from './index-freshness.js';
 import type {InvoiceReadQuery,InvoiceReadSnapshot,StrategyReadSnapshot,StrategyReadQuery} from '@orbital/db';
 import {manifestSchema,paymentQuoteRequestSchema,hashSchema,uintSchema,type DeploymentManifest,type PaymentQuoteRequest,type InvoiceReadDTO,type Token} from '@orbital/shared';
 import {buildPaymentTx,buildPaymentApprovalTx,buildOrder,configFromDTO,type TransactionPlan,type PaymentInput,type PlanContext} from '@orbital/sdk';
@@ -101,7 +102,7 @@ export async function observePaymentQuote(input:DeploymentManifest|null,request:
   const before=structuredClone(await run(()=>deps.readInvoices(manifest,invoiceQuery),'PAYMENT_DATABASE_UNAVAILABLE'));source(before,'invoice');
   if(!isDeepStrictEqual(before.asOf,before.currentCursor))fail('PAYMENT_SOURCE_UNAVAILABLE');
   const pin=before.asOf!,first=await readIdentity(pin);blockTimestamp=first.block.timestamp;checkpoint();
-  if(first.head!==BigInt(before.currentCursor!.height)+2n)fail('PAYMENT_INDEXER_STALE');
+  if(!isFreshIndexedHead(manifest.chainId,first.head,BigInt(before.currentCursor!.height)))fail('PAYMENT_INDEXER_STALE');
   const contextInput:PaymentContextInput={manifest,request:r,pin},record=before.items![0];
   let initialContext:PaymentContext|undefined,funding:PaymentFunding|undefined,pending:PaymentValidationError|PaymentFailure|undefined;
   let candidates:StrategyReadSnapshot|undefined,candidateQuery:StrategyReadQuery|undefined,routing:RoutingData|null=null,search:PaymentSearchSummary|null=null;
@@ -112,7 +113,10 @@ export async function observePaymentQuote(input:DeploymentManifest|null,request:
    if(funding?.kind==='swap'){
     checkpoint();candidateQuery={kind:'candidates',tokenIn:r.tokenIn,tokenOut:manifest.usdc.toLowerCase(),pin};
     candidates=structuredClone(await run(()=>deps.readDatabase(manifest,candidateQuery!),'PAYMENT_DATABASE_UNAVAILABLE'));source(candidates,'strategy',pin);
-    if(!isDeepStrictEqual(candidates.currentCursor,pin))fail('PAYMENT_SOURCE_UNAVAILABLE');
+    // Both payloads must still be complete at the identical canonical pin.
+    // Arc's tip can advance during the intervening RPC calls; that does not
+    // change the pinned invoice or strategy set used for financial selection.
+    if(manifest.chainId===5042002?!cursorFollows(pin,candidates.currentCursor!):!isDeepStrictEqual(candidates.currentCursor,pin))fail('PAYMENT_SOURCE_UNAVAILABLE');
     const makeRouting=(amount:bigint):RoutingInput=>({manifest,snapshot:candidates!,blockTimestamp:blockTimestamp!.toString(),intent:{kind:'payment',payer:r.payer,tokenIn:r.tokenIn,amountInRaw:amount.toString(),minimumOutRaw:record.amountDueRaw,invoiceExpiresAt:record.expiresAt,maxCrossings:r.maxCrossings}});
     const initial=makeRouting(funding.seedRaw),plan=prepareRouting(initial),inspections:StaticReadResult[]=[];
     for(let batchIndex=0;batchIndex<plan.batches.length;batchIndex++){const batch=plan.batches[batchIndex]!;charge('inspectionMembers',batch.length);
@@ -139,10 +143,12 @@ export async function observePaymentQuote(input:DeploymentManifest|null,request:
   const last=await readIdentity(pin);if(last.head<first.head||last.block.timestamp!==blockTimestamp)fail('PAYMENT_RPC_IDENTITY_INVALID');
   const after=structuredClone(await run(()=>deps.readInvoices(manifest,{...invoiceQuery,pin}),'PAYMENT_DATABASE_UNAVAILABLE'));source(after,'invoice',pin);
   if(!isDeepStrictEqual(pinned(before),pinned(after)))fail('PAYMENT_SOURCE_CHANGED');
-  if(last.head!==BigInt(after.currentCursor!.height)+2n)fail('PAYMENT_INDEXER_STALE');
+  if(manifest.chainId===5042002&&!cursorFollows(candidates?.currentCursor??before.currentCursor!,after.currentCursor!))fail('PAYMENT_SOURCE_CHANGED');
+  if(!isFreshIndexedHead(manifest.chainId,last.head,BigInt(after.currentCursor!.height)))fail('PAYMENT_INDEXER_STALE');
   if(candidates){const final=await run(()=>deps.readDatabase(manifest,candidateQuery!),'PAYMENT_DATABASE_UNAVAILABLE');source(final,'strategy',pin);
    if(!isDeepStrictEqual(pinned(candidates),pinned(final)))fail('PAYMENT_SOURCE_CHANGED');
-   if(!isDeepStrictEqual(final.currentCursor,after.currentCursor)||last.head!==BigInt(final.currentCursor!.height)+2n)fail('PAYMENT_INDEXER_STALE');}
+   if(manifest.chainId===5042002?!cursorFollows(after.currentCursor!,final.currentCursor!):!isDeepStrictEqual(final.currentCursor,after.currentCursor))fail('PAYMENT_INDEXER_STALE');
+   if(!isFreshIndexedHead(manifest.chainId,last.head,BigInt(final.currentCursor!.height)))fail('PAYMENT_INDEXER_STALE');}
   checkpoint();const observed=now(),indexed=Math.min(...indexedTimes);
   const observation:ObservationScope={chainId:scope.chainId,deploymentId:scope.id,asOf:pin,currentIndexedBlock:after.currentCursor!,historical:BigInt(pin.height)<BigInt(after.currentCursor!.height),
    freshness:{indexedAt:new Date(indexed).toISOString(),ageMs:Math.max(0,Math.ceil(observed-indexed)),head:last.head.toString(),blockTimestamp:blockTimestamp.toString(),observedAt:new Date(observed).toISOString()},coverage:{...before.coverage,complete:true}};

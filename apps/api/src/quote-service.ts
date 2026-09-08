@@ -4,6 +4,7 @@ import type {StrategyReadQuery,StrategyReadSnapshot} from '@orbital/db';
 import {prepareRouting,prepareWholeSizeQuotes,selectWholeSizeQuotes,validateRoutingIntent,type RoutingInput,type RoutingIntent,type StaticReadResult} from './route-selection.js';
 import type {QuoteRpcPhase} from './quote-rpc.js';
 import {readinessDeploymentScope} from './deployment-scope.js';
+import {isFreshIndexedHead,cursorFollows} from './index-freshness.js';
 export type QuoteIdentity={chainId:number;head:bigint;block:{height:string;hash:string;timestamp:bigint}};
 export type QuoteDependencies={readDatabase(manifest:DeploymentManifest,query:StrategyReadQuery):Promise<StrategyReadSnapshot>;readIdentity(manifest:DeploymentManifest,pin:{height:string;hash:string},signal:AbortSignal,timeoutMs:number):Promise<QuoteIdentity>;readBatch(input:RoutingInput,phase:QuoteRpcPhase,signal:AbortSignal,timeoutMs:number,onCacheHit?:()=>void):Promise<StaticReadResult[]>};
 export type QuoteOptions={signal?:AbortSignal;now?:()=>number;timeoutMs?:number};
@@ -51,7 +52,7 @@ export async function observeQuote(input:DeploymentManifest|null,intent:RoutingI
   const before=await run(()=>deps.readDatabase(manifest,query),'QUOTE_DATABASE_UNAVAILABLE');source(before);age(before);
   if(!isDeepStrictEqual(before.asOf,before.currentCursor))fail('QUOTE_SOURCE_UNAVAILABLE');
   const pin=before.asOf!,first=await run(()=>deps.readIdentity(manifest,pin,group.signal,rpcBudget()),'QUOTE_RPC_UNAVAILABLE');identity(first,pin);clock(first.block.timestamp);
-  if(first.head!==BigInt(before.currentCursor!.height)+2n)fail('QUOTE_INDEXER_STALE');
+  if(!isFreshIndexedHead(manifest.chainId,first.head,BigInt(before.currentCursor!.height)))fail('QUOTE_INDEXER_STALE');
   const routing:RoutingInput={manifest,snapshot:before,intent,blockTimestamp:first.block.timestamp.toString()},plan=prepareRouting(routing),observations:StaticReadResult[]=[];
   checkpoint();for(let batchIndex=0;batchIndex<plan.batches.length;batchIndex++)observations.push(...await run(()=>deps.readBatch(routing,{kind:'inspection',batchIndex},group.signal,rpcBudget()),'QUOTE_RPC_UNAVAILABLE'));
   const prepared=prepareWholeSizeQuotes(routing,observations),quotes:StaticReadResult[]=[];
@@ -61,7 +62,8 @@ export async function observeQuote(input:DeploymentManifest|null,intent:RoutingI
   if(last.block.timestamp!==first.block.timestamp||last.head<first.head)fail('QUOTE_RPC_IDENTITY_INVALID');
   const after=await run(()=>deps.readDatabase(manifest,{...query,pin}),'QUOTE_DATABASE_UNAVAILABLE');source(after);
   if(!isDeepStrictEqual(pinned(before),pinned(after)))fail('QUOTE_SOURCE_CHANGED');
-  if(last.head!==BigInt(after.currentCursor!.height)+2n)fail('QUOTE_INDEXER_STALE');
+  if(manifest.chainId===5042002&&!cursorFollows(before.currentCursor!,after.currentCursor!))fail('QUOTE_SOURCE_CHANGED');
+  if(!isFreshIndexedHead(manifest.chainId,last.head,BigInt(after.currentCursor!.height)))fail('QUOTE_INDEXER_STALE');
   const indexed=Math.min(age(before),age(after));clock(last.block.timestamp);checkpoint();const observed=now();
   return {schemaVersion:1,status:'observed',code:selected.best?'QUOTE_OBSERVED':'NO_ROUTE_IN_INSPECTED_SET',financialExecutionEnabled:false,canonicalVerification:'verified_at_pin',chainId:scope.chainId,deploymentId:scope.id,asOf:pin,currentIndexedBlock:after.currentCursor!,historical:BigInt(pin.height)<BigInt(after.currentCursor!.height),freshness:{indexedAt:new Date(indexed).toISOString(),ageMs:Math.max(0,Math.ceil(observed-indexed)),head:last.head.toString(),blockTimestamp:first.block.timestamp.toString(),observedAt:new Date(observed).toISOString()},data:{best:selected.best,alternatives:selected.alternatives,counts:selected.counts,coverage:selected.coverage,diagnostics:selected.diagnostics}};
  }catch(error){return unavailable(error instanceof QuoteFailure?error.message:'QUOTE_DATA_INVALID');}

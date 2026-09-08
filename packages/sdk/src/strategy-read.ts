@@ -1,4 +1,4 @@
-import {shipmentListSchema,manifestSchema,hashSchema,strategyDetailSchema,strategyListSchema,strategyFiltersSchema,strategyCursorSchema,
+import {shipmentListSchema,manifestSchema,hashSchema,strategyDetailSchema,strategyListSchema,strategyFiltersSchema,strategyCursorSchema,isFreshIndexedHead,
  type DeploymentManifest,type StrategyReadDTO,type StrategyDetailDTO,type StrategyListDTO} from '@orbital/shared';
 import {encodeAbiParameters,keccak256,type Address} from 'viem';
 import {buildOrder,encodeOrder,hashConfig,hashOrder,formatAmount,program} from './codec';
@@ -13,7 +13,7 @@ function observation(v:StrategyDetailDTO|StrategyListDTO,m:DeploymentManifest){
  if(!m.verified||v.chainId!==m.chainId||!same(v.deploymentId,id)||v.coverage.fromBlock!==m.startBlock)fail('Strategy deployment mismatch');
  const c=v.coverage,pin=BigInt(v.asOf.height),current=BigInt(v.currentIndexedBlock.height),start=BigInt(c.fromBlock),head=BigInt(v.freshness.head);
  if(pin<start||pin>current||v.historical!==(pin<current)||(pin===current&&!same(v.asOf.hash,v.currentIndexedBlock.hash)))fail('Invalid strategy observation');
- if(head<pin+2n||v.freshness.stale!==(v.status==='stale')||v.freshness.stale!==(v.freshness.ageMs>10000||head!==current+2n))fail('Invalid strategy freshness');
+ if(head<pin+2n||v.freshness.stale!==(v.status==='stale')||v.freshness.stale!==(v.freshness.ageMs>10000||!isFreshIndexedHead(m.chainId,head,current)))fail('Invalid strategy freshness');
  if(c.toBlock!==v.asOf.height||BigInt(c.expectedBlocks)!==pin-start+1n||c.expectedBlocks!==c.canonicalBlocks||c.expectedBlocks!==c.coveredBlocks)fail('Incomplete strategy history');
 }
 function record(r:StrategyReadDTO,m:DeploymentManifest,pin:StrategyDetailDTO['asOf']){

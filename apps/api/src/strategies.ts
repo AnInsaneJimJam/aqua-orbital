@@ -2,6 +2,7 @@ import {manifestSchema,hashSchema,nonzeroAddressSchema,strategyListQuerySchema,s
 import type {StrategyReadQuery,StrategyReadSnapshot} from '@orbital/db';
 import {readinessDeploymentScope} from './deployment-scope.js';
 import {strategyRecord,strategyFinancial} from './strategy-validation.js';
+import {isFreshIndexedHead} from './index-freshness.js';
 export type StrategyRpcResult={chainId:number;head:bigint;block:{height:string;hash:string;timestamp?:bigint};config?:unknown;state?:unknown;availability?:unknown};
 export type StrategyReadDependencies={readDatabase(manifest:DeploymentManifest,query:StrategyReadQuery):Promise<StrategyReadSnapshot>;readRpc(manifest:DeploymentManifest,pin:{height:string;hash:string},orderHash:string|null):Promise<StrategyRpcResult>};
 export type StrategyResponse={schemaVersion:1;httpStatus:number;status:'available'|'stale'|'unavailable';code:string;financialExecutionEnabled:false;
@@ -59,7 +60,7 @@ export async function getStrategies(input:DeploymentManifest|null,request:{hash:
  if(pinnedIdentity(before)!==pinnedIdentity(after)||!after.currentCursor||!after.indexedAt)return fail('STRATEGY_SNAPSHOT_CHANGED');
  const indexedTime=Math.min(Date.parse(before.indexedAt),Date.parse(after.indexedAt)),observedNow=now+performance.now()-started;
  if(!Number.isFinite(indexedTime)||!Number.isFinite(observedNow)||indexedTime>observedNow+1000)return fail('INDEXER_TIME_INVALID');
- const ageMs=Math.max(0,Math.ceil(observedNow-indexedTime)),stale=ageMs>10000||rpc.head!==BigInt(after.currentCursor.height)+2n;
+ const ageMs=Math.max(0,Math.ceil(observedNow-indexedTime)),stale=ageMs>10000||!isFreshIndexedHead(manifest.chainId,rpc.head,BigInt(after.currentCursor.height));
  const absent=query.kind==='detail'&&!items.length;
  let data:NonNullable<StrategyResponse['data']>;
  if(query.kind==='detail')data={strategy:items[0]??null};

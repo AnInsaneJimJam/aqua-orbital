@@ -5,6 +5,7 @@ import {configFromDTO,buildOrder,feeIn,takerData,lifecycleAbi,routerAbi} from '@
 import type {StrategyReadSnapshot,StrategyRecord} from '@orbital/db';
 import {readinessDeploymentScope} from './deployment-scope.js';
 import {strategyRecord,strategyFinancial} from './strategy-validation.js';
+import {cursorFollows} from './index-freshness.js';
 export type RoutingIntent={kind:'swap';wallet:string;recipient:string;tokenIn:string;tokenOut:string;amountInRaw:string;slippageBps:number;maxCrossings:number}|{kind:'payment';payer:string;tokenIn:string;amountInRaw:string;minimumOutRaw:string;invoiceExpiresAt:string;maxCrossings:number};
 export type RoutingInput={manifest:DeploymentManifest;snapshot:StrategyReadSnapshot;intent:RoutingIntent;blockTimestamp:string};
 export type StaticReadCall={id:string;method:'eth_call';params:[{from:string;to:string;data:string;value:'0x0'},{blockHash:string;requireCanonical:true}]};
@@ -38,7 +39,11 @@ function call(input:RoutingInput,caller:string,id:string,data:Hex):StaticReadCal
 function setup(input:RoutingInput){
  const parsed=manifestSchema.safeParse(input.manifest);if(!parsed.success||!parsed.data.verified)return fail('ROUTING_INPUT_INVALID');
  const m=parsed.data,r=request(input,m),s=input.snapshot,scope=readinessDeploymentScope(m);
- if(s.code!=='STRATEGIES_COMPLETE'||s.chainId!==m.chainId||s.deploymentId!==scope.id||!s.asOf||!s.currentCursor||!isDeepStrictEqual(s.asOf,s.currentCursor)
+ // Arc payments share the invoice's original pin while later database reads
+ // may observe an advancing tip. The service authenticates this pin and
+ // rechecks both source payloads; every call below still uses its block hash.
+ if(s.code!=='STRATEGIES_COMPLETE'||s.chainId!==m.chainId||s.deploymentId!==scope.id||!s.asOf||!s.currentCursor
+  ||(m.chainId===5042002&&input.intent.kind==='payment'?!cursorFollows(s.asOf,s.currentCursor):!isDeepStrictEqual(s.asOf,s.currentCursor))
   ||!uintSchema.safeParse(s.asOf.height).success||!hashSchema.safeParse(s.asOf.hash).success||!s.items||s.items.length>200||typeof s.hasMore!=='boolean')return fail('CANDIDATE_SOURCE_INVALID');
  const c=s.coverage,pin=BigInt(s.asOf.height),start=BigInt(m.startBlock);
  if(pin<start||c.fromBlock!==m.startBlock||c.toBlock!==s.asOf.height||c.expectedBlocks!==(pin-start+1n).toString()||c.canonicalBlocks!==c.expectedBlocks||c.coveredBlocks!==c.expectedBlocks)return fail('CANDIDATE_SOURCE_INVALID');

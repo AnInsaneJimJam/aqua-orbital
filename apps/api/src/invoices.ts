@@ -4,6 +4,7 @@ import type {InvoiceReadQuery, InvoiceReadSnapshot} from '@orbital/db';
 import type {MetricsDependencies} from './metrics.js';
 import {readinessDeploymentScope} from './deployment-scope.js';
 import {invoiceView} from './invoice-view.js';
+import {isFreshIndexedHead} from './index-freshness.js';
 export type InvoiceReadDependencies = {
   readDatabase(manifest: DeploymentManifest, query: InvoiceReadQuery): Promise<InvoiceReadSnapshot>;
   readRpc: MetricsDependencies['readRpc'];
@@ -76,7 +77,7 @@ export async function getInvoices(input: DeploymentManifest | null, request: {id
   const indexedTime = Math.min(Date.parse(before.indexedAt), Date.parse(after.indexedAt));
   const currentTime = now + performance.now() - started;
   if (!Number.isFinite(indexedTime) || !Number.isFinite(currentTime) || indexedTime > currentTime + 1000) return fail('INDEXER_TIME_INVALID');
-  const ageMs = Math.max(0, Math.ceil(currentTime - indexedTime)), stale = ageMs > 10000 || rpc.head !== BigInt(after.currentCursor.height) + 2n;
+  const ageMs = Math.max(0, Math.ceil(currentTime - indexedTime)), stale = ageMs > 10000 || !isFreshIndexedHead(manifest.chainId,rpc.head,BigInt(after.currentCursor.height));
   let data: NonNullable<InvoiceResponse['data']>;
   if (query.kind === 'detail') data = {invoice: items[0] ?? null};
   else {

@@ -1,4 +1,5 @@
 import {hashSchema, type DeploymentManifest} from '@orbital/shared';
+import {isFreshIndexedHead} from './index-freshness.js';
 
 export type MaterializationState = {
   deploymentId: string; identityMatches: boolean;
@@ -40,7 +41,7 @@ export async function checkReadiness(
   if (rpc.chainId !== manifest.chainId) return failed('RPC_CHAIN_MISMATCH');
   if (rpc.indexedBlockHash.toLowerCase() !== cursor.hash.toLowerCase()) return failed('INDEXER_ORPHANED');
   if (rpc.head < cursor.height + 2n) return failed('INDEXER_UNCONFIRMED');
-  if (rpc.head > cursor.height + 2n) return failed('INDEXER_CATCHING_UP');
+  if (!isFreshIndexedHead(manifest.chainId,rpc.head,cursor.height)) return failed('INDEXER_CATCHING_UP');
   // Recheck after RPC so a concurrent rewind/resync cannot become a fresh badge.
   let latest: IndexedState | null;
   try { latest = await bounded(dependencies.readDatabase(manifest), timeoutMs); }

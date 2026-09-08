@@ -1,4 +1,4 @@
-import {manifestSchema, quoteRequestSchema, swapQuoteObservationSchema, type DeploymentManifest, type QuoteRequest, type SwapQuoteObservationDTO} from '@orbital/shared';
+import {manifestSchema, quoteRequestSchema, swapQuoteObservationSchema, isFreshIndexedHead, type DeploymentManifest, type QuoteRequest, type SwapQuoteObservationDTO} from '@orbital/shared';
 import {encodeAbiParameters, keccak256, type Address} from 'viem';
 import {buildOrder, feeIn, hashConfig, hashOrder} from './codec';
 import {configFromDTO} from './dto';
@@ -30,7 +30,7 @@ export function decodeSwapQuoteObservation(input: unknown, httpStatus: number, c
     || [request.tokenIn, request.tokenOut].some(a => !manifest.tokens.some(t => same(t.address, a)))) invalid('Invalid quote roles or pair');
 
   const pin = BigInt(result.asOf.height), current = BigInt(result.currentIndexedBlock.height), head = BigInt(result.freshness.head);
-  if (pin < BigInt(manifest.startBlock) || pin > current || head !== current+2n || result.historical !== (pin < current)
+  if (pin < BigInt(manifest.startBlock) || pin > current || !isFreshIndexedHead(manifest.chainId,head,current) || result.historical !== (pin < current)
     || (pin === current && !same(result.asOf.hash, result.currentIndexedBlock.hash))) invalid('Invalid canonical quote pin');
   const indexedAt = Date.parse(result.freshness.indexedAt), observedAt = Date.parse(result.freshness.observedAt);
   const timestamp = BigInt(result.freshness.blockTimestamp), deadline = timestamp+20n;

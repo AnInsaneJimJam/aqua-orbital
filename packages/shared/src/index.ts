@@ -18,6 +18,16 @@ export const manifestSchema=z.object({chainId:chainIdSchema,rpcUrl:z.string().ur
 });
 export type DeploymentManifest=z.infer<typeof manifestSchema>;
 export type Token=z.infer<typeof tokenSchema>;
+export const INDEXER_CONFIRMATIONS=2n;
+export const ARC_MAX_HEAD_LAG=8n;
+/** Bounded read freshness, not finality or transaction authorization. Arc's
+ * subsecond blocks advance during RPC reads; local profiles retain exact head-2.
+ * Callers must also verify canonical pins, coverage, timestamps and live reviews. */
+export function isFreshIndexedHead(chainId:number,head:bigint,cursorHeight:bigint):boolean {
+ if(head<0n||cursorHeight<0n)return false;
+ const lag=head-cursorHeight;
+ return lag>=INDEXER_CONFIRMATIONS&&lag<=(chainId===5042002?ARC_MAX_HEAD_LAG:INDEXER_CONFIRMATIONS);
+}
 export const quoteRequestSchema=z.object({wallet:nonzeroAddressSchema,recipient:nonzeroAddressSchema,tokenIn:nonzeroAddressSchema,tokenOut:nonzeroAddressSchema,amountInRaw:uintSchema.pipe(z.string().refine(v=>BigInt(v)>0n)),slippageBps:z.number().int().min(0).max(500),maxCrossings:z.number().int().min(0).max(16)}).strict().refine(v=>v.tokenIn.toLowerCase()!==v.tokenOut.toLowerCase(),'Distinct pair required');
 export type QuoteRequest=z.infer<typeof quoteRequestSchema>;
 export const paymentQuoteRequestSchema=z.object({invoiceId:hashSchema,payer:nonzeroAddressSchema,tokenIn:nonzeroAddressSchema,maxInputRaw:uintSchema.refine(v=>BigInt(v)>0n),maxCrossings:z.number().int().min(0).max(16)}).strict();
@@ -85,7 +95,7 @@ export const invoiceDetailSchema=z.object({
   ...(v.data.invoice?[v.data.invoice.created.blockNumber,v.data.invoice.updated.blockNumber]:[])].some(x=>!uintSchema.safeParse(x).success))return;
  const pin=BigInt(v.asOf.height),current=BigInt(v.currentIndexedBlock.height),start=BigInt(c.fromBlock),head=BigInt(v.freshness.head);
  if(pin>current||pin<start||v.historical!==(pin<current)||(pin===current&&v.asOf.hash!==v.currentIndexedBlock.hash))fail('Invalid indexed observation');
- if(head<pin+2n||v.freshness.stale!==(v.status==='stale')||v.freshness.stale!==(v.freshness.ageMs>10000||head!==current+2n))fail('Invalid freshness observation');
+ if(head<pin+2n||v.freshness.stale!==(v.status==='stale')||v.freshness.stale!==(v.freshness.ageMs>10000||!isFreshIndexedHead(v.chainId,head,current)))fail('Invalid freshness observation');
  if(c.toBlock!==v.asOf.height||BigInt(c.expectedBlocks)!==pin-start+1n||c.expectedBlocks!==c.canonicalBlocks||c.expectedBlocks!==c.coveredBlocks)fail('Incomplete canonical history');
  if(v.data.invoice){
   if(v.code!==(v.status==='stale'?'INVOICES_STALE':'INVOICES_AVAILABLE'))fail('Invalid invoice response status');
