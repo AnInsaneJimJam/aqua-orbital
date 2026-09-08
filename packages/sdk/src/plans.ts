@@ -151,7 +151,7 @@ export function invoiceId(chainId:bigint,adapter:Address,merchant:Address,nonce:
  return keccak256(encodeAbiParameters([{type:'uint256'},{type:'address'},{type:'address'},{type:'uint64'}],[chainId,adapter,merchant,nonce]));
 }
 export type InvoiceCreateInput={amountDueRaw:bigint;expiresAt:bigint;recipients:Address[];bps:number[];memoHash:Hex;merchantNonce:bigint};
-function terms(adapter:Address,input:Omit<InvoiceCreateInput,'merchantNonce'>){
+export function validateInvoiceTerms(adapter:Address,input:Omit<InvoiceCreateInput,'merchantNonce'>){
  amount(input.amountDueRaw,USDC_LIMIT-1n);amount(input.expiresAt,(1n<<40n)-1n);hash(input.memoHash);
  if(input.recipients.length<1||input.recipients.length>3||input.recipients.length!==input.bps.length)throw Error('Invalid invoice recipients');
  const seen=new Set<string>();
@@ -159,7 +159,7 @@ function terms(adapter:Address,input:Omit<InvoiceCreateInput,'merchantNonce'>){
  if(input.bps.some(v=>!Number.isInteger(v)||v<=0||v>10000)||input.bps.reduce((a,b)=>a+b,0)!==10000)throw Error('Invoice shares must total 10000');
 }
 export function buildInvoiceTx(ctx:PlanContext,input:InvoiceCreateInput):{plan:TransactionPlan;invoiceId:Hex} {
- const m=context(ctx);terms(m.payments as Address,input);
+ const m=context(ctx);validateInvoiceTerms(m.payments as Address,input);
  amount(input.merchantNonce,(1n<<64n)-2n,false);
  if(input.expiresAt<ctx.now+300n||input.expiresAt>ctx.now+2_592_000n)throw Error('Invoice expiry must be 5 minutes to 30 days away');
  // This is a prediction; concurrent merchant transactions can advance the nonce.
@@ -170,7 +170,7 @@ export function buildInvoiceTx(ctx:PlanContext,input:InvoiceCreateInput):{plan:T
 /** Terms read from getInvoice on the verified adapter, pinned to one block. */
 export type InvoiceSnapshot=Omit<InvoiceCreateInput,'merchantNonce'>&{chainId:number;adapter:Address;id:Hex;merchant:Address;status:'unpaid'|'paid'|'cancelled'|'inProgress'};
 function invoice(ctx:PlanContext,input:InvoiceSnapshot,payable=true){
- const m=context(ctx);address(input.merchant);hash(input.id);terms(m.payments as Address,input);
+ const m=context(ctx);address(input.merchant);hash(input.id);validateInvoiceTerms(m.payments as Address,input);
  if(input.chainId!==ctx.chainId||!same(input.adapter,m.payments))throw Error('Invoice deployment mismatch');
  if(input.status!=='unpaid'||(payable&&input.expiresAt<=ctx.now))throw Error('Invoice is not payable');
  return m;

@@ -841,6 +841,25 @@ export const paymentsReadAbi=[
       }
     ],
     "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "nextMerchantNonce",
+    "inputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
   }
 ] as const;
 export const lifecycleEventsAbi=[

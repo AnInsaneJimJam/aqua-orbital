@@ -229,7 +229,7 @@
       "compilationTarget": {
         "src/OrbitalSwapVMRouter.sol": "OrbitalSwapVMRouter"
       },
-      "artifactSha256": "e73fe1d346e498cbbd6ec94646d38c0e449eeabcc177280c777c16b5c1c63890",
+      "artifactSha256": "102426e151faaf7d92413874e763b1ec5b41309844cd6b97a5dd294d8db12204",
       "metadataSha256": "11ace725f89077e0b7fb63119a3983f140bb654cff366c412df079ae43f9108a",
       "settings": {
         "compilationTarget": {

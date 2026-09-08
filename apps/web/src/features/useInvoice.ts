@@ -1,6 +1,7 @@
 'use client';
 import {useQuery} from '@tanstack/react-query';
-import {decodeInvoiceDetail, formatAmount} from '@orbital/sdk';
+import {decodeInvoiceDetail, formatAmount,type InvoiceSnapshot} from '@orbital/sdk';
+import type {Address,Hex} from 'viem';
 import {hashSchema, manifestSchema, type DeploymentManifest, type InvoiceDetailDTO, type InvoiceReadDTO} from '@orbital/shared';
 import {apiBase, request, requestPayload} from './api';
 
@@ -12,6 +13,7 @@ export type InvoiceViewState = {
     payment: null | {label: string; payer: string; input: string; refund: string; inputDemo: boolean};
     receipts: ReceiptView[]; memoHash: string; adapter: string};
   observation?: {block: string; hash: string; indexedAt: string; stale: boolean; historical: boolean};
+  adminInvoice?:InvoiceSnapshot;
 };
 
 function receipt(manifest: DeploymentManifest, source: InvoiceReadDTO['created'], label: string): ReceiptView {
@@ -67,5 +69,8 @@ export function useInvoice(id: string): InvoiceViewState {
   const {manifest, observation: data} = query.data;
   state.observation = {block: data.asOf.height, hash: data.asOf.hash, indexedAt: data.freshness.indexedAt, stale: data.freshness.stale, historical: data.historical};
   if (!data.data.invoice) return {...state, phase: 'not-found'};
-  return {...state, phase: 'loaded', terms: terms(data, manifest),payable:data.data.invoice.status==='unpaid'&&!refreshing&&!data.freshness.stale&&!data.historical};
+  const invoice=data.data.invoice,available=!refreshing&&!data.freshness.stale&&!data.historical;
+  const adminInvoice:InvoiceSnapshot={chainId:manifest.chainId,adapter:manifest.payments as Address,id:id as Hex,merchant:invoice.merchant as Address,status:invoice.status,
+    amountDueRaw:BigInt(invoice.amountDueRaw),expiresAt:BigInt(invoice.expiresAt),recipients:invoice.recipients.map(v=>v.address as Address),bps:invoice.recipients.map(v=>v.bps),memoHash:invoice.memoHash as Hex};
+  return {...state, phase: 'loaded', terms: terms(data, manifest),payable:invoice.status==='unpaid'&&available,adminInvoice:available?adminInvoice:undefined};
 }

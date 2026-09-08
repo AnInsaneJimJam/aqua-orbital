@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-08T15:08:37.863Z",
+  "generatedAt": "2026-09-08T16:03:13.103Z",
   "items": [
     {
       "id": "reference",
@@ -17,7 +17,7 @@
       "id": "sdk",
       "label": "SDK transaction plans and recovery",
       "status": "verified",
-      "detail": "114 recorded fixture tests for local calldata construction, review validation and wallet execution recovery. No live wallet transaction is claimed."
+      "detail": "123 recorded fixture tests for local calldata construction, review validation and wallet execution recovery. No live wallet transaction is claimed."
     },
     {
       "id": "indexer",
@@ -41,7 +41,7 @@
       "id": "browser",
       "label": "Development browser workflows",
       "status": "verified",
-      "detail": "56 recorded tests: public swap/invoice observations, saved settings, debounced refresh, canonical balances, gas-aware Max, network selection, separate approvals/signing, actual swap-event decoding, expiry/account changes and receipt/storage recovery, external-wallet fixtures, navigation and 320px layout. Synthetic HTTP/RPC receipts are not live transactions. Production performance and full accessibility campaigns are outstanding."
+      "detail": "72 recorded tests: public swap/invoice observations, saved settings, debounced refresh, canonical balances, gas-aware Max, network selection, separate approvals/signing, invoice creation/cancellation, receipt event decoding, expiry/account changes and receipt/storage recovery, external-wallet fixtures, navigation and 320px layout. Synthetic HTTP/RPC receipts are not live transactions. Production performance and full accessibility campaigns are outstanding."
     },
     {
       "id": "privy-login",

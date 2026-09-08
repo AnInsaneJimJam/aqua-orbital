@@ -69,7 +69,8 @@
       "ROUTER()": "32fe7b26",
       "USDC()": "89a30271",
       "allowedToken(address)": "756742f8",
-      "getInvoice(bytes32)": "cb802c8b"
+      "getInvoice(bytes32)": "cb802c8b",
+      "nextMerchantNonce(address)": "aa225a8c"
     }
   }
 ]

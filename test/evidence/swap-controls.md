@@ -34,7 +34,7 @@ The refreshed port-3002 preview served `/swap` and all 22 referenced assets succ
 
 Four new SDK tests cover all supported settings, exact large balances and native conversion, candidate re-estimation and unavailable/unstable gas. Twelve new browser checks cover defaults, saved settings and review invalidation, invalid values, debounce, both Max inventories, unknown gas, bad balance/precision, network selection/rejection and Max interruption. The previous 44 browser/recovery checks remain required. The updated expiry test observes a changed output after the ten-second refresh, waits for that response to complete, then checks hidden-tab expiry and reactivation.
 
-The [320px settings view](swap-controls-mobile.png) was visually inspected. Open settings, long balances and controls remain usable without horizontal overflow. These fixtures use synthetic RPC/wallet data and an empty Privy app ID; they are not live financial evidence. [Preliminary failures and corrections](swap-controls/preliminary-notes.md).
+The [320px settings view](invoice-admin/previous/swap-controls-mobile.png) was visually inspected. Open settings, long balances and controls remain usable without horizontal overflow. These fixtures use synthetic RPC/wallet data and an empty Privy app ID; they are not live financial evidence. [Preliminary failures and corrections](swap-controls/preliminary-notes.md).
 
 ## Remaining scope
 

@@ -66,7 +66,7 @@ none are presented as live Arc activity or persisted by the application.
 ## Visual review and limits
 
 Root inspected the generated [320px view](invoice-mobile.png) and
-[paid desktop view](invoice-paid-desktop.png). The very large main amount's
+[paid desktop view](invoice-admin/previous-invoice-paid-desktop.png). The very large main amount's
 responsive font was adjusted to keep its numeric value together at 320px;
 the template, palette, controls and editable CSS tokens remain in place.
 Long recipient addresses and hashes wrap without horizontal overflow.

@@ -4,10 +4,13 @@ import {copy} from '../content';
 import {useInvoice, type InvoiceViewState} from './useInvoice';
 import {usePayment} from './usePayment';
 import {PaymentView} from './Payment';
+import {useInvoiceAdmin} from './useInvoiceAdmin';
+import {InvoiceAdminView} from './InvoiceAdmin';
+import {useWallet} from '../wallet/WalletProvider';
 import type {ReactNode} from 'react';
 import styles from './Invoice.module.css';
 
-export function InvoiceView({state,payment}: {state: InvoiceViewState;payment?:ReactNode}) {
+export function InvoiceView({state,payment,administration}: {state: InvoiceViewState;payment?:ReactNode;administration?:ReactNode}) {
   const {phase, terms, observation} = state;
   const unavailable = phase === 'unavailable', invalid = phase === 'invalid', absent = phase === 'not-found';
   return <section className="page">
@@ -38,7 +41,8 @@ export function InvoiceView({state,payment}: {state: InvoiceViewState;payment?:R
           {terms.payment.inputDemo && <p className="hint">{copy.invoice.demoInput}</p>}
         </div>}
         <p className="hint">{copy.invoice.readOnly}</p>
-        {payment??<button className="button full" disabled>Payment unavailable</button>}
+        {payment}
+        {administration}
         <details><summary>Receipt details</summary><div className="stack">
           {terms.receipts.map(r => <div key={r.label}>{r.href ? <a href={r.href} target="_blank" rel="noopener noreferrer">{r.label}</a> : <span>{r.label}</span>}<div className="mono">{r.hash}</div></div>)}
           <div>Invoice adapter<div className="mono">{terms.adapter}</div></div>
@@ -57,6 +61,10 @@ export function InvoiceView({state,payment}: {state: InvoiceViewState;payment?:R
 export default function Invoice({id}: {id: string}) {
  const state=useInvoice(id),eligible=state.payable===true;
  const payment=usePayment(id,eligible,state.refresh);
+ const wallet=useWallet(),invoice=state.adminInvoice,merchant=invoice?.merchant.toLowerCase()===wallet.address?.toLowerCase();
+ const admin=useInvoiceAdmin('cancel',id,()=>{if(!invoice)throw Error('Refresh the invoice before cancelling');return {kind:'cancel',invoice};},!!invoice&&invoice.status==='unpaid'&&merchant,state.refresh);
+ const paymentView=state.terms?.status==='Unpaid at indexed block'||payment.pending||payment.confirmation?<PaymentView state={payment}/>:null;
+ const adminView=merchant&&invoice?.status==='unpaid'||admin.pending||admin.confirmation?<InvoiceAdminView state={admin}/>:null;
  // Keep submitted receipt recovery visible even if an invoice refresh fails.
- return <><InvoiceView state={state} payment={<PaymentView state={payment}/>}/>{state.phase!=='loaded'&&payment.pending&&<section className="page"><div className="panel"><PaymentView state={payment}/></div></section>}</>;
+ return <><InvoiceView state={state} payment={paymentView} administration={adminView}/>{state.phase!=='loaded'&&(payment.pending||admin.pending)&&<section className="page"><div className="panel">{payment.pending&&<PaymentView state={payment}/>} {admin.pending&&<InvoiceAdminView state={admin}/>}</div></section>}</>;
 }

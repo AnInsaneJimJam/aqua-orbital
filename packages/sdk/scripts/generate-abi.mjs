@@ -12,7 +12,7 @@ const targets=[
  ['lifecycleAbi','IOrbitalLifecycle','src/interfaces/IOrbitalLifecycle.sol',['activateStrategy','retireStrategy','nextMakerNonce','getStrategyConfig','getStrategyState','getStrategyAvailability']],
  ['aquaAbi','IAqua','vendor/aqua/src/interfaces/IAqua.sol',['ship','dock']],
  ['paymentsAbi','OrbitalPayments','src/OrbitalPayments.sol',['createInvoice','cancelInvoice','payWithUSDC','payWithSwap']],
- ['paymentsReadAbi','OrbitalPayments','src/OrbitalPayments.sol',['getInvoice','USDC','ROUTER','allowedToken']],
+ ['paymentsReadAbi','OrbitalPayments','src/OrbitalPayments.sol',['getInvoice','USDC','ROUTER','allowedToken','nextMerchantNonce']],
  ['lifecycleEventsAbi','IOrbitalLifecycle','src/interfaces/IOrbitalLifecycle.sol',['StrategyActivated','StrategyRetired'],'event'],
  ['paymentsEventsAbi','OrbitalPayments','src/OrbitalPayments.sol',['InvoiceCreated','InvoicePaid','InvoiceCancelled'],'event'],
  ['swapEventsAbi','IOrbitalLifecycle','src/interfaces/IOrbitalLifecycle.sol',['OrbitalSwapExecuted'],'event'],

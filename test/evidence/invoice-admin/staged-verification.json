@@ -1,0 +1,319 @@
+{
+  "verifiedAt": "2026-09-08T16:18:50.137404+00:00",
+  "frozenAuthoredInputsMatched": 749,
+  "stagedBindings": [
+    {
+      "path": "PROGRESS.md",
+      "sha256": "752e3c8c8cc1cb07c8018f408bafa97ab77ab46ecb067c7b34e1a15aa9f54411"
+    },
+    {
+      "path": "README.md",
+      "sha256": "f4b77e6e14bb0a9cc833b96effd624b4d8c92d144461b0c4e6fa6d430df160fa"
+    },
+    {
+      "path": "apps/web/src/features/Invoice.tsx",
+      "sha256": "aaf61829ed38eb169f392f88e0ee1ff3f654408fd19d2cbd615bce8d33c265ed"
+    },
+    {
+      "path": "apps/web/src/features/InvoiceAdmin.tsx",
+      "sha256": "0dcde3b11a8839b4afde8efb02b142d1abf326c96639900c486d3a0fb698048a"
+    },
+    {
+      "path": "apps/web/src/features/Payments.tsx",
+      "sha256": "7f163a714fcdf143dbf3647f8768241f99f8c20ce4c5491ddac2041af555aeb6"
+    },
+    {
+      "path": "apps/web/src/features/invoiceAdminStorage.ts",
+      "sha256": "94ee78b916ca00c379277fefbf5beb95255eed04dbe81c5e950163a77e92138b"
+    },
+    {
+      "path": "apps/web/src/features/useInvoice.ts",
+      "sha256": "852d402678ba42e78abc754cc86b4d7f6518a871f33d970c1685425ef7c45f09"
+    },
+    {
+      "path": "apps/web/src/features/useInvoiceAdmin.ts",
+      "sha256": "17fe142e3a6972d65f29c066c87bfce339d2c47d7b74760919b0ebf6d6d13972"
+    },
+    {
+      "path": "apps/web/src/wallet/invoiceAdminPort.ts",
+      "sha256": "974e0c3bfa5e19bda837264371e006914341ae9505acf9ad90019d1ff8bc7800"
+    },
+    {
+      "path": "apps/web/test/fixtures/invoice-admin.ts",
+      "sha256": "e9fc053b03e33b69ace0fc62d1834c27ec248378a5fd2f553af803fb5f0ea0cc"
+    },
+    {
+      "path": "apps/web/test/invoice-admin-storage.spec.ts",
+      "sha256": "942c7f3829cbea67aeb1f9bbf297e49d94d948281a9b3aa7f4e4cba360e166ff"
+    },
+    {
+      "path": "apps/web/test/invoice-admin.spec.ts",
+      "sha256": "9184ea4d38c223b91fb8090c74c0683e9ed4e05d4a98948a1f6c55a32c1e90da"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "sha256": "34281615d5c16e6acd383308e7dcb8f8731e0db2dcc97b753ba31ef9e4b57632"
+    },
+    {
+      "path": "docs/FRONTEND.md",
+      "sha256": "93f4450823f1e604e743fe52e9c2b326cfb0ab21880227388f13eef634562d16"
+    },
+    {
+      "path": "docs/PRIVY_RESEARCH.md",
+      "sha256": "010a116a896def30080e458d89047dfec2b2303b0d0838fc779a62ef0b9831cf"
+    },
+    {
+      "path": "packages/sdk/scripts/generate-abi.mjs",
+      "sha256": "95a57dee8d198a84a2e8893305c12e18c321cc144df9551615fc0ef6ea7c0e89"
+    },
+    {
+      "path": "packages/sdk/src/generated/abi.ts",
+      "sha256": "65c3bc62b1d10688a66e549ef3d44278cc753a27e3dd5c493729e02324c1695f"
+    },
+    {
+      "path": "packages/sdk/src/generated/artifact-integrity.json",
+      "sha256": "3f848b5615fbef6f9b384053b2cc6795905379c2b3196633e870c122da83e323"
+    },
+    {
+      "path": "packages/sdk/src/generated/events-provenance.json",
+      "sha256": "ead6ac5261a8fc30e24919837a712dc3fb314c87b5649e67f1c761ad8df6707d"
+    },
+    {
+      "path": "packages/sdk/src/generated/provenance.json",
+      "sha256": "9b5b60be609d69412c27a4351dc671b548368b130515ef07db296943b422f1f6"
+    },
+    {
+      "path": "packages/sdk/src/generated/swap-events-provenance.json",
+      "sha256": "461fd6cec85372b737984f8fff4dec58d49e6105298ae9d98538b5d5b5920bce"
+    },
+    {
+      "path": "packages/sdk/src/index.ts",
+      "sha256": "fb534b5efc4fc84122c59ae56946214e38699c0c47f229d0894f3becb129256e"
+    },
+    {
+      "path": "packages/sdk/src/invoice-admin.ts",
+      "sha256": "3920b53c9c8e283362b7ded8339877f51bdbcbe8d3ca40c2b4f71b94538daeed"
+    },
+    {
+      "path": "packages/sdk/src/plans.ts",
+      "sha256": "7e78a9a4a3cfcc6822e735e900fee59302c502aebc088bb5ed1486131d4edda2"
+    },
+    {
+      "path": "packages/sdk/test/invoice-admin.test.ts",
+      "sha256": "c02f3eec58b2f418dcdc6b651b42914a4083db3854c909d0ad8fba19d83a6900"
+    },
+    {
+      "path": "packages/sdk/test/payment-read-abi.test.ts",
+      "sha256": "fe6193d0485dfae4047ce40e9994e097ff3878f6c614ece1bfa1c349863deb33"
+    },
+    {
+      "path": "scripts/audit-invoice-admin.py",
+      "sha256": "a38298e1a2b74044305999628ba564e5ff5203a0ec5af205f817d3d77029f51f"
+    },
+    {
+      "path": "scripts/evidence.mjs",
+      "sha256": "059f6523e4dec91b2c5538d0cafb85f8ed5ad2ec7ea524173e3f5cc12b76166e"
+    },
+    {
+      "path": "scripts/finish-invoice-admin.py",
+      "sha256": "c6e916a00893af4c24d6eb2e9a1d4a738c254592bdc1a520b85622166c540a68"
+    },
+    {
+      "path": "test/evidence/INDEX.md",
+      "sha256": "7928fa2b0e7db706021f7beab3c5818bef3d1a3bc0d73a3524af2a32d6b6b647"
+    },
+    {
+      "path": "test/evidence/api-checkpoint-210-pre-admin.txt",
+      "sha256": "602ee23dd31b313bc5f14e2606c1580d3d2b2ed8b7657ee08d874e1587dee419"
+    },
+    {
+      "path": "test/evidence/api.txt",
+      "sha256": "7cd26cc87c7d24694246601bb17fc9a5cfc24f0ba89452cb91ef39e7e3bd1d14"
+    },
+    {
+      "path": "test/evidence/browser-checkpoint-56.txt",
+      "sha256": "51fe3272a6f0abcbc3484539f9735f9ea924b539d67b1073f607c46fd5e8cb3b"
+    },
+    {
+      "path": "test/evidence/browser.txt",
+      "sha256": "74acfb4ff56c03081e2d87ff38e45e78726fe1388c02bdf1ac53aaa34c61b097"
+    },
+    {
+      "path": "test/evidence/builds/proof.json",
+      "sha256": "bff2125018ddaeb053d403d920de251c3217b0237fb3ba5c7369dfd760620413"
+    },
+    {
+      "path": "test/evidence/invoice-admin-review-mobile.png",
+      "sha256": "6b002c1cdf6db8307f3ad030637a12d291c082778d948fa36f12cff56c87a19a"
+    },
+    {
+      "path": "test/evidence/invoice-admin.md",
+      "sha256": "bc3284eecbba16bb0b8e03d1ecc4621f28bcb84644fe135ae8c8c44fa0f04a0e"
+    },
+    {
+      "path": "test/evidence/invoice-admin/browser-focused.txt",
+      "sha256": "cfed3fb5a2f38d415d73b4190a79b6becaa57f2d3577cc14c693e1eed71ee5dc"
+    },
+    {
+      "path": "test/evidence/invoice-admin/browser-initial.txt",
+      "sha256": "e17fb0d5840ddfdaa233d99feef9f0b454c2fa939bbea9c7e6e69a08dfb66645"
+    },
+    {
+      "path": "test/evidence/invoice-admin/completed/browser.txt",
+      "sha256": "74acfb4ff56c03081e2d87ff38e45e78726fe1388c02bdf1ac53aaa34c61b097"
+    },
+    {
+      "path": "test/evidence/invoice-admin/completed/build.txt",
+      "sha256": "08a5640c025603c7a6900326dbdb2303df0068013ebc04cdf5d2272305eb1522"
+    },
+    {
+      "path": "test/evidence/invoice-admin/completed/checkpoint.json",
+      "sha256": "20a4e73bc3f638c704357b6fc9fab7bd45c78d14913e2ed996659ec370926d81"
+    },
+    {
+      "path": "test/evidence/invoice-admin/completed/evidence.txt",
+      "sha256": "8a85212ff4e5cdbb3211eb90262fae6f5bed8b874538cffb568b58d3be29865f"
+    },
+    {
+      "path": "test/evidence/invoice-admin/completed/types.txt",
+      "sha256": "8626c7838ec7a1799b820e681030225aba7ba9b1a4cde96b5a7620f4e24a2b94"
+    },
+    {
+      "path": "test/evidence/invoice-admin/failed-getter-count/checkpoint.json",
+      "sha256": "3f50f6bc0125936ae945f4d829a67c1ce31cf8bbf21b608237337262ad3efc02"
+    },
+    {
+      "path": "test/evidence/invoice-admin/failed-getter-count/sdk.txt",
+      "sha256": "1711a823cfb44cf0e76762fbd612f7c2014ab4288918d72143815987749665d6"
+    },
+    {
+      "path": "test/evidence/invoice-admin/final/api.txt",
+      "sha256": "7cd26cc87c7d24694246601bb17fc9a5cfc24f0ba89452cb91ef39e7e3bd1d14"
+    },
+    {
+      "path": "test/evidence/invoice-admin/final/browser.txt",
+      "sha256": "7f67e44f3d8c1e574f84db29f9ad6385904ae7148a5b465373b440a9d717210a"
+    },
+    {
+      "path": "test/evidence/invoice-admin/final/build.txt",
+      "sha256": "c736add74a80fab2a50d972365e457fa7399200e56fa5a9240426c2e78f22a56"
+    },
+    {
+      "path": "test/evidence/invoice-admin/final/checkpoint.json",
+      "sha256": "fb7136f4bc61e0a3e16fdb18fb8ddecacd31bfcd040ab9b36fc78cdbdc398150"
+    },
+    {
+      "path": "test/evidence/invoice-admin/final/evidence.txt",
+      "sha256": "8a85212ff4e5cdbb3211eb90262fae6f5bed8b874538cffb568b58d3be29865f"
+    },
+    {
+      "path": "test/evidence/invoice-admin/final/sdk.txt",
+      "sha256": "668e76cd88ddd3509a2bfa0e15da8f1aa6fc2ad429aedfd0ed0ae2f686156802"
+    },
+    {
+      "path": "test/evidence/invoice-admin/final/shared.txt",
+      "sha256": "21e80901e1a66e92a98d4e1b4a4dd41ad07813f039589cdcd70e2084e71ae630"
+    },
+    {
+      "path": "test/evidence/invoice-admin/initial-disposition.md",
+      "sha256": "ab0f2c5aa19f9cedf4ff3a21eceebbf6b2589b80cb3d226cf68f4d8f0a76042b"
+    },
+    {
+      "path": "test/evidence/invoice-admin/preview.json",
+      "sha256": "b09721449f094926e7f0900383cff4b7d7bc51d9bf7206697167612bcdfba482"
+    },
+    {
+      "path": "test/evidence/invoice-admin/previous-invoice-paid-desktop.png",
+      "sha256": "9c95ad1145cc8c5d2edeb966c308e4bd1f4b49264ca26f4ddd757c10d4349e07"
+    },
+    {
+      "path": "test/evidence/invoice-admin/previous/payment-approval-mobile.png",
+      "sha256": "b70d465795efbfb595ba5acdea28af8ad82c0cbc65784f3c552d9ad93055e5ec"
+    },
+    {
+      "path": "test/evidence/invoice-admin/previous/payment-review-desktop.png",
+      "sha256": "6ea589bdadbe7009695e031ec06de1d7f7237eeb9c9bbf7fe0879030c128ba1e"
+    },
+    {
+      "path": "test/evidence/invoice-admin/previous/swap-controls-mobile.png",
+      "sha256": "d097f11ffc2649d24f9c9e0dde3b389f6860b6184a9fd0140b804acd7a687594"
+    },
+    {
+      "path": "test/evidence/invoice-admin/previous/swap-observation-desktop.png",
+      "sha256": "e7610fa318efd5f8cefd5e7be6e734465f35f13f863569898c4a3780273f3ad9"
+    },
+    {
+      "path": "test/evidence/invoice-admin/previous/swap-observation-mobile.png",
+      "sha256": "1e7f5021f84d3c69c0016336bcac10c85501c2beccfb85116d682cbd02d81937"
+    },
+    {
+      "path": "test/evidence/invoice-admin/sdk-green.txt",
+      "sha256": "7146ba526425e707b32b8579776953b3674541ce9c5885dcbca9b9352c6f1c2b"
+    },
+    {
+      "path": "test/evidence/invoice-admin/sdk-import-failure.txt",
+      "sha256": "90db351e194cba1ab7ee10f285088f9aad0e8fb98c5461749b90d56c59d1fbc2"
+    },
+    {
+      "path": "test/evidence/invoice-admin/sdk-red.txt",
+      "sha256": "400f5c7e1a79f2d13161a60d59f9890de64e2712df74128e43573e9f61939f5e"
+    },
+    {
+      "path": "test/evidence/invoice-detail-ui.md",
+      "sha256": "23254f8fe058838baf70c9e46178cb999e6bbb2b3e051be50e863049e9eac4bb"
+    },
+    {
+      "path": "test/evidence/invoice-paid-desktop.png",
+      "sha256": "3e2801efcff3fc4438c55f7f11adddb9e72f6be5976e6b05c6b4c062c948224c"
+    },
+    {
+      "path": "test/evidence/payment-approval-mobile.png",
+      "sha256": "b2b6fe2463934c057daaac0e97d5910252628e9bfb2b868577e591a438e97ff6"
+    },
+    {
+      "path": "test/evidence/payment-review-desktop.png",
+      "sha256": "8a8a109dea013219b8ad994b16a1d8fb8d80f6113150fe7bf13d5bbdc144a13f"
+    },
+    {
+      "path": "test/evidence/sdk-checkpoint-114.txt",
+      "sha256": "43e8d1774b32137191134dc2c4bc328aa643181360c3d1d5c49240daea60c6e4"
+    },
+    {
+      "path": "test/evidence/sdk-green.txt",
+      "sha256": "668e76cd88ddd3509a2bfa0e15da8f1aa6fc2ad429aedfd0ed0ae2f686156802"
+    },
+    {
+      "path": "test/evidence/swap-controls-mobile.png",
+      "sha256": "f103c9defd544cd4e5211eef867f525d2c9fcde528f49a8333e83aa9bea5a216"
+    },
+    {
+      "path": "test/evidence/swap-controls.md",
+      "sha256": "760c7cbd193bf0569c36e5f5635baf4a8b4b1b81b8d385df0da48bff146a9325"
+    },
+    {
+      "path": "test/evidence/swap-observation-desktop.png",
+      "sha256": "05c5544db35f4c60a76b9ad9332d1bbed544216ba59cf71f3a79b3a125f2fb5f"
+    },
+    {
+      "path": "test/evidence/swap-observation-mobile.png",
+      "sha256": "9b598359e653b261f943eb7d8df70dc642bffbd9c10be641c138730958b09523"
+    },
+    {
+      "path": "test/evidence/swap-observation-ui.md",
+      "sha256": "04ed693f6acd26bfaab32d33f2f4a55b1d41db50d1ecdc0164d730312da9d428"
+    },
+    {
+      "path": "test/evidence/typecheck.txt",
+      "sha256": "8626c7838ec7a1799b820e681030225aba7ba9b1a4cde96b5a7620f4e24a2b94"
+    },
+    {
+      "path": "test/evidence/web-build.txt",
+      "sha256": "08a5640c025603c7a6900326dbdb2303df0068013ebc04cdf5d2272305eb1522"
+    }
+  ],
+  "exclusions": [
+    "test/evidence/builds/source.json",
+    "test/evidence/invoice-admin/staged-verification.json"
+  ],
+  "mismatches": []
+}

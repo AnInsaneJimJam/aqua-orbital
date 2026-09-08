@@ -16,7 +16,7 @@
     "implementation": {
       "source": "packages/contracts/src/OrbitalSwapVMRouter.sol",
       "sourceSha256": "e6c91e3c134e386369d7f5b39d74ccc8aa05f1e8894e2431630c39a4436c1f4a",
-      "artifactSha256": "e73fe1d346e498cbbd6ec94646d38c0e449eeabcc177280c777c16b5c1c63890"
+      "artifactSha256": "102426e151faaf7d92413874e763b1ec5b41309844cd6b97a5dd294d8db12204"
     }
   },
   {

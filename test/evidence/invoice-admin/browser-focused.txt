@@ -1,0 +1,39 @@
+[WebServer] (node:25404) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:9940) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:11444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 16 tests using 1 worker
+
+(node:22368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/16] test\invoice-admin-storage.spec.ts:8:1 › invoice recovery preserves canonical calldata and never permits a changed scope
+[2/16] test\invoice-admin-storage.spec.ts:12:1 › invoice recovery rejects a changed action kind, appended data and malformed hashes
+[3/16] test\invoice-admin.spec.ts:6:1 › merchant reviews split amounts and shares only the confirmed creation ID
+[4/16] test\invoice-admin.spec.ts:19:1 › invalid invoice shares and inadequate gas never request a signature
+[5/16] test\invoice-admin.spec.ts:24:1 › edited terms and expiry invalidate creation review
+[6/16] test\invoice-admin.spec.ts:30:1 › changed merchant nonce prevents signing a creation with stale state
+[7/16] test\invoice-admin.spec.ts:34:1 › rejected invoice signature returns to review without resubmission
+[8/16] test\invoice-admin.spec.ts:38:1 › submitted creation resumes after reload without a second signature
+[9/16] test\invoice-admin.spec.ts:43:70 › invoice noEvent does not produce a shareable success
+[10/16] test\invoice-admin.spec.ts:43:70 › invoice wrongTransaction does not produce a shareable success
+[11/16] test\invoice-admin.spec.ts:43:70 › invoice reverted does not produce a shareable success
+[12/16] test\invoice-admin.spec.ts:47:1 › unpaid merchant cancellation requires its own review and receipt
+[WebServer] (node:1976) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[13/16] test\invoice-admin.spec.ts:53:1 › a payment racing cancellation stops the cancellation signature
+[WebServer] (node:3516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[14/16] test\invoice-admin.spec.ts:57:1 › account changes permanently discard a prepared invoice review
+[15/16] test\invoice-admin.spec.ts:62:1 › invoice creation requests the configured network and preserves amount
+[16/16] test\invoice-admin.spec.ts:66:1 › unreadable saved invoice actions block another signature
+  16 passed (1.2m)

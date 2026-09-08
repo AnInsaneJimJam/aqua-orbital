@@ -1,0 +1,2 @@
+Wrote source evidence manifest.
+Wrote bounded observation summaries for the proof page.

@@ -45,8 +45,8 @@ Those fixture repairs did not weaken the production decoder.
 
 Web [type checking](swap-observation-typecheck.txt) and the production
 [build](web-build.txt) pass. The rebuilt normal preview returns HTTP 200 at
-`http://127.0.0.1:3002/swap`. Both [320px](swap-observation-mobile.png) and
-[desktop](swap-observation-desktop.png) screenshots were inspected. These capture
+`http://127.0.0.1:3002/swap`. Both [320px](invoice-admin/previous/swap-observation-mobile.png) and
+[desktop](invoice-admin/previous/swap-observation-desktop.png) screenshots were inspected. These capture
 development HTTP/wallet fixtures; the normal preview has no verified live
 deployment or authentic Privy financial receipt.
 

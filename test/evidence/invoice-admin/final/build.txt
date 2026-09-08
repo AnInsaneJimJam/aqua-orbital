@@ -1,0 +1,18 @@
+
+> @orbital/web@0.1.0 build C:\Users\gujja\aqua-orbital\apps\web
+> next build
+
+▲ Next.js 16.3.4 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 224ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 12.4s
+  Running TypeScript ...
+test/invoice-admin-storage.spec.ts(13,208): error TS2322: Type '1n' is not assignable to type '0n'.
+test/invoice-admin-storage.spec.ts(14,40): error TS2367: This comparison appears to be unintentional because the types '0n' and '1n' have no overlap.
+Failed to type check.
+
+C:\Users\gujja\aqua-orbital\apps\web:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @orbital/web@0.1.0 build: `next build`
+Exit status 1
