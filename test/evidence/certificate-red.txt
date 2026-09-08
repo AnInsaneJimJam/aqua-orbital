@@ -1,0 +1,35 @@
+Compiling 4 files with Solc 0.8.30
+Solc 0.8.30 finished in 8.39s
+Compiler run successful with warnings:
+Warning (5740): Unreachable code.
+  --> test/Certificate.t.sol:12:9:
+   |
+12 |         x[0]=3;assertFalse(M.certify(x,ticks));
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/Certificate.t.sol:21:40:
+   |
+21 |         assertFalse(M.certify(x,ticks),"rounded boundary price must reject");
+   |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2026-09-07T23:04:01.988353Z  WARN evm::traces::external: etherscan config not found
+
+Ran 4 tests for test/Certificate.t.sol:CertificateTest
+[FAIL: endpoint certificate pending] testBoundaryRoundingRegression() (gas: 936897)
+[FAIL: endpoint certificate pending] testExactSphereAndUnsafeBranch() (gas: 185589)
+[FAIL: endpoint certificate pending] testMixedStrategyEqualPoint() (gas: 834913)
+[PASS] testWideQuotient() (gas: 49413)
+Suite result: FAILED. 1 passed; 3 failed; 0 skipped; finished in 22.70ms (30.69ms CPU time)
+
+Ran 1 test suite in 81.25ms (22.70ms CPU time): 1 tests passed, 3 failed, 0 skipped (4 total tests)
+
+Failing tests:
+Encountered 3 failing tests in test/Certificate.t.sol:CertificateTest
+[FAIL: endpoint certificate pending] testBoundaryRoundingRegression() (gas: 936897)
+[FAIL: endpoint certificate pending] testExactSphereAndUnsafeBranch() (gas: 185589)
+[FAIL: endpoint certificate pending] testMixedStrategyEqualPoint() (gas: 834913)
+
+Encountered a total of 3 failing tests, 1 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 3 failed tests

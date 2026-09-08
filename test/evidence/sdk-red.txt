@@ -1,0 +1,91 @@
+
+> @orbital/sdk@0.1.0 test C:\Users\gujja\aqua-orbital\packages\sdk
+> tsx --test test/*.test.ts
+
+TAP version 13
+# Subtest: decimal parser is exact and rejects coercions
+not ok 1 - decimal parser is exact and rejects coercions
+  ---
+  duration_ms: 4.9494
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\packages\\sdk\\test\\sdk.test.ts:5:1'
+  failureType: 'testCodeFailure'
+  error: 'SDK pending'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    parseAmount (C:\Users\gujja\aqua-orbital\packages\sdk\src\index.ts:2:75)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\packages\sdk\test\sdk.test.ts:6:15)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: fee is once on gross input and ceiling rounded
+not ok 2 - fee is once on gross input and ceiling rounded
+  ---
+  duration_ms: 0.9628
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\packages\\sdk\\test\\sdk.test.ts:11:1'
+  failureType: 'testCodeFailure'
+  error: 'SDK pending'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    feeIn (C:\Users\gujja\aqua-orbital\packages\sdk\src\index.ts:4:64)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\packages\sdk\test\sdk.test.ts:12:15)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: canonical program and argument lengths
+not ok 3 - canonical program and argument lengths
+  ---
+  duration_ms: 0.7167
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\packages\\sdk\\test\\sdk.test.ts:15:1'
+  failureType: 'testCodeFailure'
+  error: 'SDK pending'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    program (C:\Users\gujja\aqua-orbital\packages\sdk\src\index.ts:5:47)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\packages\sdk\test\sdk.test.ts:17:15)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: upstream taker header is 22 bytes with canonical flags and slices
+not ok 4 - upstream taker header is 22 bytes with canonical flags and slices
+  ---
+  duration_ms: 1.0473
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\packages\\sdk\\test\\sdk.test.ts:21:1'
+  failureType: 'testCodeFailure'
+  error: 'SDK pending'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    takerData (C:\Users\gujja\aqua-orbital\packages\sdk\src\index.ts:7:158)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\packages\sdk\test\sdk.test.ts:23:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 0
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1608.9382
+C:\Users\gujja\aqua-orbital\packages\sdk:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @orbital/sdk@0.1.0 test: `tsx --test test/*.test.ts`
+Exit status 1

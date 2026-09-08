@@ -1,12 +1,12 @@
 # Master build prompt — Orbital on Aqua and Arc
 
-Version 2.0 · September 7, 2026 · Product and implementation decisions fixed below.
+Version 2.1 · September 8, 2026 · Financial behavior is normative; visual defaults are editable.
 
-Use this prompt in the repository containing the linked mathematical and test documents. Those files are part of the prompt's input, not optional background. This is a specification for a future implementing agent; the documentation-writing task has not implemented or deployed the application.
+Use this prompt in the repository containing the linked mathematical and test documents. Those files are part of the prompt's input, not optional background. Implementation status is recorded in PROGRESS.md and test/evidence/INDEX.md; this specification does not imply implementation or deployment completion.
 
 ## 1. Your assignment and definition of success
 
-Build **Orbital**, a working stablecoin liquidity and payments application for the 1inch Aqua and Circle Arc tracks described by the user. Deliver the Solidity contracts, modified SwapVM with meaningful custom opcodes, independent mathematical reference, extensive tests, TypeScript SDK, backend/indexer, complete responsive frontend, reproducible local demo, target-network deployment tooling, and judging evidence.
+Build **Orbital**, a working stablecoin liquidity and payments application for the 1inch Aqua, Circle Arc, and Privy Best financial flow tracks described by the user. Deliver the Solidity contracts, modified SwapVM with meaningful custom opcodes, independent mathematical reference, extensive tests, TypeScript SDK, backend/indexer, complete responsive frontend, reproducible local demo, target-network deployment tooling, and judging evidence.
 
 The product statement is:
 
@@ -60,7 +60,7 @@ Retain `MATH-1..11`, corrected price orientation, additive boundary radius, supp
 - Pages `/`, `/swap`, `/liquidity`, `/liquidity/new`, `/liquidity/[strategyHash]`, `/pay`, `/pay/[invoiceId]`, and `/proof`.
 - Public read/quote API, event indexer, shared SDK, real receipt-backed metrics, static mathematical illustrations labeled as illustrations.
 
-Excluded: mainnet launch; pooled cross-maker LP shares; transfer of strategies; in-place radius changes; partial fills; exact-output swaps; cross-chain settlement; yield farming; lending; guaranteed APY; dynamic oracles; EURC/USYC at a one-dollar peg; arbitrary token import; automatic keeper signing; hosted user keys; CCTP/Gateway/StableFX/App Kit integrations; and claims of automatic 1inch Pathfinder discovery of this custom router.
+Excluded: mainnet launch; pooled cross-maker LP shares; transfer of strategies; in-place radius changes; partial fills; exact-output swaps; cross-chain settlement; yield farming; lending; guaranteed APY; dynamic oracles; EURC/USYC at a one-dollar peg; arbitrary token import; automatic keeper signing; application-held user keys and server signing; CCTP/Gateway/StableFX/App Kit integrations; and claims of automatic 1inch Pathfinder discovery of this custom router.
 
 ### 3.2 Demonstration assets and parameters
 
@@ -150,9 +150,9 @@ Use a pnpm workspace without a separate monorepo task framework:
 | `deployments` | Chain-specific addresses, verified source identity, constructor args, deployment receipts |
 | `test/evidence` | Requirement matrix, command outputs, fixture provenance, gas and demo artifacts |
 
-Use Node 22 LTS and pnpm 10. Resolve patched compatible exact package versions once in the scaffold milestone, record them in the lockfile/toolchain manifest, then use frozen installs. The version-family selection above is fixed; selecting a security-patched compatible patch is a mechanical verification step. No ethers/viem duplication, Redux, Redis, GraphQL, account service, or third-party indexing service.
+Use Node 22 LTS and pnpm 10. Resolve patched compatible exact package versions once in the scaffold milestone, record them in the lockfile/toolchain manifest, then use frozen installs. The version-family selection above is fixed; selecting a security-patched compatible patch is a mechanical verification step. No ethers/viem duplication, Redux, Redis, GraphQL, application account database/service, or third-party indexing service. Privy authentication and user-controlled embedded wallets are explicitly allowed; application-held keys and backend signing remain excluded.
 
-Frontend wallet state uses wagmi and TanStack Query; forms use React Hook Form and shared Zod schemas; accessible primitives use Radix for dialogs, popovers, tabs, and tooltips. Use Lucide for functional icons. Use **GSAP 3 + ScrollTrigger** and direct Three.js for the landing scene; CSS transitions for ordinary UI. Do not add a second animation runtime or a smooth-scroll library.
+Frontend wallet state uses wagmi and TanStack Query; forms use React Hook Form and shared Zod schemas; accessible primitives use Radix for dialogs, popovers, tabs, and tooltips. Use Lucide for functional icons. Use CSS transitions for ordinary UI and an optional CSS/vector Saturn illustration initially. Lazy GSAP 3/Three.js may enhance the educational illustration within performance limits; no smooth-scroll library or competing animation runtime. See docs/FRONTEND.md for editable presentation guidance.
 
 ### 5.2 Contract modules
 
@@ -168,6 +168,14 @@ Frontend wallet state uses wagmi and TanStack Query; forms use React Hook Form a
 | `test/tokens/{DemoDollar6,DemoDollar18}.sol` | Explicit testnet-only standard token fixtures and bounded faucet behavior |
 
 Do not deploy a separate LP vault, old OrbitalPool, fee escrow, share token, or per-tick custody contract. Per-tick baskets are mathematical state inside a maker-owned strategy.
+
+### 5.3 Privy wallet integration
+
+Privy powers existing Orbital financial actions and targets Best financial flow. Use its React SDK and wagmi integration for existing-wallet connection and email sign-in with a user-controlled embedded EVM wallet. Privy manages connectors; wagmi/viem executes canonical SDK plans. Isolate provider-specific code in the frontend wallet module; share typed active address, chain, wallet kind, readiness and transaction actions with feature controllers.
+
+Keep browsing public. Keep explicit review/signature prompts, exact approvals, account/chain invalidation, gas reserve and receipt continuation. Never store user keys, email/session data in Orbital's database, or sign from the backend. No delegated/automatic signing, organization policies, card, paymaster, or smart-account integration is added.
+
+Configure NEXT_PUBLIC_PRIVY_APP_ID and actual allowed origins. Without Privy configuration, the explicit local external-wallet profile remains useful but Privy evidence is unavailable. Do not silently substitute a mocked session. The qualification demo must show an actual embedded wallet executing the flagship Orbital swap and swap-funded USDC invoice, with public wallet address, receipt and source evidence. See docs/PRIVY_RESEARCH.md.
 
 ## 6. Strategy data, lifecycle, and reserve accounting
 
@@ -350,6 +358,8 @@ Required script names: `dev`, `build`, `lint`, `typecheck`, `test:contracts`, `t
 
 ## 10. Frontend art direction and design system
 
+The following visual values are initial defaults, not immutable acceptance requirements. Follow docs/FRONTEND.md when redesigning. Keep feature controllers and SDK financial logic separate from typed presentational components.
+
 ### 10.1 Identity
 
 Create an original Saturn-like identity inspired by Orbital's spherical-cap geometry: a softly lit pearl-lavender planet, three thin inclined rings, and token medallions moving around them. It must read as a precise stablecoin instrument rather than a generic space game. Do not copy the paper's logo or animations pixel-for-pixel, or imply that Paradigm built this app.
@@ -393,48 +403,11 @@ All inputs have persistent visible labels, localized human formatting with exact
 
 Disabled controls explain the next action. Successful copy uses text/icon for 1.5 seconds; errors persist until corrected or dismissed. Use a persistent transaction stepper for approvals, submission and confirmations, with explorer links; a disappearing toast cannot be the only record of a transaction.
 
-## 11. Landing page: the Saturn scroll story
+## 11. Compact, optional visual explanation
 
-### 11.1 Page structure and exact copy
+The initial landing page uses a compact Saturn identity with immediate Swap and Provide liquidity actions. Explain wallet-held allocation, concentrated ticks, actual curve execution, and USDC settlement in short accessible sections. Illustrations must be labeled and must never masquerade as quotes or live performance.
 
-1. **Hero, `min-height:92svh`.** Left column 5/12, scene 7/12 at desktop. Eyebrow: “Orbital · Aqua × Arc”. Headline: **“Stablecoins, in a better orbit.”**, with a deliberate desktop line break after the comma. Body: “Swap stablecoins and put your wallet’s liquidity to work. Choose your concentration. Keep custody.” Primary CTA `Launch swap` → `/swap`; secondary `Provide liquidity` → `/liquidity/new`. Under CTAs: “Built on Aqua · Settled on Arc Testnet” only when deployment is verified; otherwise “Built for Aqua · Arc Testnet deployment pending”. The right scene is the hero's dominant object, not a boxed thumbnail. Small caption: “Three assets. One maker-owned liquidity strategy.”
-2. **How-it-works story** anchored at `#how-it-works`, with one desktop pinned scene and four sequential content panels specified below.
-3. **Live strategy strip**, light background. Heading “Liquidity you can inspect.” Show up to three actually activated strategies with maker suffix, preset, advertised allocation, current available status, fee, and `View strategy`. If none exist, show “No live strategies yet” and `Create the first strategy`. No invented TVL, APY or sponsor adoption statistics.
-4. **Payments section**, light background, two columns. Heading “Finish the swap. Settle the payment.” Body: “Convert an accepted token to USDC, pay an invoice, and split the proceeds in one transaction.” A static three-leg diagram and real demo receipt link when available. CTA `Create a payment` → `/pay`.
-5. **Closing section**, compact midnight background. Heading “Choose your orbit.” CTAs `Swap tokens` and `Start providing liquidity`; paper/source/proof links follow in the footer.
-
-The animation illustrates approved mechanics; it never pretends an illustrated token movement is a live transfer. Only the live strip and real receipt references use chain data.
-
-### 11.2 Scene construction
-
-Implement `OrbitalScene` as a route-lazy-loaded client module using direct Three.js, GSAP timeline values, and imperative refs. Do not run Three.js on `/swap`, LP, payment or proof pages. Server-render the semantic hero text and a static SVG fallback so the page is useful before WebGL loads.
-
-One sphere radius 1.05, 64×32 segments desktop; soft pearl/lavender material with roughness .36, metalness .08. Three thin rings with radii 1.55, 1.78 and 2.03 and tube radius .009–.014. Ring-plane group tilts 65° on X and -24° on Z. Camera starts at `(0,0.6,6.5)`, 35° field of view, looking at origin; lighting is one broad key and soft fill. Create subtle banding procedurally, not with a downloaded planet texture. Use no HDR, bloom pass, full-screen fog or particle system.
-
-Token medallions USDC/oUSD6/oUSD18 travel on the orbit plane, with phases 0°,120°,240°. Labels remain upright via billboarding or projected HTML; rear objects are correctly occluded/faded by depth, not painted permanently over the planet. Label mock tokens clearly in the explanatory caption. Use a vector coin mark and text so no remote token image is necessary. Include an understated point labeled “Equal-price region” during the concentration phase.
-
-Desktop story container height is `420svh`, with one `100svh` pin at widths >=1024px and reduced-motion disabled. Story text occupies left 36% within the content grid; the scene stays to the right and may cross the column boundary by at most 48px. Text panels remain real headings/paragraphs in DOM; only the active panel is visually emphasized. Keyboard/focus order remains document order. Header and CTAs stay available without requiring the story to finish.
-
-### 11.3 Deterministic scroll timeline
-
-Use normalized story progress `p` from 0 to 1. GSAP `ScrollTrigger` with scrub .45 controls one timeline. Native page scrolling remains intact. Use `gsap.matchMedia` and component-scoped cleanup; no global `killAll`. Refresh after fonts and scene sizing settle. Browser back/forward restores coherent progress and leaves no orphaned pin spacers.
-
-| Progress | Text | Scene transition and meaning |
-| --- | --- | --- |
-| 0.00–0.22 | **“Your tokens stay with you.”** “Aqua records your strategy’s allocation. Your tokens remain in your wallet until a swap settles.” | Wallet outline beside the planet; three coin medallions appear on the broad ring. Wallet-to-ring connector is labeled “Allocation”, not “Deposit”. Sphere stays fixed. |
-| 0.22–0.48 | **“Concentrate around the peg.”** “Nested ranges let one strategy combine broad coverage with focused liquidity.” | Three rings separate by 0.12 units, then align concentrically; tight ring brightens near the equal-price marker. Small Wide/Balanced/Focused legend appears. No fake capital-efficiency number. |
-| 0.48–0.74 | **“Trade through changing conditions.”** “Orbital combines the active geometry and follows each tick crossing.” | A medallion advances, narrow ring becomes visibly boundary-pinned, broader orbit remains present. A second medallion travels in the corresponding opposite direction. Display “Illustration of tick behavior”; do not suggest boundary ticks stop existing. |
-| 0.74–1.00 | **“Arrive in USDC.”** “Swap into USDC and settle a payment with clear conditions and a verifiable receipt.” | USDC medallion follows a short path to a receipt panel, which branches to merchant and treasury marks. Last frame holds steadily with CTA `Try a payment`. |
-
-Across the entire story token orbital angle advances at most one revolution, tied to progress, not an endless spin. Planet group rotation changes by at most 12° Y in total, camera distance by at most 5%. Copy enters with opacity and <=12px translation over a short progress interval; do not animate each word or blur text while reading. A user-controlled `Pause motion` toggle freezes decorative progress rendering but leaves native scrolling and all content working. Persist this preference locally.
-
-For widths 768–1023px, use a smaller sticky illustration for at most two panels at a time; no horizontal overflow. Below 768px, remove pinning entirely: hero stacks text then a 340px-high scene; each of the four story panels is a normal vertical section with a static/minimally animated orbit illustration. Reduced motion at any width uses the same unpinned static sequence, no orbit rotation, no parallax, and instantaneous UI state changes. WebGL failure/context loss shows a complete SVG fallback rather than an error page.
-
-### 11.4 Performance and interaction rules
-
-Render only when scene state changes or while a short transition is active; pause work when offscreen/document hidden. DPR cap 1.5 desktop, 1 mobile; reduce sphere/ring segments on mobile. Drive GPU state through refs, not React state every frame. Dispose geometries/materials/textures/listeners and timelines on unmount. Repeated `/` → `/swap` → `/` navigation must not accumulate render loops or canvas elements.
-
-Transactional UI: hover color/border transitions 140ms, dialog entry 180ms with opacity and 6px translation, exit 120ms opacity, easing `cubic-bezier(.22,1,.36,1)`. Frequent amount updates, keyboard navigation, chain balances, and quote refreshes are instantaneous. No bouncing financial controls, number count-up, glowing pending orbit or spinning background on form pages. Pending state uses readable text and a standard small progress indicator with a static reduced-motion alternative.
+The old mandatory 420svh pin, exact timeline percentages and hard-coded camera choreography are superseded. Use optional CSS/vector illustration first; retain accessible equivalent text and reduced motion. Typography, spacing, exact copy, layout, section order, and decorative motion are editable defaults. Keep financial behavior, accessibility, route capabilities and truthful evidence mandatory. See [Frontend](docs/FRONTEND.md).
 
 ## 12. Swap page `/swap`
 
@@ -557,7 +530,7 @@ Backend tests run against isolated PostgreSQL and a local official Aqua/router c
 
 Use Playwright with local-chain wallet fixtures for tests only; never ship a hidden production wallet or local private key to the browser bundle. Tests cover connect/wrong network, input parsing, token selection, exact approval, quote refresh/review, swap receipt, LP publish rejection/resume, inactive/docked strategy, limited maker availability, invoice creation, non-USDC payment, split/refund receipt, replay failure, account/chain switch, stale backend and failed RPC.
 
-Screenshot landing hero and story at progress 0,.25,.5,.75,1; swap idle/quote/review/success/error; LP steps and active/limited/docked detail; unpaid/paid invoice; proof with missing evidence. Run at desktop and mobile plus reduced-motion and WebGL-disabled. Verify text contrast, focus order, resize cleanup, no leaked canvases/timelines, no console errors, no clipped financial data, and no horizontal overflow. Visual tests supplement functional assertions; exact pixel snapshots are not a substitute for accessible behavior.
+Screenshot the landing hero and optional educational states; swap idle/quote/review/success/error; LP steps and active/limited/docked detail; unpaid/paid invoice; proof with missing evidence. Run at desktop and mobile plus reduced-motion and WebGL-disabled. Verify text contrast, focus order, resize cleanup, no leaked canvases/timelines, no console errors, no clipped financial data, and no horizontal overflow. Visual tests supplement functional assertions; exact pixel snapshots are not a substitute for accessible behavior.
 
 Mock mode is permitted only in explicit test/Storybook-like fixture routes not shipped as live financial state. Production live API failure must not fall back to seeded quotes, balances or verified badges.
 
@@ -573,7 +546,7 @@ This plan supersedes the older pooled-contract P0–P8 plan. Each row starts wit
 | **G3: Aqua lifecycle/settlement** | Official Aqua local deployment; maker approval/ship/activate/retire/dock; controlled settlement and security | AQ-LIFE/SETTLE/DONATION/SHARED/SECURITY pass; no pooled deposits or contract fee claims |
 | **G4: Arc payments** | Invoice adapter and real USDC chain adapter, local analog tests then target verification | PAY-ATOMIC/REPLAY/DIRECT pass; Arc identity/dual-unit tests; deployment eligibility clearly recorded |
 | **G5: SDK/backend** | Canonical SDK, indexer, database, quotes, metrics, SSE, proof DTOs | Hash/calldata golden tests; ingestion/reorg/caller-context/rate/error tests; no signing service |
-| **G6: complete application UI** | All routes, wallet/form state machines, landing Saturn timeline, fallback/reduced motion | All specified pages/states rendered; complete local wallet E2E; responsive/accessibility screenshots and checks |
+| **G6: complete application UI** | All routes, wallet/form state machines, compact optional Saturn illustration, fallback/reduced motion, Privy and external-wallet integration | All specified pages/states rendered; complete local wallet E2E; responsive/accessibility screenshots and checks |
 | **G7: integrated qualification demo** | Seed distinct makers/taker/merchant/treasury; execute full scenario and build evidence | Actual source-backed opcode trace, all-pairs/crossing/custody proof, invoice split receipt, UI connects to that deployment |
 | **G8: release candidate** | Full fuzz/invariant/mutation, gas/bytecode/performance/dependency review; target deployment when authorized and funded | Tests and measurements recorded, official target Aqua verified, custom deployment identity recorded, no hidden failed criteria |
 
@@ -583,7 +556,7 @@ Gas gate: record actual measured deployment sizes under the target bytecode limi
 
 ## 18. Exact judging demonstration and evidence artifacts
 
-Provide a deterministic local `demo:judge` script plus a manual browser runbook. Use separate maker A, maker B, taker/payer, merchant and treasury wallets. Local deterministic keys are confined to local tests. Live wallets come only from explicitly supplied signers; no keys in public artifacts.
+Provide a deterministic local `demo:judge` script plus a manual browser runbook. Use separate maker A, maker B, taker/payer, merchant and treasury wallets. Local deterministic keys are confined to local tests. Live wallets come only from explicitly supplied signers or user-controlled Privy embedded-wallet sessions; no keys in public artifacts.
 
 Demonstration sequence:
 
@@ -609,12 +582,13 @@ Track evidence matrix:
 | Position demonstrated through scripts/UI | Full local/target runbook and working LP/swap screens |
 | Meaningful Arc and USDC | Arc transaction receipts, actual USDC ERC-20 settlement and gas-aware wallet handling |
 | Programmable money flow | Atomic invoice threshold, recipient split, refund, cancellation/replay tests |
+| Privy Best financial flow | Real embedded-wallet Orbital swap and invoice transaction, working code, public wallet-to-receipt association and UX explanation |
 
 The user supplied the track description and prize figures; they are goals, not a guarantee of qualification or scoring. Do not claim sponsor approval, audit, endorsement, mainnet launch, unverified deployments, or integrations not implemented.
 
 ## 19. Agent workflow, constraints, and final handoff
 
-Maintain `test/evidence/INDEX.md` with requirement ID, owner module, red/green tests, command, observed result, fixture/source provenance and blocker. Keep source facts in the research notes, economic decisions here, math in MATH, arithmetic proofs in numerical evidence, and actual deployment facts in manifests. Do not create competing design documents with contradictory names or balances.
+Maintain `test/evidence/INDEX.md` with requirement ID, owner module, red/green tests, command, observed result, fixture/source provenance and blocker. Maintain PROGRESS.md for current gates and next actions. Keep source facts in the research notes, economic decisions here, math in MATH, arithmetic proofs in numerical evidence, and actual deployment facts in manifests. Use docs/PAPER_IMPLEMENTATION.md for traceability, docs/DECISIONS.md for material rationale, and README.md for verified setup. Do not create competing design documents with contradictory names or balances.
 
 Before editing, inspect existing work and preserve unrelated changes. Use task-scoped edits. Do not reset or clean user work, commit/push without authorization, or expose secrets. Parallel agent work is used only when the user or applicable instructions authorize it; if used, assign disjoint files and serialize shared ABI/config changes. One owner integrates and verifies all results.
 

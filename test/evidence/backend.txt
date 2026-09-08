@@ -1,0 +1,54 @@
+
+> orbital@0.1.0 test:backend C:\Users\gujja\aqua-orbital
+> pnpm --filter @orbital/api test
+
+
+> @orbital/api@0.1.0 test C:\Users\gujja\aqua-orbital\apps\api
+> tsx --test test/*.test.ts
+
+TAP version 13
+# {"level":30,"time":1788824702590,"pid":20452,"hostname":"Asus14","reqId":"req-1","req":{"method":"GET","url":"/deployment","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+# Subtest: no configuration never creates fake live financial data
+ok 1 - no configuration never creates fake live financial data
+  ---
+  duration_ms: 951.5904
+  type: 'test'
+  ...
+# {"level":30,"time":1788824702618,"pid":20452,"hostname":"Asus14","reqId":"req-1","req":{"method":"POST","url":"/quotes/swap","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+# Subtest: invalid quote requests are rejected before RPC access
+ok 2 - invalid quote requests are rejected before RPC access
+  ---
+  duration_ms: 22.5158
+  type: 'test'
+  ...
+# {"level":30,"time":1788824702642,"pid":20452,"hostname":"Asus14","reqId":"req-1","req":{"method":"GET","url":"/deployment","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+# Subtest: CORS permits explicit local origins and excludes unrelated sites
+ok 3 - CORS permits explicit local origins and excludes unrelated sites
+  ---
+  duration_ms: 15.2513
+  type: 'test'
+  ...
+# {"level":30,"time":1788824702599,"pid":20452,"hostname":"Asus14","reqId":"req-1","res":{"statusCode":503},"responseTime":7.425799999999981,"msg":"request completed"}
+# {"level":30,"time":1788824702600,"pid":20452,"hostname":"Asus14","reqId":"req-2","req":{"method":"GET","url":"/strategies","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+# {"level":30,"time":1788824702601,"pid":20452,"hostname":"Asus14","reqId":"req-2","res":{"statusCode":503},"responseTime":0.9422999999997046,"msg":"request completed"}
+# {"level":30,"time":1788824702601,"pid":20452,"hostname":"Asus14","reqId":"req-3","req":{"method":"GET","url":"/metrics","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+# {"level":30,"time":1788824702602,"pid":20452,"hostname":"Asus14","reqId":"req-3","res":{"statusCode":503},"responseTime":0.5001999999999498,"msg":"request completed"}
+# {"level":30,"time":1788824702602,"pid":20452,"hostname":"Asus14","reqId":"req-4","req":{"method":"GET","url":"/proof","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+# {"level":30,"time":1788824702603,"pid":20452,"hostname":"Asus14","reqId":"req-4","res":{"statusCode":200},"responseTime":0.7408000000000357,"msg":"request completed"}
+# {"level":30,"time":1788824702604,"pid":20452,"hostname":"Asus14","reqId":"req-5","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+# {"level":30,"time":1788824702604,"pid":20452,"hostname":"Asus14","reqId":"req-5","res":{"statusCode":200},"responseTime":0.5863000000003922,"msg":"request completed"}
+# {"level":30,"time":1788824702627,"pid":20452,"hostname":"Asus14","reqId":"req-1","res":{"statusCode":400},"responseTime":8.552599999999984,"msg":"request completed"}
+# {"level":30,"time":1788824702627,"pid":20452,"hostname":"Asus14","reqId":"req-2","req":{"method":"POST","url":"/quotes/swap","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+# {"level":30,"time":1788824702629,"pid":20452,"hostname":"Asus14","reqId":"req-2","res":{"statusCode":413},"responseTime":1.0909999999998945,"msg":"request completed"}
+# {"level":30,"time":1788824702642,"pid":20452,"hostname":"Asus14","reqId":"req-1","res":{"statusCode":503},"responseTime":0.43719999999984793,"msg":"request completed"}
+# {"level":30,"time":1788824702643,"pid":20452,"hostname":"Asus14","reqId":"req-2","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+# {"level":30,"time":1788824702645,"pid":20452,"hostname":"Asus14","reqId":"req-2","res":{"statusCode":200},"responseTime":0.9867000000003827,"msg":"request completed"}
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2714.91

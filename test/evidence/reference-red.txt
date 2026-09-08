@@ -1,0 +1,113 @@
+test_all_six_pairs_and_precision_stability (test_reference.ReferenceTests.test_all_six_pairs_and_precision_stability) ... ERROR
+test_double_crossing_two_asset_regression (test_reference.ReferenceTests.test_double_crossing_two_asset_regression) ... ERROR
+test_geo_01_sphere_equal_point (test_reference.ReferenceTests.test_geo_01_sphere_equal_point) ... ERROR
+test_geo_02_03_analytic_cap (test_reference.ReferenceTests.test_geo_02_03_analytic_cap) ... ERROR
+test_geo_05_invalid_ticks (test_reference.ReferenceTests.test_geo_05_invalid_ticks) ... ERROR
+test_geo_09_boundary_primal_and_support (test_reference.ReferenceTests.test_geo_09_boundary_primal_and_support) ... ERROR
+test_invalid_trade (test_reference.ReferenceTests.test_invalid_trade) ... ERROR
+test_sw_01_exact_sphere (test_reference.ReferenceTests.test_sw_01_exact_sphere) ... ERROR
+test_sw_02_interior_consolidation (test_reference.ReferenceTests.test_sw_02_interior_consolidation) ... ERROR
+
+======================================================================
+ERROR: test_all_six_pairs_and_precision_stability (test_reference.ReferenceTests.test_all_six_pairs_and_precision_stability)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\gujja\aqua-orbital\packages\reference\tests\test_reference.py", line 62, in test_all_six_pairs_and_precision_stability
+    start=aggregate([1,1,1],ticks)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gujja\aqua-orbital\packages\reference\orbital.py", line 17, in aggregate
+    raise NotImplementedError('G1 explicit aggregation')
+NotImplementedError: G1 explicit aggregation
+
+======================================================================
+ERROR: test_double_crossing_two_asset_regression (test_reference.ReferenceTests.test_double_crossing_two_asset_regression)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\gujja\aqua-orbital\packages\reference\tests\test_reference.py", line 50, in test_double_crossing_two_asset_regression
+    start=aggregate([2,1],ticks)
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gujja\aqua-orbital\packages\reference\orbital.py", line 17, in aggregate
+    raise NotImplementedError('G1 explicit aggregation')
+NotImplementedError: G1 explicit aggregation
+
+======================================================================
+ERROR: test_geo_01_sphere_equal_point (test_reference.ReferenceTests.test_geo_01_sphere_equal_point)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\gujja\aqua-orbital\packages\reference\tests\test_reference.py", line 16, in test_geo_01_sphere_equal_point
+    self.assertEqual(supporting_basket([1]*4,Tick(2)),[mp.mpf(1)]*4)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gujja\aqua-orbital\packages\reference\orbital.py", line 14, in supporting_basket
+    raise NotImplementedError('G1 supporting minimizer')
+NotImplementedError: G1 supporting minimizer
+
+======================================================================
+ERROR: test_geo_02_03_analytic_cap (test_reference.ReferenceTests.test_geo_02_03_analytic_cap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\gujja\aqua-orbital\packages\reference\tests\test_reference.py", line 19, in test_geo_02_03_analytic_cap
+    g=geometry(4,Tick(2,mp.mpf(9)/4))
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gujja\aqua-orbital\packages\reference\orbital.py", line 11, in geometry
+    raise NotImplementedError('G1 geometry')
+NotImplementedError: G1 geometry
+
+======================================================================
+ERROR: test_geo_05_invalid_ticks (test_reference.ReferenceTests.test_geo_05_invalid_ticks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\gujja\aqua-orbital\packages\reference\tests\test_reference.py", line 26, in test_geo_05_invalid_ticks
+    with self.assertRaises(ValueError): geometry(4,Tick(1,b))
+                                        ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gujja\aqua-orbital\packages\reference\orbital.py", line 11, in geometry
+    raise NotImplementedError('G1 geometry')
+NotImplementedError: G1 geometry
+
+======================================================================
+ERROR: test_geo_09_boundary_primal_and_support (test_reference.ReferenceTests.test_geo_09_boundary_primal_and_support)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\gujja\aqua-orbital\packages\reference\tests\test_reference.py", line 32, in test_geo_09_boundary_primal_and_support
+    x=supporting_basket(p,t)
+      ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gujja\aqua-orbital\packages\reference\orbital.py", line 14, in supporting_basket
+    raise NotImplementedError('G1 supporting minimizer')
+NotImplementedError: G1 supporting minimizer
+
+======================================================================
+ERROR: test_invalid_trade (test_reference.ReferenceTests.test_invalid_trade)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\gujja\aqua-orbital\packages\reference\tests\test_reference.py", line 77, in test_invalid_trade
+    with self.assertRaises(ValueError): swap([1]*4,[Tick(2)],0,1,amount)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gujja\aqua-orbital\packages\reference\orbital.py", line 20, in swap
+    raise NotImplementedError('G1 independent dual solve')
+NotImplementedError: G1 independent dual solve
+
+======================================================================
+ERROR: test_sw_01_exact_sphere (test_reference.ReferenceTests.test_sw_01_exact_sphere)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\gujja\aqua-orbital\packages\reference\tests\test_reference.py", line 39, in test_sw_01_exact_sphere
+    q=swap([mp.mpf(1)]*4,[Tick(2)],0,1,mp.mpf('0.5'))
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gujja\aqua-orbital\packages\reference\orbital.py", line 20, in swap
+    raise NotImplementedError('G1 independent dual solve')
+NotImplementedError: G1 independent dual solve
+
+======================================================================
+ERROR: test_sw_02_interior_consolidation (test_reference.ReferenceTests.test_sw_02_interior_consolidation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\gujja\aqua-orbital\packages\reference\tests\test_reference.py", line 45, in test_sw_02_interior_consolidation
+    q=swap([mp.mpf(1)]*4,ticks,0,1,mp.mpf('0.5'))
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gujja\aqua-orbital\packages\reference\orbital.py", line 20, in swap
+    raise NotImplementedError('G1 independent dual solve')
+NotImplementedError: G1 independent dual solve
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.015s
+
+FAILED (errors=9)

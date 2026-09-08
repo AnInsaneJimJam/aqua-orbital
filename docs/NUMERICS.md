@@ -61,9 +61,11 @@ If the ideal output's enclosure straddles a raw unit and further refinement is e
 
 Real roots and token transfer units generally cannot both be represented exactly. The state therefore needs a precise meaning for small deviations from the ideal frontier.
 
-`NUM-12` Authoritative `X` contains exact internal-length integers. After a pair swap, apply the exact normalized net input and exact normalized **actual raw output** to those two coordinates. Do not pretend that a higher ideal output was paid and leave the difference in an unowned account. The smaller actual output leaves conservatively retained principal inside the convex reserve set. All fee tokens remain outside `X`.
+`NUM-12` Authoritative `X` contains exact internal-length integers. After a pair swap, apply the exact normalized net input and exact normalized **actual raw output** to those two coordinates. Do not pretend that a higher ideal output was paid and leave the difference in an unowned account. The smaller actual output creates candidate retained principal, which is acceptable only after NUM-13 certification of the actual endpoint; output flooring alone does not preserve the positive-price branch. All fee tokens remain outside `X`.
 
 `NUM-13` For each accepted state, certify membership in the sum of the tick reserve sets, on the branch admitting the reconstruction in `MATH-7`. The aggregate inequality `F<=R²`, correct partition, `rho>=S`, and supporting-price signs are necessary checks; also certify the individual reconstructed cap constraints and principal lower bounds with the aggregate/local bounds established by the proof. The production check may use a proved aggregate reduction, while the reference test recomputes every tick. A globally small residual cannot excuse a locally negative LP principal.
+
+Additionally certify every reconstructed boundary coordinate `x_t,i<=r_t`. Aggregate price signs certify this for interior ticks, but not for boundary ticks after rounding. Equivalently require `u_max <= (1-b_t/n)/sigma(b_t)` for each boundary tick. This threshold decreases with the boundary key, so an interval-certified check of the largest boundary key suffices. The derivation and exact-real counterexample are recorded in [the paper ledger](PAPER_IMPLEMENTATION.md#rounded-endpoint-audit). Do not replace this check by a small aggregate residual.
 
 An output rounded down can cross a nearby normalized-sum boundary in the *other* direction compared with the ideal output. Recompute/certify the actual endpoint partition; if that would leave the true aggregate feasible set or cannot be resolved within the work cap, revert. Do not snap principal balances or add fictitious input to force an equality.
 
@@ -109,4 +111,4 @@ During implementation, create `test/evidence/numerics.md` containing:
 6. Output-error bounds in **raw token units**, including multi-crossing trades and mixed decimals.
 7. Adversarial tiny-trade, extreme-radius, near-equality, and repeated-cycle counterexample searches with reproducible seeds.
 
-This artifact does not exist yet. It is a required deliverable of the implementation, not a statement that the proofs are already done. An unresolved proof or failing counterexample blocks the relevant milestone and deployment; it must not be concealed by a broad `epsilon` or a mass of rejected fuzz inputs.
+The [numerical evidence ledger](../test/evidence/numerics.md) now records the implemented primitives and endpoint certificate. Its remaining sections are explicitly incomplete; the existence of the file is not a statement that the proofs are done. An unresolved proof or failing counterexample blocks the relevant milestone and deployment; it must not be concealed by a broad `epsilon` or a mass of rejected fuzz inputs.

@@ -1,0 +1,48 @@
+# Frontend: minimal workflows, editable design
+
+## Authority
+
+The master owns financial behavior and security. This document owns editable presentation defaults. Its visual guidance supersedes the old master’s exact layout measurements and scroll timeline; changing presentation does not authorize changing fee, custody, slippage, approval, or settlement behavior.
+
+## Architecture
+
+Use Next.js App Router, React, CSS Modules, Radix primitives, and the shared bigint SDK. Separate feature controllers (queries/state machines/actions), wallet integration (Privy/wagmi), and presentational components (typed state and callbacks). Presentation never assembles calldata, chooses an allowance spender, or computes a certified quote.
+
+Keep color, spacing, typography and motion tokens centralized. Keep copy in one content module. Route layouts compose small domain components; do not build a generic page-builder framework. Behavior tests use accessible names and outcomes; screenshots capture current design without making every pixel immutable.
+
+## Initial direction
+
+Use a compact midnight Saturn hero with Swap and Provide liquidity actions immediately available. Use pale periwinkle transaction backgrounds, lavender accents, restrained typography, flat data rows, and whitespace. Keep orbital illustrations optional and clearly labeled educational; no mandatory 420svh pin, autoplay spectacle, or delay before financial actions. CSS/vector geometry is sufficient for the initial illustration. Add optional lazy Three.js/GSAP only if it improves explanation within the performance budget.
+
+Retain the master’s colors, fonts and sizes as starting values, not a restriction on subsequent redesign. Preserve AA contrast, 44px targets, visible focus, mobile layout, reduced-motion behavior, and performance budgets.
+
+## Journeys
+
+| Route | Primary outcome |
+| --- | --- |
+| `/` | Understand wallet-held concentrated liquidity; start a swap or strategy |
+| `/swap` | Select assets/amount, inspect quote, approve exact input, review and execute |
+| `/liquidity` | Inspect the active wallet’s strategies and start publication |
+| `/liquidity/new` | Assets → Concentration → Review → resumable Publish |
+| `/liquidity/[strategyHash]` | Inspect live availability, fees, and owner lifecycle actions |
+| `/pay` | Create or inspect immutable invoices |
+| `/pay/[invoiceId]` | Review terms and pay directly or through an Orbital swap |
+| `/proof` | Inspect real deployment, math, opcode, wallet and receipt evidence |
+
+One primary action per stage. Keep asset/amount, minimum output, fee, gas, network, recipient and approval visible when relevant. Put raw geometry, hashes and detailed traces behind accessible disclosure controls. Never hide an unsafe condition to simplify the screen.
+
+Every data view has disconnected, loading, empty, unavailable, stale, error and loaded states as applicable. Public browsing needs no login. Account/network changes invalidate unsigned plans; submitted transaction links survive. A backend outage never becomes a seeded quote.
+
+## Redesign acceptance
+
+Changing tokens, copy, layout or decorative motion must leave SDK and transaction-state tests unchanged. Verify keyboard operation, 320px through desktop widths, 200% zoom, long values, pending/rejected/reverted operations and reduced motion. Inspect screenshots at meaningful workflow states, not just the landing page.
+
+## Current implementation map
+
+- `apps/web/src/app/globals.css`: central visual tokens and basic controls. Page/component CSS Modules own local layout. System fonts are the current fallback; final font/performance selection remains open.
+- `apps/web/src/content.ts`: shared product copy. Some feature copy remains colocated in presentation and can move here as the workflows are completed.
+- `features/useSwap.ts`: amount validation, pair selection and quote orchestration. `features/Swap.tsx:SwapView` receives typed state/callbacks and builds no calldata.
+- `wallet/`: Privy/wagmi providers, explicit wallet selection and live account/chain checks. Public content remains visible while the Privy module loads.
+- `packages/sdk/src/execution.ts`: provider-independent signature/gas/account-change/receipt recovery boundary. Its fixture tests do not prove Privy service behavior; full feature-controller wiring remains unfinished.
+
+All documented routes exist, but strategy publication, invoice actions and quote execution are still guarded previews/unavailable states. The production build, 320px overflow check, external-wallet fixture keyboard dialog and live public Privy sign-in UI have been verified. Full financial flows, resumed publication, 200% zoom, cross-browser, automated accessibility and performance campaigns are not yet complete.

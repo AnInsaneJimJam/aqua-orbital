@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-09-07T23:58:11.636Z",
+  "items": [
+    {
+      "id": "reference",
+      "label": "Independent reference fixtures",
+      "status": "verified",
+      "detail": "15 bounded numerical regressions; selected 110/160-digit checks. This is not a proof of the production solver."
+    },
+    {
+      "id": "contracts",
+      "label": "Local contract tests",
+      "status": "verified",
+      "detail": "27 unit/probe tests, including local primitive fuzz cases. The six-pair Aqua probe and payment router double do not execute the Orbital curve."
+    },
+    {
+      "id": "engine",
+      "label": "Certified Orbital swap engine",
+      "status": "not-run",
+      "detail": "Complete integer traversal and rounded-state path proof remain unfinished. Financial execution is unavailable."
+    },
+    {
+      "id": "browser",
+      "label": "Development browser workflows",
+      "status": "verified",
+      "detail": "Isolated external-wallet fixtures, navigation, guarded strategy preview and 320px layout. Production performance and full accessibility campaigns are outstanding."
+    },
+    {
+      "id": "privy-login",
+      "label": "Privy sign-in interface",
+      "status": "verified",
+      "detail": "Public email/external-wallet sign-in UI only. Wallet creation, reconnection and hosted signatures are not verified."
+    },
+    {
+      "id": "privy-flow",
+      "label": "Privy financial-flow qualification",
+      "status": "not-run",
+      "detail": "Requires a real embedded-wallet Orbital swap and swap-funded USDC invoice with receipts."
+    },
+    {
+      "id": "arc",
+      "label": "Arc deployment identity",
+      "status": "unavailable",
+      "detail": "The recorded Aqua candidate has empty runtime code on Arc Testnet. No verified Orbital deployment or transaction receipts exist."
+    },
+    {
+      "id": "release",
+      "label": "Release campaigns / independent security audit",
+      "status": "not-run",
+      "detail": "Full differential, invariant, mutation, gas and release campaigns remain outstanding. No independent security audit is claimed."
+    }
+  ]
+}

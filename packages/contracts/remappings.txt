@@ -1,0 +1,4 @@
+forge-std/=vendor/forge-std/src/
+@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/
+@1inch/solidity-utils/=node_modules/@1inch/solidity-utils/
+@1inch/aqua/=vendor/aqua/

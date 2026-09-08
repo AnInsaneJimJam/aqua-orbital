@@ -1,0 +1,8 @@
+{
+  "observedAt": "2026-09-07T23:45:49.227Z",
+  "origin": "http://127.0.0.1:3002",
+  "appId": "cmtrvczqp00qh0cjv4b16j1ag",
+  "loginVisible": true,
+  "failures": [],
+  "scope": "Public login UI only. No email, wallet creation, signature, or transaction."
+}

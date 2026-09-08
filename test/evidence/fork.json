@@ -1,0 +1,11 @@
+{
+  "baseline": "f09a41e689240adc645934f965c8061749397cd2",
+  "changes": [
+    {
+      "path": "src/SwapVM.sol",
+      "baseline_sha256": "cc1570a009d967497290ce604c0f3942cd84416c3d2b996cab6e965eef1fe9bf",
+      "fork_sha256": "56ad0b028912653eb0742c89184b99899396e81912f2e088b220a29fe1f932dc"
+    }
+  ],
+  "scope": "Resolver and pre/post hooks only; complete Orbital router and production custom opcodes are not implemented."
+}

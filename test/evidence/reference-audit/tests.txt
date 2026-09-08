@@ -1,0 +1,20 @@
+test_all_dimensions_explicit_basket_feasibility (test_events.EventTests.test_all_dimensions_explicit_basket_feasibility) ... ok
+test_both_roots_same_ending_partition (test_events.EventTests.test_both_roots_same_ending_partition) ... ok
+test_reject_infeasible_primal_even_with_matching_sum (test_events.EventTests.test_reject_infeasible_primal_even_with_matching_sum) ... ok
+test_slack_start_is_used_as_actual_constraint (test_events.EventTests.test_slack_start_is_used_as_actual_constraint) ... ok
+test_all_six_pairs_and_precision_stability (test_reference.ReferenceTests.test_all_six_pairs_and_precision_stability) ... ok
+test_double_crossing_two_asset_regression (test_reference.ReferenceTests.test_double_crossing_two_asset_regression) ... ok
+test_geo_01_sphere_equal_point (test_reference.ReferenceTests.test_geo_01_sphere_equal_point) ... ok
+test_geo_02_03_analytic_cap (test_reference.ReferenceTests.test_geo_02_03_analytic_cap) ... ok
+test_geo_05_invalid_ticks (test_reference.ReferenceTests.test_geo_05_invalid_ticks) ... ok
+test_geo_09_boundary_primal_and_support (test_reference.ReferenceTests.test_geo_09_boundary_primal_and_support) ... ok
+test_invalid_trade (test_reference.ReferenceTests.test_invalid_trade) ... ok
+test_sw_01_exact_sphere (test_reference.ReferenceTests.test_sw_01_exact_sphere) ... ok
+test_sw_02_interior_consolidation (test_reference.ReferenceTests.test_sw_02_interior_consolidation) ... ok
+test_aggregate_prices_do_not_certify_boundary_prices (test_rounding.RoundingRegression.test_aggregate_prices_do_not_certify_boundary_prices) ... ok
+test_small_slack_vertical_release_leaves_reconstruction_sheet (test_slack_path.SlackPathRegression.test_small_slack_vertical_release_leaves_reconstruction_sheet) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.306s
+
+OK

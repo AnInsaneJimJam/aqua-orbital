@@ -1,0 +1,78 @@
+
+> orbital@0.1.0 test:sdk C:\Users\gujja\aqua-orbital
+> pnpm --filter @orbital/sdk test
+
+
+> @orbital/sdk@0.1.0 test C:\Users\gujja\aqua-orbital\packages\sdk
+> tsx --test test/*.test.ts
+
+TAP version 13
+# Subtest: persists a submitted hash before waiting and resumes without sending again
+ok 1 - persists a submitted hash before waiting and resumes without sending again
+  ---
+  duration_ms: 4.386
+  type: 'test'
+  ...
+# Subtest: wrong network and insufficient gas never request a signature
+ok 2 - wrong network and insufficient gas never request a signature
+  ---
+  duration_ms: 1.062
+  type: 'test'
+  ...
+# Subtest: account changes during gas estimation invalidate review
+ok 3 - account changes during gas estimation invalidate review
+  ---
+  duration_ms: 0.641
+  type: 'test'
+  ...
+# Subtest: rejected signatures are propagated without a pending receipt
+ok 4 - rejected signatures are propagated without a pending receipt
+  ---
+  duration_ms: 0.7178
+  type: 'test'
+  ...
+# Subtest: receipt failure is distinct from signature rejection and cannot report success
+ok 5 - receipt failure is distinct from signature rejection and cannot report success
+  ---
+  duration_ms: 2.287
+  type: 'test'
+  ...
+# Subtest: resume rejects malformed or cross-network receipts
+ok 6 - resume rejects malformed or cross-network receipts
+  ---
+  duration_ms: 1.3982
+  type: 'test'
+  ...
+# Subtest: decimal parser is exact and rejects coercions
+ok 7 - decimal parser is exact and rejects coercions
+  ---
+  duration_ms: 3.9145
+  type: 'test'
+  ...
+# Subtest: fee is once on gross input and ceiling rounded
+ok 8 - fee is once on gross input and ceiling rounded
+  ---
+  duration_ms: 0.6901
+  type: 'test'
+  ...
+# Subtest: canonical program and argument lengths
+ok 9 - canonical program and argument lengths
+  ---
+  duration_ms: 1.5227
+  type: 'test'
+  ...
+# Subtest: upstream taker header is 22 bytes with canonical flags and slices
+ok 10 - upstream taker header is 22 bytes with canonical flags and slices
+  ---
+  duration_ms: 3.2837
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3460.3248

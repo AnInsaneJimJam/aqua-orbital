@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "claim_id": "orbital-reference-bounded-regressions-v1",
+  "repository": {
+    "commit": "658a68d06c190bdf6bcaadf8aefbcb219238ff5f",
+    "dirty": true
+  },
+  "command": "python scripts/audit-reference.py (runs python -m unittest discover -s packages/reference/tests -v)",
+  "environment": {
+    "software": [
+      "Python 3.12.10",
+      "mpmath 1.3.0"
+    ],
+    "hardware": "Windows AMD64 AMD64 Family 23 Model 160 Stepping 0, AuthenticAMD"
+  },
+  "mathematics": {
+    "assertion_tested": "Explicit per-tick primal/dual feasibility on the named fixtures; analytic sphere/cap benchmarks; both global crossing roots; precision stability; retained failures of unconditional rounding/path simplifications.",
+    "coefficient_domain": "mpmath arbitrary-precision real numerical arithmetic, generally 110 digits; selected checks repeated at 160 digits",
+    "conventions": "MATH reserve-sum keys b, normalized real radii; output price normalized to one for dual solve; positive output is received amount.",
+    "inputs": [
+      {
+        "path": "packages/reference/orbital.py",
+        "sha256": "4d13eb4a96ff96dcfc32e3a73ec722cf6d3a8694bcb53365e44e887f54dd6352"
+      },
+      {
+        "path": "packages/reference/tests/test_events.py",
+        "sha256": "aa4b66f6b4de967ac94a5896da2b0b9f6a6d4ee8c6634e14e9b809438c17cf69"
+      },
+      {
+        "path": "packages/reference/tests/test_reference.py",
+        "sha256": "4f1bbf42fd900eb1121b755f53d33e4a2c0cb20278c4d86d095b4d670aaca54a"
+      },
+      {
+        "path": "packages/reference/tests/test_rounding.py",
+        "sha256": "1a80d88aedab0c4db0c0bea76039e584ffe2c8d49df09bf87469b50c5ad7120d"
+      },
+      {
+        "path": "packages/reference/tests/test_slack_path.py",
+        "sha256": "452b7d7da4adf23a645d7b980e436e930e429f7263ad93beb2443b293e34009c"
+      },
+      {
+        "path": "packages/reference/requirements.txt",
+        "sha256": "a699f46ed76bd216f1081b6b2330e4fb45d7c8c5a5354b208694d6590a5a8645"
+      },
+      {
+        "path": "docs/MATH.md",
+        "sha256": "6e4d10e3152ebbac11bc58cf76fabe016e34ebc5fd8c88595db3815627c094bf"
+      },
+      {
+        "path": "docs/NUMERICS.md",
+        "sha256": "b0061a4359bed4185b51ddbe9d3f868adaecc8e0b8f952d5b1d721d72b22949f"
+      }
+    ],
+    "bounds": {
+      "dimensions": [
+        2,
+        3,
+        4,
+        8,
+        16,
+        32
+      ],
+      "onchain_profile_max_dimension": 8,
+      "flagship_directed_pairs": 6,
+      "dual_newton_maxsteps": 150,
+      "dual_initial_guesses": [
+        0,
+        -0.5,
+        0.5,
+        -2
+      ],
+      "timeout_seconds": 180,
+      "precision_stability_absolute_relative_threshold": "1e-90",
+      "scope": "Dimension sweep covers per-tick feasibility only; swaps use named 2/3/4-token fixtures."
+    },
+    "non_claims": [
+      "No universal theorem or production interval proof",
+      "No integer reachable history for retained exact-real counterexamples",
+      "No complete traversal connectivity proof",
+      "No differential campaign against a complete Solidity engine",
+      "No release supported-range or economic-cycle guarantee"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-07T23:47:04.413402+00:00",
+    "runtime_seconds": 0.8697981999721378,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "test/evidence/reference-audit/tests.txt",
+      "sha256": "79a6889d824fb9bd1dad621d5ed868392dfedd506db0d76230c45829fce0d5f7"
+    }
+  ],
+  "checks": [
+    "Analytic sphere and cap formulas",
+    "Explicit sphere/cap/principal inequalities",
+    "Aggregate reconstruction and independent analytic dual objective",
+    "Six directed pair symmetry",
+    "Both inward/outward roots validated against per-tick dual oracle",
+    "110/160-digit stability for named fixtures",
+    "Rounded endpoint and slack-path counterexamples retained"
+  ],
+  "result": "conditional on numerical arithmetic and the recorded finite input family",
+  "residual_risks": [
+    "Optimizer convergence is not mathematical certification",
+    "Current solver uses positive dual prices and may reject zero-price endpoints",
+    "Rounded-start connected-branch semantics remain unresolved"
+  ]
+}

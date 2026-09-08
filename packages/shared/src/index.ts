@@ -1,0 +1,14 @@
+import {z} from 'zod';
+export const addressSchema=z.string().regex(/^0x[0-9a-fA-F]{40}$/);
+export const hashSchema=z.string().regex(/^0x[0-9a-fA-F]{64}$/);
+export const uintSchema=z.string().regex(/^(0|[1-9][0-9]*)$/).max(78).pipe(z.string().refine(v=>BigInt(v)<(1n<<256n),'uint256 overflow'));
+export const tokenSchema=z.object({address:addressSchema,symbol:z.string().min(1).max(24),decimals:z.number().int().min(0).max(18),mock:z.boolean()}).strict();
+export const manifestSchema=z.object({chainId:z.number().int().positive(),rpcUrl:z.string().url(),explorerUrl:z.string().url(),verified:z.boolean(),aqua:addressSchema,router:addressSchema,payments:addressSchema,usdc:addressSchema,startBlock:uintSchema,tokens:z.array(tokenSchema).min(2).max(8)}).strict();
+export type DeploymentManifest=z.infer<typeof manifestSchema>;
+export type Token=z.infer<typeof tokenSchema>;
+export const quoteRequestSchema=z.object({wallet:addressSchema,recipient:addressSchema,tokenIn:addressSchema,tokenOut:addressSchema,amountInRaw:uintSchema.pipe(z.string().refine(v=>BigInt(v)>0n)),slippageBps:z.number().int().min(0).max(500),maxCrossings:z.number().int().min(0).max(16)}).strict();
+export type QuoteRequest=z.infer<typeof quoteRequestSchema>;
+export type EvidenceStatus='verified'|'failed'|'not-run'|'unavailable';
+export type ProofItem={id:string;label:string;status:EvidenceStatus;detail:string;artifact?:string};
+export type ApiError={code:string;message:string};
+export type TxStage='idle'|'preparing'|'needsApproval'|'approving'|'readyForReview'|'awaitingSignature'|'pending'|'confirmed'|'rejected'|'reverted'|'stale';

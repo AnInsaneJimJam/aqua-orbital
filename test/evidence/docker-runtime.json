@@ -1,0 +1,13 @@
+{
+  "observedAt": "2026-09-07T23:55:07.3952255Z",
+  "image": "sha256:f6aaf8b4b6001dd324a124f7cf9d35f24eec6162d52d59c08a5a75afa9f49062",
+  "api": {
+    "status": "ok",
+    "service": "orbital-api",
+    "chainWrites": false,
+    "deploymentAvailable": false
+  },
+  "webStatus": 200,
+  "landingContainsLiquidity": true,
+  "scope": "Development container startup only. No deployed protocol or financial flow."
+}

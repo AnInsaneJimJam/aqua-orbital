@@ -1,0 +1,13 @@
+Scope: all 9 workspace projects
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: @reown/appkit@1.8.9, bufferutil@4.1.0,              │
+│   keccak@3.0.4, secp256k1@4.0.5, utf-8-validate@5.0.10.                      │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Done in 4.8s using pnpm v10.34.5

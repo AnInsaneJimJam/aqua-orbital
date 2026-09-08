@@ -1,0 +1,30 @@
+{
+  "name": "orbital",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.34.5",
+  "engines": { "node": ">=22 <23" },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @orbital/web --filter @orbital/api dev",
+    "dev:indexer": "pnpm --filter @orbital/indexer dev",
+    "build": "pnpm -r --if-present build",
+    "lint": "node scripts/gate.mjs lint",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test:contracts": "forge test --root packages/contracts",
+    "test:reference": "python -m unittest discover -s packages/reference/tests -v",
+    "test:sdk": "pnpm --filter @orbital/sdk test",
+    "test:backend": "pnpm --filter @orbital/api test",
+    "test:database": "pnpm --filter @orbital/db test",
+    "test:e2e": "pnpm --filter @orbital/web test:e2e",
+    "test:invariants": "node scripts/gate.mjs test:invariants",
+    "test:all": "pnpm test:reference && pnpm test:contracts && pnpm test:sdk && pnpm test:backend && pnpm test:e2e",
+    "verify:network": "node scripts/verify-network.mjs",
+    "deploy:local": "node scripts/gate.mjs deploy:local",
+    "deploy:arc": "node scripts/gate.mjs deploy:arc",
+    "demo:seed": "node scripts/gate.mjs demo:seed",
+    "demo:judge": "node scripts/gate.mjs demo:judge",
+    "db:migrate": "pnpm --filter @orbital/db migrate",
+    "db:replay": "pnpm --filter @orbital/indexer replay",
+    "evidence:build": "node scripts/evidence.mjs"
+  }
+}

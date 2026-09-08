@@ -16,6 +16,8 @@ Arc documents differing native and ERC-20 balance/transfer semantics. Verify the
 
 ## Address verification status
 
+Update 2026-09-08: `node scripts/verify-network.mjs` successfully read chain ID 5042002 and block `0x3a27661` (hash `0xea0a3e04d0fd29253731d52426b2578a2cc774a946698c4409f267fc02d439e0`). At that block the supplied Aqua candidate returned empty runtime code (`0x`); USDC decimals returned 6. This is a concrete target blocker for that address, not proof that no official Aqua deployment exists elsewhere. See `deployments/5042002/verification.json`. Writes remain disabled pending a source-verified official address and remaining compatibility checks. The earlier failed attempts below are historical.
+
 The user's Aqua and router addresses are attributed to official 1inch deployment tables in [AQUA_RESEARCH.md](AQUA_RESEARCH.md). Their existence and implementation on Arc remain **unverified** here.
 
 Attempted a read-only JSON-RPC batch to the documented primary endpoint for chain ID, block number, and code at both supplied addresses and USDC. The sandbox attempt failed DNS resolution. An approved network retry returned HTTP 403. Explorer-page retrieval was also unavailable. None of these failures establishes that contracts are absent. No transaction was submitted.

@@ -1,0 +1,26 @@
+Compiler run failed:
+Error (7792): Function has override specified but does not override anything.
+  --> test/ForkResolution.t.sol:19:106:
+   |
+19 |     function _resolveTokens(ISwapVM.Order calldata,TakerTraits traits,bytes calldata data) internal view override returns(address,address){
+   |                                                                                                          ^^^^^^^^
+
+Error (7792): Function has override specified but does not override anything.
+  --> test/ForkResolution.t.sol:24:88:
+   |
+24 |     function _beforeQuote(ISwapVM.Order calldata,uint256,bytes calldata) internal view override {require(!guard);}
+   |                                                                                        ^^^^^^^^
+
+Error (7792): Function has override specified but does not override anything.
+  --> test/ForkResolution.t.sol:25:82:
+   |
+25 |     function _beforeSwap(ISwapVM.Order calldata,uint256,bytes calldata) internal override {require(!guard);guard=true;}
+   |                                                                                  ^^^^^^^^
+
+Error (7792): Function has override specified but does not override anything.
+  --> test/ForkResolution.t.sol:26:100:
+   |
+26 |     function _afterSwap(Context memory,ISwapVM.Order calldata,TakerTraits,bytes calldata) internal override {fills++;guard=false;}
+   |                                                                                                    ^^^^^^^^
+
+Error: Compilation failed

@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "name": "@orbital/shared",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts"
+  },
+  "dependencies": {
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "tsx": "4.23.13",
+    "@types/node": "22.20.1"
+  }
+}

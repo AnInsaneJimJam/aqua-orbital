@@ -1,0 +1,25 @@
+
+> orbital@0.1.0 test:e2e C:\Users\gujja\aqua-orbital
+> pnpm --filter @orbital/web test:e2e
+
+
+> @orbital/web@0.1.0 test:e2e C:\Users\gujja\aqua-orbital\apps\web
+> playwright test
+
+[WebServer] (node:22296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:13656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:18896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:21884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 test\wallet.spec.ts:3:1 › external wallet fixture connects, shows wrong chain, and supports keyboard dialog (3.1s)
+  ✓  2 test\workflows.spec.ts:2:1 › landing leads directly to Orbital workflows (1.9s)
+  ✓  3 test\workflows.spec.ts:3:1 › strategy preview cannot masquerade as certified publication (1.7s)
+  ✓  4 test\workflows.spec.ts:4:1 › small screen has no horizontal overflow (10.6s)
+
+  4 passed (49.9s)

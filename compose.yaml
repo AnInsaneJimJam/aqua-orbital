@@ -1,0 +1,48 @@
+services:
+  api:
+    build: .
+    command: ["pnpm", "--filter", "@orbital/api", "dev"]
+    environment:
+      HOST: 0.0.0.0
+      PUBLIC_APP_URL: http://localhost:3000,http://127.0.0.1:3000
+      DATABASE_URL: postgresql://orbital:orbital_local_only@postgres:5432/orbital
+      PROOF_MANIFEST: /workspace/test/evidence/builds/proof.json
+    volumes:
+      - ./apps/api/src:/workspace/apps/api/src
+      - ./packages/shared/src:/workspace/packages/shared/src
+      - ./test/evidence/builds:/workspace/test/evidence/builds:ro
+    ports: ["127.0.0.1:3001:3001"]
+    depends_on:
+      postgres: {condition: service_healthy}
+  web:
+    build: .
+    command: ["pnpm", "--filter", "@orbital/web", "dev", "--hostname", "0.0.0.0"]
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+      NEXT_PUBLIC_CHAIN_ID: 31337
+      NEXT_PUBLIC_PRIVY_APP_ID: "${NEXT_PUBLIC_PRIVY_APP_ID:-}"
+    volumes:
+      - ./apps/web/src:/workspace/apps/web/src
+      - ./packages/sdk/src:/workspace/packages/sdk/src
+      - ./packages/shared/src:/workspace/packages/shared/src
+    ports: ["127.0.0.1:3000:3000"]
+    depends_on: [api]
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: orbital
+      POSTGRES_PASSWORD: orbital_local_only
+      POSTGRES_DB: orbital
+    ports: ["127.0.0.1:5432:5432"]
+    volumes: [orbital_pg:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orbital"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+  anvil:
+    image: ghcr.io/foundry-rs/foundry:v1.5.1
+    entrypoint: ["anvil", "--host", "0.0.0.0", "--chain-id", "31337", "--hardfork", "cancun"]
+    ports: ["127.0.0.1:8545:8545"]
+volumes:
+  orbital_pg:

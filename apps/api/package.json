@@ -1,0 +1,28 @@
+{
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "name": "@orbital/api",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@orbital/shared": "workspace:*",
+    "@orbital/sdk": "workspace:*",
+    "@orbital/db": "workspace:*",
+    "viem": "2.56.3",
+    "pg": "8.23.0",
+    "fastify": "5.12.3",
+    "@fastify/cors": "11.3.0",
+    "@fastify/rate-limit": "10.3.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "tsx": "4.23.13",
+    "@types/node": "22.20.1",
+    "@types/pg": "8.23.1"
+  }
+}

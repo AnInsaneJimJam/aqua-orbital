@@ -1,0 +1,16 @@
+{
+  "title": "Orbital",
+  "authors": [
+    "Dan Robinson",
+    "Ciamac Moallemi",
+    "Dave White"
+  ],
+  "published": "2025-06-02",
+  "url": "https://www.paradigm.xyz/writing/orbital",
+  "checkedAt": "2026-09-07T22:43:07.294235+00:00",
+  "sha256": "aa6549a5d178564e9cd87ed7f029be4ebe9709355049db4cf81c93eb6b15655d",
+  "bytes": 284897,
+  "texExpressions": 254,
+  "extraction": "TeX from katex-math aria-label attributes, HTML entity decoded; formulas require independent verification.",
+  "retentionBasis": "User explicitly requested source authentication and retention."
+}

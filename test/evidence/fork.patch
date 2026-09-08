@@ -1,0 +1,77 @@
+--- swap-vm/src/SwapVM.sol
++++ swap-vm-orbital/src/SwapVM.sol
+@@ -3,6 +3,9 @@
+ 
+ /// @custom:license-url https://github.com/1inch/swap-vm/blob/main/LICENSES/SwapVM-1.1.txt
+ /// @custom:copyright © 2025 Degensoft Ltd
++/// @dev Orbital modifications (2026-09-08): virtual pair resolution before Aqua
++/// balance reads and narrow validation/settlement hooks. Upstream transfer code,
++/// hashing, trait validation and per-order lock are retained.
+ 
+ import { EIP712 } from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
+ import { ECDSA } from "@1inch/solidity-utils/contracts/libraries/ECDSA.sol";
+@@ -125,15 +128,13 @@
+         uint256 amount,
+         bytes calldata takerTraitsAndData
+     ) external returns (uint256 amountIn, uint256 amountOut, bytes32 orderHash) {
++        _beforeQuote(order, amount, takerTraitsAndData);
+         orderHash = hash(order);
+ 
+         (TakerTraits takerTraits, bytes calldata takerData) = TakerTraitsLib.parse(takerTraitsAndData);
+         bool isExactIn = takerTraits.isExactIn();
+ 
+-        address tokenIn;
+-        address tokenOut;
+-        if (takerTraits.isAToB()) (tokenIn, tokenOut) = order.traits.tokens(order.data);
+-        else (tokenOut, tokenIn) = order.traits.tokens(order.data);
++        (address tokenIn, address tokenOut) = _resolveTokens(order, takerTraits, takerData);
+ 
+         Context memory ctx = Context({
+             vm: VM({
+@@ -178,16 +179,14 @@
+         uint256 amount,
+         bytes calldata takerTraitsAndData
+     ) external payable returns (uint256 amountIn, uint256 amountOut, bytes32 orderHash) {
++        _beforeSwap(order, amount, takerTraitsAndData);
+         orderHash = hash(order);
+         _reentrancyGuards[orderHash].lock();
+ 
+         (TakerTraits takerTraits, bytes calldata takerData) = TakerTraitsLib.parse(takerTraitsAndData);
+         bool isExactIn = takerTraits.isExactIn();
+ 
+-        address tokenIn;
+-        address tokenOut;
+-        if (takerTraits.isAToB()) (tokenIn, tokenOut) = order.traits.tokens(order.data);
+-        else (tokenOut, tokenIn) = order.traits.tokens(order.data);
++        (address tokenIn, address tokenOut) = _resolveTokens(order, takerTraits, takerData);
+ 
+         Context memory ctx = Context({
+             vm: VM({
+@@ -238,6 +237,7 @@
+             _transferIn(ctx, order, takerTraits, takerData, originalAquaBalanceIn);
+         }
+ 
++        _afterSwap(ctx, order, takerTraits, takerData);
+         _reentrancyGuards[orderHash].unlock();
+         emit Swapped(orderHash, order.maker, msg.sender, tokenIn, tokenOut, amountIn, amountOut);
+     }
+@@ -364,6 +364,19 @@
+         }
+     }
+ 
++    /// @dev Orbital seam. The default preserves the pinned legacy two-token mode.
++    function _resolveTokens(ISwapVM.Order calldata order, TakerTraits takerTraits, bytes calldata) internal view virtual returns (address tokenIn, address tokenOut) {
++        if (takerTraits.isAToB()) (tokenIn, tokenOut) = order.traits.tokens(order.data);
++        else (tokenOut, tokenIn) = order.traits.tokens(order.data);
++    }
++
++    /// @dev View-only guard: static quote execution must never write a lock.
++    function _beforeQuote(ISwapVM.Order calldata, uint256, bytes calldata) internal view virtual {}
++    /// @dev Runs before any mutable execution or external balance reads.
++    function _beforeSwap(ISwapVM.Order calldata, uint256, bytes calldata) internal virtual {}
++    /// @dev Runs after both transfers and before the upstream order lock is released.
++    function _afterSwap(Context memory, ISwapVM.Order calldata, TakerTraits, bytes calldata) internal virtual {}
++
+     /// @dev Override in the opcode set to directly dispatch an opcode at specified index
+     function _dispatch(Context memory ctx, uint256 opcode, bytes calldata args) internal virtual;
+ }
