@@ -61,3 +61,18 @@ test('a quote expiring during the final identity check never reaches the wallet 
  s.port.identity=async()=>{identities++;if(identities===3)s.advance();return original();};
  await assert.rejects(executePaymentReview(r,s.port,()=>{},s.now));assert.equal(s.sends(),0);
 });
+
+test('payment review allows reading time and locally separates the transaction deadline from the API quote deadline',async()=>{
+ for(const kind of ['direct','swap']){
+  const s=setup(kind);s.live.allowanceRaw=1000n;
+  if(s.draft.input.kind==='swap')assert.ok(s.draft.input.deadline>BigInt(s.draft.observation.data.expiresAt));
+  const r=await preparePaymentReview(s.draft,s.port,s.now),data=r.plan.data;
+  s.advance();s.advance();s.live.block.timestamp=BigInt(Math.floor(s.now()/1000));
+  assert.ok(r.expiresAtMs>s.now());
+  const send=s.port.send;s.port.send=async(plan,fees)=>{assert.equal(plan.data,data);return send(plan,fees);};
+  await executePaymentReview(r,s.port,()=>{},s.now);assert.equal(s.sends(),1);
+ }
+ const s=setup(),r=await preparePaymentReview(s.draft,s.port,s.now);
+ s.advance();s.advance();s.advance();s.live.block.timestamp=BigInt(Math.floor(s.now()/1000));
+ await assert.rejects(executePaymentReview(r,s.port,()=>{},s.now),/expired/i);assert.equal(s.sends(),0);
+});

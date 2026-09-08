@@ -12,6 +12,7 @@ import {useSwapSettings} from './useSwapSettings';
 import {useSwapBalance} from './useSwapBalance';
 import {usePageActive} from './usePageActive';
 import {createSwapPort} from '../wallet/swapPort';
+import {nextQuoteRefreshAt} from './quoteRefresh';
 
 type QuoteView = {
   input: string; output: string; minimum: string; fee: string; recipient: string;
@@ -65,8 +66,16 @@ export function useSwap() {
   const execution=useSwapExecution(context,enabled&&amountValid,settings.value?.deadlineSeconds??180,fetchQuote);
   const paused=maxBusy||execution.busy||!!execution.review||!!execution.pending||!!execution.confirmed;
   useEffect(()=>{if(!enabled||!amountValid||!active||paused||current)return;const timer=setTimeout(()=>setIntent(old=>({context,id:(old?.id??0)+1})),300);return()=>clearTimeout(timer);},[context,enabled,amountValid,active,paused,current]);
-  useEffect(()=>{if(!current||!active||paused||query.isFetching||query.isError||!query.data)return;const timer=setTimeout(()=>{void query.refetch();},Math.max(0,query.dataUpdatedAt+10000-Date.now()));return()=>clearTimeout(timer);},[current,active,paused,query.isFetching,query.isError,query.dataUpdatedAt,query.data,query.refetch]);
-  const data = current && !query.isError ? query.data : undefined;
+  useEffect(()=>{
+    if(!current||!enabled||!active||paused||query.isFetching||(!query.data&&!query.isError))return;
+    const o=query.data?.observation,expires=o?.status==='observed'?(Number(o.freshness.blockTimestamp)+20)*1000:null;
+    const failed=query.isError||o?.status==='unavailable',updated=Math.max(query.dataUpdatedAt,query.errorUpdatedAt);
+    const timer=setTimeout(()=>{void query.refetch();},Math.max(0,nextQuoteRefreshAt(updated,expires,failed)-Date.now()));
+    return()=>clearTimeout(timer);
+  },[current,enabled,active,paused,query.isFetching,query.isError,query.dataUpdatedAt,query.errorUpdatedAt,query.data,query.refetch]);
+  // A background transport failure does not erase a still-unexpired estimate.
+  // It never permits execution: Review always fetches and validates again.
+  const data = current ? query.data : undefined;
   const observation = data?.observation.status === 'observed' ? data.observation : undefined;
   const freshUntil = observation ? (Number(observation.freshness.blockTimestamp)+20)*1000 : 0;
   const [expiredData, setExpiredData] = useState<unknown>(null);

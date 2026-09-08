@@ -1,6 +1,6 @@
 import {test,expect,type Page} from '@playwright/test';
-import {decodeFunctionData,encodeFunctionResult,encodeAbiParameters,keccak256,erc20Abi,type Address,type Hex} from 'viem';
-import {decodePaymentQuoteObservation,paymentsReadAbi,buildOrder,buildPaymentTx,buildPaymentApprovalTx,configFromDTO,hashConfig,hashOrder,type PaymentInput,type PlanContext} from '@orbital/sdk';
+import {decodeFunctionData,encodeFunctionData,encodeFunctionResult,encodeAbiParameters,keccak256,erc20Abi,type Address,type Hex} from 'viem';
+import {decodePaymentQuoteObservation,paymentsAbi,paymentsReadAbi,buildOrder,buildPaymentTx,buildPaymentApprovalTx,configFromDTO,hashConfig,hashOrder,type PaymentInput,type PlanContext} from '@orbital/sdk';
 import type {PaymentQuoteObservationDTO} from '@orbital/shared';
 import wire from '../../../packages/sdk/test/fixtures/payment-observations.json' with {type:'json'};
 const now=1700000004000,zero=`0x${'00'.repeat(32)}`,txHash=`0x${'ab'.repeat(32)}`;
@@ -23,6 +23,12 @@ function fixture(kind='direct'){
 }
 async function setup(page:Page,options:{kind?:'direct'|'swap';approved?:boolean;gasPoor?:boolean;rejected?:boolean;pending?:boolean;reverted?:boolean;mismatched?:boolean;wrongReceiptTransactionHash?:boolean;signatureWait?:boolean}={}){
  const f=fixture(options.kind),m=f.manifest,invoice=f.payload.data!.invoice;let allowance=options.approved?1000n:0n,requests=0;
+ const localPlan={...f.payload.data!.plan};
+ if(options.kind==='swap'){
+  const call=decodeFunctionData({abi:paymentsAbi,data:localPlan.data as Hex});if(call.functionName!=='payWithSwap')throw Error('Invalid swap payment fixture');
+  const [id,order,index,amount,minimum,,crossings]=call.args;
+  localPlan.data=encodeFunctionData({abi:paymentsAbi,functionName:'payWithSwap',args:[id,order,index,amount,minimum,Math.min(Number(f.payload.freshness!.blockTimestamp)+180,Number(invoice.expiresAt)),crossings]});
+ }
  let receiptReady=!options.pending;const calls:string[]=[];let submitted:Record<string,string>|undefined;
  await page.exposeFunction('__recordPayment',(tx:Record<string,string>)=>{submitted=tx;});
  await page.addInitScript(({address,rejected,hash,signatureWait})=>{
@@ -55,7 +61,7 @@ async function setup(page:Page,options:{kind?:'direct'|'swap';approved?:boolean;
    else if(q.method==='eth_estimateGas')result='0x61a8';
    else if(q.method==='eth_call'){
     const tx=q.params[0],to=tx.to.toLowerCase();
-    if(tx.data===f.payload.data!.plan.data||tx.data===f.payload.data!.approval?.data)result='0x';
+    if(tx.data===localPlan.data||tx.data===f.payload.data!.approval?.data)result='0x';
     else if(to===m.payments.toLowerCase()){
      expect(q.params[1]).toEqual({blockHash:block().hash,requireCanonical:true});
      const decoded=decodeFunctionData({abi:paymentsReadAbi,data:tx.data}),fn=decoded.functionName;
@@ -74,7 +80,7 @@ async function setup(page:Page,options:{kind?:'direct'|'swap';approved?:boolean;
  await page.goto(`/pay/${f.request.invoiceId}`);await expect(page.getByRole('heading',{name:'0.0001 USDC',exact:true})).toBeVisible();
  await page.getByRole('button',{name:'Connect wallet',exact:true}).first().click();await expect(page.getByRole('button',{name:'Manage connected wallet'})).toBeVisible();
  await page.clock.install({time:new Date(now)});if(options.kind==='swap')await page.getByLabel('Payment token').selectOption('oUSD6');await page.getByLabel('Maximum input').fill('0.001');
- return {calls,requests:()=>requests,ready:()=>{receiptReady=true;},f};
+ return {calls,requests:()=>requests,ready:()=>{receiptReady=true;},f,localPlan};
 }
 test('exact approval is a separate signature and a fresh payment quote follows its receipt',async({page})=>{
  const f=await setup(page);await page.getByRole('button',{name:'Get payment quote'}).click();
@@ -96,7 +102,7 @@ test('insufficient native funds never request a signature',async({page})=>{
 test('swap-funded invoice reviews the exact selected input and sends the reconstructed adapter plan',async({page})=>{
  const f=await setup(page,{kind:'swap',approved:true});await page.getByRole('button',{name:'Get payment quote'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();
  await expect(page.getByRole('button',{name:'Pay 0.000134 oUSD6',exact:true})).toBeVisible();await page.getByRole('button',{name:'Pay 0.000134 oUSD6',exact:true}).click();await expect(page.getByText(/Payment transaction confirmed/)).toBeVisible();
- const sent=await page.evaluate(()=>(window as any).paymentWallet.sent);expect(sent).toHaveLength(1);expect(sent[0].data).toBe(f.f.payload.data!.plan.data);
+ const sent=await page.evaluate(()=>(window as any).paymentWallet.sent);expect(sent).toHaveLength(1);expect(sent[0].data).toBe(f.localPlan.data);
 });
 test('wallet and chain changes discard the payment review before signing',async({page})=>{
  const f=await setup(page,{approved:true});await page.getByRole('button',{name:'Get payment quote'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();
@@ -108,8 +114,20 @@ test('receipt identity must match the queried hash as well as the reviewed calld
  await setup(page,{approved:true,wrongReceiptTransactionHash:true});await page.getByRole('button',{name:'Get payment quote'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Receipt transaction does not match/)).toBeVisible({timeout:5000});await expect(page.getByText(/Payment transaction confirmed/)).toHaveCount(0);
 });
 test('expired review cannot request a signature',async({page})=>{
- await setup(page,{approved:true});await page.getByRole('button',{name:'Get payment quote'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();await page.clock.fastForward(20000);
+ await setup(page,{approved:true});await page.getByRole('button',{name:'Get payment quote'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();await page.clock.fastForward(61000);
  await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toHaveCount(0);expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(0);
+});
+
+test('background invoice polling does not discard the payment review',async({page})=>{
+ const f=await setup(page,{approved:true});await page.getByRole('button',{name:'Get payment quote'}).click();
+ const review=page.getByRole('heading',{name:'Review payment',exact:true});await expect(review).toBeVisible();
+ let polling=false,release:()=>void=()=>{};
+ await page.route(`**/invoices/${f.f.request.invoiceId}`,async route=>{
+  polling=true;await new Promise<void>(resolve=>{release=resolve;});await route.fallback();
+ });
+ await page.clock.fastForward(11000);await expect.poll(()=>polling).toBe(true);
+ await expect(review).toBeVisible();await expect(page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true})).toBeEnabled();
+ expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(0);release();
 });
 test('reverted payment preserves its receipt and displays no paid status',async({page})=>{
  await setup(page,{approved:true,reverted:true});await page.getByRole('button',{name:'Get payment quote'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Transaction reverted. Refresh/)).toBeVisible();await page.getByText('Reverted transaction',{exact:true}).click();await expect(page.getByText(txHash,{exact:true})).toBeVisible();await expect(page.getByText('Gas paid: 0.000025 USDC',{exact:true})).toBeVisible();await expect(page.getByText('Unpaid at indexed block',{exact:true})).toBeVisible();

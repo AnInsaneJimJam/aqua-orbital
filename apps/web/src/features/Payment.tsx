@@ -24,7 +24,7 @@ export function PaymentView({state:s}:{state:PaymentViewState}){
    </dl>
    <h3>Settlement recipients</h3><ul className={styles.recipients}>{r.recipients.map(v=><li key={v.address}><span className="mono">{v.address}</span><div>{v.amount}</div></li>)}</ul>
    {r.stage==='approval'&&<p className="hint">This approval permits the invoice adapter to spend the amount shown. Payment needs a fresh quote, its own gas estimate and a separate confirmation.</p>}
-   <details><summary>Approval and review details</summary><p>Spender</p><p className="mono">{r.spender}</p><p>Review expires: {r.expires}</p></details>
+   <details><summary>Approval and review details</summary><p>Spender</p><p className="mono">{r.spender}</p><p>Review expires: {r.expires}</p>{r.transactionDeadline&&<p>Transaction deadline: {r.transactionDeadline}</p>}</details>
   </div>}
   {s.pending&&<div className="notice"><p>Submitted {s.pending.stage} · {s.pending.network}</p><p className="mono">{s.pending.hash}</p><p>Payer: <span className="mono">{s.pending.account}</span></p></div>}
   {s.confirmation&&<details><summary>{s.confirmation.status==='success'?'Confirmed transaction':'Reverted transaction'}</summary><p className="mono">{s.confirmation.hash}</p><p>Gas paid: {s.confirmation.gas}</p></details>}

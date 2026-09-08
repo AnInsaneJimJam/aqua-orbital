@@ -1,5 +1,7 @@
 # Evidence index
 
+Quote follow-up: [review clocks, background recovery and invoice polling](quote-refresh/README.md). Live Arc quote reads succeed with the application retry helper; wallet review, negative preflight and browser fixture checks are tracked separately from actual user-signed financial receipts.
+
 Latest financial checkpoint: [first Arc strategy activation, live backing and successful quote](arc-integration/first-strategy.md). The user published three 10-unit allocations at a 0.05% fee; the focused read-only check matched the canonical receipt and returned 0.998491 oUSD6 for 1 USDC. Its caller was synthetic; actual trader swap/payment and Privy wallet receipts remain open. This supersedes missing-liquidity statements in the historical checkpoints below.
 
 Browser-specific follow-up: [same-origin RPC, connection guards and extension diagnostics](browser-rpc/README.md) pass two focused relay checks, web typecheck and two fresh Chromium origin checks with the RPC hostname blocked. Both actual maker faucet transactions now have [confirmed receipts](browser-rpc/faucet-receipts.json), with 1,000 of each demo token observed. Liquidity/swap/payment and Privy authentication evidence remain separate.

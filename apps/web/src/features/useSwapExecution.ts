@@ -80,10 +80,10 @@ export function useSwapExecution(context:string,enabled:boolean,deadlineSeconds:
   try{const port=createSwapPort(wallet,()=>true,async()=>{},pending.plan);finish(pending,await port.receipt(pending.transaction.hash));}
   catch(error){if(mounted.current)setState(s=>({...s,message:errorText(error)}));}finally{lock.current=false;if(mounted.current)setBusy(false);}
  }
- const r=fresh?state.review:undefined,i=r?.draft.input,m=r?.draft.context.manifest;
+ const r=fresh||state.phase==='signing'?state.review:undefined,i=r?.draft.input,m=r?.draft.context.manifest;
  const inputToken=i&&m?.tokens.find(t=>t.address.toLowerCase()===i.tokenIn.toLowerCase()),outputToken=i&&m?.tokens.find(t=>t.address.toLowerCase()===i.tokenOut.toLowerCase());
  return {phase:state.phase,busy,pending:state.pending?{hash:state.pending.transaction.hash,account:state.pending.transaction.account,stage:state.pending.stage}:undefined,confirmed:state.confirmed,message:recoveryError?'Saved swap recovery could not be read. Check previous wallet activity before retrying.':state.message,
-  expired:!!state.review&&!fresh,canPrepare:enabled&&!busy&&!state.pending&&!recoveryError,
+  expired:!!state.review&&!fresh&&state.phase!=='signing',canPrepare:enabled&&!busy&&!state.pending&&!recoveryError,
   review:r&&i&&inputToken&&outputToken?{stage:r.stage,input:`${formatAmount(i.amountInRaw,inputToken.decimals)} ${inputToken.symbol}`,output:`${formatAmount(BigInt(i.quote.amountOutRaw),outputToken.decimals)} ${outputToken.symbol}`,minimum:`${formatAmount(i.minimumOutRaw,outputToken.decimals)} ${outputToken.symbol}`,fee:`${formatAmount(BigInt(i.quote.feeRaw),inputToken.decimals)} ${inputToken.symbol}`,router:m!.router,recipient:i.recipient,deadline:new Date(Number(i.deadline)*1000).toISOString().replace('T',' ').replace('.000Z',' UTC'),gas:`${formatAmount(r.estimate.gas*r.estimate.maxFeePerGas,18)} ${selectedChain.nativeCurrency.symbol}`,maker:i.config.maker,ticks:i.config.tickKeys.length,orderHash:i.quote.orderHash}:undefined,
   prepare:()=>{void prepare();},submit:()=>{void submit();},resume:()=>{void resume();},reset:()=>{if(!lock.current&&!state.pending)setState({context,phase:'idle'});}};
 }

@@ -5,7 +5,7 @@ import {buildOrder,hashConfig,type Config,type TransactionPlan} from './codec';
 import {configFromDTO} from './dto';
 import {buildSwapTx,buildSwapApprovalTx,type SwapInput,type PlanContext} from './plans';
 import {executeReviewed,type ExecutionPort,type PendingTransaction,type TransactionEstimate} from './execution';
-import {same,freeze,funded,nativeTokenSpend,withinBudget} from './review-core';
+import {same,freeze,funded,nativeTokenSpend,withinBudget,reviewExpiresAt,assertLiveReviewTime} from './review-core';
 
 type Observed=Extract<SwapQuoteObservationDTO,{status:'observed'}>;
 export type SwapDraft={context:PlanContext;request:QuoteRequest;observation:Observed;input:SwapInput};
@@ -31,10 +31,12 @@ function fresh(draft:SwapDraft,now:()=>number){
  decodeSwapQuoteObservation(draft.observation,200,draft.context.manifest,draft.request,now());
 }
 async function liveState(draft:SwapDraft,port:SwapPort,now:()=>number){
- fresh(draft,now);const {context:c,input:i,observation:o}=draft,identity=await port.identity();
+ if(!drafts.has(draft))throw Error('Prepare a new validated swap draft');
+ const {context:c,input:i,observation:o}=draft,identity=await port.identity();
  if(identity.chainId!==c.chainId||!identity.account||!same(identity.account,c.account))throw Error('Wallet or network changed. Review again.');
  const live=await port.observe(draft),t=live.block.timestamp,clock=now();
- if(live.chainId!==c.chainId||live.block.number<BigInt(o.asOf.height)||!/^0x[0-9a-fA-F]{64}$/.test(live.block.hash)||t<c.now||Number(t)*1000>clock+1000||clock-Number(t)*1000>=20000||t>=BigInt(i.quote.expiresAt))throw Error('Current chain observation is stale');
+ if(live.chainId!==c.chainId||live.block.number<BigInt(o.asOf.height)||!/^0x[0-9a-fA-F]{64}$/.test(live.block.hash)||t<c.now)throw Error('Current chain observation is stale');
+ assertLiveReviewTime(t,i.deadline,clock);
  if(live.status!==1)throw Error('The selected strategy is retired or unavailable');
  if(!live.liveTokens)throw Error('The selected strategy is docked or incomplete');
  if(!live.backingValid)throw Error('Maker inventory is not backed');
@@ -44,25 +46,31 @@ async function liveState(draft:SwapDraft,port:SwapPort,now:()=>number){
  if(live.balanceRaw<i.amountInRaw||live.allowanceRaw<0n)throw Error('Insufficient input token balance');
  if(!same(live.quotedOrderHash,i.quote.orderHash)||live.quotedInputRaw!==i.amountInRaw||live.quotedOutputRaw<i.minimumOutRaw)throw Error('The current quote does not meet the reviewed minimum');
  if(live.outputFundingRaw<live.quotedOutputRaw)throw Error('Insufficient maker inventory');
- await port.canonical({number:BigInt(o.asOf.height),hash:o.asOf.hash as Hex});await port.canonical(live.block);fresh(draft,now);
+ await Promise.all([port.canonical({number:BigInt(o.asOf.height),hash:o.asOf.hash as Hex}),port.canonical(live.block)]);
+ assertLiveReviewTime(t,i.deadline,now());
  return live;
 }
 export async function prepareSwapReview(draft:SwapDraft,port:SwapPort,now:()=>number=Date.now):Promise<SwapReview>{
- const live=await liveState(draft,port,now),stage=live.allowanceRaw<draft.input.amountInRaw?'approval':'swap',context={...draft.context,now:live.block.timestamp};
+ // Admit a fresh API observation once; live preflight then owns freshness.
+ fresh(draft,now);
+ const live=await liveState(draft,port,now),stage=live.allowanceRaw<draft.input.amountInRaw?'approval':'swap',context=draft.context;
+ // Reconstruct at the admitted quote's original pin. Do not rewrite its age;
+ // liveState and exact simulation independently establish current validity.
  const plan=stage==='approval'?buildSwapApprovalTx(context,draft.input):buildSwapTx(context,draft.input);
  const estimate={...await port.estimate(plan),nativeSpend:nativeTokenSpend(context.chainId,draft.input.tokenIn,context.manifest.usdc,draft.input.amountInRaw)};
- funded(estimate,estimate.nativeSpend);await port.canonical(live.block);fresh(draft,now);
- const identity=await port.identity();if(identity.chainId!==context.chainId||!identity.account||!same(identity.account,context.account))throw Error('Wallet changed. Review again.');fresh(draft,now);
- const expiresAtMs=Math.min(Date.parse(draft.observation.freshness.indexedAt)+10000,Number(draft.input.quote.expiresAt)*1000);
+ funded(estimate,estimate.nativeSpend);await port.canonical(live.block);
+ const identity=await port.identity();if(identity.chainId!==context.chainId||!identity.account||!same(identity.account,context.account))throw Error('Wallet changed. Review again.');
+ assertLiveReviewTime(live.block.timestamp,draft.input.deadline,now());
+ const expiresAtMs=reviewExpiresAt(now(),draft.input.deadline);
  const review=freeze<SwapReview>({draft,stage,plan,estimate,expiresAtMs,block:live.block});reviews.add(review);return review;
 }
 export async function executeSwapReview(review:SwapReview,port:SwapPort,persist:(pending:PendingTransaction)=>void,now:()=>number=Date.now){
  if(!reviews.has(review)||now()>=review.expiresAtMs)throw Error('Swap review expired. Review again.');reviews.delete(review);
- const {draft,estimate:budget}=review;
- return executeReviewed(review.plan,{...port,send:async(plan,fees)=>{fresh(draft,now);if(now()>=review.expiresAtMs)throw Error('Swap review expired. Review again.');return port.send(plan,fees);},estimate:async plan=>{
+ const {draft,estimate:budget}=review;let checked:SwapBlock|undefined;
+ return executeReviewed(review.plan,{...port,send:async(plan,fees)=>{if(!checked||now()>=review.expiresAtMs)throw Error('Swap review expired. Review again.');assertLiveReviewTime(checked.timestamp,draft.input.deadline,now());return port.send(plan,fees);},estimate:async plan=>{
   const live=await liveState(draft,port,now),stage=live.allowanceRaw<draft.input.amountInRaw?'approval':'swap';
   if(stage!==review.stage)throw Error('Token allowance changed. Review again.');
-  const estimate=withinBudget(await port.estimate(plan),budget);await port.canonical(live.block);fresh(draft,now);
+  const estimate=withinBudget(await port.estimate(plan),budget);await port.canonical(live.block);assertLiveReviewTime(live.block.timestamp,draft.input.deadline,now());checked=live.block;
   if(now()>=review.expiresAtMs)throw Error('Swap review expired. Review again.');return estimate;
  }},persist);
 }

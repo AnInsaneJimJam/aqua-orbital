@@ -34,7 +34,7 @@ export function SwapView(state:SwapViewState){
   {error&&<p className="error" role="alert">{error}</p>}
   <SwapExecution state={state.execution} network={state.network}/>
   {!executing&&<>
-   {state.quoteView&&<button className="button full" onClick={state.execution.prepare} disabled={!state.execution.canPrepare||state.pending}>Review swap</button>}
+   {state.quoteView&&<button className="button full" onClick={state.execution.prepare} disabled={!state.execution.canPrepare}>Review swap</button>}
    <button className={state.quoteView?styles.refreshQuote:'button full'} onClick={quote} disabled={state.disabled||state.execution.busy}>{state.actionLabel}</button>
   </>}
  </div><div className={styles.footnote}><span>Tokens stay in the maker’s wallet until settlement.</span><Link href="/fund">Get demo tokens ↗</Link></div></section>;

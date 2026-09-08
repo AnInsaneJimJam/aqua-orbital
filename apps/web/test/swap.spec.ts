@@ -106,7 +106,7 @@ test('quote freshness expires on screen and refresh obtains a new checked observ
   await getQuote(page).click();await expect(output(page)).toBeVisible({timeout:5000});
   current+=11000;await page.clock.fastForward(11000);await expect(output(page)).toHaveText('21 oUSD18');
   await page.evaluate(()=>{Object.defineProperty(document,'visibilityState',{value:'hidden',configurable:true});document.dispatchEvent(new Event('visibilitychange'));});current+=21000;await page.clock.fastForward(21000);await expect(output(page)).toHaveCount(0);
-  await expect(page.getByText('Quote expired. Refresh to check current amounts.',{exact:true})).toBeVisible();
+  await expect(page.getByText('Updating the quote automatically. Current amounts will appear when checked.',{exact:true})).toBeVisible();
   await page.evaluate(()=>{Object.defineProperty(document,'visibilityState',{value:'visible',configurable:true});document.dispatchEvent(new Event('visibilitychange'));});await expect(output(page)).toBeVisible({timeout:5000});
 });
 

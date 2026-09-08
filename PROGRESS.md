@@ -29,6 +29,8 @@ Updated 2026-09-09. Status records observed implementation, never planned succes
 
 ## Working log
 
+- Repaired quote/review timing: API admission still checks ten-second index age and twenty-second quote expiry, while immutable wallet reviews now receive up to sixty seconds after live preflight. Submit independently rechecks unchanged terms, exact simulation, funding, state and gas bounds. Swap-funded payments use a local three-minute deadline capped by invoice expiry. Public estimates refresh earlier and recover automatically; background refresh no longer disables Review, and invoice polling no longer discards payment reviews. [Focused timing checkpoint](test/evidence/quote-refresh/README.md). Actual user signatures and receipt verification remain the next live steps.
+
 - Confirmed the user's first Arc strategy activation at block **61,144,147**, including sender, router, decoded configuration, canonical receipt and event. Indexed detail shows active version 1, **10 USDC + 10 oUSD6 + 10 oUSD18**, **0.05% fee**, and all allocations live/backed. One read-only quote with a synthetic non-maker caller returned **0.998491 oUSD6 for 1 USDC**. This is quote evidence, not a trader transaction or Privy authentication. [Receipt and scope](test/evidence/arc-integration/first-strategy.md). Next: a different user-chosen wallet executes a refreshed swap, then the swap-funded invoice walkthrough.
 
 - Fixed the browser-specific `ERR_BLOCKED_BY_CLIENT` case by moving Arc app reads/simulations to a bounded same-origin `/api/chain` route using the verified provider. It cannot sign/broadcast or accept arbitrary upstream URLs/state overrides. Guarded duplicate connection/selection requests, selected Coinbase EOA support for Arc, and scoped extension-attribute hydration suppression to the root body. Two relay checks, final web typecheck and two live-origin Chromium checks passed with Blockdaemon deliberately blocked; no unexpected browser errors occurred. Actual competing extensions/pending requests still require browser-side resolution. [Evidence](test/evidence/browser-rpc/README.md).
@@ -143,6 +145,8 @@ Updated 2026-09-09. Status records observed implementation, never planned succes
 - Implemented invoice creation with one to three exact recipients, merchant cancellation, compiled nonce reads and canonical event-based identifiers. Shared wallet reviews remain single-use with bounded gas and per-hash recovery. All application checks pass, including 16 new browser/storage checks. [Invoice administration evidence and retained failures](test/evidence/invoice-admin.md).
 
 ## Latest verification
+
+- **Quote timing checkpoint (2026-09-09):** nineteen focused SDK/refresh checks and four Chromium checks passed. Three live Arc quotes through the application retry helper returned `QUOTE_OBSERVED`. Readability, expiry, background recovery, invoice polling and exact local payment reconstruction are covered; no actual user signature or deployment change was performed. [Evidence and initial fixture failures](test/evidence/quote-refresh/README.md).
 
 - **First live strategy checkpoint (2026-09-09):** the focused [receipt/backing/quote check](test/evidence/arc-integration/first-strategy.md) passed. No new chain write or broad test campaign was performed. This supersedes the earlier missing-liquidity checkpoint; trader swap/payment and Privy wallet verification remain separate.
 

@@ -69,8 +69,10 @@ export function useInvoice(id: string): InvoiceViewState {
   const {manifest, observation: data} = query.data;
   state.observation = {block: data.asOf.height, hash: data.asOf.hash, indexedAt: data.freshness.indexedAt, stale: data.freshness.stale, historical: data.historical};
   if (!data.data.invoice) return {...state, phase: 'not-found'};
-  const invoice=data.data.invoice,available=!refreshing&&!data.freshness.stale&&!data.historical;
+  // A background poll and monotonic index advancement do not change invoice
+  // terms. Payment always obtains a fresh quote and checks the live contract.
+  const invoice=data.data.invoice,available=!data.freshness.stale;
   const adminInvoice:InvoiceSnapshot={chainId:manifest.chainId,adapter:manifest.payments as Address,id:id as Hex,merchant:invoice.merchant as Address,status:invoice.status,
     amountDueRaw:BigInt(invoice.amountDueRaw),expiresAt:BigInt(invoice.expiresAt),recipients:invoice.recipients.map(v=>v.address as Address),bps:invoice.recipients.map(v=>v.bps),memoHash:invoice.memoHash as Hex};
-  return {...state, phase: 'loaded', terms: terms(data, manifest),payable:invoice.status==='unpaid'&&available,adminInvoice:available?adminInvoice:undefined};
+  return {...state, phase: 'loaded', terms: terms(data, manifest),payable:invoice.status==='unpaid'&&available,adminInvoice:available&&!refreshing&&!data.historical?adminInvoice:undefined};
 }

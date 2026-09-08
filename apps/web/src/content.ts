@@ -13,9 +13,9 @@ export const copy={
   fees:'Fees have already been received in the maker’s wallet. They are separate from principal and are not a claimable reward or an APY.',
  },
  swap:{
-  unavailable:'Quote unavailable. The amounts could not be checked. Try again.',
+  unavailable:'Quote unavailable temporarily. Retrying automatically; you can also retry now.',
   readOnly:'Quote observation. Review checks current funds, strategy availability and transaction simulation before any signature.',
-  expired:'Quote expired. Refresh to check current amounts.',
+  expired:'Updating the quote automatically. Current amounts will appear when checked.',
   empty:'No route was found in the inspected strategies.',
  },
  invoice:{

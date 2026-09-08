@@ -10,7 +10,7 @@ function setup(){
  const draft=createSwapDraft(f.observed,200,f.manifest,f.request,{deadlineSeconds:180},clock),r=f.observed.data.best;
  const live:SwapLiveState={chainId:f.manifest.chainId,block:{number:4n,hash:txHash,timestamp:1700000003n},config:structuredClone(draft.input.config),maker:r.config.maker,configHash:r.configHash,status:1,version:BigInt(r.stateVersion),balanceRaw:BigInt(r.amountInRaw),allowanceRaw:0n,inputDecimals:6,outputDecimals:18,liveTokens:true,backingValid:true,outputFundingRaw:BigInt(r.amountOutRaw),quotedInputRaw:BigInt(r.amountInRaw),quotedOutputRaw:BigInt(r.amountOutRaw),quotedOrderHash:r.orderHash};
  const port:SwapPort={identity:async()=>({account:draft.context.account,chainId:31337}),canonical:async()=>{},observe:async()=>structuredClone(live),estimate:async()=>({gas:30000n,maxFeePerGas:3n,maxPriorityFeePerGas:1n,nativeBalance:1000000n}),send:async(plan,fees)=>{sends++;assert.equal(fees?.gas,30000n);return txHash;},receipt:async()=>({hash:txHash,status:'success',blockNumber:5n})};
- return {f,draft,live,port,records,now:()=>clock,expire:()=>{clock+=20000;},sends:()=>sends};
+ return {f,draft,live,port,records,now:()=>clock,expire:()=>{clock+=20000;},advance:(ms:number)=>{clock+=ms;},sends:()=>sends};
 }
 test('swap approval targets only the router for the exact input, with a separate fresh swap review',async()=>{
  const s=setup(),review=await prepareSwapReview(s.draft,s.port,s.now);assert.equal(review.stage,'approval');
@@ -43,4 +43,27 @@ test('an interrupted swap receipt retains the hash; rejected signatures store no
  const s=setup();s.live.allowanceRaw=s.live.balanceRaw;const review=await prepareSwapReview(s.draft,s.port,s.now);s.port.receipt=async()=>{throw Error('Offline');};
  await assert.rejects(executeSwapReview(review,s.port,p=>s.records.push(p),s.now),/Offline/);assert.equal(s.sends(),1);assert.equal((s.records[0] as any).hash,txHash);
  const rejected=setup(),r=await prepareSwapReview(rejected.draft,rejected.port,rejected.now);rejected.port.send=async()=>{throw Error('User rejected request');};await assert.rejects(executeSwapReview(r,rejected.port,p=>rejected.records.push(p),rejected.now),/rejected/);assert.equal(rejected.records.length,0);
+});
+
+test('a reviewed swap survives the old index/quote clocks while fresh preflight preserves its exact minimum and calldata',async()=>{
+ const s=setup();s.live.allowanceRaw=s.live.balanceRaw;
+ const r=await prepareSwapReview(s.draft,s.port,s.now),data=r.plan.data;
+ s.expire();s.expire();s.live.block.timestamp=BigInt(Math.floor(s.now()/1000));
+ assert.ok(r.expiresAtMs>s.now());
+ const send=s.port.send;s.port.send=async(plan,fees)=>{assert.equal(plan.data,data);return send(plan,fees);};
+ await executeSwapReview(r,s.port,()=>{},s.now);assert.equal(s.sends(),1);
+ const stale=setup(),old=await prepareSwapReview(stale.draft,stale.port,stale.now);
+ stale.expire();stale.expire();stale.expire();stale.live.block.timestamp=BigInt(Math.floor(stale.now()/1000));
+ await assert.rejects(executeSwapReview(old,stale.port,()=>{},stale.now),/expired/i);assert.equal(stale.sends(),0);
+});
+
+test('RPC preparation time does not consume the entire human review window',async()=>{
+ const delayed=setup(),original=delayed.port.estimate;
+ delayed.port.estimate=async plan=>{delayed.advance(8000);return original(plan);};
+ const reviewed=await prepareSwapReview(delayed.draft,delayed.port,delayed.now);
+ assert.equal(reviewed.expiresAtMs-delayed.now(),60000);
+ const s=setup(),estimate=s.port.estimate;
+ s.port.estimate=async plan=>{s.expire();s.live.block.timestamp=BigInt(Math.floor(s.now()/1000));return estimate(plan);};
+ // A 20-second preflight is too old even if the source draft was admitted fresh.
+ await assert.rejects(prepareSwapReview(s.draft,s.port,s.now),/stale|expired/i);
 });

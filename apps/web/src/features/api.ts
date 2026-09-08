@@ -1,6 +1,7 @@
 'use client';
 import {useQuery} from '@tanstack/react-query';
 import {manifestSchema,type DeploymentManifest} from '@orbital/shared';
+import {retryableQuoteResponse} from './quoteRefresh';
 export const apiBase=process.env.NEXT_PUBLIC_API_URL??'http://localhost:3001';
 /** Deadline covers headers and JSON body; route/query cancellation also aborts. */
 export async function requestPayload(path:string,signal?:AbortSignal,body?:unknown):Promise<{status:number;data:unknown}>{
@@ -24,7 +25,7 @@ export function useResource<T>(path:string){return useQuery({queryKey:['resource
 export async function requestQuotePayload(path:'/quotes/swap'|'/quotes/payment',signal:AbortSignal,body:unknown){
  for(let attempt=0;;attempt++){
   const response=await requestPayload(path,signal,body),v=response.data as {code?:string;retryable?:boolean};
-  if(attempt>=2||response.status!==503||v.retryable!==true||!v.code||!/(INDEXER_STALE|SOURCE_CHANGED|SOURCE_UNAVAILABLE|RESPONSE_UNAVAILABLE)$/.test(v.code))return response;
+  if(attempt>=2||!retryableQuoteResponse(response.status,v))return response;
   await new Promise<void>((resolve,reject)=>{
    const abort=()=>{clearTimeout(timer);reject(Error('Quote cancelled'));},timer=setTimeout(()=>{signal.removeEventListener('abort',abort);resolve();},600);
    signal.addEventListener('abort',abort,{once:true});if(signal.aborted)abort();
