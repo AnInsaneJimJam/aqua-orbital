@@ -1,0 +1,17 @@
+[
+  {
+    "exportName": "aquaEventsAbi",
+    "source": "packages/contracts/vendor/aqua/src/interfaces/IAqua.sol",
+    "sourceSha256": "915cbe38c77b46c3927143693a1a1b8ca0f32f75dc34cd5c18526a8103e94fd9",
+    "compiler": "0.8.30+commit.73712a01",
+    "evmVersion": "cancun",
+    "optimizerRuns": 700,
+    "viaIR": true,
+    "abiSha256": "a5e0949c6440b86df6311323aa0480d1b503aeeb9fa9da23418eb8a883829e31",
+    "artifactSha256": "e705d64ef97ac28e7f77a5550583f56d4bba70739923ac3d4479002c2ff4b01c",
+    "eventTopics": {
+      "Docked(address,address,bytes32)": "0xd173a1d140c154eb1ce9298d251d5eb8c4089cc2d16e70f1067bdc810c6fe004",
+      "Shipped(address,address,bytes32,bytes)": "0xdc3622e06fb145651f567d421c9ef261d71d43e3778b761907bc0d70d42e52b0"
+    }
+  }
+]

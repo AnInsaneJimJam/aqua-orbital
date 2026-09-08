@@ -1,8 +1,11 @@
 'use client';
 import Link from 'next/link';
+import type {ReactNode} from 'react';
 import {copy} from '../content';
 import {useStrategy,type StrategyViewState,type StrategyObservationView,type StrategyDataView} from './useStrategy';
 import styles from './Strategy.module.css';
+import {useStrategyAdmin} from './useStrategyAdmin';
+import {StrategyAdminView} from './StrategyAdmin';
 
 export function StrategyObservation({observation,refreshing}:{observation:StrategyObservationView;refreshing:boolean}){
  return <div className={styles.observation} role="status">
@@ -27,7 +30,7 @@ export function StrategyInventory({strategy,compact=false}:{strategy:StrategyDat
   {!row.live&&<p className="notice">Aqua allocation is not live.</p>}{!row.backed&&<p className="notice">Aqua allocation does not cover principal and recorded fees.</p>}
  </section>)}</div>;
 }
-export function StrategyView({state}:{state:StrategyViewState}){
+export function StrategyView({state,administration}:{state:StrategyViewState;administration?:ReactNode}){
  const {strategy,observation}=state;
  return <section className={`page ${styles.page}`}>
   <Link href="/liquidity">← Your liquidity</Link>
@@ -37,7 +40,7 @@ export function StrategyView({state}:{state:StrategyViewState}){
     <p>{state.phase==='invalid'?copy.strategy.invalid:state.phase==='not-found'?`No registered strategy with this identifier was found through block ${observation!.block}. Unactivated shipments are not included.`:state.phase==='unavailable'?copy.strategy.unavailable:'Reading the verified deployment and registered strategy history.'}</p></div>:strategy&&<>
     <div className="eyebrow">{strategy.network}</div><h2>{strategy.tokens}</h2><p className="pill">{strategy.status}</p>
     <dl className={styles.identity}><div><dt>Maker</dt><dd className="mono">{strategy.maker}</dd></div><div><dt>Swap fee</dt><dd>{strategy.fee}</dd></div><div><dt>State version</dt><dd>{strategy.version}</dd></div></dl>
-    <p>{copy.strategy.custody}</p><StrategyInventory strategy={strategy}/><p className="hint">{copy.strategy.capacity}</p><p className="hint">{copy.strategy.fees}</p>
+    <p>{copy.strategy.custody}</p><StrategyInventory strategy={strategy}/><p className="hint">{copy.strategy.capacity}</p><p className="hint">{copy.strategy.fees}</p>{administration}
     <details className={styles.technical}><summary>Configuration and receipts</summary>
      <p>Concentration is defined by these immutable tick keys and radii. No preset name is inferred from an unknown profile.</p>
      <ol className={styles.ticks}>{strategy.ticks.map((tick,i)=><li key={tick.key}><strong>Tick {i+1} · {tick.classification}</strong><p>{tick.fullRange?'Full-range anchor':`Quantized tick key: ${tick.key}`}</p><p className="mono">Radius (internal units): {tick.radius}</p></li>)}</ol>
@@ -50,4 +53,7 @@ export function StrategyView({state}:{state:StrategyViewState}){
   </div>
  </section>;
 }
-export default function Strategy({id}:{id:string}){return <StrategyView state={useStrategy(id)}/>;}
+export default function Strategy({id}:{id:string}){
+ const state=useStrategy(id),admin=useStrategyAdmin(id,state.adminInput,state.refresh);
+ return <><StrategyView state={state} administration={<StrategyAdminView state={admin}/>}/>{state.phase!=='loaded'&&admin.pending&&<section className="page"><div className="panel"><StrategyAdminView state={admin}/></div></section>}</>;
+}

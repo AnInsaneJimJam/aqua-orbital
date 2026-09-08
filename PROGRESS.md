@@ -11,7 +11,7 @@ Updated 2026-09-08. Status records observed implementation, never planned succes
 | G3 Aqua settlement | In progress; depends on G2 | Official Aqua lifecycle, exact transfer deltas, all-token backing and real six-pair execution pass; full security/release campaigns outstanding |
 | G4 Arc payments | In progress | Local interior and mixed swaps fund split USDC invoices; mined mixed failure/rollback and recovery verified. Arc/Privy receipts and full PAY campaign outstanding |
 | G5 SDK/backend | In progress | Validated plans, compiled event ABIs, canonical projections, receipt metrics, invoice/strategy reads, public swap/payment observations and bounded quote cache; incomplete shipments, full replay and transaction-controller wiring outstanding |
-| G6 application | In progress | All routes scaffolded, editable presentation/controller split, public invoice reads/recovery, Privy login UI verified and external fixture browser tests. Payment, standalone swap and invoice administration review/recovery implemented; replacement tracking, route detail, liquidity publication/administration and live embedded-wallet execution outstanding; registered strategy listing/detail reads implemented |
+| G6 application | In progress | All routes scaffolded, editable presentation/controller split, public invoice reads/recovery, Privy login UI verified and external fixture browser tests. Payment, standalone swap and invoice administration review/recovery implemented; replacement tracking, route detail, liquidity publication/replacement and live embedded-wallet execution outstanding; registered strategy reads and owner approval/retire/dock controllers implemented |
 | G7 demo | Prerequisites in progress; integrated demo not run | Disposable authenticated 12-contract deployment passes; persistent demo, user-wallet receipts and source-linked requirement matrix remain open |
 | G8 release | Not started | Full campaigns, limits, gas, accessibility/performance |
 
@@ -28,6 +28,7 @@ Updated 2026-09-08. Status records observed implementation, never planned succes
 
 ## Working log
 
+- Implemented strategy owner approval updates and separate retirement/docking reviews with canonical state rechecks and per-hash receipt recovery. The SDK smoke covers three synthetic actions and the web build passes; actual UI-to-contract lifecycle execution remains deferred until the persistent local deployment is connected. [Lightweight checkpoint](test/evidence/strategy-admin.md).
 - Owner priority update: finish remaining workflows and end-to-end integration first; keep immediate checks to builds/types and focused smoke checks. Broader testing and optimization are deferred. The in-flight broad strategy browser rerun was intentionally stopped; its checkpoint remains unaccepted, with already completed SDK/shared results retained.
 - Implemented liquidity listing/detail with wallet-scoped pagination and validated per-strategy inventory, fees, tick classification and receipt reads. Six focused browser cases and 129 full SDK checks pass. The broad browser rerun was stopped at owner request; publication, retirement/docking, unactivated shipment indexing and the persistent demo remain outstanding. [Read workflow evidence](test/evidence/strategy-read.md).
 - Started the accepted docs-then-build plan. Existing repository contained only specifications and research notes; Git working tree was clean.
@@ -118,6 +119,6 @@ Updated 2026-09-08. Status records observed implementation, never planned succes
 
 ## Next concrete work
 
-Complete liquidity publication/administration, then connect a persistent local demo through the indexer/API and both user transaction flows. Keep reviews and resumable transactions mandatory. Prioritize working coverage across departments before further optimization; the measured n8 gas blocker and [release-gap obligations](docs/audits/RELEASE_GAP_REVIEW.md) remain explicit. Live Privy verification and Arc identity/deployment are separate prerequisites. Keep the current frontend template, make verified local commits and leave pushing to the user.
+Connect a persistent local deployment through the indexer/API and user transaction flows, and complete liquidity publication/replacement against it. Owner administration is wired but still needs that integrated execution. Keep reviews and resumable transactions mandatory. Prioritize working coverage across departments before further optimization; the measured n8 gas blocker and [release-gap obligations](docs/audits/RELEASE_GAP_REVIEW.md) remain explicit. Live Privy verification and Arc identity/deployment are separate prerequisites. Keep the current frontend template, make verified local commits and leave pushing to the user.
 
 Detailed commands and outcomes belong in [the evidence index](test/evidence/INDEX.md).

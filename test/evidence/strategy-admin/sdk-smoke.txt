@@ -1,0 +1,4 @@
+approval: reviewed, submitted once, hash saved, event decoded
+retire: reviewed, submitted once, hash saved, event decoded
+dock: reviewed, submitted once, hash saved, event decoded
+Smoke passed: three explicit development-fixture actions. No real wallet or chain claim.

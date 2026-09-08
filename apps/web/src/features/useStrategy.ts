@@ -1,7 +1,7 @@
 'use client';
 import {useEffect,useState} from 'react';
 import {useQuery} from '@tanstack/react-query';
-import {decodeStrategyDetail,strategyInventory,type StrategyListRequest} from '@orbital/sdk';
+import {decodeStrategyDetail,strategyInventory,configFromDTO,orderFromDTO,type StrategyInput,type StrategyListRequest} from '@orbital/sdk';
 import {hashSchema,manifestSchema,type StrategyDetailDTO,type DeploymentManifest,type StrategyReadDTO} from '@orbital/shared';
 import {apiBase,request,requestPayload} from './api';
 
@@ -9,7 +9,7 @@ export type StrategyObservationView={block:string;hash:string;indexedAt:string;h
 export type StrategyDataView={hash:string;maker:string;router:string;configHash:string;network:string;tokens:string;fee:string;status:string;version:string;
  inventory:ReturnType<typeof strategyInventory>;ticks:{key:string;radius:string;classification:'Interior'|'Boundary';fullRange:boolean}[];
  receipts:{label:string;hash:string;href:string|null}[];canTrade:boolean;};
-export type StrategyViewState={id:string;phase:'invalid'|'loading'|'unavailable'|'not-found'|'loaded';refreshing:boolean;refresh:()=>void;observation?:StrategyObservationView;strategy?:StrategyDataView};
+export type StrategyViewState={id:string;phase:'invalid'|'loading'|'unavailable'|'not-found'|'loaded';refreshing:boolean;refresh:()=>void;observation?:StrategyObservationView;strategy?:StrategyDataView;adminInput?:StrategyInput};
 export type StrategyFilter=StrategyListRequest['status'];
 export function useObservationTime(){
  const [now,setNow]=useState(()=>Date.now());
@@ -56,5 +56,6 @@ export function useStrategy(id:string,expected?:{maker:string;deployment:Deploym
  if(!query.data)return state;
  const {manifest,observation:v}=query.data,observation=strategyObservationView(v,now);
  if(!v.data.strategy)return {...state,phase:'not-found',observation};
- return {...state,phase:'loaded',observation,strategy:strategyView(v.data.strategy,manifest,observation,query.isFetching)};
+ return {...state,phase:'loaded',observation,strategy:strategyView(v.data.strategy,manifest,observation,query.isFetching),
+  adminInput:{config:configFromDTO(v.data.strategy.config),order:orderFromDTO(v.data.strategy.order)}};
 }

@@ -60,3 +60,5 @@ The latest full Solidity checkpoint passed **398 tests across 46 suites**, seed 
 Private keys, identity credentials and authentication responses never belong in evidence.
 
 Liquidity reads: [workflow and scoped verification](strategy-read.md). Six focused browser cases pass; a later broad rerun was intentionally interrupted at owner request, so it does not replace the prior 72-check browser checkpoint.
+
+Strategy owner actions: [implementation and lightweight checks](strategy-admin.md). Approval/retirement/docking smoke and production build pass; no new full browser or release count is promoted.

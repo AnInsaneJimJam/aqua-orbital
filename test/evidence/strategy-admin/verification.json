@@ -1,0 +1,77 @@
+{
+  "capturedAt": "2026-09-08T16:59:53.396479+00:00",
+  "scope": "Lightweight implementation checkpoint; source hashes recorded after successful smoke and production build. No frozen full campaign claim.",
+  "parentCommit": "bd23e322538c6572b2dae2325f9ea868d9a173bf",
+  "files": [
+    {
+      "path": "apps/web/src/features/Strategy.tsx",
+      "sha256": "5c1b65a9d7828e67a1c20ec55c06d0e140fce210e2b163137db693a91168c444"
+    },
+    {
+      "path": "apps/web/src/features/StrategyAdmin.tsx",
+      "sha256": "432516c7f5371faff8358e5941905b771bebc8d0efbbc524902858e321f7f130"
+    },
+    {
+      "path": "apps/web/src/features/strategyAdminStorage.ts",
+      "sha256": "ccd73cf41616800a7a4e3a126c4f2b48b082faa8e5bb6d7dc56b009a9781a1db"
+    },
+    {
+      "path": "apps/web/src/features/useStrategy.ts",
+      "sha256": "5cdac5718f14f2f647f1f3630bd749497aa97e5a18a05fd424a4f85a9972d626"
+    },
+    {
+      "path": "apps/web/src/features/useStrategyAdmin.ts",
+      "sha256": "50c5d2c43f16e11e73f535f6eb8981aaf546aadf441dd9597212fc96299a1479"
+    },
+    {
+      "path": "apps/web/src/wallet/strategyAdminPort.ts",
+      "sha256": "df90072a0bcc11fc24908d167c0f972c5f57ecd738c50266227c68abb5845a9f"
+    },
+    {
+      "path": "packages/sdk/scripts/generate-abi.mjs",
+      "sha256": "ef61e0fc0d3202ff3a615fb7f9a85020d320462ea4c7720647cfab05fdf8d691"
+    },
+    {
+      "path": "packages/sdk/scripts/smoke-strategy-admin.ts",
+      "sha256": "895e1add6d276516580b5949943004324c8fdf54b721aa844ff35969989a9d4e"
+    },
+    {
+      "path": "packages/sdk/src/generated/abi.ts",
+      "sha256": "317dc8412c59d5c316550094c88d4357517f8989376beb7ab4a397dd65817f4d"
+    },
+    {
+      "path": "packages/sdk/src/generated/aqua-events-provenance.json",
+      "sha256": "799a91b3407024a118c3e384d0d5189fa4300957a3c5ca5e1e99f0c2e970291e"
+    },
+    {
+      "path": "packages/sdk/src/index.ts",
+      "sha256": "aba8acd8841afe740f204f1d215a50fc67168e672e3c14f49f76264502097eb1"
+    },
+    {
+      "path": "packages/sdk/src/strategy-admin.ts",
+      "sha256": "5ed3e1baca6ca02bf5c0edb9ad4208c51edafd9b9db33f2188ba55c62b5953d7"
+    }
+  ],
+  "checks": [
+    {
+      "name": "sdk-smoke",
+      "exitStatus": 0,
+      "transcript": "test/evidence/strategy-admin/sdk-smoke.txt",
+      "sha256": "1102833f87ffdc4f8a877c015e3fb5a1433470e11c7a3ec92dc672e60d29a0ab"
+    },
+    {
+      "name": "build",
+      "exitStatus": 0,
+      "transcript": "test/evidence/strategy-admin/build.txt",
+      "sha256": "c53c09b76a7f10f90f03c41447de7dd59fa671b49b93edac09b58204ad067a59"
+    }
+  ],
+  "webTypecheck": "Passed; terminal output only, not a retained raw transcript. Production build also includes TypeScript.",
+  "deferred": [
+    "Actual UI-to-contract owner execution",
+    "Browser recovery and shared-wallet regression campaigns",
+    "Persistent application deployment",
+    "Privy/Arc receipts"
+  ],
+  "integrationVerified": false
+}
