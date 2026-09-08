@@ -2,7 +2,7 @@
 
 The Arc Testnet deployment is active on chain **5042002**: all twelve user-signed deployment transactions succeeded and passed receipt/runtime verification. The application runs at **http://127.0.0.1:3002**, with its API at **http://127.0.0.1:3003**. The indexer caught up and live readiness, strategy reads and the empty-route quote response were observed successfully; [current evidence](../test/evidence/arc-integration/live-public-reads.json). Recheck readiness when starting a new session.
 
-The selected registry is **project-deployed upstream AquaRouter**, using unchanged pinned source. [ARC_DEPLOYMENT.md](ARC_DEPLOYMENT.md) lists the verified addresses and retained deployment evidence. No live Orbital strategy, swap or invoice has yet been demonstrated on this deployment, and Privy embedded-wallet creation remains unverified. A login screen or deployment receipt does not establish a completed Privy financial flow.
+The selected registry is **project-deployed upstream AquaRouter**, using unchanged pinned source. [ARC_DEPLOYMENT.md](ARC_DEPLOYMENT.md) lists its verified addresses. The first strategy is active with backed allocations and a successful router quote; [current evidence](../test/evidence/arc-integration/first-strategy.md) supersedes the earlier empty-route checkpoint. Trader swap/invoice receipts and Privy embedded-wallet creation remain unverified. A login screen, activation receipt or quote does not establish a completed Privy financial flow.
 
 ## Start the profile
 
@@ -29,7 +29,7 @@ Process environment values take precedence over this profile file. Set the serve
 
 Arc application reads now use `/api/chain` on the web origin; the web server forwards allowed reads/simulations to that verified provider. The wallet retains its own signing/submission connection. No extra environment variable is needed when using `dev:arc`. If running the web service separately, provide the verified runtime `DEPLOYMENT_MANIFEST` and allowed `PUBLIC_APP_URL` origins. [Browser-blocking repair and checks](../test/evidence/browser-rpc/README.md).
 
-For the reported extension conflict, finish/dismiss the outstanding wallet request and use one intended wallet provider in that browser profile. Keep one app origin throughout the session; localhost and 127.0.0.1 have separate wallet permissions and browser storage. Hard-refresh after updating the app. The deployed maker has already claimed 1,000 units of both demo tokens, with [confirmed receipts](../test/evidence/browser-rpc/faucet-receipts.json); proceed to liquidity instead of repeating those claims.
+For the reported extension conflict, finish/dismiss the outstanding wallet request and use one intended wallet provider in that browser profile. Keep one app origin throughout the session; localhost and 127.0.0.1 have separate wallet permissions and browser storage. Hard-refresh after updating the app. The maker has already claimed both demo tokens and published its strategy; proceed to wallet B instead of repeating those steps.
 
 ## Privy dashboard setup
 
@@ -53,6 +53,8 @@ Only after that check passes does the runner derive ignored `.cache/arc-runtime/
 Services use `DATABASE_URL`, defaulting to the existing local PostgreSQL database. Run `pnpm db:migrate` against the selected database before its first use. The schema separates chains and deployments; no database reset is needed to keep Anvil and Arc data. Database/RPC outages or indexer lag remain unavailable financial reads, not fixture data. Wait for the Arc API's `/ready` response before reviewing live transactions.
 
 ## Minimal live walkthrough
+
+**Current checkpoint: maker funding and strategy publication (steps 2–3) are complete. Start at step 4.** Strategy `0xc64a158e90a2b3f9bd211748fe96f1cd59b7f785c18c093b99d033f6ff589eee` has three backed 10-unit allocations at a 0.05% fee. Its recorded quote used a synthetic read-only caller, not an authenticated trader. Refresh the quote in the actual trader wallet.
 
 Use **wallet A**, the external maker/deployer `0x5eBA55e1b43c8714E4432250Dada7A518780C871`, and **wallet B**, any different user-controlled wallet, as trader/payer. Both may be external wallets for ordinary application use. To obtain Privy qualification evidence, use an actual Privy embedded wallet as B and link its identity to the swap/payment receipts. A may also be the merchant, so two signing wallets suffice for this minimal flow.
 
@@ -84,7 +86,7 @@ No runner creates maker identities, funds accounts or automates user signatures.
 
 The [Arc deployment review](ARC_DEPLOYMENT_STATUS.md) retains the historical finding that the published canonical Aqua/stock-router addresses had no code on Arc. The authorized self-deployment route has now completed: the registry is `0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE`, labeled **project-deployed upstream AquaRouter**. Preserve the old blocked plan and the completed self-deployment plan as separate history. Canonical deployment status remains distinct from this verified project deployment.
 
-The original **20 testnet USDC / nonce 0** [deployer observation](../deployments/5042002/research-2026-09-09.json) predates all twelve deployment transactions. Current balances and nonces come from live wallet/RPC reads. Deployment runtime identity is verified; API/indexer readiness, initial strategy publication, swaps, invoices and actual Privy creation/reconnection/financial receipts are the remaining integration checks. No sponsor approval is implied by successful deployment.
+The original **20 testnet USDC / nonce 0** [deployer observation](../deployments/5042002/research-2026-09-09.json) predates deployment. Current balances and nonces come from live wallet/RPC reads. Deployment identity, API/indexer readiness, first strategy publication and one router quote are verified at their recorded checkpoints. Trader swaps, invoices and actual Privy creation/reconnection/financial receipts remain open. No sponsor approval is implied by deployment.
 
 The screenshot's complete sponsor matrix and supplied Privy wording match **ETHOnline 2026**. Keep the three sponsor outcomes separate:
 

@@ -1,0 +1,445 @@
+{
+  "scope": "Actual user-signed Arc strategy activation and read-only quote. Synthetic quote caller; no authenticated trader, signing, broadcast or token transfer by this probe.",
+  "observedAt": "2026-09-08T23:04:42.401Z",
+  "rpcUrl": "https://rpc.blockdaemon.testnet.arc.io",
+  "observations": [
+    {
+      "path": "/strategies/0xc64a158e90a2b3f9bd211748fe96f1cd59b7f785c18c093b99d033f6ff589eee",
+      "httpStatus": 200,
+      "elapsedMs": 1371.5653000000002,
+      "observedAt": "2026-09-08T23:04:43.784Z",
+      "data": {
+        "schemaVersion": 1,
+        "status": "available",
+        "code": "STRATEGIES_AVAILABLE",
+        "financialExecutionEnabled": false,
+        "chainId": 5042002,
+        "deploymentId": "0xe212fdf8415315ce9e85de497b5a0c34bf7593b25ff6ab2fb36402d6ff5a41fc",
+        "asOf": {
+          "height": "61144906",
+          "hash": "0x835e911a4cef842ec98c2d5c497ab9bd848020e1d35c66385bfcff8d6aa485a1"
+        },
+        "currentIndexedBlock": {
+          "height": "61144908",
+          "hash": "0x97470dea4d0fe43a52eeea789be3ac8d14e1f933da842c4cf335a8b2590d7506"
+        },
+        "historical": true,
+        "coverage": {
+          "fromBlock": "61131616",
+          "toBlock": "61144906",
+          "expectedBlocks": "13291",
+          "canonicalBlocks": "13291",
+          "coveredBlocks": "13291",
+          "complete": true,
+          "scope": "registered_strategies",
+          "unactivatedShipments": false
+        },
+        "freshness": {
+          "indexedAt": "2026-09-08T23:04:39.399Z",
+          "ageMs": 4367,
+          "head": "61144913",
+          "stale": false
+        },
+        "data": {
+          "strategy": {
+            "orderHash": "0xc64a158e90a2b3f9bd211748fe96f1cd59b7f785c18c093b99d033f6ff589eee",
+            "router": "0x449420e9042c48eac6e695020613678ad5a55d41",
+            "maker": "0x5eba55e1b43c8714e4432250dada7a518780c871",
+            "configHash": "0x2aea28a925580a655cd5f4275b434282d5191d0182dd93c601839bb3dbfedc98",
+            "config": {
+              "schemaVersion": 1,
+              "chainId": "5042002",
+              "router": "0x449420E9042c48Eac6E695020613678aD5A55D41",
+              "maker": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+              "makerNonce": "0",
+              "tokens": [
+                "0x3600000000000000000000000000000000000000",
+                "0x37af59078638387f0416Bef031D8D70B9B6b00f2",
+                "0xCa8c7b1d7489BDd0bbD4e2f51Ee7558e14B2725B"
+              ],
+              "decimals": [
+                6,
+                6,
+                18
+              ],
+              "tickKeys": [
+                "5445883524",
+                "5447936453",
+                "18446744073709551615"
+              ],
+              "radiiInternal": [
+                "28708031157594306187996793434892227035646",
+                "2852620109639060303845095579435453482738",
+                "43645465095506842525573151988963545435"
+              ],
+              "feePpm": 500,
+              "initialAmountsRaw": [
+                "10000000",
+                "10000000",
+                "10000000000000000000"
+              ]
+            },
+            "order": {
+              "maker": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+              "traits": "28948022309345504152553859025372987423956659195481894094225317213215909740544",
+              "data": "0x360000000000000000000000000000000000000037af59078638387f0416Bef031D8D70B9B6b00f272202aea28a925580a655cd5f4275b434282d5191d0182dd93c601839bb3dbfedc9852202aea28a925580a655cd5f4275b434282d5191d0182dd93c601839bb3dbfedc98"
+            },
+            "lifecycle": "active",
+            "version": "1",
+            "activated": {
+              "blockNumber": "61144147",
+              "blockHash": "0xd1ba825f01d468ff740c3410234896d086569dd072f17512625e3c63aee3ed18",
+              "txHash": "0x93fe7e8e901e8b12939bd5c3af3f0ec59b30368f1e926999f7f0c2b540f542cb",
+              "logIndex": 38,
+              "event": "StrategyActivated"
+            },
+            "updated": {
+              "blockNumber": "61144147",
+              "blockHash": "0xd1ba825f01d468ff740c3410234896d086569dd072f17512625e3c63aee3ed18",
+              "txHash": "0x93fe7e8e901e8b12939bd5c3af3f0ec59b30368f1e926999f7f0c2b540f542cb",
+              "logIndex": 38,
+              "event": "StrategyActivated"
+            },
+            "tradeEligibilityVerified": false,
+            "financial": {
+              "state": {
+                "maker": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+                "configHash": "0x2aea28a925580a655cd5f4275b434282d5191d0182dd93c601839bb3dbfedc98",
+                "status": 1,
+                "version": "1",
+                "X": [
+                  "13357547506369988388661625694570504612113",
+                  "13357547506369988388661625694570504612113",
+                  "13357547506369988388661625694570504612113"
+                ],
+                "principalInternal": [
+                  "184467440737095516159999999999999999993",
+                  "184467440737095516159999999999999999993",
+                  "184467440737095516159999999999999999993"
+                ],
+                "virtualInternal": "13173080065632892872501625694570504612120",
+                "sumInternal": "40072642519109965165984877083711513836339",
+                "sumSquaresInternal": {
+                  "hi": "4622",
+                  "lo": "81189699917829729961923359572338216809507918318545841184259841284128563190115"
+                },
+                "interiorRadius": "31604296732328873334367462166316644063819",
+                "boundarySumNumerator": "0",
+                "boundarySigmaLower": "0",
+                "boundarySigmaUpper": "0",
+                "interiorTickMask": 7,
+                "slackBoundInternal": "188",
+                "cumulativeFeeRaw": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "availability": [
+                {
+                  "token": "0x3600000000000000000000000000000000000000",
+                  "aquaAllocationRaw": "10000000",
+                  "liveTokenCount": 3,
+                  "walletBalanceRaw": "19352206",
+                  "aquaAllowanceRaw": "40000000",
+                  "live": true,
+                  "backingValid": true,
+                  "surplusInternal": {
+                    "hi": "0",
+                    "lo": "7"
+                  },
+                  "deficitInternal": {
+                    "hi": "0",
+                    "lo": "0"
+                  },
+                  "fundingCeilingRaw": "9999999"
+                },
+                {
+                  "token": "0x37af59078638387f0416Bef031D8D70B9B6b00f2",
+                  "aquaAllocationRaw": "10000000",
+                  "liveTokenCount": 3,
+                  "walletBalanceRaw": "1000000000",
+                  "aquaAllowanceRaw": "40000000",
+                  "live": true,
+                  "backingValid": true,
+                  "surplusInternal": {
+                    "hi": "0",
+                    "lo": "7"
+                  },
+                  "deficitInternal": {
+                    "hi": "0",
+                    "lo": "0"
+                  },
+                  "fundingCeilingRaw": "9999999"
+                },
+                {
+                  "token": "0xCa8c7b1d7489BDd0bbD4e2f51Ee7558e14B2725B",
+                  "aquaAllocationRaw": "10000000000000000000",
+                  "liveTokenCount": 3,
+                  "walletBalanceRaw": "1000000000000000000000",
+                  "aquaAllowanceRaw": "40000000000000000000",
+                  "live": true,
+                  "backingValid": true,
+                  "surplusInternal": {
+                    "hi": "0",
+                    "lo": "7"
+                  },
+                  "deficitInternal": {
+                    "hi": "0",
+                    "lo": "0"
+                  },
+                  "fundingCeilingRaw": "9999999999999999999"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "/quotes/swap",
+      "request": {
+        "wallet": "0x000000000000000000000000000000000000bEEF",
+        "recipient": "0x000000000000000000000000000000000000bEEF",
+        "tokenIn": "0x3600000000000000000000000000000000000000",
+        "tokenOut": "0x37af59078638387f0416Bef031D8D70B9B6b00f2",
+        "amountInRaw": "1000000",
+        "slippageBps": 10,
+        "maxCrossings": 16
+      },
+      "httpStatus": 200,
+      "elapsedMs": 1130.2648,
+      "observedAt": "2026-09-08T23:04:45.945Z",
+      "data": {
+        "schemaVersion": 1,
+        "status": "observed",
+        "code": "QUOTE_OBSERVED",
+        "financialExecutionEnabled": false,
+        "canonicalVerification": "verified_at_pin",
+        "requestId": "req-3i",
+        "request": {
+          "wallet": "0x000000000000000000000000000000000000beef",
+          "recipient": "0x000000000000000000000000000000000000beef",
+          "tokenIn": "0x3600000000000000000000000000000000000000",
+          "tokenOut": "0x37af59078638387f0416bef031d8d70b9b6b00f2",
+          "amountInRaw": "1000000",
+          "slippageBps": 10,
+          "maxCrossings": 16
+        },
+        "chainId": 5042002,
+        "router": "0x449420e9042c48eac6e695020613678ad5a55d41",
+        "deploymentId": "0xe212fdf8415315ce9e85de497b5a0c34bf7593b25ff6ab2fb36402d6ff5a41fc",
+        "deploymentStartBlock": "61131616",
+        "asOf": {
+          "height": "61144908",
+          "hash": "0x97470dea4d0fe43a52eeea789be3ac8d14e1f933da842c4cf335a8b2590d7506"
+        },
+        "currentIndexedBlock": {
+          "height": "61144911",
+          "hash": "0x09d01a935e270cf53bfdeea3cf11d94020de57a583c012363cac2a701e39991a"
+        },
+        "historical": true,
+        "freshness": {
+          "indexedAt": "2026-09-08T23:04:40.931Z",
+          "ageMs": 4995,
+          "head": "61144917",
+          "blockTimestamp": "1788908677",
+          "observedAt": "2026-09-08T23:04:45.925Z"
+        },
+        "data": {
+          "best": {
+            "kind": "swap",
+            "payer": "0x000000000000000000000000000000000000beef",
+            "orderHash": "0xc64a158e90a2b3f9bd211748fe96f1cd59b7f785c18c093b99d033f6ff589eee",
+            "configHash": "0x2aea28a925580a655cd5f4275b434282d5191d0182dd93c601839bb3dbfedc98",
+            "config": {
+              "schemaVersion": 1,
+              "chainId": "5042002",
+              "router": "0x449420E9042c48Eac6E695020613678aD5A55D41",
+              "maker": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+              "makerNonce": "0",
+              "tokens": [
+                "0x3600000000000000000000000000000000000000",
+                "0x37af59078638387f0416Bef031D8D70B9B6b00f2",
+                "0xCa8c7b1d7489BDd0bbD4e2f51Ee7558e14B2725B"
+              ],
+              "decimals": [
+                6,
+                6,
+                18
+              ],
+              "tickKeys": [
+                "5445883524",
+                "5447936453",
+                "18446744073709551615"
+              ],
+              "radiiInternal": [
+                "28708031157594306187996793434892227035646",
+                "2852620109639060303845095579435453482738",
+                "43645465095506842525573151988963545435"
+              ],
+              "feePpm": 500,
+              "initialAmountsRaw": [
+                "10000000",
+                "10000000",
+                "10000000000000000000"
+              ]
+            },
+            "stateVersion": "1",
+            "caller": "0x000000000000000000000000000000000000beef",
+            "recipient": "0x000000000000000000000000000000000000beef",
+            "tokenIn": "0x3600000000000000000000000000000000000000",
+            "tokenOut": "0x37af59078638387f0416bef031d8d70b9b6b00f2",
+            "amountInRaw": "1000000",
+            "amountOutRaw": "998491",
+            "feeRaw": "500",
+            "feePpm": 500,
+            "minimumOutRaw": "997492",
+            "expiresAt": "1788908697",
+            "maxCrossings": 16
+          },
+          "alternatives": [],
+          "counts": {
+            "scanned": 1,
+            "locallyAccepted": 1,
+            "inspected": 1,
+            "eligible": 1,
+            "quoted": 1,
+            "failed": 0,
+            "notInspected": 0
+          },
+          "coverage": {
+            "candidateLimit": 200,
+            "inspectionLimit": 32,
+            "scanTruncated": false,
+            "scope": "bounded_registered_candidates"
+          },
+          "diagnostics": [
+            {
+              "orderHash": "0xc64a158e90a2b3f9bd211748fe96f1cd59b7f785c18c093b99d033f6ff589eee",
+              "code": "QUOTED"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "activation": {
+    "chainId": 5042002,
+    "transaction": {
+      "type": "eip1559",
+      "chainId": 5042002,
+      "nonce": 18,
+      "gas": "2251398",
+      "maxFeePerGas": "24149405648",
+      "maxPriorityFeePerGas": "149405648",
+      "to": "0x449420e9042c48eac6e695020613678ad5a55d41",
+      "value": "0",
+      "accessList": [],
+      "input": "0x0de4891900000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000420000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000004cef52000000000000000000000000449420e9042c48eac6e695020613678ad5a55d410000000000000000000000005eba55e1b43c8714e4432250dada7a518780c8710000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000016000000000000000000000000000000000000000000000000000000000000001e0000000000000000000000000000000000000000000000000000000000000026000000000000000000000000000000000000000000000000000000000000002e000000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000003600000000000000000000000000000000000000000000000000000000000000003000000000000000000000000360000000000000000000000000000000000000000000000000000000000000037af59078638387f0416bef031d8d70b9b6b00f2000000000000000000000000ca8c7b1d7489bdd0bbd4e2f51ee7558e14b2725b0000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000012000000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000000000000000000000000000001449996840000000000000000000000000000000000000000000000000000000144b8e9c5000000000000000000000000000000000000000000000000ffffffffffffffff0000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000545d85af617c565c8cc3ef69d18987c1fe000000000000000000000000000000086212a61f1082de25d235441d927d86f20000000000000000000000000000000020d5cf91aa1f2376c3835c9994cf115b0000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000000098968000000000000000000000000000000000000000000000000000000000009896800000000000000000000000000000000000000000000000008ac7230489e800000000000000000000000000005eba55e1b43c8714e4432250dada7a518780c87140000000002800280028002800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000006c360000000000000000000000000000000000000037af59078638387f0416bef031d8d70b9b6b00f272202aea28a925580a655cd5f4275b434282d5191d0182dd93c601839bb3dbfedc9852202aea28a925580a655cd5f4275b434282d5191d0182dd93c601839bb3dbfedc980000000000000000000000000000000000000000",
+      "r": "0x374b8036f78cc3dae9c661f9163ad8628c2a2c4fc009fc8be6ba67ab42663462",
+      "s": "0x39b0e5f4cf689354be6c42a4da9a04274bda54b30339d5326f3ff185c24ae40f",
+      "yParity": 0,
+      "v": "0",
+      "hash": "0x93fe7e8e901e8b12939bd5c3af3f0ec59b30368f1e926999f7f0c2b540f542cb",
+      "blockHash": "0xd1ba825f01d468ff740c3410234896d086569dd072f17512625e3c63aee3ed18",
+      "blockNumber": "61144147",
+      "transactionIndex": 9,
+      "from": "0x5eba55e1b43c8714e4432250dada7a518780c871",
+      "gasPrice": "20149405648",
+      "blockTimestamp": "1788908287",
+      "typeHex": "0x2"
+    },
+    "receipt": {
+      "type": "eip1559",
+      "status": "success",
+      "cumulativeGasUsed": "3401858",
+      "logs": [
+        {
+          "address": "0x449420e9042c48eac6e695020613678ad5a55d41",
+          "topics": [
+            "0xb2735875eb60b4dab16048f37e63f7963fd091e6f0cfa682f89a7ff54472a313",
+            "0x0000000000000000000000005eba55e1b43c8714e4432250dada7a518780c871",
+            "0xc64a158e90a2b3f9bd211748fe96f1cd59b7f785c18c093b99d033f6ff589eee",
+            "0x2aea28a925580a655cd5f4275b434282d5191d0182dd93c601839bb3dbfedc98"
+          ],
+          "data": "0x",
+          "blockHash": "0xd1ba825f01d468ff740c3410234896d086569dd072f17512625e3c63aee3ed18",
+          "blockNumber": "61144147",
+          "blockTimestamp": "1788908287",
+          "transactionHash": "0x93fe7e8e901e8b12939bd5c3af3f0ec59b30368f1e926999f7f0c2b540f542cb",
+          "transactionIndex": 9,
+          "logIndex": 38,
+          "removed": false
+        }
+      ],
+      "logsBloom": "0x00000000000008000001080000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000400000040000000400000000000000000400000002000000000000000000000000000000000000000000000000000000000000004000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "transactionHash": "0x93fe7e8e901e8b12939bd5c3af3f0ec59b30368f1e926999f7f0c2b540f542cb",
+      "transactionIndex": 9,
+      "blockHash": "0xd1ba825f01d468ff740c3410234896d086569dd072f17512625e3c63aee3ed18",
+      "blockNumber": "61144147",
+      "gasUsed": "1824650",
+      "effectiveGasPrice": "20149405648",
+      "from": "0x5eba55e1b43c8714e4432250dada7a518780c871",
+      "to": "0x449420e9042c48eac6e695020613678ad5a55d41",
+      "contractAddress": null
+    },
+    "canonicalBlock": {
+      "number": "61144147",
+      "hash": "0xd1ba825f01d468ff740c3410234896d086569dd072f17512625e3c63aee3ed18",
+      "timestamp": "1788908287"
+    },
+    "decoded": {
+      "functionName": "activateStrategy",
+      "args": [
+        {
+          "schemaVersion": 1,
+          "chainId": "5042002",
+          "router": "0x449420E9042c48Eac6E695020613678aD5A55D41",
+          "maker": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+          "makerNonce": "0",
+          "tokens": [
+            "0x3600000000000000000000000000000000000000",
+            "0x37af59078638387f0416Bef031D8D70B9B6b00f2",
+            "0xCa8c7b1d7489BDd0bbD4e2f51Ee7558e14B2725B"
+          ],
+          "decimals": [
+            6,
+            6,
+            18
+          ],
+          "tickKeys": [
+            "5445883524",
+            "5447936453",
+            "18446744073709551615"
+          ],
+          "radiiInternal": [
+            "28708031157594306187996793434892227035646",
+            "2852620109639060303845095579435453482738",
+            "43645465095506842525573151988963545435"
+          ],
+          "feePpm": 500,
+          "initialAmountsRaw": [
+            "10000000",
+            "10000000",
+            "10000000000000000000"
+          ]
+        },
+        {
+          "maker": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+          "traits": "28948022309345504152553859025372987423956659195481894094225317213215909740544",
+          "data": "0x360000000000000000000000000000000000000037af59078638387f0416bef031d8d70b9b6b00f272202aea28a925580a655cd5f4275b434282d5191d0182dd93c601839bb3dbfedc9852202aea28a925580a655cd5f4275b434282d5191d0182dd93c601839bb3dbfedc98"
+        }
+      ]
+    },
+    "event": {
+      "eventName": "StrategyActivated",
+      "args": {
+        "maker": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+        "orderHash": "0xc64a158e90a2b3f9bd211748fe96f1cd59b7f785c18c093b99d033f6ff589eee",
+        "configHash": "0x2aea28a925580a655cd5f4275b434282d5191d0182dd93c601839bb3dbfedc98"
+      }
+    }
+  },
+  "result": "Activation identity, live allocation backing and one whole-size quote verified; trader execution remains open."
+}
