@@ -1,0 +1,272 @@
+Compiling 2 files with Solc 0.8.30
+Solc 0.8.30 finished in 6.78s
+Compiler run successful with warnings:
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:19:9:
+   |
+19 |         assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,2);assertEq(r.remainingCrossings,14);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:19:73:
+   |
+19 |         assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,2);assertEq(r.remainingCrossings,14);
+   |                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:19:101:
+   |
+19 |         assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,2);assertEq(r.remainingCrossings,14);
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:20:9:
+   |
+20 |         assertTrue(r.events[0].candidate.inward);assertFalse(r.events[1].candidate.inward);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:20:50:
+   |
+20 |         assertTrue(r.events[0].candidate.inward);assertFalse(r.events[1].candidate.inward);
+   |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:21:9:
+   |
+21 |         assertEq(r.events[0].key,ticks[0].key);assertEq(r.events[1].key,ticks[0].key);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:21:48:
+   |
+21 |         assertEq(r.events[0].key,ticks[0].key);assertEq(r.events[1].key,ticks[0].key);
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:22:9:
+   |
+22 |         assertLe(r.events[0].candidate.inputLo,1785320583495630165674573230691291655457572108493);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:23:9:
+   |
+23 |         assertGe(r.events[0].candidate.inputHi,1785320583495630165674573230691291655457572108494);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:24:9:
+   |
+24 |         assertLe(r.events[1].candidate.inputLo,30193858969424478990258992973288832930589074016050);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:25:9:
+   |
+25 |         assertGe(r.events[1].candidate.inputHi,30193858969424478990258992973288832930589074016051);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:26:9:
+   |
+26 |         assertLt(r.events[0].candidate.inputHi,r.events[1].candidate.inputLo);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:27:9:
+   |
+27 |         assertLt(r.events[0].candidate.outputHi,r.events[1].candidate.outputLo);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:32:9:
+   |
+32 |         assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,1);assertEq(r.remainingCrossings,0);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:32:73:
+   |
+32 |         assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,1);assertEq(r.remainingCrossings,0);
+   |                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:32:101:
+   |
+32 |         assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,1);assertEq(r.remainingCrossings,0);
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:33:9:
+   |
+33 |         assertTrue(r.events[0].candidate.physical);assertTrue(r.events[0].candidate.inward);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:33:52:
+   |
+33 |         assertTrue(r.events[0].candidate.physical);assertTrue(r.events[0].candidate.inward);
+   |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:38:9:
+   |
+38 |         assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,0);assertEq(r.remainingCrossings,0);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:38:73:
+   |
+38 |         assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,0);assertEq(r.remainingCrossings,0);
+   |                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:38:101:
+   |
+38 |         assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,0);assertEq(r.remainingCrossings,0);
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:43:9:
+   |
+43 |         assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,0);assertEq(r.remainingCrossings,16);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:43:73:
+   |
+43 |         assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,0);assertEq(r.remainingCrossings,16);
+   |                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:43:101:
+   |
+43 |         assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,0);assertEq(r.remainingCrossings,16);
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:48:9:
+   |
+48 |         assertEq(uint256(limited.status),uint256(S.Status.CrossingLimit));assertEq(limited.remainingCrossings,1);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:48:75:
+   |
+48 |         assertEq(uint256(limited.status),uint256(S.Status.CrossingLimit));assertEq(limited.remainingCrossings,1);
+   |                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:49:9:
+   |
+49 |         S.Result memory wrong=S.enumerate(x,ticks,0,1,SCALE/10,1,1,16);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:50:9:
+   |
+50 |         assertEq(uint256(wrong.status),uint256(S.Status.InconsistentPrefixes));assertEq(wrong.remainingCrossings,16);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:50:80:
+   |
+50 |         assertEq(uint256(wrong.status),uint256(S.Status.InconsistentPrefixes));assertEq(wrong.remainingCrossings,16);
+   |                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:51:9:
+   |
+51 |         wrong=S.enumerate(x,ticks,0,1,SCALE/10,0,0,16);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:52:9:
+   |
+52 |         assertEq(uint256(wrong.status),uint256(S.Status.InconsistentPrefixes));
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:59:9:
+   |
+59 |         assertEq(uint256(r.status),uint256(S.Status.Uncertain));assertEq(r.remainingCrossings,16);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:59:65:
+   |
+59 |         assertEq(uint256(r.status),uint256(S.Status.Uncertain));assertEq(r.remainingCrossings,16);
+   |                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:66:9:
+   |
+66 |         assertEq(uint256(r.status),uint256(S.Status.Uncertain));
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:77:77:
+   |
+77 |         assertEq(uint256(S.enumerate(x,ticks,0,1,SCALE/1000,1,1,16).status),uint256(S.Status.Uncertain));
+   |                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:80:36:
+   |
+80 |         for(int256 sign=-1;sign<=1;sign+=2){
+   |                                    ^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:83:13:
+   |
+83 |             assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,0);
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:83:77:
+   |
+83 |             assertEq(uint256(r.status),uint256(S.Status.OrderingCertified));assertEq(r.events.length,0);
+   |                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierSchedule.t.sol:88:52:
+   |
+88 |         S.enumerate(x,ticks,0,1,8*SCALE/10,1,1,16);assertEq(keccak256(abi.encode(x,ticks)),beforeHash);
+   |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2026-09-08T04:42:41.224937Z  WARN evm::traces::external: etherscan config not found
+
+Ran 11 tests for test/FrontierSchedule.t.sol:FrontierScheduleTest
+[FAIL: not implemented] testAnEventEnclosureOverlappingFinalInputRemainsUncertain() (gas: 130929)
+[FAIL: not implemented] testBothHiddenCrossingsAreRetainedDespiteIdenticalEndpointPrefixes() (gas: 41364)
+[FAIL: not implemented] testCallerStateIsUnchanged() (gas: 42395)
+[FAIL: not implemented] testExactTouchDefinitelyOutsideInputRangeCanBeExcluded() (gas: 149331)
+[FAIL: not implemented] testExhaustedCrossingBudgetAndWrongPrefixNeverCertify() (gas: 41453)
+[FAIL: Error != expected error: not implemented != InvalidPair()] testInvalidMetadataInputAndBoundsFailBeforeEnumeration() (gas: 48400)
+[FAIL: not implemented] testNoInRangeEventNeedsNoCrossingBudget() (gas: 41563)
+[FAIL: not implemented] testSignedRootsDefinitelyBehindStartAreExcluded() (gas: 41317)
+[FAIL: not implemented] testSingleInwardCrossingChangesTheIdealPrefixOnce() (gas: 41254)
+[FAIL: not implemented] testTouchAtInitialInputRemainsExplicitlyUncertain() (gas: 147878)
+[FAIL: not implemented] testUnknownDiscriminantCannotBeSkipped() (gas: 43884)
+Suite result: FAILED. 0 passed; 11 failed; 0 skipped; finished in 4.24ms (11.93ms CPU time)
+
+Ran 1 test suite in 18.80ms (4.24ms CPU time): 0 tests passed, 11 failed, 0 skipped (11 total tests)
+
+Failing tests:
+Encountered 11 failing tests in test/FrontierSchedule.t.sol:FrontierScheduleTest
+[FAIL: not implemented] testAnEventEnclosureOverlappingFinalInputRemainsUncertain() (gas: 130929)
+[FAIL: not implemented] testBothHiddenCrossingsAreRetainedDespiteIdenticalEndpointPrefixes() (gas: 41364)
+[FAIL: not implemented] testCallerStateIsUnchanged() (gas: 42395)
+[FAIL: not implemented] testExactTouchDefinitelyOutsideInputRangeCanBeExcluded() (gas: 149331)
+[FAIL: not implemented] testExhaustedCrossingBudgetAndWrongPrefixNeverCertify() (gas: 41453)
+[FAIL: Error != expected error: not implemented != InvalidPair()] testInvalidMetadataInputAndBoundsFailBeforeEnumeration() (gas: 48400)
+[FAIL: not implemented] testNoInRangeEventNeedsNoCrossingBudget() (gas: 41563)
+[FAIL: not implemented] testSignedRootsDefinitelyBehindStartAreExcluded() (gas: 41317)
+[FAIL: not implemented] testSingleInwardCrossingChangesTheIdealPrefixOnce() (gas: 41254)
+[FAIL: not implemented] testTouchAtInitialInputRemainsExplicitlyUncertain() (gas: 147878)
+[FAIL: not implemented] testUnknownDiscriminantCannotBeSkipped() (gas: 43884)
+
+Encountered a total of 11 failing tests, 0 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 11 failed tests

@@ -10,6 +10,8 @@ __pycache__/
 .pytest_cache/
 packages/contracts/out/
 packages/contracts/cache/
+packages/contracts/vendor/swap-vm/snapshots/
+packages/contracts/vendor/swap-vm-orbital/snapshots/
 /cache/
 .tools/
 .cache/

@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "date": "2026-09-08",
+  "scope": "Strict negative-price event exclusion; pure initialized n3 path recovery; not full Router or universal liveness acceptance",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "head": "2ecc6ce2f180fde239c13feee7dd09247c0d1b07",
+    "working_tree": "dirty",
+    "solc": "0.8.30",
+    "optimizer_runs": 700,
+    "via_ir": true,
+    "evm": "cancun",
+    "forge": "forge Version: 1.5.1-stable\nCommit SHA: b0a9dd9ceda36f63e2326ce530c10e6916f4b8a2\nBuild Timestamp: 2025-12-22T11:40:33.870895500Z (1766403633)\nBuild Profile: maxperf"
+  },
+  "commands": {
+    "solidity": "forge test --root packages/contracts --match-contract '^(FrontierPriceExclusionTest|ReachableCompositionTest|FrontierEventsTest|OutwardRetentionTest|PayoutBracketTest|PayoutEndpointTest|RootBracketTest|FrontierEndpointTest|FrontierCompositionTest|FrontierCompositionGasTest|SlackGridReleaseTest|FrontierScheduleTest|FrontierTurnTest|LinkedMathTest|SeedProposalTest)$' --threads 2 --fuzz-seed 0x20260908 -vv",
+    "reference": "python -m unittest discover -s packages/reference/tests -p test_negative_price.py -v"
+  },
+  "runs": {
+    "red": {
+      "start_observed_utc": "2026-09-08T07:59:15.5941233Z",
+      "pass": 6,
+      "expected_fail": 5,
+      "compile_seconds": 27.02
+    },
+    "first_green": {
+      "start_observed_utc": "2026-09-08T08:00:36.2576912Z",
+      "pass": 44,
+      "historical_assertion_fail": 2,
+      "compile_seconds": 73.61
+    },
+    "final": {
+      "start_observed_utc": "2026-09-08T08:06:23.7344842Z",
+      "pass": 167,
+      "fail": 0,
+      "skipped": 0,
+      "suites": 15,
+      "fuzz_runs_observed": 256,
+      "compile_seconds": 84.78,
+      "runner_seconds": 3.61
+    },
+    "reference": {
+      "pass": 7,
+      "fail": 0,
+      "last_observed_test_seconds": 0.013,
+      "exact_start_not_captured": true,
+      "oracle": "Independent Fraction and math.isqrt; both exact zero-price roots, membership, directed rounding and literal binding"
+    }
+  },
+  "runtime_bytes": {
+    "FrontierComposition": 23138,
+    "FrontierEndpoint": 22458
+  },
+  "cold_helper_gas": [
+    {
+      "id": "reachable_first",
+      "external_call": 4125599,
+      "body": 4111162,
+      "refinement_used": 30
+    },
+    {
+      "id": "reachable_reverse",
+      "external_call": 4884444,
+      "body": 4869178,
+      "refinement_used": 29
+    }
+  ],
+  "inputs_sha256": {
+    "packages/contracts/src/libraries/FrontierEvents.sol": "69b8bb0ed565bb5c39782b58adb467c7f49794e1ad7fbb9dceda64874893ba43",
+    "packages/contracts/src/libraries/FrontierSchedule.sol": "36a26f299bcb9d3cb59b4b32480364b2cd6fea18752e2c416ef073e7c60662ef",
+    "packages/contracts/src/libraries/FrontierComposition.sol": "2b0cced7ca334b9eb814d821edbdcd4ebb40b4fc9219dd9beddf7bc07599069f",
+    "packages/contracts/src/libraries/FrontierEndpoint.sol": "ecb7eb1206cd1fc3fe03341f31d1442b2aabd4eeba0eaf629faba5807a0335fd",
+    "packages/contracts/src/libraries/OrbitalMath.sol": "6454e86f8b8bea61506c2f5eead0df7936df8a89415597aabf76d3618acbfaeb",
+    "packages/contracts/src/libraries/TickGeometry.sol": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b",
+    "packages/contracts/src/libraries/WideMath.sol": "61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d",
+    "packages/contracts/test/FrontierPriceExclusion.t.sol": "d1df583e9d344de0060358992b0799af2b5fc5c3d04a554d372670a3f5aa167d",
+    "packages/contracts/test/ReachableComposition.t.sol": "6a87720431f6bd0b39f6de68a700b34e64ff8c59719f986876d377ce0c075cf3",
+    "packages/contracts/test/FrontierEvents.t.sol": "8dede26540626afb1cd817159327fa96cd8a52dfcbfdc7f2fea13cf9986761da",
+    "packages/contracts/test/FrontierSchedule.t.sol": "17acdc4350563bfdfc370a79231a14805f644c73e0dcf78f0cc3f9540b4f6239",
+    "packages/contracts/test/FrontierComposition.t.sol": "c8e0a09a2fb3bcc1ebdb56f018527d8d6a33a74e1cc13473373ab5d861cc248f",
+    "packages/contracts/foundry.toml": "8837e44a7819ccc323dfe5d24eb65b9a5fe4a9fc2d6c47418a88aaa94bfd4f9a",
+    "packages/reference/fixtures_negative_price.py": "6ef06af21c255edcfd4b0104c1d3bf7ce96bda14303e86e5df7f420242baa883",
+    "packages/reference/tests/test_negative_price.py": "834ee7fcc0b4277ab7bb6267bf63f6a463e4b3b407ae604abe2d888b032682d7",
+    "packages/reference/fixtures_reachable_traversal.py": "1f522bb1011d260046f564e3ebc36fcb2c1ef58495d7b4559cb3979bf83a0eb5",
+    "packages/reference/fixtures/reachable-traversal.json": "3711128a0e5e71986046cb07ab8f7096ecdf6fcc7251e8477a9444778a54cd51",
+    "docs/audits/NEGATIVE_PRICE_EXCLUSION.md": "b908c07eca4ab7703a9ec3198e465aa0494c57942bd0f88d07377d89bf4e8942"
+  },
+  "logs_sha256": {
+    "exclusion-red.sol.txt": "d1df583e9d344de0060358992b0799af2b5fc5c3d04a554d372670a3f5aa167d",
+    "green-initial.txt": "c6a55bc305f889cdc42251de07462ba8471ed6febf3e5bf8ed53c4f4a2165dc5",
+    "green-start.txt": "5f44d1d8fa8143ef6c046ddd6ca178dd31e7143fa480be223a69e1f007c1cf9e",
+    "reachable-red-diagnostic.sol.txt": "a597a22a7b712b2cb3a2cccf83206717e0a807b4a75bac07ebda5ed5b06fcace",
+    "red-start.txt": "c5c19207ff87e0cce798a903c9de99efc7676b68cd18a3759fe426b99c1f176d",
+    "red.txt": "e0901077e340b2ad0f7980d887358ec125c0daeec5e33a9dfb3263305ebbff0a",
+    "regression-start.txt": "9a31ce57dad37f60e89020c2bd8f83aced86874d67dbf2937cc47d5efbfc368f",
+    "regression.txt": "edffd7e53157626f337398f1c82b5c7bf8fcf7870dc4c3577b0eafee72c4e4ed"
+  }
+}

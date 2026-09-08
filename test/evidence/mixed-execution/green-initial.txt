@@ -1,0 +1,5 @@
+Compiling 13 files with Solc 0.8.30
+Solc 0.8.30 finished in 9.97s
+Error: Compiler run failed:
+Error: Variable length_2 is 1 too deep in the stack [ length_2 var_maxCrossings RET length_1 var_output dataSlot var_orderHash var_commit var_aqua_24003_address length var_input pos_2 memPtr var_output var_input memPtr_4 memPtr_1 ]
+memoryguard was present.

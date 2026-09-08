@@ -1,0 +1,8 @@
+test_explicit_baskets_distinguish_inside_from_outside (test_curve_primitives.CurvePrimitivesTest.test_explicit_baskets_distinguish_inside_from_outside) ... ok
+test_retained_goldens_match_regeneration (test_curve_primitives.CurvePrimitivesTest.test_retained_goldens_match_regeneration) ... ok
+test_scalar_and_both_root_fixture_precision_stability (test_curve_primitives.CurvePrimitivesTest.test_scalar_and_both_root_fixture_precision_stability) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.086s
+
+OK

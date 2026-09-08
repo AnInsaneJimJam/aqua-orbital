@@ -1,0 +1,146 @@
+Compiling 5 files with Solc 0.8.30
+Solc 0.8.30 finished in 61.72s
+Compiler run successful with warnings:
+Warning (2018): Function state mutability can be restricted to pure
+  --> test/OutwardRetention.t.sol:46:5:
+   |
+46 |     function endpoint(bool seven,bool targeted) private returns(E.Result memory r){
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> test/OutwardRetention.t.sol:78:5:
+   |
+78 |     function insufficient(bool seven) private {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+  --> test/OutwardRetention.t.sol:87:5:
+   |
+87 |     function testReverseCertificateConsumesFinalFixedInputFrame() public {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+  --> test/OutwardRetention.t.sol:93:5:
+   |
+93 |     function testChangedFrameCannotReusePreviousRootBounds() public {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+  --> test/OutwardRetention.t.sol:99:5:
+   |
+99 |     function testUncertifiedHighCannotAuthorizeReverseRetention() public {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+   --> test/OutwardRetention.t.sol:105:5:
+    |
+105 |     function testZeroBudgetResumeCanFinalizeOnlyCertifiedRetainedIdentity() public {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-09-08T07:25:01.474381Z  WARN evm::traces::external: etherscan config not found
+
+Ran 14 tests for test/FrontierEndpoint.t.sol:FrontierEndpointTest
+[PASS] testCallerReservesRemainUnmodified() (gas: 8209789)
+[PASS] testEightTokenNearMaximumOriginalLength() (gas: 9991300)
+[PASS] testIndependentGoldenEightTokens() (gas: 12083573)
+[PASS] testIndependentGoldenMixedDecimals() (gas: 8891030)
+[PASS] testIndependentGoldenThreeTokens() (gas: 8891253)
+[PASS] testIndependentGoldenTwoTokens() (gas: 8440167)
+[PASS] testInitialRootIdentityRetainsActualSlackWithoutFinancialOutput() (gas: 7549257)
+[PASS] testInvalidMetadataPairBudgetAndCapacityRejectBeforeLifting() (gas: 153711)
+[PASS] testMixedDecimalsPreserveSameNetInputAndSingleOutputFloor() (gas: 8890180)
+[PASS] testOrdinaryMixedTwoThreeEightTokenEndpointsExecute() (gas: 29497563)
+[FAIL: assertion failed: 2 != 3] testRoundedKeyArrivalCertifiesActualRetentionPrefix() (gas: 2586861)
+[PASS] testSharedBudgetBetweenInitialAndFinalIdentityNeverResets() (gas: 9948867)
+[PASS] testUncertifiedStartAndWrongPartitionDoNotBecomeGlobalExclusions() (gas: 176697)
+[PASS] testZeroAndTinyBudgetsPreserveIdentityButDoNotInventQuantumAccuracy() (gas: 1185918)
+Suite result: FAILED. 13 passed; 1 failed; 0 skipped; finished in 564.27ms (553.23ms CPU time)
+
+Ran 20 tests for test/FrontierComposition.t.sol:FrontierCompositionTest
+[PASS] testActualCallerVectorAndTicksAreUnmodified() (gas: 6310374)
+[PASS] testCallerCrossingLimitIncludesInitialRelease() (gas: 2632236)
+[PASS] testCertifiedFinalEndpointCannotBypassUncertainInitialOutputOrder() (gas: 4180844)
+[PASS] testExactInitialTouchRemainsUncertain() (gas: 3295520)
+[PASS] testFallbackAfterOutwardEventSucceedsWithOneSharedLedger() (gas: 22672659)
+[PASS] testFourFrontierEventsAreNotReplacedByEndpointEquality() (gas: 6950921)
+[PASS] testInRangeNonphysicalEventCannotBeSkipped() (gas: 547516)
+[PASS] testInitialReleaseAndLaterFrontierDirectionsAreReturnedInOrder() (gas: 6066652)
+[PASS] testInvalidMetadataPairCapacityAndCallerLimitReject() (gas: 154786)
+[PASS] testMixedDecimalsKeepOneFinancialOutputFloor() (gas: 5078915)
+[PASS] testOrdinaryMixedEightTokenPathExecutes() (gas: 11708608)
+[PASS] testOrdinaryMixedThreeTokenPathExecutes() (gas: 7227021)
+[PASS] testOrdinaryMixedTwoTokenPathExecutes() (gas: 5947909)
+[PASS] testPayoutTargetAvoidsResumeForOrdinaryMixedPath() (gas: 7225717)
+[FAIL: assertion failed: 2 != 4] testRoundedCanonicalPrefixHasCertifiedRetentionPhaseAndBudget() (gas: 3386738)
+[PASS] testSingleInwardFrontierCrossingUsesExactlyOneAllowance() (gas: 2325922)
+[PASS] testThreeTokenMixedTurnHasNoHiddenLowerCrossing() (gas: 7157636)
+[PASS] testTwoRootsCrossInwardAndOutwardWithSameFinalPrefix() (gas: 6310065)
+[PASS] testUncertifiedStartDoesNotBecomeGlobalInfeasibility() (gas: 65543)
+[PASS] testZeroInitialOutputNormalNeedsASeparateOneSidedRule() (gas: 93318)
+Suite result: FAILED. 19 passed; 1 failed; 0 skipped; finished in 667.46ms (656.17ms CPU time)
+
+Ran 16 tests for test/OutwardRetention.t.sol:OutwardRetentionTest
+[FAIL: assertion failed: 2 != 3] testChangedFrameCannotReusePreviousRootBounds() (gas: 2588156)
+[PASS] testDeployableLinkedRuntimeSizes() (gas: 16934)
+Logs:
+  composition_runtime_bytes: 22443
+  endpoint_runtime_bytes: 18874
+  client_runtime_bytes: 3195
+
+[FAIL: assertion failed: 2 != 3] testExactSeamEndpointCertifiesActualEqualityPrefixOnce() (gas: 2591645)
+[PASS] testMalformedMetadataCannotAcquireRetentionCertificate() (gas: 113913)
+[FAIL: assertion failed: 2 != 3] testOneLessThanSevenRetentionAllowanceCannotAuthorizePayout() (gas: 4961915)
+[FAIL: assertion failed: 2 != 3] testOneLessThanSingleRetentionAllowanceCannotAuthorizePayout() (gas: 3406016)
+[FAIL: assertion failed: 0 != 1] testPriorReleaseAndIdealEventsKeepTheirDistinctPhases() (gas: 6029800)
+[FAIL: assertion failed: 2 != 3] testReverseCertificateConsumesFinalFixedInputFrame() (gas: 2588688)
+[PASS] testReverseReleaseKeepsTheHiddenBoundaryMaximumRejection() (gas: 278812)
+[FAIL: assertion failed: 2 != 4] testSevenRetentionTransitionsAreAscendingAndChargedOnce() (gas: 4974708)
+Logs:
+  seven retention seams
+  cold_external_call_gas: 4704258
+  linked_body_gas: 4683751
+  first_used: 0
+  resume_used: 135
+
+[FAIL: assertion failed: 2 != 3] testSevenSeamEndpointUsesOneCombinedRawQuantum() (gas: 3011264)
+[FAIL: assertion failed: 2 != 4] testSingleRetentionTransitionHasAnExplicitAccountingPhase() (gas: 3419039)
+Logs:
+  one exact retention seam
+  cold_external_call_gas: 3321082
+  linked_body_gas: 3304945
+  first_used: 0
+  resume_used: 135
+
+[FAIL: assertion failed: 2 != 3] testTargetedSevenSeamsRetainOneRawFloor() (gas: 657450)
+[FAIL: assertion failed: 2 != 3] testTargetedSingleSeamRetainsCertifiedRootAndFinalMetadata() (gas: 287824)
+[FAIL: assertion failed: 2 != 3] testUncertifiedHighCannotAuthorizeReverseRetention() (gas: 2588487)
+[FAIL: assertion failed: 2 != 3] testZeroBudgetResumeCanFinalizeOnlyCertifiedRetainedIdentity() (gas: 651655)
+Suite result: FAILED. 3 passed; 13 failed; 0 skipped; finished in 169.28ms (230.92ms CPU time)
+
+Ran 3 test suites in 747.47ms (1.40s CPU time): 35 tests passed, 15 failed, 0 skipped (50 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/FrontierComposition.t.sol:FrontierCompositionTest
+[FAIL: assertion failed: 2 != 4] testRoundedCanonicalPrefixHasCertifiedRetentionPhaseAndBudget() (gas: 3386738)
+
+Encountered 1 failing test in test/FrontierEndpoint.t.sol:FrontierEndpointTest
+[FAIL: assertion failed: 2 != 3] testRoundedKeyArrivalCertifiesActualRetentionPrefix() (gas: 2586861)
+
+Encountered 13 failing tests in test/OutwardRetention.t.sol:OutwardRetentionTest
+[FAIL: assertion failed: 2 != 3] testChangedFrameCannotReusePreviousRootBounds() (gas: 2588156)
+[FAIL: assertion failed: 2 != 3] testExactSeamEndpointCertifiesActualEqualityPrefixOnce() (gas: 2591645)
+[FAIL: assertion failed: 2 != 3] testOneLessThanSevenRetentionAllowanceCannotAuthorizePayout() (gas: 4961915)
+[FAIL: assertion failed: 2 != 3] testOneLessThanSingleRetentionAllowanceCannotAuthorizePayout() (gas: 3406016)
+[FAIL: assertion failed: 0 != 1] testPriorReleaseAndIdealEventsKeepTheirDistinctPhases() (gas: 6029800)
+[FAIL: assertion failed: 2 != 3] testReverseCertificateConsumesFinalFixedInputFrame() (gas: 2588688)
+[FAIL: assertion failed: 2 != 4] testSevenRetentionTransitionsAreAscendingAndChargedOnce() (gas: 4974708)
+[FAIL: assertion failed: 2 != 3] testSevenSeamEndpointUsesOneCombinedRawQuantum() (gas: 3011264)
+[FAIL: assertion failed: 2 != 4] testSingleRetentionTransitionHasAnExplicitAccountingPhase() (gas: 3419039)
+[FAIL: assertion failed: 2 != 3] testTargetedSevenSeamsRetainOneRawFloor() (gas: 657450)
+[FAIL: assertion failed: 2 != 3] testTargetedSingleSeamRetainsCertifiedRootAndFinalMetadata() (gas: 287824)
+[FAIL: assertion failed: 2 != 3] testUncertifiedHighCannotAuthorizeReverseRetention() (gas: 2588487)
+[FAIL: assertion failed: 2 != 3] testZeroBudgetResumeCanFinalizeOnlyCertifiedRetainedIdentity() (gas: 651655)
+
+Encountered a total of 15 failing tests, 35 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 15 failed tests

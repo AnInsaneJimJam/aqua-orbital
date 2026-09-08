@@ -1,0 +1,1369 @@
+{
+  "schema_version": 1,
+  "oracle": "explicit per-tick support; log-price reserve matching and unit-normal key bisection",
+  "numerical_bounds": {
+    "minimum_precision": 80,
+    "checked_precisions": [
+      110,
+      160
+    ],
+    "newton_max_steps": 80,
+    "bisection_max_steps": 650,
+    "samples_per_arc": 9,
+    "dimensions": [
+      2,
+      3,
+      8
+    ],
+    "failure_dimensions": [
+      2,
+      3,
+      7
+    ],
+    "max_ordinary_ticks_in_success_cases": 2
+  },
+  "non_claims": [
+    "universal path proof",
+    "validated onchain interval enclosure",
+    "reachable raw-token history",
+    "shared onchain refinement-budget verification"
+  ],
+  "cases": [
+    {
+      "id": "n2_mixed_no_crossing",
+      "dimension": 2,
+      "input": 0,
+      "output": 1,
+      "scope": "geometric actual state; raw-token history not established",
+      "reachable_raw_history_verified": false,
+      "start": [
+        "2500000000000000000000000000000000000000",
+        "10400000000000000000000000000000000000000"
+      ],
+      "radii": [
+        "10000000000000000000000000000000000000000",
+        "10000000000000000000000000000000000000000"
+      ],
+      "keys": [
+        "2684354560",
+        null
+      ],
+      "decimals": [
+        18,
+        18
+      ],
+      "raw_net_input": "1000000000000000000",
+      "net_input_internal": "18446744073709551616000000000000000000",
+      "output_quantum": "18446744073709551616",
+      "output_raw": "4126770776962595252",
+      "actual_initial_prefix": 1,
+      "initial_ideal_prefix": 1,
+      "final_ideal_prefix": 1,
+      "actual_final_prefix": 1,
+      "prefix_walk": [
+        1
+      ],
+      "transitions": [],
+      "key_checks": [
+        {
+          "key_index": 0,
+          "key": "2684354560",
+          "minimum_norm_squared_floor_1e30": "945312500000000000000000000000",
+          "status": "two_physical_normal_roots"
+        }
+      ],
+      "initial": {
+        "input_floor_grid": "0",
+        "input_ceil_grid": "0",
+        "output_floor_grid": "166892573795861628244398643919736845495940339681",
+        "output_ceil_grid": "166892573795861628244398643919736845495940339682",
+        "root_floor_grid": "44500767304604138371755601356080263154504059660318",
+        "root_ceil_grid": "44500767304604138371755601356080263154504059660319",
+        "direction_floor_grid": "-33763349064604138371755601356080263154504059660319",
+        "direction_ceil_grid": "-33763349064604138371755601356080263154504059660318",
+        "price_floor_grid": [
+          "8722650642",
+          "4294967296"
+        ]
+      },
+      "final": {
+        "input_floor_grid": "79228162514264337593543950336000000000000000000",
+        "input_ceil_grid": "79228162514264337593543950336000000000000000000",
+        "output_floor_grid": "326956465776309404649170014714877143914589571646",
+        "output_ceil_grid": "326956465776309404649170014714877143914589571647",
+        "root_floor_grid": "44340703412623690595350829985285122856085410428353",
+        "root_ceil_grid": "44340703412623690595350829985285122856085410428354",
+        "direction_floor_grid": "-33524057010109426257757286034949122856085410428354",
+        "direction_ceil_grid": "-33524057010109426257757286034949122856085410428353",
+        "price_floor_grid": [
+          "8631892531",
+          "4294967296"
+        ]
+      },
+      "actual_endpoint": [
+        "2518446744073709551616000000000000000000",
+        "10323874515626507484218815673571389472768"
+      ],
+      "shortfall_floor_grid": "68219440556206450731832166974",
+      "shortfall_ceil_grid": "68219440556206450731832166975",
+      "shortfall_ceil": "15883576254408445846",
+      "radial_slack_ceil": "7075688566639787730",
+      "next_raw_dual_deficit_floor_grid": "11008721958057886861711783361",
+      "path_checks": {
+        "support_points_checked": 9,
+        "release_points_checked": 9,
+        "retention_points_checked": 9,
+        "all_primal_dual_checks_passed": true
+      }
+    },
+    {
+      "id": "n3_mixed_no_crossing",
+      "dimension": 3,
+      "input": 0,
+      "output": 1,
+      "scope": "geometric actual state; raw-token history not established",
+      "reachable_raw_history_verified": false,
+      "start": [
+        "92262378167362272289543043713512690116238",
+        "27499791731230251921250635549169234595496",
+        "59881084949296262105396839631340962355867"
+      ],
+      "radii": [
+        "10000000000000000000000000000000000000000",
+        "20000000000000000000000000000000000000000",
+        "100000000000000000000000000000000000000000"
+      ],
+      "keys": [
+        "5583457484",
+        "5798205849",
+        null
+      ],
+      "decimals": [
+        18,
+        18,
+        18
+      ],
+      "raw_net_input": "1000000000000000000",
+      "net_input_internal": "18446744073709551616000000000000000000",
+      "output_quantum": "18446744073709551616",
+      "output_raw": "333207013780241401",
+      "actual_initial_prefix": 2,
+      "initial_ideal_prefix": 2,
+      "final_ideal_prefix": 2,
+      "actual_final_prefix": 2,
+      "prefix_walk": [
+        2
+      ],
+      "transitions": [],
+      "key_checks": [
+        {
+          "key_index": 0,
+          "key": "5583457484",
+          "minimum_norm_squared_floor_1e30": "964450482205898086696667786739",
+          "status": "two_physical_normal_roots"
+        },
+        {
+          "key_index": 1,
+          "key": "5798205849",
+          "minimum_norm_squared_floor_1e30": "907725275979295453870564024805",
+          "status": "two_physical_normal_roots"
+        }
+      ],
+      "initial": {
+        "input_floor_grid": "0",
+        "input_ceil_grid": "0",
+        "output_floor_grid": "85899345919999992276692632036161108",
+        "output_ceil_grid": "85899345919999992276692632036161109",
+        "root_floor_grid": "118110706132445067948266727102904585864375072737707",
+        "root_ceil_grid": "118110706132445067948266727102904585864375072737708",
+        "direction_floor_grid": "278153190747560306119567688430930811465849575814740",
+        "direction_ceil_grid": "278153190747560306119567688430930811465849575814741",
+        "price_floor_grid": [
+          "1431655765",
+          "4294967296",
+          "2863311530"
+        ]
+      },
+      "final": {
+        "input_floor_grid": "79228162514264337593543950336000000000000000000",
+        "input_ceil_grid": "79228162514264337593543950336000000000000000000",
+        "output_floor_grid": "26399379438673682366697917837191609769589150629",
+        "output_ceil_grid": "26399379438673682366697917837191609769589150630",
+        "root_floor_grid": "118084306753006480165245949185059670947237519748186",
+        "root_ceil_grid": "118084306753006480165245949185059670947237519748187",
+        "direction_floor_grid": "278258818289513158240182010299111726382987128804261",
+        "direction_ceil_grid": "278258818289513158240182010299111726382987128804262",
+        "price_floor_grid": [
+          "1430570730",
+          "4294967296",
+          "2863040922"
+        ]
+      },
+      "actual_endpoint": [
+        "92280824911435981841159043713512690116238",
+        "27493645146723482796287139278341284941480",
+        "59881084949296262105396839631340962355867"
+      ],
+      "shortfall_floor_grid": "25944240813189003036354089893",
+      "shortfall_ceil_grid": "25944240813189003036354089894",
+      "shortfall_ceil": "6040614287645789571",
+      "radial_slack_ceil": "4843659141381785181",
+      "next_raw_dual_deficit_floor_grid": "53283921701075334557189860442",
+      "path_checks": {
+        "support_points_checked": 9,
+        "release_points_checked": 9,
+        "retention_points_checked": 9,
+        "all_primal_dual_checks_passed": true
+      }
+    },
+    {
+      "id": "n8_mixed_no_crossing",
+      "dimension": 8,
+      "input": 0,
+      "output": 1,
+      "scope": "geometric actual state; raw-token history not established",
+      "reachable_raw_history_verified": false,
+      "start": [
+        "117291842387018653775063047729990229905336",
+        "109010229736128789305983075214944997900325",
+        "100728617085238924836903102699899765895314",
+        "92447004434349060367823130184854533890302",
+        "84165391783459195898743157669809301885291",
+        "75883779132569331429663185154764069880280",
+        "67602166481679466960583212639718837875269",
+        "59320553830789602491503240124673605870257"
+      ],
+      "radii": [
+        "10000000000000000000000000000000000000000",
+        "20000000000000000000000000000000000000000",
+        "100000000000000000000000000000000000000000"
+      ],
+      "keys": [
+        "22548578304",
+        "22763326668",
+        null
+      ],
+      "decimals": [
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        18
+      ],
+      "raw_net_input": "1000000000000000000",
+      "net_input_internal": "18446744073709551616000000000000000000",
+      "output_quantum": "18446744073709551616",
+      "output_raw": "499288825743866812",
+      "actual_initial_prefix": 2,
+      "initial_ideal_prefix": 2,
+      "final_ideal_prefix": 2,
+      "actual_final_prefix": 2,
+      "prefix_walk": [
+        2
+      ],
+      "transitions": [],
+      "key_checks": [
+        {
+          "key_index": 0,
+          "key": "22548578304",
+          "minimum_norm_squared_floor_1e30": "1056041988557360628156427051603",
+          "status": "no_real_normal"
+        },
+        {
+          "key_index": 1,
+          "key": "22763326668",
+          "minimum_norm_squared_floor_1e30": "1038207479470832525952505003159",
+          "status": "no_real_normal"
+        }
+      ],
+      "initial": {
+        "input_floor_grid": "0",
+        "input_ceil_grid": "0",
+        "output_floor_grid": "773094113279996018312965140918826618",
+        "output_ceil_grid": "773094113279996018312965140918826619",
+        "root_floor_grid": "468195371646119086619158565181678623455543623944581",
+        "root_ceil_grid": "468195371646119086619158565181678623455543623944582",
+        "direction_floor_grid": "35569255493712606286684165156716452387395671946874",
+        "direction_ceil_grid": "35569255493712606286684165156716452387395671946875",
+        "price_floor_grid": [
+          "2147483647",
+          "4294967296",
+          "6442450943",
+          "8589934591",
+          "10737418239",
+          "12884901887",
+          "15032385535",
+          "17179869183"
+        ]
+      },
+      "final": {
+        "input_floor_grid": "79228162514264337593543950336000000000000000000",
+        "input_ceil_grid": "79228162514264337593543950336000000000000000000",
+        "output_floor_grid": "39557736227591287543943477347215665706852511794",
+        "output_ceil_grid": "39557736227591287543943477347215665706852511795",
+        "root_floor_grid": "468155813909892268425727901700349720754977690259405",
+        "root_ceil_grid": "468155813909892268425727901700349720754977690259406",
+        "direction_floor_grid": "35688041392453688817708372588381355087961605632050",
+        "direction_ceil_grid": "35688041392453688817708372588381355087961605632051",
+        "price_floor_grid": [
+          "2141376225",
+          "4294967296",
+          "6439003136",
+          "8585426084",
+          "10731849032",
+          "12878271980",
+          "15024694928",
+          "17171117875"
+        ]
+      },
+      "actual_endpoint": [
+        "117310289131092363326679047729990229905336",
+        "109001019482941429229859555506570454532133",
+        "100728617085238924836903102699899765895314",
+        "92447004434349060367823130184854533890302",
+        "84165391783459195898743157669809301885291",
+        "75883779132569331429663185154764069880280",
+        "67602166481679466960583212639718837875269",
+        "59320553830789602491503240124673605870257"
+      ],
+      "shortfall_floor_grid": "17355873467094580388525862962",
+      "shortfall_ceil_grid": "17355873467094580388525862963",
+      "shortfall_ceil": "4040979190518749037",
+      "radial_slack_ceil": "566142262260764458",
+      "next_raw_dual_deficit_floor_grid": "61872289047169757205018087373",
+      "path_checks": {
+        "support_points_checked": 9,
+        "release_points_checked": 9,
+        "retention_points_checked": 9,
+        "all_primal_dual_checks_passed": true
+      }
+    },
+    {
+      "id": "n3_mixed_decimals",
+      "dimension": 3,
+      "input": 0,
+      "output": 1,
+      "scope": "geometric actual state; raw-token history not established",
+      "reachable_raw_history_verified": false,
+      "start": [
+        "92262378167362272289543043713512690116238",
+        "27499791731230251921250635549169234595496",
+        "59881084949296262105396839631340962355867"
+      ],
+      "radii": [
+        "10000000000000000000000000000000000000000",
+        "20000000000000000000000000000000000000000",
+        "100000000000000000000000000000000000000000"
+      ],
+      "keys": [
+        "5583457484",
+        "5798205849",
+        null
+      ],
+      "decimals": [
+        6,
+        6,
+        18
+      ],
+      "raw_net_input": "1000000",
+      "net_input_internal": "18446744073709551616000000000000000000",
+      "output_quantum": "18446744073709551616000000000000",
+      "output_raw": "333207",
+      "actual_initial_prefix": 2,
+      "initial_ideal_prefix": 2,
+      "final_ideal_prefix": 2,
+      "actual_final_prefix": 2,
+      "prefix_walk": [
+        2
+      ],
+      "transitions": [],
+      "key_checks": [
+        {
+          "key_index": 0,
+          "key": "5583457484",
+          "minimum_norm_squared_floor_1e30": "964450482205898086696667786739",
+          "status": "two_physical_normal_roots"
+        },
+        {
+          "key_index": 1,
+          "key": "5798205849",
+          "minimum_norm_squared_floor_1e30": "907725275979295453870564024805",
+          "status": "two_physical_normal_roots"
+        }
+      ],
+      "initial": {
+        "input_floor_grid": "0",
+        "input_ceil_grid": "0",
+        "output_floor_grid": "85899345919999992276692632036161108",
+        "output_ceil_grid": "85899345919999992276692632036161109",
+        "root_floor_grid": "118110706132445067948266727102904585864375072737707",
+        "root_ceil_grid": "118110706132445067948266727102904585864375072737708",
+        "direction_floor_grid": "278153190747560306119567688430930811465849575814740",
+        "direction_ceil_grid": "278153190747560306119567688430930811465849575814741",
+        "price_floor_grid": [
+          "1431655765",
+          "4294967296",
+          "2863311530"
+        ]
+      },
+      "final": {
+        "input_floor_grid": "79228162514264337593543950336000000000000000000",
+        "input_ceil_grid": "79228162514264337593543950336000000000000000000",
+        "output_floor_grid": "26399379438673682366697917837191609769589150629",
+        "output_ceil_grid": "26399379438673682366697917837191609769589150630",
+        "root_floor_grid": "118084306753006480165245949185059670947237519748186",
+        "root_ceil_grid": "118084306753006480165245949185059670947237519748187",
+        "direction_floor_grid": "278258818289513158240182010299111726382987128804261",
+        "direction_ceil_grid": "278258818289513158240182010299111726382987128804262",
+        "price_floor_grid": [
+          "1430570730",
+          "4294967296",
+          "2863040922"
+        ]
+      },
+      "actual_endpoint": [
+        "92280824911435981841159043713512690116238",
+        "27493645146977683382685323037169234595496",
+        "59881084949296262105396839631340962355867"
+      ],
+      "shortfall_floor_grid": "1091783205230165918777584057769589150629",
+      "shortfall_ceil_grid": "1091783205230165918777584057769589150630",
+      "shortfall_ceil": "254200586404224373115595443587",
+      "radial_slack_ceil": "203830427742912787575377231733",
+      "next_raw_dual_deficit_floor_grid": "78136379309034171674766366278230410849370",
+      "path_checks": {
+        "support_points_checked": 9,
+        "release_points_checked": 9,
+        "retention_points_checked": 9,
+        "all_primal_dual_checks_passed": true
+      }
+    },
+    {
+      "id": "n2_two_roots",
+      "dimension": 2,
+      "input": 0,
+      "output": 1,
+      "scope": "geometric actual state; raw-token history not established",
+      "reachable_raw_history_verified": false,
+      "start": [
+        "2527133520585472095299795479050357292168",
+        "10306468614415789726245162508561985295187"
+      ],
+      "radii": [
+        "10000000000000000000000000000000000000000",
+        "10000000000000000000000000000000000000000"
+      ],
+      "keys": [
+        "2684354560",
+        null
+      ],
+      "decimals": [
+        18,
+        18
+      ],
+      "raw_net_input": "433680868994201773602",
+      "net_input_internal": "7999999999999999999981901524035365240832",
+      "output_quantum": "18446744073709551616",
+      "output_raw": "427517751760020282527",
+      "actual_initial_prefix": 1,
+      "initial_ideal_prefix": 1,
+      "final_ideal_prefix": 1,
+      "actual_final_prefix": 1,
+      "prefix_walk": [
+        1,
+        0,
+        1
+      ],
+      "transitions": [
+        {
+          "input_floor_grid": "1785320583495630165674573230691291655457572108493",
+          "input_ceil_grid": "1785320583495630165674573230691291655457572108494",
+          "output_floor_grid": "3218130843201826607943555981180276194095320250573",
+          "output_ceil_grid": "3218130843201826607943555981180276194095320250574",
+          "root_floor_grid": "41047814792964424412292209871298770637565750953778",
+          "root_ceil_grid": "41047814792964424412292209871298770637565750953779",
+          "direction_floor_grid": "-28408538385928848824584419742597541275131501907557",
+          "direction_ceil_grid": "-28408538385928848824584419742597541275131501907556",
+          "price_floor_grid": [
+            "7015359225",
+            "4294967296"
+          ],
+          "key_index": 0,
+          "key": "2684354560",
+          "direction": "inward",
+          "initial_release": false
+        },
+        {
+          "input_floor_grid": "30193858969424478990258992973288832930589074016050",
+          "input_ceil_grid": "30193858969424478990258992973288832930589074016051",
+          "output_floor_grid": "31626669229130675432527975723777817469226822158130",
+          "output_ceil_grid": "31626669229130675432527975723777817469226822158131",
+          "root_floor_grid": "12639276407035575587707790128701229362434249046221",
+          "root_ceil_grid": "12639276407035575587707790128701229362434249046222",
+          "direction_floor_grid": "28408538385928848824584419742597541275131501907556",
+          "direction_ceil_grid": "28408538385928848824584419742597541275131501907557",
+          "price_floor_grid": [
+            "2629479614",
+            "4294967296"
+          ],
+          "key_index": 0,
+          "key": "2684354560",
+          "direction": "outward",
+          "initial_release": false
+        }
+      ],
+      "key_checks": [
+        {
+          "key_index": 0,
+          "key": "2684354560",
+          "minimum_norm_squared_floor_1e30": "945312500000000000000000000000",
+          "status": "two_physical_normal_roots"
+        }
+      ],
+      "initial": {
+        "input_floor_grid": "0",
+        "input_ceil_grid": "0",
+        "output_floor_grid": "42949672959999999999999999999999991820602183",
+        "output_ceil_grid": "42949672959999999999999999999999991820602184",
+        "root_floor_grid": "44265902686493291020235765852479046831669250602168",
+        "root_ceil_grid": "44265902686493291020235765852479046831669250602169",
+        "direction_floor_grid": "-33411946862953345598202548954469109124692573664441",
+        "direction_ceil_grid": "-33411946862953345598202548954469109124692573664440",
+        "price_floor_grid": [
+          "8589934592",
+          "4294967296"
+        ]
+      },
+      "final": {
+        "input_floor_grid": "34359738367999999999922267637624451656788603830272",
+        "input_ceil_grid": "34359738367999999999922267637624451656788603830272",
+        "output_floor_grid": "33871445914175805485690089726832593644339508278181",
+        "output_ceil_grid": "33871445914175805485690089726832593644339508278182",
+        "root_floor_grid": "10394499721990445534545676125646453187321562926170",
+        "root_ceil_grid": "10394499721990445534545676125646453187321562926171",
+        "direction_floor_grid": "34819194469549499887409808409987936176443717841829",
+        "direction_ceil_grid": "34819194469549499887409808409987936176443717841830",
+        "price_floor_grid": [
+          "2017388920",
+          "4294967296"
+        ]
+      },
+      "actual_endpoint": [
+        "10527133520585472095281697003085722533000",
+        "2420158060731004349550430560431175881555"
+      ],
+      "shortfall_floor_grid": "7175434124398882781131699109",
+      "shortfall_ceil_grid": "7175434124398882781131699110",
+      "shortfall_ceil": "1670660945679732315",
+      "radial_slack_ceil": "1512156549050084954",
+      "next_raw_dual_deficit_floor_grid": "72052728389865454812412251226",
+      "path_checks": {
+        "support_points_checked": 27,
+        "release_points_checked": 9,
+        "retention_points_checked": 9,
+        "all_primal_dual_checks_passed": true
+      }
+    },
+    {
+      "id": "n2_one_root",
+      "dimension": 2,
+      "input": 0,
+      "output": 1,
+      "scope": "geometric actual state; raw-token history not established",
+      "reachable_raw_history_verified": false,
+      "start": [
+        "2527133520585472095299795479050357292168",
+        "10306468614415789726245162508561985295187"
+      ],
+      "radii": [
+        "10000000000000000000000000000000000000000",
+        "10000000000000000000000000000000000000000"
+      ],
+      "keys": [
+        "2684354560",
+        null
+      ],
+      "decimals": [
+        18,
+        18
+      ],
+      "raw_net_input": "54210108624275221700",
+      "net_input_internal": "999999999999999999993126004485993267200",
+      "output_quantum": "18446744073709551616",
+      "output_raw": "89372519051296279071",
+      "actual_initial_prefix": 1,
+      "initial_ideal_prefix": 1,
+      "final_ideal_prefix": 0,
+      "actual_final_prefix": 0,
+      "prefix_walk": [
+        1,
+        0
+      ],
+      "transitions": [
+        {
+          "input_floor_grid": "1785320583495630165674573230691291655457572108493",
+          "input_ceil_grid": "1785320583495630165674573230691291655457572108494",
+          "output_floor_grid": "3218130843201826607943555981180276194095320250573",
+          "output_ceil_grid": "3218130843201826607943555981180276194095320250574",
+          "root_floor_grid": "41047814792964424412292209871298770637565750953778",
+          "root_ceil_grid": "41047814792964424412292209871298770637565750953779",
+          "direction_floor_grid": "-28408538385928848824584419742597541275131501907557",
+          "direction_ceil_grid": "-28408538385928848824584419742597541275131501907556",
+          "price_floor_grid": [
+            "7015359225",
+            "4294967296"
+          ],
+          "key_index": 0,
+          "key": "2684354560",
+          "direction": "inward",
+          "initial_release": false
+        }
+      ],
+      "key_checks": [
+        {
+          "key_index": 0,
+          "key": "2684354560",
+          "minimum_norm_squared_floor_1e30": "945312500000000000000000000000",
+          "status": "two_physical_normal_roots"
+        }
+      ],
+      "initial": {
+        "input_floor_grid": "0",
+        "input_ceil_grid": "0",
+        "output_floor_grid": "42949672959999999999999999999999991820602183",
+        "output_ceil_grid": "42949672959999999999999999999999991820602184",
+        "root_floor_grid": "44265902686493291020235765852479046831669250602168",
+        "root_ceil_grid": "44265902686493291020235765852479046831669250602169",
+        "direction_floor_grid": "-33411946862953345598202548954469109124692573664441",
+        "direction_ceil_grid": "-33411946862953345598202548954469109124692573664440",
+        "price_floor_grid": [
+          "8589934592",
+          "4294967296"
+        ]
+      },
+      "final": {
+        "input_floor_grid": "4294967295999999999970476414074490372700189491200",
+        "input_ceil_grid": "4294967295999999999970476414074490372700189491200",
+        "output_floor_grid": "7080820463705287217228647617179805734646296719189",
+        "output_ceil_grid": "7080820463705287217228647617179805734646296719190",
+        "root_floor_grid": "37185125172460963803007118235299241097014774485162",
+        "root_ceil_grid": "37185125172460963803007118235299241097014774485163",
+        "direction_floor_grid": "-22036202052921018381003424923214813017337908056235",
+        "direction_ceil_grid": "-22036202052921018381003424923214813017337908056234",
+        "price_floor_grid": [
+          "6237824344",
+          "4294967296"
+        ]
+      },
+      "actual_endpoint": [
+        "3527133520585472095292921483536350559368",
+        "8657836628253796092006401250669370266451"
+      ],
+      "shortfall_floor_grid": "12982158979202306307076501333",
+      "shortfall_ceil_grid": "12982158979202306307076501334",
+      "shortfall_ceil": "3022644431144536079",
+      "radial_slack_ceil": "1714166347637009891",
+      "next_raw_dual_deficit_floor_grid": "66246003535062031286467449002",
+      "path_checks": {
+        "support_points_checked": 18,
+        "release_points_checked": 9,
+        "retention_points_checked": 9,
+        "all_primal_dual_checks_passed": true
+      }
+    },
+    {
+      "id": "n2_four_roots",
+      "dimension": 2,
+      "input": 0,
+      "output": 1,
+      "scope": "geometric actual state; raw-token history not established",
+      "reachable_raw_history_verified": false,
+      "start": [
+        "4000000000000000000000000000000000000000",
+        "15600000000000000000000000000000000000000"
+      ],
+      "radii": [
+        "10000000000000000000000000000000000000000",
+        "10000000000000000000000000000000000000000",
+        "10000000000000000000000000000000000000000"
+      ],
+      "keys": [
+        "2619930050",
+        "2684354560",
+        null
+      ],
+      "decimals": [
+        18,
+        18
+      ],
+      "raw_net_input": "596311194867027438704",
+      "net_input_internal": "10999999999999999999998173025640764145664",
+      "output_quantum": "18446744073709551616",
+      "output_raw": "622772057530580375589",
+      "actual_initial_prefix": 2,
+      "initial_ideal_prefix": 2,
+      "final_ideal_prefix": 2,
+      "actual_final_prefix": 2,
+      "prefix_walk": [
+        2,
+        1,
+        0,
+        1,
+        2
+      ],
+      "transitions": [
+        {
+          "input_floor_grid": "2963224389574111518445535928544994872201657710067",
+          "input_ceil_grid": "2963224389574111518445535928544994872201657710068",
+          "output_floor_grid": "7258191691174111518445535928544994872201657710067",
+          "output_ceil_grid": "7258191691174111518445535928544994872201657710068",
+          "root_floor_grid": "59743298126425888481554464071455005127798342289932",
+          "root_ceil_grid": "59743298126425888481554464071455005127798342289933",
+          "direction_floor_grid": "-39600204552851776963108928142910010255596684579865",
+          "direction_ceil_grid": "-39600204552851776963108928142910010255596684579864",
+          "price_floor_grid": [
+            "7015359225",
+            "4294967296"
+          ],
+          "key_index": 1,
+          "key": "2684354560",
+          "direction": "inward",
+          "initial_release": false
+        },
+        {
+          "input_floor_grid": "5331582315615607792213237399531296529302225991538",
+          "input_ceil_grid": "5331582315615607792213237399531296529302225991539",
+          "output_floor_grid": "10915039817215607792213237399531296529302225991538",
+          "output_ceil_grid": "10915039817215607792213237399531296529302225991539",
+          "root_floor_grid": "56086450000384392207786762600468703470697774008461",
+          "root_ceil_grid": "56086450000384392207786762600468703470697774008462",
+          "direction_floor_grid": "-33574998500768784415573525200937406941395548016924",
+          "direction_ceil_grid": "-33574998500768784415573525200937406941395548016923",
+          "price_floor_grid": [
+            "6276803874",
+            "4294967296"
+          ],
+          "key_index": 0,
+          "key": "2619930050",
+          "direction": "inward",
+          "initial_release": false
+        },
+        {
+          "input_floor_grid": "38906580816384392207786762600468703470697774008461",
+          "input_ceil_grid": "38906580816384392207786762600468703470697774008462",
+          "output_floor_grid": "44490038317984392207786762600468703470697774008461",
+          "output_ceil_grid": "44490038317984392207786762600468703470697774008462",
+          "root_floor_grid": "22511451499615607792213237399531296529302225991538",
+          "root_ceil_grid": "22511451499615607792213237399531296529302225991539",
+          "direction_floor_grid": "33574998500768784415573525200937406941395548016923",
+          "direction_ceil_grid": "33574998500768784415573525200937406941395548016924",
+          "price_floor_grid": [
+            "2938875332",
+            "4294967296"
+          ],
+          "key_index": 0,
+          "key": "2619930050",
+          "direction": "outward",
+          "initial_release": false
+        },
+        {
+          "input_floor_grid": "42563428942425888481554464071455005127798342289932",
+          "input_ceil_grid": "42563428942425888481554464071455005127798342289933",
+          "output_floor_grid": "46858396244025888481554464071455005127798342289932",
+          "output_ceil_grid": "46858396244025888481554464071455005127798342289933",
+          "root_floor_grid": "20143093573574111518445535928544994872201657710067",
+          "root_ceil_grid": "20143093573574111518445535928544994872201657710068",
+          "direction_floor_grid": "39600204552851776963108928142910010255596684579864",
+          "direction_ceil_grid": "39600204552851776963108928142910010255596684579865",
+          "price_floor_grid": [
+            "2629479614",
+            "4294967296"
+          ],
+          "key_index": 1,
+          "key": "2684354560",
+          "direction": "outward",
+          "initial_release": false
+        }
+      ],
+      "key_checks": [
+        {
+          "key_index": 0,
+          "key": "2619930050",
+          "minimum_norm_squared_floor_1e30": "966050000181235373028672264172",
+          "status": "two_physical_normal_roots"
+        },
+        {
+          "key_index": 1,
+          "key": "2684354560",
+          "minimum_norm_squared_floor_1e30": "945312500000000000000000000000",
+          "status": "two_physical_normal_roots"
+        }
+      ],
+      "initial": {
+        "input_floor_grid": "0",
+        "input_ceil_grid": "0",
+        "output_floor_grid": "1477192198832645085020455715427193354065596416205",
+        "output_ceil_grid": "1477192198832645085020455715427193354065596416206",
+        "root_floor_grid": "65524297618767354914979544284572806645934403583794",
+        "root_ceil_grid": "65524297618767354914979544284572806645934403583795",
+        "direction_floor_grid": "-48344428434767354914979544284572806645934403583795",
+        "direction_ceil_grid": "-48344428434767354914979544284572806645934403583794",
+        "price_floor_grid": [
+          "10216530076",
+          "4294967296"
+        ]
+      },
+      "final": {
+        "input_floor_grid": "47244640255999999999992153204876451450076260204544",
+        "input_ceil_grid": "47244640255999999999992153204876451450076260204544",
+        "output_floor_grid": "49341085783375601588975718672881891597720425001723",
+        "output_ceil_grid": "49341085783375601588975718672881891597720425001724",
+        "root_floor_grid": "17660404034224398411024281327118108402279574998276",
+        "root_ceil_grid": "17660404034224398411024281327118108402279574998277",
+        "direction_floor_grid": "46764105405775601588967871877758343047796685206267",
+        "direction_ceil_grid": "46764105405775601588967871877758343047796685206268",
+        "price_floor_grid": [
+          "1948529067",
+          "4294967296"
+        ]
+      },
+      "actual_endpoint": [
+        "14999999999999999999998173025640764145664",
+        "4111883238475862520533032091085938098176"
+      ],
+      "shortfall_floor_grid": "57219991814488854866782253819",
+      "shortfall_ceil_grid": "57219991814488854866782253820",
+      "shortfall_ceil": "13322567524036591609",
+      "radial_slack_ceil": "12132383661350407039",
+      "next_raw_dual_deficit_floor_grid": "22008170699775482726761696516",
+      "path_checks": {
+        "support_points_checked": 45,
+        "release_points_checked": 9,
+        "retention_points_checked": 9,
+        "all_primal_dual_checks_passed": true
+      }
+    },
+    {
+      "id": "n2_initial_release",
+      "dimension": 2,
+      "input": 0,
+      "output": 1,
+      "scope": "geometric actual state; raw-token history not established",
+      "reachable_raw_history_verified": false,
+      "start": [
+        "15000000000000000000000000000000000000000",
+        "3000000000000000000000000000000000000000"
+      ],
+      "radii": [
+        "10000000000000000000000000000000000000000",
+        "10000000000000000000000000000000000000000"
+      ],
+      "keys": [
+        "3758096384",
+        null
+      ],
+      "decimals": [
+        18,
+        18
+      ],
+      "raw_net_input": "189735380184963275951",
+      "net_input_internal": "3499999999999999999994387759774685986816",
+      "output_quantum": "18446744073709551616",
+      "output_raw": "157670507261635933550",
+      "actual_initial_prefix": 1,
+      "initial_ideal_prefix": 0,
+      "final_ideal_prefix": 1,
+      "actual_final_prefix": 1,
+      "prefix_walk": [
+        1,
+        0,
+        1
+      ],
+      "transitions": [
+        {
+          "key_index": 0,
+          "key": "3758096384",
+          "direction": "inward",
+          "initial_release": true,
+          "input_floor_grid": "0",
+          "input_ceil_grid": "0",
+          "output_floor_grid": "2147483648000000000000000000000000000000000000000",
+          "output_ceil_grid": "2147483648000000000000000000000000000000000000000"
+        },
+        {
+          "input_floor_grid": "9962469776743041251065632463849444267847575950146",
+          "input_ceil_grid": "9962469776743041251065632463849444267847575950147",
+          "output_floor_grid": "12109953424743041251065632463849444267847575950146",
+          "output_ceil_grid": "12109953424743041251065632463849444267847575950147",
+          "root_floor_grid": "774948463256958748934367536150555732152424049853",
+          "root_ceil_grid": "774948463256958748934367536150555732152424049854",
+          "direction_floor_grid": "73612030753486082502131264927698888535695151900292",
+          "direction_ceil_grid": "73612030753486082502131264927698888535695151900293",
+          "price_floor_grid": [
+            "580858601",
+            "4294967296"
+          ],
+          "key_index": 0,
+          "key": "3758096384",
+          "direction": "outward",
+          "initial_release": false
+        }
+      ],
+      "key_checks": [
+        {
+          "key_index": 0,
+          "key": "3758096384",
+          "minimum_norm_squared_floor_1e30": "632812500000000000000000000000",
+          "status": "two_physical_normal_roots"
+        }
+      ],
+      "initial": {
+        "input_floor_grid": "0",
+        "input_ceil_grid": "0",
+        "output_floor_grid": "10157240017567505772415659946848859224652630221779",
+        "output_ceil_grid": "10157240017567505772415659946848859224652630221780",
+        "root_floor_grid": "2727661870432494227584340053151140775347369778220",
+        "root_ceil_grid": "2727661870432494227584340053151140775347369778221",
+        "direction_floor_grid": "61696847569567505772415659946848859224652630221779",
+        "direction_ceil_grid": "61696847569567505772415659946848859224652630221780",
+        "price_floor_grid": [
+          "1108955787",
+          "4294967296"
+        ]
+      },
+      "final": {
+        "input_floor_grid": "15032385535999999999975895611774980642044207169536",
+        "input_ceil_grid": "15032385535999999999975895611774980642044207169536",
+        "output_floor_grid": "12491944573031387103313802111506111241967459893096",
+        "output_ceil_grid": "12491944573031387103313802111506111241967459893097",
+        "root_floor_grid": "392957314968612896686197888493888758032540106903",
+        "root_ceil_grid": "392957314968612896686197888493888758032540106904",
+        "direction_floor_grid": "79063937661031387103289697723281091884011667062632",
+        "direction_ceil_grid": "79063937661031387103289697723281091884011667062633",
+        "price_floor_grid": [
+          "68635521",
+          "4294967296"
+        ]
+      },
+      "actual_endpoint": [
+        "18499999999999999999994387759774685986816",
+        "91492504572638519279682139395928883200"
+      ],
+      "shortfall_floor_grid": "49902377486938990853263720296",
+      "shortfall_ceil_grid": "49902377486938990853263720297",
+      "shortfall_ceil": "11618802670142378392",
+      "radial_slack_ceil": "11617319379142414592",
+      "next_raw_dual_deficit_floor_grid": "29325785027325346740280230039",
+      "path_checks": {
+        "support_points_checked": 18,
+        "release_points_checked": 18,
+        "retention_points_checked": 9,
+        "all_primal_dual_checks_passed": true
+      }
+    },
+    {
+      "id": "n3_mixed_turn",
+      "dimension": 3,
+      "input": 0,
+      "output": 1,
+      "scope": "geometric actual state; raw-token history not established",
+      "reachable_raw_history_verified": false,
+      "start": [
+        "86300000000000000000000000000000000000000",
+        "99900000000000000000000000000000000000000",
+        "1000000000000000000000000000000000000000"
+      ],
+      "radii": [
+        "100000000000000000000000000000000000000",
+        "100000000000000000000000000000000000000000"
+      ],
+      "keys": [
+        "5583457484",
+        null
+      ],
+      "decimals": [
+        18,
+        18,
+        18
+      ],
+      "raw_net_input": "542101086242752217003",
+      "net_input_internal": "9999999999999999999986600277081061326848",
+      "output_quantum": "18446744073709551616",
+      "output_raw": "718010770131401740767",
+      "actual_initial_prefix": 1,
+      "initial_ideal_prefix": 1,
+      "final_ideal_prefix": 1,
+      "actual_final_prefix": 1,
+      "prefix_walk": [
+        1
+      ],
+      "transitions": [],
+      "key_checks": [
+        {
+          "key_index": 0,
+          "key": "5583457484",
+          "minimum_norm_squared_floor_1e30": "1232162687594633706916442106249",
+          "status": "no_real_normal"
+        }
+      ],
+      "initial": {
+        "input_floor_grid": "0",
+        "input_ceil_grid": "0",
+        "output_floor_grid": "8398992397073645568624866875567625975457239301765",
+        "output_ceil_grid": "8398992397073645568624866875567625975457239301766",
+        "root_floor_grid": "420668240473326354431375133124432374024542760698234",
+        "root_ceil_grid": "420668240473326354431375133124432374024542760698235",
+        "direction_floor_grid": "-50012562828526354431375133124432374024542760698235",
+        "direction_ceil_grid": "-50012562828526354431375133124432374024542760698234",
+        "price_floor_grid": [
+          "28012499122",
+          "4294967296",
+          "201752282017"
+        ]
+      },
+      "final": {
+        "input_floor_grid": "42949672959999999999942448628287696739782526763008",
+        "input_ceil_grid": "42949672959999999999942448628287696739782526763008",
+        "output_floor_grid": "56886673982962791491291969751745297815807733764845",
+        "output_ceil_grid": "56886673982962791491291969751745297815807733764846",
+        "root_floor_grid": "372180558887437208508708030248254702184192266235154",
+        "root_ceil_grid": "372180558887437208508708030248254702184192266235155",
+        "direction_floor_grid": "41424791717362791491234418380032994555590260527853",
+        "direction_ceil_grid": "41424791717362791491234418380032994555590260527854",
+        "price_floor_grid": [
+          "1203170835",
+          "4294967296",
+          "31752615794"
+        ]
+      },
+      "actual_endpoint": [
+        "96299999999999999999986600277081061326848",
+        "86655039081218933805072319638502562070528",
+        "1000000000000000000000000000000000000000"
+      ],
+      "shortfall_floor_grid": "66421513972344320935539217133",
+      "shortfall_ceil_grid": "66421513972344320935539217134",
+      "shortfall_ceil": "15464963850645423154",
+      "radial_slack_ceil": "2071506205031429232",
+      "next_raw_dual_deficit_floor_grid": "12806648541920016658004733202",
+      "path_checks": {
+        "support_points_checked": 9,
+        "release_points_checked": 9,
+        "retention_points_checked": 9,
+        "all_primal_dual_checks_passed": true
+      }
+    }
+  ],
+  "failures": [
+    {
+      "id": "n3_rounding_repartition",
+      "production_expectation": "FrontierPathCertified",
+      "previous_production_expectation": "RequiresRepartition",
+      "resolution": "one certified final-retention seam, charged to the crossing budget",
+      "ideal_prefix": 0,
+      "actual_prefix": 1,
+      "witness": {
+        "id": "n3_rounding_repartition",
+        "dimension": 3,
+        "input": 0,
+        "output": 2,
+        "scope": "geometric actual state; raw-token history not established",
+        "reachable_raw_history_verified": false,
+        "start": [
+          "9223372036854775808000000000000000000000",
+          "7378697629483820646400000000000000000000",
+          "1844674407370955161600000000000000000000"
+        ],
+        "radii": [
+          "1844674407370955161600000000000000000000",
+          "3689348814741910323200000000000000000000",
+          "7378697629483820646400000000000000000000"
+        ],
+        "keys": [
+          "6442450944",
+          "7516192768",
+          null
+        ],
+        "decimals": [
+          6,
+          6,
+          6
+        ],
+        "raw_net_input": "68669858",
+        "net_input_internal": "1266735296103976442714390528000000000000",
+        "output_quantum": "18446744073709551616000000000000",
+        "output_raw": "18669858",
+        "actual_initial_prefix": 0,
+        "initial_ideal_prefix": 0,
+        "final_ideal_prefix": 0,
+        "actual_final_prefix": 1,
+        "prefix_walk": [
+          0
+        ],
+        "transitions": [],
+        "key_checks": [
+          {
+            "key_index": 0,
+            "key": "6442450944",
+            "minimum_norm_squared_floor_1e30": "757653061224489795918367346938",
+            "status": "two_physical_normal_roots"
+          },
+          {
+            "key_index": 1,
+            "key": "7516192768",
+            "minimum_norm_squared_floor_1e30": "520833333333333333333333333333",
+            "status": "no_positive_price_pair"
+          }
+        ],
+        "initial": {
+          "input_floor_grid": "0",
+          "input_ceil_grid": "0",
+          "output_floor_grid": "0",
+          "output_ceil_grid": "0",
+          "root_floor_grid": "7922816251426433759354395033600000000000000000000",
+          "root_ceil_grid": "7922816251426433759354395033600000000000000000000",
+          "direction_floor_grid": "31691265005705735037417580134400000000000000000000",
+          "direction_ceil_grid": "31691265005705735037417580134400000000000000000000",
+          "price_floor_grid": [
+            "1431655765",
+            "2147483648",
+            "4294967296"
+          ]
+        },
+        "final": {
+          "input_floor_grid": "5440586669455455037012724786332172288000000000000",
+          "input_ceil_grid": "5440586669455455037012724786332172288000000000000",
+          "output_floor_grid": "1479178582450268117132293198282911981340525767207",
+          "output_ceil_grid": "1479178582450268117132293198282911981340525767208",
+          "root_floor_grid": "6443637668976165642222101835317088018659474232792",
+          "root_ceil_grid": "6443637668976165642222101835317088018659474232793",
+          "direction_floor_grid": "38611030257611458191562598119015084269340525767207",
+          "direction_ceil_grid": "38611030257611458191562598119015084269340525767208",
+          "price_floor_grid": [
+            "911728051",
+            "2082678137",
+            "4294967296"
+          ]
+        },
+        "actual_endpoint": [
+          "10490107332958752250714390528000000000000",
+          "7378697629483820646400000000000000000000",
+          "1500276314952456299685609472000000000000"
+        ],
+        "shortfall_floor_grid": "38708029959796765928750739693340525767207",
+        "shortfall_ceil_grid": "38708029959796765928750739693340525767208",
+        "shortfall_ceil": "9012415530112750346015845354028",
+        "radial_slack_ceil": "7965299770447535177748415426220",
+        "next_raw_dual_deficit_floor_grid": "40520132554467571664793210642659474232792",
+        "path_checks": {
+          "support_points_checked": 9,
+          "release_points_checked": 9,
+          "retention_points_checked": 9,
+          "all_primal_dual_checks_passed": true
+        }
+      }
+    },
+    {
+      "id": "n7_exact_initial_touch",
+      "production_expectation": "Uncertain",
+      "exact_rational_witness_verified": true,
+      "dimension": 7,
+      "start": [
+        "110000000000000000000000000000000000000000",
+        "110000000000000000000000000000000000000000",
+        "100000000000000000000000000000000000000000",
+        "100000000000000000000000000000000000000000",
+        "100000000000000000000000000000000000000000",
+        "90000000000000000000000000000000000000000",
+        "90000000000000000000000000000000000000000"
+      ],
+      "radii": [
+        "80000000000000000000000000000000000000000",
+        "80000000000000000000000000000000000000000"
+      ],
+      "keys": [
+        "18790481920",
+        null
+      ],
+      "input_floor_grid": "0",
+      "raw_net_input": "542101086242752217"
+    },
+    {
+      "id": "n3_nonphysical_branch",
+      "production_expectation": "FrontierPathCertified",
+      "previous_production_expectation": "Uncertain",
+      "resolution": "strict negative-price exclusion of the algebraic key branch; the physical sphere path certifies",
+      "violation_scope": "algebraic key branch, not the entire trade",
+      "positive_output_normal_violated": true,
+      "start": [
+        "13800000000000000000000000000000000000000",
+        "19900000000000000000000000000000000000000",
+        "1000000000000000000000000000000000000000"
+      ],
+      "radii": [
+        "10000000000000000000000000000000000000000",
+        "10000000000000000000000000000000000000000"
+      ],
+      "keys": [
+        "7730941132",
+        null
+      ],
+      "raw_net_input": "5421010862427522170",
+      "exact_rational_input_interval": [
+        "0",
+        "100000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "id": "n2_insufficient_crossing_allowance",
+      "production_expectation": "TransitionLimit",
+      "source_case": "n2_initial_release",
+      "required": 2,
+      "supplied": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "n2_hidden_turn",
+      "production_expectation": "direct mixed arc must be rejected",
+      "source_case": "n2_two_roots",
+      "required_frontier_events": 2,
+      "same_endpoint_prefix_does_not_certify_the_path": true
+    },
+    {
+      "id": "invalid_zero_start",
+      "production_expectation": "UncertifiedStart",
+      "explicit_primal_rejection": true
+    },
+    {
+      "id": "n2_coarse_initial_order",
+      "production_expectation": "Uncertain",
+      "reason": "current zero-budget initial bracket cannot order the join",
+      "witness": {
+        "id": "n2_coarse_initial_order",
+        "dimension": 2,
+        "input": 0,
+        "output": 1,
+        "scope": "geometric actual state; raw-token history not established",
+        "reachable_raw_history_verified": false,
+        "start": [
+          "15000000000000000000000000000000000000000",
+          "3000000000000000000000000000000000000000"
+        ],
+        "radii": [
+          "10000000000000000000000000000000000000000",
+          "10000000000000000000000000000000000000000"
+        ],
+        "keys": [
+          "3758096384",
+          null
+        ],
+        "decimals": [
+          18,
+          18
+        ],
+        "raw_net_input": "5421010862427522170",
+        "net_input_internal": "99999999999999999999312600448599326720",
+        "output_quantum": "18446744073709551616",
+        "output_raw": "129587181514930331686",
+        "actual_initial_prefix": 1,
+        "initial_ideal_prefix": 0,
+        "final_ideal_prefix": 0,
+        "actual_final_prefix": 0,
+        "prefix_walk": [
+          1,
+          0
+        ],
+        "transitions": [
+          {
+            "key_index": 0,
+            "key": "3758096384",
+            "direction": "inward",
+            "initial_release": true,
+            "input_floor_grid": "0",
+            "input_ceil_grid": "0",
+            "output_floor_grid": "2147483648000000000000000000000000000000000000000",
+            "output_ceil_grid": "2147483648000000000000000000000000000000000000000"
+          }
+        ],
+        "key_checks": [
+          {
+            "key_index": 0,
+            "key": "3758096384",
+            "minimum_norm_squared_floor_1e30": "632812500000000000000000000000",
+            "status": "two_physical_normal_roots"
+          }
+        ],
+        "initial": {
+          "input_floor_grid": "0",
+          "input_ceil_grid": "0",
+          "output_floor_grid": "10157240017567505772415659946848859224652630221779",
+          "output_ceil_grid": "10157240017567505772415659946848859224652630221780",
+          "root_floor_grid": "2727661870432494227584340053151140775347369778220",
+          "root_ceil_grid": "2727661870432494227584340053151140775347369778221",
+          "direction_floor_grid": "61696847569567505772415659946848859224652630221779",
+          "direction_ceil_grid": "61696847569567505772415659946848859224652630221780",
+          "price_floor_grid": [
+            "1108955787",
+            "4294967296"
+          ]
+        },
+        "final": {
+          "input_floor_grid": "429496729599999999997047641407449037270018949120",
+          "input_ceil_grid": "429496729599999999997047641407449037270018949120",
+          "output_floor_grid": "10266954276830371799975771222701133265416474593439",
+          "output_ceil_grid": "10266954276830371799975771222701133265416474593440",
+          "root_floor_grid": "2617947611169628200024228777298866734583525406560",
+          "root_ceil_grid": "2617947611169628200024228777298866734583525406561",
+          "direction_floor_grid": "62236058558430371799972818864108582302686493542559",
+          "direction_ceil_grid": "62236058558430371799972818864108582302686493542560",
+          "price_floor_grid": [
+            "1085344960",
+            "4294967296"
+          ]
+        },
+        "actual_endpoint": [
+          "15099999999999999999999312600448599326720",
+          "609538427360734948906551257946782695424"
+        ],
+        "shortfall_floor_grid": "53639835730225050681283446943",
+        "shortfall_ceil_grid": "53639835730225050681283446944",
+        "shortfall_ceil": "12488997478556132569",
+        "radial_slack_ceil": "12108371284436568112",
+        "next_raw_dual_deficit_floor_grid": "25588326784039286912260503392",
+        "path_checks": {
+          "support_points_checked": 9,
+          "release_points_checked": 18,
+          "retention_points_checked": 9,
+          "all_primal_dual_checks_passed": true
+        }
+      }
+    },
+    {
+      "id": "n2_initial_zero_output_normal",
+      "production_expectation": "Uncertain",
+      "initial_output_normal": "0",
+      "positive_one_sided_path_verified": true,
+      "positive_one_sided_support_points_checked": 8,
+      "start": [
+        "0",
+        "10000000000000000000000000000000000000000"
+      ],
+      "radii": [
+        "10000000000000000000000000000000000000000"
+      ],
+      "keys": [
+        null
+      ],
+      "raw_net_input": "5421010862427522170",
+      "net_input_internal": "99999999999999999999312600448599326720",
+      "output_raw": "76472768979165912977",
+      "root_floor_grid": "36890875991402850538691929402051694909350560823857",
+      "root_ceil_grid": "36890875991402850538691929402051694909350560823858"
+    }
+  ]
+}

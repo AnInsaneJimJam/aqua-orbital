@@ -1,0 +1,126 @@
+Compiling 7 files with Solc 0.8.30
+Solc 0.8.30 finished in 73.61s
+Compiler run successful!
+2026-09-08T08:01:55.736298Z  WARN evm::traces::external: etherscan config not found
+
+Ran 15 tests for test/FrontierSchedule.t.sol:FrontierScheduleTest
+[PASS] testAnEventEnclosureOverlappingFinalInputRemainsUncertain() (gas: 265751)
+[PASS] testBothHiddenCrossingsAreRetainedDespiteIdenticalEndpointPrefixes() (gas: 179283)
+[PASS] testCallerStateIsUnchanged() (gas: 180143)
+[PASS] testExactTouchDefinitelyOutsideInputRangeCanBeExcluded() (gas: 547831)
+[PASS] testExhaustedCrossingBudgetAndWrongPrefixNeverCertify() (gas: 442715)
+[FAIL: assertion failed: 1 != 0] testInRangeUncertifiedPhysicalRootCannotBeDiscarded() (gas: 222910)
+[PASS] testInvalidMetadataInputAndBoundsFailBeforeEnumeration() (gas: 226604)
+[PASS] testMaximumFourteenCrossingsAtLargeSupportedLengths() (gas: 1407880)
+[PASS] testMultipleKeysWalkInwardThenOutwardWithoutSkipping() (gas: 326434)
+[PASS] testNoInRangeEventNeedsNoCrossingBudget() (gas: 173698)
+[PASS] testProvenNegativeDiscriminantAllowsEmptySchedule() (gas: 184814)
+[PASS] testSignedRootsDefinitelyBehindStartAreExcluded() (gas: 171919)
+[PASS] testSingleInwardCrossingChangesTheIdealPrefixOnce() (gas: 175306)
+[PASS] testTouchAtInitialInputRemainsExplicitlyUncertain() (gas: 268271)
+[PASS] testUnknownDiscriminantCannotBeSkipped() (gas: 138395)
+Suite result: FAILED. 14 passed; 1 failed; 0 skipped; finished in 88.01ms (71.31ms CPU time)
+
+Ran 3 tests for test/ReachableComposition.t.sol:ReachableCompositionTest
+[PASS] testActualFirstPaymentThenReverseBothFrontiersMatchesOracle() (gas: 4995466)
+[PASS] testDiagnoseSecondFrameWithoutChangingAnyAcceptanceCheck() (gas: 7950315)
+Logs:
+  composition_status: 4
+  initial_identified: 1
+  initial_prefix: 1
+  final_identified: 1
+  first_used: 29
+  resume_used: 0
+  prefix: 0
+  initial_proposal_identified: 0
+  final_proposal_identified: 0
+  final_proposal_status: 0
+  bracket_status: 0
+  prefix: 1
+  initial_proposal_identified: 1
+  initial_release_valid: 1
+  initial_release_crossings: 0
+  final_proposal_identified: 1
+  final_proposal_status: 0
+  bracket_status: 5
+  prefix: 2
+  initial_proposal_identified: 0
+  final_proposal_identified: 0
+  final_proposal_status: 0
+  bracket_status: 0
+  schedule_status: 1
+  schedule_events: 2
+  key_index: 0
+  root_status: 1
+  physical: 1
+  inputLo: 232534950941569368618244309129072742429774991729
+  inputHi: 232534950941569368618244309129072742429774991730
+  outputLo: 2028450234593127597337761168465506134407719309681
+  outputHi: 2028450234593127597337761168465506134407719309682
+  physical: 1
+  inputLo: 38738147019317054122746966355650367657592280690318
+  inputHi: 38738147019317054122746966355650367657592280690319
+  outputLo: 40534062302968612351466483214986801049570225008270
+  outputHi: 40534062302968612351466483214986801049570225008271
+  key_index: 1
+  root_status: 1
+  physical: 0
+  inputLo: 356791267152342921431591646241038802044850025476
+  inputHi: 356791267152342921431591646241038802155378419459
+  outputLo: -9731517826335749488880484044822527805977205656572
+  outputHi: -9731517826335749488880484044822527805866677262589
+  physical: 0
+  inputLo: 50498115080245931208965211568938401597866677262589
+  inputHi: 50498115080245931208965211568938401597977205656572
+  outputLo: 40409805986757838798653135877874834989844621580541
+  outputHi: 40409805986757838798653135877874834989955149974524
+
+[PASS] testInitializedFirstOutwardFrontierMatchesIndependentOracle() (gas: 4229599)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 151.71ms (148.73ms CPU time)
+
+Ran 8 tests for test/FrontierPriceExclusion.t.sol:FrontierPriceExclusionTest
+[PASS] testExactZeroUntouchedPriceOnBothRootsIsNotNegative() (gas: 157774)
+[PASS] testInWindowUnknownZeroPriceRootStillDefersSchedule() (gas: 237642)
+[PASS] testOutputUpperBoundIsRequiredWhenRecoveringLowerReserve() (gas: 182967)
+[PASS] testProvenNegativeExtraKeyLeavesExactlyTwoReachableEvents() (gas: 571152)
+[PASS] testReachableLowerKeyBothPhysicalDirectionsRemain() (gas: 180555)
+[PASS] testReachableUpperKeyBothRootsHaveStrictlyNegativePrice() (gas: 184630)
+[PASS] testWideN2PositivePricesCannotBeExcluded() (gas: 142102)
+[PASS] testWideStrictNegativeBothRootsUse512BitProducts() (gas: 137869)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 25.39ms (22.70ms CPU time)
+
+Ran 20 tests for test/FrontierComposition.t.sol:FrontierCompositionTest
+[PASS] testActualCallerVectorAndTicksAreUnmodified() (gas: 6310871)
+[PASS] testCallerCrossingLimitIncludesInitialRelease() (gas: 2632141)
+[PASS] testCertifiedFinalEndpointCannotBypassUncertainInitialOutputOrder() (gas: 4180884)
+[PASS] testExactInitialTouchRemainsUncertain() (gas: 3295356)
+[PASS] testFallbackAfterOutwardEventSucceedsWithOneSharedLedger() (gas: 22673592)
+[PASS] testFourFrontierEventsAreNotReplacedByEndpointEquality() (gas: 6951557)
+[FAIL: assertion failed: 4 != 0] testInRangeNonphysicalEventCannotBeSkipped() (gas: 1923442)
+[PASS] testInitialReleaseAndLaterFrontierDirectionsAreReturnedInOrder() (gas: 6067100)
+[PASS] testInvalidMetadataPairCapacityAndCallerLimitReject() (gas: 154765)
+[PASS] testMixedDecimalsKeepOneFinancialOutputFloor() (gas: 5079281)
+[PASS] testOrdinaryMixedEightTokenPathExecutes() (gas: 11708909)
+[PASS] testOrdinaryMixedThreeTokenPathExecutes() (gas: 7227387)
+[PASS] testOrdinaryMixedTwoTokenPathExecutes() (gas: 5948281)
+[PASS] testPayoutTargetAvoidsResumeForOrdinaryMixedPath() (gas: 7226083)
+[PASS] testRoundedCanonicalPrefixHasCertifiedRetentionPhaseAndBudget() (gas: 1403250)
+[PASS] testSingleInwardFrontierCrossingUsesExactlyOneAllowance() (gas: 2326331)
+[PASS] testThreeTokenMixedTurnHasNoHiddenLowerCrossing() (gas: 7158001)
+[PASS] testTwoRootsCrossInwardAndOutwardWithSameFinalPrefix() (gas: 6310562)
+[PASS] testUncertifiedStartDoesNotBecomeGlobalInfeasibility() (gas: 65540)
+[PASS] testZeroInitialOutputNormalNeedsASeparateOneSidedRule() (gas: 93263)
+Suite result: FAILED. 19 passed; 1 failed; 0 skipped; finished in 572.76ms (849.64ms CPU time)
+
+Ran 4 test suites in 596.76ms (837.87ms CPU time): 44 tests passed, 2 failed, 0 skipped (46 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/FrontierComposition.t.sol:FrontierCompositionTest
+[FAIL: assertion failed: 4 != 0] testInRangeNonphysicalEventCannotBeSkipped() (gas: 1923442)
+
+Encountered 1 failing test in test/FrontierSchedule.t.sol:FrontierScheduleTest
+[FAIL: assertion failed: 1 != 0] testInRangeUncertifiedPhysicalRootCannotBeDiscarded() (gas: 222910)
+
+Encountered a total of 2 failing tests, 44 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 2 failed tests

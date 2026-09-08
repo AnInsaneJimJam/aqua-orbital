@@ -1,0 +1,27 @@
+No files changed, compilation skipped
+2026-09-08T02:57:46.490222Z  WARN evm::traces::external: etherscan config not found
+
+Ran 10 tests for test/CurveEvaluation.t.sol:CurveEvaluationTest
+[PASS] testExactFractionalKeyEqualityAcceptsBothOneSidedPartitions() (gas: 310355)
+[PASS] testExactWideSphereSignsAndNormals() (gas: 87477)
+[PASS] testIndependentVectorAndBasketCorpusAcrossDimensions() (gas: 1577206)
+[PASS] testMixedOriginalRadicalSignsAndIndependentNormalGoldens() (gas: 379616)
+[PASS] testNearSheetEqualityRemainsUncertain() (gas: 112565)
+[PASS] testPositiveAggregateNormalsDoNotBypassBoundaryPriceFailure() (gas: 295404)
+[PASS] testRejectInvalidShapeAndRange() (gas: 110263)
+[PASS] testSheetHoleIsExplicitAndNeverUsedAsARadicalBracket() (gas: 103260)
+[PASS] testWrongPartitionAndPrincipalFloorAreSeparateFromResidualSigns() (gas: 100325)
+[PASS] testZeroOutputNormalDoesNotBecomeAStrictPrice() (gas: 42446)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 12.90ms (26.88ms CPU time)
+
+Ran 7 tests for test/FrontierEvents.t.sol:FrontierEventsTest
+[PASS] testBothRootsEncloseIndependentPerTickOracle() (gas: 132212)
+[PASS] testNearTangentDiscriminantRemainsExplicitlyUncertain() (gas: 130941)
+[PASS] testNoRealKeyIntersectionIsNotClampedToATangent() (gas: 125006)
+[PASS] testRealRootsCanFailThePerTickPhysicalCertificate() (gas: 166358)
+[PASS] testRejectInvalidPairKeyAndStartingState() (gas: 72782)
+[PASS] testSignedCandidatesBehindTheStartAreNotSilentlyLost() (gas: 130082)
+[PASS] testWideEventCoordinatesPreserveBothDirections() (gas: 131312)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 12.45ms (13.94ms CPU time)
+
+Ran 2 test suites in 20.19ms (25.35ms CPU time): 17 tests passed, 0 failed, 0 skipped (17 total tests)

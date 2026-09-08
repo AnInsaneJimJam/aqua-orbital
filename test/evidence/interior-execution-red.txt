@@ -1,0 +1,44 @@
+Compiling 1 files with Solc 0.8.30
+Solc 0.8.30 finished in 20.17s
+Compiler run successful with warnings:
+Warning (5740): Unreachable code.
+   --> src/OrbitalSwapVMRouter.sol:137:80:
+    |
+137 |         if (opcode == 0x52 && ctx.vm.nextPC == 68) { _executeCurve(ctx, args); return; }
+    |                                                                                ^^^^^^^
+
+Warning (5740): Unreachable code.
+   --> vendor/swap-vm-orbital/src/SwapVM.sol:241:9:
+    |
+241 |         _reentrancyGuards[orderHash].unlock();
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+   --> vendor/swap-vm-orbital/src/SwapVM.sol:242:9:
+    |
+242 |         emit Swapped(orderHash, order.maker, msg.sender, tokenIn, tokenOut, amountIn, amountOut);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2026-09-08T03:42:04.191468Z  WARN evm::traces::external: etherscan config not found
+
+Ran 5 tests for test/InteriorExecution.t.sol:InteriorExecutionTest
+[FAIL: EngineUnavailable()] testAllSixPairsMutateOneOrderAndSettleGrossNetFeeExactly() (gas: 171975)
+[FAIL: EngineUnavailable()] testProductionStaticQuotesSixPairsMatchIndependentIntegerSphere() (gas: 173970)
+[FAIL: EngineUnavailable()] testRealCurveSwapFundsFiveDollarInvoiceWithNinetyTenSplit() (gas: 3146534)
+[FAIL: EngineUnavailable()] testRouterAndAquaDonationsDoNotChangeQuoteOrGetSpent() (gas: 132562)
+[FAIL: EngineUnavailable()] testThresholdAndOutputFundingFailuresRollbackThenRecover() (gas: 130175)
+Suite result: FAILED. 0 passed; 5 failed; 0 skipped; finished in 14.76ms (8.27ms CPU time)
+
+Ran 1 test suite in 34.34ms (14.76ms CPU time): 0 tests passed, 5 failed, 0 skipped (5 total tests)
+
+Failing tests:
+Encountered 5 failing tests in test/InteriorExecution.t.sol:InteriorExecutionTest
+[FAIL: EngineUnavailable()] testAllSixPairsMutateOneOrderAndSettleGrossNetFeeExactly() (gas: 171975)
+[FAIL: EngineUnavailable()] testProductionStaticQuotesSixPairsMatchIndependentIntegerSphere() (gas: 173970)
+[FAIL: EngineUnavailable()] testRealCurveSwapFundsFiveDollarInvoiceWithNinetyTenSplit() (gas: 3146534)
+[FAIL: EngineUnavailable()] testRouterAndAquaDonationsDoNotChangeQuoteOrGetSpent() (gas: 132562)
+[FAIL: EngineUnavailable()] testThresholdAndOutputFundingFailuresRollbackThenRecover() (gas: 130175)
+
+Encountered a total of 5 failing tests, 0 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 5 failed tests

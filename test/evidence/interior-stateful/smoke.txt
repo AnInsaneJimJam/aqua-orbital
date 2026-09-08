@@ -1,0 +1,17 @@
+Compiling 1 files with Solc 0.8.30
+Solc 0.8.30 finished in 34.01s
+Compiler run successful!
+
+Ran 1 test for snapshot/packages/contracts/test/InteriorStateful.t.sol:InteriorStatefulInvariantTest
+[PASS] testDeterministicTwelveStepSequenceCoversAllPairsModesAndCloses() (gas: 17953175)
+Logs:
+  successful_swaps: 12
+  successful_quotes: 21
+  expected_failed_transfers: 3
+  router_donations: 3
+  aqua_donations: 3
+  unique_directed_pairs: 6
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 173.70ms (138.30ms CPU time)
+
+Ran 1 test suite in 192.06ms (173.70ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)

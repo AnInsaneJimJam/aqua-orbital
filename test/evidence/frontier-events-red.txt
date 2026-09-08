@@ -1,0 +1,114 @@
+Compiling 7 files with Solc 0.8.30
+Solc 0.8.30 finished in 10.20s
+Compiler run successful with warnings:
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:21:9:
+   |
+21 |         assertEq(uint256(roots.status),uint256(E.Status.Separated));
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:22:9:
+   |
+22 |         assertTrue(roots.candidates[0].inward);assertFalse(roots.candidates[1].inward);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:22:48:
+   |
+22 |         assertTrue(roots.candidates[0].inward);assertFalse(roots.candidates[1].inward);
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:23:9:
+   |
+23 |         assertTrue(roots.candidates[0].physical);assertTrue(roots.candidates[1].physical);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:23:50:
+   |
+23 |         assertTrue(roots.candidates[0].physical);assertTrue(roots.candidates[1].physical);
+   |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:25:9:
+   |
+25 |         encloses(roots.candidates[0],1785320583495630165674573230691291655457572108493,3218130843201826607943555981180276194095320250573);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:26:9:
+   |
+26 |         encloses(roots.candidates[1],30193858969424478990258992973288832930589074016050,31626669229130675432527975723777817469226822158130);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:27:9:
+   |
+27 |         assertLt(roots.candidates[0].inputHi,roots.candidates[1].inputLo);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:43:9:
+   |
+43 |         assertEq(uint256(roots.status),uint256(E.Status.NoRoots));
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:49:9:
+   |
+49 |         assertEq(uint256(roots.status),uint256(E.Status.Separated));
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:50:9:
+   |
+50 |         assertTrue(roots.candidates[0].physical);assertTrue(roots.candidates[1].physical);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:50:50:
+   |
+50 |         assertTrue(roots.candidates[0].physical);assertTrue(roots.candidates[1].physical);
+   |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:51:9:
+   |
+51 |         assertGt(roots.candidates[0].inputLo,0);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/FrontierEvents.t.sol:52:9:
+   |
+52 |         assertLt(roots.candidates[0].inputHi,roots.candidates[1].inputLo);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> src/libraries/FrontierEvents.sol:20:128:
+   |
+20 |     function atKey(uint256[] memory start,M.Tick[] memory ticks,uint8 input,uint8 output,uint8 keyIndex) internal pure returns(Roots memory result){
+   |                                                                                                                                ^^^^^^^^^^^^^^^^^^^
+
+2026-09-08T01:57:37.713020Z  WARN evm::traces::external: etherscan config not found
+
+Ran 4 tests for test/FrontierEvents.t.sol:FrontierEventsTest
+[FAIL: InvalidState()] testBothRootsEncloseIndependentPerTickOracle() (gas: 813039)
+[FAIL: InvalidState()] testNoRealKeyIntersectionIsNotClampedToATangent() (gas: 1119026)
+[FAIL: Error != expected error: InvalidState() != InvalidPair()] testRejectInvalidPairKeyAndStartingState() (gas: 819809)
+[FAIL: InvalidState()] testWideEventCoordinatesPreserveBothDirections() (gas: 812802)
+Suite result: FAILED. 0 passed; 4 failed; 0 skipped; finished in 26.34ms (42.13ms CPU time)
+
+Ran 1 test suite in 141.51ms (26.34ms CPU time): 0 tests passed, 4 failed, 0 skipped (4 total tests)
+
+Failing tests:
+Encountered 4 failing tests in test/FrontierEvents.t.sol:FrontierEventsTest
+[FAIL: InvalidState()] testBothRootsEncloseIndependentPerTickOracle() (gas: 813039)
+[FAIL: InvalidState()] testNoRealKeyIntersectionIsNotClampedToATangent() (gas: 1119026)
+[FAIL: Error != expected error: InvalidState() != InvalidPair()] testRejectInvalidPairKeyAndStartingState() (gas: 819809)
+[FAIL: InvalidState()] testWideEventCoordinatesPreserveBothDirections() (gas: 812802)
+
+Encountered a total of 4 failing tests, 0 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 4 failed tests

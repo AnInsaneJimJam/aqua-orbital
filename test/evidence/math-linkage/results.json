@@ -1,0 +1,443 @@
+{
+  "a": {
+    "variant": "a",
+    "visibility_changes": {
+      "FrontierComposition": [
+        "certify"
+      ]
+    },
+    "command": [
+      "forge",
+      "test",
+      "--match-contract",
+      "^LinkedMathPrototypeTest$",
+      "--fuzz-seed",
+      "0x20260908",
+      "--threads",
+      "2",
+      "-vv"
+    ],
+    "environment_overrides": {
+      "FOUNDRY_SRC": "../../.cache/math-linkage/a/src",
+      "FOUNDRY_TEST": "../../.cache/math-linkage/a/test",
+      "FOUNDRY_OUT": "../../.cache/math-linkage/a/out",
+      "FOUNDRY_CACHE_PATH": "../../.cache/math-linkage/a/cache"
+    },
+    "started_at": "2026-09-08T06:27:16.585150+00:00",
+    "runtime_seconds": 89.29320070001995,
+    "returncode": 1,
+    "inputs": [
+      {
+        "path": "packages/contracts/src/libraries/FrontierComposition.sol",
+        "sha256": "9e267caada4ec4824e52cf1b9c59368e9505ef45ad6566356ac1c013ebaa66df"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierTurn.sol",
+        "sha256": "f1d9fc9cf528310040214af00101907ee011efd2be18f58b9394ea7843378e34"
+      },
+      {
+        "path": "packages/contracts/src/libraries/SignedWide.sol",
+        "sha256": "8142108db5cc11ddf3a33e17855c7ca4a467f22687194967c28588aef6cb4426"
+      },
+      {
+        "path": "packages/contracts/src/libraries/WideMath.sol",
+        "sha256": "61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d"
+      },
+      {
+        "path": "packages/contracts/src/libraries/TickGeometry.sol",
+        "sha256": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b"
+      },
+      {
+        "path": "packages/contracts/src/libraries/CurveEvaluation.sol",
+        "sha256": "1537bc49e14837d32279279f99a1f09f937c3a9c17e7226fd7dbceab61a864be"
+      },
+      {
+        "path": "packages/contracts/src/libraries/IntervalMath.sol",
+        "sha256": "e7ea7cd4aa5bb7a63f52b665f1311667bb52715f8a4a5ad32a4dde30bd820898"
+      },
+      {
+        "path": "packages/contracts/src/libraries/OrbitalMath.sol",
+        "sha256": "6454e86f8b8bea61506c2f5eead0df7936df8a89415597aabf76d3618acbfaeb"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierEvents.sol",
+        "sha256": "5fd37fd1cf314474a22eeda3856743d95f98da6b49d06671921f5e6c5b120721"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierSchedule.sol",
+        "sha256": "a5d10a931895e30d59ca19e91055b58f2748cba796789a5ce09fa8392ed0b506"
+      },
+      {
+        "path": "packages/contracts/src/libraries/SlackCertificate.sol",
+        "sha256": "1f4fafba1f78f98fa1ac868ed6ddaad91e40bbef5dc079ca5cdddf50f72c4e17"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierEndpoint.sol",
+        "sha256": "6fec6e292c7344c10e0fc5f628fd64882d74e87f012aaaeeef02181bdfe7259d"
+      },
+      {
+        "path": "packages/contracts/src/libraries/RootBracket.sol",
+        "sha256": "0e19eb8cb8c7daa41a3ea4ed32c1f6751d254edf689ff140cb155a554dad529d"
+      },
+      {
+        "path": "packages/contracts/test/fixtures/CurvePrimitiveFixtures.sol",
+        "sha256": "ef0c9b0d9ecc07af1c754a85f5459510c1e9a54fd055b3d058201816a9357d5b"
+      },
+      {
+        "path": "test/evidence/math-linkage/Prototype.t.sol.in",
+        "sha256": "385c75ba90370f071c934ab502182212018600007dc9924ca0fdcea77862f7f1"
+      }
+    ],
+    "artifacts": [
+      {
+        "contract": "FrontierComposition",
+        "path": ".cache/math-linkage/a/out/libraries/FrontierComposition.sol/FrontierComposition.json",
+        "runtime_bytes": 30363,
+        "initcode_bytes": 30393,
+        "links": {},
+        "sha256": "e9d48cdd106ed89d97b50ed0c2ca607c96b22d49dcb94a35466e64ab7133558e"
+      },
+      {
+        "contract": "FrontierEndpoint",
+        "path": ".cache/math-linkage/a/out/FrontierEndpoint.sol/FrontierEndpoint.json",
+        "runtime_bytes": 57,
+        "initcode_bytes": 85,
+        "links": {},
+        "sha256": "c44f953206cc5170762dddb052bcb29d4e2c8f7123b6be1f0cc5687d03f6aaf1"
+      },
+      {
+        "contract": "SlackCertificate",
+        "path": ".cache/math-linkage/a/out/SlackCertificate.sol/SlackCertificate.json",
+        "runtime_bytes": 57,
+        "initcode_bytes": 85,
+        "links": {},
+        "sha256": "f1ef5fa26a716a1a686a25b33346c9e389674ac958bf743477c3502b5c7cb7cd"
+      },
+      {
+        "contract": "FrontierSchedule",
+        "path": ".cache/math-linkage/a/out/FrontierSchedule.sol/FrontierSchedule.json",
+        "runtime_bytes": 57,
+        "initcode_bytes": 85,
+        "links": {},
+        "sha256": "ca54351f7af85d16b369c13b4d14ffc4f097f87c22f1ae7d2c9d13748bbedbdd"
+      },
+      {
+        "contract": "LinkedMathQuote",
+        "path": ".cache/math-linkage/a/out/Prototype.t.sol/LinkedMathQuote.json",
+        "runtime_bytes": 2958,
+        "initcode_bytes": 2984,
+        "links": {
+          "C:/Users/gujja/aqua-orbital/.cache/math-linkage/a/src/libraries/FrontierComposition.sol": {
+            "FrontierComposition": [
+              {
+                "start": 675,
+                "length": 20
+              }
+            ]
+          }
+        },
+        "sha256": "c99ec7e96ed16a605d6d748d9dd0f883aaa1372f70d2221c58c66cc2e6960b3b"
+      }
+    ],
+    "stdout_sha256": "93b68eb467f97f9253c0a4c93e7d19ad3558882e49daaa3709a9d368388cfebd"
+  },
+  "b": {
+    "variant": "b",
+    "visibility_changes": {
+      "FrontierComposition": [
+        "certify"
+      ],
+      "FrontierEndpoint": [
+        "exactInput",
+        "exactInputForPayout",
+        "resumeExactInput",
+        "identifyInitial"
+      ]
+    },
+    "command": [
+      "forge",
+      "test",
+      "--match-contract",
+      "^LinkedMathPrototypeTest$",
+      "--fuzz-seed",
+      "0x20260908",
+      "--threads",
+      "2",
+      "-vv"
+    ],
+    "environment_overrides": {
+      "FOUNDRY_SRC": "../../.cache/math-linkage/b/src",
+      "FOUNDRY_TEST": "../../.cache/math-linkage/b/test",
+      "FOUNDRY_OUT": "../../.cache/math-linkage/b/out",
+      "FOUNDRY_CACHE_PATH": "../../.cache/math-linkage/b/cache"
+    },
+    "started_at": "2026-09-08T06:35:41.608798+00:00",
+    "runtime_seconds": 57.93353629997,
+    "returncode": 0,
+    "inputs": [
+      {
+        "path": "test/evidence/math-linkage/measure.py",
+        "sha256": "6643f8440ed9f133b64c154fb45e2b1b304cbe71a412aef5fe57ea1984096260"
+      },
+      {
+        "path": "test/evidence/math-linkage/source-pins.json",
+        "sha256": "bd39fef2a557e63c068194fa3a3f0ae821973bfb0640f8f708c063ce907bf36b"
+      },
+      {
+        "path": "packages/contracts/foundry.toml",
+        "sha256": "8837e44a7819ccc323dfe5d24eb65b9a5fe4a9fc2d6c47418a88aaa94bfd4f9a"
+      },
+      {
+        "path": "packages/contracts/remappings.txt",
+        "sha256": "8e8c9650a5da34495b3b5bcee7c4d1a7cf9aee03382396a1578143008e66149d"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierComposition.sol",
+        "sha256": "9e267caada4ec4824e52cf1b9c59368e9505ef45ad6566356ac1c013ebaa66df"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierTurn.sol",
+        "sha256": "f1d9fc9cf528310040214af00101907ee011efd2be18f58b9394ea7843378e34"
+      },
+      {
+        "path": "packages/contracts/src/libraries/SignedWide.sol",
+        "sha256": "8142108db5cc11ddf3a33e17855c7ca4a467f22687194967c28588aef6cb4426"
+      },
+      {
+        "path": "packages/contracts/src/libraries/WideMath.sol",
+        "sha256": "61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d"
+      },
+      {
+        "path": "packages/contracts/src/libraries/TickGeometry.sol",
+        "sha256": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b"
+      },
+      {
+        "path": "packages/contracts/src/libraries/CurveEvaluation.sol",
+        "sha256": "1537bc49e14837d32279279f99a1f09f937c3a9c17e7226fd7dbceab61a864be"
+      },
+      {
+        "path": "packages/contracts/src/libraries/IntervalMath.sol",
+        "sha256": "e7ea7cd4aa5bb7a63f52b665f1311667bb52715f8a4a5ad32a4dde30bd820898"
+      },
+      {
+        "path": "packages/contracts/src/libraries/OrbitalMath.sol",
+        "sha256": "6454e86f8b8bea61506c2f5eead0df7936df8a89415597aabf76d3618acbfaeb"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierEvents.sol",
+        "sha256": "5fd37fd1cf314474a22eeda3856743d95f98da6b49d06671921f5e6c5b120721"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierSchedule.sol",
+        "sha256": "a5d10a931895e30d59ca19e91055b58f2748cba796789a5ce09fa8392ed0b506"
+      },
+      {
+        "path": "packages/contracts/src/libraries/SlackCertificate.sol",
+        "sha256": "1f4fafba1f78f98fa1ac868ed6ddaad91e40bbef5dc079ca5cdddf50f72c4e17"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierEndpoint.sol",
+        "sha256": "6fec6e292c7344c10e0fc5f628fd64882d74e87f012aaaeeef02181bdfe7259d"
+      },
+      {
+        "path": "packages/contracts/src/libraries/RootBracket.sol",
+        "sha256": "0e19eb8cb8c7daa41a3ea4ed32c1f6751d254edf689ff140cb155a554dad529d"
+      },
+      {
+        "path": "packages/contracts/test/fixtures/CurvePrimitiveFixtures.sol",
+        "sha256": "ef0c9b0d9ecc07af1c754a85f5459510c1e9a54fd055b3d058201816a9357d5b"
+      },
+      {
+        "path": "test/evidence/math-linkage/Prototype.t.sol.in",
+        "sha256": "385c75ba90370f071c934ab502182212018600007dc9924ca0fdcea77862f7f1"
+      }
+    ],
+    "generated_sources": [
+      {
+        "path": ".cache/math-linkage/b/src/libraries/CurveEvaluation.sol",
+        "sha256": "8fe0407af216f03f19ab6a6b7473c4cd076aeaa061ed3320e2437b79aea43722"
+      },
+      {
+        "path": ".cache/math-linkage/b/src/libraries/FrontierComposition.sol",
+        "sha256": "8a10ec8fc6ce0a1ab03ac39010cad988ef7c376bcac19bb05b4d88e2832f9278"
+      },
+      {
+        "path": ".cache/math-linkage/b/src/libraries/FrontierEndpoint.sol",
+        "sha256": "66eebc5c4772b73defd3b6c64d091ce3388dec4b41f71b01ab00b452c60ea48b"
+      },
+      {
+        "path": ".cache/math-linkage/b/src/libraries/FrontierEvents.sol",
+        "sha256": "5de60d2ea88a55495c76a4fedc0675c64345eac1b68ee53cdcdac4417a8a85ed"
+      },
+      {
+        "path": ".cache/math-linkage/b/src/libraries/FrontierSchedule.sol",
+        "sha256": "ca583716cfe4e69f4820e31db6cd5f8d9c7033f21466523741849efd7bb879c7"
+      },
+      {
+        "path": ".cache/math-linkage/b/src/libraries/FrontierTurn.sol",
+        "sha256": "a374a01c74c289209e47c8d4c017bbba55b4e0e5e82c884d93014305cbdbeffc"
+      },
+      {
+        "path": ".cache/math-linkage/b/src/libraries/IntervalMath.sol",
+        "sha256": "8d32426075a90dfd55697bab25307c4a9fe72dcb630982bfc2f90c20d7904fde"
+      },
+      {
+        "path": ".cache/math-linkage/b/src/libraries/OrbitalMath.sol",
+        "sha256": "f019e499857de53341a48d9784d424446e552e41d2d91989963c9aafa2933968"
+      },
+      {
+        "path": ".cache/math-linkage/b/src/libraries/RootBracket.sol",
+        "sha256": "c15a17bc3dcee791567c05fbf2c6b606c6976bfe0b13ae5ab7b1bd34c024df49"
+      },
+      {
+        "path": ".cache/math-linkage/b/src/libraries/SignedWide.sol",
+        "sha256": "e8ce3723ffd97992d538b8a74167cc7ed9d5297d432b1d667ced6fa14da550cd"
+      },
+      {
+        "path": ".cache/math-linkage/b/src/libraries/SlackCertificate.sol",
+        "sha256": "cf8fe5c44d1fe3d4eaf2af013bf3f629b9e4264861579574459f9d7789d65f7b"
+      },
+      {
+        "path": ".cache/math-linkage/b/src/libraries/TickGeometry.sol",
+        "sha256": "97c2b9229dc16baeb1aeede5d4081f9dfa5baedd70bc556c648e35e8d74b0df5"
+      },
+      {
+        "path": ".cache/math-linkage/b/src/libraries/WideMath.sol",
+        "sha256": "2b99a5fa8e0ef1feaac3c76b1a208e57beef3fe92243e3fd0cc8a18baa423307"
+      },
+      {
+        "path": ".cache/math-linkage/b/baseline/libraries/CurveEvaluation.sol",
+        "sha256": "8fe0407af216f03f19ab6a6b7473c4cd076aeaa061ed3320e2437b79aea43722"
+      },
+      {
+        "path": ".cache/math-linkage/b/baseline/libraries/FrontierComposition.sol",
+        "sha256": "4822731b2acf4df157c15f3737f72130792d07a5096bda272840466be0d27eda"
+      },
+      {
+        "path": ".cache/math-linkage/b/baseline/libraries/FrontierEndpoint.sol",
+        "sha256": "bd3f0a0bb90b95814d788dd312ce75253042d42a6793acb709ef59775032aa30"
+      },
+      {
+        "path": ".cache/math-linkage/b/baseline/libraries/FrontierEvents.sol",
+        "sha256": "5de60d2ea88a55495c76a4fedc0675c64345eac1b68ee53cdcdac4417a8a85ed"
+      },
+      {
+        "path": ".cache/math-linkage/b/baseline/libraries/FrontierSchedule.sol",
+        "sha256": "ca583716cfe4e69f4820e31db6cd5f8d9c7033f21466523741849efd7bb879c7"
+      },
+      {
+        "path": ".cache/math-linkage/b/baseline/libraries/FrontierTurn.sol",
+        "sha256": "a374a01c74c289209e47c8d4c017bbba55b4e0e5e82c884d93014305cbdbeffc"
+      },
+      {
+        "path": ".cache/math-linkage/b/baseline/libraries/IntervalMath.sol",
+        "sha256": "8d32426075a90dfd55697bab25307c4a9fe72dcb630982bfc2f90c20d7904fde"
+      },
+      {
+        "path": ".cache/math-linkage/b/baseline/libraries/OrbitalMath.sol",
+        "sha256": "f019e499857de53341a48d9784d424446e552e41d2d91989963c9aafa2933968"
+      },
+      {
+        "path": ".cache/math-linkage/b/baseline/libraries/RootBracket.sol",
+        "sha256": "c15a17bc3dcee791567c05fbf2c6b606c6976bfe0b13ae5ab7b1bd34c024df49"
+      },
+      {
+        "path": ".cache/math-linkage/b/baseline/libraries/SignedWide.sol",
+        "sha256": "e8ce3723ffd97992d538b8a74167cc7ed9d5297d432b1d667ced6fa14da550cd"
+      },
+      {
+        "path": ".cache/math-linkage/b/baseline/libraries/SlackCertificate.sol",
+        "sha256": "cf8fe5c44d1fe3d4eaf2af013bf3f629b9e4264861579574459f9d7789d65f7b"
+      },
+      {
+        "path": ".cache/math-linkage/b/baseline/libraries/TickGeometry.sol",
+        "sha256": "97c2b9229dc16baeb1aeede5d4081f9dfa5baedd70bc556c648e35e8d74b0df5"
+      },
+      {
+        "path": ".cache/math-linkage/b/baseline/libraries/WideMath.sol",
+        "sha256": "2b99a5fa8e0ef1feaac3c76b1a208e57beef3fe92243e3fd0cc8a18baa423307"
+      },
+      {
+        "path": ".cache/math-linkage/b/test/fixtures/CurvePrimitiveFixtures.sol",
+        "sha256": "ef0c9b0d9ecc07af1c754a85f5459510c1e9a54fd055b3d058201816a9357d5b"
+      },
+      {
+        "path": ".cache/math-linkage/b/test/Prototype.t.sol",
+        "sha256": "4e7aa652d1d6cca1fc301675e83dc4eff5b885d736e1bda5311716d0c59d859b"
+      }
+    ],
+    "artifacts": [
+      {
+        "contract": "FrontierComposition",
+        "path": ".cache/math-linkage/b/out/libraries/FrontierComposition.sol/FrontierComposition.json",
+        "runtime_bytes": 22253,
+        "initcode_bytes": 22283,
+        "links": {
+          "C:/Users/gujja/aqua-orbital/.cache/math-linkage/b/src/libraries/FrontierEndpoint.sol": {
+            "FrontierEndpoint": [
+              {
+                "start": 3451,
+                "length": 20
+              },
+              {
+                "start": 3754,
+                "length": 20
+              },
+              {
+                "start": 4572,
+                "length": 20
+              },
+              {
+                "start": 5164,
+                "length": 20
+              }
+            ]
+          }
+        },
+        "sha256": "67e57d1146b9e0b274c3a70d2c75a9ca9e08c0fbda9c364d66399e8fd8aacc24"
+      },
+      {
+        "contract": "FrontierEndpoint",
+        "path": ".cache/math-linkage/b/out/libraries/FrontierEndpoint.sol/FrontierEndpoint.json",
+        "runtime_bytes": 18327,
+        "initcode_bytes": 18357,
+        "links": {},
+        "sha256": "7eb2108df16a1e8f641fa48eb1b63502e5ff8bcb6265c67ffd20ddaa8ba372eb"
+      },
+      {
+        "contract": "SlackCertificate",
+        "path": ".cache/math-linkage/b/out/SlackCertificate.sol/SlackCertificate.json",
+        "runtime_bytes": 57,
+        "initcode_bytes": 85,
+        "links": {},
+        "sha256": "de9882170672749fbb2dce678c27f2588e26fcefb6458e7f51de85831db49baf"
+      },
+      {
+        "contract": "FrontierSchedule",
+        "path": ".cache/math-linkage/b/out/FrontierSchedule.sol/FrontierSchedule.json",
+        "runtime_bytes": 57,
+        "initcode_bytes": 85,
+        "links": {},
+        "sha256": "ed105239a9e29bde6dfeb2a8cf2733ea2a7c3c5920f69cdea1c45a6dce24c8f2"
+      },
+      {
+        "contract": "LinkedMathQuote",
+        "path": ".cache/math-linkage/b/out/Prototype.t.sol/LinkedMathQuote.json",
+        "runtime_bytes": 2958,
+        "initcode_bytes": 2984,
+        "links": {
+          "C:/Users/gujja/aqua-orbital/.cache/math-linkage/b/src/libraries/FrontierComposition.sol": {
+            "FrontierComposition": [
+              {
+                "start": 675,
+                "length": 20
+              }
+            ]
+          }
+        },
+        "sha256": "a7db71d69219e55a442f617b147c3462cecc9b762c224ee1fd975377379c4f1a"
+      }
+    ],
+    "stdout_sha256": "7509f2fe2ebe4bd759b25d342c056edc3806c38d09f670010e402ffa2531fe4f"
+  }
+}

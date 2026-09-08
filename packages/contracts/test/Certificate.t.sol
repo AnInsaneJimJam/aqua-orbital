@@ -5,6 +5,35 @@ import {WideMath as W} from "../src/libraries/WideMath.sol";
 import {TickGeometry as G} from "../src/libraries/TickGeometry.sol";
 import {OrbitalMath as M} from "../src/libraries/OrbitalMath.sol";
 contract CertificateTest is Test {
+    function testFractionalKeyPlaneHasBothOneSidedCertificates() public pure {
+        uint256 r=1e40;uint256 grid=1<<32;uint64 key=7*(1<<29)+1;
+        M.Tick[] memory ticks=new M.Tick[](2);
+        ticks[0]=M.Tick(key,uint192(r+1),G.coefficients(2,key));
+        ticks[1]=M.Tick(type(uint64).max,uint192(r),G.coefficients(2,type(uint64).max));
+        uint256[] memory x=new uint256[](2);
+        x[0]=15*r/10*grid;x[1]=(2*r+1)*key-x[0];
+        assertTrue(x[1]%grid!=0,"the seam must be fractional in internal units");
+        assertTrue(M.certifyGridPoint(x,ticks,0));
+        assertTrue(M.certifyGridPoint(x,ticks,1));
+        x[1]--;
+        assertTrue(M.certifyGridPoint(x,ticks,0));
+        assertFalse(M.certifyGridPoint(x,ticks,1));
+        x[1]+=2;
+        assertFalse(M.certifyGridPoint(x,ticks,0));
+        assertTrue(M.certifyGridPoint(x,ticks,1));
+    }
+    function testProofGridDoesNotExpandTheStoredDomain() public pure {
+        M.Tick[] memory ticks=new M.Tick[](1);
+        ticks[0]=M.Tick(type(uint64).max,uint192(1)<<159,G.coefficients(4,type(uint64).max));
+        uint256[] memory x=new uint256[](4);
+        for(uint256 i;i<4;i++)x[i]=uint256(1)<<190;
+        assertTrue(M.certifyGridPoint(x,ticks,0));
+        assertFalse(M.certify(x,ticks));
+        x[0]=uint256(1)<<192;
+        assertFalse(M.certifyGridPoint(x,ticks,0));
+        assertFalse(M.certifyGridPoint(x,ticks,1));
+        assertFalse(M.certifyGridPoint(x,ticks,type(uint256).max));
+    }
     function testExactSphereAndUnsafeBranch() public pure {
         M.Tick[] memory ticks=new M.Tick[](1);ticks[0]=M.Tick(type(uint64).max,2,G.coefficients(4,type(uint64).max));
         uint256[] memory x=new uint256[](4);for(uint256 i;i<4;++i)x[i]=1;

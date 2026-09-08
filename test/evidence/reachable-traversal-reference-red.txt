@@ -1,0 +1,53 @@
+test_each_payment_has_per_tick_path_checks_and_next_raw_support_exclusion (test_reachable_traversal.ReachableTraversalTests.test_each_payment_has_per_tick_path_checks_and_next_raw_support_exclusion) ... ERROR
+test_first_swap_crosses_outward_and_reverse_swap_crosses_both_ways (test_reachable_traversal.ReachableTraversalTests.test_first_swap_crosses_outward_and_reverse_swap_crosses_both_ways) ... ERROR
+test_initialized_history_is_precision_stable (test_reachable_traversal.ReachableTraversalTests.test_initialized_history_is_precision_stable) ... ERROR
+test_second_start_uses_actual_first_payment_and_separate_fee_inventory (test_reachable_traversal.ReachableTraversalTests.test_second_start_uses_actual_first_payment_and_separate_fee_inventory) ... ERROR
+
+======================================================================
+ERROR: test_each_payment_has_per_tick_path_checks_and_next_raw_support_exclusion (test_reachable_traversal.ReachableTraversalTests.test_each_payment_has_per_tick_path_checks_and_next_raw_support_exclusion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\gujja\aqua-orbital\packages\reference\tests\test_reachable_traversal.py", line 35, in test_each_payment_has_per_tick_path_checks_and_next_raw_support_exclusion
+    for row in corpus(110)['swaps']:
+               ^^^^^^^^^^^
+  File "C:\Users\gujja\aqua-orbital\packages\reference\fixtures_reachable_traversal.py", line 5, in corpus
+    raise NotImplementedError('Initialized traversal history is not implemented')
+NotImplementedError: Initialized traversal history is not implemented
+
+======================================================================
+ERROR: test_first_swap_crosses_outward_and_reverse_swap_crosses_both_ways (test_reachable_traversal.ReachableTraversalTests.test_first_swap_crosses_outward_and_reverse_swap_crosses_both_ways)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\gujja\aqua-orbital\packages\reference\tests\test_reachable_traversal.py", line 14, in test_first_swap_crosses_outward_and_reverse_swap_crosses_both_ways
+    first, second = corpus(110)['swaps']
+                    ^^^^^^^^^^^
+  File "C:\Users\gujja\aqua-orbital\packages\reference\fixtures_reachable_traversal.py", line 5, in corpus
+    raise NotImplementedError('Initialized traversal history is not implemented')
+NotImplementedError: Initialized traversal history is not implemented
+
+======================================================================
+ERROR: test_initialized_history_is_precision_stable (test_reachable_traversal.ReachableTraversalTests.test_initialized_history_is_precision_stable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\gujja\aqua-orbital\packages\reference\tests\test_reachable_traversal.py", line 11, in test_initialized_history_is_precision_stable
+    self.assertEqual(corpus(110), corpus(160))
+                     ^^^^^^^^^^^
+  File "C:\Users\gujja\aqua-orbital\packages\reference\fixtures_reachable_traversal.py", line 5, in corpus
+    raise NotImplementedError('Initialized traversal history is not implemented')
+NotImplementedError: Initialized traversal history is not implemented
+
+======================================================================
+ERROR: test_second_start_uses_actual_first_payment_and_separate_fee_inventory (test_reachable_traversal.ReachableTraversalTests.test_second_start_uses_actual_first_payment_and_separate_fee_inventory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\gujja\aqua-orbital\packages\reference\tests\test_reachable_traversal.py", line 22, in test_second_start_uses_actual_first_payment_and_separate_fee_inventory
+    data = corpus(110)
+           ^^^^^^^^^^^
+  File "C:\Users\gujja\aqua-orbital\packages\reference\fixtures_reachable_traversal.py", line 5, in corpus
+    raise NotImplementedError('Initialized traversal history is not implemented')
+NotImplementedError: Initialized traversal history is not implemented
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.023s
+
+FAILED (errors=4)

@@ -1,0 +1,16 @@
+Compiling 2 files with Solc 0.8.30
+Solc 0.8.30 finished in 5.89s
+Compiler run successful!
+2026-09-08T04:19:49.623649Z  WARN evm::traces::external: etherscan config not found
+
+Ran 7 tests for test/DemoDollar.t.sol:DemoDollarTest
+[PASS] testChangedRuntimeChainCannotReuseFaucet() (gas: 515306)
+[PASS] testCooldownBelongsToAddressAndDoesNotResetOnTransfer() (gas: 649487)
+[PASS] testCooldownIncludesTimestampZeroAndExactDailyBoundary() (gas: 592954)
+[PASS] testExactDemoMetadataAndAmountsAtBothPrecisions() (gas: 1179709)
+[PASS] testFuzzDailyLimitCannotBeBypassedByEarlyRetry(uint32,uint8) (runs: 257, μ: 586902, ~: 586854)
+[PASS] testOnlyLocalAndArcTestnetDeploymentIsAllowed() (gas: 737858)
+[PASS] testRejectUnexpectedDecimals() (gas: 317887)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 29.71ms (36.23ms CPU time)
+
+Ran 1 test suite in 31.70ms (29.71ms CPU time): 7 tests passed, 0 failed, 0 skipped (7 total tests)

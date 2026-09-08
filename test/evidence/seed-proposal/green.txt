@@ -1,0 +1,16 @@
+Compiling 34 files with Solc 0.8.30
+Solc 0.8.30 finished in 35.50s
+Compiler run successful!
+
+Ran 8 tests for C:/Users/gujja/aqua-orbital/.cache/seed-discovery/test/SeedProposal.t.sol:SeedProposalTest
+[PASS] testAllInteriorStillUsesTheSeparateSphereDomain() (gas: 3046364)
+[PASS] testArithmeticProposalRejectsUnderflowAndEmptyWindow() (gas: 21508)
+[PASS] testExactAndTargetedEndpointRecoverIndependentGolden() (gas: 16943748)
+[PASS] testExistingInwardMixedGoldenIsUnchanged() (gas: 4439135)
+[PASS] testFullCompositionRecoversBothEventsAndSharedLedger() (gas: 13668440)
+[PASS] testFuzzClipHasExactDirectedSheetInequalities(uint192) (runs: 257, μ: 13507, ~: 12654)
+[PASS] testOldHighIsStrictlyBelowSheetBeforeAnyRootIteration() (gas: 114420)
+[PASS] testProposedHighHasFullMembershipAndAnOrdinaryCertifiedBracket() (gas: 526315)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 127.41ms (221.00ms CPU time)
+
+Ran 1 test suite in 159.55ms (127.41ms CPU time): 8 tests passed, 0 failed, 0 skipped (8 total tests)

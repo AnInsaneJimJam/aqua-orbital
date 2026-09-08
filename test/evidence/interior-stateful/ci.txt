@@ -1,0 +1,22 @@
+No files changed, compilation skipped
+
+Ran 1 test for snapshot/packages/contracts/test/InteriorStateful.t.sol:InteriorStatefulInvariantTest
+[PASS] invariant_exactGhostAndPhysicalAccountingAfterEverySuccessfulStep() (runs: 256, calls: 32768, reverts: 0)
+
+╭-------------------------+----------+-------+---------+----------╮
+| Contract                | Selector | Calls | Reverts | Discards |
++=================================================================+
+| InteriorStatefulHandler | step     | 32768 | 0       | 0        |
+╰-------------------------+----------+-------+---------+----------╯
+
+Logs:
+  successful_swaps: 128
+  successful_quotes: 224
+  expected_failed_transfers: 32
+  router_donations: 32
+  aqua_donations: 32
+  unique_directed_pairs: 6
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 467.85s (467.83s CPU time)
+
+Ran 1 test suite in 467.88s (467.85s CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)

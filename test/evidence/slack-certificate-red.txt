@@ -1,0 +1,25 @@
+Compiling 5 files with Solc 0.8.30
+Solc 0.8.30 finished in 4.66s
+Compiler run successful!
+2026-09-08T00:10:35.628531Z  WARN evm::traces::external: etherscan config not found
+
+Ran 5 tests for test/SlackCertificate.t.sol:SlackCertificateTest
+[FAIL: assertion failed] testAllInteriorVerticalSegment() (gas: 199609)
+[PASS] testBoundaryCoordinateCanPeakBetweenValidEndpoints() (gas: 1409704)
+[FAIL: assertion failed: 0 != 5] testCheckedWideScale() (gas: 3562)
+[FAIL: assertion failed] testValidMixedBoundaryRelease() (gas: 826109)
+[FAIL: next call did not revert as expected] testWideScaleOverflow() (gas: 4341)
+Suite result: FAILED. 1 passed; 4 failed; 0 skipped; finished in 18.87ms (31.63ms CPU time)
+
+Ran 1 test suite in 48.64ms (18.87ms CPU time): 1 tests passed, 4 failed, 0 skipped (5 total tests)
+
+Failing tests:
+Encountered 4 failing tests in test/SlackCertificate.t.sol:SlackCertificateTest
+[FAIL: assertion failed] testAllInteriorVerticalSegment() (gas: 199609)
+[FAIL: assertion failed: 0 != 5] testCheckedWideScale() (gas: 3562)
+[FAIL: assertion failed] testValidMixedBoundaryRelease() (gas: 826109)
+[FAIL: next call did not revert as expected] testWideScaleOverflow() (gas: 4341)
+
+Encountered a total of 4 failing tests, 1 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 4 failed tests

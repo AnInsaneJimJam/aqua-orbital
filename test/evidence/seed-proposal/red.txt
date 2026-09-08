@@ -1,0 +1,28 @@
+Compiling 34 files with Solc 0.8.30
+Solc 0.8.30 finished in 26.60s
+Compiler run successful!
+
+Ran 8 tests for C:/Users/gujja/aqua-orbital/.cache/seed-discovery/test/SeedProposal.t.sol:SeedProposalTest
+[PASS] testAllInteriorStillUsesTheSeparateSphereDomain() (gas: 3046274)
+[FAIL: assertion failed] testArithmeticProposalRejectsUnderflowAndEmptyWindow() (gas: 3365)
+[FAIL: assertion failed: 0 != 3] testExactAndTargetedEndpointRecoverIndependentGolden() (gas: 160641)
+[PASS] testExistingInwardMixedGoldenIsUnchanged() (gas: 4438797)
+[FAIL: assertion failed: 0 != 4] testFullCompositionRecoversBothEventsAndSharedLedger() (gas: 1040819)
+[FAIL: assertion failed; counterexample: calldata=0xc7878c730000000000000000fffffffffffffffffffffffffffffffffffffffffffffffd args=[6277101735386680763835789423207666416102355444464034512893 [6.277e57]]] testFuzzClipHasExactDirectedSheetInequalities(uint192) (runs: 0, μ: 0, ~: 0)
+[PASS] testOldHighIsStrictlyBelowSheetBeforeAnyRootIteration() (gas: 114420)
+[FAIL: assertion failed] testProposedHighHasFullMembershipAndAnOrdinaryCertifiedBracket() (gas: 94959)
+Suite result: FAILED. 3 passed; 5 failed; 0 skipped; finished in 39.16ms (56.60ms CPU time)
+
+Ran 1 test suite in 50.80ms (39.16ms CPU time): 3 tests passed, 5 failed, 0 skipped (8 total tests)
+
+Failing tests:
+Encountered 5 failing tests in C:/Users/gujja/aqua-orbital/.cache/seed-discovery/test/SeedProposal.t.sol:SeedProposalTest
+[FAIL: assertion failed] testArithmeticProposalRejectsUnderflowAndEmptyWindow() (gas: 3365)
+[FAIL: assertion failed: 0 != 3] testExactAndTargetedEndpointRecoverIndependentGolden() (gas: 160641)
+[FAIL: assertion failed: 0 != 4] testFullCompositionRecoversBothEventsAndSharedLedger() (gas: 1040819)
+[FAIL: assertion failed; counterexample: calldata=0xc7878c730000000000000000fffffffffffffffffffffffffffffffffffffffffffffffd args=[6277101735386680763835789423207666416102355444464034512893 [6.277e57]]] testFuzzClipHasExactDirectedSheetInequalities(uint192) (runs: 0, μ: 0, ~: 0)
+[FAIL: assertion failed] testProposedHighHasFullMembershipAndAnOrdinaryCertifiedBracket() (gas: 94959)
+
+Encountered a total of 5 failing tests, 3 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 5 failed tests

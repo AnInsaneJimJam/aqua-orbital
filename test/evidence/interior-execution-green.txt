@@ -1,0 +1,63 @@
+Compiling 7 files with Solc 0.8.30
+Solc 0.8.30 finished in 64.43s
+Compiler run successful with warnings:
+Warning (5740): Unreachable code.
+   --> vendor/swap-vm-orbital/src/SwapVM.sol:241:9:
+    |
+241 |         _reentrancyGuards[orderHash].unlock();
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+   --> vendor/swap-vm-orbital/src/SwapVM.sol:242:9:
+    |
+242 |         emit Swapped(orderHash, order.maker, msg.sender, tokenIn, tokenOut, amountIn, amountOut);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2026-09-08T03:53:02.475059Z  WARN evm::traces::external: etherscan config not found
+
+Ran 22 tests for test/RouterLifecycle.t.sol:RouterLifecycleTest
+[PASS] testBackingDeficitStopsAllFundingCeilingsWithoutRevertingInspection() (gas: 2131128)
+[PASS] testCanonicalTakerModesAndAllTokenLiveChecksPrecedeCurveExecution() (gas: 2121560)
+[PASS] testCoherentReadGuardDoesNotHideImmutableConfiguration() (gas: 2011332)
+[PASS] testDockedAndDeficientStrategyRemainInspectable() (gas: 2065476)
+[PASS] testDonationUpToUint248AllocationUsesWideSurplusWithoutChangingGeometry() (gas: 2094276)
+[PASS] testForgedInitialAmountsAreNotAcceptedAsCurvePrincipal() (gas: 428283)
+[PASS] testFreshNonceAfterRetirementIsIndependentAndDockedHashCannotBeReshipped() (gas: 3919693)
+[PASS] testInitializationAtMinimumCapWidthAndNearMaximumLength() (gas: 4165724)
+[PASS] testInitializationAtSupportedDimensionAndTickExtremes() (gas: 41512704)
+[PASS] testInsufficientAquaAllocationAndWalletFundingRejectActivation() (gas: 3706753)
+[PASS] testInsufficientWalletAllowanceAndBalanceEachRejectOtherwiseBackedActivation() (gas: 3739916)
+[PASS] testMissingThirdAquaEntryRejectsActivation() (gas: 1960110)
+[PASS] testOneWholeTokenAnchorSurvivesDirectedInitializationRounding() (gas: 2567507)
+[PASS] testRegistrationRechecksOnchainDecimals() (gas: 336622)
+[PASS] testRetirementIsMakerOnlyAndTerminalEvenBeforeDock() (gas: 2081961)
+[PASS] testRouterFitsEIP170RuntimeLimit() (gas: 4628919)
+[PASS] testShipActivatePreservesCustodyAndStoresCertifiedEqualState() (gas: 2063227)
+[PASS] testUnknownStateRevertsAndNonceOverflowDoesNotWrap() (gas: 293760)
+[PASS] testUnrenouncedOwnerBlocksActivationWithoutConsumingNonce() (gas: 5122283)
+[PASS] testUnsupportedTraversalFailsWithoutStateMutationOrLockLeak() (gas: 2542084)
+[PASS] testWalletSpendLimitsAvailabilityWithoutResettingPrincipal() (gas: 2086937)
+[PASS] testWrongMakerNonceDomainAndCanonicalOrderRejected() (gas: 431913)
+Suite result: ok. 22 passed; 0 failed; 0 skipped; finished in 34.75ms (91.63ms CPU time)
+
+Ran 7 tests for test/FeeInstruction.t.sol:FeeInstructionTest
+[PASS] testFeeDenominatorCeilingAndZeroNet() (gas: 17230)
+[PASS] testFuzzFeeCeilingHasExactWideInequalities(uint256,uint8) (runs: 257, μ: 9407, ~: 9401)
+[PASS] testInjectedPostSettlementFailureRollsBackFeeAndTransfers() (gas: 717047)
+[PASS] testInstructionAccruesOnceOutsidePrincipal() (gas: 223764)
+[PASS] testPartialNetConsumptionAndUnconsumedArgumentsReject() (gas: 13061864)
+[PASS] testStaticQuoteRunsNetCurveAndRestoresGrossAcrossSixPairs() (gas: 437891)
+[PASS] testSurplusProtocolFeeWithZeroFeeTotalAndZeroOutputReject() (gas: 13062191)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 79.51ms (96.80ms CPU time)
+
+Ran 7 tests for test/InteriorExecution.t.sol:InteriorExecutionTest
+[PASS] testAllSixPairsMutateOneOrderAndSettleGrossNetFeeExactly() (gas: 4764428)
+[PASS] testCanonicalEventMatchesSettlementAndStaticQuoteHasNoLogs() (gas: 816063)
+[PASS] testFuzzTwoLegInteriorCycleCannotIncreaseStartingAsset(uint64,uint8) (runs: 256, μ: 1444228, ~: 1444200)
+[PASS] testProductionStaticQuotesSixPairsMatchIndependentIntegerSphere() (gas: 916614)
+[PASS] testRealCurveSwapFundsFiveDollarInvoiceWithNinetyTenSplit() (gas: 3621475)
+[PASS] testRouterAndAquaDonationsDoNotChangeQuoteOrGetSpent() (gas: 1008646)
+[PASS] testThresholdAndOutputFundingFailuresRollbackThenRecover() (gas: 1829522)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 913.73ms (938.12ms CPU time)
+
+Ran 3 test suites in 916.52ms (1.03s CPU time): 36 tests passed, 0 failed, 0 skipped (36 total tests)

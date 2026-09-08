@@ -1,0 +1,97 @@
+Compiling 33 files with Solc 0.8.30
+Solc 0.8.30 finished in 35.50s
+Compiler run successful with warnings:
+Warning (2018): Function state mutability can be restricted to pure
+  --> C:/Users/gujja/aqua-orbital/.cache/outward-retention/test/OutwardRetentionPrototype.t.sol:46:5:
+   |
+46 |     function endpoint(bool seven,bool targeted) private returns(E.Result memory r){
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+  --> C:/Users/gujja/aqua-orbital/.cache/outward-retention/test/OutwardRetentionPrototype.t.sol:78:5:
+   |
+78 |     function insufficient(bool seven) private {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+  --> C:/Users/gujja/aqua-orbital/.cache/outward-retention/test/OutwardRetentionPrototype.t.sol:87:5:
+   |
+87 |     function testReverseCertificateConsumesFinalFixedInputFrame() public {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+  --> C:/Users/gujja/aqua-orbital/.cache/outward-retention/test/OutwardRetentionPrototype.t.sol:93:5:
+   |
+93 |     function testChangedFrameCannotReusePreviousRootBounds() public {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+  --> C:/Users/gujja/aqua-orbital/.cache/outward-retention/test/OutwardRetentionPrototype.t.sol:99:5:
+   |
+99 |     function testUncertifiedHighCannotAuthorizeReverseRetention() public {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+   --> C:/Users/gujja/aqua-orbital/.cache/outward-retention/test/OutwardRetentionPrototype.t.sol:105:5:
+    |
+105 |     function testZeroBudgetResumeCanFinalizeOnlyCertifiedRetainedIdentity() public {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+2026-09-08T07:09:29.512518Z  WARN evm::traces::external: etherscan config not found
+
+Ran 14 tests for C:/Users/gujja/aqua-orbital/.cache/outward-retention/test/OutwardRetentionPrototype.t.sol:OutwardRetentionPrototypeTest
+[FAIL: assertion failed: 2 != 3] testChangedFrameCannotReusePreviousRootBounds() (gas: 2587915)
+[PASS] testDeployableLinkedRuntimeSizes() (gas: 16890)
+Logs:
+  composition_runtime_bytes: 22443
+  endpoint_runtime_bytes: 18874
+  client_runtime_bytes: 3195
+
+[FAIL: assertion failed: 2 != 3] testExactSeamEndpointCertifiesActualEqualityPrefixOnce() (gas: 2591531)
+[PASS] testMalformedMetadataCannotAcquireRetentionCertificate() (gas: 113611)
+[FAIL: assertion failed: 2 != 3] testOneLessThanSevenRetentionAllowanceCannotAuthorizePayout() (gas: 4961560)
+[FAIL: assertion failed: 2 != 3] testOneLessThanSingleRetentionAllowanceCannotAuthorizePayout() (gas: 3405885)
+[FAIL: assertion failed: 2 != 3] testReverseCertificateConsumesFinalFixedInputFrame() (gas: 2588403)
+[FAIL: assertion failed: 2 != 4] testSevenRetentionTransitionsAreAscendingAndChargedOnce() (gas: 4974353)
+Logs:
+  seven retention seams
+  cold_external_call_gas: 4704216
+  linked_body_gas: 4683751
+  first_used: 0
+  resume_used: 135
+
+[FAIL: assertion failed: 2 != 3] testSevenSeamEndpointUsesOneCombinedRawQuantum() (gas: 3010951)
+[FAIL: assertion failed: 2 != 4] testSingleRetentionTransitionHasAnExplicitAccountingPhase() (gas: 3418864)
+Logs:
+  one exact retention seam
+  cold_external_call_gas: 3321040
+  linked_body_gas: 3304945
+  first_used: 0
+  resume_used: 135
+
+[FAIL: assertion failed: 2 != 3] testTargetedSevenSeamsRetainOneRawFloor() (gas: 657137)
+[FAIL: assertion failed: 2 != 3] testTargetedSingleSeamRetainsCertifiedRootAndFinalMetadata() (gas: 287735)
+[FAIL: assertion failed: 2 != 3] testUncertifiedHighCannotAuthorizeReverseRetention() (gas: 2588202)
+[FAIL: assertion failed: 2 != 3] testZeroBudgetResumeCanFinalizeOnlyCertifiedRetainedIdentity() (gas: 651213)
+Suite result: FAILED. 2 passed; 12 failed; 0 skipped; finished in 218.27ms (402.23ms CPU time)
+
+Ran 1 test suite in 239.72ms (218.27ms CPU time): 2 tests passed, 12 failed, 0 skipped (14 total tests)
+
+Failing tests:
+Encountered 12 failing tests in C:/Users/gujja/aqua-orbital/.cache/outward-retention/test/OutwardRetentionPrototype.t.sol:OutwardRetentionPrototypeTest
+[FAIL: assertion failed: 2 != 3] testChangedFrameCannotReusePreviousRootBounds() (gas: 2587915)
+[FAIL: assertion failed: 2 != 3] testExactSeamEndpointCertifiesActualEqualityPrefixOnce() (gas: 2591531)
+[FAIL: assertion failed: 2 != 3] testOneLessThanSevenRetentionAllowanceCannotAuthorizePayout() (gas: 4961560)
+[FAIL: assertion failed: 2 != 3] testOneLessThanSingleRetentionAllowanceCannotAuthorizePayout() (gas: 3405885)
+[FAIL: assertion failed: 2 != 3] testReverseCertificateConsumesFinalFixedInputFrame() (gas: 2588403)
+[FAIL: assertion failed: 2 != 4] testSevenRetentionTransitionsAreAscendingAndChargedOnce() (gas: 4974353)
+[FAIL: assertion failed: 2 != 3] testSevenSeamEndpointUsesOneCombinedRawQuantum() (gas: 3010951)
+[FAIL: assertion failed: 2 != 4] testSingleRetentionTransitionHasAnExplicitAccountingPhase() (gas: 3418864)
+[FAIL: assertion failed: 2 != 3] testTargetedSevenSeamsRetainOneRawFloor() (gas: 657137)
+[FAIL: assertion failed: 2 != 3] testTargetedSingleSeamRetainsCertifiedRootAndFinalMetadata() (gas: 287735)
+[FAIL: assertion failed: 2 != 3] testUncertifiedHighCannotAuthorizeReverseRetention() (gas: 2588202)
+[FAIL: assertion failed: 2 != 3] testZeroBudgetResumeCanFinalizeOnlyCertifiedRetainedIdentity() (gas: 651213)
+
+Encountered a total of 12 failing tests, 2 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 12 failed tests

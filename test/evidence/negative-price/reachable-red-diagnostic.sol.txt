@@ -1,0 +1,75 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.30;
+import {Test} from "forge-std/Test.sol";
+import {FrontierComposition as C} from "../src/libraries/FrontierComposition.sol";
+import {FrontierEndpoint as E} from "../src/libraries/FrontierEndpoint.sol";
+import {OrbitalMath as M} from "../src/libraries/OrbitalMath.sol";
+import {TickGeometry as G} from "../src/libraries/TickGeometry.sol";
+import {FrontierSchedule as F} from "../src/libraries/FrontierSchedule.sol";
+import {SlackCertificate as P} from "../src/libraries/SlackCertificate.sol";
+import {FrontierEvents as V} from "../src/libraries/FrontierEvents.sol";
+
+/// @dev Independent initialized raw-token sequence, before router integration.
+/// Goldens: reference/fixtures/reachable-traversal.json, stable110/160 digits.
+contract ReachableCompositionTest is Test {
+    uint256 constant GRID=1<<32;uint256 constant U=1<<64;
+    uint256 constant INITIAL_X=5457557991956845750465862405150345463304;
+    uint256 constant FIRST_NET=349825000;uint256 constant FIRST_OUT=164721797;
+    uint256 constant SECOND_NET=499750000;uint256 constant SECOND_OUT=513016094;
+    function fixture() private pure returns(uint256[] memory x,M.Tick[] memory ticks,uint8[] memory d){
+        x=new uint256[](3);for(uint256 i;i<3;i++)x[i]=INITIAL_X;
+        ticks=new M.Tick[](3);uint64[3] memory keys=[uint64(3*GRID/2),uint64(7*GRID/4),type(uint64).max];
+        for(uint256 i;i<3;i++)ticks[i]=M.Tick(keys[i],uint192((100<<i)*1e18*U),G.coefficients(3,keys[i]));
+        d=new uint8[](3);d[0]=6;d[1]=18;d[2]=6;
+    }
+    function accepted(C.Result memory r,M.Tick[] memory ticks,uint256 expected,uint8 crosses) private pure {
+        assertEq(uint256(r.status),uint256(C.Status.FrontierPathCertified));
+        assertEq(uint256(r.endpoint.status),uint256(E.Status.EndpointCertified));assertEq(r.endpoint.amountOutRaw,expected);
+        assertTrue(M.certify(r.endpoint.reserves,ticks));assertEq(r.endpoint.actualBoundaryCount,1);
+        assertLe(r.endpoint.shortfallUpper,1e12*U);assertEq(uint256(r.refinementUsed)+r.refinementRemaining,160);
+        assertEq(r.transitions.length,crosses);assertEq(r.crossingRemaining,0);
+    }
+    function testInitializedFirstOutwardFrontierMatchesIndependentOracle() public pure {
+        (uint256[] memory x,M.Tick[] memory ticks,uint8[] memory d)=fixture();
+        C.Result memory r=C.certify(x,ticks,d,0,2,FIRST_NET,1);accepted(r,ticks,FIRST_OUT,1);
+        assertEq(r.endpoint.reserves[0],INITIAL_X+FIRST_NET*1e12*U);
+        assertEq(r.endpoint.reserves[2],INITIAL_X-FIRST_OUT*1e12*U);
+        assertEq(r.transitions[0].key,ticks[0].key);assertFalse(r.transitions[0].inward);
+        assertFalse(r.transitions[0].initialRelease);assertFalse(r.transitions[0].finalRetention);
+    }
+    function testActualFirstPaymentThenReverseBothFrontiersMatchesOracle() public pure {
+        (uint256[] memory x,M.Tick[] memory ticks,uint8[] memory d)=fixture();
+        x[0]+=FIRST_NET*1e12*U;x[2]-=FIRST_OUT*1e12*U;
+        C.Result memory r=C.certify(x,ticks,d,2,0,SECOND_NET,2);accepted(r,ticks,SECOND_OUT,2);
+        assertEq(r.endpoint.reserves[0],x[0]-SECOND_OUT*1e12*U);
+        assertEq(r.endpoint.reserves[2],x[2]+SECOND_NET*1e12*U);
+        assertEq(r.transitions[0].key,ticks[0].key);assertTrue(r.transitions[0].inward);
+        assertEq(r.transitions[1].key,ticks[0].key);assertFalse(r.transitions[1].inward);
+        for(uint256 i;i<2;i++){assertFalse(r.transitions[i].initialRelease);assertFalse(r.transitions[i].finalRetention);}
+    }
+    function testDiagnoseSecondFrameWithoutChangingAnyAcceptanceCheck() public {
+        (uint256[] memory x,M.Tick[] memory ticks,uint8[] memory d)=fixture();x[0]+=FIRST_NET*1e12*U;x[2]-=FIRST_OUT*1e12*U;
+        C.Result memory r=C.certify(x,ticks,d,2,0,SECOND_NET,2);
+        emit log_named_uint("composition_status",uint256(r.status));emit log_named_uint("initial_identified",r.initial.identified?1:0);
+        emit log_named_uint("initial_prefix",r.initial.boundaryCount);emit log_named_uint("final_identified",r.endpoint.root.identified?1:0);
+        emit log_named_uint("first_used",r.firstSolveUsed);emit log_named_uint("resume_used",r.resumeUsed);
+        for(uint8 count;count<3;count++){
+            E.Identity memory initial=E.identifyInitial(x,ticks,0,count,0);
+            emit log_named_uint("prefix",count);emit log_named_uint("initial_proposal_identified",initial.identified?1:0);
+            if(initial.identified){(bool release,uint8 crossed)=P.certifyInwardReleaseToGrid(x,ticks,0,initial.bracket.hi,count);emit log_named_uint("initial_release_valid",release?1:0);emit log_named_uint("initial_release_crossings",crossed);}
+            E.Result memory proposed=E.exactInput(x,ticks,d,2,0,SECOND_NET,count,0);
+            emit log_named_uint("final_proposal_identified",proposed.root.identified?1:0);emit log_named_uint("final_proposal_status",uint256(proposed.status));
+            emit log_named_uint("bracket_status",uint256(proposed.root.bracket.status));
+        }
+        F.Result memory schedule=F.enumerate(x,ticks,2,0,SECOND_NET*1e12*U,1,1,2);
+        emit log_named_uint("schedule_status",uint256(schedule.status));emit log_named_uint("schedule_events",schedule.events.length);
+        for(uint8 k;k<2;k++){
+            V.Roots memory events_=V.atKey(x,ticks,2,0,k);emit log_named_uint("key_index",k);emit log_named_uint("root_status",uint256(events_.status));
+            for(uint256 branch;branch<2;branch++){
+                emit log_named_uint("physical",events_.candidates[branch].physical?1:0);
+                emit log_named_int("inputLo",events_.candidates[branch].inputLo);emit log_named_int("inputHi",events_.candidates[branch].inputHi);
+                emit log_named_int("outputLo",events_.candidates[branch].outputLo);emit log_named_int("outputHi",events_.candidates[branch].outputHi);
+            }
+        }
+    }
+}

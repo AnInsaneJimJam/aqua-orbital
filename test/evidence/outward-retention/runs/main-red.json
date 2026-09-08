@@ -1,0 +1,160 @@
+{
+  "stage": "main-red",
+  "started_at": "2026-09-08T07:23:54.283559+00:00",
+  "runtime_seconds": 67.95299499999965,
+  "command": [
+    "forge",
+    "test",
+    "--threads",
+    "2",
+    "--fuzz-seed",
+    "0x20260908",
+    "--match-contract",
+    "^(OutwardRetentionTest|FrontierEndpointTest|FrontierCompositionTest)$",
+    "-vv"
+  ],
+  "returncode": 1,
+  "source_inputs": [
+    {
+      "path": "packages/contracts/src/libraries/FrontierComposition.sol",
+      "sha256": "f5d80777c61d2023c30f18b6ae0c1b31a8ccd9b00b8e699a24db2a874ab231bb"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierTurn.sol",
+      "sha256": "f1d9fc9cf528310040214af00101907ee011efd2be18f58b9394ea7843378e34"
+    },
+    {
+      "path": "packages/contracts/src/libraries/SignedWide.sol",
+      "sha256": "8142108db5cc11ddf3a33e17855c7ca4a467f22687194967c28588aef6cb4426"
+    },
+    {
+      "path": "packages/contracts/src/libraries/WideMath.sol",
+      "sha256": "61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d"
+    },
+    {
+      "path": "packages/contracts/src/libraries/TickGeometry.sol",
+      "sha256": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b"
+    },
+    {
+      "path": "packages/contracts/src/libraries/CurveEvaluation.sol",
+      "sha256": "1537bc49e14837d32279279f99a1f09f937c3a9c17e7226fd7dbceab61a864be"
+    },
+    {
+      "path": "packages/contracts/src/libraries/IntervalMath.sol",
+      "sha256": "e7ea7cd4aa5bb7a63f52b665f1311667bb52715f8a4a5ad32a4dde30bd820898"
+    },
+    {
+      "path": "packages/contracts/src/libraries/OrbitalMath.sol",
+      "sha256": "6454e86f8b8bea61506c2f5eead0df7936df8a89415597aabf76d3618acbfaeb"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierEvents.sol",
+      "sha256": "5fd37fd1cf314474a22eeda3856743d95f98da6b49d06671921f5e6c5b120721"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierSchedule.sol",
+      "sha256": "a5d10a931895e30d59ca19e91055b58f2748cba796789a5ce09fa8392ed0b506"
+    },
+    {
+      "path": "packages/contracts/src/libraries/SlackCertificate.sol",
+      "sha256": "1f4fafba1f78f98fa1ac868ed6ddaad91e40bbef5dc079ca5cdddf50f72c4e17"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierEndpoint.sol",
+      "sha256": "1eeefe41cae94ced726e0233faeafffe2a8c76d909f5cc0480d5dd21b1ab146a"
+    },
+    {
+      "path": "packages/contracts/src/libraries/RootBracket.sol",
+      "sha256": "0e19eb8cb8c7daa41a3ea4ed32c1f6751d254edf689ff140cb155a554dad529d"
+    },
+    {
+      "path": "packages/contracts/test/OutwardRetention.t.sol",
+      "sha256": "7875fabbe587e22ac9a6b41aae51e0b9857b2925b409d8baad4a564119db87e0"
+    },
+    {
+      "path": "packages/contracts/test/FrontierEndpoint.t.sol",
+      "sha256": "388d2d09b98ca6574f23f6ea47741e9e7b7fbb715c0446eda45c4a01d43a618e"
+    },
+    {
+      "path": "packages/contracts/test/FrontierComposition.t.sol",
+      "sha256": "659f8c87cd3de9e0fb0f5dc77f6b8ef361fb63104d10ae2d7b250daeccddc1f6"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/CurvePrimitiveFixtures.sol",
+      "sha256": "ef0c9b0d9ecc07af1c754a85f5459510c1e9a54fd055b3d058201816a9357d5b"
+    },
+    {
+      "path": "packages/contracts/foundry.toml",
+      "sha256": "8837e44a7819ccc323dfe5d24eb65b9a5fe4a9fc2d6c47418a88aaa94bfd4f9a"
+    },
+    {
+      "path": "packages/contracts/remappings.txt",
+      "sha256": "8e8c9650a5da34495b3b5bcee7c4d1a7cf9aee03382396a1578143008e66149d"
+    },
+    {
+      "path": "test/evidence/outward-retention/measure_main.py",
+      "sha256": "e7d6c59469cc008cd9daf337026ccf18eba770c1a51b7cc4d62f4d9ccf4d0fe0"
+    },
+    {
+      "path": "test/evidence/outward-retention/promote_main.py",
+      "sha256": "d8da7be8f563c5f222d5ab52d23471cf1a75fb4783be05de9731b96ea1b969a9"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "FrontierComposition",
+      "runtime_bytes": 22443,
+      "sha256": "e665bb14748129309a9b9b8b9aaf6d84e9fc830e30d13870855c7e1b34b15718",
+      "path": "packages/contracts/out/FrontierComposition.sol/FrontierComposition.json",
+      "links": {
+        "src/libraries/FrontierEndpoint.sol": {
+          "FrontierEndpoint": [
+            {
+              "start": 3617,
+              "length": 20
+            },
+            {
+              "start": 3921,
+              "length": 20
+            },
+            {
+              "start": 4760,
+              "length": 20
+            },
+            {
+              "start": 5354,
+              "length": 20
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "FrontierEndpoint",
+      "runtime_bytes": 18874,
+      "sha256": "1feb8136ad791252ab4bd3f562956c67f8647bdcc30b1d7622b058d3784c070e",
+      "path": "packages/contracts/out/FrontierEndpoint.sol/FrontierEndpoint.json",
+      "links": {}
+    },
+    {
+      "name": "RetentionTestClient",
+      "runtime_bytes": 3195,
+      "sha256": "01136086346066da46520074e120e81d5b16fb5ef54934223404db59f08efabf",
+      "path": "packages/contracts/out/OutwardRetention.t.sol/RetentionTestClient.json",
+      "links": {
+        "src/libraries/FrontierComposition.sol": {
+          "FrontierComposition": [
+            {
+              "start": 711,
+              "length": 20
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "stdout_sha256": "9d6d891da2d4dea1b18712b9ccfa29b1b1a63e795d5ba8f82e893c2390271cc9",
+  "environment_overrides": {},
+  "scope": "Named pure-math and linked-consumer promotion; no mixed Storage/router activation or full transaction gas acceptance.",
+  "artifact_scope_note": "Only artifacts compiled by the three RED suites are retained; unrelated pre-existing consumer artifacts are excluded."
+}

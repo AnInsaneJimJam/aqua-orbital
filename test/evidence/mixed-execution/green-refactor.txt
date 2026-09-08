@@ -1,0 +1,134 @@
+Compiling 13 files with Solc 0.8.30
+Solc 0.8.30 finished in 181.29s
+Compiler run successful with warnings:
+Warning (5740): Unreachable code.
+   --> vendor/swap-vm-orbital/src/SwapVM.sol:241:9:
+    |
+241 |         _reentrancyGuards[orderHash].unlock();
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+   --> vendor/swap-vm-orbital/src/SwapVM.sol:242:9:
+    |
+242 |         emit Swapped(orderHash, order.maker, msg.sender, tokenIn, tokenOut, amountIn, amountOut);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2026-09-08T08:24:17.716840Z  WARN evm::traces::external: etherscan config not found
+
+Ran 2 tests for test/LocalUSDC.t.sol:LocalUSDCTest
+[PASS] testFixtureCannotDeployOnArcEvenThoughDemoTokenCan() (gas: 81742)
+[PASS] testLocalFixtureHasExplicitIdentityAndCallerOnlyBoundedFaucet() (gas: 535819)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 16.61ms (5.90ms CPU time)
+
+Ran 7 tests for test/FeeInstruction.t.sol:FeeInstructionTest
+[PASS] testFeeDenominatorCeilingAndZeroNet() (gas: 17209)
+[PASS] testFuzzFeeCeilingHasExactWideInequalities(uint256,uint8) (runs: 257, μ: 9406, ~: 9398)
+[PASS] testInjectedPostSettlementFailureRollsBackFeeAndTransfers() (gas: 716939)
+[PASS] testInstructionAccruesOnceOutsidePrincipal() (gas: 223656)
+[PASS] testPartialNetConsumptionAndUnconsumedArgumentsReject() (gas: 13061848)
+[PASS] testStaticQuoteRunsNetCurveAndRestoresGrossAcrossSixPairs() (gas: 437879)
+[PASS] testSurplusProtocolFeeWithZeroFeeTotalAndZeroOutputReject() (gas: 13062175)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 80.65ms (82.40ms CPU time)
+
+Ran 6 tests for test/MixedExecution.t.sol:MixedExecutionTest
+[PASS] testCompleteMixedSwapGasAndLinkedRuntimeSizes() (gas: 10266997)
+Logs:
+  first_complete_external_swap_gas: 5166603
+  second_complete_external_swap_gas: 5803279
+  runtime_bytes: 22221
+  runtime_bytes: 23240
+  runtime_bytes: 6658
+  runtime_bytes: 23138
+  runtime_bytes: 22458
+
+[PASS] testCrossingBudgetFailureRollsBackThenRecovers() (gas: 14756953)
+[PASS] testCrossingRecordsCannotLeakBetweenMakersOrInteriorFills() (gas: 13066163)
+[PASS] testInitializedOutwardThenActualReverseSettleIndependentRawOutputs() (gas: 10308155)
+[PASS] testPostTransferSettlementFailureRollsBackFeesPrincipalAndEventsThenRecovers() (gas: 10019791)
+[PASS] testStaticMixedQuotesDoNotWriteStateOrEmitCrossings() (gas: 14148675)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 466.51ms (459.01ms CPU time)
+
+Ran 22 tests for test/RouterLifecycle.t.sol:RouterLifecycleTest
+[PASS] testBackingDeficitStopsAllFundingCeilingsWithoutRevertingInspection() (gas: 2131147)
+[PASS] testCanonicalTakerModesAndAllTokenLiveChecksPrecedeCurveExecution() (gas: 2121557)
+[PASS] testCoherentReadGuardDoesNotHideImmutableConfiguration() (gas: 2011326)
+[PASS] testDockedAndDeficientStrategyRemainInspectable() (gas: 2065494)
+[PASS] testDonationUpToUint248AllocationUsesWideSurplusWithoutChangingGeometry() (gas: 2094294)
+[PASS] testForgedInitialAmountsAreNotAcceptedAsCurvePrincipal() (gas: 428277)
+[PASS] testFreshNonceAfterRetirementIsIndependentAndDockedHashCannotBeReshipped() (gas: 3919681)
+[PASS] testInitializationAtMinimumCapWidthAndNearMaximumLength() (gas: 4165712)
+[PASS] testInitializationAtSupportedDimensionAndTickExtremes() (gas: 41752387)
+[PASS] testInsufficientAquaAllocationAndWalletFundingRejectActivation() (gas: 3706741)
+[PASS] testInsufficientWalletAllowanceAndBalanceEachRejectOtherwiseBackedActivation() (gas: 3739904)
+[PASS] testMissingThirdAquaEntryRejectsActivation() (gas: 1960104)
+[PASS] testOneWholeTokenAnchorSurvivesDirectedInitializationRounding() (gas: 2567495)
+[PASS] testRegistrationRechecksOnchainDecimals() (gas: 336616)
+[PASS] testRetirementIsMakerOnlyAndTerminalEvenBeforeDock() (gas: 2081949)
+[PASS] testRouterFitsEIP170RuntimeLimit() (gas: 4689508)
+[PASS] testShipActivatePreservesCustodyAndStoresCertifiedEqualState() (gas: 2063221)
+[PASS] testUnknownStateRevertsAndNonceOverflowDoesNotWrap() (gas: 293754)
+[PASS] testUnrenouncedOwnerBlocksActivationWithoutConsumingNonce() (gas: 5182266)
+[FAIL: Error != expected error: InvalidCurveCertificate(0) != RequiresTraversal()] testUnsupportedTraversalFailsWithoutStateMutationOrLockLeak() (gas: 3490451)
+[PASS] testWalletSpendLimitsAvailabilityWithoutResettingPrincipal() (gas: 2086955)
+[PASS] testWrongMakerNonceDomainAndCanonicalOrderRejected() (gas: 431889)
+Suite result: FAILED. 21 passed; 1 failed; 0 skipped; finished in 128.43ms (124.15ms CPU time)
+
+Ran 12 tests for test/Settlement.t.sol:SettlementTest
+[PASS] testAliasedTakerRecipientAndPreexistingDonationsRemainExact() (gas: 596632)
+[PASS] testCleanupMutationAndLyingApprovalRejectAtomically() (gas: 1210884)
+[PASS] testCrossTokenRoleMutationsAndRouterDonationReject() (gas: 1776768)
+[PASS] testDecimalsMutationOnUntouchedTokenRejects() (gas: 628290)
+[PASS] testFeeOnTransferAndOvercreditAndExtraSenderDebitReject() (gas: 1738741)
+[PASS] testLogicalAquaDeltasAndUntouchedTokenBackingAreChecked() (gas: 1795278)
+[PASS] testOfficialAquaExactDeltasAllSixPairsAndDistinctRecipient() (gas: 2552177)
+[PASS] testRouterDonationCannotSubsidizeTaxedInput() (gas: 629680)
+[PASS] testSecondCleanupCannotReintroduceFirstTokenApproval() (gas: 751562)
+[PASS] testSnapshotIdentityAmountsAndNestedBeginReject() (gas: 487505)
+[PASS] testSnapshotRequiresGuardAndValidNondegenerateRoles() (gas: 351862)
+[PASS] testUnconsumedAllowanceClearedUnderGuardBeforeFinalReads() (gas: 574005)
+Suite result: ok. 12 passed; 0 failed; 0 skipped; finished in 24.50ms (21.28ms CPU time)
+
+Ran 4 tests for test/InteriorProbe.t.sol:InteriorProbeTest
+[PASS] testCertifiedMixedStartDefersToTraversal() (gas: 152012)
+[PASS] testEndCapDefersWithoutAuthorizingSphereOutput() (gas: 114981)
+[PASS] testProbePreservesInvalidInputMetadataAndStartErrors() (gas: 142304)
+[PASS] testStrictInteriorProbeMatchesLegacyResultExactly() (gas: 186783)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 7.56ms (5.33ms CPU time)
+
+Ran 15 tests for test/InteriorSwap.t.sol:InteriorSwapTest
+[PASS] testActualSlackReleaseRemainsPartOfExactInputOutput() (gas: 163741)
+[PASS] testAllSixPairsThreeTicksMatchIndependentSupportOracle() (gas: 556595)
+[PASS] testCoarseOutputCanRemainInsideThroughoutRemainingInput() (gas: 87758)
+[PASS] testCrossingRequiresTraversalBeforeAnyEndpointInterpretation() (gas: 127586)
+[PASS] testFuzzWholeTokenInputsBindScalesAndPreserveSquareCertificate(uint32,uint8,uint8) (runs: 256, μ: 88532, ~: 89326)
+[PASS] testInputNormalCanTerminateAtZero() (gas: 63384)
+[PASS] testMaximumRadiusEightTokensAndMixedRawCapacity() (gas: 128432)
+[PASS] testRejectInputTooSmallToPayOneOutputQuantum() (gas: 126029)
+[PASS] testRejectMetadataAndPairMismatches() (gas: 134018)
+[PASS] testRejectZeroAndOversizedInputBeforeRawConversionOverflow() (gas: 144204)
+[PASS] testRoundingOntoFirstKeyRequiresTraversal() (gas: 148334)
+[PASS] testTokenDecimalsZeroAndEighteenBindInputAndOutputExactly() (gas: 161075)
+[PASS] testUncertifiedStartIsNotMisreportedAsTraversalOrGlobalExclusion() (gas: 190646)
+[PASS] testValidBoundaryStartRequiresTraversalIncludingEquality() (gas: 239564)
+[PASS] testZeroInitialOutputNormalHasContinuousPositiveInputDeparture() (gas: 62400)
+Suite result: ok. 15 passed; 0 failed; 0 skipped; finished in 253.40ms (261.16ms CPU time)
+
+Ran 7 tests for test/InteriorExecution.t.sol:InteriorExecutionTest
+[PASS] testAllSixPairsMutateOneOrderAndSettleGrossNetFeeExactly() (gas: 4998979)
+[PASS] testCanonicalEventMatchesSettlementAndStaticQuoteHasNoLogs() (gas: 863164)
+[PASS] testFuzzTwoLegInteriorCycleCannotIncreaseStartingAsset(uint64,uint8) (runs: 256, μ: 1528772, ~: 1528728)
+[PASS] testProductionStaticQuotesSixPairsMatchIndependentIntegerSphere() (gas: 922496)
+[PASS] testRealCurveSwapFundsFiveDollarInvoiceWithNinetyTenSplit() (gas: 3639904)
+[PASS] testRouterAndAquaDonationsDoNotChangeQuoteOrGetSpent() (gas: 1056264)
+[PASS] testThresholdAndOutputFundingFailuresRollbackThenRecover() (gas: 1893241)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 1.52s (1.53s CPU time)
+
+Ran 8 test suites in 1.62s (2.50s CPU time): 74 tests passed, 1 failed, 0 skipped (75 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/RouterLifecycle.t.sol:RouterLifecycleTest
+[FAIL: Error != expected error: InvalidCurveCertificate(0) != RequiresTraversal()] testUnsupportedTraversalFailsWithoutStateMutationOrLockLeak() (gas: 3490451)
+
+Encountered a total of 1 failing tests, 74 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 1 failed test

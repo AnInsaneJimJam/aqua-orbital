@@ -1,0 +1,498 @@
+{
+  "schema_version": 1,
+  "claim_id": "FROZEN-INTERIOR-STATEFUL-256x128",
+  "repository": {
+    "commit": "b57da2863578e8e6540cafed0e566b9425cd8e30",
+    "dirty": true
+  },
+  "command": "python test/evidence/interior-stateful/run.py ci",
+  "environment": {
+    "software": [
+      "forge Version: 1.5.1-stable\nCommit SHA: b0a9dd9ceda36f63e2326ce530c10e6916f4b8a2\nBuild Timestamp: 2025-12-22T11:40:33.870895500Z (1766403633)\nBuild Profile: maxperf",
+      "0.8.30+commit.73712a01",
+      "Windows / PowerShell / Python runner; Cancun EVM, optimizer700, viaIR"
+    ],
+    "hardware": "AMD Ryzen 5 7520U, 4 physical / 8 logical cores; concurrent work, not a performance benchmark"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact ghost principal/fee/version/Aqua and physical conservation, inert surplus, read-only quotes, expected-error rollback and recovery, and retirement/docking across non-vacuous all-interior histories.",
+    "coefficient_domain": "Exact Solidity uint256 and existing Uint512 arithmetic; normalized lengths 10^(18-decimals)*2^64 per raw token unit.",
+    "conventions": "One actual initialized three-token state; two6-decimal tokens and one18-decimal token sorted by deployed address; ticks1.5GRID/1.75GRID/sentinel; radii100/200/400 whole; fee500ppm; canonical principal excludes fees and donations.",
+    "inputs": [
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IDaiLikePermit.sol",
+        "sha256": "7c336080d80be1974edfd7231ff8b351c75f13138067f746fdbdd974c94daa2d"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IERC20MetadataUppercase.sol",
+        "sha256": "2ef62a595c16158eb5e64c68d25bd337af71b20573a08618c0c982501a750b75"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IERC7597Permit.sol",
+        "sha256": "fbe2dee29e3fceb47bcd14dc11fa95241369af50b1eb10dd95bb7b2e9bd141f2"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IPermit2.sol",
+        "sha256": "03b403705bdb238185e08116b71d1a06867d77deb5a0f161930397cfd543e9d2"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IRescuable.sol",
+        "sha256": "50e9a2049e16efdd02cd503c0a377209390a4e4b72e78498d826476baa224857"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IWETH.sol",
+        "sha256": "25b83e872fb88d3b36a6e846ab8751bdd32c66cd6c932a40e83344ecb3f0eec3"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/Calldata.sol",
+        "sha256": "d27e185b038d2f1300e8f49cefe2e6567eccb11d0a94e7aad1e5e7fb9aaaa2d2"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/CalldataPtr.sol",
+        "sha256": "515eb8f6f7c97b19a569e6e59be5a22e37169386b02c218cf1435bcbdeade059"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/ECDSA.sol",
+        "sha256": "fa7d47792dccc11e5297d7b31827668171b18310b23657acd247d153358df4da"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/RevertReasonForwarder.sol",
+        "sha256": "45f5d2490e8936a782ce873a706f7c52432078686a5f63f4f6c1419893809fb0"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/SafeERC20.sol",
+        "sha256": "83d7d06a2c188a29623a0479fad6683804e076d9c9503ae3298942db05b62e66"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/StringUtil.sol",
+        "sha256": "9ea99cb0a134bfabe707ba75a1364903fc29e978ae8ae7e9b60212f135521166"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/Transient.sol",
+        "sha256": "ec4be2bf53eeaa071223d6052abc2343e69eacdefda281566c4c99178ae1f4eb"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/TransientLock.sol",
+        "sha256": "f0164f9d0ed253359e16583c051b556f4f76b354bbd1cc6640627056d9c0fea7"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/TransientLockUnsafe.sol",
+        "sha256": "51ea363db19ebe2d690be7260c34f5c779bc47f578d192e9cde59fa93fefe0f7"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/TransientUnsafe.sol",
+        "sha256": "728be58acbf81a06821450cf9c397a6cd1006ad6c68ca93affec0492c866a648"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/UniERC20.sol",
+        "sha256": "cfff6c9e845aaed113e460fa13750a6a80d250e074b3610c6f552f1b288ceedd"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/mixins/EthReceiver.sol",
+        "sha256": "dd3e08bcd67a9b7458058a9008e0d555d9e5970ff46e5533efe1fa6bb4346051"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/mixins/OnlyWethReceiver.sol",
+        "sha256": "983c1d3263bc6d2432239a4d733ab310a9371bfda8affc8c29149b4bbe072b5b"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/mixins/Rescuable.sol",
+        "sha256": "d60b364abeed6be39c628ab9e3579ceb4a8a405b0165b6f68355cd5164335a6c"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/access/Ownable.sol",
+        "sha256": "38578bd71c0a909840e67202db527cc6b4e6b437e0f39f0c909da32c1e30cb81"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+        "sha256": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC1271.sol",
+        "sha256": "2d17bba201aa2f9c55e317315b872272a60361848dfceb6b1e77081265c79a27"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol",
+        "sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC165.sol",
+        "sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC20.sol",
+        "sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+        "sha256": "f89772d2d4fafcbef8b73bb10ee9a3373edec2eedb2f1b302320915b351dc3d1"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "sha256": "9f906af4cba6e7e091dc12d45e6687e1239cf82d17678198424250fd64ab96bd"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+        "sha256": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol",
+        "sha256": "e3e2cd98b7a5b9cba47c4ccec3685fdaf838a00e5d6f188b289907f9a6d0b58f"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+        "sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/Context.sol",
+        "sha256": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
+        "sha256": "c20e0789a53610b2551058e0bd556dcd2caa20a7457348c3c73df037fba88861"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol",
+        "sha256": "936a89f512d5da84b0896b66d2398f2bea9eefdf2afa788af5265fcd74302693"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+        "sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+        "sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+        "sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
+        "sha256": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/Panic.sol",
+        "sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
+        "sha256": "542d5dfe5e4375d83f2e3b5246b2d0d7507406a4b582844dbc73bd31ed2faa83"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
+        "sha256": "75704538dcb223239280c6726d9a31cf769a7816718517c997fc7d63bdb70778"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/Strings.sol",
+        "sha256": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/src/interfaces/IOrbitalLifecycle.sol",
+        "sha256": "e00b423829a861235d2464258ef8aa9fb5d8396b404e7167ed6dad25e9c2fc48"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/src/interfaces/IOrbitalRouter.sol",
+        "sha256": "74427f23e2643d1bbabc12b0ecba598153e90a7aa12a24cfc7cdbdf646f1c73f"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/src/libraries/InteriorSwap.sol",
+        "sha256": "ae67c603da75372f8ba9e520b8880594ac22518741ca5ceca25c2c864b799d0f"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/src/libraries/OrbitalMath.sol",
+        "sha256": "6454e86f8b8bea61506c2f5eead0df7936df8a89415597aabf76d3618acbfaeb"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/src/libraries/OrbitalOrderCodec.sol",
+        "sha256": "f802e2cd7361c1353c0fa17e98a32454707ceb993274572bb35240b75509e717"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/src/libraries/OrbitalSettlement.sol",
+        "sha256": "ec74cc5714beb38330f02d61bec16791cb9b9f97853a21cd43d091df0811673a"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/src/libraries/OrbitalStorage.sol",
+        "sha256": "f1dd8395f9587070e6506ac8410b7bfde5295d4d88c602deff601fc564a48308"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/src/libraries/SphereStep.sol",
+        "sha256": "fc913149d1c166afd5c15a3a9be37f05a026b1bb5d2fa2573ed867bb9e4f1de6"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/src/libraries/StrategyInitializer.sol",
+        "sha256": "8c6d4566ce4c7c1bcea85714afa1c33997fd72adc3a099a376bed2db266ed8b0"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/src/libraries/TickGeometry.sol",
+        "sha256": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/src/libraries/WideMath.sol",
+        "sha256": "61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/src/OrbitalSwapVMRouter.sol",
+        "sha256": "36bbb10a4696b8097f33e61803129830fad2bab7ec312c27c014b6fa500b688d"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/test/InteriorStateful.t.sol",
+        "sha256": "8a565158b8af8514b640b8439c60f2525b3dfa381753f6b36355cddf21196027"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/aqua/src/Aqua.sol",
+        "sha256": "de94a67c58f7b8b9e95c03f6a9c2acbacf525b5f43f8255111a83a0f5156b68c"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/aqua/src/interfaces/IAqua.sol",
+        "sha256": "915cbe38c77b46c3927143693a1a1b8ca0f32f75dc34cd5c18526a8103e94fd9"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/aqua/src/libs/Balance.sol",
+        "sha256": "b0a33ae9b8864f874b2fac31d8197c2edd5fbb8022b77491c3243fc7949225ce"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/Base.sol",
+        "sha256": "fc32a987e0555c69c646d995981acbcc57d5cd0173a364d37b9f79e3aa00ff0e"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/console.sol",
+        "sha256": "896c5a5a5c235cb11a39876d430e1fc2c621e7950c4637ca58251b84b053f178"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/console2.sol",
+        "sha256": "3bbe2e07ec53d8cf9c091667fe10234fcb3e2b45eab2c711002188806f46e779"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/interfaces/IMulticall3.sol",
+        "sha256": "6620d9c5ea2e2291440e1dcce5072f948b7ec4d65075876a0d0ac9267d3342e3"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/safeconsole.sol",
+        "sha256": "ed11aa2efc83fa8e575215a11dd7a9be385cf49dacbc379630168d7334899e46"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/StdAssertions.sol",
+        "sha256": "dcb4e4fe9fdd74f3f04e6f3b46d4d42375ea1f63ca9488902b4b0c289ada0295"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/StdChains.sol",
+        "sha256": "a2cb4497c4ee5a2ba0ada8b816ea3bb1c9ba62303b70955dc0a2d99b3f98d326"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/StdCheats.sol",
+        "sha256": "29af42f9d670fd22e9fc3ebe3c2da194471e93e210361c41d3d26ef04e9dca28"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/StdConstants.sol",
+        "sha256": "6c785abd2fb9d42560f867d8e43e729c55f5bda2c06e5ddae27b17e301de4f04"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/StdError.sol",
+        "sha256": "82ca17e33a03775e95b4612bd604a8732c73b2982a0278d214e06c68a886dc11"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/StdInvariant.sol",
+        "sha256": "f572e991cfe874844b3b75a540e38e2161c29b5d9ab1635a3c4f1a16c548f987"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/StdJson.sol",
+        "sha256": "0211b47e93dbeb6a7de6112470a77137038ed73b79b015847f013e49fcd7511f"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/StdMath.sol",
+        "sha256": "f04fc0616741563eb32d66c11af7fdca55a7202221e14282268c7be851fc63ab"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/StdStorage.sol",
+        "sha256": "829b263a1fe1a6637fee1a2129ef3cbc716f6020ed56637c8a5be7277ef812ce"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/StdStyle.sol",
+        "sha256": "324c2b0e100e88edbdb75f60f8a4c42f056f8d618ae5f56b1c404df64e8280a7"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/StdToml.sol",
+        "sha256": "de3fb35af79a1fd2a2de9bc4ca7866e4102f9d3fbf11f66f3fe82696412d47e2"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/StdUtils.sol",
+        "sha256": "812afd6b5b43b1db9a3da817425b7a789149d7b8baf0670520a2224812799706"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/Test.sol",
+        "sha256": "b1b48a4dfbd65fed186163326dc8870316679f64a195aa18050f83657d2df39c"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/forge-std/src/Vm.sol",
+        "sha256": "c44d7bc0c4c4e47df60ee863291632df7947cb58d5395b3a02a4e93d029c6f06"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/swap-vm-orbital/src/interfaces/IMakerHooks.sol",
+        "sha256": "a60fc7993839fe88db5e81ef3b6d447b8fc0641a638e14f618d7e5166b5f9c6e"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/swap-vm-orbital/src/interfaces/ISwapVM.sol",
+        "sha256": "3739663b65fa61213dfe5867944cc4a120b0d4899fbbbb4c884001b12821bf46"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/swap-vm-orbital/src/interfaces/ITakerCallbacks.sol",
+        "sha256": "1a0577f50221291d8eef3a35a6451b0934a42086433c70fa2b841add2496c561"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/swap-vm-orbital/src/libs/InstructionArgs.sol",
+        "sha256": "035ef4162a56291cfbb265264b0b4bf8f42c8d7d1ae73fe07aa673b5f104b24f"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/swap-vm-orbital/src/libs/MakerTraits.sol",
+        "sha256": "d8fc0d15046c497cf9d53785a052c992abe03960e7cb02ca6ec7f3e609a67ec2"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/swap-vm-orbital/src/libs/ProtocolFee.sol",
+        "sha256": "9bf03ea167b4b1c5c8252d040300efd028f4ad3c0e2c50a2ba79f1a21ebd0069"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/swap-vm-orbital/src/libs/TakerTraits.sol",
+        "sha256": "197e6d9a35546dc8b2f63998fe4adb16c86f88ce84baad3ac91ca97b8079a525"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/swap-vm-orbital/src/libs/VM.sol",
+        "sha256": "31707c8697667ef9f09c7346dafcd07d469a454889930ed97b5fef318ee94622"
+      },
+      {
+        "path": ".cache/interior-stateful/snapshot/packages/contracts/vendor/swap-vm-orbital/src/SwapVM.sol",
+        "sha256": "56ad0b028912653eb0742c89184b99899396e81912f2e088b220a29fe1f932dc"
+      },
+      {
+        "path": "test/evidence/interior-stateful/run.py",
+        "sha256": "1228c2adeb6eaf714c3cc7fd87ade342b010d0b644f4f77c3e5d5b362add8948"
+      },
+      {
+        "path": "test/evidence/interior-stateful/source-pins.json",
+        "sha256": "c8e3aba9fb20c20587fbb2cf0f4a3c44b4c43c0bd2189d11cae1c097d618315c"
+      },
+      {
+        "path": "test/evidence/interior-stateful/source-snapshot.tar.gz",
+        "sha256": "9c9ca123355806277b817c567a0ded4af4bf9c35cb9be2adfa8a276f4f9c0ad7"
+      },
+      {
+        "path": ".cache/interior-stateful/foundry.toml",
+        "sha256": "6d2447b6def6f32a09001146340d1ea8b06843876fdc980c6f30925c8c18f779"
+      },
+      {
+        "path": "packages/contracts/test/InteriorStateful.t.sol",
+        "sha256": "8a565158b8af8514b640b8439c60f2525b3dfa381753f6b36355cddf21196027"
+      }
+    ],
+    "bounds": {
+      "runs": 256,
+      "depth": 128,
+      "handler_calls": 32768,
+      "handler_reverts": 0,
+      "discards": 0,
+      "maximum_supported_handler_steps": 256,
+      "gross_whole_interval": [
+        "0.001",
+        "0.01"
+      ],
+      "donation_whole_interval": [
+        "0.000001",
+        "1"
+      ],
+      "coordinate_bootstrap_whole": [
+        288,
+        300
+      ],
+      "radial_slack_max_whole": "0.000001",
+      "deadline_seconds": 1800,
+      "threads": 2
+    },
+    "non_claims": [
+      "No mixed traversal or post-integration Router validation.",
+      "No exhaustive uint32/uint8 input coverage or universal theorem.",
+      "No G8/full multi-maker/shared-strategy/invoice/release campaign.",
+      "No Arc deployment, gas budget, live receipt, or signer claim.",
+      "Initializer fixture coefficients and wide products use production libraries; independent math oracles are separate."
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "Foundry1.5.1 invariant fuzzer; retained effective config and command",
+    "seed": "0x20260908"
+  },
+  "run": {
+    "started_at": "2026-09-08T07:42:13.381356+00:00",
+    "runtime_seconds": 470.84634800005006,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "test/evidence/interior-stateful/ci.txt",
+      "sha256": "0823400fa639f022600ea0256c714ad437fe8f67284f5de2e20e23ff5aeaaebb"
+    },
+    {
+      "path": "test/evidence/interior-stateful/ci.json",
+      "sha256": "418f51af7220548a55522270965bb4bd4b76dad830b70ab7ae9955d579095fec"
+    },
+    {
+      "path": "test/evidence/interior-stateful/ci-config.json",
+      "sha256": "c333c8bc4c94cf5404564c9b4f45af5f211c8852631c3e59d2383cdeb17750d5"
+    },
+    {
+      "path": "test/evidence/interior-stateful/pilot.txt",
+      "sha256": "37c9b825bc6e6f7584f9f260c4ae7f30fc35092264996c588d9d45b1e7d55660"
+    },
+    {
+      "path": "test/evidence/interior-stateful/pilot.json",
+      "sha256": "8577156d96629eeb1bedffa1e0d5706d2fdafcd8eb51b0cb49d7d01d36c83a26"
+    },
+    {
+      "path": "test/evidence/interior-stateful/smoke.txt",
+      "sha256": "4841d6976c374a0ed860fd7f6dd3582d631fc83df66190f143616f23701d29c6"
+    },
+    {
+      "path": "test/evidence/interior-stateful/smoke.json",
+      "sha256": "092b726f1e1f07c56eb1cc69c6efa3a0d49b46dc2cb183ce35847b31b3c1ffe9"
+    },
+    {
+      "path": "test/evidence/interior-stateful/source-pins.json",
+      "sha256": "c8e3aba9fb20c20587fbb2cf0f4a3c44b4c43c0bd2189d11cae1c097d618315c"
+    },
+    {
+      "path": "test/evidence/interior-stateful/source-snapshot.tar.gz",
+      "sha256": "9c9ca123355806277b817c567a0ded4af4bf9c35cb9be2adfa8a276f4f9c0ad7"
+    },
+    {
+      "path": "test/evidence/interior-stateful/make_manifest.py",
+      "sha256": "634f9cede3feac826551cfde30785cfe57bbae91c388eb535ff67a59a4f80ed0"
+    }
+  ],
+  "checks": [
+    "All87 copied Solidity inputs and runner/archive/config/test unchanged during run.",
+    "One successful real swap per handler call, allsix pairs per run, no discarded actions.",
+    "Every fourth action expects the exact SafeTransferFromFailed wrapper and proves full financial rollback then recovery.",
+    "One canonical execution event per successful swap; no recordLogs-as-receipt claim.",
+    "End-of-run hook retires and docks the maker-owned allocation without token withdrawal.",
+    "Exact sphere bounds and finite drift induction keep every tested endpoint strictly all-interior."
+  ],
+  "result": "Implementation and finite assertion verified on the frozen source graph in the stated seeded range; conditional on Foundry execution semantics and shared wide arithmetic.",
+  "derived_operation_counts": {
+    "successful_swaps": 32768,
+    "successful_quotes": 57344,
+    "expected_failed_transfer_attempts": 8192,
+    "router_donations": 8192,
+    "aqua_pushes": 8192,
+    "retire_and_dock_sequences": 256,
+    "basis": "reported runs/calls and deterministic handler cycles; these are executions, not independent test definitions"
+  },
+  "residual_risks": [
+    "One seeded finite randomized family with deliberately ample balances/allowances.",
+    "Expected failed-transfer mode covers three directed pairs, not the full pair/mode Cartesian product.",
+    "Frozen source-unit names differ from the main build; bytecode/deployment identity is not inferred.",
+    "Main graph may advance after this historical all-interior snapshot."
+  ]
+}

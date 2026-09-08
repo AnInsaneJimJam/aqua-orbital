@@ -2,7 +2,7 @@
   "schema_version": 1,
   "claim_id": "orbital-reference-bounded-regressions-v1",
   "repository": {
-    "commit": "658a68d06c190bdf6bcaadf8aefbcb219238ff5f",
+    "commit": "b57da2863578e8e6540cafed0e566b9425cd8e30",
     "dirty": true
   },
   "command": "python scripts/audit-reference.py (runs python -m unittest discover -s packages/reference/tests -v)",
@@ -14,29 +14,245 @@
     "hardware": "Windows AMD64 AMD64 Family 23 Model 160 Stepping 0, AuthenticAMD"
   },
   "mathematics": {
-    "assertion_tested": "Explicit per-tick primal/dual feasibility on the named fixtures; analytic sphere/cap benchmarks; both global crossing roots; precision stability; retained failures of unconditional rounding/path simplifications.",
-    "coefficient_domain": "mpmath arbitrary-precision real numerical arithmetic, generally 110 digits; selected checks repeated at 160 digits",
+    "assertion_tested": "Explicit per-tick primal/dual feasibility on named fixtures; analytic sphere/cap/initialization benchmarks; both crossing roots, bounded crossing schedules, GRID inward releases and fixed-frontier paths; scalar/support certificates; identified fixed-input endpoint raw-output/shortfall goldens; precision stability; retained failures of unconditional rounding/path simplifications.",
+    "coefficient_domain": "mpmath arbitrary-precision real numerical arithmetic, generally 110 digits; selected checks repeated at 160 digits; Fraction/isqrt exact rational zero-price witnesses",
     "conventions": "MATH reserve-sum keys b, normalized real radii; output price normalized to one for dual solve; positive output is received amount.",
     "inputs": [
       {
+        "path": "packages/reference/fixtures_curve_primitives.py",
+        "sha256": "a07127b6a82a935a60496ba5926fdccbbc91722447e4e86f957c3005d92894a2"
+      },
+      {
+        "path": "packages/reference/fixtures_execution.py",
+        "sha256": "e2734f7c2f21b0babdba6e5cfb951c4fca11b4ca6c83107d9895fe77e5dbe0e4"
+      },
+      {
+        "path": "packages/reference/fixtures_frontier_composition.py",
+        "sha256": "4a6a936d157e806391319036e0c9ce0ff8055c83c0a882b9fb7eee0c1cf7d4cf"
+      },
+      {
+        "path": "packages/reference/fixtures_frontier_endpoint.py",
+        "sha256": "e0ad4a43e00f70b94a79dd24638c63f4eec29bec9f405754355f970cd9217e55"
+      },
+      {
+        "path": "packages/reference/fixtures_frontier_schedule.py",
+        "sha256": "7897190646b2133663255b1c49c30ae77a0aa9bcd07f2b6731eaf3ea63b4fc27"
+      },
+      {
+        "path": "packages/reference/fixtures_frontier_turn.py",
+        "sha256": "543eb49564639b281f0d4829c809d6de7347e30355a809bb922a65ccc527f2d9"
+      },
+      {
+        "path": "packages/reference/fixtures_initializer.py",
+        "sha256": "1254b59923724aaa222981afc681486833189be0e43a29181242e8c0a4f59e95"
+      },
+      {
+        "path": "packages/reference/fixtures_interior_swap.py",
+        "sha256": "984b7ba430e5b4ca6cbcc75396c4e7701904544c4f1dffde49d2515884fe8f70"
+      },
+      {
+        "path": "packages/reference/fixtures_negative_price.py",
+        "sha256": "6ef06af21c255edcfd4b0104c1d3bf7ce96bda14303e86e5df7f420242baa883"
+      },
+      {
+        "path": "packages/reference/fixtures_outward_retention.py",
+        "sha256": "0529d2e381ba95f12586cbafab82e7c482d40848547320867b7e1c7170a84bd8"
+      },
+      {
+        "path": "packages/reference/fixtures_payout_resume.py",
+        "sha256": "64c6dd448ebd138fef8d029dd895657a9e9bcc420fb1e05c55f40ae2f7d39b86"
+      },
+      {
+        "path": "packages/reference/fixtures_reachable_traversal.py",
+        "sha256": "1f522bb1011d260046f564e3ebc36fcb2c1ef58495d7b4559cb3979bf83a0eb5"
+      },
+      {
+        "path": "packages/reference/fixtures_root_bracket.py",
+        "sha256": "6af21f4d853f25cedfacc1cfcdd93e4ff9a2e224598f32c1efcd8da179c3ccdd"
+      },
+      {
+        "path": "packages/reference/fixtures_slack.py",
+        "sha256": "778423a8321e27481fdec610d5ee7659f15b57bf6449d75cfb0995b1aff248f7"
+      },
+      {
+        "path": "packages/reference/fixtures_slack_grid_release.py",
+        "sha256": "cca601ad35340c7a9e19af4c3c5e96e7e9332d17c7f224070d79f87f11eec788"
+      },
+      {
+        "path": "packages/reference/fixtures_slack_segments.py",
+        "sha256": "4255665b8c64c5ded11027ef9ed96bcd009915358d3a1ce75b7c0468488b0b10"
+      },
+      {
         "path": "packages/reference/orbital.py",
         "sha256": "4d13eb4a96ff96dcfc32e3a73ec722cf6d3a8694bcb53365e44e887f54dd6352"
+      },
+      {
+        "path": "packages/reference/tests/test_curve_primitives.py",
+        "sha256": "57cf61f2b234c98bab934d5653a3fe6fe90c273f6d62798db84a141042dcd62c"
       },
       {
         "path": "packages/reference/tests/test_events.py",
         "sha256": "aa4b66f6b4de967ac94a5896da2b0b9f6a6d4ee8c6634e14e9b809438c17cf69"
       },
       {
+        "path": "packages/reference/tests/test_execution_oracle.py",
+        "sha256": "f600f3a75334282cba9dcf00a4a66e582d1e4aa354efb87956e2843d9c68c1ea"
+      },
+      {
+        "path": "packages/reference/tests/test_frontier_composition.py",
+        "sha256": "c21fefadd1a528485d1a074584ef3e7b017049e62ad7c4ca5aa8564b6806b79b"
+      },
+      {
+        "path": "packages/reference/tests/test_frontier_endpoint.py",
+        "sha256": "6447d92be27150722767cd93109d9d8dd44bf73cf8240cdbe7fb084f8dc712ff"
+      },
+      {
+        "path": "packages/reference/tests/test_frontier_schedule.py",
+        "sha256": "0479194e3d672065d775a11a7acdf4e1ffac42243e01083c266a1b19d45c4c71"
+      },
+      {
+        "path": "packages/reference/tests/test_frontier_segment.py",
+        "sha256": "02b7cb4d071fd7bdc3d3ae9527ae052f86be6e10365517288d349c44aca6f677"
+      },
+      {
+        "path": "packages/reference/tests/test_frontier_turn.py",
+        "sha256": "48c2d3889839ad4e9c11bb66b52e3d70da056964f7d1b65c2d26903772fecbf7"
+      },
+      {
+        "path": "packages/reference/tests/test_initializer_oracle.py",
+        "sha256": "9494ac28d12ebdc716ba4b475c0bf81627d75919befe5dbd3bc6f7bfce089923"
+      },
+      {
+        "path": "packages/reference/tests/test_interior_swap.py",
+        "sha256": "73b7972e3f1ab7adb774e95699034b505b1998060094f91e2589943efa638c29"
+      },
+      {
+        "path": "packages/reference/tests/test_mixed_execution_literals.py",
+        "sha256": "a3a457fc2993e92346de3c3ee4d84fe8a78f63574581f5558e9e6e31bea5a61b"
+      },
+      {
+        "path": "packages/reference/tests/test_negative_price.py",
+        "sha256": "834ee7fcc0b4277ab7bb6267bf63f6a463e4b3b407ae604abe2d888b032682d7"
+      },
+      {
+        "path": "packages/reference/tests/test_outward_retention.py",
+        "sha256": "9da77f1de67d9b3b2b468d8fb18f38390b0f75637788f6fe62d299774da75f77"
+      },
+      {
+        "path": "packages/reference/tests/test_payout_resume.py",
+        "sha256": "9cc99fbe15363af7fc34b9fced5bf96641b378cb788d04a7ec53c6de355af25b"
+      },
+      {
+        "path": "packages/reference/tests/test_reachable_traversal.py",
+        "sha256": "e27eab21193f212e3a10967d07c92b479f0cde97cca7a2da60c010d41826b36c"
+      },
+      {
         "path": "packages/reference/tests/test_reference.py",
         "sha256": "4f1bbf42fd900eb1121b755f53d33e4a2c0cb20278c4d86d095b4d670aaca54a"
+      },
+      {
+        "path": "packages/reference/tests/test_root_bracket.py",
+        "sha256": "771018d96aa72fb5e39da7efe62e08ad617143b3a98f50c8834397931c7264f3"
+      },
+      {
+        "path": "packages/reference/tests/test_root_certificate.py",
+        "sha256": "51cb1b2f081c1ac81325d9cfa3b796b4406a57639d3a1ad4a754d9cabe5c52b8"
       },
       {
         "path": "packages/reference/tests/test_rounding.py",
         "sha256": "1a80d88aedab0c4db0c0bea76039e584ffe2c8d49df09bf87469b50c5ad7120d"
       },
       {
+        "path": "packages/reference/tests/test_slack_certificate.py",
+        "sha256": "9eb22b6f1e766c1505b08e139185ae41231f8123bd537e61a8dc33466f8a0c8d"
+      },
+      {
+        "path": "packages/reference/tests/test_slack_grid_release.py",
+        "sha256": "1e5350df1909e79fba2963cc0f8a3d8f0f4991a2756db1532a1c781832206cae"
+      },
+      {
         "path": "packages/reference/tests/test_slack_path.py",
         "sha256": "452b7d7da4adf23a645d7b980e436e930e429f7263ad93beb2443b293e34009c"
+      },
+      {
+        "path": "packages/reference/fixtures/curve-primitives.json",
+        "sha256": "46c5a3225a34958c184c83aaba3458000d29e5586c64d896e28e99270e761ce4"
+      },
+      {
+        "path": "packages/reference/fixtures/frontier-composition.json",
+        "sha256": "832677c7978400a750a82c34a5ff93a8e918f912e59da921dbee17cf194d82d5"
+      },
+      {
+        "path": "packages/reference/fixtures/initializer-oracle.json",
+        "sha256": "91604a9f57e06b2b6660ae74cf51d8a96dd3628c55e436f506035f81ee0ab061"
+      },
+      {
+        "path": "packages/reference/fixtures/reachable-traversal.json",
+        "sha256": "3711128a0e5e71986046cb07ab8f7096ecdf6fcc7251e8477a9444778a54cd51"
+      },
+      {
+        "path": "packages/contracts/test/fixtures/CurvePrimitiveFixtures.sol",
+        "sha256": "ef0c9b0d9ecc07af1c754a85f5459510c1e9a54fd055b3d058201816a9357d5b"
+      },
+      {
+        "path": "packages/contracts/test/fixtures/InitializerOracleFixtures.sol",
+        "sha256": "a7a8320f75fc740ccd9849444c9fee77a2b2fa474058c6e030f3cfed15a2e1e8"
+      },
+      {
+        "path": "packages/contracts/test/fixtures/LocalUSDC.sol",
+        "sha256": "214d19937c70edcf518f929e4e8c426a0105362f34de4ab342898ad7b6b92cad"
+      },
+      {
+        "path": "packages/contracts/test/RootBracket.t.sol",
+        "sha256": "2b89df005bf1014a6dcfa5800c2581351e472edbda1ca0265b22809a56554f6b"
+      },
+      {
+        "path": "packages/contracts/test/InteriorSwap.t.sol",
+        "sha256": "443a06b3e2aa5054667fbf24522d9bc997cc1e013e65adcebf3f03f0815eb065"
+      },
+      {
+        "path": "packages/contracts/test/InteriorExecution.t.sol",
+        "sha256": "6c6f860dee5f44c0c4f7e2aa0b3fdeff4700ed4401118e0590753c38bc6e4e0a"
+      },
+      {
+        "path": "packages/contracts/test/FrontierTurn.t.sol",
+        "sha256": "0b5d386a1e504fa2447c47895c552b20d464e22a6b1b85ac7d0132207deb188b"
+      },
+      {
+        "path": "packages/contracts/test/FrontierEndpoint.t.sol",
+        "sha256": "388d2d09b98ca6574f23f6ea47741e9e7b7fbb715c0446eda45c4a01d43a618e"
+      },
+      {
+        "path": "packages/contracts/test/FrontierEvents.t.sol",
+        "sha256": "8dede26540626afb1cd817159327fa96cd8a52dfcbfdc7f2fea13cf9986761da"
+      },
+      {
+        "path": "packages/contracts/test/FrontierComposition.t.sol",
+        "sha256": "c8e0a09a2fb3bcc1ebdb56f018527d8d6a33a74e1cc13473373ab5d861cc248f"
+      },
+      {
+        "path": "packages/contracts/test/SeedProposal.t.sol",
+        "sha256": "eb565a54196ca6dd5090fa4a0f63fc42a0e1e5220cc844bedc05027664a4d39a"
+      },
+      {
+        "path": "packages/contracts/test/OutwardRetention.t.sol",
+        "sha256": "7875fabbe587e22ac9a6b41aae51e0b9857b2925b409d8baad4a564119db87e0"
+      },
+      {
+        "path": "packages/contracts/test/FrontierPriceExclusion.t.sol",
+        "sha256": "d1df583e9d344de0060358992b0799af2b5fc5c3d04a554d372670a3f5aa167d"
+      },
+      {
+        "path": "packages/contracts/test/MixedExecution.t.sol",
+        "sha256": "17f9b30499cc69b0cbb7849f7c769aef1585e2873180d7178fafd8a2aab25c4a"
+      },
+      {
+        "path": "packages/contracts/test/ReachableComposition.t.sol",
+        "sha256": "6a87720431f6bd0b39f6de68a700b34e64ff8c59719f986876d377ce0c075cf3"
+      },
+      {
+        "path": "scripts/audit-reference.py",
+        "sha256": "e2ca4f37697d7c0213dea4be192282e33a0e2ce519efd8a5bfe56cdf805852af"
       },
       {
         "path": "packages/reference/requirements.txt",
@@ -44,7 +260,7 @@
       },
       {
         "path": "docs/MATH.md",
-        "sha256": "6e4d10e3152ebbac11bc58cf76fabe016e34ebc5fd8c88595db3815627c094bf"
+        "sha256": "3a73a91b071371869b5d54dd37a76003eb9eb04bdb77d4e33ee895e131ef45e2"
       },
       {
         "path": "docs/NUMERICS.md",
@@ -56,12 +272,19 @@
         2,
         3,
         4,
+        5,
         8,
         16,
         32
       ],
       "onchain_profile_max_dimension": 8,
       "flagship_directed_pairs": 6,
+      "fixed_input_endpoint_dimensions": [
+        2,
+        3,
+        8
+      ],
+      "exact_zero_price_dimension": 6,
       "dual_newton_maxsteps": 150,
       "dual_initial_guesses": [
         0,
@@ -71,7 +294,7 @@
       ],
       "timeout_seconds": 180,
       "precision_stability_absolute_relative_threshold": "1e-90",
-      "scope": "Dimension sweep covers per-tick feasibility only; swaps use named 2/3/4-token fixtures."
+      "scope": "Dimension sweep covers per-tick feasibility only; connected reference swaps use named 2/3/4-token fixtures, including six-pair all-interior raw-unit checks. Identified fixed-input endpoint support/raw-output/shortfall goldens cover n2/n3/n8 without a full mixed traversal claim; other named scalar, initialization and frontier samples use n<=8."
     },
     "non_claims": [
       "No universal theorem or production interval proof",
@@ -87,14 +310,14 @@
     "seed": null
   },
   "run": {
-    "started_at": "2026-09-07T23:47:04.413402+00:00",
-    "runtime_seconds": 0.8697981999721378,
+    "started_at": "2026-09-08T08:39:32.134945+00:00",
+    "runtime_seconds": 47.85226520005381,
     "exit_status": 0
   },
   "outputs": [
     {
       "path": "test/evidence/reference-audit/tests.txt",
-      "sha256": "79a6889d824fb9bd1dad621d5ed868392dfedd506db0d76230c45829fce0d5f7"
+      "sha256": "98685927f7979afc7e7df8e4d0c8b6026fdcfd159551bdb1d9c2bee2e195c6de"
     }
   ],
   "checks": [
@@ -104,12 +327,17 @@
     "Six directed pair symmetry",
     "Both inward/outward roots validated against per-tick dual oracle",
     "110/160-digit stability for named fixtures",
+    "Scalar/normal/support-cost and initializer oracle fixtures",
+    "Identified fixed-input n2/n3/n8 endpoint support roots and raw-output/shortfall goldens",
+    "Fixed-frontier segment samples and hidden-crossing counterexample",
+    "Up to fourteen price-space key events and original-frame schedule order",
+    "Rational GRID endpoints, one-sided seam baskets and retained release failures",
     "Rounded endpoint and slack-path counterexamples retained"
   ],
   "result": "conditional on numerical arithmetic and the recorded finite input family",
   "residual_risks": [
     "Optimizer convergence is not mathematical certification",
     "Current solver uses positive dual prices and may reject zero-price endpoints",
-    "Rounded-start connected-branch semantics remain unresolved"
+    "Named connected paths do not prove liveness for all supported inputs; zero/equality and discovery deferrals remain"
   ]
 }

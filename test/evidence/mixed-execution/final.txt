@@ -1,0 +1,199 @@
+Compiling 3 files with Solc 0.8.30
+Solc 0.8.30 finished in 86.35s
+Compiler run successful!
+2026-09-08T08:32:55.880076Z  WARN evm::traces::external: etherscan config not found
+
+Ran 2 tests for test/LocalUSDC.t.sol:LocalUSDCTest
+[PASS] testFixtureCannotDeployOnArcEvenThoughDemoTokenCan() (gas: 81742)
+[PASS] testLocalFixtureHasExplicitIdentityAndCallerOnlyBoundedFaucet() (gas: 535819)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 22.15ms (7.70ms CPU time)
+
+Ran 1 test for test/MaximumActivation.t.sol:MaximumActivationTest
+[PASS] testMaximumEightTokenEightTickActivationInitializesAndMeasuresExternalCall() (gas: 4232499)
+Logs:
+  maximum_8x8_external_activation_gas: 3791206
+  maximum_8x8_external_ship_gas: 231896
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 19.25ms (10.81ms CPU time)
+
+Ran 7 tests for test/FeeInstruction.t.sol:FeeInstructionTest
+[PASS] testFeeDenominatorCeilingAndZeroNet() (gas: 17209)
+[PASS] testFuzzFeeCeilingHasExactWideInequalities(uint256,uint8) (runs: 257, μ: 9405, ~: 9398)
+[PASS] testInjectedPostSettlementFailureRollsBackFeeAndTransfers() (gas: 716939)
+[PASS] testInstructionAccruesOnceOutsidePrincipal() (gas: 223656)
+[PASS] testPartialNetConsumptionAndUnconsumedArgumentsReject() (gas: 13061848)
+[PASS] testStaticQuoteRunsNetCurveAndRestoresGrossAcrossSixPairs() (gas: 437879)
+[PASS] testSurplusProtocolFeeWithZeroFeeTotalAndZeroOutputReject() (gas: 13062175)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 94.89ms (94.62ms CPU time)
+
+Ran 6 tests for test/MixedExecution.t.sol:MixedExecutionTest
+[PASS] testCompleteMixedSwapGasAndLinkedRuntimeSizes() (gas: 10305939)
+Logs:
+  first_complete_external_swap_gas: 5166603
+  second_complete_external_swap_gas: 5833358
+  runtime_bytes: 22221
+  runtime_bytes: 23240
+  runtime_bytes: 6658
+  runtime_bytes: 23138
+  runtime_bytes: 22458
+
+[PASS] testCrossingBudgetFailureRollsBackThenRecovers() (gas: 14809682)
+[PASS] testCrossingRecordsCannotLeakBetweenMakersOrInteriorFills() (gas: 13169832)
+[PASS] testInitializedOutwardThenActualReverseSettleIndependentRawOutputs() (gas: 10365322)
+[PASS] testPostTransferSettlementFailureRollsBackFeesPrincipalAndEventsThenRecovers() (gas: 12493795)
+[PASS] testStaticMixedQuotesDoNotWriteStateOrEmitCrossings() (gas: 14175694)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 507.25ms (496.94ms CPU time)
+
+Ran 4 tests for test/ReachableComposition.t.sol:ReachableCompositionTest
+[PASS] testActualFirstPaymentThenReverseBothFrontiersMatchesOracle() (gas: 4991778)
+[PASS] testColdLinkedActualSequenceGasAndCodeSize() (gas: 9189347)
+Logs:
+  sequence_step: 1
+  cold_external_call_gas: 4125599
+  linked_body_gas: 4111162
+  refinement_used: 30
+  refinement_remaining: 130
+  sequence_step: 2
+  cold_external_call_gas: 4884444
+  linked_body_gas: 4869178
+  refinement_used: 29
+  refinement_remaining: 131
+  composition_runtime_bytes: 23138
+  endpoint_runtime_bytes: 22458
+
+[PASS] testInitializedFirstOutwardFrontierMatchesIndependentOracle() (gas: 4225976)
+[PASS] testReachableReverseCannotIgnoreCallerCrossingBudget() (gas: 2229663)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 119.30ms (117.74ms CPU time)
+
+Ran 22 tests for test/RouterLifecycle.t.sol:RouterLifecycleTest
+[PASS] testBackingDeficitStopsAllFundingCeilingsWithoutRevertingInspection() (gas: 2131169)
+[PASS] testCanonicalTakerModesAndAllTokenLiveChecksPrecedeCurveExecution() (gas: 2121557)
+[PASS] testCoherentReadGuardDoesNotHideImmutableConfiguration() (gas: 2011326)
+[PASS] testDockedAndDeficientStrategyRemainInspectable() (gas: 2065494)
+[PASS] testDonationUpToUint248AllocationUsesWideSurplusWithoutChangingGeometry() (gas: 2094294)
+[PASS] testForgedInitialAmountsAreNotAcceptedAsCurvePrincipal() (gas: 428277)
+[PASS] testFreshNonceAfterRetirementIsIndependentAndDockedHashCannotBeReshipped() (gas: 3919705)
+[PASS] testInitializationAtMinimumCapWidthAndNearMaximumLength() (gas: 4165741)
+[PASS] testInitializationAtSupportedDimensionAndTickExtremes() (gas: 41752409)
+[PASS] testInsufficientAquaAllocationAndWalletFundingRejectActivation() (gas: 3706741)
+[PASS] testInsufficientWalletAllowanceAndBalanceEachRejectOtherwiseBackedActivation() (gas: 3739881)
+[PASS] testMissingThirdAquaEntryRejectsActivation() (gas: 1960104)
+[PASS] testOneWholeTokenAnchorSurvivesDirectedInitializationRounding() (gas: 2567446)
+[PASS] testRegistrationRechecksOnchainDecimals() (gas: 336616)
+[PASS] testRetirementIsMakerOnlyAndTerminalEvenBeforeDock() (gas: 2081949)
+[PASS] testRouterFitsEIP170RuntimeLimit() (gas: 4689508)
+[PASS] testShipActivatePreservesCustodyAndStoresCertifiedEqualState() (gas: 2063221)
+[PASS] testUncertainTraversalFailsWithoutStateMutationOrLockLeak() (gas: 4622020)
+[PASS] testUnknownStateRevertsAndNonceOverflowDoesNotWrap() (gas: 293754)
+[PASS] testUnrenouncedOwnerBlocksActivationWithoutConsumingNonce() (gas: 5182289)
+[PASS] testWalletSpendLimitsAvailabilityWithoutResettingPrincipal() (gas: 2086955)
+[PASS] testWrongMakerNonceDomainAndCanonicalOrderRejected() (gas: 431889)
+Suite result: ok. 22 passed; 0 failed; 0 skipped; finished in 114.87ms (111.56ms CPU time)
+
+Ran 12 tests for test/Settlement.t.sol:SettlementTest
+[PASS] testAliasedTakerRecipientAndPreexistingDonationsRemainExact() (gas: 596632)
+[PASS] testCleanupMutationAndLyingApprovalRejectAtomically() (gas: 1210884)
+[PASS] testCrossTokenRoleMutationsAndRouterDonationReject() (gas: 1776768)
+[PASS] testDecimalsMutationOnUntouchedTokenRejects() (gas: 628290)
+[PASS] testFeeOnTransferAndOvercreditAndExtraSenderDebitReject() (gas: 1738741)
+[PASS] testLogicalAquaDeltasAndUntouchedTokenBackingAreChecked() (gas: 1795278)
+[PASS] testOfficialAquaExactDeltasAllSixPairsAndDistinctRecipient() (gas: 2552177)
+[PASS] testRouterDonationCannotSubsidizeTaxedInput() (gas: 629680)
+[PASS] testSecondCleanupCannotReintroduceFirstTokenApproval() (gas: 751562)
+[PASS] testSnapshotIdentityAmountsAndNestedBeginReject() (gas: 487505)
+[PASS] testSnapshotRequiresGuardAndValidNondegenerateRoles() (gas: 351862)
+[PASS] testUnconsumedAllowanceClearedUnderGuardBeforeFinalReads() (gas: 574005)
+Suite result: ok. 12 passed; 0 failed; 0 skipped; finished in 19.72ms (17.35ms CPU time)
+
+Ran 4 tests for test/InteriorProbe.t.sol:InteriorProbeTest
+[PASS] testCertifiedMixedStartDefersToTraversal() (gas: 152012)
+[PASS] testEndCapDefersWithoutAuthorizingSphereOutput() (gas: 114981)
+[PASS] testProbePreservesInvalidInputMetadataAndStartErrors() (gas: 142304)
+[PASS] testStrictInteriorProbeMatchesLegacyResultExactly() (gas: 186783)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 6.60ms (4.22ms CPU time)
+
+Ran 15 tests for test/InteriorSwap.t.sol:InteriorSwapTest
+[PASS] testActualSlackReleaseRemainsPartOfExactInputOutput() (gas: 163741)
+[PASS] testAllSixPairsThreeTicksMatchIndependentSupportOracle() (gas: 556595)
+[PASS] testCoarseOutputCanRemainInsideThroughoutRemainingInput() (gas: 87758)
+[PASS] testCrossingRequiresTraversalBeforeAnyEndpointInterpretation() (gas: 127586)
+[PASS] testFuzzWholeTokenInputsBindScalesAndPreserveSquareCertificate(uint32,uint8,uint8) (runs: 256, μ: 88500, ~: 89321)
+[PASS] testInputNormalCanTerminateAtZero() (gas: 63384)
+[PASS] testMaximumRadiusEightTokensAndMixedRawCapacity() (gas: 128432)
+[PASS] testRejectInputTooSmallToPayOneOutputQuantum() (gas: 126029)
+[PASS] testRejectMetadataAndPairMismatches() (gas: 134018)
+[PASS] testRejectZeroAndOversizedInputBeforeRawConversionOverflow() (gas: 144204)
+[PASS] testRoundingOntoFirstKeyRequiresTraversal() (gas: 148334)
+[PASS] testTokenDecimalsZeroAndEighteenBindInputAndOutputExactly() (gas: 161075)
+[PASS] testUncertifiedStartIsNotMisreportedAsTraversalOrGlobalExclusion() (gas: 190646)
+[PASS] testValidBoundaryStartRequiresTraversalIncludingEquality() (gas: 239564)
+[PASS] testZeroInitialOutputNormalHasContinuousPositiveInputDeparture() (gas: 62400)
+Suite result: ok. 15 passed; 0 failed; 0 skipped; finished in 219.83ms (225.13ms CPU time)
+
+Ran 8 tests for test/LinkedMath.t.sol:LinkedMathTest
+[PASS] testActualLinkedEntryN2() (gas: 5982528)
+Logs:
+  n2 real linked
+  cold_external_call_gas: 5870906
+  linked_body_gas: 5858936
+  first_used: 65
+  resume_used: 0
+  remaining: 95
+
+[PASS] testActualLinkedEntryN3() (gas: 7262674)
+Logs:
+  n3 real linked
+  cold_external_call_gas: 7108037
+  linked_body_gas: 7094724
+  first_used: 60
+  resume_used: 0
+  remaining: 100
+
+[PASS] testActualLinkedEntryN8() (gas: 11746200)
+Logs:
+  n8 real linked
+  cold_external_call_gas: 11585740
+  linked_body_gas: 11569957
+  first_used: 60
+  resume_used: 0
+  remaining: 100
+
+[PASS] testActualLinkedResumePreservesBudgetAndEventOrder() (gas: 9910921)
+Logs:
+  real linked order resume
+  cold_external_call_gas: 9798419
+  linked_body_gas: 9785079
+  first_used: 63
+  resume_used: 62
+  remaining: 35
+
+[PASS] testActualLinkedTwoRoots() (gas: 6346652)
+Logs:
+  two linked roots
+  cold_external_call_gas: 6234854
+  linked_body_gas: 6221514
+  first_used: 70
+  resume_used: 0
+  remaining: 90
+
+[PASS] testActualRuntimeSizesBelowEIP170() (gas: 17048)
+Logs:
+  composition_runtime_bytes: 23138
+  endpoint_runtime_bytes: 22458
+  client_runtime_bytes: 3223
+
+[PASS] testExternalLinkedErrorsAndUncertifiedStatusRemainDistinct() (gas: 195944)
+[PASS] testPureLibraryFramesDoNotWriteCallerStorage() (gas: 14314799)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 392.70ms (390.32ms CPU time)
+
+Ran 7 tests for test/InteriorExecution.t.sol:InteriorExecutionTest
+[PASS] testAllSixPairsMutateOneOrderAndSettleGrossNetFeeExactly() (gas: 4998979)
+[PASS] testCanonicalEventMatchesSettlementAndStaticQuoteHasNoLogs() (gas: 863164)
+[PASS] testFuzzTwoLegInteriorCycleCannotIncreaseStartingAsset(uint64,uint8) (runs: 256, μ: 1528776, ~: 1528724)
+[PASS] testProductionStaticQuotesSixPairsMatchIndependentIntegerSphere() (gas: 922496)
+[PASS] testRealCurveSwapFundsFiveDollarInvoiceWithNinetyTenSplit() (gas: 3639904)
+[PASS] testRouterAndAquaDonationsDoNotChangeQuoteOrGetSpent() (gas: 1056264)
+[PASS] testThresholdAndOutputFundingFailuresRollbackThenRecover() (gas: 1893241)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 1.61s (1.62s CPU time)
+
+Ran 11 test suites in 1.72s (3.12s CPU time): 88 tests passed, 0 failed, 0 skipped (88 total tests)

@@ -78,7 +78,7 @@ When `S=0`, simplify **before evaluating**: `F = sum(R-X_i)²`, and `g_i=R-X_i`.
 
 ## 3. Tick partition
 
-`MATH-6` The common interior normalized reserve sum is `h=(A-K)/R`. An ordinary tick is interior when `h<b_t` and boundary when `h>b_t`. At exact equality either representation gives the same economic basket in exact arithmetic. This release uses boundary ownership for the canonical persisted equality state, with a direction-aware departure rule in section 6 to permit inward travel immediately. The anchor always remains interior.
+`MATH-6` The common interior normalized reserve sum is `h=(A-K)/R`. An ordinary tick is interior when `h<b_t` and boundary when `h>b_t`. At exact equality the two MATH-7 reconstructions have the same aggregate basket. Their individual tick baskets coincide on the exact frontier. With conservative slack they can differ: a reclassification must certify both one-sided reconstructions, preserving aggregate reserves, virtual contributions and the single maker's principal. The [inward slack seam audit](audits/SLACK_SEAM.md) derives this distinction and the conditional inward feasibility implication; it does not permit the reverse implication without its additional checks. This release uses boundary ownership for the canonical persisted equality state, with a direction-aware departure rule in section 6 to permit inward travel immediately. The anchor always remains interior.
 
 Use exact cross multiplication to compare `A-K` with `R b_t`; do not divide to a low-precision display value. All ordinary boundary keys are below or at `h`, and all ordinary interior keys above `h`, subject only to the certified crossing enclosure. An equality enclosure is not permission to classify arbitrary nearby ticks as equal.
 
@@ -119,11 +119,13 @@ Use `(M1)` with these sufficient statistics. Keep every untouched coordinate fix
 
 `MATH-9` Bound output by funded output principal and the connected positive-price branch. Start a safeguarded solve from the current state. Locate branch/admissibility limits before treating an arbitrary interval as a root bracket. On a valid fixed-`d` branch with `g_j>0`, increasing `y` increases `F`, so the relevant feasible/infeasible bracket is ordered. If the input reaches a tick event first, stop there instead of solving with the wrong partition.
 
-For `S=0`, a useful independent fixture is the explicit lower-root sphere solve:
+For `S=0` with a starting point on the sphere frontier, a useful independent fixture is the explicit lower-root sphere solve:
 
 `X_j' = R - sqrt((R-X_j)² + (R-X_i)² - (R-X_i-d)²)`.
 
 Check the radicand and physical domain. The expression is a test oracle for this special case; it does not extend to mixed boundary/interior liquidity by replacing `R` with total radius.
+
+From an actual all-interior starting state with slack, use `X_j'=R-sqrt(R²-sum_{k!=j}(R-X_k')²)` instead. The omitted-output radicand retains all existing slack; the frontier-only two-coordinate expression would discard it. `SphereStep.sol` implements this special-case primitive with exact integer square-root bracketing and one final output-quantum floor. Its caller must still certify cap membership, no intervening crossing, principal floors and protocol output units.
 
 Newton steps are an optional acceleration within a certified bracket. Nonfinite analogues (zero derivative, signed overflow, out-of-bracket iterate, invalid radical) select a bisection step or a typed domain failure, never an unchecked extrapolation. Stopping on a small squared residual without an amount bound is invalid near flat derivatives.
 

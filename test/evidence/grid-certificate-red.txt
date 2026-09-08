@@ -1,0 +1,20 @@
+Compiling 3 files with Solc 0.8.30
+Solc 0.8.30 finished in 4.78s
+Compiler run successful!
+2026-09-08T00:25:47.945321Z  WARN evm::traces::external: etherscan config not found
+
+Ran 2 tests for test/Certificate.t.sol:CertificateTest
+[FAIL: assertion failed] testFractionalKeyPlaneHasBothOneSidedCertificates() (gas: 815993)
+[FAIL: assertion failed] testProofGridDoesNotExpandTheStoredDomain() (gas: 199253)
+Suite result: FAILED. 0 passed; 2 failed; 0 skipped; finished in 6.77ms (10.80ms CPU time)
+
+Ran 1 test suite in 19.25ms (6.77ms CPU time): 0 tests passed, 2 failed, 0 skipped (2 total tests)
+
+Failing tests:
+Encountered 2 failing tests in test/Certificate.t.sol:CertificateTest
+[FAIL: assertion failed] testFractionalKeyPlaneHasBothOneSidedCertificates() (gas: 815993)
+[FAIL: assertion failed] testProofGridDoesNotExpandTheStoredDomain() (gas: 199253)
+
+Encountered a total of 2 failing tests, 0 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 2 failed tests

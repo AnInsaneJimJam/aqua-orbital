@@ -1,0 +1,88 @@
+Compiling 5 files with Solc 0.8.30
+Solc 0.8.30 finished in 27.02s
+Compiler run successful!
+2026-09-08T07:59:49.002042Z  WARN evm::traces::external: etherscan config not found
+
+Ran 8 tests for test/FrontierPriceExclusion.t.sol:FrontierPriceExclusionTest
+[PASS] testExactZeroUntouchedPriceOnBothRootsIsNotNegative() (gas: 149843)
+[PASS] testInWindowUnknownZeroPriceRootStillDefersSchedule() (gas: 233382)
+[FAIL: assertion failed] testOutputUpperBoundIsRequiredWhenRecoveringLowerReserve() (gas: 180601)
+[FAIL: assertion failed: 0 != 1] testProvenNegativeExtraKeyLeavesExactlyTwoReachableEvents() (gas: 319073)
+[PASS] testReachableLowerKeyBothPhysicalDirectionsRemain() (gas: 174489)
+[FAIL: assertion failed] testReachableUpperKeyBothRootsHaveStrictlyNegativePrice() (gas: 180938)
+[PASS] testWideN2PositivePricesCannotBeExcluded() (gas: 136537)
+[FAIL: assertion failed] testWideStrictNegativeBothRootsUse512BitProducts() (gas: 134120)
+Suite result: FAILED. 4 passed; 4 failed; 0 skipped; finished in 30.36ms (16.40ms CPU time)
+
+Ran 3 tests for test/ReachableComposition.t.sol:ReachableCompositionTest
+[FAIL: assertion failed: 0 != 4] testActualFirstPaymentThenReverseBothFrontiersMatchesOracle() (gas: 2229711)
+[PASS] testDiagnoseSecondFrameWithoutChangingAnyAcceptanceCheck() (gas: 5213783)
+Logs:
+  composition_status: 0
+  initial_identified: 1
+  initial_prefix: 1
+  final_identified: 0
+  first_used: 0
+  resume_used: 0
+  prefix: 0
+  initial_proposal_identified: 0
+  final_proposal_identified: 0
+  final_proposal_status: 0
+  bracket_status: 0
+  prefix: 1
+  initial_proposal_identified: 1
+  initial_release_valid: 1
+  initial_release_crossings: 0
+  final_proposal_identified: 1
+  final_proposal_status: 0
+  bracket_status: 5
+  prefix: 2
+  initial_proposal_identified: 0
+  final_proposal_identified: 0
+  final_proposal_status: 0
+  bracket_status: 0
+  schedule_status: 0
+  schedule_events: 0
+  key_index: 0
+  root_status: 1
+  physical: 1
+  inputLo: 232534950941569368618244309129072742429774991729
+  inputHi: 232534950941569368618244309129072742429774991730
+  outputLo: 2028450234593127597337761168465506134407719309681
+  outputHi: 2028450234593127597337761168465506134407719309682
+  physical: 1
+  inputLo: 38738147019317054122746966355650367657592280690318
+  inputHi: 38738147019317054122746966355650367657592280690319
+  outputLo: 40534062302968612351466483214986801049570225008270
+  outputHi: 40534062302968612351466483214986801049570225008271
+  key_index: 1
+  root_status: 1
+  physical: 0
+  inputLo: 356791267152342921431591646241038802044850025476
+  inputHi: 356791267152342921431591646241038802155378419459
+  outputLo: -9731517826335749488880484044822527805977205656572
+  outputHi: -9731517826335749488880484044822527805866677262589
+  physical: 0
+  inputLo: 50498115080245931208965211568938401597866677262589
+  inputHi: 50498115080245931208965211568938401597977205656572
+  outputLo: 40409805986757838798653135877874834989844621580541
+  outputHi: 40409805986757838798653135877874834989955149974524
+
+[PASS] testInitializedFirstOutwardFrontierMatchesIndependentOracle() (gas: 4229582)
+Suite result: FAILED. 2 passed; 1 failed; 0 skipped; finished in 81.32ms (114.88ms CPU time)
+
+Ran 2 test suites in 102.12ms (111.68ms CPU time): 6 tests passed, 5 failed, 0 skipped (11 total tests)
+
+Failing tests:
+Encountered 4 failing tests in test/FrontierPriceExclusion.t.sol:FrontierPriceExclusionTest
+[FAIL: assertion failed] testOutputUpperBoundIsRequiredWhenRecoveringLowerReserve() (gas: 180601)
+[FAIL: assertion failed: 0 != 1] testProvenNegativeExtraKeyLeavesExactlyTwoReachableEvents() (gas: 319073)
+[FAIL: assertion failed] testReachableUpperKeyBothRootsHaveStrictlyNegativePrice() (gas: 180938)
+[FAIL: assertion failed] testWideStrictNegativeBothRootsUse512BitProducts() (gas: 134120)
+
+Encountered 1 failing test in test/ReachableComposition.t.sol:ReachableCompositionTest
+[FAIL: assertion failed: 0 != 4] testActualFirstPaymentThenReverseBothFrontiersMatchesOracle() (gas: 2229711)
+
+Encountered a total of 5 failing tests, 6 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 5 failed tests

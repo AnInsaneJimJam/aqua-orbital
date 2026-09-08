@@ -1,0 +1,29 @@
+Compiling 3 files with Solc 0.8.30
+Solc 0.8.30 finished in 32.11s
+Compiler run successful!
+
+Ran 11 tests for test/SeedProposal.t.sol:SeedProposalTest
+[PASS] testAllInteriorStillUsesTheSeparateSphereDomain() (gas: 3006920)
+[PASS] testArithmeticProposalRejectsUnderflowAndEmptyWindow() (gas: 35836)
+[PASS] testExactAndTargetedEndpointRecoverIndependentGolden() (gas: 12976066)
+[PASS] testExistingInwardMixedGoldenIsUnchanged() (gas: 4363175)
+[PASS] testFullCompositionRecoversBothEventsAndSharedLedger() (gas: 9737173)
+[PASS] testFuzzClipHasExactDirectedSheetInequalities(uint192) (runs: 257, μ: 13572, ~: 12668)
+[PASS] testLinkedRuntimeSizeAndColdRecoveredPathGas() (gas: 10360982)
+Logs:
+  cold_external_with_ABI_gas: 9672096
+  linked_body_gas: 9659296
+  FrontierComposition_runtime_bytes: 22253
+  FrontierEndpoint_runtime_bytes: 18812
+  SeedLinkedProbe_runtime_bytes: 2960
+  first_solve_used: 68
+  resume_used: 60
+  remaining: 32
+
+[PASS] testOldHighIsStrictlyBelowSheetBeforeAnyRootIteration() (gas: 113669)
+[PASS] testProposedHighHasFullMembershipAndAnOrdinaryCertifiedBracket() (gas: 525405)
+[PASS] testRecoveredPathStillRequiresBothCrossingAllowances() (gas: 1581432)
+[PASS] testZeroBudgetStillDefersTheFinancialPayout() (gas: 590062)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 219.74ms (353.64ms CPU time)
+
+Ran 1 test suite in 653.56ms (219.74ms CPU time): 11 tests passed, 0 failed, 0 skipped (11 total tests)

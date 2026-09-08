@@ -1,0 +1,96 @@
+{
+  "stage": "red",
+  "started_at": "2026-09-08T06:42:58.005350+00:00",
+  "runtime_seconds": 38.85964179999428,
+  "command": [
+    "forge",
+    "test",
+    "--match-contract",
+    "^SeedProposalTest$",
+    "--fuzz-runs",
+    "256",
+    "--fuzz-seed",
+    "0x20260908",
+    "--threads",
+    "2",
+    "--offline",
+    "-vv"
+  ],
+  "exit_status": 1,
+  "input_snapshot": [
+    {
+      "path": "packages/contracts/src/libraries/FrontierComposition.sol",
+      "sha256": "9e267caada4ec4824e52cf1b9c59368e9505ef45ad6566356ac1c013ebaa66df"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierTurn.sol",
+      "sha256": "f1d9fc9cf528310040214af00101907ee011efd2be18f58b9394ea7843378e34"
+    },
+    {
+      "path": "packages/contracts/src/libraries/SignedWide.sol",
+      "sha256": "8142108db5cc11ddf3a33e17855c7ca4a467f22687194967c28588aef6cb4426"
+    },
+    {
+      "path": "packages/contracts/src/libraries/WideMath.sol",
+      "sha256": "61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d"
+    },
+    {
+      "path": "packages/contracts/src/libraries/TickGeometry.sol",
+      "sha256": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b"
+    },
+    {
+      "path": "packages/contracts/src/libraries/CurveEvaluation.sol",
+      "sha256": "1537bc49e14837d32279279f99a1f09f937c3a9c17e7226fd7dbceab61a864be"
+    },
+    {
+      "path": "packages/contracts/src/libraries/IntervalMath.sol",
+      "sha256": "e7ea7cd4aa5bb7a63f52b665f1311667bb52715f8a4a5ad32a4dde30bd820898"
+    },
+    {
+      "path": "packages/contracts/src/libraries/OrbitalMath.sol",
+      "sha256": "6454e86f8b8bea61506c2f5eead0df7936df8a89415597aabf76d3618acbfaeb"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierEvents.sol",
+      "sha256": "5fd37fd1cf314474a22eeda3856743d95f98da6b49d06671921f5e6c5b120721"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierSchedule.sol",
+      "sha256": "a5d10a931895e30d59ca19e91055b58f2748cba796789a5ce09fa8392ed0b506"
+    },
+    {
+      "path": "packages/contracts/src/libraries/SlackCertificate.sol",
+      "sha256": "1f4fafba1f78f98fa1ac868ed6ddaad91e40bbef5dc079ca5cdddf50f72c4e17"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierEndpoint.sol",
+      "sha256": "6fec6e292c7344c10e0fc5f628fd64882d74e87f012aaaeeef02181bdfe7259d"
+    },
+    {
+      "path": "packages/contracts/src/libraries/RootBracket.sol",
+      "sha256": "0e19eb8cb8c7daa41a3ea4ed32c1f6751d254edf689ff140cb155a554dad529d"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/CurvePrimitiveFixtures.sol",
+      "sha256": "ef0c9b0d9ecc07af1c754a85f5459510c1e9a54fd055b3d058201816a9357d5b"
+    }
+  ],
+  "script_sha256": "a32bb82c16cb6238d065de0ad21244fb61078a60bb81fab42f59ba56c861ddc7",
+  "test_template_sha256": "3d31b26ebca2e463a1b3cd52b455436f62f6b921f233fd1bbd1ca36cea13b2d9",
+  "generated_sources": {
+    "src/libraries/CurveEvaluation.sol": "1537bc49e14837d32279279f99a1f09f937c3a9c17e7226fd7dbceab61a864be",
+    "src/libraries/FrontierComposition.sol": "9e267caada4ec4824e52cf1b9c59368e9505ef45ad6566356ac1c013ebaa66df",
+    "src/libraries/FrontierEndpoint.sol": "fc3df84ad4818a10d223f1c0b98a8ffaf3a0c5b61843538a071e276648dc9f6d",
+    "src/libraries/FrontierEvents.sol": "5fd37fd1cf314474a22eeda3856743d95f98da6b49d06671921f5e6c5b120721",
+    "src/libraries/FrontierSchedule.sol": "a5d10a931895e30d59ca19e91055b58f2748cba796789a5ce09fa8392ed0b506",
+    "src/libraries/FrontierTurn.sol": "f1d9fc9cf528310040214af00101907ee011efd2be18f58b9394ea7843378e34",
+    "src/libraries/IntervalMath.sol": "e7ea7cd4aa5bb7a63f52b665f1311667bb52715f8a4a5ad32a4dde30bd820898",
+    "src/libraries/OrbitalMath.sol": "6454e86f8b8bea61506c2f5eead0df7936df8a89415597aabf76d3618acbfaeb",
+    "src/libraries/RootBracket.sol": "0e19eb8cb8c7daa41a3ea4ed32c1f6751d254edf689ff140cb155a554dad529d",
+    "src/libraries/SignedWide.sol": "8142108db5cc11ddf3a33e17855c7ca4a467f22687194967c28588aef6cb4426",
+    "src/libraries/SlackCertificate.sol": "1f4fafba1f78f98fa1ac868ed6ddaad91e40bbef5dc079ca5cdddf50f72c4e17",
+    "src/libraries/TickGeometry.sol": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b",
+    "src/libraries/WideMath.sol": "61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d"
+  },
+  "stdout_sha256": "5a060f5a9c0a9034a512c38304fdd6efcfad123ced90219d31c4bc92e412a072"
+}

@@ -1,0 +1,48 @@
+Compiling 8 files with Solc 0.8.30
+Solc 0.8.30 finished in 59.41s
+Compiler run successful!
+2026-09-08T08:15:27.139237Z  WARN evm::traces::external: etherscan config not found
+
+Ran 2 tests for test/LocalUSDC.t.sol:LocalUSDCTest
+[FAIL: next call did not revert as expected] testFixtureCannotDeployOnArcEvenThoughDemoTokenCan() (gas: 505532)
+[FAIL: assertion failed: Orbital Demo Dollar 6 != Local USDC Fixture] testLocalFixtureHasExplicitIdentityAndCallerOnlyBoundedFaucet() (gas: 506676)
+Suite result: FAILED. 0 passed; 2 failed; 0 skipped; finished in 18.12ms (7.48ms CPU time)
+
+Ran 4 tests for test/InteriorProbe.t.sol:InteriorProbeTest
+[FAIL: RequiresTraversal()] testCertifiedMixedStartDefersToTraversal() (gas: 151991)
+[FAIL: RequiresTraversal()] testEndCapDefersWithoutAuthorizingSphereOutput() (gas: 115011)
+[PASS] testProbePreservesInvalidInputMetadataAndStartErrors() (gas: 143268)
+[PASS] testStrictInteriorProbeMatchesLegacyResultExactly() (gas: 186564)
+Suite result: FAILED. 2 passed; 2 failed; 0 skipped; finished in 22.67ms (11.70ms CPU time)
+
+Ran 6 tests for test/MixedExecution.t.sol:MixedExecutionTest
+[FAIL: RequiresTraversal()] testCompleteMixedSwapGasAndLinkedRuntimeSizes() (gas: 617758)
+[FAIL: RequiresTraversal()] testCrossingBudgetFailureRollsBackThenRecovers() (gas: 1269528)
+[FAIL: RequiresTraversal()] testCrossingRecordsCannotLeakBetweenMakersOrInteriorFills() (gas: 2774305)
+[FAIL: RequiresTraversal()] testInitializedOutwardThenActualReverseSettleIndependentRawOutputs() (gas: 616640)
+[FAIL: Error != expected error: RequiresTraversal() != UnexpectedTokenDelta(0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, 0x000000000000000000000000000000000000cafE)] testPostTransferSettlementFailureRollsBackFeesPrincipalAndEventsThenRecovers() (gas: 731609)
+[FAIL: RequiresTraversal()] testStaticMixedQuotesDoNotWriteStateOrEmitCrossings() (gas: 342267)
+Suite result: FAILED. 0 passed; 6 failed; 0 skipped; finished in 19.02ms (20.02ms CPU time)
+
+Ran 3 test suites in 65.61ms (59.81ms CPU time): 2 tests passed, 10 failed, 0 skipped (12 total tests)
+
+Failing tests:
+Encountered 2 failing tests in test/InteriorProbe.t.sol:InteriorProbeTest
+[FAIL: RequiresTraversal()] testCertifiedMixedStartDefersToTraversal() (gas: 151991)
+[FAIL: RequiresTraversal()] testEndCapDefersWithoutAuthorizingSphereOutput() (gas: 115011)
+
+Encountered 2 failing tests in test/LocalUSDC.t.sol:LocalUSDCTest
+[FAIL: next call did not revert as expected] testFixtureCannotDeployOnArcEvenThoughDemoTokenCan() (gas: 505532)
+[FAIL: assertion failed: Orbital Demo Dollar 6 != Local USDC Fixture] testLocalFixtureHasExplicitIdentityAndCallerOnlyBoundedFaucet() (gas: 506676)
+
+Encountered 6 failing tests in test/MixedExecution.t.sol:MixedExecutionTest
+[FAIL: RequiresTraversal()] testCompleteMixedSwapGasAndLinkedRuntimeSizes() (gas: 617758)
+[FAIL: RequiresTraversal()] testCrossingBudgetFailureRollsBackThenRecovers() (gas: 1269528)
+[FAIL: RequiresTraversal()] testCrossingRecordsCannotLeakBetweenMakersOrInteriorFills() (gas: 2774305)
+[FAIL: RequiresTraversal()] testInitializedOutwardThenActualReverseSettleIndependentRawOutputs() (gas: 616640)
+[FAIL: Error != expected error: RequiresTraversal() != UnexpectedTokenDelta(0xF62849F9A0B5Bf2913b396098F7c7019b51A820a, 0x000000000000000000000000000000000000cafE)] testPostTransferSettlementFailureRollsBackFeesPrincipalAndEventsThenRecovers() (gas: 731609)
+[FAIL: RequiresTraversal()] testStaticMixedQuotesDoNotWriteStateOrEmitCrossings() (gas: 342267)
+
+Encountered a total of 10 failing tests, 2 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 10 failed tests

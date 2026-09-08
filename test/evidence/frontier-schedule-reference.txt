@@ -1,0 +1,12 @@
+test_authenticated_two_root_goldens_match_explicit_baskets (test_frontier_schedule.FrontierScheduleTests.test_authenticated_two_root_goldens_match_explicit_baskets) ... ok
+test_every_selected_event_preserves_strict_input_and_output_order (test_frontier_schedule.FrontierScheduleTests.test_every_selected_event_preserves_strict_input_and_output_order) ... ok
+test_in_range_unphysical_fixture_has_independent_price_branch_failure (test_frontier_schedule.FrontierScheduleTests.test_in_range_unphysical_fixture_has_independent_price_branch_failure) ... ok
+test_independent_price_space_events_are_precision_stable (test_frontier_schedule.FrontierScheduleTests.test_independent_price_space_events_are_precision_stable) ... ok
+test_input_cuts_and_negative_roots_keep_the_actual_frame (test_frontier_schedule.FrontierScheduleTests.test_input_cuts_and_negative_roots_keep_the_actual_frame) ... ok
+test_invalid_precision_rejected (test_frontier_schedule.FrontierScheduleTests.test_invalid_precision_rejected) ... ok
+test_three_ticks_and_maximum_eight_ticks_retain_every_direction (test_frontier_schedule.FrontierScheduleTests.test_three_ticks_and_maximum_eight_ticks_retain_every_direction) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 8.207s
+
+OK

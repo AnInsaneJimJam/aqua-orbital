@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "claim_id": "G1-dual-endpoint-certificate-2026-09-08",
+  "repository": {
+    "commit": "2ecc6ce2f180fde239c13feee7dd09247c0d1b07",
+    "dirty": true
+  },
+  "command": "forge test --root packages/contracts --match-contract DualCertificateTest --fuzz-runs 2048 --fuzz-seed 0xd0a1; python -m unittest discover -s packages/reference/tests -p test_root_certificate.py -v; python packages/reference/tests/test_root_certificate.py --fixtures",
+  "environment": {
+    "software": [
+      "Forge 1.5.1-stable b0a9dd9ceda36f63e2326ce530c10e6916f4b8a2",
+      "Solc 0.8.30; optimizer 700 runs; viaIR; Cancun",
+      "Python 3.12.10",
+      "mpmath 1.3.0"
+    ],
+    "hardware": "Windows-11-10.0.26200-SP0; AMD64; CPU model not collected"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent per-tick analytic support minima with exact price-selected branches give directed lower total support cost; exact dot cost minus that lower support bounds additional fixed-input endpoint output when candidate feasibility and positive output price are separately established.",
+    "coefficient_domain": "Exact nonnegative integer prices and immutable integer radii/key numerators; uint512 directed products/division/square roots; explicit-basket oracle at 110 and 160 decimal digits.",
+    "conventions": "GRID=2^32; geometric coordinates include represented virtual reserves; p_output>0; outputs and costs use internal geometric units; quantum must separately bind to 10^(18-outputDecimals)*2^64. Price-selected support branches never reuse candidate partition.",
+    "inputs": [
+      "n=2..8, ticks=1..8; each coordinate and total radius <2^160; each price <=2^128",
+      "Exact Pythagorean family r=5*(uint96+1), prices=(3,4)*(uint120+1), output retention uint64+1",
+      "Independent n=3 mixed-support and n=2 unsafe-persisted-partition fixtures",
+      "n=8, ticks=8, near-limit radii and prices; zero-other-price and equal-price cases"
+    ],
+    "bounds": {
+      "fuzz_runs": 2048,
+      "solidity_tests": 9,
+      "reference_tests": 3,
+      "reference_digits": [
+        110,
+        160
+      ],
+      "explicit_support_combinations": 15,
+      "maximum_intermediate_bits_strict": 489,
+      "support_underestimation_strict": "2^48+8 cost units"
+    },
+    "non_claims": [
+      "No full swap solver, candidate/path feasibility, price-selection liveness or settlement authorization",
+      "No universal optimizer correctness established by finite tests",
+      "No full release fuzz/invariant/mutation/gas campaign or live deployment",
+      "No assertion that a failed quantum certificate proves infeasibility"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "Foundry fuzz runner with explicit seed",
+    "seed": "0xd0a1"
+  },
+  "run": {
+    "started_at": "2026-09-08T02:25:10.4451267Z",
+    "runtime_seconds": 14.5484226,
+    "exit_status": 0,
+    "runtime_scope": "Final Solidity process including 9.48-second compilation; suite 0.82681 seconds. Independent Python unittest process also exited 0; reported 0.077 seconds."
+  },
+  "outputs": [
+    {
+      "path": "packages/contracts/src/libraries/DualCertificate.sol",
+      "sha256": "255a4d483f465c976a580df452f91327565c2f5dc17376f524c32d03dd0f0448"
+    },
+    {
+      "path": "packages/contracts/src/libraries/WideMath.sol",
+      "sha256": "61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d"
+    },
+    {
+      "path": "packages/contracts/src/libraries/TickGeometry.sol",
+      "sha256": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b"
+    },
+    {
+      "path": "packages/contracts/src/libraries/OrbitalMath.sol",
+      "sha256": "6454e86f8b8bea61506c2f5eead0df7936df8a89415597aabf76d3618acbfaeb"
+    },
+    {
+      "path": "packages/contracts/test/DualCertificate.t.sol",
+      "sha256": "c2d949595b1d4e824920dd8b411213a0ef3e62923bbb4ea9e047e08f378c86b8"
+    },
+    {
+      "path": "packages/reference/tests/test_root_certificate.py",
+      "sha256": "51cb1b2f081c1ac81325d9cfa3b796b4406a57639d3a1ad4a754d9cabe5c52b8"
+    },
+    {
+      "path": "docs/audits/ROOT_CERTIFICATE.md",
+      "sha256": "0820c4bdc38dd5a3246a8bf8f3aa16ba8b636d04b2003ea27d06a0be65c5c4a7"
+    },
+    {
+      "path": "test/evidence/dual-certificate.md",
+      "sha256": "eec3613ca6d576a17c52972519602618c9c433279a507a3cb43ec67617bed913"
+    }
+  ],
+  "checks": [
+    "Tests first: stub 8 tests, 7 failed and 1 vacuous scaling pass; first implementation 7/8 then corrected an incorrect high-limb expectation",
+    "Final Solidity 9 passed, 0 failed, 0 skipped; 2,048 seeded cases",
+    "Reference 3 passed; fixture integers stable at 110/160 digits; cancelled support equals explicit-basket support in 15 cases at 160 digits",
+    "Retained exact-real and integer counterexample: persisted partition gives an unsafe shortfall bound",
+    "Fresh run uses final optimized WideMath SHA256 61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d",
+    "Proofread new audit for notation, domain, zero-output-price and zero-delta cases; no unresolved local typo"
+  ],
+  "result": "All scoped tests passed. Directed certificate implementation and conditional endpoint theorem are complete; full mixed solver and release gates remain open.",
+  "residual_risks": [
+    "Candidate feasibility, actual-start input accounting, connected path and quantum binding are caller obligations",
+    "Exact price weights can be too loose; positive witness selection for extreme ratios remains unproved",
+    "Gas 522068 is largest multi-operation test fixture, not a single certificate or router benchmark",
+    "Shared repository is dirty; source hashes identify evaluated dependency versions, not a clean release revision",
+    "Finite numerical precision agreement is evidence for fixtures, not a proof for all optimizer inputs"
+  ]
+}

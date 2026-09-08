@@ -1,0 +1,16 @@
+Compiling 2 files with Solc 0.8.30
+Solc 0.8.30 finished in 18.16s
+Compiler run successful!
+2026-09-08T02:30:30.523929Z  WARN evm::traces::external: etherscan config not found
+
+Ran 7 tests for test/CurveEvaluation.t.sol:CurveEvaluationTest
+[PASS] testExactWideSphereSignsAndNormals() (gas: 87441)
+[PASS] testIndependentVectorAndBasketCorpusAcrossDimensions() (gas: 1568939)
+[PASS] testMixedOriginalRadicalSignsAndIndependentNormalGoldens() (gas: 376306)
+[PASS] testNearSheetEqualityRemainsUncertain() (gas: 111362)
+[PASS] testRejectInvalidShapeAndRange() (gas: 109880)
+[PASS] testSheetHoleIsExplicitAndNeverUsedAsARadicalBracket() (gas: 102011)
+[PASS] testWrongPartitionAndPrincipalFloorAreSeparateFromResidualSigns() (gas: 100168)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 24.51ms (40.46ms CPU time)
+
+Ran 1 test suite in 57.86ms (24.51ms CPU time): 7 tests passed, 0 failed, 0 skipped (7 total tests)

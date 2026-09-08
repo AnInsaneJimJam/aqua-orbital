@@ -1,0 +1,22 @@
+No files changed, compilation skipped
+2026-09-08T05:01:28.695503Z  WARN evm::traces::external: etherscan config not found
+
+Ran 15 tests for test/FrontierSchedule.t.sol:FrontierScheduleTest
+[PASS] testAnEventEnclosureOverlappingFinalInputRemainsUncertain() (gas: 265674)
+[PASS] testBothHiddenCrossingsAreRetainedDespiteIdenticalEndpointPrefixes() (gas: 179003)
+[PASS] testCallerStateIsUnchanged() (gas: 179863)
+[PASS] testExactTouchDefinitelyOutsideInputRangeCanBeExcluded() (gas: 547869)
+[PASS] testExhaustedCrossingBudgetAndWrongPrefixNeverCertify() (gas: 442035)
+[PASS] testInRangeUncertifiedPhysicalRootCannotBeDiscarded() (gas: 215698)
+[PASS] testInvalidMetadataInputAndBoundsFailBeforeEnumeration() (gas: 226649)
+[PASS] testMaximumFourteenCrossingsAtLargeSupportedLengths() (gas: 1405920)
+[PASS] testMultipleKeysWalkInwardThenOutwardWithoutSkipping() (gas: 325874)
+[PASS] testNoInRangeEventNeedsNoCrossingBudget() (gas: 173578)
+[PASS] testProvenNegativeDiscriminantAllowsEmptySchedule() (gas: 184814)
+[PASS] testSignedRootsDefinitelyBehindStartAreExcluded() (gas: 171805)
+[PASS] testSingleInwardCrossingChangesTheIdealPrefixOnce() (gas: 175106)
+[PASS] testTouchAtInitialInputRemainsExplicitlyUncertain() (gas: 268281)
+[PASS] testUnknownDiscriminantCannotBeSkipped() (gas: 138398)
+Suite result: ok. 15 passed; 0 failed; 0 skipped; finished in 15.56ms (48.90ms CPU time)
+
+Ran 1 test suite in 39.51ms (15.56ms CPU time): 15 tests passed, 0 failed, 0 skipped (15 total tests)

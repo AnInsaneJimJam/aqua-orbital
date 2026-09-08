@@ -1,0 +1,15 @@
+{
+  "CurveEvaluation.sol": "1537bc49e14837d32279279f99a1f09f937c3a9c17e7226fd7dbceab61a864be",
+  "FrontierComposition.sol": "9e267caada4ec4824e52cf1b9c59368e9505ef45ad6566356ac1c013ebaa66df",
+  "FrontierEndpoint.sol": "6fec6e292c7344c10e0fc5f628fd64882d74e87f012aaaeeef02181bdfe7259d",
+  "FrontierEvents.sol": "5fd37fd1cf314474a22eeda3856743d95f98da6b49d06671921f5e6c5b120721",
+  "FrontierSchedule.sol": "a5d10a931895e30d59ca19e91055b58f2748cba796789a5ce09fa8392ed0b506",
+  "FrontierTurn.sol": "f1d9fc9cf528310040214af00101907ee011efd2be18f58b9394ea7843378e34",
+  "IntervalMath.sol": "e7ea7cd4aa5bb7a63f52b665f1311667bb52715f8a4a5ad32a4dde30bd820898",
+  "OrbitalMath.sol": "6454e86f8b8bea61506c2f5eead0df7936df8a89415597aabf76d3618acbfaeb",
+  "RootBracket.sol": "0e19eb8cb8c7daa41a3ea4ed32c1f6751d254edf689ff140cb155a554dad529d",
+  "SignedWide.sol": "8142108db5cc11ddf3a33e17855c7ca4a467f22687194967c28588aef6cb4426",
+  "SlackCertificate.sol": "1f4fafba1f78f98fa1ac868ed6ddaad91e40bbef5dc079ca5cdddf50f72c4e17",
+  "TickGeometry.sol": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b",
+  "WideMath.sol": "61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d"
+}

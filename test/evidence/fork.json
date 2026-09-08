@@ -7,5 +7,8 @@
       "fork_sha256": "56ad0b028912653eb0742c89184b99899396e81912f2e088b220a29fe1f932dc"
     }
   ],
-  "scope": "Resolver and pre/post hooks only; complete Orbital router and production custom opcodes are not implemented."
+  "excludedGeneratedPaths": [
+    "snapshots/"
+  ],
+  "scope": "Retained upstream changes are limited to the resolver and pre/post hooks in SwapVM.sol. The separate custom router executes certified interior and mixed paths through local Aqua settlement. Equality/discovery liveness and complete release campaigns remain outstanding."
 }

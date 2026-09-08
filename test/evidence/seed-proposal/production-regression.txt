@@ -1,0 +1,328 @@
+Compiling 6 files with Solc 0.8.30
+Solc 0.8.30 finished in 89.13s
+Compiler run successful!
+
+Ran 8 tests for test/LinkedMath.t.sol:LinkedMathTest
+[PASS] testActualLinkedEntryN2() (gas: 5979407)
+Logs:
+  n2 real linked
+  cold_external_call_gas: 5867849
+  linked_body_gas: 5856313
+  first_used: 65
+  resume_used: 0
+  remaining: 95
+
+[PASS] testActualLinkedEntryN3() (gas: 7259032)
+Logs:
+  n3 real linked
+  cold_external_call_gas: 7104461
+  linked_body_gas: 7091589
+  first_used: 60
+  resume_used: 0
+  remaining: 100
+
+[PASS] testActualLinkedEntryN8() (gas: 11742059)
+Logs:
+  n8 real linked
+  cold_external_call_gas: 11581668
+  linked_body_gas: 11566326
+  first_used: 60
+  resume_used: 0
+  remaining: 100
+
+[PASS] testActualLinkedResumePreservesBudgetAndEventOrder() (gas: 9906159)
+Logs:
+  real linked order resume
+  cold_external_call_gas: 9793724
+  linked_body_gas: 9781017
+  first_used: 63
+  resume_used: 62
+  remaining: 35
+
+[PASS] testActualLinkedTwoRoots() (gas: 6342877)
+Logs:
+  two linked roots
+  cold_external_call_gas: 6231123
+  linked_body_gas: 6218416
+  first_used: 70
+  resume_used: 0
+  remaining: 90
+
+[PASS] testActualRuntimeSizesBelowEIP170() (gas: 17048)
+Logs:
+  composition_runtime_bytes: 22253
+  endpoint_runtime_bytes: 18812
+  client_runtime_bytes: 3027
+
+[PASS] testExternalLinkedErrorsAndUncertifiedStatusRemainDistinct() (gas: 193949)
+[PASS] testPureLibraryFramesDoNotWriteCallerStorage() (gas: 14307371)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 245.17ms (236.23ms CPU time)
+
+Ran 9 tests for test/PayoutBracket.t.sol:PayoutBracketTest
+[PASS] testAlreadyBoundedProposalNeedsNoNewMidpoints() (gas: 77555)
+[PASS] testExactQuantumGapBoundaryIsIncluded() (gas: 77567)
+[PASS] testFuzzScaledPayoutCertificateAndWideSquares(uint104) (runs: 256, μ: 120663, ~: 120905)
+[PASS] testInvalidPayoutFrameAndQuantumReject() (gas: 50345)
+[PASS] testOrdinaryRefinementResumesWithSharedRemainingBudget() (gas: 609138)
+[PASS] testPayoutStopsBeforeGridAdjacencyWithExactGapBound() (gas: 121295)
+[PASS] testRawBoundaryAllowsExactlyOneQuantumWithoutChangingExactStatus() (gas: 99388)
+[PASS] testWidthAloneDoesNotAuthorizePayout() (gas: 80552)
+[PASS] testZeroAndInsufficientBudgetRetainRootWithoutPayoutClaim() (gas: 233574)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 335.79ms (341.36ms CPU time)
+
+Ran 20 tests for test/FrontierComposition.t.sol:FrontierCompositionTest
+[PASS] testActualCallerVectorAndTicksAreUnmodified() (gas: 6307767)
+[PASS] testCallerCrossingLimitIncludesInitialRelease() (gas: 2630681)
+[PASS] testCertifiedFinalEndpointCannotBypassUncertainInitialOutputOrder() (gas: 4178805)
+[PASS] testExactInitialTouchRemainsUncertain() (gas: 3294163)
+[PASS] testFallbackAfterOutwardEventSucceedsWithOneSharedLedger() (gas: 22666611)
+[PASS] testFourFrontierEventsAreNotReplacedByEndpointEquality() (gas: 6947440)
+[PASS] testInRangeNonphysicalEventCannotBeSkipped() (gas: 546781)
+[PASS] testInitialReleaseAndLaterFrontierDirectionsAreReturnedInOrder() (gas: 6064107)
+[PASS] testInvalidMetadataPairCapacityAndCallerLimitReject() (gas: 154414)
+[PASS] testMixedDecimalsKeepOneFinancialOutputFloor() (gas: 5076484)
+[PASS] testOrdinaryMixedEightTokenPathExecutes() (gas: 11705326)
+[PASS] testOrdinaryMixedThreeTokenPathExecutes() (gas: 7224300)
+[PASS] testOrdinaryMixedTwoTokenPathExecutes() (gas: 5945690)
+[PASS] testPayoutTargetAvoidsResumeForOrdinaryMixedPath() (gas: 7222975)
+[PASS] testRoundedCanonicalPrefixMismatchRemainsExplicitlyDeferred() (gas: 3382336)
+[PASS] testSingleInwardFrontierCrossingUsesExactlyOneAllowance() (gas: 2324416)
+[PASS] testThreeTokenMixedTurnHasNoHiddenLowerCrossing() (gas: 7155248)
+[PASS] testTwoRootsCrossInwardAndOutwardWithSameFinalPrefix() (gas: 6307463)
+[PASS] testUncertifiedStartDoesNotBecomeGlobalInfeasibility() (gas: 65175)
+[PASS] testZeroInitialOutputNormalNeedsASeparateOneSidedRule() (gas: 92951)
+Suite result: ok. 20 passed; 0 failed; 0 skipped; finished in 616.92ms (608.15ms CPU time)
+
+Ran 6 tests for test/PayoutEndpoint.t.sol:PayoutEndpointTest
+[PASS] testPayoutAndResumeN2() (gas: 16028544)
+[PASS] testPayoutAndResumeN3() (gas: 17055826)
+[PASS] testPayoutAndResumeN8() (gas: 24079707)
+[PASS] testResumeRejectsBoundsBeyondOriginalOutputAndWrongMetadata() (gas: 251264)
+[PASS] testResumeTreatsPriorBoundsOnlyAsRecheckedProposals() (gas: 9112863)
+[PASS] testZeroBudgetAndResumeExhaustionCannotInventWork() (gas: 1406157)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 333.58ms (332.04ms CPU time)
+
+Ran 8 tests for test/FrontierCompositionGas.t.sol:FrontierCompositionGasTest
+[PASS] testGasExternalInitialRelease() (gas: 6053991)
+Logs:
+  n2 release plus outward
+  external_call_with_ABI_gas: 5993155
+  helper_body_gas: 5979552
+  refinement_used: 64
+  refinement_remaining: 96
+  first_solve_used: 64
+  resume_used: 0
+  resume_attempted: 0
+
+[PASS] testGasExternalMixedEightTokens() (gas: 11680043)
+Logs:
+  n8 mixed
+  external_call_with_ABI_gas: 11587827
+  helper_body_gas: 11571589
+  refinement_used: 60
+  refinement_remaining: 100
+  first_solve_used: 60
+  resume_used: 0
+  resume_attempted: 0
+
+[PASS] testGasExternalMixedThreeTokens() (gas: 7205211)
+Logs:
+  n3 mixed
+  external_call_with_ABI_gas: 7110707
+  helper_body_gas: 7096933
+  refinement_used: 60
+  refinement_remaining: 100
+  first_solve_used: 60
+  resume_used: 0
+  resume_attempted: 0
+
+[PASS] testGasExternalMixedTurn() (gas: 7145458)
+Logs:
+  n3 mixed turn
+  external_call_with_ABI_gas: 7084839
+  helper_body_gas: 7071997
+  refinement_used: 73
+  refinement_remaining: 87
+  first_solve_used: 73
+  resume_used: 0
+  resume_attempted: 0
+
+[PASS] testGasExternalMixedTwoTokens() (gas: 5933557)
+Logs:
+  n2 mixed
+  external_call_with_ABI_gas: 5874024
+  helper_body_gas: 5861675
+  refinement_used: 65
+  refinement_remaining: 95
+  first_solve_used: 65
+  resume_used: 0
+  resume_attempted: 0
+
+[PASS] testGasExternalSuccessfulFallback() (gas: 9860997)
+Logs:
+  n2 release plus outward, financial stop then order resume
+  external_call_with_ABI_gas: 9800030
+  helper_body_gas: 9786427
+  refinement_used: 125
+  refinement_remaining: 35
+  first_solve_used: 63
+  resume_used: 62
+  resume_attempted: 1
+
+[PASS] testGasExternalTwoRootPath() (gas: 6295914)
+Logs:
+  n2 two roots
+  external_call_with_ABI_gas: 6237426
+  helper_body_gas: 6223826
+  refinement_used: 70
+  refinement_remaining: 90
+  first_solve_used: 70
+  resume_used: 0
+  resume_attempted: 0
+
+[PASS] testGasThreeTokenPhasesInFreshExternalFrames() (gas: 7135587)
+Logs:
+  fresh_initial_identity_and_release_body_gas: 925670
+  fresh_final_prefix_discovery_body_gas: 1267394
+  fresh_schedule_body_gas: 256117
+  fresh_final_solve_and_retention_body_gas: 4570905
+
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 337.12ms (332.56ms CPU time)
+
+Ran 14 tests for test/FrontierEndpoint.t.sol:FrontierEndpointTest
+[PASS] testCallerReservesRemainUnmodified() (gas: 8208328)
+[PASS] testEightTokenNearMaximumOriginalLength() (gas: 9989416)
+[PASS] testIndependentGoldenEightTokens() (gas: 12081465)
+[PASS] testIndependentGoldenMixedDecimals() (gas: 8889406)
+[PASS] testIndependentGoldenThreeTokens() (gas: 8889629)
+[PASS] testIndependentGoldenTwoTokens() (gas: 8438606)
+[PASS] testInitialRootIdentityRetainsActualSlackWithoutFinancialOutput() (gas: 7549281)
+[PASS] testInvalidMetadataPairBudgetAndCapacityRejectBeforeLifting() (gas: 153574)
+[PASS] testMixedDecimalsPreserveSameNetInputAndSingleOutputFloor() (gas: 8888555)
+[PASS] testOrdinaryMixedTwoThreeEightTokenEndpointsExecute() (gas: 29492018)
+[PASS] testRoundedKeyArrivalRequiresRepartition() (gas: 2583224)
+[PASS] testSharedBudgetBetweenInitialAndFinalIdentityNeverResets() (gas: 9948157)
+[PASS] testUncertifiedStartAndWrongPartitionDoNotBecomeGlobalExclusions() (gas: 176153)
+[PASS] testZeroAndTinyBudgetsPreserveIdentityButDoNotInventQuantumAccuracy() (gas: 1185159)
+Suite result: ok. 14 passed; 0 failed; 0 skipped; finished in 695.33ms (693.78ms CPU time)
+
+Ran 7 tests for test/FrontierEvents.t.sol:FrontierEventsTest
+[PASS] testBothRootsEncloseIndependentPerTickOracle() (gas: 132212)
+[PASS] testNearTangentDiscriminantRemainsExplicitlyUncertain() (gas: 130941)
+[PASS] testNoRealKeyIntersectionIsNotClampedToATangent() (gas: 125006)
+[PASS] testRealRootsCanFailThePerTickPhysicalCertificate() (gas: 166358)
+[PASS] testRejectInvalidPairKeyAndStartingState() (gas: 72782)
+[PASS] testSignedCandidatesBehindTheStartAreNotSilentlyLost() (gas: 130082)
+[PASS] testWideEventCoordinatesPreserveBothDirections() (gas: 131312)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 9.27ms (6.83ms CPU time)
+
+Ran 15 tests for test/FrontierSchedule.t.sol:FrontierScheduleTest
+[PASS] testAnEventEnclosureOverlappingFinalInputRemainsUncertain() (gas: 265674)
+[PASS] testBothHiddenCrossingsAreRetainedDespiteIdenticalEndpointPrefixes() (gas: 179003)
+[PASS] testCallerStateIsUnchanged() (gas: 179863)
+[PASS] testExactTouchDefinitelyOutsideInputRangeCanBeExcluded() (gas: 547869)
+[PASS] testExhaustedCrossingBudgetAndWrongPrefixNeverCertify() (gas: 442035)
+[PASS] testInRangeUncertifiedPhysicalRootCannotBeDiscarded() (gas: 215698)
+[PASS] testInvalidMetadataInputAndBoundsFailBeforeEnumeration() (gas: 226649)
+[PASS] testMaximumFourteenCrossingsAtLargeSupportedLengths() (gas: 1405920)
+[PASS] testMultipleKeysWalkInwardThenOutwardWithoutSkipping() (gas: 325874)
+[PASS] testNoInRangeEventNeedsNoCrossingBudget() (gas: 173578)
+[PASS] testProvenNegativeDiscriminantAllowsEmptySchedule() (gas: 184814)
+[PASS] testSignedRootsDefinitelyBehindStartAreExcluded() (gas: 171805)
+[PASS] testSingleInwardCrossingChangesTheIdealPrefixOnce() (gas: 175106)
+[PASS] testTouchAtInitialInputRemainsExplicitlyUncertain() (gas: 268281)
+[PASS] testUnknownDiscriminantCannotBeSkipped() (gas: 138398)
+Suite result: ok. 15 passed; 0 failed; 0 skipped; finished in 41.99ms (39.70ms CPU time)
+
+Ran 12 tests for test/FrontierTurn.t.sol:FrontierTurnTest
+[PASS] testExactAndBothNearTangentSignsPreserveUncertainty() (gas: 498259)
+[PASS] testExactPhysicalTangentIsProvenNonpositive() (gas: 158988)
+[PASS] testFractionalSeamIsNeverRoundedToOriginalLength() (gas: 150059)
+[PASS] testFuzzExactThreeTokenAgainstIntegerPolynomial(uint128,uint8) (runs: 257, μ: 172377, ~: 172314)
+[PASS] testIndependentSignedEndpointGoldens() (gas: 556751)
+[PASS] testLargestBoundaryAndOriginalContributionRounding() (gas: 204514)
+[PASS] testMaximumWidthsTwoThreeSevenEight() (gas: 634657)
+[PASS] testPreparationRecomputesUntrustedTickCoefficients() (gas: 133349)
+[PASS] testRejectDefaultSphereAndMalformedPoints() (gas: 155201)
+[PASS] testStrictPositiveRequiresPositiveLowerBound() (gas: 150946)
+[PASS] testThreeTokenExactSignsAndNegativePairSum() (gas: 190954)
+[PASS] testTwoTokenCounterexampleSevenSixteenths() (gas: 154909)
+Suite result: ok. 12 passed; 0 failed; 0 skipped; finished in 577.43ms (586.44ms CPU time)
+
+Ran 14 tests for test/SlackCertificate.t.sol:SlackCertificateTest
+[PASS] testAllInteriorVerticalSegment() (gas: 71812)
+[PASS] testBoundaryCoordinateCanPeakBetweenValidEndpoints() (gas: 369006)
+[PASS] testBoundaryPeakWithBothEndpointsBelowUntouchedMean() (gas: 199592)
+[PASS] testCheckedWideScale() (gas: 1900)
+[PASS] testInwardReleaseAcrossFractionalKeyPlane() (gas: 239978)
+[PASS] testInwardReleaseCountsZeroDistanceDeparture() (gas: 336056)
+[PASS] testInwardReleaseSupportsSevenDistinctSeams() (gas: 1242068)
+[PASS] testInwardReleaseTraversesTwoKeysInOrder() (gas: 331490)
+[PASS] testThreeTokenReleaseCrossesTwoKeysWithWideProofCoordinates() (gas: 727082)
+[PASS] testTwoTokenDegenerateMomentsAndCanonicalEquality() (gas: 179180)
+[PASS] testValidMixedBoundaryRelease() (gas: 125055)
+[PASS] testVarianceMinimumBetweenValidIntegerEndpoints() (gas: 348175)
+[PASS] testWideScaleOverflow() (gas: 5042)
+[PASS] testWideScaleOverflowFromLowProductCarry() (gas: 6050)
+Suite result: ok. 14 passed; 0 failed; 0 skipped; finished in 23.92ms (22.56ms CPU time)
+
+Ran 10 tests for test/SlackGridRelease.t.sol:SlackGridReleaseTest
+[PASS] testFinalExactSeamCanStopBeforeOrAfterOneDeparture() (gas: 373328)
+[PASS] testFractionalEndMustNotBeFlooredIntoAnotherPartition() (gas: 329606)
+[PASS] testFractionalEndpointCrossesFractionalSeamWithoutMutation() (gas: 197591)
+[PASS] testInitialTwoThreeEightTokenIdentitiesConnectToTheirExactHighs() (gas: 19518808)
+[PASS] testInvalidEndPrefixRangeAndDirectionReturnUncertified() (gas: 226340)
+[PASS] testLegacyAndGridCanonicalIntegralEndsAgree() (gas: 911820)
+[PASS] testSevenSeamsAndFractionalFinalCoordinate() (gas: 1207239)
+[PASS] testStartAndFinalZeroDistanceDeparturesEachCountOnce() (gas: 826510)
+[PASS] testThreeTokenTwoSeamsAtWideOriginalLengths() (gas: 354665)
+[PASS] testVarianceAndHiddenBoundaryMaximumAreStillRejected() (gas: 539673)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 100.99ms (99.39ms CPU time)
+
+Ran 11 tests for test/SeedProposal.t.sol:SeedProposalTest
+[PASS] testAllInteriorStillUsesTheSeparateSphereDomain() (gas: 3006920)
+[PASS] testArithmeticProposalRejectsUnderflowAndEmptyWindow() (gas: 35836)
+[PASS] testExactAndTargetedEndpointRecoverIndependentGolden() (gas: 12976066)
+[PASS] testExistingInwardMixedGoldenIsUnchanged() (gas: 4363175)
+[PASS] testFullCompositionRecoversBothEventsAndSharedLedger() (gas: 9737173)
+[PASS] testFuzzClipHasExactDirectedSheetInequalities(uint192) (runs: 257, μ: 13572, ~: 12668)
+[PASS] testLinkedRuntimeSizeAndColdRecoveredPathGas() (gas: 10360982)
+Logs:
+  cold_external_with_ABI_gas: 9672096
+  linked_body_gas: 9659296
+  FrontierComposition_runtime_bytes: 22253
+  FrontierEndpoint_runtime_bytes: 18812
+  SeedLinkedProbe_runtime_bytes: 2960
+  first_solve_used: 68
+  resume_used: 60
+  remaining: 32
+
+[PASS] testOldHighIsStrictlyBelowSheetBeforeAnyRootIteration() (gas: 113669)
+[PASS] testProposedHighHasFullMembershipAndAnOrdinaryCertifiedBracket() (gas: 525405)
+[PASS] testRecoveredPathStillRequiresBothCrossingAllowances() (gas: 1581432)
+[PASS] testZeroBudgetStillDefersTheFinancialPayout() (gas: 590062)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 201.56ms (216.01ms CPU time)
+
+Ran 19 tests for test/RootBracket.t.sol:RootBracketTest
+[PASS] testEightTokenTwoBoundaryRootMatchesIndependentGolden() (gas: 7665815)
+[PASS] testEndpointEqualityCollapsesWithoutSpendingBudget() (gas: 182748)
+[PASS] testEndpointsWithSameResidualSignDoNotCertifyABracket() (gas: 101442)
+[PASS] testExactSphereRootAndCallerReservesArePreserved() (gas: 117349)
+[PASS] testFuzzSphereRootBracketHasIndependentSquareInequalities(uint128) (runs: 257, μ: 1376133, ~: 1088380)
+[PASS] testHiddenBoundaryMaximumRejectsDomainAtBothWidthScales() (gas: 1972603)
+[PASS] testIrrationalSphereRootMatchesIndependentBigintGolden() (gas: 567021)
+[PASS] testMixedRootEnclosesIndependent110And160DigitGolden() (gas: 7972502)
+[PASS] testRejectMalformedBoundsAndOversizedBudget() (gas: 38903)
+[PASS] testResidualOnlyCannotSubstituteForMembership() (gas: 57726)
+[PASS] testResidualOnlyMatchesFullEvaluationAcrossDimensionsAndChangedOutput() (gas: 3389313)
+[PASS] testResidualOnlyRetainsSheetStatusesWithoutInventingSigns() (gas: 166395)
+[PASS] testResidualPreparationRejectsShapeAndCoordinateRange() (gas: 42805)
+[PASS] testSharedBudgetDoesNotClaimGridAdjacencyAtMaximumLengths() (gas: 3015913)
+[PASS] testThreeTokenTwoBoundaryRootMatchesIndependentGolden() (gas: 5913967)
+[PASS] testUncertainMidpointPreservesPreviousOutwardBracket() (gas: 734750)
+[PASS] testVarianceHoleCannotBeBisectedBetweenValidEndpoints() (gas: 1128637)
+[PASS] testZeroBudgetAndOneStepExposeRemainingWidth() (gas: 202076)
+[PASS] testZeroOutputPriceAndWrongPartitionDoNotCertifyDomain() (gas: 281745)
+Suite result: ok. 19 passed; 0 failed; 0 skipped; finished in 2.74s (2.80s CPU time)
+
+Ran 13 test suites in 3.67s (6.26s CPU time): 153 tests passed, 0 failed, 0 skipped (153 total tests)

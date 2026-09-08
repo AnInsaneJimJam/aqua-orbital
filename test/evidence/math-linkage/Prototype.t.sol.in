@@ -1,0 +1,68 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.30;
+import {Test} from "forge-std/Test.sol";
+import {FrontierComposition as C} from "../src/libraries/FrontierComposition.sol";
+import {FrontierEndpoint as E} from "../src/libraries/FrontierEndpoint.sol";
+import {SlackCertificate as P} from "../src/libraries/SlackCertificate.sol";
+import {FrontierSchedule as F} from "../src/libraries/FrontierSchedule.sol";
+import {OrbitalMath as M} from "../src/libraries/OrbitalMath.sol";
+import {TickGeometry as G} from "../src/libraries/TickGeometry.sol";
+import {CurvePrimitiveFixtures as Fixtures} from "./fixtures/CurvePrimitiveFixtures.sol";
+import {FrontierComposition as Baseline} from "../baseline/libraries/FrontierComposition.sol";
+import {OrbitalMath as BaselineM} from "../baseline/libraries/OrbitalMath.sol";
+
+// The actual created quote caller contains only ABI work and a fixed linked
+// call. Test/assertion/fixture code is not counted as deployable production.
+contract LinkedMathQuote {
+    function quote(uint256[] memory x,M.Tick[] memory ticks,uint8[] memory d,uint256 raw,uint8 limit) external view returns(C.Result memory r,uint256 bodyGas){
+        uint256 before=gasleft();r=C.certify(x,ticks,d,0,1,raw,limit);bodyGas=before-gasleft();
+    }
+}
+contract LinkedMathPrototypeTest is Test {
+    uint256 constant SCALE=1e40;uint256 constant U=1<<64;uint256 constant GRID=1<<32;
+    LinkedMathQuote probe;
+    function setUp() public {probe=new LinkedMathQuote();}
+    function decimals(uint256 n) private pure returns(uint8[] memory d){d=new uint8[](n);for(uint256 k;k<n;k++)d[k]=18;}
+    function baseline(uint256[] memory x,M.Tick[] memory ticks,uint8[] memory d,uint256 raw,uint8 limit) external pure returns(bytes memory){
+        BaselineM.Tick[] memory originalTicks=abi.decode(abi.encode(ticks),(BaselineM.Tick[]));
+        return abi.encode(Baseline.certify(x,originalTicks,d,0,1,raw,limit));
+    }
+    function measure(string memory label,uint256[] memory x,M.Tick[] memory ticks,uint8[] memory d,uint256 raw,uint8 limit) private {
+        // Clear access-list warming; cold linked addresses are measured once.
+        __COOL__
+        vm.cool(address(probe));
+        uint256 before=gasleft();(C.Result memory result,uint256 body)=probe.quote(x,ticks,d,raw,limit);uint256 externalGas=before-gasleft();
+        assertEq(uint256(result.status),uint256(C.Status.FrontierPathCertified));
+        bytes memory actual=abi.encode(result);bytes memory expected=this.baseline(x,ticks,d,raw,limit);
+        assertEq(actual,expected,"all output/status/ledger/witness fields match original body");
+        bytes memory payload=abi.encodeCall(LinkedMathQuote.quote,(x,ticks,d,raw,limit));
+        uint256 calldataGas;uint256 nonzero;
+        for(uint256 k;k<payload.length;k++){bool nz=payload[k]!=0;calldataGas+=nz?16:4;if(nz)++nonzero;}
+        emit log_string(label);emit log_named_uint("cold_external_with_ABI_gas",externalGas);emit log_named_uint("linked_body_gas",body);
+        emit log_named_uint("calldata_bytes",payload.length);emit log_named_uint("calldata_nonzero_bytes",nonzero);emit log_named_uint("EIP2028_calldata_gas",calldataGas);
+        emit log_named_uint("first_used",result.firstSolveUsed);emit log_named_uint("resume_used",result.resumeUsed);emit log_named_uint("remaining",result.refinementRemaining);
+    }
+    function ordinary(uint256 index,string memory label) private {
+        (,uint256[] memory x,M.Tick[] memory ticks,,,,)=Fixtures.scalar(index);measure(label,x,ticks,decimals(x.length),1e18,0);
+    }
+    function testN2() public {ordinary(0,"n2 mixed");}
+    function testN3() public {ordinary(2,"n3 mixed");}
+    function testN8() public {ordinary(3,"n8 mixed");}
+    function testTwoRoot() public {
+        uint256[] memory x=new uint256[](2);x[0]=2527133520585472095299795479050357292168;x[1]=10306468614415789726245162508561985295187;
+        uint64 key=uint64(5*GRID/8);M.Tick[] memory ticks=new M.Tick[](2);
+        ticks[0]=M.Tick(key,uint192(SCALE),G.coefficients(2,key));ticks[1]=M.Tick(type(uint64).max,uint192(SCALE),G.coefficients(2,type(uint64).max));
+        measure("n2 two roots",x,ticks,decimals(2),8*SCALE/10/U,2);
+    }
+    function testSuccessfulFallback() public {
+        uint256[] memory x=new uint256[](2);x[0]=15*SCALE/10;x[1]=3*SCALE/10;
+        uint64 key=uint64(7*GRID/8);M.Tick[] memory ticks=new M.Tick[](2);
+        ticks[0]=M.Tick(key,uint192(SCALE),G.coefficients(2,key));ticks[1]=M.Tick(type(uint64).max,uint192(SCALE),G.coefficients(2,type(uint64).max));
+        uint8[] memory d=decimals(2);d[1]=17;measure("n2 successful fallback",x,ticks,d,125744046821095790489,2);
+    }
+    function testDeploymentWithinEIP170() public {
+        __SIZE__
+        emit log_named_uint("LinkedMathQuote_runtime_bytes",address(probe).code.length);assertLe(address(probe).code.length,24576);
+        assertGt(address(probe).code.length,0);
+    }
+}
