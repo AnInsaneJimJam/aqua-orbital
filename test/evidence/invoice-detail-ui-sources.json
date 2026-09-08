@@ -1,0 +1,80 @@
+{
+  "recordedAt": "2026-09-08T05:55:16.708562+00:00",
+  "scope": "Post-run source/output snapshot for public invoice reads. Test observations and limitations are recorded separately in invoice-detail-ui.md; hashes alone do not establish execution or live deployment.",
+  "sources": [
+    {
+      "path": "packages/shared/src/index.ts",
+      "sha256": "6f62d0c8cfd523a4a00850bd57b47b1becf7789b88cd9ba66d7cf46cfd5dab96"
+    },
+    {
+      "path": "packages/sdk/src/invoice-read.ts",
+      "sha256": "dc52ed60465ae3afc94dcb55054bb9a701bf9539eb293fd613be9c0f6d996d0b"
+    },
+    {
+      "path": "packages/sdk/test/invoice-read.test.ts",
+      "sha256": "99e2670d4a9c99f4ceb1dd8c3c6d6a72ad9e9001f2d1c174ff396e89af052b39"
+    },
+    {
+      "path": "packages/sdk/test/fixtures/invoice.ts",
+      "sha256": "a37fbbb41f707df8b70a0cc942ffb23f3aa0860058649e6832e60f5c712268e5"
+    },
+    {
+      "path": "apps/web/src/features/api.ts",
+      "sha256": "9af006f21a6807cd9073a7d2f1949391019434b99e11c5162d09cf19a6ba7693"
+    },
+    {
+      "path": "apps/web/src/features/useInvoice.ts",
+      "sha256": "34d987575ca4734b71310fac1d37d6ce319d18910f31e0298f9f020fba5ff865"
+    },
+    {
+      "path": "apps/web/src/features/Invoice.tsx",
+      "sha256": "0792fdb6ffbb1f52a15a20ca8ad1e56131569b853170ecaf9f9de50bb11500be"
+    },
+    {
+      "path": "apps/web/src/features/Invoice.module.css",
+      "sha256": "2fde4bd240eae1a83ba4dd01847afa93886247cebdf17b886a7b12cdd3378f2e"
+    },
+    {
+      "path": "apps/web/src/content.ts",
+      "sha256": "47818dc4d10b69d197c1a0cef40cd4c19c5cc0b1627b36c0361f3bfe01fc217d"
+    },
+    {
+      "path": "apps/web/src/app/pay/[invoiceId]/page.tsx",
+      "sha256": "b8a8e74219b889b52f4d53c6830ad9a098db502231bdf30bee40018d97a72aee"
+    },
+    {
+      "path": "apps/web/test/invoice.spec.ts",
+      "sha256": "7e0796669a63227b45972e91454e4b88b90e5de354ce36776736086a5d980394"
+    },
+    {
+      "path": "apps/web/playwright.config.ts",
+      "sha256": "5b3b5f94520c7422cbe9827ffb4b2fe16434e95d11fdf0bbbae827a1da82bf02"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "test/evidence/invoice-detail-sdk-green.txt",
+      "sha256": "e09161fbdbff163c8af3b00533450b8ff2e846757cb9d25de78b19a91ca7aaaf"
+    },
+    {
+      "path": "test/evidence/browser.txt",
+      "sha256": "c6da888c56679259f7c8ed9f0ac01f166c5edad0203cc51ea1e7a8229a81583c"
+    },
+    {
+      "path": "test/evidence/web-build.txt",
+      "sha256": "ce3059794700b2b249c9f02d03a99d2ea07415e1dfac41189e9d56072756d884"
+    },
+    {
+      "path": "test/evidence/typecheck.txt",
+      "sha256": "03b47d8400044d5152e37e333e8ab9830b0069722fbeb2187b4498aab8360c13"
+    },
+    {
+      "path": "test/evidence/invoice-mobile.png",
+      "sha256": "608e19a7afbf6b484d9734de7318dea15d60b215db609ff4b1884984ccaf6f60"
+    },
+    {
+      "path": "test/evidence/invoice-paid-desktop.png",
+      "sha256": "a5aaa6bacaa8a7e1ce5104b023f784b60953942ad8f30da368d5b5b4504bc9ac"
+    }
+  ]
+}

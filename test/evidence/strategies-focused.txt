@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: strategy HTTP aliases expose typed registered observations and preserve disabled quotes
+ok 1 - strategy HTTP aliases expose typed registered observations and preserve disabled quotes
+  ---
+  duration_ms: 2199.4321
+  type: 'test'
+  ...
+# Subtest: registered catalogue is receipt-backed, exact, and never a financial inventory
+ok 2 - registered catalogue is receipt-backed, exact, and never a financial inventory
+  ---
+  duration_ms: 1200.6384
+  type: 'test'
+  ...
+# Subtest: detail binds three coherent router reads and exact principal, fees, wide moments and funding
+ok 3 - detail binds three coherent router reads and exact principal, fees, wide moments and funding
+  ---
+  duration_ms: 1195.452
+  type: 'test'
+  ...
+# Subtest: retirement after same-block swaps remains terminal with its own later version
+ok 4 - retirement after same-block swaps remains terminal with its own later version
+  ---
+  duration_ms: 960.729
+  type: 'test'
+  ...
+# Subtest: absence requires complete lifecycle and swap coverage; no deployment stays unavailable
+ok 5 - absence requires complete lifecycle and swap coverage; no deployment stays unavailable
+  ---
+  duration_ms: 882.7217
+  type: 'test'
+  ...
+# Subtest: stable filter-bound pagination survives normal advancement and retains registered coverage
+ok 6 - stable filter-bound pagination survives normal advancement and retains registered coverage
+  ---
+  duration_ms: 875.8655
+  type: 'test'
+  ...
+# Subtest: filter and cursor inputs are bounded and cannot choose network, token or transaction data
+ok 7 - filter and cursor inputs are bounded and cannot choose network, token or transaction data
+  ---
+  duration_ms: 3.811
+  type: 'test'
+  ...
+# Subtest: orphaned listing pins and reorgs between RPC and database checks never expose balances
+ok 8 - orphaned listing pins and reorgs between RPC and database checks never expose balances
+  ---
+  duration_ms: 1814.2594
+  type: 'test'
+  ...
+# Subtest: altered immutable configuration, detached sources and omitted receipts fail closed
+ok 9 - altered immutable configuration, detached sources and omitted receipts fail closed
+  ---
+  duration_ms: 2699.9193
+  type: 'test'
+  ...
+# Subtest: inconsistent RPC identity, version, quantities and availability cannot become a complete observation
+ok 10 - inconsistent RPC identity, version, quantities and availability cannot become a complete observation
+  ---
+  duration_ms: 1514.7629
+  type: 'test'
+  ...
+# Subtest: unhealthy live/backing conditions and revocations remain inspectable with truthful zero ceilings
+ok 11 - unhealthy live/backing conditions and revocations remain inspectable with truthful zero ceilings
+  ---
+  duration_ms: 1038.9454
+  type: 'test'
+  ...
+# Subtest: stale catalogue remains labeled and transport failures never leak partial financial state
+ok 12 - stale catalogue remains labeled and transport failures never leak partial financial state
+  ---
+  duration_ms: 1092.7992
+  type: 'test'
+  ...
+# Subtest: default20 and max50 listing bounds preserve filters and deterministic continuation
+ok 13 - default20 and max50 listing bounds preserve filters and deterministic continuation
+  ---
+  duration_ms: 1591.293
+  type: 'test'
+  ...
+# Subtest: coverage, receipt versions and fee observations use one database snapshot
+ok 14 - coverage, receipt versions and fee observations use one database snapshot
+  ---
+  duration_ms: 808.7348
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 31972.658

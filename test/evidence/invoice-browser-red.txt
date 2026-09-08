@@ -1,0 +1,214 @@
+
+[WebServer] (node:3884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:8172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:14596) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 1 worker
+
+
+
+(node:3396) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1/5] test\invoice.spec.ts:10:1 › public invoice displays exact terms and recipients in the current template without wallet setup
+[WebServer] (node:14524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  1) test\invoice.spec.ts:10:1 › public invoice displays exact terms and recipients in the current template without wallet setup 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: '70000000000.000001 USDC', exact: true })
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: '70000000000.000001 USDC', exact: true }) with timeout 30000ms
+      - waiting for getByRole('heading', { name: '70000000000.000001 USDC', exact: true })
+
+
+      10 | test('public invoice displays exact terms and recipients in the current template without wallet setup', async ({page}) => {
+      11 |   await fixture(page); await page.setViewportSize({width: 320, height: 680}); await page.goto(path);
+    > 12 |   await expect(page.getByRole('heading', {name: '70000000000.000001 USDC', exact: true})).toBeVisible();
+         |                                                                                           ^
+      13 |   await expect(page.getByText('Unpaid at indexed block', {exact: true})).toBeVisible();
+      14 |   await expect(page.getByText('63000000000 USDC', {exact: true})).toBeVisible();
+      15 |   await expect(page.getByText('7000000000.000001 USDC', {exact: true})).toBeVisible();
+        at C:\Users\gujja\aqua-orbital\apps\web\test\invoice.spec.ts:12:91
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\invoice-public-invoice-dis-9ff9b-mplate-without-wallet-setup\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\invoice-public-invoice-dis-9ff9b-mplate-without-wallet-setup\error-context.md
+
+
+
+
+(node:11936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2/5] test\invoice.spec.ts:22:1 › paid invoice shows swap-funded receipt and removes old status when a refresh becomes unavailable
+
+[WebServer] (node:8484) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  2) test\invoice.spec.ts:22:1 › paid invoice shows swap-funded receipt and removes old status when a refresh becomes unavailable 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Paid through an Orbital swap', { exact: true })
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Paid through an Orbital swap', { exact: true }) with timeout 30000ms
+      - waiting for getByText('Paid through an Orbital swap', { exact: true })
+
+
+      27 |   await fixture(page, () => available ? value : {code: 'RPC_UNAVAILABLE', message: 'Canonical invoice history unavailable.'}, () => available ? 200 : 503);
+      28 |   await page.goto(path);
+    > 29 |   await expect(page.getByText('Paid through an Orbital swap', {exact: true})).toBeVisible();
+         |                                                                               ^
+      30 |   await expect(page.getByText('70000000.000000001 oUSD18', {exact: true})).toBeVisible();
+      31 |   await page.getByText('Receipt details', {exact: true}).click();
+      32 |   await expect(page.getByRole('link', {name: 'Payment receipt'})).toHaveAttribute('href', `https://testnet.arcscan.app/tx/${hash(214)}`);
+        at C:\Users\gujja\aqua-orbital\apps\web\test\invoice.spec.ts:29:79
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\invoice-paid-invoice-shows-37697-refresh-becomes-unavailable\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\invoice-paid-invoice-shows-37697-refresh-becomes-unavailable\error-context.md
+
+
+
+(node:19044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[3/5] test\invoice.spec.ts:37:1 › stale historical invoice labels its observation and keeps transaction actions unavailable
+[WebServer] (node:10212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+  3) test\invoice.spec.ts:37:1 › stale historical invoice labels its observation and keeps transaction actions unavailable 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Historical observation at block 15.', { exact: true })
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Historical observation at block 15.', { exact: true }) with timeout 30000ms
+      - waiting for getByText('Historical observation at block 15.', { exact: true })
+
+
+      39 |     currentIndexedBlock: {height: '16', hash: hash(116)}, freshness: {indexedAt: '2026-09-08T06:00:00.000Z', ageMs: 11000, head: '18', stale: true}};
+      40 |   await fixture(page, () => value); await page.goto(path);
+    > 41 |   await expect(page.getByText('Historical observation at block 15.', {exact: true})).toBeVisible();
+         |                                                                                      ^
+      42 |   await expect(page.getByText('The index is behind or its latest check is old. Refresh to check for updates.', {exact: true})).toBeVisible();
+      43 |   await expect(page.getByRole('button', {name: 'Payment unavailable', exact: true})).toBeDisabled();
+      44 | });
+        at C:\Users\gujja\aqua-orbital\apps\web\test\invoice.spec.ts:41:86
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\invoice-stale-historical-i-8fbd9-saction-actions-unavailable\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\invoice-stale-historical-i-8fbd9-saction-actions-unavailable\error-context.md
+
+
+
+(node:8540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[4/5] test\invoice.spec.ts:45:1 › malformed or wrong-deployment invoice cannot render financial terms
+
+[WebServer] (node:24704) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  4) test\invoice.spec.ts:45:1 › malformed or wrong-deployment invoice cannot render financial terms 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Invoice unavailable', exact: true })
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Invoice unavailable', exact: true }) with timeout 30000ms
+      - waiting for getByRole('heading', { name: 'Invoice unavailable', exact: true })
+
+
+      46 |   let value: unknown = {...invoiceObservation(), deploymentId: hash(999)};
+      47 |   await fixture(page, () => value); await page.goto(path);
+    > 48 |   await expect(page.getByRole('heading', {name: 'Invoice unavailable', exact: true})).toBeVisible();
+         |                                                                                       ^
+      49 |   const bad = invoiceObservation(); bad.data.invoice.recipients[0]!.amountRaw = '63000000000000001'; value = bad;
+      50 |   await page.getByRole('button', {name: 'Refresh invoice', exact: true}).click();
+      51 |   await expect(page.getByRole('heading', {name: 'Invoice unavailable', exact: true})).toBeVisible();
+        at C:\Users\gujja\aqua-orbital\apps\web\test\invoice.spec.ts:48:87
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\invoice-malformed-or-wrong-9d96a-nnot-render-financial-terms\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\invoice-malformed-or-wrong-9d96a-nnot-render-financial-terms\error-context.md
+
+
+
+(node:23116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[5/5] test\invoice.spec.ts:54:1 › canonical absence is distinct from outage, and an invalid identifier sends no invoice read
+
+[WebServer] (node:19760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:14840) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+  5) test\invoice.spec.ts:54:1 › canonical absence is distinct from outage, and an invalid identifier sends no invoice read 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Invoice not found', exact: true })
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Invoice not found', exact: true }) with timeout 30000ms
+      - waiting for getByRole('heading', { name: 'Invoice not found', exact: true })
+
+
+      55 |   const absent = {...invoiceObservation(), code: 'INVOICE_NOT_FOUND', data: {invoice: null}, message: 'Invoice not found in the canonical indexed history at the indicated block.', retryable: false, field: 'id', requestId: 'req-1'};
+      56 |   await fixture(page, () => absent, () => 404); await page.goto(path);
+    > 57 |   await expect(page.getByRole('heading', {name: 'Invoice not found', exact: true})).toBeVisible();
+         |                                                                                     ^
+      58 |   await expect(page.getByText('No invoice with this identifier was found in the indexed history through block 15.', {exact: true})).toBeVisible();
+      59 |   let requests = 0; await page.route('**/invoices/*', route => { requests++; return route.abort(); });
+      60 |   await page.goto('/pay/not-an-invoice');
+        at C:\Users\gujja\aqua-orbital\apps\web\test\invoice.spec.ts:57:85
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\invoice-canonical-absence--1cbc7-ifier-sends-no-invoice-read\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\invoice-canonical-absence--1cbc7-ifier-sends-no-invoice-read\error-context.md
+
+
+  5 failed
+    test\invoice.spec.ts:10:1 › public invoice displays exact terms and recipients in the current template without wallet setup 
+    test\invoice.spec.ts:22:1 › paid invoice shows swap-funded receipt and removes old status when a refresh becomes unavailable 
+    test\invoice.spec.ts:37:1 › stale historical invoice labels its observation and keeps transaction actions unavailable 
+    test\invoice.spec.ts:45:1 › malformed or wrong-deployment invoice cannot render financial terms 
+    test\invoice.spec.ts:54:1 › canonical absence is distinct from outage, and an invalid identifier sends no invoice read 
+undefined
+C:\Users\gujja\aqua-orbital\apps\web:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: playwright test invoice.spec.ts --reporter=line

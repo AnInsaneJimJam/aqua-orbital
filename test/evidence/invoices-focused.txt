@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: invoice detail distinguishes absent canonical history from unavailable configuration and coverage
+ok 1 - invoice detail distinguishes absent canonical history from unavailable configuration and coverage
+  ---
+  duration_ms: 853.0152
+  type: 'test'
+  ...
+# Subtest: direct and swap payment details preserve exact splits and custom-event provenance
+ok 2 - direct and swap payment details preserve exact splits and custom-event provenance
+  ---
+  duration_ms: 913.8116
+  type: 'test'
+  ...
+# Subtest: merchant keyset pages default20 cap50 and preserve exact creation order without other merchants
+ok 3 - merchant keyset pages default20 cap50 and preserve exact creation order without other merchants
+  ---
+  duration_ms: 2150.4993
+  type: 'test'
+  ...
+# Subtest: page pins survive normal tip advancement and retain invoice status as of the original block
+ok 4 - page pins survive normal tip advancement and retain invoice status as of the original block
+  ---
+  duration_ms: 1200.1543
+  type: 'test'
+  ...
+# Subtest: cursor pins are deployment and merchant bound and orphaned pins are rejected
+ok 5 - cursor pins are deployment and merchant bound and orphaned pins are rejected
+  ---
+  duration_ms: 844.8873
+  type: 'test'
+  ...
+# Subtest: invoice reads need lifecycle coverage but not swap coverage and reject detached invoice projections
+ok 6 - invoice reads need lifecycle coverage but not swap coverage and reject detached invoice projections
+  ---
+  duration_ms: 1060.8603
+  type: 'test'
+  ...
+# Subtest: stale indexed terms remain labeled stale without inventing expiry or current payability
+ok 7 - stale indexed terms remain labeled stale without inventing expiry or current payability
+  ---
+  duration_ms: 631.546
+  type: 'test'
+  ...
+# Subtest: a reorg during RPC invalidates the observed invoice without leaking the removed payment
+ok 8 - a reorg during RPC invalidates the observed invoice without leaking the removed payment
+  ---
+  duration_ms: 718.215
+  type: 'test'
+  ...
+# Subtest: shared invoice DTO rejects altered split atoms, receipt status, direct-route money and added identity fields
+ok 9 - shared invoice DTO rejects altered split atoms, receipt status, direct-route money and added identity fields
+  ---
+  duration_ms: 713.0787
+  type: 'test'
+  ...
+# Subtest: invoice and merchant HTTP paths return typed reads, canonical404 and bounded errors with no quote enablement
+ok 10 - invoice and merchant HTTP paths return typed reads, canonical404 and bounded errors with no quote enablement
+  ---
+  duration_ms: 1570.0484
+  type: 'test'
+  ...
+# Subtest: normal advancement during RPC preserves pinned data and marks observed head disagreement stale
+ok 11 - normal advancement during RPC preserves pinned data and marks observed head disagreement stale
+  ---
+  duration_ms: 744.8367
+  type: 'test'
+  ...
+# Subtest: historical pins still require a valid current deployment marker
+ok 12 - historical pins still require a valid current deployment marker
+  ---
+  duration_ms: 945.0059
+  type: 'test'
+  ...
+# Subtest: invoice coverage, status and source reads share one MVCC snapshot
+ok 13 - invoice coverage, status and source reads share one MVCC snapshot
+  ---
+  duration_ms: 691.2717
+  type: 'test'
+  ...
+# Subtest: production invoice database dependencies and unconfigured HTTP routes remain truthful
+ok 14 - production invoice database dependencies and unconfigured HTTP routes remain truthful
+  ---
+  duration_ms: 701.9015
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 21494.0321

@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: strict swap observation DTO accepts exact bounded non-executable observed and unavailable envelopes
+ok 1 - strict swap observation DTO accepts exact bounded non-executable observed and unavailable envelopes
+  ---
+  duration_ms: 316.7199
+  type: 'test'
+  ...
+# Subtest: swap observation DTO rejects malformed nested money, bounds, count coherence and added execution fields without throwing
+ok 2 - swap observation DTO rejects malformed nested money, bounds, count coherence and added execution fields without throwing
+  ---
+  duration_ms: 209.6587
+  type: 'test'
+  ...
+# Subtest: swap HTTP aliases expose only strict canonical non-executable observations through real runtime
+ok 3 - swap HTTP aliases expose only strict canonical non-executable observations through real runtime
+  ---
+  duration_ms: 3403.393
+  type: 'test'
+  ...
+# Subtest: swap HTTP validates strict body/query/size and unavailable deployment with structured no-store errors
+ok 4 - swap HTTP validates strict body/query/size and unavailable deployment with structured no-store errors
+  ---
+  duration_ms: 72.4216
+  type: 'test'
+  ...
+# Subtest: both HTTP aliases share burst admission and do not create a second quote budget
+ok 5 - both HTTP aliases share burst admission and do not create a second quote budget
+  ---
+  duration_ms: 91.1233
+  type: 'test'
+  ...
+# Subtest: admission retains bounded IP state, rolling30 and burst5 with monotonic refill and idle expiry
+ok 6 - admission retains bounded IP state, rolling30 and burst5 with monotonic refill and idle expiry
+  ---
+  duration_ms: 1.2314
+  type: 'test'
+  ...
+# Subtest: deployment replacement during quote work discards an otherwise completed observation
+ok 7 - deployment replacement during quote work discards an otherwise completed observation
+  ---
+  duration_ms: 1773.5212
+  type: 'test'
+  ...
+# Subtest: a malformed canonical identity response through real HTTP cannot expose partial quote data
+ok 8 - a malformed canonical identity response through real HTTP cannot expose partial quote data
+  ---
+  duration_ms: 1759.4221
+  type: 'test'
+  ...
+# Subtest: actual client disconnect cancels the active RPC group without starting quote batches and later requests recover
+ok 9 - actual client disconnect cancels the active RPC group without starting quote batches and later requests recover
+  ---
+  duration_ms: 1883.0914
+  type: 'test'
+  ...
+# Subtest: final manifest reread cannot send an observation that expired or became stale after the service completed
+ok 10 - final manifest reread cannot send an observation that expired or became stale after the service completed
+  ---
+  duration_ms: 166.2357
+  type: 'test'
+  ...
+# Subtest: internal production runtime obtains canonical swap and adapter quote observations through native HTTP batches
+ok 11 - internal production runtime obtains canonical swap and adapter quote observations through native HTTP batches
+  ---
+  duration_ms: 3331.8477
+  type: 'test'
+  ...
+# Subtest: runtime bounds admitted quote services and shares eight logical RPC slots with existing readers
+ok 12 - runtime bounds admitted quote services and shares eight logical RPC slots with existing readers
+  ---
+  duration_ms: 1667.1147
+  type: 'test'
+  ...
+# Subtest: runtime shutdown cancels the active batch and never starts later quote work
+ok 13 - runtime shutdown cancels the active batch and never starts later quote work
+  ---
+  duration_ms: 1248.5072
+  type: 'test'
+  ...
+# Subtest: timed-out service admission remains occupied until its pending database transaction has settled
+ok 14 - timed-out service admission remains occupied until its pending database transaction has settled
+  ---
+  duration_ms: 1193.592
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 45948.369

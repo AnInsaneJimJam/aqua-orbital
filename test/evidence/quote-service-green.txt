@@ -1,0 +1,136 @@
+TAP version 13
+# Subtest: internal production runtime obtains canonical swap and adapter quote observations through native HTTP batches
+ok 1 - internal production runtime obtains canonical swap and adapter quote observations through native HTTP batches
+  ---
+  duration_ms: 4432.2299
+  type: 'test'
+  ...
+# Subtest: runtime bounds admitted quote services and shares eight logical RPC slots with existing readers
+ok 2 - runtime bounds admitted quote services and shares eight logical RPC slots with existing readers
+  ---
+  duration_ms: 8150.7525
+  type: 'test'
+  ...
+# Subtest: runtime shutdown cancels the active batch and never starts later quote work
+ok 3 - runtime shutdown cancels the active batch and never starts later quote work
+  ---
+  duration_ms: 1880.8789
+  type: 'test'
+  ...
+# Subtest: timed-out service admission remains occupied until its pending database transaction has settled
+ok 4 - timed-out service admission remains occupied until its pending database transaction has settled
+  ---
+  duration_ms: 2761.4373
+  type: 'test'
+  ...
+# Subtest: service binds real canonical candidates to RPC timestamp and final identity/database checks
+ok 5 - service binds real canonical candidates to RPC timestamp and final identity/database checks
+  ---
+  duration_ms: 6125.3573
+  type: 'test'
+  ...
+# Subtest: unavailable or malformed input never becomes an observed quote or starts RPC batches
+ok 6 - unavailable or malformed input never becomes an observed quote or starts RPC batches
+  ---
+  duration_ms: 1761.5881
+  type: 'test'
+  ...
+# Subtest: per-candidate getter and quote reverts retain diagnostics while other whole-size routes survive
+ok 7 - per-candidate getter and quote reverts retain diagnostics while other whole-size routes survive
+  ---
+  duration_ms: 1624.8475
+  type: 'test'
+  ...
+# Subtest: group transport failures discard partial results and prevent queued quote work
+ok 8 - group transport failures discard partial results and prevent queued quote work
+  ---
+  duration_ms: 1675.6238
+  type: 'test'
+  ...
+# Subtest: wrong identities, future or expired pinned timestamps and stale indexing fail before quote reads
+ok 9 - wrong identities, future or expired pinned timestamps and stale indexing fail before quote reads
+  ---
+  duration_ms: 2133.0138
+  type: 'test'
+  ...
+# Subtest: reorg after quotes discards all output; ordinary tip advancement can retain identical pinned observations
+ok 10 - reorg after quotes discards all output; ordinary tip advancement can retain identical pinned observations
+  ---
+  duration_ms: 2689.4344
+  type: 'test'
+  ...
+# Subtest: cancellation and total deadline stop superseded work without returning a partial selection
+ok 11 - cancellation and total deadline stop superseded work without returning a partial selection
+  ---
+  duration_ms: 1321.9834
+  type: 'test'
+  ...
+# Subtest: all inspected reverts report no route in the inspected set after canonical rechecks
+ok 12 - all inspected reverts report no route in the inspected set after canonical rechecks
+  ---
+  duration_ms: 996.1913
+  type: 'test'
+  ...
+# Subtest: every RPC group receives the remaining total budget instead of a fresh eight seconds
+ok 13 - every RPC group receives the remaining total budget instead of a fresh eight seconds
+  ---
+  duration_ms: 995.2123
+  type: 'test'
+  ...
+# Subtest: final indexed freshness and source changes invalidate an otherwise completed quote selection
+ok 14 - final indexed freshness and source changes invalidate an otherwise completed quote selection
+  ---
+  duration_ms: 3463.7668
+  type: 'test'
+  ...
+# Subtest: bounded preparation sorts canonical block/log activity and caps inspections without claiming eligibility
+ok 15 - bounded preparation sorts canonical block/log activity and caps inspections without claiming eligibility
+  ---
+  duration_ms: 484.9637
+  type: 'test'
+  ...
+# Subtest: inspection and quote plans preserve exact caller, recipient, canonical bytes and one hash pin
+ok 16 - inspection and quote plans preserve exact caller, recipient, canonical bytes and one hash pin
+  ---
+  duration_ms: 169.9823
+  type: 'test'
+  ...
+# Subtest: payment planning uses adapter caller/recipient and an independent payer without invoice authorization
+ok 17 - payment planning uses adapter caller/recipient and an independent payer without invoice authorization
+  ---
+  duration_ms: 145.3447
+  type: 'test'
+  ...
+# Subtest: whole-size results rank exact output then fee/hash and return no more than three alternatives
+ok 18 - whole-size results rank exact output then fee/hash and return no more than three alternatives
+  ---
+  duration_ms: 177.4604
+  type: 'test'
+  ...
+# Subtest: more than32 locally valid but untradeable observations retain exact failure and cap counts
+ok 19 - more than32 locally valid but untradeable observations retain exact failure and cap counts
+  ---
+  duration_ms: 380.5764
+  type: 'test'
+  ...
+# Subtest: partial fills, excess inventory, wrong order bytes, reverts and absent observations are discarded
+ok 20 - partial fills, excess inventory, wrong order bytes, reverts and absent observations are discarded
+  ---
+  duration_ms: 125.5369
+  type: 'test'
+  ...
+# Subtest: invalid source scope, token roles and numeric limits cannot create call plans
+ok 21 - invalid source scope, token roles and numeric limits cannot create call plans
+  ---
+  duration_ms: 31.9854
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 72700.3655

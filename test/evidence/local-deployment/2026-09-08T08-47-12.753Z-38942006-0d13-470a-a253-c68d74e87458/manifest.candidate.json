@@ -1,0 +1,68 @@
+{
+  "verified": false,
+  "chainId": 31337,
+  "scope": "disposable-local-only",
+  "aqua": "0xccbdab612d0e98a0bd2aa7ecfadd66f8589ba157",
+  "router": "0xfb5b8e388bec7e077c78ce23ee1ba90f393ace7b",
+  "payments": "0x38500a05f8ffa1b021385fb3feac6c9ee2e958bd",
+  "usdc": "0x3c61948f823e8880725c2d83f1b918a626023ec1",
+  "tokens": [
+    {
+      "label": "Orbital demo dollar18",
+      "address": "0x3bbd51b487eb4af543cde57f0b46f10787acd4c3",
+      "decimals": 18,
+      "role": "demo",
+      "observation": {
+        "decimals": 18,
+        "chainId": "31337",
+        "name": "Orbital Demo Dollar 18",
+        "symbol": "oUSD18",
+        "amount": "1000000000000000000000",
+        "cooldown": "86400",
+        "balance": "1000000000000000000000",
+        "totalSupply": "1000000000000000000000",
+        "nextMintAt": "1788943632"
+      }
+    },
+    {
+      "label": "Local USDC fixture",
+      "address": "0x3c61948f823e8880725c2d83f1b918a626023ec1",
+      "decimals": 6,
+      "role": "local-usdc-fixture",
+      "observation": {
+        "decimals": 6,
+        "chainId": "31337",
+        "name": "Local USDC Fixture",
+        "symbol": "USDC.fixture",
+        "amount": "1000000000",
+        "cooldown": "86400",
+        "balance": "1000000000",
+        "totalSupply": "1000000000",
+        "nextMintAt": "1788943632"
+      }
+    },
+    {
+      "label": "Orbital demo dollar6",
+      "address": "0x4a569b803512f725b438e42ecedf4d162e5b64e5",
+      "decimals": 6,
+      "role": "demo",
+      "observation": {
+        "decimals": 6,
+        "chainId": "31337",
+        "name": "Orbital Demo Dollar 6",
+        "symbol": "oUSD6",
+        "amount": "1000000000",
+        "cooldown": "86400",
+        "balance": "1000000000",
+        "totalSupply": "1000000000",
+        "nextMintAt": "1788943632"
+      }
+    }
+  ],
+  "asOf": {
+    "number": "16",
+    "hash": "0x75d00abb245040eee888d2c2fb237e83dc76707f4a2497c4b429e4ec91553921",
+    "timestamp": "1788857232"
+  },
+  "reason": "Evidence candidate; no persistent runtime identity, G1 release, Arc identity or live Privy qualification is established."
+}

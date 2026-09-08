@@ -1,0 +1,132 @@
+TAP version 13
+# Subtest: artifact integrity retains a deterministic complete source closure for an unlinked build
+ok 1 - artifact integrity retains a deterministic complete source closure for an unlinked build
+  ---
+  duration_ms: 80.1768
+  type: 'test'
+  ...
+# Subtest: unchanged target cannot conceal a changed transitive dependency
+ok 2 - unchanged target cannot conceal a changed transitive dependency
+  ---
+  duration_ms: 34.3178
+  type: 'test'
+  ...
+# Subtest: missing transitive source and missing source hash have explicit integrity errors
+ok 3 - missing transitive source and missing source hash have explicit integrity errors
+  ---
+  duration_ms: 50.2494
+  type: 'test'
+  ...
+# Subtest: compilation target binds the requested fully qualified source and contract name
+ok 4 - compilation target binds the requested fully qualified source and contract name
+  ---
+  duration_ms: 59.4319
+  type: 'test'
+  ...
+# Subtest: compiler settings include optimizer details, remappings and unlinked library configuration
+ok 5 - compiler settings include optimizer details, remappings and unlinked library configuration
+  ---
+  duration_ms: 311.234
+  type: 'test'
+  ...
+# Subtest: source identities reject parent traversal, absolute paths and path aliases
+ok 6 - source identities reject parent traversal, absolute paths and path aliases
+  ---
+  duration_ms: 765.6347
+  type: 'test'
+  ...
+# Subtest: linker references require a source in the authenticated closure
+ok 7 - linker references require a source in the authenticated closure
+  ---
+  duration_ms: 250.945
+  type: 'test'
+  ...
+# Subtest: creation and runtime placeholders bind the fully qualified library identity
+ok 8 - creation and runtime placeholders bind the fully qualified library identity
+  ---
+  duration_ms: 552.3884
+  type: 'test'
+  ...
+# Subtest: linker spans reject invalid lengths, offsets, overlaps and unrecorded placeholders
+ok 9 - linker spans reject invalid lengths, offsets, overlaps and unrecorded placeholders
+  ---
+  duration_ms: 414.9943
+  type: 'test'
+  ...
+# Subtest: empty interface bytecode and closure ordering are deterministic
+ok 10 - empty interface bytecode and closure ordering are deterministic
+  ---
+  duration_ms: 119.3688
+  type: 'test'
+  ...
+# Subtest: ABI fields agree with compiler metadata despite different top-level ordering
+ok 11 - ABI fields agree with compiler metadata despite different top-level ordering
+  ---
+  duration_ms: 56.5367
+  type: 'test'
+  ...
+# Subtest: method selectors are recomputed from exact tuple signatures
+ok 12 - method selectors are recomputed from exact tuple signatures
+  ---
+  duration_ms: 153.0449
+  type: 'test'
+  ...
+# Subtest: explicit library mode authenticates named structs and compiler-declared storage-only selectors
+ok 13 - explicit library mode authenticates named structs and compiler-declared storage-only selectors
+  ---
+  duration_ms: 165.0909
+  type: 'test'
+  ...
+# Subtest: library mode needs self-address compiler identity and exact selectors for retained and ABI-omitted stateful methods
+ok 14 - library mode needs self-address compiler identity and exact selectors for retained and ABI-omitted stateful methods
+  ---
+  duration_ms: 163.966
+  type: 'test'
+  ...
+# Subtest: pure-only library needs exact represented selector map when optimized self-address guard is absent
+not ok 15 - pure-only library needs exact represented selector map when optimized self-address guard is absent
+  ---
+  duration_ms: 207.808
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\packages\\sdk\\test\\artifact-integrity.test.ts:145:1'
+  failureType: 'testCodeFailure'
+  error: 'LIBRARY_IDENTITY_INVALID: src/Widget.sol:Widget'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    fail (file:///C:/Users/gujja/aqua-orbital/packages/sdk/scripts/artifact-integrity.mjs:9:34)
+    libraryIdentity (file:///C:/Users/gujja/aqua-orbital/packages/sdk/scripts/artifact-integrity.mjs:56:160)
+    abiConsistency (file:///C:/Users/gujja/aqua-orbital/packages/sdk/scripts/artifact-integrity.mjs:103:23)
+    readVerifiedArtifact (file:///C:/Users/gujja/aqua-orbital/packages/sdk/scripts/artifact-integrity.mjs:135:26)
+    async TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\packages\sdk\test\artifact-integrity.test.ts:151:80)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ordinary contract cannot choose library mode using a comment or string declaration decoy
+not ok 16 - ordinary contract cannot choose library mode using a comment or string declaration decoy
+  ---
+  duration_ms: 241.2009
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\packages\\sdk\\test\\artifact-integrity.test.ts:155:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\packages\sdk\test\artifact-integrity.test.ts:162:4)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 14
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9684.0695
+undefined
+C:\Users\gujja\aqua-orbital\packages\sdk:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: tsx --test test/artifact-integrity.test.ts

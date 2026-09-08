@@ -1,0 +1,4 @@
+
+> @orbital/sdk@0.1.0 typecheck C:\Users\gujja\aqua-orbital\packages\sdk
+> tsc --noEmit
+

@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-08T07:53:56.869Z",
+  "scope": "Selected local swap quote HTTP and SDK source/test bytes; not an atomic snapshot, complete dependency closure, compiler or onchain deployment authentication.",
+  "verification": {
+    "focused": {
+      "file": "test/evidence/quote-http-green.txt",
+      "tests": 14,
+      "passed": 14,
+      "failed": 0,
+      "durationMs": 45948.369
+    },
+    "typechecks": [
+      "@orbital/api",
+      "@orbital/shared"
+    ],
+    "fullApi": {
+      "file": "test/evidence/api.txt",
+      "tests": 130,
+      "passed": 130,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 188769.6487,
+      "sha256": "3ecc55da2c7c910dc503ffa5a285862b4761a9cd383a6ee350cc58e3d279095f"
+    }
+  },
+  "sources": [
+    {
+      "path": "apps/api/src/quote-http.ts",
+      "sha256": "b3493c8225959b4f3823a91123efff43978ef60f7ae0b81e18f53544c57ca4c5"
+    },
+    {
+      "path": "apps/api/src/server.ts",
+      "sha256": "abb43b66e93f2f521d0c08af8ad34ef12b7b587df5c11da8d3f282788c3c9b24"
+    },
+    {
+      "path": "apps/api/src/runtime.ts",
+      "sha256": "882d04260589ea3bcd0d1f288691187e572dbb206051ed838804c702bb83d194"
+    },
+    {
+      "path": "apps/api/src/quote-service.ts",
+      "sha256": "ba3e0424eedd50d907c9c48b73f12dde65b24b2d47e0f20e47f61fd6bff43add"
+    },
+    {
+      "path": "apps/api/src/route-selection.ts",
+      "sha256": "5c4dde2a3eea6d077c127fedcc90ffdfc5943d0569e2b40668a552899b94771b"
+    },
+    {
+      "path": "packages/shared/src/index.ts",
+      "sha256": "797af26c90491a2c311e08888f69332db61f6cc3b0303adcf08d121576e49015"
+    },
+    {
+      "path": "packages/sdk/src/quote-read.ts",
+      "sha256": "f18c61bf4410fe3d5037db3e6a7edf87b2df469880ee9eb0804b6fbcf87bcce5"
+    },
+    {
+      "path": "packages/sdk/src/index.ts",
+      "sha256": "e3f294f5ab8e7744a9797e14f1a1a90257c66bb12bede50fa73a8585dc263345"
+    },
+    {
+      "path": "apps/api/test/quote-http.test.ts",
+      "sha256": "ed1657bc2f4a8be682a16a643afadfcbf6bdd4f90530c720f8890fc5ba7491b8"
+    },
+    {
+      "path": "apps/api/test/quote-dto.test.ts",
+      "sha256": "6eddfd2efc211cde1c8b7db0be93c36e44b712a2e1637f065dd3fd485b1c3933"
+    },
+    {
+      "path": "apps/api/test/quote-http-fixture.ts",
+      "sha256": "2eee6a16e696649755cc20fd1b690f417ee2aedd7a92b88fd8951f881fc0fffc"
+    },
+    {
+      "path": "apps/api/test/quote-runtime-fixture.ts",
+      "sha256": "968f40309745a8f75031233fa9667ccab86405598490762d1c09424fc77f3b5e"
+    },
+    {
+      "path": "apps/api/test/quote-runtime.test.ts",
+      "sha256": "e1837652f0763ebe0c17b1c936baa6c9db8d81ebafddb1025b19ec4ae566c7d1"
+    },
+    {
+      "path": "packages/sdk/test/quote-read.test.ts",
+      "sha256": "852463a6a8a9bea186f79109fec9ffbadeee292941501b24b36fead377ce3b67"
+    },
+    {
+      "path": "test/evidence/swap-quote-wire-fixture.json",
+      "sha256": "23544df0333c8ed01e36575049796adf8cb61a6678b92424b8e1435339886eb7"
+    },
+    {
+      "path": "apps/api/test/server-live.test.ts",
+      "sha256": "e815302df2cd3465c0d9211aabcaab85e2f05d5f748df9d8086ec0373f209327"
+    }
+  ],
+  "sourcesRecheckedAt": "2026-09-08T08:00:10.214Z"
+}

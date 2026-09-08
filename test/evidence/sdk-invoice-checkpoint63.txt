@@ -1,0 +1,388 @@
+TAP version 13
+# Subtest: artifact integrity retains a deterministic complete source closure for an unlinked build
+ok 1 - artifact integrity retains a deterministic complete source closure for an unlinked build
+  ---
+  duration_ms: 589.904
+  type: 'test'
+  ...
+# Subtest: unchanged target cannot conceal a changed transitive dependency
+ok 2 - unchanged target cannot conceal a changed transitive dependency
+  ---
+  duration_ms: 433.4424
+  type: 'test'
+  ...
+# Subtest: missing transitive source and missing source hash have explicit integrity errors
+ok 3 - missing transitive source and missing source hash have explicit integrity errors
+  ---
+  duration_ms: 859.0524
+  type: 'test'
+  ...
+# Subtest: compilation target binds the requested fully qualified source and contract name
+ok 4 - compilation target binds the requested fully qualified source and contract name
+  ---
+  duration_ms: 280.6137
+  type: 'test'
+  ...
+# Subtest: compiler settings include optimizer details, remappings and unlinked library configuration
+ok 5 - compiler settings include optimizer details, remappings and unlinked library configuration
+  ---
+  duration_ms: 2941.4333
+  type: 'test'
+  ...
+# Subtest: source identities reject parent traversal, absolute paths and path aliases
+ok 6 - source identities reject parent traversal, absolute paths and path aliases
+  ---
+  duration_ms: 610.3984
+  type: 'test'
+  ...
+# Subtest: linker references require a source in the authenticated closure
+ok 7 - linker references require a source in the authenticated closure
+  ---
+  duration_ms: 148.19
+  type: 'test'
+  ...
+# Subtest: creation and runtime placeholders bind the fully qualified library identity
+ok 8 - creation and runtime placeholders bind the fully qualified library identity
+  ---
+  duration_ms: 257.5572
+  type: 'test'
+  ...
+# Subtest: linker spans reject invalid lengths, offsets, overlaps and unrecorded placeholders
+ok 9 - linker spans reject invalid lengths, offsets, overlaps and unrecorded placeholders
+  ---
+  duration_ms: 427.2732
+  type: 'test'
+  ...
+# Subtest: empty interface bytecode and closure ordering are deterministic
+ok 10 - empty interface bytecode and closure ordering are deterministic
+  ---
+  duration_ms: 73.1275
+  type: 'test'
+  ...
+# Subtest: ABI fields agree with compiler metadata despite different top-level ordering
+ok 11 - ABI fields agree with compiler metadata despite different top-level ordering
+  ---
+  duration_ms: 78.0268
+  type: 'test'
+  ...
+# Subtest: method selectors are recomputed from exact tuple signatures
+ok 12 - method selectors are recomputed from exact tuple signatures
+  ---
+  duration_ms: 52.6565
+  type: 'test'
+  ...
+# Subtest: event exports contain only requested nonanonymous events and preserve function-only ABIs
+ok 13 - event exports contain only requested nonanonymous events and preserve function-only ABIs
+  ---
+  duration_ms: 6.4494
+  type: 'test'
+  ...
+# Subtest: StrategyActivated matches independent cast topics, indexed fields and data words
+ok 14 - StrategyActivated matches independent cast topics, indexed fields and data words
+  ---
+  duration_ms: 10.2673
+  type: 'test'
+  ...
+# Subtest: StrategyRetired matches independent cast topics, indexed fields and data words
+ok 15 - StrategyRetired matches independent cast topics, indexed fields and data words
+  ---
+  duration_ms: 4.0999
+  type: 'test'
+  ...
+# Subtest: InvoiceCreated matches independent cast topics, indexed fields and data words
+ok 16 - InvoiceCreated matches independent cast topics, indexed fields and data words
+  ---
+  duration_ms: 7.5888
+  type: 'test'
+  ...
+# Subtest: InvoicePaid matches independent cast topics, indexed fields and data words
+ok 17 - InvoicePaid matches independent cast topics, indexed fields and data words
+  ---
+  duration_ms: 2.331
+  type: 'test'
+  ...
+# Subtest: InvoiceCancelled matches independent cast topics, indexed fields and data words
+ok 18 - InvoiceCancelled matches independent cast topics, indexed fields and data words
+  ---
+  duration_ms: 1.7225
+  type: 'test'
+  ...
+# Subtest: strict golden decoding rejects unknown signatures, missing indexed topics and truncated dynamic data
+ok 19 - strict golden decoding rejects unknown signatures, missing indexed topics and truncated dynamic data
+  ---
+  duration_ms: 41.1737
+  type: 'test'
+  ...
+# Subtest: event provenance pins current sources, compiler and independently encoded topic hashes
+ok 20 - event provenance pins current sources, compiler and independently encoded topic hashes
+  ---
+  duration_ms: 77.5944
+  type: 'test'
+  ...
+# Subtest: persists a submitted hash before waiting and resumes without sending again
+ok 21 - persists a submitted hash before waiting and resumes without sending again
+  ---
+  duration_ms: 6.1207
+  type: 'test'
+  ...
+# Subtest: wrong network and insufficient gas never request a signature
+ok 22 - wrong network and insufficient gas never request a signature
+  ---
+  duration_ms: 1.2204
+  type: 'test'
+  ...
+# Subtest: account changes during gas estimation invalidate review
+ok 23 - account changes during gas estimation invalidate review
+  ---
+  duration_ms: 1.065
+  type: 'test'
+  ...
+# Subtest: rejected signatures are propagated without a pending receipt
+ok 24 - rejected signatures are propagated without a pending receipt
+  ---
+  duration_ms: 1.9408
+  type: 'test'
+  ...
+# Subtest: receipt failure is distinct from signature rejection and cannot report success
+ok 25 - receipt failure is distinct from signature rejection and cannot report success
+  ---
+  duration_ms: 8.3217
+  type: 'test'
+  ...
+# Subtest: resume rejects malformed or cross-network receipts
+ok 26 - resume rejects malformed or cross-network receipts
+  ---
+  duration_ms: 1.4019
+  type: 'test'
+  ...
+# Subtest: asynchronous execution retains a frozen copy of the reviewed transaction
+ok 27 - asynchronous execution retains a frozen copy of the reviewed transaction
+  ---
+  duration_ms: 3.2961
+  type: 'test'
+  ...
+# Subtest: mismatched receipt hashes cannot report confirmation of the reviewed transaction
+ok 28 - mismatched receipt hashes cannot report confirmation of the reviewed transaction
+  ---
+  duration_ms: 1.7072
+  type: 'test'
+  ...
+# Subtest: demo faucet creates only a fixed self-mint call on each supported network and precision
+ok 29 - demo faucet creates only a fixed self-mint call on each supported network and precision
+  ---
+  duration_ms: 34.4346
+  type: 'test'
+  ...
+# Subtest: demo faucet requires a verified deployment, supported chain and connected nonzero account
+ok 30 - demo faucet requires a verified deployment, supported chain and connected nonzero account
+  ---
+  duration_ms: 9.095
+  type: 'test'
+  ...
+# Subtest: demo faucet rejects settlement USDC, unknown tokens and mismatched demo metadata
+ok 31 - demo faucet rejects settlement USDC, unknown tokens and mismatched demo metadata
+  ---
+  duration_ms: 4.9516
+  type: 'test'
+  ...
+# Subtest: chain-time cooldown observations allow the exact boundary and reject early or malformed claims
+ok 32 - chain-time cooldown observations allow the exact boundary and reject early or malformed claims
+  ---
+  duration_ms: 6.6002
+  type: 'test'
+  ...
+# Subtest: faucet review rejects any token, account, selector, value, chain or calldata alteration
+ok 33 - faucet review rejects any token, account, selector, value, chain or calldata alteration
+  ---
+  duration_ms: 10.1392
+  type: 'test'
+  ...
+# Subtest: demo faucet ABI and reads are generated from the pinned compiler and current contract source
+ok 34 - demo faucet ABI and reads are generated from the pinned compiler and current contract source
+  ---
+  duration_ms: 20.5293
+  type: 'test'
+  ...
+# Subtest: invoice detail preserves exact raw units, floor/remainder recipients and receipt provenance
+ok 35 - invoice detail preserves exact raw units, floor/remainder recipients and receipt provenance
+  ---
+  duration_ms: 43.494
+  type: 'test'
+  ...
+# Subtest: invoice reads retain direct and swap-funded paid receipts without declaring payment eligibility
+ok 36 - invoice reads retain direct and swap-funded paid receipts without declaring payment eligibility
+  ---
+  duration_ms: 8.003
+  type: 'test'
+  ...
+# Subtest: invoice detail binds chain, deployment roles, ID, tokens and indexing start to verified configuration
+ok 37 - invoice detail binds chain, deployment roles, ID, tokens and indexing start to verified configuration
+  ---
+  duration_ms: 28.6468
+  type: 'test'
+  ...
+# Subtest: invoice detail rejects malformed money, inconsistent shares and executable payloads
+ok 38 - invoice detail rejects malformed money, inconsistent shares and executable payloads
+  ---
+  duration_ms: 24.0269
+  type: 'test'
+  ...
+# Subtest: historical and stale observations remain explicit and cannot falsify canonical coverage
+ok 39 - historical and stale observations remain explicit and cannot falsify canonical coverage
+  ---
+  duration_ms: 38.4383
+  type: 'test'
+  ...
+# Subtest: only a checked canonical 404 can mean invoice not found
+ok 40 - only a checked canonical 404 can mean invoice not found
+  ---
+  duration_ms: 9.7232
+  type: 'test'
+  ...
+# Subtest: terminal invoice events must have a strictly later block-global log position
+ok 41 - terminal invoice events must have a strictly later block-global log position
+  ---
+  duration_ms: 3.2284
+  type: 'test'
+  ...
+# Subtest: swap plan rebuilds canonical amount, flags, pair, recipient and order locally
+ok 42 - swap plan rebuilds canonical amount, flags, pair, recipient and order locally
+  ---
+  duration_ms: 49.5373
+  type: 'test'
+  ...
+# Subtest: unknown network, unverified deployment, altered config/order and quote contexts fail closed
+ok 43 - unknown network, unverified deployment, altered config/order and quote contexts fail closed
+  ---
+  duration_ms: 102.8344
+  type: 'test'
+  ...
+# Subtest: review validation rejects backend target, selector, recipient, amount, value and account changes
+ok 44 - review validation rejects backend target, selector, recipient, amount, value and account changes
+  ---
+  duration_ms: 46.3137
+  type: 'test'
+  ...
+# Subtest: maker plan is maker-owned, bounded, reset-aware and includes canonical activation
+ok 45 - maker plan is maker-owned, bounded, reset-aware and includes canonical activation
+  ---
+  duration_ms: 72.776
+  type: 'test'
+  ...
+# Subtest: publication resumption never repeats ship or activation and repairs revoked approvals
+ok 46 - publication resumption never repeats ship or activation and repairs revoked approvals
+  ---
+  duration_ms: 106.835
+  type: 'test'
+  ...
+# Subtest: retire and dock encode separately and resume either independently completed action
+ok 47 - retire and dock encode separately and resume either independently completed action
+  ---
+  duration_ms: 29.2481
+  type: 'test'
+  ...
+# Subtest: lifecycle review binds deployment, maker, configuration and exact calldata
+ok 48 - lifecycle review binds deployment, maker, configuration and exact calldata
+  ---
+  duration_ms: 122.5433
+  type: 'test'
+  ...
+# Subtest: invoice creation binds exact terms and ID, rejects duplicate, zero and adapter recipients
+ok 49 - invoice creation binds exact terms and ID, rejects duplicate, zero and adapter recipients
+  ---
+  duration_ms: 9.261
+  type: 'test'
+  ...
+# Subtest: direct and swap invoice plans preserve contract context, exact approvals and reviewed recipient terms
+ok 50 - direct and swap invoice plans preserve contract context, exact approvals and reviewed recipient terms
+  ---
+  duration_ms: 16.491
+  type: 'test'
+  ...
+# Subtest: money/config/order/quote DTOs round trip without Number and reject coercion
+ok 51 - money/config/order/quote DTOs round trip without Number and reject coercion
+  ---
+  duration_ms: 22.9962
+  type: 'test'
+  ...
+# Subtest: approval plan checks account and spender before encoding
+ok 52 - approval plan checks account and spender before encoding
+  ---
+  duration_ms: 2.8552
+  type: 'test'
+  ...
+# Subtest: config/order/program/invoice bytes match independently generated cast goldens
+ok 53 - config/order/program/invoice bytes match independently generated cast goldens
+  ---
+  duration_ms: 14.7257
+  type: 'test'
+  ...
+# Subtest: generated actions match pinned source hashes and compiler selectors
+ok 54 - generated actions match pinned source hashes and compiler selectors
+  ---
+  duration_ms: 32.1935
+  type: 'test'
+  ...
+# Subtest: decimal parser is exact and rejects coercions
+ok 55 - decimal parser is exact and rejects coercions
+  ---
+  duration_ms: 8.8893
+  type: 'test'
+  ...
+# Subtest: fee is once on gross input and ceiling rounded
+ok 56 - fee is once on gross input and ceiling rounded
+  ---
+  duration_ms: 0.7339
+  type: 'test'
+  ...
+# Subtest: canonical program and argument lengths
+ok 57 - canonical program and argument lengths
+  ---
+  duration_ms: 1.7807
+  type: 'test'
+  ...
+# Subtest: upstream taker header is 22 bytes with canonical flags and slices
+ok 58 - upstream taker header is 22 bytes with canonical flags and slices
+  ---
+  duration_ms: 1.7135
+  type: 'test'
+  ...
+# Subtest: swap event is an additive export and leaves existing ABI groups unchanged
+ok 59 - swap event is an additive export and leaves existing ABI groups unchanged
+  ---
+  duration_ms: 24.2013
+  type: 'test'
+  ...
+# Subtest: swap event interior empty crossings matches independent cast bytes and exact typed values
+ok 60 - swap event interior empty crossings matches independent cast bytes and exact typed values
+  ---
+  duration_ms: 16.0591
+  type: 'test'
+  ...
+# Subtest: swap event full-width ordered crossings matches independent cast bytes and exact typed values
+ok 61 - swap event full-width ordered crossings matches independent cast bytes and exact typed values
+  ---
+  duration_ms: 3.7877
+  type: 'test'
+  ...
+# Subtest: swap strict decoding rejects wrong topics and truncated ordered crossing data
+ok 62 - swap strict decoding rejects wrong topics and truncated ordered crossing data
+  ---
+  duration_ms: 4.7825
+  type: 'test'
+  ...
+# Subtest: swap provenance pins source, concrete implementation and compiler without changing prior record counts
+ok 63 - swap provenance pins source, concrete implementation and compiler without changing prior record counts
+  ---
+  duration_ms: 19.2266
+  type: 'test'
+  ...
+1..63
+# tests 63
+# suites 0
+# pass 63
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 22815.0972

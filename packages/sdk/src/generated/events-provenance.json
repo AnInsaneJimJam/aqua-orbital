@@ -1,0 +1,38 @@
+[
+  {
+    "exportName": "lifecycleEventsAbi",
+    "source": "packages/contracts/src/interfaces/IOrbitalLifecycle.sol",
+    "sourceSha256": "e00b423829a861235d2464258ef8aa9fb5d8396b404e7167ed6dad25e9c2fc48",
+    "compiler": "0.8.30+commit.73712a01",
+    "evmVersion": "cancun",
+    "optimizerRuns": 700,
+    "viaIR": true,
+    "abiSha256": "a1042aa4e0394fb8dba6b6abe125d0fcd068ae325ccd07877c3ed2cda6ea527e",
+    "artifactSha256": "d9ffbbf1bcbc5ebc25192e3d9e77475b40149c579f10b152f30bde78d24b71e1",
+    "eventTopics": {
+      "StrategyActivated(address,bytes32,bytes32)": "0xb2735875eb60b4dab16048f37e63f7963fd091e6f0cfa682f89a7ff54472a313",
+      "StrategyRetired(address,bytes32,uint64)": "0xb26fb4a44775b38230b10b691db6ab4c9ca5eeee66ec95863d49430eafd44994"
+    },
+    "implementation": {
+      "source": "packages/contracts/src/OrbitalSwapVMRouter.sol",
+      "sourceSha256": "e6c91e3c134e386369d7f5b39d74ccc8aa05f1e8894e2431630c39a4436c1f4a",
+      "artifactSha256": "daa8938dc9c29098c7f97f9f3443ae099c19428a6bec6bdeeab07b2db70bdf59"
+    }
+  },
+  {
+    "exportName": "paymentsEventsAbi",
+    "source": "packages/contracts/src/OrbitalPayments.sol",
+    "sourceSha256": "02f8c9d2ff55fea0dae6c78c3b28ac251a9067a189a880c3441c367551bef743",
+    "compiler": "0.8.30+commit.73712a01",
+    "evmVersion": "cancun",
+    "optimizerRuns": 700,
+    "viaIR": true,
+    "abiSha256": "3dc4590fe41fcee09db500dec07741317e204048ae7f8d9c9682b3f6613e41b6",
+    "artifactSha256": "8fb67c141f5e29b4510c940fd20216b43b7a3a39c5925831f01b290b14602a89",
+    "eventTopics": {
+      "InvoiceCancelled(bytes32,address)": "0x881d07924d83735d00c06370239f77e65622c5033b00ccd03a9358be68de819d",
+      "InvoiceCreated(bytes32,address,uint256,uint40,address[],uint16[],bytes32)": "0x8d0a337aff3ba0fd5984a156b8135e002a02c32f3f6da2c8a13de42ed9c1bc41",
+      "InvoicePaid(bytes32,address,address,address,uint256,uint256,uint256,bytes32)": "0xeae563db786485a5ac6297b8d0117cf23fb300d5275d3dec9b12c3bf9989eca4"
+    }
+  }
+]

@@ -1,0 +1,258 @@
+TAP version 13
+# Subtest: registered catalogue is receipt-backed, exact, and never a financial inventory
+not ok 1 - registered catalogue is receipt-backed, exact, and never a financial inventory
+  ---
+  duration_ms: 1823.6366
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\strategies.test.ts:7:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\strategies.test.ts:8:114)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: detail binds three coherent router reads and exact principal, fees, wide moments and funding
+not ok 2 - detail binds three coherent router reads and exact principal, fees, wide moments and funding
+  ---
+  duration_ms: 1442.3079
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\strategies.test.ts:14:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\strategies.test.ts:15:123)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: retirement after same-block swaps remains terminal with its own later version
+not ok 3 - retirement after same-block swaps remains terminal with its own later version
+  ---
+  duration_ms: 1474.6481
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\strategies.test.ts:21:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\strategies.test.ts:22:141)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: absence requires complete lifecycle and swap coverage; no deployment stays unavailable
+not ok 4 - absence requires complete lifecycle and swap coverage; no deployment stays unavailable
+  ---
+  duration_ms: 1357.8542
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\strategies.test.ts:26:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 404
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 404
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\strategies.test.ts:28:45)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: stable filter-bound pagination survives normal advancement and retains registered coverage
+not ok 5 - stable filter-bound pagination survives normal advancement and retains registered coverage
+  ---
+  duration_ms: 1127.4709
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\strategies.test.ts:32:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\strategies.test.ts:33:142)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: filter and cursor inputs are bounded and cannot choose network, token or transaction data
+not ok 6 - filter and cursor inputs are bounded and cannot choose network, token or transaction data
+  ---
+  duration_ms: 5.094
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\strategies.test.ts:39:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 400
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 400
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\strategies.test.ts:40:271)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: orphaned listing pins and reorgs between RPC and database checks never expose balances
+not ok 7 - orphaned listing pins and reorgs between RPC and database checks never expose balances
+  ---
+  duration_ms: 1328.0367
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\strategies.test.ts:43:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of null (reading 'nextCursor')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\strategies.test.ts:44:139)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: altered immutable configuration, detached sources and omitted receipts fail closed
+not ok 8 - altered immutable configuration, detached sources and omitted receipts fail closed
+  ---
+  duration_ms: 1444.7081
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\strategies.test.ts:52:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\strategies.test.ts:53:250)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: inconsistent RPC identity, version, quantities and availability cannot become a complete observation
+not ok 9 - inconsistent RPC identity, version, quantities and availability cannot become a complete observation
+  ---
+  duration_ms: 1206.6151
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\strategies.test.ts:55:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\strategies.test.ts:56:45)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: unhealthy live/backing conditions and revocations remain inspectable with truthful zero ceilings
+not ok 10 - unhealthy live/backing conditions and revocations remain inspectable with truthful zero ceilings
+  ---
+  duration_ms: 962.3107
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\strategies.test.ts:63:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\strategies.test.ts:65:86)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: stale catalogue remains labeled and transport failures never leak partial financial state
+not ok 11 - stale catalogue remains labeled and transport failures never leak partial financial state
+  ---
+  duration_ms: 849.713
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\strategies.test.ts:69:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'unavailable'
+    - 'stale'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'stale'
+  actual: 'unavailable'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\strategies.test.ts:70:134)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 0
+# fail 11
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 27411.0302

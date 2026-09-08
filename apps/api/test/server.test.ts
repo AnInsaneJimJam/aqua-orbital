@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {createServer} from '../src/server.js';
 test('no configuration never creates fake live financial data',async()=>{
  const app=await createServer();
- for(const path of ['/deployment','/strategies','/metrics']){
+ for(const path of ['/deployment','/strategies','/metrics','/ready','/events']){
   const r=await app.inject(path);assert.equal(r.statusCode,503);assert.ok(r.json().code);
  }
  const proof=await app.inject('/proof');assert.equal(proof.json().items[0].status,'unavailable');

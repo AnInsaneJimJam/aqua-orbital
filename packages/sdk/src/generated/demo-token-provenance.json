@@ -1,0 +1,18 @@
+[
+  {
+    "exportName": "demoTokenAbi",
+    "source": "packages/contracts/src/OrbitalDemoDollar.sol",
+    "sourceSha256": "5a0140e4bd04c49f8a2c46f5b877bd68e5829aeed504774b966e6f2af60260c9",
+    "compiler": "0.8.30+commit.73712a01",
+    "evmVersion": "cancun",
+    "optimizerRuns": 700,
+    "viaIR": true,
+    "methodIdentifiers": {
+      "CHAIN_ID()": "85e1f4d0",
+      "COOLDOWN()": "a2724a4d",
+      "FAUCET_AMOUNT()": "76697640",
+      "faucet()": "de5f72fd",
+      "nextMintAt(address)": "564a6fbf"
+    }
+  }
+]

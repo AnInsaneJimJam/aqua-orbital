@@ -1,0 +1,154 @@
+TAP version 13
+# Subtest: swap HTTP aliases expose only strict canonical non-executable observations through real runtime
+not ok 1 - swap HTTP aliases expose only strict canonical non-executable observations through real runtime
+  ---
+  duration_ms: 2463.747
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-http.test.ts:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-http.test.ts:13:133)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: swap HTTP validates strict body/query/size and unavailable deployment with structured no-store errors
+not ok 2 - swap HTTP validates strict body/query/size and unavailable deployment with structured no-store errors
+  ---
+  duration_ms: 33.8757
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-http.test.ts:17:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + undefined
+    - 'no-store'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'no-store'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-http.test.ts:18:381)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: both HTTP aliases share burst admission and do not create a second quote budget
+not ok 3 - both HTTP aliases share burst admission and do not create a second quote budget
+  ---
+  duration_ms: 39.4717
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-http.test.ts:22:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    404 !== 503
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 503
+  actual: 404
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-http.test.ts:23:78)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: admission retains bounded IP state, rolling30 and burst5 with monotonic refill and idle expiry
+not ok 4 - admission retains bounded IP state, rolling30 and burst5 with monotonic refill and idle expiry
+  ---
+  duration_ms: 1.3877
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-http.test.ts:27:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-http.test.ts:28:87)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: deployment replacement during quote work discards an otherwise completed observation
+not ok 5 - deployment replacement during quote work discards an otherwise completed observation
+  ---
+  duration_ms: 1710.0776
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-http.test.ts:32:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + undefined
+    - null
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-http.test.ts:34:118)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: actual client disconnect cancels the active RPC group without starting quote batches and later requests recover
+not ok 6 - actual client disconnect cancels the active RPC group without starting quote batches and later requests recover
+  ---
+  duration_ms: 2644.1123
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-http.test.ts:36:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-http.test.ts:39:13)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 0
+# fail 6
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 15259.618

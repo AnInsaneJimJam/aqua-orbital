@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-08T07:30:02.552Z",
+  "scope": "Selected local quote-service source and test bytes; not an atomic snapshot, complete dependency closure, compiler-output authentication or onchain deployment verification.",
+  "verification": {
+    "focused": {
+      "file": "test/evidence/quote-service-green.txt",
+      "tests": 21,
+      "passed": 21,
+      "failed": 0,
+      "durationMs": 72700.3655
+    },
+    "typechecks": [
+      "@orbital/api",
+      "@orbital/db"
+    ],
+    "fullApi": {
+      "file": "test/evidence/quote-service-api120.txt",
+      "tests": 120,
+      "passed": 120,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 199541.5095,
+      "sha256": "2f8ea530107c6ee5048d023cf037b613117d09ad7348f0e302d68407bd9699ce"
+    }
+  },
+  "sources": [
+    {
+      "path": "apps/api/src/quote-service.ts",
+      "sha256": "ba3e0424eedd50d907c9c48b73f12dde65b24b2d47e0f20e47f61fd6bff43add"
+    },
+    {
+      "path": "apps/api/src/quote-rpc.ts",
+      "sha256": "f65463888dd7e1348e2887874691f62f93796e6718b006f0d3d2a8887b1ca65c"
+    },
+    {
+      "path": "apps/api/src/route-selection.ts",
+      "sha256": "46a107b7c3314c8e15e57aed40ca0b10cb0000d2f4edb7f6b91eb1b4ed614abb"
+    },
+    {
+      "path": "apps/api/src/runtime.ts",
+      "sha256": "882d04260589ea3bcd0d1f288691187e572dbb206051ed838804c702bb83d194"
+    },
+    {
+      "path": "apps/api/src/strategy-validation.ts",
+      "sha256": "bf8c8a51cb8d9559d5ce624592ab0dd01c3ef60bf84956f4546f3d2026d9c04a"
+    },
+    {
+      "path": "apps/api/src/deployment-scope.ts",
+      "sha256": "d98d1766b6e5389568fb63ca985ee0841f9215593fd9f13ead8aa11468f4c941"
+    },
+    {
+      "path": "packages/db/src/strategy-reads.ts",
+      "sha256": "cfebb8700c0040b893a41c4104b7e34400e3cb9ec4fa5896d30dd0352008f1da"
+    },
+    {
+      "path": "apps/api/test/quote-service.test.ts",
+      "sha256": "8ae5db2b906912833ff4e9ec41a3793631629d8f34165f3b59c4bc5b621666da"
+    },
+    {
+      "path": "apps/api/test/quote-runtime.test.ts",
+      "sha256": "06dbe42950364407142c933f1fef7befdaa5a2cbf2701830946ff8b1d5519c6d"
+    },
+    {
+      "path": "apps/api/test/quote-rpc.test.ts",
+      "sha256": "040b46920c12fa9f4a3b61b10297f52e88fca745782da6456f4e2e41d48f674b"
+    },
+    {
+      "path": "apps/api/test/route-selection.test.ts",
+      "sha256": "83e140284332f9b11f741cedefbdef5438ad5bdffbba130b259a5e01d706b92a"
+    },
+    {
+      "path": "apps/api/test/route-selection-fixture.ts",
+      "sha256": "b8aa53bb8095a9b6ef9501f3fc53aa571bf128e82b66d9f91501186937b7f555"
+    },
+    {
+      "path": "apps/api/test/strategies-fixture.ts",
+      "sha256": "217f82f5aaf2d750422d825bc4b17d2e82d31ab06fbf5d5157921e4bdb0b07fc"
+    },
+    {
+      "path": "packages/sdk/src/generated/abi.ts",
+      "sha256": "491aaf2ab09811bfb1f83d6c0f037b8b4325b05bedfd57be26191b57e3b67a32"
+    }
+  ],
+  "sourcesRecheckedAt": "2026-09-08T07:32:05.267Z"
+}

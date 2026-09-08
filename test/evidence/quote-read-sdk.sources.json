@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-08T07:49:24.335872+00:00",
+  "scope": "Dated selected decoder inputs; no complete compiler/RPC/deployment authentication",
+  "inputs": {
+    "packages/sdk/src/quote-read.ts": "f18c61bf4410fe3d5037db3e6a7edf87b2df469880ee9eb0804b6fbcf87bcce5",
+    "packages/sdk/src/index.ts": "e3f294f5ab8e7744a9797e14f1a1a90257c66bb12bede50fa73a8585dc263345",
+    "packages/sdk/test/quote-read.test.ts": "852463a6a8a9bea186f79109fec9ffbadeee292941501b24b36fead377ce3b67",
+    "packages/sdk/test/fixtures/swap-quote-observation.json": "23544df0333c8ed01e36575049796adf8cb61a6678b92424b8e1435339886eb7",
+    "packages/shared/src/index.ts": "797af26c90491a2c311e08888f69332db61f6cc3b0303adcf08d121576e49015",
+    "packages/sdk/src/codec.ts": "9859903cef7cd3b408ff4e0bc8894d1efcb252394a65ef623652ad54a19187ac",
+    "packages/sdk/src/dto.ts": "c9b2600e8eded90b31434d2133f3aee49056081c16bf5151b1ed66a4a6779a25"
+  }
+}

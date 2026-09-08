@@ -1,0 +1,61 @@
+
+[WebServer] (node:20436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:11764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:17368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 8 tests using 1 worker
+
+(node:22232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/8] test\swap.spec.ts:69:1 › checked swap observation shows exact amounts, recipient and bounded coverage without requesting signatures
+[2/8] test\swap.spec.ts:88:1 › edits clear the previous quote and malformed responses expose no amounts
+  1) test\swap.spec.ts:88:1 › edits clear the previous quote and malformed responses expose no amounts 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('alert')
+    Expected substring: "Quote unavailable"
+    Error: strict mode violation: getByRole('alert') resolved to 2 elements:
+        1) <p role="alert" class="error">Quote unavailable. The amounts could not be check…</p> aka getByText('Quote unavailable. The')
+        2) <div role="alert" aria-live="assertive" id="__next-route-announcer__"></div> aka locator('[id="__next-route-announcer__"]')
+
+    Call log:
+      - Expect "toContainText" getByRole('alert') with timeout 5000ms
+      - waiting for getByRole('alert')
+        2 × locator resolved to <div role="alert" aria-live="assertive" id="__next-route-announcer__"></div>
+          - unexpected value ""
+
+
+      91 |   await page.getByLabel('You pay').fill('1');await expect(output(page)).toHaveCount(0);
+      92 |   await page.getByLabel('You pay').fill('9007199254.740993');await expect(output(page)).toHaveCount(0);
+    > 93 |   malformed=true;await getQuote(page).click();await expect(page.getByRole('alert')).toContainText('Quote unavailable',{timeout:5000});
+         |                                                                                     ^
+      94 |   await expect(output(page)).toHaveCount(0);malformed=false;await getQuote(page).click();await expect(output(page)).toBeVisible({timeout:5000});
+      95 | });
+      96 |
+        at C:\Users\gujja\aqua-orbital\apps\web\test\swap.spec.ts:93:85
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\swap-edits-clear-the-previ-a55c3-responses-expose-no-amounts\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\swap-edits-clear-the-previ-a55c3-responses-expose-no-amounts\error-context.md
+
+
+Testing stopped early after 1 maximum allowed failures.
+
+  1 failed
+    test\swap.spec.ts:88:1 › edits clear the previous quote and malformed responses expose no amounts 
+  6 did not run
+  1 passed (33.1s)
+  1 error was not a part of any test, see above for details
+undefined
+C:\Users\gujja\aqua-orbital\apps\web:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: playwright test swap.spec.ts --max-failures=1 --reporter=line

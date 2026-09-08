@@ -1,0 +1,28 @@
+TAP version 13
+# Subtest: owned ephemeral Cancun Anvil authenticates instance and creation eth_call preserves exact nonce/self address
+not ok 1 - owned ephemeral Cancun Anvil authenticates instance and creation eth_call preserves exact nonce/self address
+  ---
+  duration_ms: 15252.0572
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\scripts\\test\\local-anvil.test.mjs:6:1'
+  failureType: 'testCodeFailure'
+  error: 'LOCAL_NODE_CONFIGURATION {"metadata":{"clientVersion":"anvil/v1.5.1","chainId":31337,"instanceId":"0x71de9f69c46e2e4a524e6c7a9b947dcbc5f5e3373e811cbf4bf62dd2a31e1783","latestBlockNumber":0,"latestBlockHash":"0xb83c5152b8691da84c45bd78857b4b451b09f3cfbfa11d1f60978be5cfaff8a2","forkedNetwork":null,"snapshots":{}},"node":{"currentBlockNumber":"0x0","currentBlockTimestamp":1,"currentBlockHash":"0xb83c5152b8691da84c45bd78857b4b451b09f3cfbfa11d1f60978be5cfaff8a2","hardFork":"Cancun","transactionOrder":"fees","environment":{"baseFee":"0x3b9aca00","chainId":31337,"gasLimit":"0x1c9c380","gasPrice":"0x77359400"},"forkConfig":{"forkUrl":null,"forkBlockNumber":null,"forkRetryBackoff":null}}}'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    fail (file:///C:/Users/gujja/aqua-orbital/scripts/lib/local-anvil.mjs:10:25)
+    assertIdentity (file:///C:/Users/gujja/aqua-orbital/scripts/lib/local-anvil.mjs:66:139)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async startOwnedAnvil (file:///C:/Users/gujja/aqua-orbital/scripts/lib/local-anvil.mjs:74:8)
+    async TestContext.<anonymous> (file:///C:/Users/gujja/aqua-orbital/scripts/test/local-anvil.test.mjs:7:14)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 22482.7633

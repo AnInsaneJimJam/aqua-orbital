@@ -1,0 +1,151 @@
+TAP version 13
+# Subtest: graph resolves creation AND runtime dependencies once in deterministic dependency order
+not ok 1 - graph resolves creation AND runtime dependencies once in deterministic dependency order
+  ---
+  duration_ms: 9.8822
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\scripts\\test\\local-deployment.test.mjs:16:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    buildGraph (file:///C:/Users/gujja/aqua-orbital/scripts/lib/local-deployment.mjs:1:42)
+    TestContext.<anonymous> (file:///C:/Users/gujja/aqua-orbital/scripts/test/local-deployment.test.mjs:18:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: cycles, missing nodes, changed source closure, oversized init/runtime and graph cap fail closed
+not ok 2 - cycles, missing nodes, changed source closure, oversized init/runtime and graph cap fail closed
+  ---
+  duration_ms: 8.1427
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\scripts\\test\\local-deployment.test.mjs:23:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /GRAPH_CYCLE/. Input:
+    
+    'Error: NOT_IMPLEMENTED'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: 'NOT_IMPLEMENTED'
+  stack: |-
+    buildGraph (file:///C:/Users/gujja/aqua-orbital/scripts/lib/local-deployment.mjs:1:42)
+    TestContext.<anonymous> (file:///C:/Users/gujja/aqua-orbital/scripts/test/local-deployment.test.mjs:24:23)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (file:///C:/Users/gujja/aqua-orbital/scripts/test/local-deployment.test.mjs:24:2)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: canonical link replacement needs exact derived FQN address and preserves all other bytes
+not ok 3 - canonical link replacement needs exact derived FQN address and preserves all other bytes
+  ---
+  duration_ms: 0.8856
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\scripts\\test\\local-deployment.test.mjs:34:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    linkObject (file:///C:/Users/gujja/aqua-orbital/scripts/lib/local-deployment.mjs:2:36)
+    TestContext.<anonymous> (file:///C:/Users/gujja/aqua-orbital/scripts/test/local-deployment.test.mjs:36:15)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: runtime comparison binds constructor-simulated immutables and every non-immutable byte
+not ok 4 - runtime comparison binds constructor-simulated immutables and every non-immutable byte
+  ---
+  duration_ms: 0.6785
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\scripts\\test\\local-deployment.test.mjs:41:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    verifyRuntime (file:///C:/Users/gujja/aqua-orbital/scripts/lib/local-deployment.mjs:3:39)
+    TestContext.<anonymous> (file:///C:/Users/gujja/aqua-orbital/scripts/test/local-deployment.test.mjs:44:19)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: local identity rejects non-owned, default-port, non-loopback, wrong chain/client and changed instance
+not ok 5 - local identity rejects non-owned, default-port, non-loopback, wrong chain/client and changed instance
+  ---
+  duration_ms: 1.7207
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\scripts\\test\\local-deployment.test.mjs:54:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Got unwanted exception.
+    Actual message: "NOT_IMPLEMENTED"
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  actual:
+  error: 'NOT_IMPLEMENTED'
+  stack: |-
+    validateLocalIdentity (file:///C:/Users/gujja/aqua-orbital/scripts/lib/local-deployment.mjs:4:47)
+    file:///C:/Users/gujja/aqua-orbital/scripts/test/local-deployment.test.mjs:56:26
+    getActual (node:assert:530:5)
+    Function.doesNotThrow (node:assert:696:32)
+    TestContext.<anonymous> (file:///C:/Users/gujja/aqua-orbital/scripts/test/local-deployment.test.mjs:56:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+  operator: 'doesNotThrow'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/gujja/aqua-orbital/scripts/test/local-deployment.test.mjs:56:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: CLI accepts no remote endpoints, keys, addresses or arbitrary output paths
+not ok 6 - CLI accepts no remote endpoints, keys, addresses or arbitrary output paths
+  ---
+  duration_ms: 0.4014
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\scripts\\test\\local-deployment.test.mjs:59:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    parseAction (file:///C:/Users/gujja/aqua-orbital/scripts/lib/local-deployment.mjs:5:37)
+    TestContext.<anonymous> (file:///C:/Users/gujja/aqua-orbital/scripts/test/local-deployment.test.mjs:60:15)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 0
+# fail 6
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13436.911

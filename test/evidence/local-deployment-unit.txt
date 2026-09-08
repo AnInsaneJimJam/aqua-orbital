@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: owned ephemeral Cancun Anvil authenticates instance and creation eth_call preserves exact nonce/self address
+ok 1 - owned ephemeral Cancun Anvil authenticates instance and creation eth_call preserves exact nonce/self address
+  ---
+  duration_ms: 719.4453
+  type: 'test'
+  ...
+# Subtest: graph resolves creation AND runtime dependencies once in deterministic dependency order
+ok 2 - graph resolves creation AND runtime dependencies once in deterministic dependency order
+  ---
+  duration_ms: 54.0953
+  type: 'test'
+  ...
+# Subtest: cycles, missing nodes, changed source closure, oversized init/runtime and graph cap fail closed
+ok 3 - cycles, missing nodes, changed source closure, oversized init/runtime and graph cap fail closed
+  ---
+  duration_ms: 8.5601
+  type: 'test'
+  ...
+# Subtest: canonical link replacement needs exact derived FQN address and preserves all other bytes
+ok 4 - canonical link replacement needs exact derived FQN address and preserves all other bytes
+  ---
+  duration_ms: 1.4471
+  type: 'test'
+  ...
+# Subtest: runtime comparison binds constructor-simulated immutables and every non-immutable byte
+ok 5 - runtime comparison binds constructor-simulated immutables and every non-immutable byte
+  ---
+  duration_ms: 2.727
+  type: 'test'
+  ...
+# Subtest: local identity rejects non-owned, default-port, non-loopback, wrong chain/client and changed instance
+ok 6 - local identity rejects non-owned, default-port, non-loopback, wrong chain/client and changed instance
+  ---
+  duration_ms: 2.0136
+  type: 'test'
+  ...
+# Subtest: CLI accepts no remote endpoints, keys, addresses or arbitrary output paths
+ok 7 - CLI accepts no remote endpoints, keys, addresses or arbitrary output paths
+  ---
+  duration_ms: 0.7076
+  type: 'test'
+  ...
+# Subtest: receipt verification binds input, sender, nonce, chain, creation address and canonical inclusion
+ok 8 - receipt verification binds input, sender, nonce, chain, creation address and canonical inclusion
+  ---
+  duration_ms: 2.1301
+  type: 'test'
+  ...
+# Subtest: invalid immutable metadata is rejected during planning, before any deployment exists
+ok 9 - invalid immutable metadata is rejected during planning, before any deployment exists
+  ---
+  duration_ms: 1.8239
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5627.0054

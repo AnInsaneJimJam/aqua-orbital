@@ -10,6 +10,7 @@ test('PostgreSQL commits block and cursor atomically; repeats are idempotent',as
  const url=new URL(base);url.searchParams.set('options',`-c search_path=${schema}`);const pool=database(url.toString());
  try{
   await pool.query(await readFile(new URL('../migrations/0001_ingestion.sql',import.meta.url),'utf8'));
+  await pool.query(await readFile(new URL('../migrations/0002_indexer_state.sql',import.meta.url),'utf8'));
   const block={number:1n,hash:'0x01',parentHash:'0x00'};
   const event={txHash:'0x11',logIndex:0,emitter:'0xaa',topic:'0xbb',payload:{amount:'123456789012345678901234567890'}};
   await atomicBlock(pool,31337,block,[event]);await atomicBlock(pool,31337,block,[event]);

@@ -1,25 +1,48 @@
 
-> orbital@0.1.0 test:e2e C:\Users\gujja\aqua-orbital
-> pnpm --filter @orbital/web test:e2e
-
-
-> @orbital/web@0.1.0 test:e2e C:\Users\gujja\aqua-orbital\apps\web
-> playwright test
-
-[WebServer] (node:22296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:12172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 [WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:13656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:21876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
 [WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:18896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:6368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
 [WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
 
-Running 4 tests using 1 worker
+Running 19 tests using 1 worker
 
-(node:21884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(node:11240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
-  ✓  1 test\wallet.spec.ts:3:1 › external wallet fixture connects, shows wrong chain, and supports keyboard dialog (3.1s)
-  ✓  2 test\workflows.spec.ts:2:1 › landing leads directly to Orbital workflows (1.9s)
-  ✓  3 test\workflows.spec.ts:3:1 › strategy preview cannot masquerade as certified publication (1.7s)
-  ✓  4 test\workflows.spec.ts:4:1 › small screen has no horizontal overflow (10.6s)
 
-  4 passed (49.9s)
+[1/19] test\invoice.spec.ts:11:1 › public invoice displays exact terms and recipients in the current template without wallet setup
+
+[WebServer] (node:21248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[2/19] test\invoice.spec.ts:24:1 › paid invoice shows swap-funded receipt and removes old status when a refresh becomes unavailable
+[3/19] test\invoice.spec.ts:40:1 › stale historical invoice labels its observation and keeps transaction actions unavailable
+
+[WebServer] (node:13248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[4/19] test\invoice.spec.ts:48:1 › malformed or wrong-deployment invoice cannot render financial terms
+[5/19] test\invoice.spec.ts:57:1 › canonical absence is distinct from outage, and an invalid identifier sends no invoice read
+
+[WebServer] (node:7032) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[6/19] test\invoice.spec.ts:68:1 › refresh follows deployment rotation and recovers from an unavailable observation
+[7/19] test\invoice.spec.ts:86:1 › a stalled invoice request times out and permits a fresh retry
+
+[WebServer] (node:22004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[8/19] test\swap.spec.ts:69:1 › checked swap observation shows exact amounts, recipient and bounded coverage without requesting signatures
+[9/19] test\swap.spec.ts:90:1 › edits clear the previous quote and malformed responses expose no amounts
+[10/19] test\swap.spec.ts:99:1 › quote freshness expires on screen and refresh obtains a new checked observation
+[11/19] test\swap.spec.ts:110:1 › wallet and chain changes invalidate observations and wrong chain sends no new quote request
+[12/19] test\swap.spec.ts:120:1 › bounded absence and outage are distinct, and failed refresh removes previously checked amounts
+[13/19] test\swap.spec.ts:131:1 › an interrupted quote cannot restore old amounts after input changes
+[14/19] test\swap.spec.ts:141:1 › a stalled quote times out and permits retry
+[15/19] test\swap.spec.ts:152:1 › deployment rotation during a quote rejects the observation and a fresh attempt recovers
+[16/19] test\wallet.spec.ts:3:1 › external wallet fixture connects, shows wrong chain, and supports keyboard dialog
+[17/19] test\workflows.spec.ts:2:1 › landing leads directly to Orbital workflows
+[18/19] test\workflows.spec.ts:3:1 › strategy preview cannot masquerade as certified publication
+[19/19] test\workflows.spec.ts:4:1 › small screen has no horizontal overflow
+  19 passed (1.5m)

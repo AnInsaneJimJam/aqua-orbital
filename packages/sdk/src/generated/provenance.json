@@ -1,0 +1,60 @@
+[
+  {
+    "exportName": "routerAbi",
+    "source": "packages/contracts/vendor/swap-vm-orbital/src/interfaces/ISwapVM.sol",
+    "sourceSha256": "3739663b65fa61213dfe5867944cc4a120b0d4899fbbbb4c884001b12821bf46",
+    "compiler": "0.8.30+commit.73712a01",
+    "evmVersion": "cancun",
+    "optimizerRuns": 700,
+    "viaIR": true,
+    "methodIdentifiers": {
+      "quote((address,uint256,bytes),uint256,bytes)": "b7ebf0c5",
+      "swap((address,uint256,bytes),uint256,bytes)": "a69f95bd"
+    }
+  },
+  {
+    "exportName": "lifecycleAbi",
+    "source": "packages/contracts/src/interfaces/IOrbitalLifecycle.sol",
+    "sourceSha256": "e00b423829a861235d2464258ef8aa9fb5d8396b404e7167ed6dad25e9c2fc48",
+    "compiler": "0.8.30+commit.73712a01",
+    "evmVersion": "cancun",
+    "optimizerRuns": 700,
+    "viaIR": true,
+    "methodIdentifiers": {
+      "activateStrategy((uint8,uint256,address,address,uint64,address[],uint8[],uint64[],uint192[],uint24,uint256[]),(address,uint256,bytes))": "0de48919",
+      "getStrategyAvailability(bytes32)": "ae75dd54",
+      "getStrategyConfig(bytes32)": "1b5295e4",
+      "getStrategyState(bytes32)": "4fc94e92",
+      "nextMakerNonce(address)": "39107d82",
+      "retireStrategy(bytes32)": "e620e6ca"
+    }
+  },
+  {
+    "exportName": "aquaAbi",
+    "source": "packages/contracts/vendor/aqua/src/interfaces/IAqua.sol",
+    "sourceSha256": "915cbe38c77b46c3927143693a1a1b8ca0f32f75dc34cd5c18526a8103e94fd9",
+    "compiler": "0.8.30+commit.73712a01",
+    "evmVersion": "cancun",
+    "optimizerRuns": 700,
+    "viaIR": true,
+    "methodIdentifiers": {
+      "dock(address,bytes32,address[])": "28defc17",
+      "ship(address,bytes,address[],uint256[])": "f50b870f"
+    }
+  },
+  {
+    "exportName": "paymentsAbi",
+    "source": "packages/contracts/src/OrbitalPayments.sol",
+    "sourceSha256": "02f8c9d2ff55fea0dae6c78c3b28ac251a9067a189a880c3441c367551bef743",
+    "compiler": "0.8.30+commit.73712a01",
+    "evmVersion": "cancun",
+    "optimizerRuns": 700,
+    "viaIR": true,
+    "methodIdentifiers": {
+      "cancelInvoice(bytes32)": "c0aa7e2e",
+      "createInvoice(uint256,uint40,address[],uint16[],bytes32)": "f3dd7550",
+      "payWithSwap(bytes32,(address,uint256,bytes),uint8,uint256,uint256,uint40,uint8)": "39c6c554",
+      "payWithUSDC(bytes32)": "57bf7054"
+    }
+  }
+]

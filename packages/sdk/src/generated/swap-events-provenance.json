@@ -1,0 +1,21 @@
+[
+  {
+    "exportName": "swapEventsAbi",
+    "source": "packages/contracts/src/interfaces/IOrbitalLifecycle.sol",
+    "sourceSha256": "e00b423829a861235d2464258ef8aa9fb5d8396b404e7167ed6dad25e9c2fc48",
+    "compiler": "0.8.30+commit.73712a01",
+    "evmVersion": "cancun",
+    "optimizerRuns": 700,
+    "viaIR": true,
+    "abiSha256": "72f9a0b32b7719942de7435dbef6b13f3e71cf524454f73083a12f1a8b7d21cd",
+    "artifactSha256": "d9ffbbf1bcbc5ebc25192e3d9e77475b40149c579f10b152f30bde78d24b71e1",
+    "eventTopics": {
+      "OrbitalSwapExecuted(address,bytes32,address,address,uint8,uint8,uint256,uint256,uint256,uint256,uint64,uint64[],bool[])": "0xa5f389929ee0d0e41a4e939da26d454bc427f8db574eea774a9a54650223de5a"
+    },
+    "implementation": {
+      "source": "packages/contracts/src/OrbitalSwapVMRouter.sol",
+      "sourceSha256": "e6c91e3c134e386369d7f5b39d74ccc8aa05f1e8894e2431630c39a4436c1f4a",
+      "artifactSha256": "daa8938dc9c29098c7f97f9f3443ae099c19428a6bec6bdeeab07b2db70bdf59"
+    }
+  }
+]

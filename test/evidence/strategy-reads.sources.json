@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-08T06:30:51.8618812Z",
+  "scope": "Strategy catalogue and pinned inspection: selected sources and tests, not complete import closure",
+  "sources": [
+    {
+      "path": "packages/db/src/strategy-reads.ts",
+      "sha256": "b9b0f396b0fbffacaf7f12111fc55e32d4e7159b00f65ec5a9197faa503f9676"
+    },
+    {
+      "path": "packages/db/src/index.ts",
+      "sha256": "d0dbd39cc0b070d222b604ea8d768832f17c5284b02b7bcfeaa1cead0a0dc414"
+    },
+    {
+      "path": "apps/api/src/strategies.ts",
+      "sha256": "753a35c4ab41c18a90ce1d5f1c9398e4a52d9d933bd5a6518f821dd702d5978b"
+    },
+    {
+      "path": "apps/api/src/strategy-validation.ts",
+      "sha256": "bf8c8a51cb8d9559d5ce624592ab0dd01c3ef60bf84956f4546f3d2026d9c04a"
+    },
+    {
+      "path": "apps/api/src/strategy-rpc.ts",
+      "sha256": "f2b7cf5c35e6030f409c31936c06bf50f075442dd53356555838cb52003e095e"
+    },
+    {
+      "path": "apps/api/src/runtime.ts",
+      "sha256": "55722ef5594dc6ddff53f7ab550a78720837f7ef35c15234feb9aa62a5b71a69"
+    },
+    {
+      "path": "apps/api/src/server.ts",
+      "sha256": "747a9f37b6694d1256823a6b55d56db2d476f14452cfaa14735e98910ef27a72"
+    },
+    {
+      "path": "packages/shared/src/index.ts",
+      "sha256": "8ce6bb7dbb0314f0a4b0e48908f2b4dadafeb7f045d5193fdc8ed70280d36bda"
+    },
+    {
+      "path": "apps/api/test/strategies-fixture.ts",
+      "sha256": "217f82f5aaf2d750422d825bc4b17d2e82d31ab06fbf5d5157921e4bdb0b07fc"
+    },
+    {
+      "path": "apps/api/test/strategies.test.ts",
+      "sha256": "1a443bfd117e4c05142968570059abe9c564e2354d9771f976d6f44a79206d5b"
+    },
+    {
+      "path": "apps/api/test/strategies-http.test.ts",
+      "sha256": "c5dd204dda1f33bc8f9775b1f1f445bc65fbae9119b15779de35f60bf50f3d5c"
+    },
+    {
+      "path": "apps/api/test/strategies-runtime.test.ts",
+      "sha256": "8bf7ab1ebc9fdb9178dc6d6420d207753fcf856b7f7a1dc420c31c35db61a744"
+    },
+    {
+      "path": "apps/api/test/strategy-rpc.test.ts",
+      "sha256": "25981184f1217e03b8dac41b42be4582be5f70d88af53303ee9fbddd640b3e7c"
+    },
+    {
+      "path": "packages/sdk/src/generated/abi.ts",
+      "sha256": "491aaf2ab09811bfb1f83d6c0f037b8b4325b05bedfd57be26191b57e3b67a32"
+    }
+  ]
+}

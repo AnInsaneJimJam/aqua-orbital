@@ -1,0 +1,94 @@
+
+[WebServer] (node:23636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:14908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+
+
+(node:15824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[1/2] test\invoice.spec.ts:68:1 › refresh follows deployment rotation and recovers from an unavailable observation
+[WebServer] (node:17112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  1) test\invoice.spec.ts:68:1 › refresh follows deployment rotation and recovers from an unavailable observation 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Cancelled at indexed block', { exact: true })
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Cancelled at indexed block', { exact: true }) with timeout 30000ms
+      - waiting for getByText('Cancelled at indexed block', { exact: true })
+
+
+      78 |   value.data.invoice.updated = {blockNumber: '14', blockHash: hash(114), txHash: hash(214), logIndex: 4, event: 'InvoiceCancelled'};
+      79 |   await page.getByRole('button', {name: 'Refresh invoice', exact: true}).click();
+    > 80 |   await expect(page.getByText('Cancelled at indexed block', {exact: true})).toBeVisible();
+         |                                                                             ^
+      81 |   unavailable = true; await page.getByRole('button', {name: 'Refresh invoice', exact: true}).click();
+      82 |   await expect(page.getByRole('heading', {name: 'Invoice unavailable', exact: true})).toBeVisible();
+      83 |   unavailable = false; await page.getByRole('button', {name: 'Refresh invoice', exact: true}).click();
+        at C:\Users\gujja\aqua-orbital\apps\web\test\invoice.spec.ts:80:77
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\invoice-refresh-follows-de-95108--an-unavailable-observation\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\invoice-refresh-follows-de-95108--an-unavailable-observation\error-context.md
+
+
+(node:22580) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[2/2] test\invoice.spec.ts:86:1 › a stalled invoice request times out and permits a fresh retry
+[WebServer] (node:804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+  2) test\invoice.spec.ts:86:1 › a stalled invoice request times out and permits a fresh retry ─────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Invoice unavailable', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Invoice unavailable', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Invoice unavailable', exact: true })
+
+
+       96 |   await expect.poll(() => started).toBe(2);
+       97 |   await page.clock.runFor(31000);
+    >  98 |   await expect(page.getByRole('heading', {name: 'Invoice unavailable', exact: true})).toBeVisible({timeout: 5000});
+          |                                                                                       ^
+       99 |   await expect(page.getByRole('button', {name: 'Refresh invoice', exact: true})).toBeEnabled();
+      100 |   stalled = false; release?.();
+      101 |   await page.getByRole('button', {name: 'Refresh invoice', exact: true}).click();
+        at C:\Users\gujja\aqua-orbital\apps\web\test\invoice.spec.ts:98:87
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\invoice-a-stalled-invoice--d6b0d-t-and-permits-a-fresh-retry\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\invoice-a-stalled-invoice--d6b0d-t-and-permits-a-fresh-retry\error-context.md
+
+
+  2 failed
+    test\invoice.spec.ts:68:1 › refresh follows deployment rotation and recovers from an unavailable observation 
+    test\invoice.spec.ts:86:1 › a stalled invoice request times out and permits a fresh retry ──────
+undefined
+C:\Users\gujja\aqua-orbital\apps\web:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: playwright test invoice.spec.ts --grep rotation|stalled --reporter=line

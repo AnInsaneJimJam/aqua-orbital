@@ -38,3 +38,17 @@ test('resume rejects malformed or cross-network receipts',async()=>{
  await assert.rejects(resumeTransaction({schemaVersion:1,hash,chainId:1,account,label:'Swap'},port()),/network/i);
  await assert.rejects(resumeTransaction({schemaVersion:1,hash:'0x12',chainId:31337,account,label:'Swap'},port()),/record/i);
 });
+test('asynchronous execution retains a frozen copy of the reviewed transaction',async()=>{
+ const mutable={...plan};
+ const p=port({estimate:async tx=>{
+  mutable.to=account; mutable.data='0xdeadbeef';
+  assert.equal(Object.isFrozen(tx),true);
+  return {gas:21000n,maxFeePerGas:1n,nativeBalance:99999n};
+ },send:async tx=>{assert.equal(tx.to,plan.to);assert.equal(tx.data,plan.data);return hash;}});
+ await executeReviewed(mutable,p,()=>{});
+});
+test('mismatched receipt hashes cannot report confirmation of the reviewed transaction',async()=>{
+ const other=`0x${'cd'.repeat(32)}` as const;
+ await assert.rejects(executeReviewed(plan,port({receipt:async()=>({hash:other,status:'success',blockNumber:2n})}),()=>{}),/receipt/i);
+ await assert.rejects(resumeTransaction({schemaVersion:1,hash,chainId:31337,account,label:'Swap'},port({receipt:async()=>({hash:other,status:'success',blockNumber:2n})})),/receipt/i);
+});

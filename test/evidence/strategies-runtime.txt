@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: configured production runtime serves real database detail through six bounded hash-pinned HTTP reads
+ok 1 - configured production runtime serves real database detail through six bounded hash-pinned HTTP reads
+  ---
+  duration_ms: 2887.6555
+  type: 'test'
+  ...
+# Subtest: strategy detail reservations share the global eight-request runtime budget and release capacity
+ok 2 - strategy detail reservations share the global eight-request runtime budget and release capacity
+  ---
+  duration_ms: 2041.4974
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16682.6554

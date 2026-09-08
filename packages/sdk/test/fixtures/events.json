@@ -1,0 +1,102 @@
+{
+  "generator": "scripts/generate-event-goldens.mjs; independent cast topic/ABI words, no RPC",
+  "castVersion": "cast Version: 1.5.1-stable\nCommit SHA: b0a9dd9ceda36f63e2326ce530c10e6916f4b8a2\nBuild Timestamp: 2025-12-22T11:40:33.870895500Z (1766403633)\nBuild Profile: maxperf",
+  "events": [
+    {
+      "exportName": "lifecycleEventsAbi",
+      "eventName": "StrategyActivated",
+      "signature": "StrategyActivated(address,bytes32,bytes32)",
+      "args": {
+        "maker": "0x1111111111111111111111111111111111111111",
+        "orderHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "configHash": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "topics": [
+        "0xb2735875eb60b4dab16048f37e63f7963fd091e6f0cfa682f89a7ff54472a313",
+        "0x0000000000000000000000001111111111111111111111111111111111111111",
+        "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      ],
+      "data": "0x"
+    },
+    {
+      "exportName": "lifecycleEventsAbi",
+      "eventName": "StrategyRetired",
+      "signature": "StrategyRetired(address,bytes32,uint64)",
+      "args": {
+        "maker": "0x1111111111111111111111111111111111111111",
+        "orderHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "version": "18446744073709551615"
+      },
+      "topics": [
+        "0xb26fb4a44775b38230b10b691db6ab4c9ca5eeee66ec95863d49430eafd44994",
+        "0x0000000000000000000000001111111111111111111111111111111111111111",
+        "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "data": "0x000000000000000000000000000000000000000000000000ffffffffffffffff"
+    },
+    {
+      "exportName": "paymentsEventsAbi",
+      "eventName": "InvoiceCreated",
+      "signature": "InvoiceCreated(bytes32,address,uint256,uint40,address[],uint16[],bytes32)",
+      "args": {
+        "invoiceId": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "merchant": "0x1111111111111111111111111111111111111111",
+        "amountDueRaw": "1329227995784915872903807060403801365",
+        "expiresAt": 1099511627775,
+        "recipients": [
+          "0x2222222222222222222222222222222222222222",
+          "0x3333333333333333333333333333333333333333"
+        ],
+        "bps": [
+          4321,
+          5679
+        ],
+        "memoHash": "0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+      },
+      "topics": [
+        "0x8d0a337aff3ba0fd5984a156b8135e002a02c32f3f6da2c8a13de42ed9c1bc41",
+        "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "0x0000000000000000000000001111111111111111111111111111111111111111"
+      ],
+      "data": "0x00000000000000000000000000000000010000000000000000000000075bcd15000000000000000000000000000000000000000000000000000000ffffffffff00000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000100dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd000000000000000000000000000000000000000000000000000000000000000200000000000000000000000022222222222222222222222222222222222222220000000000000000000000003333333333333333333333333333333333333333000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000010e1000000000000000000000000000000000000000000000000000000000000162f"
+    },
+    {
+      "exportName": "paymentsEventsAbi",
+      "eventName": "InvoicePaid",
+      "signature": "InvoicePaid(bytes32,address,address,address,uint256,uint256,uint256,bytes32)",
+      "args": {
+        "invoiceId": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "merchant": "0x1111111111111111111111111111111111111111",
+        "payer": "0x3333333333333333333333333333333333333333",
+        "tokenIn": "0x4444444444444444444444444444444444444444",
+        "amountInRaw": "1606938044258990275541962092341162602522202993782792835301499",
+        "receivedRaw": "1329227995784915872903807060403801442",
+        "refundRaw": "77",
+        "routeHash": "0xefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef"
+      },
+      "topics": [
+        "0xeae563db786485a5ac6297b8d0117cf23fb300d5275d3dec9b12c3bf9989eca4",
+        "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "0x0000000000000000000000001111111111111111111111111111111111111111",
+        "0x0000000000000000000000003333333333333333333333333333333333333333"
+      ],
+      "data": "0x0000000000000000000000004444444444444444444444444444444444444444000000000000010000000000000000000000000000000000000000000000007b00000000000000000000000000000000010000000000000000000000075bcd62000000000000000000000000000000000000000000000000000000000000004defefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef"
+    },
+    {
+      "exportName": "paymentsEventsAbi",
+      "eventName": "InvoiceCancelled",
+      "signature": "InvoiceCancelled(bytes32,address)",
+      "args": {
+        "invoiceId": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "merchant": "0x1111111111111111111111111111111111111111"
+      },
+      "topics": [
+        "0x881d07924d83735d00c06370239f77e65622c5033b00ccd03a9358be68de819d",
+        "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "0x0000000000000000000000001111111111111111111111111111111111111111"
+      ],
+      "data": "0x"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+Compiling 98 files with Solc 0.8.30
+Solc 0.8.30 finished in 66.29s
+Compiler run successful!
+
+Ran 2 tests for test/MixedInvoice.t.sol:MixedInvoiceTest
+[PASS] testMixedSwapPaysInvoiceAndPreservesDonationsAndApprovals() (gas: 10582030)
+[PASS] testSecondRecipientFailureRollsBackRealMixedCurveThenRecovers() (gas: 14662502)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 138.96ms (226.71ms CPU time)
+
+Ran 1 test suite in 146.36ms (138.96ms CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)

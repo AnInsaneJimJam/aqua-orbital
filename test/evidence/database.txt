@@ -1,4 +1,8 @@
 
+> orbital@0.1.0 test:database C:\Users\gujja\aqua-orbital
+> pnpm --filter @orbital/db test
+
+
 > @orbital/db@0.1.0 test C:\Users\gujja\aqua-orbital\packages\db
 > tsx --test test/*.test.ts
 
@@ -6,15 +10,45 @@ TAP version 13
 # Subtest: PostgreSQL commits block and cursor atomically; repeats are idempotent
 ok 1 - PostgreSQL commits block and cursor atomically; repeats are idempotent
   ---
-  duration_ms: 396.6501
+  duration_ms: 2016.341
   type: 'test'
   ...
-1..1
-# tests 1
+# Subtest: reorg atomically removes only orphaned chain blocks/logs, then replay and restart are idempotent
+ok 2 - reorg atomically removes only orphaned chain blocks/logs, then replay and restart are idempotent
+  ---
+  duration_ms: 1547.0537
+  type: 'test'
+  ...
+# Subtest: 64 stored blocks includes the 64th candidate, and refuses a deeper reorg durably
+ok 3 - 64 stored blocks includes the 64th candidate, and refuses a deeper reorg durably
+  ---
+  duration_ms: 6922.9913
+  type: 'test'
+  ...
+# Subtest: an older reconciliation snapshot cannot delete a concurrently committed block
+ok 4 - an older reconciliation snapshot cannot delete a concurrently committed block
+  ---
+  duration_ms: 366.528
+  type: 'test'
+  ...
+# Subtest: rollback SQL failure preserves the cursor, orphan logs and block rows
+ok 5 - rollback SQL failure preserves the cursor, orphan logs and block rows
+  ---
+  duration_ms: 429.5484
+  type: 'test'
+  ...
+# Subtest: mixed canonical branches and out-of-window input are rejected before mutation
+ok 6 - mixed canonical branches and out-of-window input are rejected before mutation
+  ---
+  duration_ms: 359.4692
+  type: 'test'
+  ...
+1..6
+# tests 6
 # suites 0
-# pass 1
+# pass 6
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 1752.6886
+# duration_ms 13311.0899

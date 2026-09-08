@@ -1,0 +1,51 @@
+{
+  "recordedAt": "2026-09-08T08:50:13.225Z",
+  "scope": "disposable-local-deployment",
+  "sourceHashes": {
+    "scripts/local-deployment.mjs": "31722798faf642ee76c0c061c660c87d22eb501f5982edf16d3e7470d040c06f",
+    "scripts/lib/local-deployment.mjs": "ddd9653c92d33d4e731ef7b0f33c2e7b6190b4cefa89fcbf015deb5717a182d0",
+    "scripts/lib/local-anvil.mjs": "48ea5a9f4116687ca1d309040cf5508b2d601c0e0410ae203231cd29285d620d",
+    "scripts/lib/local-deployment-runner.mjs": "d12773e1bf7891ffcf8435ea0cdf7ce6d311d549b620799b88e52e8604b7ac63",
+    "scripts/test/local-deployment.test.mjs": "428351e273663db4b82a4fe59a7607882ee19e5cc70bb56d022f271620412413",
+    "scripts/test/local-anvil.test.mjs": "b004c9aeeecd2ef1bbaccf5ca960355e58f402a08e5f2451d1b2cf6a65f62774",
+    "scripts/test/local-deployment-integration.test.mjs": "35a742dad5fbea738d2fdf4b76492c068d360f21a0f438bdd31d4c3d523fd20c",
+    "packages/contracts/test/LocalUSDC.t.sol": "4bd6d5004e741d475e5cedcbb00ef626f0e84142b3a03a22b04843844d5d0a26",
+    "packages/contracts/test/fixtures/LocalUSDC.sol": "214d19937c70edcf518f929e4e8c426a0105362f34de4ab342898ad7b6b92cad",
+    "packages/sdk/scripts/artifact-integrity.mjs": "9f2f9e92ebf193adebbd19895a01d3bb2898dd22f629fc5cb6a56af0885158f3",
+    "packages/sdk/test/artifact-integrity.test.ts": "4afde6d684cf4f6cbfc157443bc8a27e1b39ce6ec5eb27aa2b60ad17d37b90d5"
+  },
+  "outputs": {
+    "test/evidence/local-anvil-probe.txt": "75f19eb92584f0afd06ca10a412b11081dbdf05aaa5aff47f9e29a86b894821e",
+    "test/evidence/local-anvil-red.txt": "0273d37af5fa896aa78a881915e27eccc543394df81fc5b6999a01d0d8a0cdf8",
+    "test/evidence/local-anvil.txt": "c9400d762fdb429eca576b11bcade13c6dcfa293b1e1627205c5347cd33aeeff",
+    "test/evidence/local-deployment-integration-preliminary.txt": "c049bc8acb180fd5813a72f6fa2f265c6d1d0089fb89244b931e233f84924c52",
+    "test/evidence/local-deployment-integration-red.txt": "491741c5b6254c99dd15926c68b40236697e7803cec7ee55b238634e1bb579e6",
+    "test/evidence/local-deployment-integration.txt": "ccc4a6cfca62e77e9d97bded72bc586869487c9ed211777e310dd1e6495fdcdd",
+    "test/evidence/local-deployment-library-red.txt": "23cd8e789fd836b27abc17d303fb920df5f626a8325ef2166a66f2d5e83c3314",
+    "test/evidence/local-deployment-library.txt": "8e9136151fe29609d2c545143df9387d626dc9da9725857fc671f83c0c55727e",
+    "test/evidence/local-deployment-plan.json": "9a5c6b0bd58b6e25b11a2eb528aa9d1cc3f3d17b0d79c69ef4f855c969ae31de",
+    "test/evidence/local-deployment-pure-library-red.txt": "8616609cabbf7d5fd0d7f510b4246504270044c0925b38271fba92b23fc6d934",
+    "test/evidence/local-deployment-red.txt": "61d0f15cdd878393a490ed5acd3dfd7910d8e313357f9e1c7bfef7eaa1d4e6ab",
+    "test/evidence/local-deployment-sdk-preliminary.txt": "3433d253c40d2fa382eb918d5b3cf3aebde3818a309c488d5a9f9eaae9890d30",
+    "test/evidence/local-deployment-sdk-typecheck.txt": "52bfe85ee7aea946de1abb352f8e129c9bf5cc41f85d4f45c530aaf617182939",
+    "test/evidence/local-deployment-sdk.txt": "1b105e205db86f6f77f313cd5e045bd7aa44691141cc4d7981535f3b1d7172a6",
+    "test/evidence/local-deployment-unit.txt": "ae2e36325456f25e6808fc143c8f98a58c7600528002be097c63f334cba6af79",
+    "test/evidence/local-deployment.md": "0a4ab6c82f7622806e57a61e1c095bbc1f8f94d169d2a7d74baefb89f9dee84e"
+  },
+  "report": {
+    "path": "test/evidence/local-deployment/2026-09-08T08-47-12.753Z-38942006-0d13-470a-a253-c68d74e87458/report.json",
+    "sha256": "d5b180f29030f8520df7ae17372589800cccacd349d992fe50db10f79d1bdb88",
+    "contracts": 12,
+    "receipts": 16,
+    "chainStopped": true,
+    "verified": false
+  },
+  "checks": {
+    "localUnit": 9,
+    "actualDeployment": 1,
+    "artifactHelperSubset": 16,
+    "fullSdk": 76,
+    "sdkTypecheck": "passed",
+    "localUsdcSolidity": 2
+  }
+}

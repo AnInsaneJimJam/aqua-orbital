@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: invoice detail preserves exact raw units, floor/remainder recipients and receipt provenance
+ok 1 - invoice detail preserves exact raw units, floor/remainder recipients and receipt provenance
+  ---
+  duration_ms: 31.7678
+  type: 'test'
+  ...
+# Subtest: invoice reads retain direct and swap-funded paid receipts without declaring payment eligibility
+ok 2 - invoice reads retain direct and swap-funded paid receipts without declaring payment eligibility
+  ---
+  duration_ms: 7.034
+  type: 'test'
+  ...
+# Subtest: invoice detail binds chain, deployment roles, ID, tokens and indexing start to verified configuration
+ok 3 - invoice detail binds chain, deployment roles, ID, tokens and indexing start to verified configuration
+  ---
+  duration_ms: 27.1807
+  type: 'test'
+  ...
+# Subtest: invoice detail rejects malformed money, inconsistent shares and executable payloads
+ok 4 - invoice detail rejects malformed money, inconsistent shares and executable payloads
+  ---
+  duration_ms: 20.1625
+  type: 'test'
+  ...
+# Subtest: historical and stale observations remain explicit and cannot falsify canonical coverage
+ok 5 - historical and stale observations remain explicit and cannot falsify canonical coverage
+  ---
+  duration_ms: 28.6844
+  type: 'test'
+  ...
+# Subtest: only a checked canonical 404 can mean invoice not found
+ok 6 - only a checked canonical 404 can mean invoice not found
+  ---
+  duration_ms: 5.5043
+  type: 'test'
+  ...
+# Subtest: terminal invoice events must have a strictly later block-global log position
+ok 7 - terminal invoice events must have a strictly later block-global log position
+  ---
+  duration_ms: 3.8377
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11378.3555

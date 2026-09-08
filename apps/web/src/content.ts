@@ -4,6 +4,21 @@ export const copy={
  heroBody:'Concentrate stablecoin liquidity around the peg. Keep your tokens in your wallet. Trade through a shared, multi-token curve.',
  disclosure:'Testnet application. Demo tokens have no redemption value. Concentrated liquidity can lose value.',
  attribution:'Powered by SwapVM — © Degensoft Ltd 2025',
+ swap:{
+  unavailable:'Quote unavailable. The amounts could not be checked. Try again.',
+  readOnly:'Read-only quote. Swap execution is not enabled yet.',
+  expired:'Quote expired. Refresh to check current amounts.',
+  empty:'No route was found in the inspected strategies.',
+ },
+ invoice:{
+  invalid:'Use the full 32-byte invoice identifier from the correct network.',
+  unavailable:'Canonical invoice history could not be checked. Refresh to try again.',
+  loading:'Reading the verified deployment and its indexed invoice history.',
+  readOnly:'These are indexed invoice terms. Payment availability has not been verified; payment actions are not enabled in this build.',
+  stale:'The index is behind or its latest check is old. Refresh to check for updates.',
+  demoSettlement:'This deployment uses demo USDC with no redemption value.',
+  demoInput:'The input asset in this test receipt is a demo token with no redemption value.',
+ },
 };
 export const presets=[
  {name:'Wide',description:'More room for changing prices.',shares:[50,30,20],thresholds:['Full range','0.90 reference','0.99 reference']},

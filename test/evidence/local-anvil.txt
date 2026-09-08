@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: owned ephemeral Cancun Anvil authenticates instance and creation eth_call preserves exact nonce/self address
+ok 1 - owned ephemeral Cancun Anvil authenticates instance and creation eth_call preserves exact nonce/self address
+  ---
+  duration_ms: 539.4549
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7768.1036

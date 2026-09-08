@@ -1,0 +1,35 @@
+TAP version 13
+# Subtest: shared invoice DTO rejects altered split atoms, receipt status, direct-route money and added identity fields
+not ok 1 - shared invoice DTO rejects altered split atoms, receipt status, direct-route money and added identity fields
+  ---
+  duration_ms: 946.112
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\invoices.test.ts:121:1'
+  failureType: 'testCodeFailure'
+  error: 'Cannot convert 1e18 to a BigInt'
+  code: 'ERR_TEST_FAILURE'
+  name: 'SyntaxError'
+  stack: |-
+    BigInt (<anonymous>)
+    <anonymous> (C:\Users\gujja\aqua-orbital\packages\shared\src\index.ts:44:12)
+    Internals.check (file:///C:/Users/gujja/aqua-orbital/node_modules/.pnpm/zod@4.5.4/node_modules/zod/v4/core/api.js:995:16)
+    runChecks (file:///C:/Users/gujja/aqua-orbital/node_modules/.pnpm/zod@4.5.4/node_modules/zod/v4/core/schemas.js:51:35)
+    inst._zod.run (file:///C:/Users/gujja/aqua-orbital/node_modules/.pnpm/zod@4.5.4/node_modules/zod/v4/core/schemas.js:118:20)
+    Module.<anonymous> (file:///C:/Users/gujja/aqua-orbital/node_modules/.pnpm/zod@4.5.4/node_modules/zod/v4/core/parse.js:43:32)
+    _.safeParse (file:///C:/Users/gujja/aqua-orbital/node_modules/.pnpm/zod@4.5.4/node_modules/zod/v4/classic/schemas.js:140:22)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\invoices.test.ts:132:39)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8195.4451
+undefined
+C:\Users\gujja\aqua-orbital\apps\api:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: tsx --test --test-name-pattern=shared invoice DTO test/invoices.test.ts

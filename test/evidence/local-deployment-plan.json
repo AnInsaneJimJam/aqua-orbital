@@ -1,0 +1,102 @@
+{
+  "scope": "disposable-local-only",
+  "verified": false,
+  "compiler": "0.8.30",
+  "evm": "cancun",
+  "optimizerRuns": 700,
+  "viaIR": true,
+  "upstream": {
+    "url": "https://github.com/1inch/aqua.git",
+    "revision": "81c26e4619ce21556ab02b3284ee2685de21fb18"
+  },
+  "nodes": [
+    {
+      "identity": "src/OrbitalDemoDollar.sol:OrbitalDemoDollar",
+      "dependencies": [],
+      "runtimeBytes": 2116,
+      "runtimeBudgetRemaining": 22460,
+      "artifactSha256": "29c6895e3aacafd0cfa9dd2d7daf5d98385bb2489c6bd84bf582c65266e3cb14"
+    },
+    {
+      "identity": "src/OrbitalPayments.sol:OrbitalPayments",
+      "dependencies": [],
+      "runtimeBytes": 12097,
+      "runtimeBudgetRemaining": 12479,
+      "artifactSha256": "8fb67c141f5e29b4510c940fd20216b43b7a3a39c5925831f01b290b14602a89"
+    },
+    {
+      "identity": "src/libraries/FrontierEndpoint.sol:FrontierEndpoint",
+      "dependencies": [],
+      "runtimeBytes": 22458,
+      "runtimeBudgetRemaining": 2118,
+      "artifactSha256": "3ec353719be0ec73d57e3d83b6e96fd6abf97692286b63c2f3f0e5136dd937db"
+    },
+    {
+      "identity": "src/libraries/FrontierComposition.sol:FrontierComposition",
+      "dependencies": [
+        "src/libraries/FrontierEndpoint.sol:FrontierEndpoint"
+      ],
+      "runtimeBytes": 23138,
+      "runtimeBudgetRemaining": 1438,
+      "artifactSha256": "2362a4f0f62265fdb760de14d014c1ae112037de349c95fc3854d1d7b7b389da"
+    },
+    {
+      "identity": "src/libraries/OrbitalOrderCodec.sol:OrbitalOrderCodec",
+      "dependencies": [],
+      "runtimeBytes": 8153,
+      "runtimeBudgetRemaining": 16423,
+      "artifactSha256": "78f2b6d8264611e4df99bff1b08084397f955ceb385ac6f442b979c9a8eafb24"
+    },
+    {
+      "identity": "src/libraries/StrategyInitializer.sol:StrategyInitializer",
+      "dependencies": [],
+      "runtimeBytes": 7049,
+      "runtimeBudgetRemaining": 17527,
+      "artifactSha256": "21370ff7a66d9d6422556a218d33e86c7d9806a9ad87feacebfbe66862b75b4b"
+    },
+    {
+      "identity": "src/libraries/OrbitalStorage.sol:OrbitalStorage",
+      "dependencies": [
+        "src/libraries/FrontierComposition.sol:FrontierComposition",
+        "src/libraries/OrbitalOrderCodec.sol:OrbitalOrderCodec",
+        "src/libraries/StrategyInitializer.sol:StrategyInitializer"
+      ],
+      "runtimeBytes": 23240,
+      "runtimeBudgetRemaining": 1336,
+      "artifactSha256": "b1818cae3d31e56e869f8202b98966977169e4036646847a358fdbc128ab31e1"
+    },
+    {
+      "identity": "src/libraries/OrbitalSettlement.sol:OrbitalSettlement",
+      "dependencies": [
+        "src/libraries/OrbitalStorage.sol:OrbitalStorage"
+      ],
+      "runtimeBytes": 6658,
+      "runtimeBudgetRemaining": 17918,
+      "artifactSha256": "1e39d3c6ed6e040d563807115db5bf3d7d4e8e308ec4cce742343df7c9b728dd"
+    },
+    {
+      "identity": "src/OrbitalSwapVMRouter.sol:OrbitalSwapVMRouter",
+      "dependencies": [
+        "src/libraries/OrbitalSettlement.sol:OrbitalSettlement",
+        "src/libraries/OrbitalStorage.sol:OrbitalStorage"
+      ],
+      "runtimeBytes": 22221,
+      "runtimeBudgetRemaining": 2355,
+      "artifactSha256": "daa8938dc9c29098c7f97f9f3443ae099c19428a6bec6bdeeab07b2db70bdf59"
+    },
+    {
+      "identity": "test/fixtures/LocalUSDC.sol:LocalUSDC",
+      "dependencies": [],
+      "runtimeBytes": 1851,
+      "runtimeBudgetRemaining": 22725,
+      "artifactSha256": "b2b5f1637daeac6749c799fd107beea8e6990ccad4df18812fb5b1f3f94d9cbe"
+    },
+    {
+      "identity": "vendor/aqua/src/Aqua.sol:Aqua",
+      "dependencies": [],
+      "runtimeBytes": 2678,
+      "runtimeBudgetRemaining": 21898,
+      "artifactSha256": "0701c8ece7ebf0a67a2ebd5f807ed8735e70989f183fee8eac943b1e1a7261ad"
+    }
+  ]
+}
