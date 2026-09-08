@@ -1,0 +1,138 @@
+Compiling 2 files with Solc 0.8.30
+Solc 0.8.30 finished in 3.97s
+Compiler run successful with warnings:
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:11:9:
+   |
+11 |         assertTrue(found);assertEq(capped,expected);assertLe(capped,point[output]);assertGe(capped,lower);
+   |         ^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:11:27:
+   |
+11 |         assertTrue(found);assertEq(capped,expected);assertLe(capped,point[output]);assertGe(capped,lower);
+   |                           ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:11:53:
+   |
+11 |         assertTrue(found);assertEq(capped,expected);assertLe(capped,point[output]);assertGe(capped,lower);
+   |                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:11:84:
+   |
+11 |         assertTrue(found);assertEq(capped,expected);assertLe(capped,point[output]);assertGe(capped,lower);
+   |                                                                                    ^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:12:9:
+   |
+12 |         assertEq(keccak256(abi.encode(point)),original,"proposal mutated its frame");
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:13:9:
+   |
+13 |         point[output]=capped;
+   |         ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:20:9:
+   |
+20 |         assertTrue(W.lte(W.scale(W.mul(sigma,sigma),point.length),pairVariance));
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:25:9:
+   |
+25 |         (bool found,)=L.cap(x,0,3,8);assertFalse(found,"lower cap may not be crossed");
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:25:38:
+   |
+25 |         (bool found,)=L.cap(x,0,3,8);assertFalse(found,"lower cap may not be crossed");
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:29:9:
+   |
+29 |         uint256[] memory b=new uint256[](5);for(uint256 k;k<5;k++)b[k]=10;check(b,0,2,0,7);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:29:75:
+   |
+29 |         uint256[] memory b=new uint256[](5);for(uint256 k;k<5;k++)b[k]=10;check(b,0,2,0,7);
+   |                                                                           ^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:30:9:
+   |
+30 |         uint256[] memory c=new uint256[](8);for(uint256 k;k<8;k++)c[k]=10;check(c,7,3,0,6);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:30:75:
+   |
+30 |         uint256[] memory c=new uint256[](8);for(uint256 k;k<8;k++)c[k]=10;check(c,7,3,0,6);
+   |                                                                           ^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:34:38:
+   |
+34 |         (bool noGap,)=L.cap(x,0,1,0);assertFalse(noGap);
+   |                                      ^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:35:9:
+   |
+35 |         x[1]=0;x[2]=0;(bool negative,)=L.cap(x,0,3,0);assertFalse(negative);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:35:55:
+   |
+35 |         x[1]=0;x[2]=0;(bool negative,)=L.cap(x,0,3,0);assertFalse(negative);
+   |                                                       ^^^^^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:50:61:
+   |
+50 |         (bool found,uint256 capped)=L.cap(x,output,sigma,0);assertTrue(found);
+   |                                                             ^^^^^^^^^^^^^^^^^
+
+Warning (5740): Unreachable code.
+  --> test/LowerSheetProposal.t.sol:51:9:
+   |
+51 |         check(x,output,sigma,0,capped);
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+Ran 5 tests for test/LowerSheetProposal.t.sol:LowerSheetProposalTest
+[FAIL: NotImplemented()] testExactN3UnequalUntouchedCoordinates() (gas: 1105)
+[FAIL: NotImplemented(); counterexample: calldata=0x1c1ced1700000000000000000000000000000000fffffffffffffffffffffffffffffffd00000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000001 args=[340282366920938463463374607431768211453 [3.402e38], 3, 1]] testFuzzProposedEndpointSatisfiesIndependentPairVariance(uint128,uint8,uint8) (runs: 0, μ: 0, ~: 0)
+Logs:
+  Bound result 3
+  Bound result 1
+  Bound result 3837
+
+[FAIL: NotImplemented()] testHandN2N5N8LowerBranchPoints() (gas: 1122)
+[FAIL: NotImplemented()] testNoSheetGapAndNoNonnegativeLowerSideDefer() (gas: 537)
+[FAIL: NotImplemented()] testWide192BitDomainCannotOverflowOrChangeOtherCoordinates() (gas: 15016)
+Suite result: FAILED. 0 passed; 5 failed; 0 skipped; finished in 28.73ms (21.98ms CPU time)
+
+Ran 1 test suite in 42.40ms (28.73ms CPU time): 0 tests passed, 5 failed, 0 skipped (5 total tests)
+
+Failing tests:
+Encountered 5 failing tests in test/LowerSheetProposal.t.sol:LowerSheetProposalTest
+[FAIL: NotImplemented()] testExactN3UnequalUntouchedCoordinates() (gas: 1105)
+[FAIL: NotImplemented(); counterexample: calldata=0x1c1ced1700000000000000000000000000000000fffffffffffffffffffffffffffffffd00000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000001 args=[340282366920938463463374607431768211453 [3.402e38], 3, 1]] testFuzzProposedEndpointSatisfiesIndependentPairVariance(uint128,uint8,uint8) (runs: 0, μ: 0, ~: 0)
+[FAIL: NotImplemented()] testHandN2N5N8LowerBranchPoints() (gas: 1122)
+[FAIL: NotImplemented()] testNoSheetGapAndNoNonnegativeLowerSideDefer() (gas: 537)
+[FAIL: NotImplemented()] testWide192BitDomainCannotOverflowOrChangeOtherCoordinates() (gas: 15016)
+
+Encountered a total of 5 failing tests, 0 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 5 failed tests

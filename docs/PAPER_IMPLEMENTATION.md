@@ -22,6 +22,16 @@ The paper supplies the mechanism. MATH supplies translated coordinates and expli
 
 ## Open proof obligations
 
+The [initialized mixed pilot](../test/evidence/mixed-pilot.md) links the existing
+per-tick price-space reference to 128 actual-payout net-input steps over 32
+configurations. Its initial failure motivated a repository numerical choice:
+an [exact lower-sheet seed proposal](audits/LOWER_SHEET_PROPOSAL.md), with an
+[independent preservation review](audits/LOWER_SHEET_REVIEW.md). Fresh production
+observations match all 128 retained witnesses. The proposal changes discovery,
+not paper geometry, ownership, or any root/path/payout acceptance predicate.
+Exact helper oracles and the finite numerical pilot do not establish general
+liveness; the named large n8 gas cases remain above the provisional target cap.
+
 The component audits below establish conditional results for convex-set minima, consolidated branches, connected arcs, all-token prices, conservative schedules, reconstructed solvency and one final payout. Their composition authorizes only certified paths. [The current release-gap review](audits/RELEASE_GAP_REVIEW.md) identifies the remaining equality, discovery, economic-history and campaign obligations. For every result retain hypotheses, proof or counterexample, tested ranges, source locator and dependent code/tests; component proofs do not establish full supported-range liveness.
 
 Use explicit per-tick baskets at >=100 decimal digits for reference fixtures, increase precision, and compare small cases by a separate constrained optimization method. Never use a second copy of the production torus solver as its own oracle. Large-dimensional experiments establish only their recorded bounded range.

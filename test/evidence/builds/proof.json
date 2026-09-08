@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-09-08T09:14:47.989Z",
+  "generatedAt": "2026-09-08T10:29:15.240Z",
   "items": [
     {
       "id": "reference",
       "label": "Independent reference fixtures",
       "status": "verified",
-      "detail": "119 recorded bounded numerical regressions; selected 110/160-digit checks. This is not a proof of the production solver."
+      "detail": "129 recorded bounded numerical regressions; selected 110/160-digit checks. This is not a proof of the production solver."
     },
     {
       "id": "contracts",
       "label": "Local contract tests",
       "status": "verified",
-      "detail": "388 recorded tests, including real six-pair interior Aqua swaps, an initialized mixed outward/reverse sequence, an invoice and local security/cycle checks. Separate receipt probes and frozen campaigns retain their source boundaries. Full release campaigns remain outstanding."
+      "detail": "398 recorded tests, including real six-pair interior Aqua swaps, an initialized mixed outward/reverse sequence, an invoice and local security/cycle checks. Separate receipt probes and frozen campaigns retain their source boundaries. Full release campaigns remain outstanding."
     },
     {
       "id": "sdk",

@@ -6,6 +6,7 @@ import {CurveEvaluation as C} from "./CurveEvaluation.sol";
 import {SlackCertificate as P} from "./SlackCertificate.sol";
 import {WideMath as W} from "./WideMath.sol";
 import {SignedWide as S} from "./SignedWide.sol";
+import {LowerSheetProposal as L} from "./LowerSheetProposal.sol";
 
 /// @notice Exact-frontier endpoint/payout certificate, not a path or swap engine.
 library FrontierEndpoint {
@@ -151,6 +152,14 @@ library FrontierEndpoint {
             high[output]=clipped;
         }
         C.Evaluation memory feasible=C.evaluate(high,ctx,output);
+        if(n>2&&(feasible.status==C.Status.BelowSheet||feasible.status==C.Status.UncertainSheet)){
+            // The cap-sum high proposal can lie inside the rho<sigma hole.
+            // One exact variance-based proposal replaces it; no failed sign
+            // chooses a root or discards an event. Recheck every certificate.
+            (bool proposal,uint256 clipped)=L.cap(high,output,ctx.sigmaHi,lower);
+            if(!proposal)return(root,ctx);
+            high[output]=clipped;feasible=C.evaluate(high,ctx,output);
+        }
         if(!C.certifiesMembership(feasible)||!feasible.strictOutputPrice)return(root,ctx);
         // Proposal only. Its strong-convexity implication requires the full
         // domain, so ordinary RootBracket rechecks both signs and every domain

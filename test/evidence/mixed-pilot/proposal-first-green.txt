@@ -1,0 +1,68 @@
+Compiling 8 files with Solc 0.8.30
+Solc 0.8.30 finished in 42.72s
+Compiler run successful!
+
+Ran 1 test for test/PilotReversal.t.sol:PilotReversalTest
+[PASS] testEightTickReversalMatchesIndependentActualHistory() (gas: 13962542)
+Logs:
+  initial_identified: 1
+  final_identified: 1
+  schedule_status: 1
+  scheduled_events: 8
+  sample: 0
+  domain: 1
+  price_domain: 0
+  membership: 0
+  strict_output: 0
+  sample: 1
+  domain: 1
+  price_domain: 0
+  membership: 0
+  strict_output: 0
+  sample: 2
+  domain: 1
+  price_domain: 0
+  membership: 0
+  strict_output: 0
+  sample: 3
+  domain: 1
+  price_domain: 0
+  membership: 0
+  strict_output: 0
+  sample: 4
+  domain: 3
+  price_domain: 1
+  membership: 1
+  strict_output: 1
+  sample: 5
+  domain: 3
+  price_domain: 1
+  membership: 1
+  strict_output: 1
+  sample: 6
+  domain: 3
+  price_domain: 1
+  membership: 1
+  strict_output: 1
+  sample: 7
+  domain: 3
+  price_domain: 1
+  membership: 1
+  strict_output: 1
+  sample: 8
+  domain: 3
+  price_domain: 1
+  membership: 0
+  strict_output: 1
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 120.43ms (98.84ms CPU time)
+
+Ran 5 tests for test/LowerSheetProposal.t.sol:LowerSheetProposalTest
+[PASS] testExactN3UnequalUntouchedCoordinates() (gas: 24670)
+[PASS] testFuzzProposedEndpointSatisfiesIndependentPairVariance(uint128,uint8,uint8) (runs: 257, μ: 56134, ~: 49261)
+[PASS] testHandN2N5N8LowerBranchPoints() (gas: 111996)
+[PASS] testNoSheetGapAndNoNonnegativeLowerSideDefer() (gas: 20898)
+[PASS] testWide192BitDomainCannotOverflowOrChangeOtherCoordinates() (gas: 77681)
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 156.44ms (135.36ms CPU time)
+
+Ran 2 test suites in 170.04ms (276.87ms CPU time): 6 tests passed, 0 failed, 0 skipped (6 total tests)

@@ -1,27 +1,20 @@
 {
-  "schemaVersion": 1,
-  "startedAt": "2026-09-08T10:14:14.527041+00:00",
-  "runtimeSeconds": 511.88474889995996,
+  "startedAt": "2026-09-08T10:25:16.122605+00:00",
+  "runtimeSeconds": 2.1793445000075735,
   "command": [
     "forge",
     "test",
     "--root",
     "packages/contracts",
     "--offline",
-    "--threads",
-    "2",
-    "--fuzz-seed",
-    "0x20260908"
+    "--match-contract",
+    "MixedExecutionTest",
+    "--match-test",
+    "testCompleteMixedSwapGasAndLinkedRuntimeSizes",
+    "-vv"
   ],
-  "environmentOverrides": {
-    "FOUNDRY_PROFILE": "default",
-    "FOUNDRY_INVARIANT_FAIL_ON_REVERT": "true",
-    "FOUNDRY_GAS_SNAPSHOT_CHECK": "false"
-  },
-  "forgeVersion": "forge Version: 1.5.1-stable\nCommit SHA: b0a9dd9ceda36f63e2326ce530c10e6916f4b8a2\nBuild Timestamp: 2025-12-22T11:40:33.870895500Z (1766403633)\nBuild Profile: maxperf",
-  "repositoryCommit": "52f4c7df122c3c67ca00fc6f04a826ec52eb127f",
-  "dirty": true,
-  "inputsBefore": {
+  "exitCode": 0,
+  "inputs": {
     "packages/contracts/foundry.toml": "8837e44a7819ccc323dfe5d24eb65b9a5fe4a9fc2d6c47418a88aaa94bfd4f9a",
     "packages/contracts/node_modules/@1inch/solidity-utils/contracts/interfaces/ICreate3Deployer.sol": "c5172d982b1660d9cf44bf86c2e6763a282ba71d629ff1d92fa10e5ad4c7af2a",
     "packages/contracts/node_modules/@1inch/solidity-utils/contracts/interfaces/IDaiLikePermit.sol": "7c336080d80be1974edfd7231ff8b351c75f13138067f746fdbdd974c94daa2d",
@@ -593,18 +586,27 @@
     "packages/contracts/vendor/swap-vm-orbital/test/XYCSwap.t.sol": "2aa687e14b8066394e34a9b75d6d21db3f1415655b3892310a7e5a211c5259b6",
     "packages/contracts/vendor/swap-vm-orbital/test/XYCSwapAqua.t.sol": "fb7c2ba60396903a9bac132cb8f8d624c99fb03d22ef2160d8f014489c470df9",
     "pnpm-lock.yaml": "3dcdd192b12769d53e971d2518506e96019f40c7870e78cec2aa6c3bec189129",
-    "scripts/audit-contracts.py": "965bff2f354be327083dea027015d746d7cd3f66f8eb5e365bcd7af70b65f9c3"
+    "scripts/audit-contracts.py": "965bff2f354be327083dea027015d746d7cd3f66f8eb5e365bcd7af70b65f9c3",
+    "test/evidence/mixed-pilot/gas.py": "bdafed25142033fdc09c1a4d046853298d71549ca7c3d5a95377ae28cbd18b84"
   },
-  "inputsChanged": [],
-  "log": "test/evidence/contracts.txt",
-  "logSha256": "b0d62b6de38989fd7f4cbd9ba2d15f76a6a2e344195880f05896e7b7579a9bbb",
-  "exitCode": 0,
-  "counts": {
-    "suites": 46,
-    "passed": 398,
-    "failed": 0,
-    "skipped": 0
+  "metrics": {
+    "first_complete_external_swap_gas": 5167894,
+    "second_complete_external_swap_gas": 5834667
   },
-  "validCheckpoint": true,
-  "scope": "All default-profile contract tests on the recorded dirty source graph. CI/release fuzz, full mutation, economic ranges, target gas acceptance and live Privy/Arc remain separate."
+  "runtimeBytesInTestGraphOrder": [
+    22221,
+    23240,
+    6658,
+    23138,
+    22826
+  ],
+  "testGraphOrder": [
+    "Router",
+    "Storage",
+    "Settlement",
+    "Composition",
+    "Endpoint"
+  ],
+  "logSha256": "ebd0ef6a000b4cd0150963ac2fc5c7729ab217f3bc3473794cb72c6960deccc5",
+  "scope": "Existing n3/three-tick cold external Router/Aqua settlement calls; excludes transaction intrinsic and minimum forwarding headroom, not worst-range/Arc acceptance."
 }

@@ -229,8 +229,8 @@
       "compilationTarget": {
         "src/OrbitalSwapVMRouter.sol": "OrbitalSwapVMRouter"
       },
-      "artifactSha256": "daa8938dc9c29098c7f97f9f3443ae099c19428a6bec6bdeeab07b2db70bdf59",
-      "metadataSha256": "9cb835d2b247da210f6261eeff892c02227636d466302f9f354837075ca10d11",
+      "artifactSha256": "e73fe1d346e498cbbd6ec94646d38c0e449eeabcc177280c777c16b5c1c63890",
+      "metadataSha256": "11ace725f89077e0b7fb63119a3983f140bb654cff366c412df079ae43f9108a",
       "settings": {
         "compilationTarget": {
           "src/OrbitalSwapVMRouter.sol": "OrbitalSwapVMRouter"
@@ -256,7 +256,7 @@
         "viaIR": true
       },
       "settingsSha256": "343736422d5a7f28ead299c5ac8f392dc5bd2b9e7be4bc1568f3933adeaf21c7",
-      "sourceClosureSha256": "a39f519561691b345e2aa7f2d6b017af48ee6aaff4f6388665fc0a33fe6f43e7",
+      "sourceClosureSha256": "f9a0adb65d426356554d6ceaba45b06a721efd6aeae7a1643cac8748faa869e9",
       "sources": [
         {
           "source": "node_modules/@1inch/solidity-utils/contracts/interfaces/IDaiLikePermit.sol",
@@ -490,8 +490,8 @@
         },
         {
           "source": "src/libraries/FrontierEndpoint.sol",
-          "keccak256": "0x7c71ffa2295c2663d35a8453b2ed8a733cc08403bcdadbf14537622988aa6b40",
-          "sha256": "ecb7eb1206cd1fc3fe03341f31d1442b2aabd4eeba0eaf629faba5807a0335fd"
+          "keccak256": "0x1ca7fa6af3ccac9d68203142a9076d179a6d257667d2a0c1182fa5c7abe7fc07",
+          "sha256": "7d7569a25afd6d38dedcf3e59b117f9f3de02f57116a05fb728ebbaa4c937058"
         },
         {
           "source": "src/libraries/FrontierEvents.sol",
@@ -517,6 +517,11 @@
           "source": "src/libraries/IntervalMath.sol",
           "keccak256": "0x273d137458d01c2bed111273be805828a2208850d3610af9eb663eee7d8fddf9",
           "sha256": "e7ea7cd4aa5bb7a63f52b665f1311667bb52715f8a4a5ad32a4dde30bd820898"
+        },
+        {
+          "source": "src/libraries/LowerSheetProposal.sol",
+          "keccak256": "0x8775880d3c566b35493b2fc9de8081529d1addd227dbebf35bbf4f0aa5b71e48",
+          "sha256": "30f6f54d6b1491e9ee5d62ee30163c9bc8b1f58a4bc8297c227aecbb1548f9cb"
         },
         {
           "source": "src/libraries/OrbitalMath.sol",

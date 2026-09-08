@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "claim_id": "INITIALIZED-MIXED-PILOT-BASELINE-32-CONFIGURATIONS-128-ACTIONS",
+  "repository": {
+    "commit": "52f4c7df122c3c67ca00fc6f04a826ec52eb127f",
+    "dirty": true
+  },
+  "command": "python test/evidence/mixed-pilot/generate.py; node test/evidence/mixed-pilot/observe.mjs; python -m unittest discover -s packages/reference/tests -p test_mixed_pilot*.py -v; node --test test/evidence/mixed-pilot/validate.test.mjs",
+  "environment": {
+    "software": [
+      "Python 3.12.10",
+      "mpmath 1.3.0",
+      "Node 22.18.0",
+      "Solc 0.8.30; optimizer700; viaIR; Cancun",
+      "anvil Version: 1.5.1-stable\nCommit SHA: b0a9dd9ceda36f63e2326ce530c10e6916f4b8a2\nBuild Timestamp: 2025-12-22T11:40:33.870895500Z (1766403633)\nBuild Profile: maxperf"
+    ],
+    "hardware": "Windows-11-10.0.26200-SP0"
+  },
+  "mathematics": {
+    "assertion_tested": "Compare actual production interior/mixed dispatch against independently initialized, explicit-per-tick, precision-stable four-action histories; preserve all conservative deferrals.",
+    "coefficient_domain": "Exact integer configuration/amounts; mpmath110/160-digit per-tick support and primal checks; directed Solidity Uint512 arithmetic.",
+    "conventions": "Keys b on GRID2^32; radii/internal coordinates use10^18*2^64 per whole token. Inputs are net curve amounts. Each reference history propagates actual raw payout endpoints; production continuation counts stop at a deferral.",
+    "inputs": [
+      {
+        "path": "docs/MATH.md",
+        "sha256": "3a73a91b071371869b5d54dd37a76003eb9eb04bdb77d4e33ee895e131ef45e2"
+      },
+      {
+        "path": "docs/NUMERICS.md",
+        "sha256": "b0061a4359bed4185b51ddbe9d3f868adaecc8e0b8f952d5b1d721d72b22949f"
+      },
+      {
+        "path": "packages/contracts/foundry.toml",
+        "sha256": "8837e44a7819ccc323dfe5d24eb65b9a5fe4a9fc2d6c47418a88aaa94bfd4f9a"
+      },
+      {
+        "path": "packages/contracts/remappings.txt",
+        "sha256": "8e8c9650a5da34495b3b5bcee7c4d1a7cf9aee03382396a1578143008e66149d"
+      },
+      {
+        "path": "packages/contracts/src/libraries/CurveEvaluation.sol",
+        "sha256": "1537bc49e14837d32279279f99a1f09f937c3a9c17e7226fd7dbceab61a864be"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierComposition.sol",
+        "sha256": "2b0cced7ca334b9eb814d821edbdcd4ebb40b4fc9219dd9beddf7bc07599069f"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierEndpoint.sol",
+        "sha256": "ecb7eb1206cd1fc3fe03341f31d1442b2aabd4eeba0eaf629faba5807a0335fd"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierEvents.sol",
+        "sha256": "69b8bb0ed565bb5c39782b58adb467c7f49794e1ad7fbb9dceda64874893ba43"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierSchedule.sol",
+        "sha256": "36a26f299bcb9d3cb59b4b32480364b2cd6fea18752e2c416ef073e7c60662ef"
+      },
+      {
+        "path": "packages/contracts/src/libraries/FrontierTurn.sol",
+        "sha256": "f1d9fc9cf528310040214af00101907ee011efd2be18f58b9394ea7843378e34"
+      },
+      {
+        "path": "packages/contracts/src/libraries/InteriorSwap.sol",
+        "sha256": "692b9445961ebb785d7f00ec0f9fc72af98e675fa3f6f8d5c93ab44f0a6716c6"
+      },
+      {
+        "path": "packages/contracts/src/libraries/IntervalMath.sol",
+        "sha256": "e7ea7cd4aa5bb7a63f52b665f1311667bb52715f8a4a5ad32a4dde30bd820898"
+      },
+      {
+        "path": "packages/contracts/src/libraries/OrbitalMath.sol",
+        "sha256": "6454e86f8b8bea61506c2f5eead0df7936df8a89415597aabf76d3618acbfaeb"
+      },
+      {
+        "path": "packages/contracts/src/libraries/RootBracket.sol",
+        "sha256": "0e19eb8cb8c7daa41a3ea4ed32c1f6751d254edf689ff140cb155a554dad529d"
+      },
+      {
+        "path": "packages/contracts/src/libraries/SignedWide.sol",
+        "sha256": "8142108db5cc11ddf3a33e17855c7ca4a467f22687194967c28588aef6cb4426"
+      },
+      {
+        "path": "packages/contracts/src/libraries/SlackCertificate.sol",
+        "sha256": "1f4fafba1f78f98fa1ac868ed6ddaad91e40bbef5dc079ca5cdddf50f72c4e17"
+      },
+      {
+        "path": "packages/contracts/src/libraries/SphereStep.sol",
+        "sha256": "fc913149d1c166afd5c15a3a9be37f05a026b1bb5d2fa2573ed867bb9e4f1de6"
+      },
+      {
+        "path": "packages/contracts/src/libraries/TickGeometry.sol",
+        "sha256": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b"
+      },
+      {
+        "path": "packages/contracts/src/libraries/WideMath.sol",
+        "sha256": "61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d"
+      },
+      {
+        "path": "packages/contracts/test/fixtures/MixedPilotHarness.sol",
+        "sha256": "15cac64a17f28af1ddf4411803800d5205e75bbc0302fb3f8db31b94cf27c52d"
+      },
+      {
+        "path": "packages/reference/fixtures/mixed-pilot.json",
+        "sha256": "faa71990daf327d438935b3a0a2ea545036a84549e4af252658c6b393fea28a3"
+      },
+      {
+        "path": "packages/reference/fixtures_curve_primitives.py",
+        "sha256": "a07127b6a82a935a60496ba5926fdccbbc91722447e4e86f957c3005d92894a2"
+      },
+      {
+        "path": "packages/reference/fixtures_execution.py",
+        "sha256": "e2734f7c2f21b0babdba6e5cfb951c4fca11b4ca6c83107d9895fe77e5dbe0e4"
+      },
+      {
+        "path": "packages/reference/fixtures_frontier_composition.py",
+        "sha256": "4a6a936d157e806391319036e0c9ce0ff8055c83c0a882b9fb7eee0c1cf7d4cf"
+      },
+      {
+        "path": "packages/reference/fixtures_frontier_endpoint.py",
+        "sha256": "e0ad4a43e00f70b94a79dd24638c63f4eec29bec9f405754355f970cd9217e55"
+      },
+      {
+        "path": "packages/reference/fixtures_frontier_schedule.py",
+        "sha256": "7897190646b2133663255b1c49c30ae77a0aa9bcd07f2b6731eaf3ea63b4fc27"
+      },
+      {
+        "path": "packages/reference/fixtures_frontier_turn.py",
+        "sha256": "543eb49564639b281f0d4829c809d6de7347e30355a809bb922a65ccc527f2d9"
+      },
+      {
+        "path": "packages/reference/fixtures_initializer.py",
+        "sha256": "1254b59923724aaa222981afc681486833189be0e43a29181242e8c0a4f59e95"
+      },
+      {
+        "path": "packages/reference/fixtures_interior_swap.py",
+        "sha256": "984b7ba430e5b4ca6cbcc75396c4e7701904544c4f1dffde49d2515884fe8f70"
+      },
+      {
+        "path": "packages/reference/fixtures_mixed_pilot.py",
+        "sha256": "0c92bdd7293530d3b4e60ad7f945191b41d44137bfc5d69d762db0e362ca72ad"
+      },
+      {
+        "path": "packages/reference/fixtures_negative_price.py",
+        "sha256": "6ef06af21c255edcfd4b0104c1d3bf7ce96bda14303e86e5df7f420242baa883"
+      },
+      {
+        "path": "packages/reference/fixtures_outward_retention.py",
+        "sha256": "0529d2e381ba95f12586cbafab82e7c482d40848547320867b7e1c7170a84bd8"
+      },
+      {
+        "path": "packages/reference/fixtures_payout_resume.py",
+        "sha256": "64c6dd448ebd138fef8d029dd895657a9e9bcc420fb1e05c55f40ae2f7d39b86"
+      },
+      {
+        "path": "packages/reference/fixtures_reachable_traversal.py",
+        "sha256": "1f522bb1011d260046f564e3ebc36fcb2c1ef58495d7b4559cb3979bf83a0eb5"
+      },
+      {
+        "path": "packages/reference/fixtures_root_bracket.py",
+        "sha256": "6af21f4d853f25cedfacc1cfcdd93e4ff9a2e224598f32c1efcd8da179c3ccdd"
+      },
+      {
+        "path": "packages/reference/fixtures_slack.py",
+        "sha256": "778423a8321e27481fdec610d5ee7659f15b57bf6449d75cfb0995b1aff248f7"
+      },
+      {
+        "path": "packages/reference/fixtures_slack_grid_release.py",
+        "sha256": "cca601ad35340c7a9e19af4c3c5e96e7e9332d17c7f224070d79f87f11eec788"
+      },
+      {
+        "path": "packages/reference/fixtures_slack_segments.py",
+        "sha256": "4255665b8c64c5ded11027ef9ed96bcd009915358d3a1ce75b7c0468488b0b10"
+      },
+      {
+        "path": "packages/reference/orbital.py",
+        "sha256": "4d13eb4a96ff96dcfc32e3a73ec722cf6d3a8694bcb53365e44e887f54dd6352"
+      },
+      {
+        "path": "packages/reference/requirements.txt",
+        "sha256": "a699f46ed76bd216f1081b6b2330e4fb45d7c8c5a5354b208694d6590a5a8645"
+      },
+      {
+        "path": "packages/reference/tests/test_mixed_pilot.py",
+        "sha256": "2595488063e629a320fe9d5ce74848aa6edb4089ba4c9c31d3d9e322725b0d1b"
+      },
+      {
+        "path": "packages/reference/tests/test_mixed_pilot_fixture.py",
+        "sha256": "242c436a0e847e887b8c22affedcd4fc84e6a1c0198440046a4efe36e03f6caf"
+      },
+      {
+        "path": "packages/sdk/scripts/artifact-integrity.mjs",
+        "sha256": "9f2f9e92ebf193adebbd19895a01d3bb2898dd22f629fc5cb6a56af0885158f3"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "sha256": "3dcdd192b12769d53e971d2518506e96019f40c7870e78cec2aa6c3bec189129"
+      },
+      {
+        "path": "scripts/lib/local-anvil.mjs",
+        "sha256": "48ea5a9f4116687ca1d309040cf5508b2d601c0e0410ae203231cd29285d620d"
+      },
+      {
+        "path": "scripts/lib/local-deployment-runner.mjs",
+        "sha256": "d12773e1bf7891ffcf8435ea0cdf7ce6d311d549b620799b88e52e8604b7ac63"
+      },
+      {
+        "path": "scripts/lib/local-deployment.mjs",
+        "sha256": "ddd9653c92d33d4e731ef7b0f33c2e7b6190b4cefa89fcbf015deb5717a182d0"
+      },
+      {
+        "path": "test/evidence/mixed-pilot/generate.py",
+        "sha256": "45d06600a47612f326f3806c54d3fc3132e96ea733d903c4dc3fdea5041c02e1"
+      },
+      {
+        "path": "test/evidence/mixed-pilot/generation.json",
+        "sha256": "e6eed06e8b9dc44b376013d6d160d3267035fdd79ffe20f5afe94a42e85ebef7"
+      },
+      {
+        "path": "test/evidence/mixed-pilot/make_manifest.py",
+        "sha256": "c9c4497f20f7bb362388dcc42eb28abaef46cc948de2c16f5aaba1e8b9a17778"
+      },
+      {
+        "path": "test/evidence/mixed-pilot/observe.mjs",
+        "sha256": "861684fac94bc458dbe6914db6e6af85508769381b1b8fa56bb46a0f60e6e650"
+      },
+      {
+        "path": "test/evidence/mixed-pilot/validate.mjs",
+        "sha256": "8ba17784229c0039d042f448a11c06b9b30114cb7fc38d9783b00b6d9f4a7908"
+      },
+      {
+        "path": "test/evidence/mixed-pilot/validate.test.mjs",
+        "sha256": "f05a5d56f1acd96b93b27fb669cab7700747721c02e9d4dd07b66081334a4cf2"
+      }
+    ],
+    "bounds": {
+      "dimensions": [
+        2,
+        3,
+        5,
+        8
+      ],
+      "ticks": [
+        1,
+        2,
+        3,
+        8
+      ],
+      "families": 2,
+      "configurations": 32,
+      "actions_per_configuration": 4,
+      "planned_actions": 128,
+      "generated_actions": 128,
+      "halvings_used": 0,
+      "generation_timeout_seconds": 900,
+      "owned_anvil_deadline_seconds": 300,
+      "per_rpc_timeout_seconds": 15,
+      "rpc_gas_limit": 30000000,
+      "accepted_interior": 68,
+      "accepted_mixed": 59,
+      "deferrals": 1,
+      "contiguous_accepted_actions": 126,
+      "complete_histories": 31,
+      "accepted_frontier_inward": 41,
+      "accepted_frontier_outward": 105,
+      "maximum_observed_diagnostic_inner_gas": 18365475
+    },
+    "non_claims": [
+      "No complete liveness or G1/G2/G8 acceptance.",
+      "No formal interval oracle or universal proof.",
+      "No executed Aqua/custody/fee/invoice transaction matrix.",
+      "No actual retained-seam coverage in this matrix.",
+      "No Arc gas/deployment or Privy qualification.",
+      "Pure diagnostic gas is not complete router transaction gas."
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "Only disposable Anvil account/port generation; mathematical family is deterministic",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-08T09:27:31.560144+00:00",
+    "runtime_seconds": 563.5299907999793,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "test/evidence/mixed-pilot/generation.json",
+      "sha256": "e6eed06e8b9dc44b376013d6d160d3267035fdd79ffe20f5afe94a42e85ebef7"
+    },
+    {
+      "path": "test/evidence/mixed-pilot/generation.txt",
+      "sha256": "b8d9a4983cf2576d3b8382de72d8b77349c8486d18c0309f5f2cdf3bc08c120a"
+    },
+    {
+      "path": "test/evidence/mixed-pilot/observations.json",
+      "sha256": "21d961bc9d1322f99a92bbf8786be4a108abd1ba70586cf8359fb09793b6051c"
+    },
+    {
+      "path": "test/evidence/mixed-pilot/observations.txt",
+      "sha256": "1bfd7b3f5e0c790ab7ef614abdddd6db796cfd21edb222100b4da40e028adc3b"
+    },
+    {
+      "path": "test/evidence/mixed-pilot/reference-tests.txt",
+      "sha256": "d76bed6bf0aa679c28ea1e8def65bd918c9614eb4d47cb0c3581ae404dd00e02"
+    },
+    {
+      "path": "test/evidence/mixed-pilot/validation-tests.txt",
+      "sha256": "2330c8f7d09f91d8e6dcb6b3ad6605c7f0d53f66b9415b9565a299114ef4a654"
+    },
+    {
+      "path": "test/evidence/mixed-pilot/source-pins.json",
+      "sha256": "87c0f21937d8765c64b4b42ea8fbeb58763398d4291b4a47329dfc6e354ba69e"
+    },
+    {
+      "path": "test/evidence/mixed-pilot/source-snapshot.tar.gz",
+      "sha256": "cc706e5d6b3444240ca15c564696005622f3974428040b031ba04d5b58ef7756"
+    }
+  ],
+  "checks": [
+    "All128 independent actions generated on their first proposal and byte-stable at110/160 digits.",
+    "Independent sphere benchmark and all actual per-tick endpoints checked.",
+    "127 accepted outputs/reserves, root enclosures, transition phases and shared budgets match; no accepted-result discrepancy.",
+    "One feasible n3/t8 reversal defers, retained as a liveness failure rather than excluded.",
+    "Five comparison-boundary mutation tests; six reference fixture/benchmark checks.",
+    "Three authenticated linked deployments, exact constructor/code/receipt validation, one canonical read pin and no blocks mined by observations.",
+    "Pre/post source/artifact identity and owned-node shutdown checked; archived inputs authenticated."
+  ],
+  "result": "Conditional finite numerical comparisons; 127/128 accepted, one conservative deferral, 31/32 complete initialized histories. Liveness is not passed.",
+  "residual_risks": [
+    "Reference feasibility uses arbitrary-precision arithmetic and finite path sampling, not directed intervals.",
+    "Named retained counterexamples, equality cases, extreme limits and broad economic/mutation/release distributions remain separate.",
+    "Two largest n8 concentrated diagnostic calls already exceed the provisional Arc transaction cap before actual settlement."
+  ]
+}

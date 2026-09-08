@@ -103,6 +103,13 @@ n3/three-tick history, not the required complete distribution. Strict
 [negative-price exclusion](negative-price.md) resolves its named extraneous
 root; exact zero and uncertain sign remain distinct.
 
+The [32-configuration mixed pilot](mixed-pilot.md) adds 128 independent net-input
+actions propagated from actual raw payouts. The preserved baseline deferred one
+n3/eight-tick reversal; an exact, independently reviewed lower-sheet proposal
+recovers it and the fresh linked replay matches all 128 actions. This is a
+bounded discovery improvement. The matrix has no release/retention transitions
+and its two largest n8 diagnostic calls already exceed the provisional Arc cap.
+
 Still required: exact ideal event endpoint/touch rules; authenticated initial
 bracket refinement for the retained ordering deferral; representative discovery
 and liveness; broader independent initialized/actual-state differential checks;

@@ -1,0 +1,11 @@
+test_all_32_configurations_satisfy_exact_supported_key_and_radius_bounds (test_mixed_pilot.MixedPilotTests.test_all_32_configurations_satisfy_exact_supported_key_and_radius_bounds) ... ok
+test_sphere_control_matches_separate_closed_form_and_actual_history (test_mixed_pilot.MixedPilotTests.test_sphere_control_matches_separate_closed_form_and_actual_history) ... ok
+test_actual_endpoints_have_explicit_per_tick_feasible_baskets (test_mixed_pilot_fixture.MixedPilotFixtureTests.test_actual_endpoints_have_explicit_per_tick_feasible_baskets) ... ok
+test_all_planned_configurations_and_actions_are_retained_without_oracle_exclusions (test_mixed_pilot_fixture.MixedPilotFixtureTests.test_all_planned_configurations_and_actions_are_retained_without_oracle_exclusions) ... ok
+test_crossing_walk_keeps_initial_release_frontier_and_retention_distinct (test_mixed_pilot_fixture.MixedPilotFixtureTests.test_crossing_walk_keeps_initial_release_frontier_and_retention_distinct) ... ok
+test_every_action_uses_the_actual_previous_payout_and_exact_token_quantum (test_mixed_pilot_fixture.MixedPilotFixtureTests.test_every_action_uses_the_actual_previous_payout_and_exact_token_quantum) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.617s
+
+OK

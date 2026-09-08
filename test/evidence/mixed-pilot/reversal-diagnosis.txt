@@ -1,0 +1,68 @@
+Compiling 1 files with Solc 0.8.30
+Solc 0.8.30 finished in 8.99s
+Compiler run successful!
+
+Ran 1 test for test/PilotReversal.t.sol:PilotReversalTest
+[FAIL: assertion failed: 0 != 4] testEightTickReversalMatchesIndependentActualHistory() (gas: 9350162)
+Logs:
+  initial_identified: 1
+  final_identified: 0
+  schedule_status: 1
+  scheduled_events: 8
+  sample: 0
+  domain: 1
+  price_domain: 0
+  membership: 0
+  strict_output: 0
+  sample: 1
+  domain: 1
+  price_domain: 0
+  membership: 0
+  strict_output: 0
+  sample: 2
+  domain: 1
+  price_domain: 0
+  membership: 0
+  strict_output: 0
+  sample: 3
+  domain: 1
+  price_domain: 0
+  membership: 0
+  strict_output: 0
+  sample: 4
+  domain: 3
+  price_domain: 1
+  membership: 1
+  strict_output: 1
+  sample: 5
+  domain: 3
+  price_domain: 1
+  membership: 1
+  strict_output: 1
+  sample: 6
+  domain: 3
+  price_domain: 1
+  membership: 1
+  strict_output: 1
+  sample: 7
+  domain: 3
+  price_domain: 1
+  membership: 1
+  strict_output: 1
+  sample: 8
+  domain: 3
+  price_domain: 1
+  membership: 0
+  strict_output: 1
+
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 92.70ms (63.57ms CPU time)
+
+Ran 1 test suite in 118.26ms (92.70ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/PilotReversal.t.sol:PilotReversalTest
+[FAIL: assertion failed: 0 != 4] testEightTickReversalMatchesIndependentActualHistory() (gas: 9350162)
+
+Encountered a total of 1 failing tests, 0 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 1 failed test
