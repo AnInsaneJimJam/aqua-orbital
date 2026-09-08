@@ -1,0 +1,5 @@
+{
+  "acceptedForProduction": false,
+  "reason": "Endpoint runtime 25286 exceeds EIP-170 24576; diagnostic gas saving only 73012/338850/390360; reverted exactly to HEAD production bytes.",
+  "baselineCommit": "8b6f7ff7d65dec45304459fc16d757b35999d6eb"
+}

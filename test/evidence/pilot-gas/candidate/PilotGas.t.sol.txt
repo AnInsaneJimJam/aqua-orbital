@@ -1,0 +1,80 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.30;
+import {Test} from "forge-std/Test.sol";
+import {FrontierComposition as C} from "../src/libraries/FrontierComposition.sol";
+import {FrontierEndpoint as E} from "../src/libraries/FrontierEndpoint.sol";
+import {SlackCertificate as P} from "../src/libraries/SlackCertificate.sol";
+import {FrontierSchedule as F} from "../src/libraries/FrontierSchedule.sol";
+import {PilotGasFixtures as Fixtures} from "./fixtures/PilotGasFixtures.sol";
+
+/// @notice Diagnostic calls, not full router transactions or additive phase accounting.
+/// @dev Each phase has fresh memory; previous calls in that test warm linked addresses.
+/// Whole-composition tests begin without a previous endpoint/composition invocation.
+contract PilotGasTest is Test {
+    function whole(Fixtures.Case memory c) external view returns(C.Result memory r,uint256 gasUsed) {
+        uint256 before=gasleft();
+        r=C.certify(c.x,c.ticks,c.decimals,c.input,c.output,c.raw,16);
+        gasUsed=before-gasleft();
+    }
+    function initial(Fixtures.Case memory c) external view returns(uint256 gasUsed) {
+        uint256 before=gasleft();bool found;
+        for(uint256 attempt=uint256(c.originalPrefix)+1;attempt!=0;--attempt){
+            E.Identity memory root=E.identifyInitial(c.x,c.ticks,c.output,uint8(attempt-1),0);
+            if(!root.identified)continue;
+            (bool valid,uint8 crossed)=P.certifyInwardReleaseToGrid(c.x,c.ticks,c.output,root.bracket.hi,root.boundaryCount);
+            if(!valid)continue;
+            require(crossed==c.originalPrefix-root.boundaryCount&&root.boundaryCount==c.initialPrefix,"initial golden");
+            found=true;break;
+        }
+        require(found,"initial not found");gasUsed=before-gasleft();
+    }
+    function discovery(Fixtures.Case memory c) external view returns(uint256 gasUsed) {
+        uint256 before=gasleft();
+        E.Identity memory root=E.discoverFinal(c.x,c.ticks,c.decimals,c.input,c.output,c.raw);
+        require(root.identified&&root.boundaryCount==c.finalPrefix,"discovery golden");gasUsed=before-gasleft();
+    }
+    function schedule(Fixtures.Case memory c) external view returns(uint256 gasUsed) {
+        uint256 before=gasleft();
+        F.Result memory r=F.enumerate(c.x,c.ticks,c.input,c.output,c.raw*10**(18-c.decimals[c.input])*(1<<64),c.initialPrefix,c.finalPrefix,16);
+        require(r.status==F.Status.OrderingCertified&&r.events.length==c.transitionKeys.length,"schedule golden");
+        gasUsed=before-gasleft();
+    }
+    function endpoint(Fixtures.Case memory c) external view returns(uint256 gasUsed) {
+        uint256 before=gasleft();
+        E.Result memory r=E.exactInputForPayout(c.x,c.ticks,c.decimals,c.input,c.output,c.raw,c.finalPrefix,160);
+        require(r.status==E.Status.EndpointCertified&&r.amountOutRaw==c.expectedOut,"endpoint golden");
+        gasUsed=before-gasleft();
+    }
+    function checkWhole(uint8 step) private {
+        Fixtures.Case memory c=Fixtures.get(step);uint256 before=gasleft();
+        (C.Result memory r,uint256 gasUsed)=this.whole(c);uint256 callGas=before-gasleft();
+        assertEq(uint256(r.status),uint256(C.Status.FrontierPathCertified));
+        assertEq(r.endpoint.amountOutRaw,c.expectedOut);assertEq(r.endpoint.reserves,c.expectedReserves);
+        assertEq(r.initial.boundaryCount,c.initialPrefix);assertEq(r.endpoint.root.boundaryCount,c.finalPrefix);
+        assertEq(r.releaseCrossings,0);assertEq(r.retentionCrossings,0);
+        assertEq(r.transitions.length,c.transitionKeys.length);assertEq(r.crossingRemaining+r.transitions.length,16);
+        for(uint256 k;k<r.transitions.length;k++){
+            assertEq(r.transitions[k].key,c.transitionKeys[k]);assertEq(r.transitions[k].inward,c.transitionInward[k]);
+            assertFalse(r.transitions[k].initialRelease);assertFalse(r.transitions[k].finalRetention);
+        }
+        assertLe(r.endpoint.shortfallUpper,r.endpoint.outputQuantum);
+        assertEq(uint256(r.refinementUsed)+r.refinementRemaining,160);
+        emit log_named_uint("step",step);emit log_named_uint("composition_body_gas",gasUsed);
+        emit log_named_uint("composition_external_ABI_gas",callGas);
+        emit log_named_uint("refinements",r.refinementUsed);emit log_named_uint("resume_attempted",r.resumeAttempted?1:0);
+    }
+    function checkPhases(uint8 step) private {
+        Fixtures.Case memory c=Fixtures.get(step);
+        emit log_named_uint("step",step);
+        emit log_named_uint("fresh_initial_gas",this.initial(c));
+        emit log_named_uint("fresh_discovery_gas",this.discovery(c));
+        emit log_named_uint("fresh_schedule_gas",this.schedule(c));
+        emit log_named_uint("fresh_endpoint_gas",this.endpoint(c));
+    }
+    function testGasWholeStep1() public {checkWhole(1);}
+    function testGasWholeStep2() public {checkWhole(2);}
+    function testGasWholeStep3() public {checkWhole(3);}
+    function testGasPhasesStep1() public {checkPhases(1);}
+    function testGasPhasesStep2() public {checkPhases(2);}
+    function testGasPhasesStep3() public {checkPhases(3);}
+}

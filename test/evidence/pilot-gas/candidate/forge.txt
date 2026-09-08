@@ -1,0 +1,56 @@
+Compiling 1 files with Solc 0.8.30
+Solc 0.8.30 finished in 7.88s
+Compiler run successful!
+
+Ran 6 tests for test/PilotGas.t.sol:PilotGasTest
+[PASS] testGasPhasesStep1() (gas: 14020350)
+Logs:
+  step: 1
+  fresh_initial_gas: 600199
+  fresh_discovery_gas: 6958763
+  fresh_schedule_gas: 932963
+  fresh_endpoint_gas: 5208094
+
+[PASS] testGasPhasesStep2() (gas: 17812266)
+Logs:
+  step: 2
+  fresh_initial_gas: 2325540
+  fresh_discovery_gas: 7002293
+  fresh_schedule_gas: 1290331
+  fresh_endpoint_gas: 6860436
+
+[PASS] testGasPhasesStep3() (gas: 17055747)
+Logs:
+  step: 3
+  fresh_initial_gas: 2327881
+  fresh_discovery_gas: 6897876
+  fresh_schedule_gas: 929515
+  fresh_endpoint_gas: 6593054
+
+[PASS] testGasWholeStep1() (gas: 14100945)
+Logs:
+  step: 1
+  composition_body_gas: 13813896
+  composition_external_ABI_gas: 13847392
+  refinements: 29
+  resume_attempted: 0
+
+[PASS] testGasWholeStep2() (gas: 17984552)
+Logs:
+  step: 2
+  composition_body_gas: 17681853
+  composition_external_ABI_gas: 17723669
+  refinements: 52
+  resume_attempted: 0
+
+[PASS] testGasWholeStep3() (gas: 17166736)
+Logs:
+  step: 3
+  composition_body_gas: 16894934
+  composition_external_ABI_gas: 16920157
+  refinements: 49
+  resume_attempted: 0
+
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 190.75ms (373.88ms CPU time)
+
+Ran 1 test suite in 198.38ms (190.75ms CPU time): 6 tests passed, 0 failed, 0 skipped (6 total tests)

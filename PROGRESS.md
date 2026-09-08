@@ -90,6 +90,9 @@ Updated 2026-09-08. Status records observed implementation, never planned succes
 
 - Implemented the documented swap defaults, persisted settings, debounced/periodic quotes, canonical balance display and gas-aware Max. Unknown future approval/swap gas stays explicit; no gas is deducted from other assets. Network changes use the active connector. The complete frozen checkpoint passed 114 SDK, 7 shared and 56 browser/recovery checks, production build and workspace types with 731 unchanged inputs. [Control evidence](test/evidence/swap-controls.md).
 
+- Measured the three expensive n8/eight-tick cases against independent raw-output/reserve/transition goldens. All six diagnostic tests pass. A batch-discovery candidate passed focused equivalence tests but exceeded EIP-170 and was rejected; production sources were restored exactly. [Gas diagnosis and retained candidate](test/evidence/pilot-gas.md).
+- Updated delivery priority: finish the missing functional workflows across protocol, backend, SDK and application before further optimization or visual redesign. Gas and mathematical release obligations remain requirements before deployment.
+
 ## Latest verification
 
 - Solidity: full checkpoint is **398 tests across 46 suites**, seed `0x20260908`, default fuzz 256 and invariant 32×64 with unexpected reverts forbidden. All source/configuration inputs stayed unchanged; elapsed time 511.885 seconds including compilation. The earlier verified 388-test checkpoint and preliminary invalidated runner remain historical. Router/Storage/Composition/Endpoint runtimes are 22,221/23,240/23,138/22,826 bytes. Fresh actual cold external mixed calls use 5,167,894/5,834,667 gas, excluding transaction intrinsic/minimum-forwarding requirements. The older 8×8 activation observation is 3,791,206 gas on its archived graph. None establishes worst-range or Arc acceptance.
@@ -110,6 +113,6 @@ Updated 2026-09-08. Status records observed implementation, never planned succes
 
 ## Next concrete work
 
-Complete transaction replacement tracking, receipt explorer links and route availability detail, then strategy publication and invoice administration/recovery. Payment reviews now check fresh wallet state, simulation and post-approval re-quotes; backend observations remain review-only. Measure stage costs for the named n8 gas failures and preserve the [release-gap obligations](docs/audits/RELEASE_GAP_REVIEW.md). Persistent demo deployment, live Privy, Arc identity and mathematical release acceptance remain separate work. Keep the current frontend template, make verified local commits and leave pushing to the user.
+Complete invoice creation/cancellation and liquidity listing/publication/administration, then connect a persistent local demo through the indexer/API and both user transaction flows. Keep reviews and resumable transactions mandatory. Prioritize working coverage across departments before further optimization; the measured n8 gas blocker and [release-gap obligations](docs/audits/RELEASE_GAP_REVIEW.md) remain explicit. Live Privy verification and Arc identity/deployment are separate prerequisites. Keep the current frontend template, make verified local commits and leave pushing to the user.
 
 Detailed commands and outcomes belong in [the evidence index](test/evidence/INDEX.md).
