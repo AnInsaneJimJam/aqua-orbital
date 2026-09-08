@@ -1,0 +1,5 @@
+# Source and evidence hashes authenticate exact bytes across operating systems.
+# Preserve retained upstream files, oracle fixtures and transcripts on checkout.
+* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Raw test transcripts retain the tool output, including its whitespace.
+test/evidence/** -whitespace

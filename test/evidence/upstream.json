@@ -190,7 +190,8 @@
       "test/utils/Dynamic.sol": "91d12e2a4fa3567cea6948e732bb4db348db0e67ac4c07d8972977a6a913ed8e",
       "test/utils/FeeBuilders.sol": "3440be2371f133fa72d89294d8c5b0614d2f958852aa7fe7b268a6dd695681f7",
       "test/utils/FormatLib.sol": "cb6f368d165452e44eaed247862de0f2558ce449190a538f6435c3f85f98e106",
-      "test/utils/OrderHasher.sol": "717fc982ce46b24c888a023e38efef1faa005e74f03c33d879ce3b95c3445b87"
+      "test/utils/OrderHasher.sol": "717fc982ce46b24c888a023e38efef1faa005e74f03c33d879ce3b95c3445b87",
+      "mocks/ProtocolFeeProviderMock.sol": "8307b7117ebe22e2f67fad8256d305b25c6115210f85579eb838279ec0c54aa5"
     }
   },
   "aqua": {

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "suite": "all",
+  "samePassingTestIdentities": true,
+  "runs": [
+    {
+      "target": "stock",
+      "counts": {
+        "suites": 103,
+        "passed": 807,
+        "failed": 0,
+        "skipped": 0
+      },
+      "log": "test/evidence/upstream-stock-all.txt",
+      "logSha256": "f3a1f4676003da272903259bc5e5fc589be37ac5001c1a6460ca53e63763907a"
+    },
+    {
+      "target": "fork",
+      "counts": {
+        "suites": 103,
+        "passed": 807,
+        "failed": 0,
+        "skipped": 0
+      },
+      "log": "test/evidence/upstream-fork-all.txt",
+      "logSha256": "550e0d04edabf6da0fb58d1bc9da46ad40c55c9a5a8d44af4875fa266eeef314"
+    }
+  ],
+  "scope": "Same unchanged upstream tests pass. Assertions govern compared behavior; this is not complete output/state/revert equivalence for every input."
+}

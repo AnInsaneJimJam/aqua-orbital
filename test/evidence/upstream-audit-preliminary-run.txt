@@ -1,0 +1,2 @@
+Running stock/all; log: test\evidence\upstream-stock-all.txt
+stock: {'suites': 103, 'passed': 807, 'failed': 0, 'skipped': 0}; verified test result: False

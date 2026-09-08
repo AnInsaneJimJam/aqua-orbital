@@ -1,0 +1,1600 @@
+Compiling 128 files with Solc 0.8.30
+Solc 0.8.30 finished in 2051.33s
+Compiler run successful with warnings:
+Warning (2519): This declaration shadows an existing declaration.
+   --> test/FeeProtocolCommissions.t.sol:142:96:
+    |
+142 |         try swapVM.swap(order, amount, _makeTakerData(order, true)) returns (uint256 amountIn, uint256 amountOut, bytes32) {
+    |                                                                                                ^^^^^^^^^^^^^^^^^
+Note: The shadowed declaration is here:
+   --> test/FeeProtocolCommissions.t.sol:124:91:
+    |
+124 |  ... 256 amount, uint256 amountPartial, uint256 amountOut, uint256 count, uint24[10] memory  ...
+    |                                         ^^^^^^^^^^^^^^^^^
+
+Warning (3075): Comparison of internal function pointers can yield unexpected results in the legacy pipeline with the optimizer enabled, and will be disallowed entirely in the next breaking release.
+   --> test/FeeIndifferencyToSwap.t.sol:120:30:
+    |
+120 |         uint256 tolerance = (swapInstruction == inverseFormula) ? 12000 : (swapInstruction == circularFormula ? 4 : 2);
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (3075): Comparison of internal function pointers can yield unexpected results in the legacy pipeline with the optimizer enabled, and will be disallowed entirely in the next breaking release.
+   --> test/FeeIndifferencyToSwap.t.sol:120:76:
+    |
+120 |         uint256 tolerance = (swapInstruction == inverseFormula) ? 12000 : (swapInstruction == circularFormula ? 4 : 2);
+    |                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (9302): Return value of low-level calls not used.
+   --> test/PiecewiseLinearScale.t.sol:241:9:
+    |
+241 |         address(swapVM).staticcall("");
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (9302): Return value of low-level calls not used.
+   --> test/Whitelist.t.sol:145:9:
+    |
+145 |         address(swapVM).staticcall("");
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (9302): Return value of low-level calls not used.
+   --> test/Whitelist.t.sol:237:9:
+    |
+237 |         address(swapVM).staticcall("");
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/AquaAccounting.t.sol:336:27:
+    |
+336 |         (address tokenIn, address tokenOut) = zeroForOne
+    |                           ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/ExactInOutSymmetry.t.sol:20:9:
+   |
+20 |         address tokenIn,
+   |         ^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/ExactInOutSymmetry.t.sol:21:9:
+   |
+21 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+  --> test/FeeOutAdditivityViolation.t.sol:96:10:
+   |
+96 |         (uint256 split1In, uint256 split1Out) = (halfAmount, _getLastSwapOut());
+   |          ^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+  --> test/FeeOutAdditivityViolation.t.sol:99:10:
+   |
+99 |         (uint256 split2In, uint256 split2Out) = _quoteSwap(order, halfAmount, takerData);
+   |          ^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+  --> test/FeeProtocolCommissions.t.sol:95:9:
+   |
+95 |         uint24 totalBps = _boundFees(count, fees);
+   |         ^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/Invalidators.t.sol:66:9:
+   |
+66 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> test/MinRate.t.sol:340:9:
+    |
+340 |         address tokenOut,
+    |         ^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/SwapVmAccounting.t.sol:381:9:
+    |
+381 |         uint256 protocolFee = getProtocolFee();
+    |         ^^^^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/SwapVmAccounting.t.sol:393:9:
+    |
+393 |         uint256 protocolFee = getProtocolFee();
+    |         ^^^^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/SwapVmAccounting.t.sol:404:9:
+    |
+404 |         uint256 protocolFee = getProtocolFee();
+    |         ^^^^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/SwapVmAccounting.t.sol:415:9:
+    |
+415 |         uint256 protocolFee = getProtocolFee();
+    |         ^^^^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> test/TWAPSwap.t.sol:524:9:
+    |
+524 |         address tokenOut,
+    |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> test/invariants/CoreInvariants.t.sol:227:9:
+    |
+227 |         address tokenIn,
+    |         ^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> test/invariants/CoreInvariants.t.sol:228:9:
+    |
+228 |         address tokenOut,
+    |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> test/invariants/CoreInvariants.t.sol:377:9:
+    |
+377 |         address tokenIn,
+    |         ^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> test/invariants/CoreInvariants.t.sol:378:9:
+    |
+378 |         address tokenOut,
+    |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> test/invariants/CoreInvariants.t.sol:430:9:
+    |
+430 |         address tokenOut,
+    |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> test/invariants/CoreInvariants.t.sol:519:9:
+    |
+519 |         address tokenIn,
+    |         ^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> test/invariants/CoreInvariants.t.sol:520:9:
+    |
+520 |         address tokenOut,
+    |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/BaseFeeAdjusterFeesInvariants.t.sol:73:9:
+   |
+73 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/BaseFeeAdjusterInvariants.t.sol:69:9:
+   |
+69 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/ConcentrateXYCDecayFeesInvariants.t.sol:88:9:
+   |
+88 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/ConcentrateXYCDecayInvariants.t.sol:86:9:
+   |
+86 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> test/invariants/ConcentrateXYCFeesInvariants.t.sol:139:9:
+    |
+139 |         address tokenOut,
+    |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/ConcentrateXYCInvariants.t.sol:87:9:
+   |
+87 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/DecayXYCFeesInvariants.t.sol:74:9:
+   |
+74 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/DecayXYCInvariants.t.sol:70:9:
+   |
+70 |         address tokenIn,
+   |         ^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/DecayXYCInvariants.t.sol:71:9:
+   |
+71 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/DutchAuctionLimitSwapFeesInvariants.t.sol:72:9:
+   |
+72 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/DutchAuctionLimitSwapInvariants.t.sol:70:9:
+   |
+70 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/ExampleInvariantUsage.t.sol:73:9:
+   |
+73 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/MinRateInvariants.t.sol:78:9:
+   |
+78 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/invariants/MinRateInvariants.t.sol:117:10:
+    |
+117 |         (uint256 quotedIn, uint256 quotedOut,) = swapVM.asView().quote(
+    |          ^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/invariants/MinRateInvariants.t.sol:165:10:
+    |
+165 |         (uint256 quotedIn, uint256 quotedOut,) = swapVM.asView().quote(
+    |          ^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/invariants/MinRateInvariants.t.sol:210:10:
+    |
+210 |         (uint256 quotedIn, uint256 quotedOut,) = swapVM.asView().quote(
+    |          ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> test/invariants/PeggedFeesInvariants.t.sol:136:9:
+    |
+136 |         address tokenOut,
+    |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/PeggedSwapInvariants.t.sol:69:9:
+   |
+69 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/invariants/TWAPLimitSwapInvariants.t.sol:79:9:
+   |
+79 |         address tokenOut,
+   |         ^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> test/invariants/XYCFeesInvariants.t.sol:129:9:
+    |
+129 |         address tokenOut,
+    |         ^^^^^^^^^^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to view
+   --> test/MinRate.t.sol:155:5:
+    |
+155 |     function test_AdjustMinRateExactOut() public {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+   --> test/PeggedSwap.t.sol:964:5:
+    |
+964 |     function _checkLargeReserves(PeggedSwapMathWrapper wrapper, uint256 x0, uint256 a) private {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+   --> test/PeggedSwap.t.sol:995:5:
+    |
+995 |     function _checkSmallReserves(PeggedSwapMathWrapper wrapper, uint256 x, uint256 a) private {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+    --> test/PeggedSwap.t.sol:1018:5:
+     |
+1018 |     function _checkAsymmetricEquilibrium(PeggedSwapMathWrapper wrapper, uint256 x0, uint256 y0, uint256 a) private {
+     |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to pure
+   --> test/invariants/XYCFeesInvariants.t.sol:167:5:
+    |
+167 |     function _buildProgram(
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2018): Function state mutability can be restricted to view
+   --> test/invariants/pegged/VeryImbalancedDifferentDecimals.t.sol:105:5:
+    |
+105 |     function test_AsymmetricPool_ReverseSwap_NoAxisMismatch() public {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Ran 16 tests for test/AquaAccounting.t.sol:AquaAccounting
+[PASS] test_DecayPeggedSwap_ProtocolFee_FlatFee_ExactIn() (gas: 515335)
+[PASS] test_DecayPeggedSwap_ProtocolFee_FlatFee_ExactOut() (gas: 514812)
+[PASS] test_DecayRegularSwap_ProtocolFee_FlatFee_ExactIn() (gas: 501178)
+[PASS] test_DecayRegularSwap_ProtocolFee_FlatFee_ExactOut() (gas: 501779)
+[PASS] test_DecayXYCConcentrate_ProtocolFee_FlatFee_ExactIn() (gas: 511000)
+[PASS] test_DecayXYCConcentrate_ProtocolFee_FlatFee_ExactOut() (gas: 511282)
+[PASS] test_XYCConcentrate_CompareCorrectVsWrongOrder_ExactIn() (gas: 537265)
+[PASS] test_XYCConcentrate_CompareCorrectVsWrongOrder_ExactOut() (gas: 537493)
+[PASS] test_XYCConcentrate_ProtocolFee_ExactIn() (gas: 386607)
+[PASS] test_XYCConcentrate_ProtocolFee_ExactOut() (gas: 387048)
+[PASS] test_XYCConcentrate_ProtocolFee_With_FlatFee_ExactIn() (gas: 388843)
+[PASS] test_XYCConcentrate_ProtocolFee_With_FlatFee_ExactOut() (gas: 388869)
+[PASS] test_XYCSwap_ProtocolFee_ExactIn() (gas: 380973)
+[PASS] test_XYCSwap_ProtocolFee_ExactOut() (gas: 380430)
+[PASS] test_XYCSwap_ProtocolFee_With_FlatFee_ExactIn() (gas: 382290)
+[PASS] test_XYCSwap_ProtocolFee_With_FlatFee_ExactOut() (gas: 382442)
+Suite result: ok. 16 passed; 0 failed; 0 skipped; finished in 33.80ms (23.16ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 7 tests for test/invariants/pegged/BalancedCurve.t.sol:BalancedCurve
+[PASS] test_Pegged() (gas: 3465329)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4480631)
+[PASS] test_PeggedFlatFeeIn() (gas: 3542919)
+[PASS] test_PeggedFlatFeeOut() (gas: 1483628)
+[PASS] test_PeggedMultipleFees() (gas: 1652306)
+[PASS] test_PeggedProtocolFee() (gas: 4057952)
+[PASS] test_PeggedProtocolFeeIn() (gas: 4130646)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 97.19ms (94.41ms CPU time)
+
+Ran 37 tests for test/PeggedSwap.t.sol:PeggedSwapTest
+[PASS] test_PeggedSwapMath_AsymmetricEquilibrium() (gas: 333945)
+[PASS] test_PeggedSwapMath_InvariantFromReserves_ExtraLarge() (gas: 389228)
+[PASS] test_PeggedSwapMath_InvariantFromReserves_ExtraSmall() (gas: 378973)
+[PASS] test_PeggedSwapMath_InvariantSymmetry() (gas: 522363)
+[PASS] test_PeggedSwapMath_PureSqrtCurve() (gas: 311575)
+[PASS] test_PeggedSwapMath_Revert_InvalidInput() (gas: 309148)
+[PASS] test_PeggedSwapMath_SolveMonotonicity() (gas: 544952)
+[PASS] test_PeggedSwapMath_SolveRoundTrip_AsymmetricReserves() (gas: 946764)
+[PASS] test_PeggedSwapMath_Solve_ZeroCoordinate() (gas: 363174)
+[PASS] test_PeggedSwap_BasicSwap_ExactIn() (gas: 140599)
+[PASS] test_PeggedSwap_BasicSwap_ExactOut() (gas: 156064)
+[PASS] test_PeggedSwap_DifferentRates_ExactIn_AToB() (gas: 156978)
+[PASS] test_PeggedSwap_DifferentRates_ExactIn_BToA() (gas: 156023)
+[PASS] test_PeggedSwap_DifferentRates_ExactOut_AToB() (gas: 156540)
+[PASS] test_PeggedSwap_DifferentRates_ExactOut_BToA() (gas: 156327)
+[PASS] test_PeggedSwap_DifferentRates_RoundTrip_InvariantPreserved() (gas: 218787)
+[PASS] test_PeggedSwap_EdgeCase_A_Max() (gas: 156238)
+[PASS] test_PeggedSwap_EdgeCase_A_Zero() (gas: 199714)
+[PASS] test_PeggedSwap_ExtremeImbalance() (gas: 140682)
+[PASS] test_PeggedSwap_HighA_TightPeg_ExactIn() (gas: 140360)
+[PASS] test_PeggedSwap_ImbalancedPool() (gas: 140991)
+[PASS] test_PeggedSwap_InvariantPreserved_AcrossA() (gas: 734606)
+[PASS] test_PeggedSwap_LinearWidth_VariesPriceImpact() (gas: 797641)
+[PASS] test_PeggedSwap_PartialFill_ExactIn_AToB() (gas: 123746)
+[PASS] test_PeggedSwap_PartialFill_ExactIn_AToB_WithFee() (gas: 126343)
+[PASS] test_PeggedSwap_PartialFill_ExactIn_BToA() (gas: 124551)
+[PASS] test_PeggedSwap_PartialFill_ExactOut_AToB() (gas: 123520)
+[PASS] test_PeggedSwap_PartialFill_ExcessiveAmountOut() (gas: 124158)
+[PASS] test_PeggedSwap_QuoteSwapConsistency_AcrossA() (gas: 1217402)
+[PASS] test_PeggedSwap_Revert_ZeroBalanceOut_ExactIn() (gas: 79135)
+[PASS] test_PeggedSwap_RoundRobin_DepletionAndRoundingExploit() (gas: 7504958)
+[PASS] test_PeggedSwap_RoundingProtection_ExactIn() (gas: 146622)
+[PASS] test_PeggedSwap_RoundingProtection_ExactOut() (gas: 145874)
+[PASS] test_PeggedSwap_SwapAbundantForScarce() (gas: 138272)
+[PASS] test_PeggedSwap_SwapScarceForAbundant() (gas: 138962)
+[PASS] test_PeggedSwap_WithFee() (gas: 234799)
+[PASS] test_PeggedSwap_ZeroBalanceIn_SwapSucceeds() (gas: 138939)
+Suite result: ok. 37 passed; 0 failed; 0 skipped; finished in 157.39ms (143.86ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 6 tests for test/invariants/PeggedSwapInvariants.t.sol:PeggedSwapInvariants
+[PASS] test_PeggedSwap_Invariants() (gas: 2789031)
+[PASS] test_PeggedSwap_LargeOddAmounts() (gas: 213086)
+[PASS] test_PeggedSwap_OddAmountRounding() (gas: 248212)
+[PASS] test_PeggedSwap_ReverseDirection_Invariants() (gas: 2789195)
+[PASS] test_PeggedSwap_ReverseDirection_Linear_Invariants() (gas: 2723735)
+[PASS] test_PeggedSwap_RoundingConsistency() (gas: 354703)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 56.93ms (54.77ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/invariants/pegged/BalancedPoolEdgeFees.t.sol:BalancedPoolEdgeFees
+[PASS] test_Pegged() (gas: 3298089)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4267588)
+[PASS] test_PeggedFlatFeeIn() (gas: 3365557)
+[PASS] test_PeggedFlatFeeOut() (gas: 1305225)
+[PASS] test_PeggedMultipleFees() (gas: 1429932)
+[PASS] test_PeggedProtocolFee() (gas: 3861039)
+[PASS] test_PeggedProtocolFeeIn() (gas: 3934064)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 96.03ms (94.45ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/BaseFeeAdjuster.t.sol:BaseFeeAdjusterTest
+[PASS] test_BaseFeeAdjusterCompensationScaling() (gas: 74778)
+[PASS] test_BaseFeeAdjusterExactCompensation() (gas: 54647)
+[PASS] test_BaseFeeAdjusterExactOutDiscount() (gas: 55557)
+[PASS] test_BaseFeeAdjusterLimitSwapGasVariations() (gas: 106313)
+[PASS] test_BaseFeeAdjusterMaxDecayLimits() (gas: 44469)
+[PASS] test_BaseFeeAdjusterNoAdjustmentBelowBase() (gas: 53132)
+[PASS] test_BaseFeeAdjusterWithDutchAuction() (gas: 205664)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 15.71ms (13.12ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 9 tests for test/invariants/BaseFeeAdjusterFeesInvariants.t.sol:BaseFeeAdjusterFeesInvariants
+[PASS] test_BaseFeeAdjuster_DutchAuctionIn_FlatFeeIn() (gas: 1018176)
+[PASS] test_BaseFeeAdjuster_DutchAuctionIn_ProtocolFee() (gas: 1226150)
+[PASS] test_BaseFeeAdjuster_DutchAuctionOut_FlatFeeOut() (gas: 1026776)
+[PASS] test_BaseFeeAdjuster_DutchAuctionOut_MultipleFees() (gas: 1265019)
+[PASS] test_BaseFeeAdjuster_FlatFeeIn() (gas: 936455)
+[PASS] test_BaseFeeAdjuster_FlatFeeOut() (gas: 942726)
+[PASS] test_BaseFeeAdjuster_HighFees() (gas: 936114)
+[PASS] test_BaseFeeAdjuster_MultipleFees() (gas: 1181453)
+[PASS] test_BaseFeeAdjuster_ProtocolFee() (gas: 1144980)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 84.98ms (82.04ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 6 tests for test/invariants/BaseFeeAdjusterInvariants.t.sol:BaseFeeAdjusterInvariants
+[PASS] test_BaseFeeAdjuster_DifferentEthPrices() (gas: 2635961)
+[PASS] test_BaseFeeAdjuster_HighGas() (gas: 899222)
+[PASS] test_BaseFeeAdjuster_LowGas() (gas: 2365731)
+[PASS] test_BaseFeeAdjuster_ModerateGas() (gas: 899182)
+[PASS] test_BaseFeeAdjuster_WithDutchAuctionIn() (gas: 980429)
+[PASS] test_BaseFeeAdjuster_WithDutchAuctionOut() (gas: 982360)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 73.73ms (68.43ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 4 tests for test/invariants/ConcentrateXYCDecayFeesInvariants.t.sol:ConcentrateXYCDecayFeesInvariants
+[PASS] test_Order1_GrowLiquidity2D() (gas: 1721362)
+[PASS] test_Order2_GrowLiquidity2D() (gas: 1723198)
+[PASS] test_Order4_GrowLiquidity2D() (gas: 1935161)
+[PASS] test_Order5_GrowLiquidity2D() (gas: 1724430)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 71.46ms (69.24ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 2 tests for test/invariants/ConcentrateXYCDecayInvariants.t.sol:ConcentrateXYCDecayInvariants
+[PASS] test_ConcentrateGrowLiquidity2D_Decay() (gas: 4191342)
+[PASS] test_ConcentrateVariousDecayPeriods() (gas: 16608873)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 141.39ms (137.09ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 4 tests for test/invariants/ConcentrateXYCFeesInvariants.t.sol:ConcentrateXYCFeesInvariants
+[PASS] test_ConcentrateXYC() (gas: 3282561)
+[PASS] test_ConcentrateXYCFlatFeeIn() (gas: 3365607)
+[PASS] test_ConcentrateXYCMultipleFees() (gas: 3958441)
+[PASS] test_ConcentrateXYCProtocolFee() (gas: 3876526)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 105.74ms (103.47ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 2 tests for test/invariants/ConcentrateXYCInvariants.t.sol:ConcentrateXYCInvariants
+[PASS] test_ConcentrateDifferentRanges() (gas: 12861255)
+[PASS] test_ConcentrateGrowLiquidity2D() (gas: 3255528)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 172.83ms (170.19ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 3 tests for test/ConcentrateXYCRounding.t.sol:ConcentrateXYCRounding
+[PASS] test_RoundingProtection_AsymmetricRange() (gas: 6260140)
+[PASS] test_RoundingProtection_NarrowRange() (gas: 6264014)
+[PASS] test_RoundingProtection_StandardRange() (gas: 6263456)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 300.91ms (297.52ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 22 tests for test/Controls.t.sol:ControlsTest
+[PASS] test_BackwardJump() (gas: 161071)
+[PASS] test_Deadline() (gas: 156302)
+[PASS] test_Jump() (gas: 113434)
+[PASS] test_JumpIfDirection() (gas: 210830)
+[PASS] test_JumpIfDirection_OneWayOrder() (gas: 178031)
+[PASS] test_JumpIfDirection_Reversed() (gas: 210993)
+[PASS] test_JumpIfTokenIn() (gas: 211246)
+[PASS] test_JumpIfTokenOut() (gas: 211466)
+[PASS] test_JumpInsideInstruction_Revert() (gas: 79688)
+[PASS] test_JumpToOutOfBounds_NoRevert() (gas: 157743)
+[PASS] test_JumpToOutOfBounds_Revert() (gas: 78431)
+[PASS] test_JumpToZero() (gas: 158151)
+[PASS] test_NestedJumps() (gas: 161774)
+[PASS] test_OnlyTakerTokenBalanceGte() (gas: 197925)
+[PASS] test_OnlyTakerTokenBalanceNonZero() (gas: 199142)
+[PASS] test_OnlyTakerTokenSupplyShareGte() (gas: 200784)
+[PASS] test_Revert() (gas: 80498)
+[PASS] test_Revert_LongReason() (gas: 78674)
+[PASS] test_Salt() (gas: 164399)
+[PASS] test_SkipBackwardJump() (gas: 157725)
+[PASS] test_Stop() (gas: 113253)
+[PASS] test_Stop_BeforeSwapComputed_Reverts() (gas: 80132)
+Suite result: ok. 22 passed; 0 failed; 0 skipped; finished in 35.76ms (33.68ms CPU time)
+
+Ran 6 tests for test/ControlsAqua.t.sol:ControlsAquaTest
+[PASS] test_DeadlineAlreadyPassed() (gas: 179162)
+[PASS] test_DeadlineControl() (gas: 276071)
+[PASS] test_OnlyTakerTokenBalanceNonZero_Fail() (gas: 197429)
+[PASS] test_OnlyTakerTokenBalanceNonZero_Success() (gas: 334779)
+[PASS] test_OnlyTxOriginTokenBalanceNonZero_Fail() (gas: 259052)
+[PASS] test_OnlyTxOriginTokenBalanceNonZero_Success() (gas: 337788)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 5.90ms (3.78ms CPU time)
+
+Ran 1 test for test/Debug.t.sol:DebugTest
+[PASS] test_DebugOpcodes() (gas: 266716)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 3.91ms (2.53ms CPU time)
+
+Ran 3 tests for test/Decay.t.sol:DecayTest
+[PASS] test_BasicDirections() (gas: 484022)
+[PASS] test_DecayOverTime() (gas: 738650)
+[PASS] test_MEVSandwichProtection() (gas: 341153)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 9.90ms (8.07ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 5 tests for test/invariants/DecayXYCFeesInvariants.t.sol:DecayXYCFeesInvariants
+[PASS] test_DecayXYCFlatFeeIn() (gas: 1575736)
+[PASS] test_DecayXYCFlatFeeOut() (gas: 893040)
+[PASS] test_DecayXYCMultipleFees() (gas: 4781564)
+[PASS] test_DecayXYCProtocolFee() (gas: 1004509)
+[PASS] test_DecayXYCProtocolFeeIn() (gas: 1795519)
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 73.34ms (71.23ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 5 tests for test/invariants/DecayXYCInvariants.t.sol:DecayXYCInvariants
+[PASS] test_DecayXYCDifferentPeriods() (gas: 5339507)
+[PASS] test_DecayXYCHalfwayDecay() (gas: 1361267)
+[PASS] test_DecayXYCLargePeriod() (gas: 1361311)
+[PASS] test_DecayXYCMediumPeriod() (gas: 1361091)
+[PASS] test_DecayXYCSmallPeriod() (gas: 1360893)
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 163.71ms (160.40ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 4 tests for test/invariants/concentrate/DustAmounts.t.sol:DustAmounts
+[PASS] test_ConcentrateXYC() (gas: 7417344)
+[PASS] test_ConcentrateXYCFlatFeeIn() (gas: 7591112)
+[PASS] test_ConcentrateXYCMultipleFees() (gas: 8425722)
+[PASS] test_ConcentrateXYCProtocolFee() (gas: 8252998)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 180.25ms (178.15ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 4 tests for test/DutchAuction.t.sol:DutchAuctionTest
+[PASS] test_DutchAuctionIn_DecayFactors() (gas: 1075278)
+[PASS] test_DutchAuctionIn_Expiry() (gas: 81966)
+[PASS] test_DutchAuctionOut_DecayFactors() (gas: 1076780)
+[PASS] test_DutchAuctionOut_Expiry() (gas: 81716)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 18.80ms (16.40ms CPU time)
+
+Ran 3 tests for test/ProtocolFeeProviderMock.t.sol:ProtocolFeeProviderMockTest
+[PASS] test_GetProtocolFeeParams() (gas: 15400)
+[PASS] test_SetProtocolFeeParams() (gas: 19817)
+[PASS] test_SetProtocolFeeParams_NotOwner() (gas: 11654)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 1.91ms (1.21ms CPU time)
+
+Ran 4 tests for test/ProtocolSurplusPartialFill.t.sol:FeeMetaScaleSurplusEstimateTest
+[PASS] test_ScaleSurplusEstimate_FullFillKeepsEstimate() (gas: 636)
+[PASS] test_ScaleSurplusEstimate_PreservesMetaFields() (gas: 496)
+[PASS] test_ScaleSurplusEstimate_Revert_ScaleUp() (gas: 3962)
+[PASS] test_ScaleSurplusEstimate_RoundsForMaker() (gas: 614)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 401.50µs (146.10µs CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 5 tests for test/invariants/DutchAuctionLimitSwapFeesInvariants.t.sol:DutchAuctionLimitSwapFeesInvariants
+[PASS] test_DutchAuctionIn_FlatFeeIn() (gas: 7494595)
+[PASS] test_DutchAuctionIn_HighFees() (gas: 7494485)
+[PASS] test_DutchAuctionIn_ProtocolFee() (gas: 3713213)
+[PASS] test_DutchAuctionOut_FlatFeeOut() (gas: 7528764)
+[PASS] test_DutchAuctionOut_MultipleFees() (gas: 9492027)
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 214.50ms (211.99ms CPU time)
+
+Ran 8 tests for test/DynamicProtocolFee.t.sol:DynamicProtocolFeeTest
+[PASS] test_DynamicProtocolFee_ExactIn_ReceivedByRecipient() (gas: 186802)
+[PASS] test_DynamicProtocolFee_ExactOut_ReceivedByRecipient() (gas: 187931)
+[PASS] test_DynamicProtocolFee_ProviderCanChangeFee() (gas: 253908)
+[PASS] test_DynamicProtocolFee_ProviderReturnsFailedCall_Reverts() (gas: 60662)
+[PASS] test_DynamicProtocolFee_ProviderReturnsHighFee_Reverts() (gas: 72093)
+[PASS] test_DynamicProtocolFee_WithFlatFee() (gas: 189279)
+[PASS] test_DynamicProtocolFee_ZeroFee_NoTransfer() (gas: 164505)
+[PASS] test_DynamicProtocolFee_ZeroProvider_NoFee() (gas: 143800)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 7.94ms (6.04ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/invariants/concentrate/EdgePriceRange.t.sol:EdgePriceRange
+[PASS] test_AsymmetricRangeDown() (gas: 4317015)
+[PASS] test_AsymmetricRangeUp() (gas: 4323578)
+[PASS] test_ConcentrateXYC() (gas: 4300723)
+[PASS] test_ConcentrateXYCFlatFeeIn() (gas: 4405189)
+[PASS] test_ConcentrateXYCMultipleFees() (gas: 5180808)
+[PASS] test_ConcentrateXYCProtocolFee() (gas: 5077534)
+[PASS] test_VeryNarrowRange() (gas: 4316509)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 123.77ms (122.21ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 4 tests for test/invariants/ExampleInvariantUsage.t.sol:ExampleInvariantUsage
+[PASS] test_AMMWithFeesInvariants() (gas: 4176979)
+[PASS] test_LimitOrderInvariants() (gas: 2314249)
+[PASS] test_SkipCertainInvariants() (gas: 877453)
+[PASS] test_SpecificInvariants() (gas: 109434)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 33.46ms (32.07ms CPU time)
+
+Ran 12 tests for test/Fee.t.sol:FeeTest
+[PASS] test_FeeIn_ExactIn_SwapAndQuoteConsistent() (gas: 148504)
+[PASS] test_FeeIn_ExactOut_SwapAndQuoteConsistent() (gas: 148847)
+[PASS] test_FeeIn_ExchangeRateConsistency() (gas: 68832)
+[PASS] test_FeeIn_ExchangeRateConsistency_ForLargeAmount() (gas: 80376)
+[PASS] test_FeeIn_FeeOut_ConsistentExactInVsExactOut() (gas: 73825)
+[PASS] test_FeeOut_ExactIn_SwapAndQuoteConsistent() (gas: 148145)
+[PASS] test_FeeOut_ExactOut_SwapAndQuoteConsistent() (gas: 149465)
+[PASS] test_FeeOut_ExchangeRateConsistency() (gas: 69251)
+[PASS] test_FeeOut_ExchangeRateConsistency_ForLargeAmount() (gas: 81069)
+[PASS] test_SymmetryInvariant_BothFees() (gas: 130741)
+[PASS] test_SymmetryInvariant_FeeIn() (gas: 117586)
+[PASS] test_SymmetryInvariant_FeeOut() (gas: 118493)
+Suite result: ok. 12 passed; 0 failed; 0 skipped; finished in 9.79ms (7.98ms CPU time)
+
+Ran 4 tests for test/FeeAqua.t.sol:FeeAquaTest
+[PASS] test_Aqua_FeeIn_ExactIn_100Percent_ShouldRevert() (gas: 266359)
+[PASS] test_Aqua_FeeIn_ExactIn_BalanceAfterSwap() (gas: 329449)
+[PASS] test_Aqua_FeeIn_ExactOut_100Percent_ShouldRevert() (gas: 326101)
+[PASS] test_Aqua_FeeIn_ExactOut_BalancesAfterSwap() (gas: 350945)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 3.14ms (1.83ms CPU time)
+
+Ran 4 tests for test/FeeFlatPartialFill.t.sol:FeeFlatPartialFillTest
+[PASS] testFuzz_FeeFlatIn_ExactIn_PartialFill(uint256,uint256,uint24) (runs: 256, μ: 41418, ~: 41531)
+[PASS] testFuzz_FeeFlatIn_ExactOut_PartialFill(uint256,uint256,uint256,uint24) (runs: 256, μ: 41368, ~: 41261)
+[PASS] testFuzz_FeeFlatOut_ExactIn_PartialFill(uint256,uint256,uint256,uint24) (runs: 256, μ: 41099, ~: 41020)
+[PASS] testFuzz_FeeFlatOut_ExactOut_PartialFill(uint256,uint256,uint24) (runs: 256, μ: 40965, ~: 41069)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 259.62ms (394.20ms CPU time)
+
+Ran 14 tests for test/FeeIndifferencyToSwap.t.sol:FeeIndifferencyToSwap
+[PASS] test_FeeIn_WithCircularFormula() (gas: 37111)
+[PASS] test_FeeIn_WithConstantSumFormula() (gas: 33935)
+[PASS] test_FeeIn_WithHyperbolicFormula() (gas: 35103)
+[PASS] test_FeeIn_WithInverseFormula() (gas: 35720)
+[PASS] test_FeeIn_WithLinearFormula() (gas: 34698)
+[PASS] test_FeeIn_WithSmoothTransitionFormula() (gas: 35865)
+[PASS] test_FeeIn_WithXYCFormula() (gas: 34364)
+[PASS] test_FeeOut_WithCircularFormula() (gas: 37183)
+[PASS] test_FeeOut_WithConstantSumFormula() (gas: 33961)
+[PASS] test_FeeOut_WithHyperbolicFormula() (gas: 34956)
+[PASS] test_FeeOut_WithInverseFormula() (gas: 36013)
+[PASS] test_FeeOut_WithLinearFormula() (gas: 34991)
+[PASS] test_FeeOut_WithSmoothTransitionFormula() (gas: 36224)
+[PASS] test_FeeOut_WithXYCFormula() (gas: 35031)
+Suite result: ok. 14 passed; 0 failed; 0 skipped; finished in 1.79ms (1.50ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 4 tests for test/FeeOutAdditivityViolation.t.sol:FeeOutAdditivityViolation
+[PASS] test_FeeIn_vs_FeeOut_Additivity() (gas: 312232)
+[PASS] test_FeeOut_MinProfitableSwapSize() (gas: 3296062)
+[PASS] test_FeeOut_SplitProfitability() (gas: 214144)
+[PASS] test_FlatFeeOut_Original_ViolatesAdditivity() (gas: 203145)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 36.22ms (34.87ms CPU time)
+
+Ran 20 tests for test/FeeProtocolCombinations.t.sol:FeeProtocolCombinationsTest
+[PASS] test_Build_ProviderWithoutFlags_Reverts() (gas: 12815)
+[PASS] test_Build_ReceiverWithoutFees_Reverts() (gas: 12427)
+[PASS] test_Build_ZeroProvider_Reverts() (gas: 10522)
+[PASS] test_Build_ZeroReceiver_Reverts() (gas: 9990)
+[PASS] test_FiveProviders_TwoSkipped() (gas: 1575091)
+[PASS] test_FlatPlusSurplus_FeeIn_ExactIn() (gas: 173355)
+[PASS] test_FlatPlusSurplus_FeeIn_NoSurplusBelowEstimate() (gas: 169266)
+[PASS] test_FlatPlusSurplus_FeeOut_ExactIn() (gas: 172801)
+[PASS] test_MultipleReceivers_FeeIn_ExactIn() (gas: 204629)
+[PASS] test_MultipleReceivers_FeeOut_ExactIn() (gas: 207766)
+[PASS] test_ProviderMask_FlatFlagOnly_KeepsFlatDropsSurplus() (gas: 186638)
+[PASS] test_ProviderMask_SurplusFlagOnly_KeepsSurplusDropsFlat() (gas: 186683)
+[PASS] test_ProviderPlusReceiver_FeeIn_ExactIn() (gas: 215841)
+[PASS] test_ProviderPlusReceiver_TotalAboveHundredPercent_Reverts() (gas: 77414)
+[PASS] test_ProviderSkip_FlatFlagOnly_ProviderReturnsSurplusOnly() (gas: 160383)
+[PASS] test_ProviderSkip_OtherReceiverStillPaid() (gas: 193495)
+[PASS] test_ProviderSkip_SurplusFlagOnly_ProviderReturnsFlatOnly() (gas: 161202)
+[PASS] test_ProviderSkip_ZeroFees() (gas: 163082)
+[PASS] test_ProviderSkip_ZeroRecipient() (gas: 159927)
+[PASS] test_SplitRoles_FlatReceiverPlusSurplusReceiver_FeeIn() (gas: 201733)
+Suite result: ok. 20 passed; 0 failed; 0 skipped; finished in 15.30ms (12.81ms CPU time)
+
+Ran 8 tests for test/ProtocolSurplusPartialFill.t.sol:ProtocolSurplusPartialFillTest
+[PASS] testFuzz_SurplusIn_Multifill(uint256,uint256,uint256,uint24,uint24,uint256[3]) (runs: 256, μ: 212511, ~: 223329)
+[PASS] testFuzz_SurplusOut_Multifill(uint256,uint256,uint256,uint24,uint24,uint256[3]) (runs: 256, μ: 221777, ~: 238765)
+[PASS] test_SurplusIn_Multifill_ProRataEstimate() (gas: 193416)
+[PASS] test_SurplusIn_NoInvalidator_EstimateAppliesInFull() (gas: 156786)
+[PASS] test_SurplusIn_NoInvalidator_NoSurplusBelowEstimate() (gas: 103159)
+[PASS] test_SurplusIn_PiecewiseLinearAuction_ProRataEstimate() (gas: 198961)
+[PASS] test_SurplusOut_Multifill_ProRataEstimate() (gas: 188369)
+[PASS] test_SurplusOut_NoInvalidator_EstimateAppliesInFull() (gas: 124036)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 764.58ms (762.34ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/invariants/pegged/PureSquareRoot.t.sol:PureSquareRoot
+[PASS] test_Pegged() (gas: 3395888)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4411198)
+[PASS] test_PeggedFlatFeeIn() (gas: 3477584)
+[PASS] test_PeggedFlatFeeOut() (gas: 1442287)
+[PASS] test_PeggedMultipleFees() (gas: 1618963)
+[PASS] test_PeggedProtocolFee() (gas: 3988415)
+[PASS] test_PeggedProtocolFeeIn() (gas: 4061203)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 75.62ms (74.07ms CPU time)
+
+Ran 9 tests for test/RunLoop.t.sol:RunLoopTest
+[PASS] test_BestRouteSelector_XYC_vs_Pegged() (gas: 4349871)
+[PASS] test_EmptyProgram() (gas: 41944)
+[PASS] test_InvalidOpcode() (gas: 43650)
+[PASS] test_MissingArgsProgram() (gas: 66624)
+[PASS] test_NestedRunLoop_Deep_SixLevels() (gas: 193414)
+[PASS] test_NestedRunLoop_StaticContext() (gas: 59275)
+[PASS] test_RunLoopTermination() (gas: 188349)
+[PASS] test_SingleByteProgram() (gas: 42576)
+[PASS] test_VeryLongProgram() (gas: 265212)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 7.51ms (5.85ms CPU time)
+
+Ran 4 tests for test/FeeProtocolCommissions.t.sol:FeeProtocolCommissionsTest
+[PASS] testFuzz_Commissions_TokenIn_ExactIn(uint256,uint256,uint256,uint24[10],bool) (runs: 256, μ: 230833, ~: 208477)
+[PASS] testFuzz_Commissions_TokenIn_ExactOut(uint256,uint256,uint256,uint256,uint24[10],bool) (runs: 256, μ: 245165, ~: 219400)
+[PASS] testFuzz_Commissions_TokenOut_ExactIn(uint256,uint256,uint256,uint256,uint24[10],bool) (runs: 256, μ: 238561, ~: 218474)
+[PASS] testFuzz_Commissions_TokenOut_ExactOut(uint256,uint256,uint256,uint24[10],bool) (runs: 256, μ: 241187, ~: 235598)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 1.23s (1.86s CPU time)
+
+Ran 4 tests for test/FeeProtocolPartialFill.t.sol:FeeProtocolPartialFillTest
+[PASS] testFuzz_FeeProtocolIn_ExactIn_PartialFill(uint256,uint256,uint24) (runs: 256, μ: 47328, ~: 47388)
+[PASS] testFuzz_FeeProtocolIn_ExactOut_PartialFill(uint256,uint256,uint256,uint24) (runs: 256, μ: 47311, ~: 47175)
+[PASS] testFuzz_FeeProtocolOut_ExactIn_PartialFill(uint256,uint256,uint256,uint24) (runs: 256, μ: 47497, ~: 47363)
+[PASS] testFuzz_FeeProtocolOut_ExactOut_PartialFill(uint256,uint256,uint24) (runs: 256, μ: 47251, ~: 47306)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 280.51ms (424.77ms CPU time)
+
+Ran 56 tests for test/gas/Gas.t.sol:Gas
+[PASS] test_gas_ConcentrateGrowLiquidity_XYCSwap_quote_exactIn() (gas: 55461)
+[PASS] test_gas_ConcentrateGrowLiquidity_XYCSwap_quote_exactOut() (gas: 55568)
+[PASS] test_gas_ConcentrateGrowLiquidity_XYCSwap_swap_exactIn() (gas: 138680)
+[PASS] test_gas_ConcentrateGrowLiquidity_XYCSwap_swap_exactOut() (gas: 139926)
+[PASS] test_gas_ConcentrateGrowPriceRange_XYCSwap_quote_exactIn() (gas: 55797)
+[PASS] test_gas_ConcentrateGrowPriceRange_XYCSwap_swap_exactIn() (gas: 138818)
+[PASS] test_gas_Concentrate_Decay_XYCSwap_quote_exactIn() (gas: 67783)
+[PASS] test_gas_Concentrate_Decay_XYCSwap_swap_exactIn() (gas: 193180)
+[PASS] test_gas_Deadline_LimitSwap_quote_exactIn() (gas: 44174)
+[PASS] test_gas_Deadline_LimitSwap_swap_exactIn() (gas: 87391)
+[PASS] test_gas_Decay_XYCSwap_quote_exactIn() (gas: 59459)
+[PASS] test_gas_Decay_XYCSwap_quote_exactOut() (gas: 60562)
+[PASS] test_gas_Decay_XYCSwap_swap_exactIn() (gas: 183756)
+[PASS] test_gas_Decay_XYCSwap_swap_exactOut() (gas: 183755)
+[PASS] test_gas_DutchAuctionIn_LimitSwap_quote_exactIn() (gas: 44656)
+[PASS] test_gas_DutchAuctionIn_LimitSwap_quote_exactOut() (gas: 45458)
+[PASS] test_gas_DutchAuctionIn_LimitSwap_swap_exactIn() (gas: 88556)
+[PASS] test_gas_DutchAuctionIn_LimitSwap_swap_exactOut() (gas: 88978)
+[PASS] test_gas_DutchAuctionOut_LimitSwap_quote_exactIn() (gas: 44977)
+[PASS] test_gas_DutchAuctionOut_LimitSwap_quote_exactOut() (gas: 44051)
+[PASS] test_gas_DutchAuctionOut_LimitSwap_swap_exactIn() (gas: 88063)
+[PASS] test_gas_DutchAuctionOut_LimitSwap_swap_exactOut() (gas: 88243)
+[PASS] test_gas_FullAMM_quote_exactIn() (gas: 70523)
+[PASS] test_gas_FullAMM_swap_exactIn() (gas: 194863)
+[PASS] test_gas_FullLimitSwap_quote_exactIn() (gas: 51761)
+[PASS] test_gas_FullLimitSwap_swap_exactIn() (gas: 116377)
+[PASS] test_gas_InvalidateBit_LimitSwap_quote_exactIn() (gas: 46730)
+[PASS] test_gas_InvalidateBit_LimitSwap_swap_exactIn() (gas: 110276)
+[PASS] test_gas_LimitSwap_FlatFeeIn_quote_exactIn() (gas: 44918)
+[PASS] test_gas_LimitSwap_FlatFeeIn_swap_exactIn() (gas: 87470)
+[PASS] test_gas_LimitSwap_FlatFeeOut_quote_exactIn() (gas: 45220)
+[PASS] test_gas_LimitSwap_FlatFeeOut_swap_exactIn() (gas: 87602)
+[PASS] test_gas_LimitSwap_InvalidateTokenIn_quote_exactIn() (gas: 47785)
+[PASS] test_gas_LimitSwap_InvalidateTokenIn_swap_exactIn() (gas: 110995)
+[PASS] test_gas_LimitSwap_quote_exactIn() (gas: 41623)
+[PASS] test_gas_LimitSwap_quote_exactOut() (gas: 43310)
+[PASS] test_gas_LimitSwap_swap_exactIn() (gas: 86342)
+[PASS] test_gas_LimitSwap_swap_exactOut() (gas: 86105)
+[PASS] test_gas_MinRate_LimitSwap_quote_exactIn() (gas: 45471)
+[PASS] test_gas_MinRate_LimitSwap_quote_exactOut() (gas: 45116)
+[PASS] test_gas_MinRate_LimitSwap_swap_exactIn() (gas: 88336)
+[PASS] test_gas_MinRate_LimitSwap_swap_exactOut() (gas: 88175)
+[PASS] test_gas_Salt_LimitSwap_quote_exactIn() (gas: 44318)
+[PASS] test_gas_Salt_LimitSwap_swap_exactIn() (gas: 86765)
+[PASS] test_gas_TWAP_LimitSwap_quote_exactIn() (gas: 52449)
+[PASS] test_gas_TWAP_LimitSwap_quote_exactOut() (gas: 54021)
+[PASS] test_gas_TWAP_LimitSwap_swap_exactIn() (gas: 181467)
+[PASS] test_gas_TWAP_LimitSwap_swap_exactOut() (gas: 181603)
+[PASS] test_gas_XYCSwap_FlatFeeIn_quote_exactIn() (gas: 49115)
+[PASS] test_gas_XYCSwap_FlatFeeIn_swap_exactIn() (gas: 133787)
+[PASS] test_gas_XYCSwap_FlatFeeOut_quote_exactIn() (gas: 49175)
+[PASS] test_gas_XYCSwap_FlatFeeOut_swap_exactIn() (gas: 132571)
+[PASS] test_gas_XYCSwap_quote_exactIn() (gas: 46328)
+[PASS] test_gas_XYCSwap_quote_exactOut() (gas: 47481)
+[PASS] test_gas_XYCSwap_swap_exactIn() (gas: 130874)
+[PASS] test_gas_XYCSwap_swap_exactOut() (gas: 130653)
+Suite result: ok. 56 passed; 0 failed; 0 skipped; finished in 34.06ms (32.46ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 4 tests for test/invariants/concentrate/HugeLiquidity.t.sol:HugeLiquidity
+[PASS] test_ConcentrateXYC() (gas: 5321365)
+[PASS] test_ConcentrateXYCFlatFeeIn() (gas: 5446885)
+[PASS] test_ConcentrateXYCMultipleFees() (gas: 6405258)
+[PASS] test_ConcentrateXYCProtocolFee() (gas: 6280867)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 96.55ms (94.14ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 7 tests for test/invariants/pegged/ImbalancedPoolHighFees.t.sol:ImbalancedPoolHighFees
+[PASS] test_Pegged() (gas: 3467020)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4482330)
+[PASS] test_PeggedFlatFeeIn() (gas: 3544594)
+[PASS] test_PeggedFlatFeeOut() (gas: 1485888)
+[PASS] test_PeggedMultipleFees() (gas: 1654537)
+[PASS] test_PeggedProtocolFee() (gas: 4059594)
+[PASS] test_PeggedProtocolFeeIn() (gas: 4132335)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 90.90ms (88.62ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/invariants/pegged/ImbalancedPoolLowFees.t.sol:ImbalancedPoolLowFees
+[PASS] test_Pegged() (gas: 3467020)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4482347)
+[PASS] test_PeggedFlatFeeIn() (gas: 3544612)
+[PASS] test_PeggedFlatFeeOut() (gas: 1485888)
+[PASS] test_PeggedMultipleFees() (gas: 1654572)
+[PASS] test_PeggedProtocolFee() (gas: 4059611)
+[PASS] test_PeggedProtocolFeeIn() (gas: 4132352)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 89.00ms (86.75ms CPU time)
+
+Ran 9 tests for test/Invalidators.t.sol:InvalidatorsTest
+[PASS] test_CombinedInvalidators() (gas: 219544)
+[PASS] test_ExternalInvalidation() (gas: 166853)
+[PASS] test_ExternalInvalidationMultiBits() (gas: 302062)
+[PASS] test_InvalidateBitDifferentIndices() (gas: 181614)
+[PASS] test_InvalidateBitSingleUse() (gas: 169411)
+[PASS] test_InvalidateBitSlotBoundaries() (gas: 394681)
+[PASS] test_InvalidateTokenInPartialFills() (gas: 231595)
+[PASS] test_InvalidateTokenOutPartialFills() (gas: 270260)
+[PASS] test_InvalidatorZeroAmount() (gas: 84481)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 16.65ms (14.36ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 4 tests for test/invariants/concentrate/LargeAmounts.t.sol:LargeAmounts
+[PASS] test_ConcentrateXYC() (gas: 4355236)
+[PASS] test_ConcentrateXYCFlatFeeIn() (gas: 4464838)
+[PASS] test_ConcentrateXYCMultipleFees() (gas: 5248641)
+[PASS] test_ConcentrateXYCProtocolFee() (gas: 5140215)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 71.09ms (68.71ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 7 tests for test/invariants/pegged/LargeDifferentDecimals.t.sol:LargeDifferentDecimals
+[PASS] test_Pegged() (gas: 3456408)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4471488)
+[PASS] test_PeggedFlatFeeIn() (gas: 3537800)
+[PASS] test_PeggedFlatFeeOut() (gas: 1479176)
+[PASS] test_PeggedMultipleFees() (gas: 1647461)
+[PASS] test_PeggedProtocolFee() (gas: 4048976)
+[PASS] test_PeggedProtocolFeeIn() (gas: 4121473)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 85.10ms (83.05ms CPU time)
+
+Ran 8 tests for test/LimitSwapFullAmountOneSideZero.t.sol:LimitSwapFullAmountOneSideZeroTest
+[PASS] test_FeeProtocol_ZeroBalanceIn_ExactIn() (gas: 79464)
+[PASS] test_FeeProtocol_ZeroBalanceIn_ExactIn_OverAsk() (gas: 94392)
+[PASS] test_FeeProtocol_ZeroBalanceIn_ExactOut() (gas: 66242)
+[PASS] test_FeeProtocol_ZeroBalanceIn_ExactOut_Revert_UnderAsk() (gas: 43791)
+[PASS] test_FeeProtocol_ZeroBalanceIn_Revert_WithoutAllowZeroAmountIn() (gas: 43368)
+[PASS] test_FeeProtocol_ZeroBalanceIn_SurplusOutFee_UsesFullEstimate() (gas: 133654)
+[PASS] test_FeeProtocol_ZeroBalanceOut_Reverts() (gas: 64657)
+[PASS] test_FeeProtocol_ZeroBalanceOut_SurplusInFee_RevertsCleanly() (gas: 52258)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 9.40ms (7.26ms CPU time)
+
+Ran 8 tests for test/LimitSwapPartialFill.t.sol:LimitSwapPartialFillTest
+[PASS] testFuzz_FullFill_InvalidateTokenIn_ConsumesAtMostBalanceOut(uint256,uint256,uint256[3]) (runs: 256, μ: 176034, ~: 172550)
+[PASS] testFuzz_FullFill_InvalidateTokenOut_PaysAtLeastBalanceIn(uint256,uint256,uint256[3]) (runs: 256, μ: 173982, ~: 172902)
+[PASS] testFuzz_LimitSwapFullAmount(uint256,uint256,uint256,bool) (runs: 256, μ: 46537, ~: 46461)
+[PASS] testFuzz_LimitSwap_ExactIn(uint256,uint256,uint256,bool) (runs: 256, μ: 47282, ~: 47315)
+[PASS] testFuzz_LimitSwap_ExactOut(uint256,uint256,uint256,bool) (runs: 256, μ: 47901, ~: 47957)
+[PASS] testFuzz_Multifill_InvalidateTokenIn(uint256,uint256,uint256[4]) (runs: 256, μ: 190324, ~: 187510)
+[PASS] testFuzz_Multifill_InvalidateTokenOut(uint256,uint256,uint256[4]) (runs: 256, μ: 190757, ~: 188643)
+[PASS] test_ExhaustedOrder_RevertsCleanly() (gas: 146626)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 1.96s (3.12s CPU time)
+
+Ran 12 tests for test/MakerHooks.t.sol:MakerHooksTest
+[PASS] test_AsymmetricHookData_EmptyMakerNonEmptyTaker() (gas: 389790)
+[PASS] test_AsymmetricHookData_PostTransferIn_EmptyMakerNonEmptyTaker() (gas: 392161)
+[PASS] test_DifferentHookTargets_PostTransferIn() (gas: 3604956)
+[PASS] test_DifferentHookTargets_PreTransferOut() (gas: 3602863)
+[PASS] test_HooksExecutionOrder() (gas: 1186478)
+[PASS] test_HooksExecutionOrder_TransferOutFirst() (gas: 1167229)
+[PASS] test_HooksWithEmptyTakerData() (gas: 585489)
+[PASS] test_MakerHooksWithTakerData() (gas: 1196289)
+[PASS] test_MultipleConsecutiveSwaps_SameHook() (gas: 567837)
+[PASS] test_MultipleConsecutiveSwaps_SamePostTransferInHook() (gas: 590092)
+[PASS] test_PostTransferInHook_Reverts_SwapReverts() (gas: 326313)
+[PASS] test_PreTransferOutHook_Reverts_SwapReverts() (gas: 326160)
+Suite result: ok. 12 passed; 0 failed; 0 skipped; finished in 28.71ms (23.67ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 7 tests for test/invariants/MinRateInvariants.t.sol:MinRateInvariants
+[PASS] test_MinRate_DutchAuctionIn_LimitSwap() (gas: 2570232)
+[PASS] test_MinRate_DutchAuctionOut_LimitSwap() (gas: 2482706)
+[PASS] test_MinRate_DutchAuction_LimitSwap_Fees() (gas: 1667000)
+[PASS] test_MinRate_LimitSwap() (gas: 936357)
+[PASS] test_MinRate_LimitSwap_FlatFeeIn() (gas: 1293510)
+[PASS] test_MinRate_LimitSwap_FlatFeeOut() (gas: 1301303)
+[PASS] test_MinRate_LimitSwap_ProtocolFee() (gas: 1515675)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 202.60ms (200.32ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 7 tests for test/invariants/pegged/MostlyCurved.t.sol:MostlyCurved
+[PASS] test_Pegged() (gas: 3461205)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4476515)
+[PASS] test_PeggedFlatFeeIn() (gas: 3542901)
+[PASS] test_PeggedFlatFeeOut() (gas: 1483610)
+[PASS] test_PeggedMultipleFees() (gas: 1652288)
+[PASS] test_PeggedProtocolFee() (gas: 4053732)
+[PASS] test_PeggedProtocolFeeIn() (gas: 4126520)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 139.08ms (136.64ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 4 tests for test/invariants/concentrate/NarrowRange.t.sol:NarrowRange
+[PASS] test_ConcentrateXYC() (gas: 5319384)
+[PASS] test_ConcentrateXYCFlatFeeIn() (gas: 5445207)
+[PASS] test_ConcentrateXYCMultipleFees() (gas: 6403581)
+[PASS] test_ConcentrateXYCProtocolFee() (gas: 6278981)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 160.35ms (157.56ms CPU time)
+
+Ran 18 tests for test/NativePayment.t.sol:NativePaymentTest
+[PASS] testFuzz_NativePayment(uint128,uint96,bool) (runs: 256, μ: 243694, ~: 244696)
+[PASS] test_NativePayment_AquaPush() (gas: 263832)
+[PASS] test_NativePayment_AquaPush_ExcessRefunded() (gas: 289055)
+[PASS] test_NativePayment_CustomReceiver_ReceivesWeth() (gas: 209075)
+[PASS] test_NativePayment_DoesNotTouchTakerWeth() (gas: 238586)
+[PASS] test_NativePayment_ExactOut_RefundsExcess() (gas: 246201)
+[PASS] test_NativePayment_ExcessRefunded() (gas: 237343)
+[PASS] test_NativePayment_MakerReceivesWeth() (gas: 207997)
+[PASS] test_NativePayment_MakerUnwrap_CustomReceiver_ReceivesEth() (gas: 207844)
+[PASS] test_NativePayment_MakerUnwrap_ReceivesEth() (gas: 208872)
+[PASS] test_NativePayment_ZeroAmountIn_FullRefund() (gas: 126708)
+[PASS] test_NoMsgValue_FallsBackToWethTransferFrom() (gas: 201537)
+[PASS] test_RevertWhen_AquaOrderWithoutPushReceivesMsgValue() (gas: 227933)
+[PASS] test_RevertWhen_ExactOutNotEnoughMsgValue() (gas: 146168)
+[PASS] test_RevertWhen_MakerEthReceiverRejectsEth() (gas: 216783)
+[PASS] test_RevertWhen_MsgValueWithNonWethTokenIn() (gas: 222583)
+[PASS] test_RevertWhen_NotEnoughMsgValue() (gas: 195256)
+[PASS] test_RevertWhen_RefundReceiverRejectsEth() (gas: 302914)
+Suite result: ok. 18 passed; 0 failed; 0 skipped; finished in 225.90ms (220.56ms CPU time)
+
+Ran 1 test for test/OpcodeEnumCheck.t.sol:OpcodeEnumCheckTest
+[PASS] test_EnumValuesMatchHexLabels() (gas: 283)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 188.20µs (36.10µs CPU time)
+
+Ran 1 test for test/gas/OpcodeGas.t.sol:OpcodeGas
+[PASS] test_gas() (gas: 1417308)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 18.05ms (16.07ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/invariants/PeggedFeesInvariants.t.sol:PeggedFeesInvariants
+[PASS] test_Pegged() (gas: 3466193)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4481512)
+[PASS] test_PeggedFlatFeeIn() (gas: 3543783)
+[PASS] test_PeggedFlatFeeOut() (gas: 1484168)
+[PASS] test_PeggedMultipleFees() (gas: 1652738)
+[PASS] test_PeggedProtocolFee() (gas: 4058833)
+[PASS] test_PeggedProtocolFeeIn() (gas: 4131527)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 85.21ms (83.30ms CPU time)
+
+Ran 24 tests for test/MemoryPtr.t.sol:MemoryPtrTest
+[PASS] testFuzz_PushCalldata(bytes) (runs: 256, μ: 4399, ~: 4383)
+[PASS] test_AllocEmpty() (gas: 4419)
+[PASS] test_AllocZeroized() (gas: 4160)
+[PASS] test_ConsecutiveSlices() (gas: 6963)
+[PASS] test_PatchEveryOverload() (gas: 5315)
+[PASS] test_PatchPreservesNeighbors() (gas: 4878)
+[PASS] test_PushEveryOverload() (gas: 4922)
+[PASS] test_PushMem() (gas: 4523)
+[PASS] test_ResolveShrinkExact() (gas: 4547)
+[PASS] test_ResolveShrinkUntouched() (gas: 4338)
+[PASS] test_ResolveShrinkWithSkip() (gas: 3927)
+[PASS] test_ResolveWithSkip() (gas: 4417)
+[PASS] test_RevertAllocTooMuch() (gas: 4856)
+[PASS] test_RevertPatch8OutOfBounds() (gas: 4864)
+[PASS] test_RevertPatchOutOfBounds() (gas: 4106)
+[PASS] test_RevertPatchUintOversize() (gas: 5195)
+[PASS] test_RevertPushUintOversize() (gas: 5205)
+[PASS] test_RevertResolveOverfilled() (gas: 5151)
+[PASS] test_RevertResolveShrinkOverfilled() (gas: 4860)
+[PASS] test_RevertResolveUnderfilled() (gas: 5713)
+[PASS] test_RevertSkipTooMuch() (gas: 4550)
+[PASS] test_RevertSubBaseMismatch() (gas: 5121)
+[PASS] test_RevertSubUnderflow() (gas: 5231)
+[PASS] test_Sub() (gas: 1295)
+Suite result: ok. 24 passed; 0 failed; 0 skipped; finished in 854.35ms (854.53ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 4 tests for test/invariants/concentrate/MicroAmounts.t.sol:MicroAmounts
+[PASS] test_ConcentrateXYC() (gas: 7417474)
+[PASS] test_ConcentrateXYCFlatFeeIn() (gas: 7591241)
+[PASS] test_ConcentrateXYCMultipleFees() (gas: 8744205)
+[PASS] test_ConcentrateXYCProtocolFee() (gas: 8571469)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 189.06ms (186.72ms CPU time)
+
+Ran 8 tests for test/MinRate.t.sol:MinRateTest
+[PASS] test_AdjustMinRateCapsOutput() (gas: 113038)
+[PASS] test_AdjustMinRateExactOut() (gas: 43504)
+[PASS] test_MinRateExtreme() (gas: 113686)
+[PASS] test_MinRateNoEffectOnWorseRates() (gas: 113264)
+[PASS] test_MinRateTokenOrdering() (gas: 184064)
+[PASS] test_MinRateWithFees() (gas: 115496)
+[PASS] test_RequireMinRatePass() (gas: 112978)
+[PASS] test_RequireMinRateRevert() (gas: 81885)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 7.83ms (5.49ms CPU time)
+
+Ran 4 tests for test/Whitelist.t.sol:WhitelistTest
+[PASS] test_Whitelist_Coequal() (gas: 4414226)
+[PASS] test_Whitelist_Coequal_GasBenchmark() (gas: 3898571)
+[PASS] test_Whitelist_Sequential() (gas: 4923922)
+[PASS] test_Whitelist_Sequential_GasBenchmark() (gas: 2792716)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 111.33ms (109.51ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 4 tests for test/invariants/concentrate/WideRange.t.sol:WideRange
+[PASS] test_ConcentrateXYC() (gas: 5319384)
+[PASS] test_ConcentrateXYCFlatFeeIn() (gas: 5445207)
+[PASS] test_ConcentrateXYCMultipleFees() (gas: 6403581)
+[PASS] test_ConcentrateXYCProtocolFee() (gas: 6278934)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 88.89ms (86.73ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 16 tests for test/XYCConcentrate.t.sol:ConcentrateTest
+[PASS] testFuzz_ComputeBalances(uint256,uint256,uint256,uint256) (runs: 256, μ: 16515, ~: 16605)
+[PASS] testFuzz_ComputeLiquidityFromAmounts(uint256,uint256,uint256,uint256,uint256) (runs: 256, μ: 21086, ~: 21168)
+[PASS] test_ConcentrateGrowLiquidity_KeepsPriceRangeForBothTokensNoFee() (gas: 267541)
+[PASS] test_ConcentrateGrowLiquidity_KeepsPriceRangeForBothTokensWithFee() (gas: 267274)
+[PASS] test_ConcentrateGrowLiquidity_KeepsPriceRangeForTokenA() (gas: 179952)
+[PASS] test_ConcentrateGrowLiquidity_KeepsPriceRangeForTokenB() (gas: 180012)
+[PASS] test_ConcentrateGrowLiquidity_SpreadSlowlyGrowsForSomeReason() (gas: 10761025)
+[PASS] test_ConcentrateRounding_ExactOutUsesMakerFavoringReserveIn() (gas: 53971)
+[PASS] test_PartialFill_ExactIn_AToB() (gas: 128020)
+[PASS] test_PartialFill_ExactIn_AToB_WithFee() (gas: 169800)
+[PASS] test_PartialFill_ExactIn_BToA() (gas: 128720)
+[PASS] test_PartialFill_ExactIn_BToA_WithFee() (gas: 169535)
+[PASS] test_QuoteAndSwapExactOutAmountsMatches() (gas: 148941)
+[PASS] test_RoundingInvariantsWithFees() (gas: 21859123)
+[PASS] test_ZeroBalance_SpotAtLowerBound() (gas: 139286)
+[PASS] test_ZeroBalance_SpotAtUpperBound() (gas: 138985)
+Suite result: ok. 16 passed; 0 failed; 0 skipped; finished in 469.08ms (466.55ms CPU time)
+
+Ran 6 tests for test/UnwrapWeth.t.sol:UnwrapWethTest
+[PASS] testFuzz_UnwrapWeth(uint8,bool,uint128) (runs: 256, μ: 226912, ~: 233128)
+[PASS] test_MakerShouldReciveEth() (gas: 198138)
+[PASS] test_MakerShouldReciveEthToCustomAddress() (gas: 200569)
+[PASS] test_RejectDirectEtherTransfer() (gas: 17031)
+[PASS] test_TakerShouldReciveEth() (gas: 233125)
+[PASS] test_TakerShouldReciveEthToCustomAddress() (gas: 235406)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 883.37ms (883.81ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 8 tests for test/invariants/pegged/VeryImbalancedDifferentDecimals.t.sol:VeryImbalancedDifferentDecimals
+[PASS] test_AsymmetricPool_ReverseSwap_NoAxisMismatch() (gas: 82585)
+[PASS] test_Pegged() (gas: 3454446)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4469770)
+[PASS] test_PeggedFlatFeeIn() (gas: 3536141)
+[PASS] test_PeggedFlatFeeOut() (gas: 1477292)
+[PASS] test_PeggedMultipleFees() (gas: 1645873)
+[PASS] test_PeggedProtocolFee() (gas: 4047010)
+[PASS] test_PeggedProtocolFeeIn() (gas: 4119751)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 105.96ms (102.22ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 7 tests for test/invariants/pegged/VeryLinear.t.sol:VeryLinear
+[PASS] test_Pegged() (gas: 3466193)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4481495)
+[PASS] test_PeggedFlatFeeIn() (gas: 3543783)
+[PASS] test_PeggedFlatFeeOut() (gas: 1484168)
+[PASS] test_PeggedMultipleFees() (gas: 1652738)
+[PASS] test_PeggedProtocolFee() (gas: 4058769)
+[PASS] test_PeggedProtocolFeeIn() (gas: 4131510)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 137.31ms (134.78ms CPU time)
+
+Ran 4 tests for test/XYCConcentrateCapitalEfficiency.t.sol:XYCConcentrateCapitalEfficiencyTest
+[PASS] test_HalfCapital_ConcentrateMatchesFullXYCSwap() (gas: 81246)
+[PASS] test_NarrowerRange_HigherCapitalEfficiency() (gas: 83579)
+[PASS] test_SameCapital_ConcentrateOutputBetter() (gas: 81593)
+[PASS] test_Slippage_ConcentrateRTimesLess() (gas: 81605)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 10.84ms (5.34ms CPU time)
+
+Ran 2 tests for test/XYCConcentrateFeeEffectivePriceBounds.t.sol:XYCConcentrateFeeEffectivePriceBoundsTest
+[PASS] test_EffectivePriceAtPmax_3pctFee() (gas: 157296)
+[PASS] test_EffectivePriceAtPmin_3pctFee() (gas: 178326)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 9.15ms (5.91ms CPU time)
+
+Ran 2 tests for test/XYCConcentrateFeeTrackingDetailed.t.sol:XYCConcentrateFeeTrackingDetailedTest
+[PASS] test_DetailedFeeTracking_PerIteration() (gas: 473294329)
+[PASS] test_DetailedFeeTracking_ReversedPattern() (gas: 2866660)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 2.57s (2.57s CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 12 tests for test/XYCConcentratePnL.t.sol:XYCConcentratePnLTest
+[PASS] test_AsymmetricRange_CorrectInit_MakerEarns() (gas: 30165681)
+[PASS] test_AsymmetricRange_WrongInit_MakerLoses() (gas: 30146519)
+[PASS] test_MakerEarns_CorrectBalances_HighPriceRatio() (gas: 12152976)
+[PASS] test_MakerEarns_CorrectBalances_SpotAbove1() (gas: 12145629)
+[PASS] test_MakerEarns_CorrectBalances_SpotBelow1() (gas: 12144224)
+[PASS] test_MakerLoses_WrongBalances_SpotAbove1() (gas: 12141597)
+[PASS] test_MakerLoses_WrongBalances_SpotBelow1() (gas: 12141751)
+[PASS] test_PriceBounds_SpotAbove1() (gas: 186523)
+[PASS] test_PriceBounds_SpotBelow1() (gas: 186413)
+[PASS] test_QuoteEqualsSwap_HighPriceRatio() (gas: 278267)
+[PASS] test_QuoteEqualsSwap_SpotAbove1() (gas: 278459)
+[PASS] test_QuoteEqualsSwap_SpotBelow1() (gas: 278657)
+Suite result: ok. 12 passed; 0 failed; 0 skipped; finished in 1.26s (1.26s CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/invariants/XYCFeesInvariants.t.sol:XYCFeesInvariants
+[PASS] test_XYC() (gas: 3148978)
+[PASS] test_XYCDynamicProtocolFeeIn() (gas: 4164463)
+[PASS] test_XYCFlatFeeIn() (gas: 3230371)
+[PASS] test_XYCFlatFeeOut() (gas: 1283005)
+[PASS] test_XYCMultipleFees() (gas: 1487786)
+[PASS] test_XYCProtocolFee() (gas: 3741774)
+[PASS] test_XYCProtocolFeeIn() (gas: 3774749)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 76.89ms (75.24ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 6 tests for test/XYCSwap.t.sol:XYCSwapTest
+[PASS] test_XYCSwap_BasicSwap_NoFee() (gas: 132629)
+[PASS] test_XYCSwap_BasicSwap_WithFee() (gas: 134975)
+[PASS] test_XYCSwap_MultipleSwaps_UpdatesState() (gas: 158269)
+[PASS] test_XYCSwap_RoundingInvariants_HighFee() (gas: 18982610)
+[PASS] test_XYCSwap_RoundingInvariants_NoFee() (gas: 18196378)
+[PASS] test_XYCSwap_RoundingInvariants_WithFee() (gas: 18983220)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 873.47ms (871.51ms CPU time)
+
+Ran 25 tests for test/XYCSwapAqua.t.sol:XYCSwapAquaTest
+[PASS] test_Aqua_XYC_Dust_ExactIn_KInvariant() (gas: 339656)
+[PASS] test_Aqua_XYC_Dust_ExactIn_KInvariant_Balanced() (gas: 265071)
+[PASS] test_Aqua_XYC_Dust_ExactIn_SwapRateVsSpot() (gas: 337543)
+[PASS] test_Aqua_XYC_Dust_ExactOut_KInvariant() (gas: 340247)
+[PASS] test_Aqua_XYC_Dust_ExactOut_KInvariant_Balanced() (gas: 339206)
+[PASS] test_Aqua_XYC_Dust_ExactOut_SwapRateVsSpot() (gas: 337012)
+[PASS] test_Aqua_XYC_ExactIn_BalancesCorrect() (gas: 328162)
+[PASS] test_Aqua_XYC_ExactIn_NoRoundingAccumulation() (gas: 53994501)
+[PASS] test_Aqua_XYC_ExactIn_OverflowReverts() (gas: 262936)
+[PASS] test_Aqua_XYC_ExactIn_PriceImpactGrows() (gas: 580132)
+[PASS] test_Aqua_XYC_ExactIn_SingleBeatsSplit() (gas: 586633)
+[PASS] test_Aqua_XYC_ExactOut_BalancesCorrect() (gas: 349585)
+[PASS] test_Aqua_XYC_ExactOut_NoRoundingAccumulation() (gas: 54087738)
+[PASS] test_Aqua_XYC_ExactOut_OverflowReverts() (gas: 263654)
+[PASS] test_Aqua_XYC_ExactOut_PriceImpactGrows() (gas: 580990)
+[PASS] test_Aqua_XYC_ExactOut_SingleBeatsSplit() (gas: 588123)
+[PASS] test_Aqua_XYC_MaxAmount_ExactIn_KInvariant() (gas: 339482)
+[PASS] test_Aqua_XYC_MaxAmount_ExactIn_SwapRateVsSpot() (gas: 336659)
+[PASS] test_Aqua_XYC_MaxAmount_ExactOut_KInvariant() (gas: 339327)
+[PASS] test_Aqua_XYC_MaxAmount_ExactOut_SwapRateVsSpot() (gas: 337392)
+[PASS] test_Aqua_XYC_NoArbitrage_InThenIn() (gas: 376553)
+[PASS] test_Aqua_XYC_NoArbitrage_InThenOut() (gas: 380312)
+[PASS] test_Aqua_XYC_NoArbitrage_OutThenIn() (gas: 377461)
+[PASS] test_Aqua_XYC_NoArbitrage_OutThenOut() (gas: 379185)
+[PASS] test_Aqua_XYC_RoundingFavorsProtocol() (gas: 353135)
+Suite result: ok. 25 passed; 0 failed; 0 skipped; finished in 537.62ms (535.51ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/invariants/pegged/DustAmounts.t.sol:DustAmounts
+[PASS] test_Pegged() (gas: 3231860)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4185956)
+[PASS] test_PeggedFlatFeeIn() (gas: 3293745)
+[PASS] test_PeggedFlatFeeOut() (gas: 1234127)
+[PASS] test_PeggedMultipleFees() (gas: 1343881)
+[PASS] test_PeggedProtocolFee() (gas: 3785259)
+[PASS] test_PeggedProtocolFeeIn() (gas: 3857919)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 69.75ms (67.39ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 7 tests for test/invariants/pegged/HugeLiquidity.t.sol:HugeLiquidity
+[PASS] test_Pegged() (gas: 3463159)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4478228)
+[PASS] test_PeggedFlatFeeIn() (gas: 3544399)
+[PASS] test_PeggedFlatFeeOut() (gas: 1485030)
+[PASS] test_PeggedMultipleFees() (gas: 1653303)
+[PASS] test_PeggedProtocolFee() (gas: 4055687)
+[PASS] test_PeggedProtocolFeeIn() (gas: 4128243)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 82.06ms (79.12ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 7 tests for test/invariants/pegged/LargeAmounts.t.sol:LargeAmounts
+[PASS] test_Pegged() (gas: 3472466)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4487768)
+[PASS] test_PeggedFlatFeeIn() (gas: 3550055)
+[PASS] test_PeggedFlatFeeOut() (gas: 1490557)
+[PASS] test_PeggedMultipleFees() (gas: 1659162)
+[PASS] test_PeggedProtocolFee() (gas: 4065042)
+[PASS] test_PeggedProtocolFeeIn() (gas: 4137782)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 95.54ms (93.48ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 7 tests for test/invariants/pegged/SmallAmounts.t.sol:SmallAmounts
+[PASS] test_Pegged() (gas: 3466186)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4481488)
+[PASS] test_PeggedFlatFeeIn() (gas: 3543776)
+[PASS] test_PeggedFlatFeeOut() (gas: 1484162)
+[PASS] test_PeggedMultipleFees() (gas: 1652732)
+[PASS] test_PeggedProtocolFee() (gas: 4058762)
+[PASS] test_PeggedProtocolFeeIn() (gas: 4131502)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 109.43ms (105.35ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/invariants/pegged/TinyLiquidity.t.sol:TinyLiquidity
+[PASS] test_Pegged() (gas: 3466094)
+[PASS] test_PeggedDynamicProtocolFeeIn() (gas: 4481396)
+[PASS] test_PeggedFlatFeeIn() (gas: 3543684)
+[PASS] test_PeggedFlatFeeOut() (gas: 1484108)
+[PASS] test_PeggedMultipleFees() (gas: 1652662)
+[PASS] test_PeggedProtocolFee() (gas: 4058670)
+[PASS] test_PeggedProtocolFeeIn() (gas: 4131411)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 92.20ms (89.55ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 7 tests for test/invariants/xyc/BalancedPoolEdgeFees.t.sol:BalancedPoolEdgeFees
+[PASS] test_XYC() (gas: 3155010)
+[PASS] test_XYCDynamicProtocolFeeIn() (gas: 4170495)
+[PASS] test_XYCFlatFeeIn() (gas: 3224088)
+[PASS] test_XYCFlatFeeOut() (gas: 1289411)
+[PASS] test_XYCMultipleFees() (gas: 1481987)
+[PASS] test_XYCProtocolFee() (gas: 3747806)
+[PASS] test_XYCProtocolFeeIn() (gas: 3780781)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 73.66ms (71.72ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/invariants/xyc/DustAmounts.t.sol:DustAmounts
+[PASS] test_XYC() (gas: 7651609)
+[PASS] test_XYCDynamicProtocolFeeIn() (gas: 9204425)
+[PASS] test_XYCFlatFeeIn() (gas: 7837002)
+[PASS] test_XYCFlatFeeOut() (gas: 2965133)
+[PASS] test_XYCMultipleFees() (gas: 3184351)
+[PASS] test_XYCProtocolFee() (gas: 8541806)
+[PASS] test_XYCProtocolFeeIn() (gas: 8632128)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 183.48ms (181.62ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 7 tests for test/invariants/xyc/HugeLiquidity.t.sol:HugeLiquidity
+[PASS] test_XYC() (gas: 3148993)
+[PASS] test_XYCDynamicProtocolFeeIn() (gas: 4164478)
+[PASS] test_XYCFlatFeeIn() (gas: 3230386)
+[PASS] test_XYCFlatFeeOut() (gas: 1283005)
+[PASS] test_XYCMultipleFees() (gas: 1487786)
+[PASS] test_XYCProtocolFee() (gas: 3741824)
+[PASS] test_XYCProtocolFeeIn() (gas: 3774764)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 73.12ms (70.66ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/invariants/xyc/ImbalancedPoolHighFees.t.sol:ImbalancedPoolHighFees
+[PASS] test_XYC() (gas: 3146577)
+[PASS] test_XYCDynamicProtocolFeeIn() (gas: 4162078)
+[PASS] test_XYCFlatFeeIn() (gas: 3227970)
+[PASS] test_XYCFlatFeeOut() (gas: 1281202)
+[PASS] test_XYCMultipleFees() (gas: 1485995)
+[PASS] test_XYCProtocolFee() (gas: 3739322)
+[PASS] test_XYCProtocolFeeIn() (gas: 3772344)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 80.58ms (78.28ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/invariants/xyc/ImbalancedPoolLowFees.t.sol:ImbalancedPoolLowFees
+[PASS] test_XYC() (gas: 3142630)
+[PASS] test_XYCDynamicProtocolFeeIn() (gas: 4158138)
+[PASS] test_XYCFlatFeeIn() (gas: 3224022)
+[PASS] test_XYCFlatFeeOut() (gas: 1277322)
+[PASS] test_XYCMultipleFees() (gas: 1482115)
+[PASS] test_XYCProtocolFee() (gas: 3735501)
+[PASS] test_XYCProtocolFeeIn() (gas: 3768394)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 78.45ms (76.41ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/invariants/xyc/LargeAmounts.t.sol:LargeAmounts
+[PASS] test_XYC() (gas: 3155514)
+[PASS] test_XYCDynamicProtocolFeeIn() (gas: 4170999)
+[PASS] test_XYCFlatFeeIn() (gas: 3236907)
+[PASS] test_XYCFlatFeeOut() (gas: 1289537)
+[PASS] test_XYCMultipleFees() (gas: 1494317)
+[PASS] test_XYCProtocolFee() (gas: 3748263)
+[PASS] test_XYCProtocolFeeIn() (gas: 3781285)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 99.63ms (96.14ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 7 tests for test/invariants/xyc/SmallAmounts.t.sol:SmallAmounts
+[PASS] test_XYC() (gas: 4133531)
+[PASS] test_XYCDynamicProtocolFeeIn() (gas: 5382557)
+[PASS] test_XYCFlatFeeIn() (gas: 4236312)
+[PASS] test_XYCFlatFeeOut() (gas: 1639433)
+[PASS] test_XYCMultipleFees() (gas: 1894760)
+[PASS] test_XYCProtocolFee() (gas: 4909088)
+[PASS] test_XYCProtocolFeeIn() (gas: 4954098)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 131.24ms (126.86ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 7 tests for test/invariants/xyc/TinyLiquidity.t.sol:TinyLiquidity
+[PASS] test_XYC() (gas: 3148860)
+[PASS] test_XYCDynamicProtocolFeeIn() (gas: 4164344)
+[PASS] test_XYCFlatFeeIn() (gas: 3230252)
+[PASS] test_XYCFlatFeeOut() (gas: 1282981)
+[PASS] test_XYCMultipleFees() (gas: 1487780)
+[PASS] test_XYCProtocolFee() (gas: 3741702)
+[PASS] test_XYCProtocolFeeIn() (gas: 3774630)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 97.53ms (93.40ms CPU time)
+
+Ran 2 tests for test/StorageSlots.t.sol:StorageSlotsTest
+[PASS] test_StorageSlots() (gas: 3652)
+[PASS] test_StorageSlotsOpcodes() (gas: 156)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 315.20µs (86.80µs CPU time)
+
+Ran 2 tests for test/SwapVMAqua.t.sol:SwapVMAquaTest
+[PASS] test_Aqua_XYC_SimpleSwap() (gas: 316307)
+[PASS] test_Aqua_XYC_SwapWithFirstTransferFromTaker() (gas: 690489)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 3.60ms (1.46ms CPU time)
+
+Ran 16 tests for test/SwapVmAccounting.t.sol:SwapVmAccounting
+[PASS] test_DecayPeggedSwap_ProtocolFee_FlatFee_ExactIn() (gas: 294324)
+[PASS] test_DecayPeggedSwap_ProtocolFee_FlatFee_ExactOut() (gas: 293526)
+[PASS] test_DecayRegularSwap_ProtocolFee_FlatFee_ExactIn() (gas: 280843)
+[PASS] test_DecayRegularSwap_ProtocolFee_FlatFee_ExactOut() (gas: 281697)
+[PASS] test_DecayXYCConcentrate_ProtocolFee_FlatFee_ExactIn() (gas: 290297)
+[PASS] test_DecayXYCConcentrate_ProtocolFee_FlatFee_ExactOut() (gas: 290543)
+[PASS] test_XYCConcentrate_CompareCorrectVsWrongOrder_ExactIn() (gas: 294838)
+[PASS] test_XYCConcentrate_CompareCorrectVsWrongOrder_ExactOut() (gas: 295144)
+[PASS] test_XYCConcentrate_ProtocolFee_ExactIn() (gas: 186143)
+[PASS] test_XYCConcentrate_ProtocolFee_ExactOut() (gas: 186729)
+[PASS] test_XYCConcentrate_ProtocolFee_With_FlatFee_ExactIn() (gas: 189193)
+[PASS] test_XYCConcentrate_ProtocolFee_With_FlatFee_ExactOut() (gas: 189214)
+[PASS] test_XYCSwap_ProtocolFee_ExactIn() (gas: 180152)
+[PASS] test_XYCSwap_ProtocolFee_ExactOut() (gas: 179450)
+[PASS] test_XYCSwap_ProtocolFee_With_FlatFee_ExactIn() (gas: 182021)
+[PASS] test_XYCSwap_ProtocolFee_With_FlatFee_ExactOut() (gas: 182168)
+Suite result: ok. 16 passed; 0 failed; 0 skipped; finished in 26.47ms (24.14ms CPU time)
+
+Ran 1 test for test/SwapVmRescueFunds.t.sol:SwapVmRescueFundsTest
+[PASS] test_RescueFunds_ERC20() (gas: 70698)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 1.62ms (179.10µs CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  snapshot(): replaced by `snapshotState`
+  revertTo(uint256): replaced by `revertToState`
+Ran 8 tests for test/invariants/TWAPLimitSwapInvariants.t.sol:TWAPLimitSwapInvariants
+[PASS] test_TWAP_BasicInvariants() (gas: 3436503)
+[PASS] test_TWAP_FlatFeeIn() (gas: 3442541)
+[PASS] test_TWAP_FlatFeeOut() (gas: 1316865)
+[PASS] test_TWAP_HighPriceBumpWithFees() (gas: 629702)
+[PASS] test_TWAP_MultipleFees() (gas: 1675254)
+[PASS] test_TWAP_ProtocolFee() (gas: 782231)
+[PASS] test_TWAP_StatePersistence_Invariant() (gas: 279742)
+[PASS] test_TWAP_TimeProgressionWithFees() (gas: 277593)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 58.63ms (56.96ms CPU time)
+
+Ran 9 tests for test/TWAPSwap.t.sol:TWAPSwapTest
+[PASS] test_TWAPBoundaryConditions() (gas: 220865)
+[PASS] test_TWAPExponentialDecay() (gas: 242031)
+[PASS] test_TWAPIlliquidityBumpCalculation() (gas: 242800)
+[PASS] test_TWAPLinearUnlocking() (gas: 241189)
+[PASS] test_TWAPMinimumTradeAmount() (gas: 250459)
+[PASS] test_TWAPPriceBumpAfterIlliquidity() (gas: 207257)
+[PASS] test_TWAPSequentialTrades() (gas: 277920)
+[PASS] test_TWAP_CannotOverdraftLiquidity() (gas: 245646)
+[PASS] test_TWAP_CumulativeSoldTracking_Multiple_Swaps() (gas: 287337)
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 10.49ms (8.62ms CPU time)
+
+Ran 5 tests for test/TakerCallbackAquaNegative.t.sol:TakerCallbackAquaNegativeTest
+[PASS] test_TakerCallback_InsufficientPush_Reverts() (gas: 185867)
+[PASS] test_TakerCallback_NoPush_Reverts() (gas: 114280)
+[PASS] test_TakerCallback_Normal_Succeeds() (gas: 120984)
+[PASS] test_TakerCallback_OneWeiShort_Reverts() (gas: 185810)
+[PASS] test_TakerCallback_WrongOrderHash_Reverts() (gas: 141258)
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 20.42ms (17.30ms CPU time)
+
+Ran 23 tests for test/TakerTraits.t.sol:TakerTraitsTest
+[PASS] test_AllDataSlices_Populated() (gas: 127721)
+[PASS] test_Build_EmptyThreshold_Valid() (gas: 5441)
+[PASS] test_Build_ValidThreshold_32Bytes() (gas: 6081)
+[PASS] test_CombinedFeatures_DeadlineAndThreshold() (gas: 127237)
+[PASS] test_Deadline_AtCurrentTimestamp_Success() (gas: 122482)
+[PASS] test_Deadline_Expired_Reverts() (gas: 48545)
+[PASS] test_Deadline_NotSet_Success() (gas: 123021)
+[PASS] test_Deadline_Valid_Success() (gas: 123587)
+[PASS] test_ExactIn_MinThreshold_Fails() (gas: 49430)
+[PASS] test_ExactIn_MinThreshold_Success() (gas: 123679)
+[PASS] test_ExactIn_TakerAmountMismatch() (gas: 123309)
+[PASS] test_ExactOut_MaxThreshold_Fails() (gas: 49405)
+[PASS] test_ExactOut_MaxThreshold_Success() (gas: 123450)
+[PASS] test_ExactOut_TakerAmountMatch() (gas: 122772)
+[PASS] test_IsFirstTransferFromTaker_False() (gas: 123531)
+[PASS] test_IsFirstTransferFromTaker_True() (gas: 127624)
+[PASS] test_StrictThreshold_ExactMatch_Success() (gas: 123321)
+[PASS] test_StrictThreshold_Mismatch_Fails() (gas: 49751)
+[PASS] test_TakerHookData_EmptyWithMakerHooks() (gas: 2024528)
+[PASS] test_TakerHookData_OnlyPreTransferIn() (gas: 1831888)
+[PASS] test_TakerHookData_PassedToHooks() (gas: 2544057)
+[PASS] test_To_CustomRecipient() (gas: 131309)
+[PASS] test_To_NotSet_SendsToTaker() (gas: 130428)
+Suite result: ok. 23 passed; 0 failed; 0 skipped; finished in 16.94ms (14.28ms CPU time)
+
+Ran 6 tests for test/TakerTraitsPartialFill.t.sol:TakerTraitsPartialFillTest
+[PASS] testFuzz_AllowPartialFill_ExactIn(uint256,uint256,bool,bool) (runs: 256, μ: 36289, ~: 36268)
+[PASS] testFuzz_AllowPartialFill_ExactOut(uint256,uint256,bool,bool) (runs: 256, μ: 37128, ~: 37113)
+[PASS] testFuzz_ScaledThreshold_ExactIn(uint256,uint256,uint256,uint256,bool) (runs: 256, μ: 40014, ~: 40179)
+[PASS] testFuzz_ScaledThreshold_ExactOut(uint256,uint256,uint256,uint256,bool) (runs: 256, μ: 39709, ~: 39874)
+[PASS] testFuzz_StrictThreshold_ExactIn(uint256,uint256,uint256,uint256,bool) (runs: 256, μ: 39145, ~: 39303)
+[PASS] testFuzz_StrictThreshold_ExactOut(uint256,uint256,uint256,uint256,bool) (runs: 256, μ: 39318, ~: 39452)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 412.24ms (410.50ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 4 tests for test/invariants/concentrate/TinyLiquidity.t.sol:TinyLiquidity
+[PASS] test_ConcentrateXYC() (gas: 3283863)
+[PASS] test_ConcentrateXYCFlatFeeIn() (gas: 3366908)
+[PASS] test_ConcentrateXYCMultipleFees() (gas: 3959788)
+[PASS] test_ConcentrateXYCProtocolFee() (gas: 3877779)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 60.17ms (56.90ms CPU time)
+
+Ran 4 tests for test/TransferModesCombinations.t.sol:TransferModesCombinationsTest
+[PASS] test_AquaMaker_TakerAquaPush() (gas: 349119)
+[PASS] test_AquaMaker_TakerCallback() (gas: 685935)
+[PASS] test_DirectMaker_TakerCallback() (gas: 526003)
+[PASS] test_DirectMaker_TakerDirect() (gas: 251549)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 6.67ms (3.06ms CPU time)
+
+Ran 10 tests for test/Strategies.t.sol:StrategiesTest
+[PASS] testFuzz_Strategies_QuoteLimitOrderRate(uint256,uint256,uint256) (runs: 256, μ: 50163, ~: 50321)
+[PASS] testFuzz_Strategies_QuoteXYCConcentrateOrderInBounds(uint256,uint256,uint256,uint256,uint256,uint256,bool) (runs: 256, μ: 121002, ~: 121017)
+[PASS] test_Strategies_BuildLimitOrder() (gas: 9538)
+[PASS] test_Strategies_BuildLimitOrderWithPrefix() (gas: 14569)
+[PASS] test_Strategies_BuildXYCConcentrateOrder() (gas: 12092)
+[PASS] test_Strategies_RevertFeeBpsOutOfRange() (gas: 8958)
+[PASS] test_Strategies_RevertInvalidPriceBounds() (gas: 9660)
+[PASS] test_Strategies_RevertPrefixPadded() (gas: 9762)
+[PASS] test_Strategies_RevertPrefixTruncated() (gas: 11183)
+[PASS] test_Strategies_RevertPrefixUnregistered() (gas: 9694)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 923.49ms (922.13ms CPU time)
+
+Ran 3 tests for test/SwapVM.t.sol:SwapVMTest
+[PASS] test_LimitSwapWithTokenOutInvalidator() (gas: 328546)
+[PASS] test_LimitSwapWithoutInvalidator_ReusableOrder() (gas: 161520)
+[PASS] test_SwappedEvent_EmitsCorrectParameters() (gas: 128811)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 14.52ms (12.16ms CPU time)
+
+Warning: the following cheatcode(s) are deprecated and will be removed in future versions:
+  revertTo(uint256): replaced by `revertToState`
+  snapshot(): replaced by `snapshotState`
+Ran 4 tests for test/invariants/concentrate/SmallAmounts.t.sol:SmallAmounts
+[PASS] test_ConcentrateXYC() (gas: 5319347)
+[PASS] test_ConcentrateXYCFlatFeeIn() (gas: 5445171)
+[PASS] test_ConcentrateXYCMultipleFees() (gas: 6403544)
+[PASS] test_ConcentrateXYCProtocolFee() (gas: 6278885)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 97.49ms (95.34ms CPU time)
+
+Ran 8 tests for test/SeriesEpochManager.t.sol:SeriesEpochManagerTest
+[PASS] testFuzz_SeriesEpochManager(uint256,uint8[17],uint8[17],uint256) (runs: 256, μ: 3642144, ~: 3601705)
+[PASS] test_SeriesEpochManager_AdvanceBoundary_MaxAmount() (gas: 331728)
+[PASS] test_SeriesEpochManager_AdvanceBoundary_MinAmount() (gas: 269362)
+[PASS] test_SeriesEpochManager_AdvanceZeroReverts() (gas: 14812)
+[PASS] test_SeriesEpochManager_Basic() (gas: 851054)
+[PASS] test_SeriesEpochManager_Counters() (gas: 130549)
+[PASS] test_SeriesEpochManager_DistinctMakers() (gas: 404923)
+[PASS] test_SeriesEpochManager_SkipManyEpochsCancelsIntermediates() (gas: 887189)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 17.79s (17.83s CPU time)
+
+Ran 11 tests for test/PiecewiseLinearScale.t.sol:PiecewiseLinearScaleTest
+[PASS] testFuzz_PiecewiseLinearScale_DutchExample_MakerExactIn(uint256,uint256,uint8,uint32,uint24[17],uint16[16]) (runs: 256, μ: 483194, ~: 409881)
+[PASS] testFuzz_PiecewiseLinearScale_DutchExample_MakerExactOut(uint256,uint256,uint8,uint32,uint24[17],uint16[16]) (runs: 256, μ: 485241, ~: 411994)
+[PASS] testFuzz_PiecewiseLinearScale_UnscaleValue(uint256,uint24) (runs: 256, μ: 4961, ~: 4931)
+[PASS] test_PiecewiseLinearScale_Basic() (gas: 343169)
+[PASS] test_PiecewiseLinearScale_GasBenchmark() (gas: 17184935)
+[PASS] test_PiecewiseLinearScale_ZeroDuration_Double() (gas: 110368)
+[PASS] test_PiecewiseLinearScale_ZeroDuration_DoubleWrapped() (gas: 169095)
+[PASS] test_PiecewiseLinearScale_ZeroDuration_Single() (gas: 109330)
+[PASS] test_PiecewiseLinearScale_ZeroDuration_SingleFirst() (gas: 129446)
+[PASS] test_PiecewiseLinearScale_ZeroDuration_SingleLast() (gas: 148322)
+[PASS] test_PiecewiseLinearScale_ZeroDuration_SingleWrapped() (gas: 168759)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 21.31s (21.55s CPU time)
+
+Ran 1 test for test/PrivateOrder.t.sol:PrivateOrderTest
+[PASS] test_PrivateOrder() (gas: 56927)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 2.08ms (446.10µs CPU time)
+
+Ran 7 tests for test/ProtocolFee.t.sol:ProtocolFeeTest
+[PASS] test_ProtocolFeeAmountIn_ExactIn_ReceivedByRecipient() (gas: 175889)
+[PASS] test_ProtocolFeeAmountIn_ExactOut_ReceivedByRecipient() (gas: 177268)
+[PASS] test_ProtocolFeeAmountIn_WithFlatFeeIn_ExactIn() (gas: 177668)
+[PASS] test_ProtocolFee_ExactIn_WithFlatFeeGivesWorseRate() (gas: 206226)
+[PASS] test_ProtocolFee_ExactOut_WithFlatFeeGivesWorseRate() (gas: 207161)
+[PASS] test_ProtocolFee_Only_ExactIn_ReceivedByRecipient() (gas: 175271)
+[PASS] test_ProtocolFee_Only_ExactOut_ReceivedByRecipient() (gas: 176192)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 7.16ms (7.93ms CPU time)
+
+Ran 5 tests for test/ProtocolFeeAqua.t.sol:ProtocolFeeAquaTest
+[PASS] test_Aqua_ProtocolFee_ExactIn_ReceivedByRecipient() (gas: 377307)
+[PASS] test_Aqua_ProtocolFee_ExactIn_WithFlatFeeIn() (gas: 379577)
+[PASS] test_Aqua_ProtocolFee_ExactOut_ReceivedByRecipient() (gas: 398150)
+[PASS] test_Aqua_ProtocolFee_ExactOut_WithFlatFeeIn() (gas: 397853)
+[PASS] test_Aqua_ProtocolFee_WithFlatFeeIn_Consistency() (gas: 247209)
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 5.11ms (4.34ms CPU time)
+
+Ran 103 test suites in 21.56s (58.50s CPU time): 807 tests passed, 0 failed, 0 skipped (807 total tests)

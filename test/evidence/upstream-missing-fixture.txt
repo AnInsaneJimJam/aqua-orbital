@@ -1,0 +1,37 @@
+Compiler run failed:
+Error (6275): Source "vendor/swap-vm-orbital/mocks/ProtocolFeeProviderMock.sol" not found: File not found. Searched the following locations: "/Users/gujja/aqua-orbital/packages/contracts".
+ParserError: Source "vendor/swap-vm-orbital/mocks/ProtocolFeeProviderMock.sol" not found: File not found. Searched the following locations: "/Users/gujja/aqua-orbital/packages/contracts".
+  --> vendor/swap-vm-orbital/test/DynamicProtocolFee.t.sol:25:1:
+   |
+25 | import { ProtocolFeeProviderMock } from "../mocks/ProtocolFeeProviderMock.sol";
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error (6275): Source "vendor/swap-vm-orbital/mocks/ProtocolFeeProviderMock.sol" not found: File not found. Searched the following locations: "/Users/gujja/aqua-orbital/packages/contracts".
+ParserError: Source "vendor/swap-vm-orbital/mocks/ProtocolFeeProviderMock.sol" not found: File not found. Searched the following locations: "/Users/gujja/aqua-orbital/packages/contracts".
+  --> vendor/swap-vm-orbital/test/FeeProtocolCombinations.t.sol:22:1:
+   |
+22 | import { ProtocolFeeProviderMock } from "../mocks/ProtocolFeeProviderMock.sol";
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error (6275): Source "vendor/swap-vm-orbital/mocks/ProtocolFeeProviderMock.sol" not found: File not found. Searched the following locations: "/Users/gujja/aqua-orbital/packages/contracts".
+ParserError: Source "vendor/swap-vm-orbital/mocks/ProtocolFeeProviderMock.sol" not found: File not found. Searched the following locations: "/Users/gujja/aqua-orbital/packages/contracts".
+  --> vendor/swap-vm-orbital/test/ProtocolFeeProviderMock.t.sol:11:1:
+   |
+11 | import { ProtocolFeeProviderMock } from "../mocks/ProtocolFeeProviderMock.sol";
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error (6275): Source "vendor/swap-vm-orbital/mocks/ProtocolFeeProviderMock.sol" not found: File not found. Searched the following locations: "/Users/gujja/aqua-orbital/packages/contracts".
+ParserError: Source "vendor/swap-vm-orbital/mocks/ProtocolFeeProviderMock.sol" not found: File not found. Searched the following locations: "/Users/gujja/aqua-orbital/packages/contracts".
+  --> vendor/swap-vm-orbital/test/invariants/PeggedFeesInvariants.t.sol:23:1:
+   |
+23 | import { ProtocolFeeProviderMock } from "../../mocks/ProtocolFeeProviderMock.sol";
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error (6275): Source "vendor/swap-vm-orbital/mocks/ProtocolFeeProviderMock.sol" not found: File not found. Searched the following locations: "/Users/gujja/aqua-orbital/packages/contracts".
+ParserError: Source "vendor/swap-vm-orbital/mocks/ProtocolFeeProviderMock.sol" not found: File not found. Searched the following locations: "/Users/gujja/aqua-orbital/packages/contracts".
+  --> vendor/swap-vm-orbital/test/invariants/XYCFeesInvariants.t.sol:23:1:
+   |
+23 | import { ProtocolFeeProviderMock } from "../../mocks/ProtocolFeeProviderMock.sol";
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: Compilation failed

@@ -17,7 +17,7 @@ for name,(url,revision) in SOURCES.items():
  dest=ROOT/'packages/contracts/vendor'/name
  hashes={}
  for file in tree:
-  if not(file.startswith(('src/','test/','LICENSE')) or file in ['LICENSE','README.md','package.json','foundry.toml']): continue
+  if not(file.startswith(('src/','test/','mocks/','LICENSE')) or file in ['LICENSE','README.md','package.json','foundry.toml']): continue
   content=subprocess.check_output(['git','-C',str(cache),'show',f'{commit}:{file}'])
   path=dest/file; path.parent.mkdir(parents=True,exist_ok=True); path.write_bytes(content)
   hashes[file]=hashlib.sha256(content).hexdigest()
