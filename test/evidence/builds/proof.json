@@ -1,29 +1,47 @@
 {
-  "generatedAt": "2026-09-07T23:58:11.636Z",
+  "generatedAt": "2026-09-08T09:14:47.989Z",
   "items": [
     {
       "id": "reference",
       "label": "Independent reference fixtures",
       "status": "verified",
-      "detail": "15 bounded numerical regressions; selected 110/160-digit checks. This is not a proof of the production solver."
+      "detail": "119 recorded bounded numerical regressions; selected 110/160-digit checks. This is not a proof of the production solver."
     },
     {
       "id": "contracts",
       "label": "Local contract tests",
       "status": "verified",
-      "detail": "27 unit/probe tests, including local primitive fuzz cases. The six-pair Aqua probe and payment router double do not execute the Orbital curve."
+      "detail": "388 recorded tests, including real six-pair interior Aqua swaps, an initialized mixed outward/reverse sequence, an invoice and local security/cycle checks. Separate receipt probes and frozen campaigns retain their source boundaries. Full release campaigns remain outstanding."
+    },
+    {
+      "id": "sdk",
+      "label": "SDK transaction plans and recovery",
+      "status": "verified",
+      "detail": "76 recorded fixture tests for local calldata construction, review validation and wallet execution recovery. No live wallet transaction is claimed."
+    },
+    {
+      "id": "indexer",
+      "label": "Canonical ingestion and projections",
+      "status": "verified",
+      "detail": "37 recorded PostgreSQL/worker tests. Bounded replay, lifecycle/invoice and canonical swap-receipt projections with separate backfill coverage are implemented. Full rebuild campaigns and incomplete shipment coverage remain outstanding."
+    },
+    {
+      "id": "api",
+      "label": "Canonical read API and recovery",
+      "status": "verified",
+      "detail": "130 recorded local API tests, including receipt metrics, pinned invoice reads, registered strategy financial observations, coverage checks and readiness/recovery. These use database/RPC fixtures and do not establish live Arc activity or financial eligibility."
     },
     {
       "id": "engine",
-      "label": "Certified Orbital swap engine",
+      "label": "Complete engine release acceptance",
       "status": "not-run",
-      "detail": "Complete integer traversal and rounded-state path proof remain unfinished. Financial execution is unavailable."
+      "detail": "Certified interior and mixed paths execute locally through both custom instructions with one final payout and shared crossing/refinement budgets. Equality/discovery liveness, broad differential/economic campaigns and worst-range transaction gas remain open. Financial UI submission remains unavailable."
     },
     {
       "id": "browser",
       "label": "Development browser workflows",
       "status": "verified",
-      "detail": "Isolated external-wallet fixtures, navigation, guarded strategy preview and 320px layout. Production performance and full accessibility campaigns are outstanding."
+      "detail": "19 recorded tests: validated swap observations with expiry/context recovery, public invoice reads, external-wallet fixtures, navigation and 320px layout. Synthetic HTTP receipts are not live transactions. Production performance and full accessibility campaigns are outstanding."
     },
     {
       "id": "privy-login",

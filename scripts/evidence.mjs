@@ -16,16 +16,39 @@ async function log(path){try{const data=await readFile(path);return data[0]===25
 const reference=await log('test/evidence/reference-audit/tests.txt');
 const contracts=await log('test/evidence/contracts.txt');
 const browser=await log('test/evidence/browser.txt');
+const sdk=await log('test/evidence/sdk-green.txt');
+const db=await log('test/evidence/database.txt');
+const indexer=await log('test/evidence/indexer.txt');
+const api=await log('test/evidence/api.txt');
+const referenceCount=Number([...reference.matchAll(/Ran (\d+) tests?\b/g)].at(-1)?.[1]??0);
+const contractRun=[...contracts.matchAll(/: (\d+) tests passed, (\d+) failed, (\d+) skipped \(/g)].at(-1);
+const contractCount=Number(contractRun?.[1]??0);
+function tapCount(contents){
+ const passed=Number([...contents.matchAll(/(?:#|ℹ) pass (\d+)/g)].at(-1)?.[1]??0);
+ const failed=[...contents.matchAll(/(?:#|ℹ) fail (\d+)/g)].at(-1)?.[1];
+ const skipped=[...contents.matchAll(/(?:#|ℹ) skipped (\d+)/g)].at(-1)?.[1];
+ return passed>0&&failed==='0'&&skipped==='0'?passed:0;
+}
+const sdkCount=tapCount(sdk),dbCount=tapCount(db),indexerCount=tapCount(indexer),apiCount=tapCount(api);
+const browserCount=Number([...browser.matchAll(/\b(\d+) passed\s*\(/g)].at(-1)?.[1]??0);
 let privy=false;try{privy=JSON.parse(await readFile('test/evidence/privy-login.json','utf8')).loginVisible===true;}catch{}
 const items=[
- {id:'reference',label:'Independent reference fixtures',status:/Ran 15 tests/.test(reference)&&/\bOK\b/.test(reference)?'verified':'unavailable',detail:'15 bounded numerical regressions; selected 110/160-digit checks. This is not a proof of the production solver.'},
- {id:'contracts',label:'Local contract tests',status:/27 tests passed, 0 failed/.test(contracts)?'verified':'unavailable',detail:'27 unit/probe tests, including local primitive fuzz cases. The six-pair Aqua probe and payment router double do not execute the Orbital curve.'},
- {id:'engine',label:'Certified Orbital swap engine',status:'not-run',detail:'Complete integer traversal and rounded-state path proof remain unfinished. Financial execution is unavailable.'},
- {id:'browser',label:'Development browser workflows',status:/4 passed/.test(browser)&&!/\d+ failed/.test(browser)?'verified':'failed',detail:'Isolated external-wallet fixtures, navigation, guarded strategy preview and 320px layout. Production performance and full accessibility campaigns are outstanding.'},
+ {id:'reference',label:'Independent reference fixtures',status:referenceCount>0&&/^OK\s*$/m.test(reference)?'verified':'unavailable',detail:`${referenceCount} recorded bounded numerical regressions; selected 110/160-digit checks. This is not a proof of the production solver.`},
+ {id:'contracts',label:'Local contract tests',status:contractCount>0&&contractRun?.[2]==='0'&&contractRun?.[3]==='0'?'verified':'unavailable',detail:`${contractCount} recorded tests, including real six-pair interior Aqua swaps, an initialized mixed outward/reverse sequence, an invoice and local security/cycle checks. Separate receipt probes and frozen campaigns retain their source boundaries. Full release campaigns remain outstanding.`},
+ {id:'sdk',label:'SDK transaction plans and recovery',status:sdkCount?'verified':'unavailable',detail:`${sdkCount} recorded fixture tests for local calldata construction, review validation and wallet execution recovery. No live wallet transaction is claimed.`},
+ {id:'indexer',label:'Canonical ingestion and projections',status:dbCount&&indexerCount?'verified':'unavailable',detail:`${dbCount+indexerCount} recorded PostgreSQL/worker tests. Bounded replay, lifecycle/invoice and canonical swap-receipt projections with separate backfill coverage are implemented. Full rebuild campaigns and incomplete shipment coverage remain outstanding.`},
+ {id:'api',label:'Canonical read API and recovery',status:apiCount?'verified':'unavailable',detail:`${apiCount} recorded local API tests, including receipt metrics, pinned invoice reads, registered strategy financial observations, coverage checks and readiness/recovery. These use database/RPC fixtures and do not establish live Arc activity or financial eligibility.`},
+ {id:'engine',label:'Complete engine release acceptance',status:'not-run',detail:'Certified interior and mixed paths execute locally through both custom instructions with one final payout and shared crossing/refinement budgets. Equality/discovery liveness, broad differential/economic campaigns and worst-range transaction gas remain open. Financial UI submission remains unavailable.'},
+ {id:'browser',label:'Development browser workflows',status:browserCount&&!/\d+ failed/.test(browser)?'verified':'failed',detail:`${browserCount} recorded tests: validated swap observations with expiry/context recovery, public invoice reads, external-wallet fixtures, navigation and 320px layout. Synthetic HTTP receipts are not live transactions. Production performance and full accessibility campaigns are outstanding.`},
  {id:'privy-login',label:'Privy sign-in interface',status:privy?'verified':'unavailable',detail:'Public email/external-wallet sign-in UI only. Wallet creation, reconnection and hosted signatures are not verified.'},
  {id:'privy-flow',label:'Privy financial-flow qualification',status:'not-run',detail:'Requires a real embedded-wallet Orbital swap and swap-funded USDC invoice with receipts.'},
  {id:'arc',label:'Arc deployment identity',status:'unavailable',detail:'The recorded Aqua candidate has empty runtime code on Arc Testnet. No verified Orbital deployment or transaction receipts exist.'},
  {id:'release',label:'Release campaigns / independent security audit',status:'not-run',detail:'Full differential, invariant, mutation, gas and release campaigns remain outstanding. No independent security audit is claimed.'}
 ];
-await writeFile('test/evidence/builds/proof.json',JSON.stringify({generatedAt:new Date().toISOString(),items},null,2)+'\n');
+// Refresh the source inventory while retaining the observation timestamp when
+// the public proof payload is unchanged.
+let previousProof;try{previousProof=JSON.parse(await readFile('test/evidence/builds/proof.json','utf8'));}catch{}
+if(JSON.stringify(previousProof?.items)!==JSON.stringify(items)){
+ await writeFile('test/evidence/builds/proof.json',JSON.stringify({generatedAt:new Date().toISOString(),items},null,2)+'\n');
+}
 console.log('Wrote bounded observation summaries for the proof page.');

@@ -7,48 +7,198 @@
 > tsx --test test/*.test.ts
 
 TAP version 13
-# Subtest: worker reorg recovery runs without new confirmed blocks, replays, then resumes idempotently
-ok 1 - worker reorg recovery runs without new confirmed blocks, replays, then resumes idempotently
+# Subtest: compiled lifecycle and invoice logs materialize atomically with exact amounts and same-block ordering
+ok 1 - compiled lifecycle and invoice logs materialize atomically with exact amounts and same-block ordering
   ---
-  duration_ms: 2121.0934
+  duration_ms: 1324.5987
+  type: 'test'
+  ...
+# Subtest: materialization delete failure rolls back reorg logs, snapshots and deployment cursor together
+ok 2 - materialization delete failure rolls back reorg logs, snapshots and deployment cursor together
+  ---
+  duration_ms: 834.9473
+  type: 'test'
+  ...
+# Subtest: only committed projections publish invalidations; unknown events remain raw without swap metrics
+ok 3 - only committed projections publish invalidations; unknown events remain raw without swap metrics
+  ---
+  duration_ms: 700.8755
+  type: 'test'
+  ...
+# Subtest: activation hydration is capped per block and uses at most four simultaneous calls
+ok 4 - activation hydration is capped per block and uses at most four simultaneous calls
+  ---
+  duration_ms: 1005.1154
+  type: 'test'
+  ...
+# Subtest: reorg restores prior lifecycle/invoice snapshot and deployment cursor, then replay replaces orphan status
+ok 5 - reorg restores prior lifecycle/invoice snapshot and deployment cursor, then replay replaces orphan status
+  ---
+  duration_ms: 843.2686
+  type: 'test'
+  ...
+# Subtest: orphaning a deployment first block removes its projection cursor and restart begins at its own start
+ok 6 - orphaning a deployment first block removes its projection cursor and restart begins at its own start
+  ---
+  duration_ms: 856.4135
+  type: 'test'
+  ...
+# Subtest: a second deployment backfills its own cursor without borrowing the first deployment materialization
+ok 7 - a second deployment backfills its own cursor without borrowing the first deployment materialization
+  ---
+  duration_ms: 809.4941
+  type: 'test'
+  ...
+# Subtest: bad decoded transition rolls back raw logs, snapshots and both cursors for the whole block
+ok 8 - bad decoded transition rolls back raw logs, snapshots and both cursors for the whole block
+  ---
+  duration_ms: 606.2133
+  type: 'test'
+  ...
+# Subtest: hash-pinned hydration mismatch, invalid log identity and malformed ABI fail before materialization
+ok 9 - hash-pinned hydration mismatch, invalid log identity and malformed ABI fail before materialization
+  ---
+  duration_ms: 550.0347
+  type: 'test'
+  ...
+# Subtest: unverified deployment, wrong chain, missing historic call and branch change cannot commit
+ok 10 - unverified deployment, wrong chain, missing historic call and branch change cannot commit
+  ---
+  duration_ms: 459.396
+  type: 'test'
+  ...
+# Subtest: large invoice recipient floors use exact integer division and the final recipient receives the remainder
+ok 11 - large invoice recipient floors use exact integer division and the final recipient receives the remainder
+  ---
+  duration_ms: 475.2591
+  type: 'test'
+  ...
+# Subtest: historic hydration uses canonical EIP-1898 and log retrieval uses exact block hash
+ok 12 - historic hydration uses canonical EIP-1898 and log retrieval uses exact block hash
+  ---
+  duration_ms: 105.6357
+  type: 'test'
+  ...
+# Subtest: only read transport failures retry, while JSON-RPC errors remain one request
+ok 13 - only read transport failures retry, while JSON-RPC errors remain one request
+  ---
+  duration_ms: 1017.1599
+  type: 'test'
+  ...
+# Subtest: stalled read aborts within the request deadline and response size is bounded
+ok 14 - stalled read aborts within the request deadline and response size is bounded
+  ---
+  duration_ms: 38.2243
+  type: 'test'
+  ...
+# Subtest: eight-request capacity and shutdown release all pending read operations
+ok 15 - eight-request capacity and shutdown release all pending read operations
+  ---
+  duration_ms: 8.129
+  type: 'test'
+  ...
+# Subtest: same-block activation, exact wide swaps and retirement preserve receipt facts, sequence and raw pair totals
+ok 16 - same-block activation, exact wide swaps and retirement preserve receipt facts, sequence and raw pair totals
+  ---
+  duration_ms: 1210.0108
+  type: 'test'
+  ...
+# Subtest: invalid immutable context, money, identities, version and crossing metadata reject the entire block
+ok 17 - invalid immutable context, money, identities, version and crossing metadata reject the entire block
+  ---
+  duration_ms: 2941.0925
+  type: 'test'
+  ...
+# Subtest: canonical rollback removes swap receipts, totals and version snapshot before alternative replay
+ok 18 - canonical rollback removes swap receipts, totals and version snapshot before alternative replay
+  ---
+  duration_ms: 798.8374
+  type: 'test'
+  ...
+# Subtest: swap receipt deletion failure atomically preserves the entire canonical branch
+ok 19 - swap receipt deletion failure atomically preserves the entire canonical branch
+  ---
+  duration_ms: 714.3845
+  type: 'test'
+  ...
+# Subtest: legacy canonical blocks backfill chronologically before advancing and never refresh readiness timestamps
+ok 20 - legacy canonical blocks backfill chronologically before advancing and never refresh readiness timestamps
+  ---
+  duration_ms: 1033.7729
+  type: 'test'
+  ...
+# Subtest: same-block legacy activation and future retirement do not contaminate backfilled swap predecessor
+ok 21 - same-block legacy activation and future retirement do not contaminate backfilled swap predecessor
+  ---
+  duration_ms: 678.5714
+  type: 'test'
+  ...
+# Subtest: database rejects out-of-range uint256/version and invalid receipt relations
+ok 22 - database rejects out-of-range uint256/version and invalid receipt relations
+  ---
+  duration_ms: 699.5476
+  type: 'test'
+  ...
+# Subtest: a late legacy retirement version gap rolls back every newly backfilled receipt and coverage marker
+ok 23 - a late legacy retirement version gap rolls back every newly backfilled receipt and coverage marker
+  ---
+  duration_ms: 658.5173
+  type: 'test'
+  ...
+# Subtest: PostgreSQL fee validation retains a fractional raw atom at large integer magnitudes
+ok 24 - PostgreSQL fee validation retains a fractional raw atom at large integer magnitudes
+  ---
+  duration_ms: 656.9904
+  type: 'test'
+  ...
+# Subtest: a concurrently extended canonical router log set invalidates a stale backfill batch
+ok 25 - a concurrently extended canonical router log set invalidates a stale backfill batch
+  ---
+  duration_ms: 753.0588
+  type: 'test'
+  ...
+# Subtest: worker reorg recovery runs without new confirmed blocks, replays, then resumes idempotently
+ok 26 - worker reorg recovery runs without new confirmed blocks, replays, then resumes idempotently
+  ---
+  duration_ms: 2961.2033
   type: 'test'
   ...
 # Subtest: RPC changes while the common ancestor is scanned cause retry without rollback
-ok 2 - RPC changes while the common ancestor is scanned cause retry without rollback
+ok 27 - RPC changes while the common ancestor is scanned cause retry without rollback
   ---
-  duration_ms: 551.7586
+  duration_ms: 791.7688
   type: 'test'
   ...
 # Subtest: an RPC missing a stored block does not delete history or declare a deep reorg
-ok 3 - an RPC missing a stored block does not delete history or declare a deep reorg
+ok 28 - an RPC missing a stored block does not delete history or declare a deep reorg
   ---
-  duration_ms: 697.8283
+  duration_ms: 713.8292
   type: 'test'
   ...
 # Subtest: a lagging RPC head cannot delete potentially canonical stored history
-ok 4 - a lagging RPC head cannot delete potentially canonical stored history
+ok 29 - a lagging RPC head cannot delete potentially canonical stored history
   ---
-  duration_ms: 662.7241
+  duration_ms: 922.515
   type: 'test'
   ...
 # Subtest: mixed block logs, removed logs and unverified emitters cannot advance the cursor
-ok 5 - mixed block logs, removed logs and unverified emitters cannot advance the cursor
+ok 30 - mixed block logs, removed logs and unverified emitters cannot advance the cursor
   ---
-  duration_ms: 546.1495
+  duration_ms: 969.2368
   type: 'test'
   ...
 # Subtest: persistent resync state prevents RPC and further automatic ingestion after restart
-ok 6 - persistent resync state prevents RPC and further automatic ingestion after restart
+ok 31 - persistent resync state prevents RPC and further automatic ingestion after restart
   ---
-  duration_ms: 556.3354
+  duration_ms: 625.0795
   type: 'test'
   ...
-1..6
-# tests 6
+1..31
+# tests 31
 # suites 0
-# pass 6
+# pass 31
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 8192.7673
+# duration_ms 19703.4666

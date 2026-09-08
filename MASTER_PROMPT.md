@@ -165,7 +165,7 @@ Frontend wallet state uses wagmi and TanStack Query; forms use React Hook Form a
 | `libraries/{TickGeometry,OrbitalMath,TickBook,SwapEngine,WideMath}.sol` | Mathematical/numerical modules retained from the original design |
 | `libraries/OrbitalOrderCodec.sol` | Canonical config/order/program/taker-argument validation, shared encoding fixtures |
 | `OrbitalPayments.sol` | Invoice creation/cancellation, atomic swap-and-pay/direct-USDC payment, splits, replay protection |
-| `test/tokens/{DemoDollar6,DemoDollar18}.sol` | Explicit testnet-only standard token fixtures and bounded faucet behavior |
+| `src/OrbitalDemoDollar.sol`, `test/DemoDollar.t.sol` | Explicit local/Arc-testnet standard demo tokens, immutable 6/18 precision and bounded faucet behavior |
 
 Do not deploy a separate LP vault, old OrbitalPool, fee escrow, share token, or per-tick custody contract. Per-tick baskets are mathematical state inside a maker-owned strategy.
 

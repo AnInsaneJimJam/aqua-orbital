@@ -53,3 +53,14 @@ event list and a continuous path. No mathematical-token changes were made in
 this conservative prose review. Separate source/proof reviews and the updated
 281-contract/73-reference checkpoint provide the substantive evidence; they
 still do not close full traversal, equality, liveness or release obligations.
+
+The later status reconciliation preserves these earlier checkpoint scopes.
+PAPER_IMPLEMENTATION and the numerical ledger now link the implemented
+conditional mixed-path composition, strict negative-price exclusion, final
+retention and actual Router settlement. The current full checkpoint records
+388 contract and 119 reference tests; the separate mixed-invoice regression
+records two additional tests and its own mined receipts. This reconciliation
+changes status prose, not mathematical formulas or the authenticated oracle
+witnesses. Exact ideal event equality, initial-order/discovery liveness, mixed
+economic histories and the release campaign gaps remain explicit in
+`docs/audits/RELEASE_GAP_REVIEW.md`.
