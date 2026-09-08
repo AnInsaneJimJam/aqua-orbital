@@ -1,0 +1,57 @@
+{
+  "scope": "fresh Chromium with RPC host deliberately blocked and extension body attributes injected; actual read-only Arc RPC, no wallet/auth/signatures",
+  "results": [
+    {
+      "origin": "http://localhost:3002",
+      "observedAt": "2026-09-08T22:47:10.519Z",
+      "httpStatus": 200,
+      "rpc": {
+        "directBlocked": true,
+        "chain": "0x4cef52",
+        "block": "0x3a4f742",
+        "balances": [
+          {
+            "symbol": "oUSD6",
+            "raw": "1000000000"
+          },
+          {
+            "symbol": "oUSD18",
+            "raw": "1000000000000000000000"
+          }
+        ],
+        "nativeBalance": "19394113296089900512",
+        "simulation": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "gas": "26327"
+      },
+      "modalCount": 1,
+      "blockedRequests": 1,
+      "errors": []
+    },
+    {
+      "origin": "http://127.0.0.1:3002",
+      "observedAt": "2026-09-08T22:47:15.681Z",
+      "httpStatus": 200,
+      "rpc": {
+        "directBlocked": true,
+        "chain": "0x4cef52",
+        "block": "0x3a4f74a",
+        "balances": [
+          {
+            "symbol": "oUSD6",
+            "raw": "1000000000"
+          },
+          {
+            "symbol": "oUSD18",
+            "raw": "1000000000000000000000"
+          }
+        ],
+        "nativeBalance": "19394113296089900512",
+        "simulation": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "gas": "26327"
+      },
+      "modalCount": 1,
+      "blockedRequests": 1,
+      "errors": []
+    }
+  ]
+}

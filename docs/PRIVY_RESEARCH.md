@@ -1,5 +1,7 @@
 # Privy integration and qualification
 
+Latest browser repair: configured the installed 3.40.0 SDK's `externalWallets.coinbaseWallet.config.preference.options` as `eoaOnly`, with detected Ethereum wallets and explicit ordinary wallet choices. Connection attempts and automatic active-wallet selection are guarded to avoid overlapping permission requests. Shared wagmi/viem application reads use the same-origin read-only `/api/chain` route; wallet signing/submission remains through its provider. The installed SDK configuration types and `useModalStatus` API were checked directly. Both live-origin browser probes opened one login modal without the unsupported Smart Wallet warning; this does not verify wallet authentication or signing. [Evidence and remaining extension boundary](../test/evidence/browser-rpc/README.md).
+
 Decision: target **Best financial flow** only. Orbital’s mechanism remains central. A Privy embedded EVM wallet must execute a real Orbital swap and the existing invoice flow. A login button, external-wallet-only demo, or mocked wallet is not qualification evidence.
 
 ## Primary sources

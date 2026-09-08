@@ -48,7 +48,7 @@ async function installWallet(page: Page) {
 }
 async function setup(page:Page, respond:(body:unknown)=>unknown = ()=>fixture().observed, status:()=>number = ()=>200) {
   await installWallet(page);
-  await page.route('https://rpc.testnet.arc.io/**',route=>route.abort());
+  await page.route(url=>url.origin==='https://rpc.testnet.arc.io'||url.pathname==='/api/chain',route=>route.abort());
   await page.route('**/deployment', route=>route.fulfill({json:fixture().manifest,headers}));
   await page.route('**/quotes/swap', async route=>{
     if(route.request().method()==='OPTIONS')return route.fulfill({status:204,headers:{...headers,'access-control-allow-methods':'POST','access-control-allow-headers':'content-type'}});

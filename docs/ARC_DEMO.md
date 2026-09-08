@@ -27,6 +27,10 @@ INDEXER_RPC_URL=https://rpc.blockdaemon.testnet.arc.io
 
 Process environment values take precedence over this profile file. Set the server and browser RPC together; browser-visible URLs must contain no secrets. The optional indexer endpoint may differ, but must pass chain/system-USDC preflight and agree with the selected application RPC on the deployment start-block hash. Startup checks six-decimal system USDC at `0x3600000000000000000000000000000000000000` using a canonical block hash, then performs the full deployment check described below. A provider change does not require redeployment or editing the historical manifest.
 
+Arc application reads now use `/api/chain` on the web origin; the web server forwards allowed reads/simulations to that verified provider. The wallet retains its own signing/submission connection. No extra environment variable is needed when using `dev:arc`. If running the web service separately, provide the verified runtime `DEPLOYMENT_MANIFEST` and allowed `PUBLIC_APP_URL` origins. [Browser-blocking repair and checks](../test/evidence/browser-rpc/README.md).
+
+For the reported extension conflict, finish/dismiss the outstanding wallet request and use one intended wallet provider in that browser profile. Keep one app origin throughout the session; localhost and 127.0.0.1 have separate wallet permissions and browser storage. Hard-refresh after updating the app. The deployed maker has already claimed 1,000 units of both demo tokens, with [confirmed receipts](../test/evidence/browser-rpc/faucet-receipts.json); proceed to liquidity instead of repeating those claims.
+
 ## Privy dashboard setup
 
 In the dashboard for the configured public app ID:

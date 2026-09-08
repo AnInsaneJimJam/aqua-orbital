@@ -366,6 +366,8 @@ Local Docker Compose provides Postgres, API, indexer, web and Anvil. Ports: web 
 
 Configuration: `DATABASE_URL`, `ARC_RPC_URL`, `CHAIN_ID`, `DEPLOYMENT_MANIFEST`, `INDEXER_START_BLOCK`, `PUBLIC_APP_URL`, `PUBLIC_API_URL`, and `LOG_LEVEL`. Deployment signatures come from the authorized browser wallet; deployment tooling, web, API and indexer do not read signer keys. Provide `.env.example` with names/descriptions and harmless local values, never real credentials. Use structured logs with request/chain/order/transaction IDs and latency; redact user-provided free text and secrets.
 
+Arc browser viem/wagmi reads use the web origin's `POST /api/chain` route, which forwards only bounded, allowlisted reads and simulations to the verified runtime manifest's fixed RPC. Preserve exact canonical pins, calldata, revert data and no-cache behavior. Reject wallet/signing/broadcast methods, arbitrary upstream URLs/targets, state overrides and cross-site browser requests. This transport adds no account service or chain writer; user wallet providers still own signatures and submission. Local Anvil reads retain their existing transport. See D41 and the [browser RPC checkpoint](test/evidence/browser-rpc/README.md).
+
 Required script names: `dev`, `build`, `lint`, `typecheck`, `test:contracts`, `test:reference`, `test:sdk`, `test:backend`, `test:e2e`, `test:invariants`, `test:all`, `verify:network`, `deploy:local`, `deploy:arc`, `demo:seed`, `demo:judge`, `db:migrate`, `db:replay`, `evidence:build`. Define them during scaffold and treat their actual configuration as executable truth. Avoid inventing passed command results in documentation.
 
 ## 10. Frontend art direction and design system

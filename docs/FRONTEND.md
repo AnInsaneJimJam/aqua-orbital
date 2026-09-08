@@ -75,4 +75,6 @@ The local fixture wallet is restricted to a loopback development build on chain 
 
 ## Latest light checkpoint
 
+Arc browser reads now go through the web origin's bounded read-only RPC route, preserving controller/SDK transaction logic. Connection controls reflect an in-progress wallet operation and prevent duplicate requests. A shallow root-body hydration exception handles extension-added attributes; application descendants retain React diagnostics. The blocked-domain browser check passes on localhost and 127.0.0.1, with no unexpected console errors. [Browser transport and wallet checkpoint](../test/evidence/browser-rpc/README.md).
+
 The September 9 supplied-media redesign has a passing production build and focused Chromium/mobile/media/keyboard checks. The local swap quote and exact approval review were rechecked without a signature. Full browser, accessibility and performance release campaigns remain deferred. See [checkpoint and retained failures](../test/evidence/frontend-design.md).

@@ -44,7 +44,7 @@ async function setup(page:Page,options:{kind?:'direct'|'swap';approved?:boolean;
   return r.fulfill({headers,json:payload});
  });
  const block=(number='0x4')=>({number,hash:`0x${BigInt(number).toString(16).padStart(64,'0')}`,parentHash:zero,nonce:'0x0000000000000000',sha3Uncles:zero,logsBloom:`0x${'00'.repeat(256)}`,transactionsRoot:zero,stateRoot:zero,receiptsRoot:zero,miner:m.aqua,difficulty:'0x0',totalDifficulty:'0x0',extraData:'0x',size:'0x1',gasLimit:'0x1c9c380',gasUsed:'0x0',timestamp:'0x6553f104',transactions:[],uncles:[],baseFeePerGas:'0x3b9aca00',mixHash:zero});
- await page.route('https://rpc.testnet.arc.io/**',async r=>{
+ await page.route(url=>url.origin==='https://rpc.testnet.arc.io'||url.pathname==='/api/chain',async r=>{
   if(r.request().method()==='OPTIONS')return r.fulfill({status:204,headers:{...headers,'access-control-allow-methods':'POST','access-control-allow-headers':'content-type'}});const body=r.request().postDataJSON();
   const respond=async (q:{id:number;method:string;params:any[]})=>{
    calls.push(q.method);let result:unknown;

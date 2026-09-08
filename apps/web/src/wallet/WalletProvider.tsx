@@ -1,24 +1,25 @@
 'use client';
-import {createContext,useContext,useState,type ReactNode} from 'react';
+import {createContext,useContext,useRef,useState,type ReactNode} from 'react';
 import dynamic from 'next/dynamic';
 import {QueryClient,QueryClientProvider} from '@tanstack/react-query';
-import {WagmiProvider,createConfig,http,useAccount,useConnect,useDisconnect,useConfig} from 'wagmi';
+import {WagmiProvider,createConfig,useAccount,useConnect,useDisconnect,useConfig} from 'wagmi';
 import {getAccount,getWalletClient,switchChain} from 'wagmi/actions';
 import {injected} from 'wagmi/connectors';
 import type {Address,Hex} from 'viem';
 import type {TransactionPlan,TransactionFees} from '@orbital/sdk';
 import {selectedChain} from './config';
+import {readTransport} from './readTransport';
 const PublicContent=createContext<ReactNode>(null);
 function LoadingWallet(){return <>{useContext(PublicContent)}</>;}
 const PrivyWallet=dynamic(()=>import('./PrivyWallet'),{ssr:false,loading:LoadingWallet});
 const LocalDemoWallet=dynamic(()=>import('./LocalDemoWallet'),{ssr:false,loading:LoadingWallet});
-const wagmiConfig=createConfig({chains:[selectedChain],transports:{[selectedChain.id]:http()},connectors:[injected()],ssr:true});
+const wagmiConfig=createConfig({chains:[selectedChain],transports:{[selectedChain.id]:readTransport()},connectors:[injected()],ssr:true});
 export type WalletOption={address:Address;kind:'external'|'privy'|'local'};
-export type Session={ready:boolean;address?:Address;chainId?:number;connected:boolean;kind:'external'|'privy'|'local'|'none';wallets:WalletOption[];select?:(address:Address)=>Promise<void>;createEmbeddedWallet?:()=>Promise<void>;connect:()=>void;disconnect:()=>void;switchNetwork?:()=>Promise<void>;identity:()=>Promise<{account?:Address;chainId:number}>;send:(plan:TransactionPlan,fees?:TransactionFees)=>Promise<Hex>;error?:string};
+export type Session={ready:boolean;address?:Address;chainId?:number;connected:boolean;connecting?:boolean;kind:'external'|'privy'|'local'|'none';wallets:WalletOption[];select?:(address:Address)=>Promise<void>;createEmbeddedWallet?:()=>Promise<void>;connect:()=>void;disconnect:()=>void;switchNetwork?:()=>Promise<void>;identity:()=>Promise<{account?:Address;chainId:number}>;send:(plan:TransactionPlan,fees?:TransactionFees)=>Promise<Hex>;error?:string};
 const Context=createContext<Session>({ready:false,connected:false,kind:'none',wallets:[],connect:()=>{},disconnect:()=>{},identity:async()=>({chainId:selectedChain.id}),send:async()=>{throw Error('Connect a wallet first');}});
 export const useWallet=()=>useContext(Context);
 export function SessionProvider({value,children}:{value:Session;children:ReactNode}){return <Context.Provider value={value}>{children}</Context.Provider>;}
-export function TransactionBridge({children,connect,disconnect,kind,error,ready=true,wallets,select,createEmbeddedWallet}:{children:ReactNode;connect:()=>void;disconnect:()=>void;kind:'external'|'privy';error?:string;ready?:boolean;wallets?:WalletOption[];select?:(address:Address)=>Promise<void>;createEmbeddedWallet?:()=>Promise<void>}){
+export function TransactionBridge({children,connect,disconnect,kind,error,ready=true,connecting=false,wallets,select,createEmbeddedWallet}:{children:ReactNode;connect:()=>void;disconnect:()=>void;kind:'external'|'privy';error?:string;ready?:boolean;connecting?:boolean;wallets?:WalletOption[];select?:(address:Address)=>Promise<void>;createEmbeddedWallet?:()=>Promise<void>}){
  const account=useAccount(),config=useConfig();
  async function identity(){
   const current=getAccount(config);
@@ -40,11 +41,12 @@ export function TransactionBridge({children,connect,disconnect,kind,error,ready=
   return client.sendTransaction({account:plan.account,chain:selectedChain,to:plan.to,data:plan.data,value:0n,...fees});
  }
  async function switchNetwork(){const before=getAccount(config);if(!before.isConnected||!before.connector)throw Error('Connect a wallet first');await switchChain(config,{chainId:selectedChain.id,connector:before.connector});const after=getAccount(config);if(after.address?.toLowerCase()!==before.address?.toLowerCase())throw Error('Active wallet changed during the network request');}
- return <SessionProvider value={{ready,address:account.address,chainId:account.chainId,connected:account.isConnected,kind:account.isConnected?kind:'none',wallets:wallets??(account.address?[{address:account.address,kind}]:[]),select,createEmbeddedWallet,connect,disconnect,switchNetwork,identity,send,error}}>{children}</SessionProvider>;
+ return <SessionProvider value={{ready,connecting,address:account.address,chainId:account.chainId,connected:account.isConnected,kind:account.isConnected?kind:'none',wallets:wallets??(account.address?[{address:account.address,kind}]:[]),select,createEmbeddedWallet,connect,disconnect,switchNetwork,identity,send,error}}>{children}</SessionProvider>;
 }
 function External({children}:{children:ReactNode}){
- const {connect,connectors,error}=useConnect();const {disconnect}=useDisconnect();
- return <TransactionBridge kind="external" connect={()=>{if(connectors[0])connect({connector:connectors[0]});}} disconnect={()=>disconnect()} error={error?.message}>{children}</TransactionBridge>;
+ const {connectAsync,connectors,error,isPending}=useConnect();const {disconnect}=useDisconnect();const connecting=useRef(false);
+ function connect(){if(connecting.current||isPending||!connectors[0])return;connecting.current=true;void connectAsync({connector:connectors[0]}).catch(()=>{}).finally(()=>{connecting.current=false;});}
+ return <TransactionBridge kind="external" connecting={isPending} connect={connect} disconnect={()=>disconnect()} error={error?.message}>{children}</TransactionBridge>;
 }
 export default function WalletProvider({children}:{children:ReactNode}){
  const [query]=useState(()=>new QueryClient({defaultOptions:{queries:{retry:1,refetchOnWindowFocus:false}}}));

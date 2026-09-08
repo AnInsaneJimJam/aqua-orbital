@@ -1,9 +1,10 @@
-import {createPublicClient,http,decodeFunctionResult,encodeFunctionData,encodeFunctionResult,type Abi,type Address} from 'viem';
+import {createPublicClient,decodeFunctionResult,encodeFunctionData,encodeFunctionResult,type Abi,type Address} from 'viem';
 import type {ExecutionPort,TransactionPlan,PaymentBlock,ReceiptLog} from '@orbital/sdk';
 import type {Session} from './WalletProvider';
 import {selectedChain} from './config';
+import {readTransport} from './readTransport';
 // Never select a financial RPC from an invoice or quote response.
-export const publicClient=createPublicClient({chain:selectedChain,transport:http(undefined,{timeout:10000,retryCount:0})});
+export const publicClient=createPublicClient({chain:selectedChain,transport:readTransport()});
 const same=(a:string,b:string)=>a.toLowerCase()===b.toLowerCase();
 export function createWalletExecutionPort(wallet:Pick<Session,'identity'|'send'>,current:()=>boolean,recoveryPlan?:TransactionPlan){
  const client=publicClient;let submittedPlan=recoveryPlan;
