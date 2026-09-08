@@ -6,7 +6,7 @@ export const copy={
  attribution:'Powered by SwapVM — © Degensoft Ltd 2025',
  swap:{
   unavailable:'Quote unavailable. The amounts could not be checked. Try again.',
-  readOnly:'Read-only quote. Swap execution is not enabled yet.',
+  readOnly:'Quote observation. Review checks current funds, strategy availability and transaction simulation before any signature.',
   expired:'Quote expired. Refresh to check current amounts.',
   empty:'No route was found in the inspected strategies.',
  },

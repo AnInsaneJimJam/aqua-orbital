@@ -30,3 +30,6 @@
 
 Routine CSS edits need no decision entry. Changes to economics, supported ranges, source pins, key control, or source-derived mathematical assumptions do. Retain superseded decisions with links to replacements.
 | 2026-09-08 D26 | Reconstruct payment reviews locally, then check live invoice/funding, simulate and bind explicit signatures to reviewed fee limits | A server observation grants no execution authority. Exact approval and payment stay separate; Arc USDC funding reserves both payment and gas from one inventory. Receipt recovery never resubmits, and indexed invoice status remains separate from transaction confirmation |
+| 2026-09-08 D27 | Bind standalone swap success to canonical transaction bytes and the actual Orbital settlement event; store recovery per submitted hash | [Swap workflow](../test/evidence/swap-flow.md) separates exact approval from fresh swap review, rechecks live strategy and gas, and rejects altered public recovery records. Quotes never substitute for missing receipt amounts/crossings; unsupported replacement discovery stays explicit |
+
+Routine CSS edits need no decision entry. Changes to economics, supported ranges, source pins, key control, or source-derived mathematical assumptions do. Retain superseded decisions with links to replacements.

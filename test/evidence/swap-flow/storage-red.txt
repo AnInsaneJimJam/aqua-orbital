@@ -1,0 +1,48 @@
+[WebServer] (node:22892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:10052) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:19776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 2 tests using 1 worker
+
+(node:1796) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/2] test\swap-storage.spec.ts:13:1 › saved swap and exact approval recovery reject altered destinations, spenders and amounts
+  1) test\swap-storage.spec.ts:13:1 › saved swap and exact approval recovery reject altered destinations, spenders and amounts 
+
+    Error: expect(received).toThrow(expected)
+
+    Expected pattern: /transaction mismatch/
+
+    Received function did not throw
+
+      13 | test('saved swap and exact approval recovery reject altered destinations, spenders and amounts',()=>{
+      14 |  for(const stage of ['approval','swap'] as const){const p=record(stage);expect(decode(p)).toEqual(p);
+    > 15 |   expect(()=>decode({...p,plan:{...p.plan,to:p.tokenOut.address as Address}})).toThrow(/transaction mismatch/);
+         |                                                                                ^
+      16 |   expect(()=>decode({...p,plan:{...p.plan,data:'0x12345678'}})).toThrow(/transaction mismatch/);
+      17 |  }
+      18 |  const p=record('approval');
+        at C:\Users\gujja\aqua-orbital\apps\web\test\swap-storage.spec.ts:15:80
+
+    Error Context: test-results\swap-storage-saved-swap-an-e4b52-ations-spenders-and-amounts\error-context.md
+
+
+(node:17652) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[2/2] test\swap-storage.spec.ts:22:1 › saved swaps bind wallet, network, transaction hash and token precision
+  1 failed
+    test\swap-storage.spec.ts:13:1 › saved swap and exact approval recovery reject altered destinations, spenders and amounts 
+  1 passed (43.1s)
+undefined
+C:\Users\gujja\aqua-orbital\apps\web:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: playwright test swap-storage.spec.ts --reporter=line

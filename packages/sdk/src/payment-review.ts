@@ -5,6 +5,7 @@ import {buildOrder,type TransactionPlan} from './codec';
 import {configFromDTO} from './dto';
 import {buildPaymentTx,buildPaymentApprovalTx,type InvoiceSnapshot,type PaymentInput,type PlanContext} from './plans';
 import {executeReviewed,type ExecutionPort,type PendingTransaction,type TransactionEstimate} from './execution';
+import {same,freeze,funded,nativeTokenSpend,withinBudget} from './review-core';
 
 type Observed=Extract<PaymentQuoteObservationDTO,{status:'observed'}>;
 export type PaymentDraft={context:PlanContext;request:PaymentQuoteRequest;observation:Observed;input:PaymentInput};
@@ -15,8 +16,6 @@ export type PaymentLiveState={chainId:number;block:PaymentBlock;invoice:InvoiceS
  * Providers supply observations only; no method may sign except send. */
 export type PaymentPort=ExecutionPort&{observe:(draft:PaymentDraft)=>Promise<PaymentLiveState>;canonical:(block:Pick<PaymentBlock,'number'|'hash'>)=>Promise<void>};
 export type PaymentReview={draft:PaymentDraft;stage:'approval'|'payment';plan:TransactionPlan;estimate:TransactionEstimate;expiresAtMs:number;block:PaymentBlock};
-const same=(a:string,b:string)=>a.toLowerCase()===b.toLowerCase();
-function freeze<T>(value:T):T {if(value&&typeof value==='object'){for(const v of Object.values(value))freeze(v);Object.freeze(value);}return value;}
 const issuedDrafts=new WeakSet<object>(),issuedReviews=new WeakSet<object>();
 /** The public response remains review-only. This constructs a local intent,
  * never trusts its calldata, and still requires independent live preflight. */
@@ -38,11 +37,7 @@ export function createPaymentDraft(raw:unknown,status:number,manifest:Deployment
  if(!same(plan.to,d.plan.to)||!same(plan.data,d.plan.data))throw Error('Payment plan mismatch');
  const draft=freeze({context,request:structuredClone(request),observation,input});issuedDrafts.add(draft);return draft;
 }
-export function paymentNativeSpend(chainId:number,tokenIn:string,usdc:string,amount:bigint):bigint {
- if(amount<0n)throw Error('Invalid payment spend');
- // Arc native USDC and ERC-20 USDC are two interfaces over one inventory.
- return chainId===5042002&&same(tokenIn,usdc)?amount*10n**12n:0n;
-}
+export const paymentNativeSpend=nativeTokenSpend;
 function fresh(draft:PaymentDraft,now:()=>number){
  if(!issuedDrafts.has(draft))throw Error('Prepare a new validated payment draft');
  decodePaymentQuoteObservation(draft.observation,200,draft.context.manifest,draft.request,now());
@@ -59,10 +54,6 @@ async function liveState(draft:PaymentDraft,port:PaymentPort,now:()=>number){
  if(live.balanceRaw<BigInt(o.data.amountInRaw)||live.allowanceRaw<0n)throw Error('Insufficient input token balance');
  await port.canonical({number:BigInt(o.asOf.height),hash:o.asOf.hash as Hex});await port.canonical(live.block);fresh(draft,now);
  return live;
-}
-function funded(estimate:TransactionEstimate,spend:bigint){
- if(typeof estimate.gas!=='bigint'||typeof estimate.maxFeePerGas!=='bigint'||typeof estimate.nativeBalance!=='bigint'||estimate.gas<=0n||estimate.maxFeePerGas<0n
-  ||(estimate.maxPriorityFeePerGas!==undefined&&(typeof estimate.maxPriorityFeePerGas!=='bigint'||estimate.maxPriorityFeePerGas<0n||estimate.maxPriorityFeePerGas>estimate.maxFeePerGas))||estimate.nativeBalance<estimate.gas*estimate.maxFeePerGas+spend)throw Error('Insufficient balance for gas and the reviewed spend.');
 }
 /** Explicit review of one action. Approval success never signs a payment. */
 export async function preparePaymentReview(draft:PaymentDraft,port:PaymentPort,now:()=>number=Date.now):Promise<PaymentReview>{
@@ -83,10 +74,8 @@ export async function executePaymentReview(review:PaymentReview,port:PaymentPort
  return executeReviewed(review.plan,{...port,send:async(plan,fees)=>{fresh(draft,now);if(now()>=review.expiresAtMs)throw Error('Payment review expired. Review again.');return port.send(plan,fees);},estimate:async plan=>{
   const live=await liveState(draft,port,now),stage=live.allowanceRaw<BigInt(draft.observation.data.amountInRaw)?'approval':'payment';
   if(stage!==review.stage)throw Error('Token allowance changed. Review again.');
-  const estimate=await port.estimate(plan);funded(estimate,budget.nativeSpend??0n);
-  if(estimate.gas>budget.gas||estimate.maxFeePerGas>budget.maxFeePerGas||(estimate.maxPriorityFeePerGas??0n)>(budget.maxPriorityFeePerGas??0n))throw Error('Gas estimate increased. Review again.');
-  funded({...budget,nativeBalance:estimate.nativeBalance},budget.nativeSpend??0n);
+  const estimate=await port.estimate(plan),bounded=withinBudget(estimate,budget);
   await port.canonical(live.block);fresh(draft,now);if(now()>=review.expiresAtMs)throw Error('Payment review expired. Review again.');
-  return {...budget,nativeBalance:estimate.nativeBalance};
+  return bounded;
  }},persist);
 }

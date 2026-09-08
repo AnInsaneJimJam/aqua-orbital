@@ -74,7 +74,7 @@ test('checked swap observation shows exact amounts, recipient and bounded covera
   expect(body).toEqual(fixture().request);
   await expect(page.getByText('19.9 oUSD18',{exact:true})).toBeVisible();
   await expect(page.getByText('900719.925475 USDC',{exact:true})).toBeVisible();
-  await expect(page.getByText('Read-only quote. Swap execution is not enabled yet.',{exact:true})).toBeVisible();
+  await expect(page.getByText('Quote observation. Review checks current funds, strategy availability and transaction simulation before any signature.',{exact:true})).toBeVisible();
   await expect(page.getByText(wallet,{exact:true})).toBeVisible();
   await expect(page.getByRole('button',{name:/approve|confirm swap/i})).toHaveCount(0);
   await page.getByText('Quote details',{exact:true}).click();

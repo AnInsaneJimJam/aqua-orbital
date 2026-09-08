@@ -6,4 +6,6 @@ export * from './invoice-read';
 export * from './quote-read';
 export * from './payment-read';
 export * from './payment-review';
+export * from './swap-review';
+export * from './swap-receipt';
 export {lifecycleEventsAbi,paymentsEventsAbi,swapEventsAbi,paymentsReadAbi} from './generated/abi';

@@ -41,3 +41,7 @@ Arc exposes native USDC at 18 decimals and ERC-20 USDC at six decimals over the 
 The installed viem 2.56.3 `call` API supports `blockHash` with `requireCanonical`; invoice/allowance reads and simulation use that option. The browser separately rechecks canonical block hashes around gas estimation. The [official fee action](https://viem.sh/docs/actions/public/estimateFeesPerGas) supplies EIP-1559 maximum and priority fees, which are passed with the reviewed gas limit to the wallet. A changed budget requires another review. This adds no gas sponsorship or commercial Privy feature.
 
 Live embedded-wallet creation, reconnect, rejection, active-wallet selection and financial receipts are still unverified. The new browser transaction fixture is an application behavior check only. The deployment manifest and numerical/target release obligations remain separate prerequisites for a live demonstration.
+
+## Standalone swap boundary (2026-09-08)
+
+Standalone swaps now use the same imperative wallet identity/send bridge, canonical RPC simulation and gas-budget checks as invoice payments. Exact router approval requires a separate fresh swap review. Recovery binds the saved public transaction and decodes actual Orbital settlement events before displaying success. [Application fixture evidence](../test/evidence/swap-flow.md). This adds no provider-specific contract, backend account or private-key handling. Embedded-wallet creation, reconnect and live swap/payment receipts remain unverified.

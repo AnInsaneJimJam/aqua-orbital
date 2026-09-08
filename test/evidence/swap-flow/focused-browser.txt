@@ -1,0 +1,30 @@
+[WebServer] (node:23120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:16444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:18428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 13 tests using 1 worker
+
+(node:15352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/13] test\swap-execution.spec.ts:74:1 › standalone approval and fresh swap review lead to exact receipt amounts and crossings
+[2/13] test\swap-execution.spec.ts:81:1 › standalone swap rejects insufficient native inventory before requesting any signature
+[3/13] test\swap-execution.spec.ts:82:1 › docked strategies cannot enter swap review
+[4/13] test\swap-execution.spec.ts:83:1 › changed-version strategies cannot enter swap review
+[5/13] test\swap-execution.spec.ts:84:1 › standalone signature rejection returns an editable amount without a saved hash
+[6/13] test\swap-execution.spec.ts:85:1 › success without an Orbital settlement event stays unresolved
+[7/13] test\swap-execution.spec.ts:86:1 › standalone swap resumes a saved receipt after reload without signing again
+[8/13] test\swap-execution.spec.ts:89:1 › expired swap review cannot request a signature
+[9/13] test\swap-execution.spec.ts:92:1 › switching accounts away and back permanently invalidates the swap review
+[10/13] test\swap-execution.spec.ts:97:1 › reverted swap receipts retain gas evidence without claiming settlement
+[11/13] test\swap-execution.spec.ts:100:1 › corrupted approval recovery blocks a new signature after reload
+[12/13] test\swap-storage.spec.ts:13:1 › saved swap and exact approval recovery reject altered destinations, spenders and amounts
+[13/13] test\swap-storage.spec.ts:22:1 › saved swaps bind wallet, network, transaction hash and token precision
+  13 passed (3.0m)

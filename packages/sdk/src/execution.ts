@@ -1,7 +1,8 @@
 import {isAddress, type Address, type Hex} from 'viem';
 import type {TransactionPlan} from './index';
 
-export type TransactionReceipt={hash:Hex;status:'success'|'reverted';blockNumber:bigint;gasUsed?:bigint;effectiveGasPrice?:bigint};
+export type ReceiptLog={address:Address;topics:Hex[];data:Hex;blockNumber:bigint;blockHash:Hex;transactionHash:Hex;logIndex:number;removed:boolean};
+export type TransactionReceipt={hash:Hex;status:'success'|'reverted';blockNumber:bigint;blockHash?:Hex;gasUsed?:bigint;effectiveGasPrice?:bigint;logs?:ReceiptLog[]};
 export type TransactionFees={gas:bigint;maxFeePerGas:bigint;maxPriorityFeePerGas?:bigint};
 export type TransactionEstimate=TransactionFees&{nativeBalance:bigint;nativeSpend?:bigint};
 /** Wallet/provider boundary. A fixture port is not evidence of Privy execution. */

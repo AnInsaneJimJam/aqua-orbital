@@ -7,6 +7,7 @@ import {useWallet} from '../wallet/WalletProvider';
 import {selectedChain} from '../wallet/config';
 import {apiBase, useDeployment, request, requestPayload} from './api';
 import {copy} from '../content';
+import {useSwapExecution} from './useSwapExecution';
 
 type QuoteView = {
   input: string; output: string; minimum: string; fee: string; recipient: string;
@@ -14,7 +15,7 @@ type QuoteView = {
   orderHash: string; alternatives: {orderHash: string; output: string}[];
 };
 
-/** Observations only. The SDK validates wire amounts; no calldata or signing. */
+/** Validated public observations; wallet review is delegated to its controller. */
 export function useSwap() {
   const wallet = useWallet(), deployment = useDeployment();
   const [input, setInputValue] = useState('oUSD18'), [output, setOutputValue] = useState('USDC');
@@ -26,10 +27,7 @@ export function useSwap() {
   // Render/key guards invalidate immediately; this also prevents returning to
   // a prior account/pair from reviving its old command without a new click.
   useEffect(() => { setIntent(old => old?.context === context ? old : null); }, [context]);
-  const query = useQuery({
-    queryKey: ['swap-observation', apiBase, context, intent?.id], enabled: current,
-    retry: false, retryOnMount: false, staleTime: 0, gcTime: 0, refetchOnWindowFocus: false, refetchOnReconnect: false,
-    queryFn: async ({signal}) => {
+  const fetchQuote = async (signal:AbortSignal) => {
       const controller = new AbortController(), abort = () => controller.abort();
       if (signal.aborted) abort(); else signal.addEventListener('abort', abort, {once:true});
       // One wall-clock allowance includes both identity reads and response body.
@@ -49,8 +47,13 @@ export function useSwap() {
         const observation = decodeSwapQuoteObservation(response.data, response.status, manifest, requested);
         return {manifest, requested, observation, tokenIn, tokenOut};
       } finally { clearTimeout(timeout); signal.removeEventListener('abort', abort); }
-    },
+  };
+  const query = useQuery({
+    queryKey: ['swap-observation', apiBase, context, intent?.id], enabled: current,
+    retry: false, retryOnMount: false, staleTime: 0, gcTime: 0, refetchOnWindowFocus: false, refetchOnReconnect: false,
+    queryFn:({signal})=>fetchQuote(signal),
   });
+  const execution=useSwapExecution(JSON.stringify([context,intent?.id]),wallet.ready&&wallet.connected&&wallet.chainId===selectedChain.id&&deployment.data?.verified===true,180,fetchQuote);
   const data = current && !query.isFetching && !query.isError ? query.data : undefined;
   const observation = data?.observation.status === 'observed' ? data.observation : undefined;
   const freshUntil = observation ? Math.min(Date.parse(observation.freshness.indexedAt)+10000, (Number(observation.freshness.blockTimestamp)+20)*1000) : 0;
@@ -90,7 +93,7 @@ export function useSwap() {
     setIntent(old => ({context, id:(old?.id ?? 0)+1}));
   }
   function clear() { setIntent(null); setValidation(null); }
-  return {input, output, amount, error, pending, quoteView, expired,
+  return {input, output, amount, error, pending, quoteView, expired, execution,
     empty: !!observation && !observation.data.best && !expired,
     symbols: [...new Set(deployment.data?.tokens.map(t => t.symbol) ?? ['USDC','oUSD6','oUSD18'])],
     network:selectedChain.name, gasAsset:selectedChain.nativeCurrency.symbol,
