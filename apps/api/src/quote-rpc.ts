@@ -1,5 +1,6 @@
 import {manifestSchema,hashSchema,uintSchema,type DeploymentManifest} from '@orbital/shared';
 import {prepareRouting,prepareWholeSizeQuotes,type RoutingInput,type StaticReadCall,type StaticReadResult} from './route-selection.js';
+import {preparePaymentContext,decodePaymentContext,type PaymentContextInput,type PaymentContext} from './payment-context.js';
 export type QuoteRpcOptions={reserve:(weight:number)=>()=>void;shutdownSignal:AbortSignal;signal?:AbortSignal;fetcher?:typeof fetch;timeoutMs?:number};
 export type QuoteRpcPhase={kind:'inspection';batchIndex:number}|{kind:'quote';batchIndex:number;observations:StaticReadResult[]};
 type Request={id:string|number;method:string;params:unknown[]};
@@ -134,4 +135,15 @@ export async function readQuoteBatch(input:RoutingInput,phase:QuoteRpcPhase,opti
   const request=requests[index]!;if(v.reverted)return {request,status:'rejected',reason:'revert'};
   if(!hex(v.result))return fail();return {request,status:'fulfilled',data:v.result};
  }));
+}
+
+/** One internally generated context batch, under the same weighted capacity,
+ * retry/size/deadline rules as quote reads. Any reverted getter invalidates the
+ * entire context; only the canonical indexed source can establish absence. */
+export async function readPaymentContext(input:PaymentContextInput,options:QuoteRpcOptions):Promise<PaymentContext>{
+ const end=deadline(options,performance.now()),manifest=deployment(input.manifest),requests=preparePaymentContext(input).calls;
+ return batch(manifest.rpcUrl,requests,false,options,end,values=>decodePaymentContext(input,values.map((value,index):StaticReadResult=>{
+  if(value.reverted||!hex(value.result))return fail();
+  return {request:requests[index]!,status:'fulfilled',data:value.result};
+ })));
 }

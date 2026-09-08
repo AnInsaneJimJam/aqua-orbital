@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "claim_id": "orbital-payment-sufficient-search-bounded-v1",
+  "repository": {
+    "commit": "d2f3fdf48b025c0ecdabeea03665a321568ad34b",
+    "dirty": true
+  },
+  "command": "python scripts/audit-payment-search.py (runs node apps/api/node_modules/tsx/dist/cli.mjs --test apps/api/test/payment-search.test.ts)",
+  "environment": {
+    "software": [
+      "v22.18.0",
+      "tsx 4.23.13",
+      "Python 3.12.10"
+    ],
+    "hardware": "Windows AMD64 AMD64 Family 23 Model 160 Stepping 0, AuthenticAMD"
+  },
+  "mathematics": {
+    "assertion_tested": "Bounded sufficient-witness retention with exact bigint input search and complete fixed-order stage coverage; no minimum-input or global feasibility assertion.",
+    "coefficient_domain": "JavaScript bigint exact integers; small bounded counters are exact safe integer numbers.",
+    "conventions": "Raw gross input >=2, bound <2^256. Unavailable probes are unknown, not infeasible lower bounds. A non-null callback value is sufficient only under the separately validated-callback hypothesis.",
+    "inputs": [
+      {
+        "path": "apps/api/src/payment-search.ts",
+        "sha256": "02ad64d617dde797d53b8cddccf49f0f274470b8ff995edcf12cc369f1af80d0"
+      },
+      {
+        "path": "apps/api/test/payment-search.test.ts",
+        "sha256": "bf2d691997c6ac3ca636b73de417caaef04322fbe8022097e2a59fd6124a7dc8"
+      },
+      {
+        "path": "docs/audits/PAYMENT_SEARCH_POLICY.md",
+        "sha256": "126aad5e5ce7ee66a83a762f238b0bb8389852ed1f8102dac0b3b72765b5e729"
+      },
+      {
+        "path": "docs/audits/PAYMENT_SEARCH_REVIEW.md",
+        "sha256": "c82be0db48c00ea5be35c61537ce8dcab8501ff7d235f6ace3170782af621dbd"
+      },
+      {
+        "path": "docs/audits/archive/PAYMENT_QUOTE_PLAN-preimplementation.md",
+        "sha256": "08904b3f385ae8b5c139eb4198fbd8aec294a0afa622789aafac34935cc5fad7"
+      },
+      {
+        "path": "apps/api/package.json",
+        "sha256": "535ffa73bc1c95b8539f1d0988b2f34196dd223f2c12fa8003be3e135eadad1e"
+      },
+      {
+        "path": "apps/api/tsconfig.json",
+        "sha256": "e8b933a8437fe166fd427407e52ebeb030732ad2103746e074d7c9febb8fe87b"
+      },
+      {
+        "path": "tsconfig.base.json",
+        "sha256": "6c1fd9b8e55e3fc4fece98c467e6449b48b63a4f751f9e4c28b42bc66a58fade"
+      },
+      {
+        "path": "pnpm-lock.yaml",
+        "sha256": "3dcdd192b12769d53e971d2518506e96019f40c7870e78cec2aa6c3bec189129"
+      },
+      {
+        "path": "scripts/audit-payment-search.py",
+        "sha256": "e2b17cbb5da65689e5dd7691e3c5b64bb6442181b5bb42e7c738ab8b66d46898"
+      }
+    ],
+    "bounds": {
+      "eligible_orders": [
+        0,
+        32
+      ],
+      "maximum_expansions": 8,
+      "maximum_refinements": 8,
+      "maximum_stages": 16,
+      "maximum_planned_quote_members": 128,
+      "maximum_planned_quote_batches": 28,
+      "native_batch_size": 8,
+      "raw_bound": "2 <= B < 2^256",
+      "positive_seed": "arbitrary bigint, clamped to [2,B]",
+      "schedule_enumeration": "Every E in 1..32; representative success/partial-oracle/no-success patterns.",
+      "retained_payload": "depth 24, expanded nodes 8192, container entries 512, aggregate UTF-16 text units 1048576 including keys; inert plain data only.",
+      "test_timeout_seconds": 60
+    },
+    "non_claims": [
+      "No minimum input or global route feasibility proof",
+      "No authentication of callback quote sufficiency or completeness of actual RPC work",
+      "No integrated payment endpoint, canonical final-check or live wallet result",
+      "No universal payload fuzzing or arbitrary proxy/enumeration CPU bound"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-08T11:23:50.243695+00:00",
+    "runtime_seconds": 1.1737563000060618,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "test/evidence/payment-search/tests.txt",
+      "sha256": "6a1e30eae3840faee4a4a4934370a8ab08c55a58f9d8d852195940137e46927c"
+    }
+  ],
+  "checks": [
+    "Complete immutable eligible set and reordered outcomes",
+    "All 32 stage/member/batch ceilings",
+    "Distinct clamped expansion/refinement inputs and forced final bound probe",
+    "Retained sufficient value despite subsequent unknown probes and callback mutation",
+    "Partial-oracle countermodel rejects a minimum-input interpretation",
+    "Synchronous cancellation/freshness/final-return checkpoints",
+    "Shared-memory, accessor, cycle, typed-array and excessive payload rejection"
+  ],
+  "result": "16 focused tests passed; conditional pure-search proof is recorded separately",
+  "residual_risks": [
+    "Financial sufficiency is a caller obligation, not established by the generic helper",
+    "A probe must settle or abort under the shared service deadline",
+    "The public service still requires actual RPC accounting and canonical invoice/funding/time rechecks"
+  ]
+}

@@ -1,5 +1,20 @@
 # Payment quote observations: bounded implementation proposal
 
+**Current implementation status, 2026-09-08:** the strict request, generated read
+ABI, single-batch invoice/funding context, source/term/funding validation and
+bounded pure search are implemented and tested. The public payment endpoint,
+shared service orchestration, response decoder and transaction integration remain
+unfinished. [Current evidence](../../test/evidence/payment-foundation.md) and
+[search policy](PAYMENT_SEARCH_POLICY.md) supersede the original implementation
+status and proposed larger work ceilings below. The 8/8, 16-stage, 128-member
+policy stays within the master specification's maxima.
+
+The following proposal is retained as historical design/audit context. Its
+original byte-for-byte [preimplementation copy](archive/PAYMENT_QUOTE_PLAN-preimplementation.md)
+matches the proposal hash in the independent search review. Section 8's
+document-only write scope applied to that original reviewer task; the user's
+standing instruction authorizes implementation and local commits.
+
 2026-09-08. **Proposal only; the payment endpoint is not implemented.** Existing source, deployment manifests, and completed evidence remain unchanged. This is a G5 preparation increment, not G1 closure, payment execution enablement, Arc deployment verification, or Privy qualification. The existing user authorization covers continued implementation; the design decisions below are internal engineering work.
 
 **Claim under review:** a bounded search can return an exact input, within the payer's observed balance and chosen maximum, for which a canonical static Orbital quote supplies at least the immutable invoice amount. The stronger claim that the search finds the minimum input, or finds a route whenever one exists, is not justified by the current numerical contracts.

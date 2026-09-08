@@ -1,0 +1,37 @@
+TAP version 13
+# Subtest: internal payment observation cannot survive invoice expiry during the final database recheck
+not ok 1 - internal payment observation cannot survive invoice expiry during the final database recheck
+  ---
+  duration_ms: 473.5457
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-service.test.ts:84:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'observed'
+    - 'unavailable'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'unavailable'
+  actual: 'observed'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:95:31)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8050.1473
+undefined
+C:\Users\gujja\aqua-orbital\apps\api:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: tsx --test --test-name-pattern=internal payment observation cannot survive test/quote-service.test.ts

@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: payment request retains exact raw integer input and has only invoice/payer/token/limit fields
+ok 1 - payment request retains exact raw integer input and has only invoice/payer/token/limit fields
+  ---
+  duration_ms: 46.5759
+  type: 'test'
+  ...
+# Subtest: payment request rejects caller-authored terms, targets, timestamps, signers and malformed limits
+ok 2 - payment request rejects caller-authored terms, targets, timestamps, signers and malformed limits
+  ---
+  duration_ms: 67.1065
+  type: 'test'
+  ...
+# Subtest: uint schemas reject malformed wire values without throwing during safeParse
+ok 3 - uint schemas reject malformed wire values without throwing during safeParse
+  ---
+  duration_ms: 98.0063
+  type: 'test'
+  ...
+# Subtest: quote DTOs preserve decimal integers and reject extra transaction fields
+ok 4 - quote DTOs preserve decimal integers and reject extra transaction fields
+  ---
+  duration_ms: 53.0882
+  type: 'test'
+  ...
+# Subtest: wire config and manifest reject malformed nonces and ambiguous deployment roles
+ok 5 - wire config and manifest reject malformed nonces and ambiguous deployment roles
+  ---
+  duration_ms: 122.7775
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4324.0761

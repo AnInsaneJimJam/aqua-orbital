@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: search retains a complete sufficient stage and bounds all amounts with exact bigint counters
+ok 1 - search retains a complete sufficient stage and bounds all amounts with exact bigint counters
+  ---
+  duration_ms: 6.8157
+  type: 'test'
+  ...
+# Subtest: 32 eligible orders force four complete stages and reserve the final expansion for the cap
+ok 2 - 32 eligible orders force four complete stages and reserve the final expansion for the cap
+  ---
+  duration_ms: 1.0858
+  type: 'test'
+  ...
+# Subtest: E9 reaches the 28-batch ceiling while staying below128 quote members
+ok 3 - E9 reaches the 28-batch ceiling while staying below128 quote members
+  ---
+  duration_ms: 3.3962
+  type: 'test'
+  ...
+# Subtest: all eligible counts obey exact aggregate and native-batch ceilings without silently truncating a stage
+ok 4 - all eligible counts obey exact aggregate and native-batch ceilings without silently truncating a stage
+  ---
+  duration_ms: 16.4082
+  type: 'test'
+  ...
+# Subtest: partial-oracle countermodel may miss a lower sufficient point and never certifies a minimum
+ok 5 - partial-oracle countermodel may miss a lower sufficient point and never certifies a minimum
+  ---
+  duration_ms: 0.7006
+  type: 'test'
+  ...
+# Subtest: saturation, clamping, adjacent bounds and fee plateaus use integer arithmetic
+ok 6 - saturation, clamping, adjacent bounds and fee plateaus use integer arithmetic
+  ---
+  duration_ms: 1.0781
+  type: 'test'
+  ...
+# Subtest: no eligible strategies consume no quote stage and preserve an explicit unavailable search outcome
+ok 7 - no eligible strategies consume no quote stage and preserve an explicit unavailable search outcome
+  ---
+  duration_ms: 0.2504
+  type: 'test'
+  ...
+# Subtest: missing, duplicated, changed, extra, malformed or contradictory stage outcomes abort instead of retaining a partial result
+ok 8 - missing, duplicated, changed, extra, malformed or contradictory stage outcomes abort instead of retaining a partial result
+  ---
+  duration_ms: 4.7119
+  type: 'test'
+  ...
+# Subtest: transport failures, cancellation and a failed final checkpoint cannot return an earlier sufficient result
+ok 9 - transport failures, cancellation and a failed final checkpoint cannot return an earlier sufficient result
+  ---
+  duration_ms: 2.719
+  type: 'test'
+  ...
+# Subtest: latency reserve skips optional refinement while requiring the final checkpoint
+ok 10 - latency reserve skips optional refinement while requiring the final checkpoint
+  ---
+  duration_ms: 1.4847
+  type: 'test'
+  ...
+# Subtest: retained sufficient result is isolated from mutation by a later probe
+ok 11 - retained sufficient result is isolated from mutation by a later probe
+  ---
+  duration_ms: 0.4643
+  type: 'test'
+  ...
+# Subtest: invalid numeric domains or eligible sets are rejected before probing
+ok 12 - invalid numeric domains or eligible sets are rejected before probing
+  ---
+  duration_ms: 1.0748
+  type: 'test'
+  ...
+# Subtest: shared memory, accessors, cycles and non-data values cannot be retained as a quote result
+ok 13 - shared memory, accessors, cycles and non-data values cannot be retained as a quote result
+  ---
+  duration_ms: 2.2547
+  type: 'test'
+  ...
+# Subtest: a final-return checkpoint failure discards the retained quote after optional refinement is declined
+ok 14 - a final-return checkpoint failure discards the retained quote after optional refinement is declined
+  ---
+  duration_ms: 0.7815
+  type: 'test'
+  ...
+# Subtest: a complete reordered stage can include both quoted and unavailable strategies
+ok 15 - a complete reordered stage can include both quoted and unavailable strategies
+  ---
+  duration_ms: 0.7899
+  type: 'test'
+  ...
+# Subtest: an exhausted bounded search can miss its sole sufficient input without claiming liquidity is insufficient
+ok 16 - an exhausted bounded search can miss its sole sufficient input without claiming liquidity is insufficient
+  ---
+  duration_ms: 0.5621
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 867.5335

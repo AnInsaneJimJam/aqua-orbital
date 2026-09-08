@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: canonical unpaid terms retain exact splits, explicit funding and an SDK-compatible invoice snapshot
+ok 1 - canonical unpaid terms retain exact splits, explicit funding and an SDK-compatible invoice snapshot
+  ---
+  duration_ms: 76.4467
+  type: 'test'
+  ...
+# Subtest: swap bound has the exact maximal strict normalized input for every supported decimal precision
+ok 2 - swap bound has the exact maximal strict normalized input for every supported decimal precision
+  ---
+  duration_ms: 165.1536
+  type: 'test'
+  ...
+# Subtest: max input and balance independently cap swap search; allowance never caps it
+ok 3 - max input and balance independently cap swap search; allowance never caps it
+  ---
+  duration_ms: 37.8708
+  type: 'test'
+  ...
+# Subtest: direct payment checks exact raw due against independent user and balance limits without AMM fee assumptions
+ok 4 - direct payment checks exact raw due against independent user and balance limits without AMM fee assumptions
+  ---
+  duration_ms: 11.5613
+  type: 'test'
+  ...
+# Subtest: invoice terms and every unpaid payment field must match the indexed source before funding is considered
+ok 5 - invoice terms and every unpaid payment field must match the indexed source before funding is considered
+  ---
+  duration_ms: 65.3588
+  type: 'test'
+  ...
+# Subtest: paid and cancelled conflicts require matching indexed and onchain terminal observations
+ok 6 - paid and cancelled conflicts require matching indexed and onchain terminal observations
+  ---
+  duration_ms: 18.379
+  type: 'test'
+  ...
+# Subtest: expiry is the smaller invoice/20-second deadline, including invoices near expiry that cannot be newly created
+ok 7 - expiry is the smaller invoice/20-second deadline, including invoices near expiry that cannot be newly created
+  ---
+  duration_ms: 14.5048
+  type: 'test'
+  ...
+# Subtest: invalid adapter, ID, receipt provenance and contract-inadmissible terms never authorize a payment observation
+ok 8 - invalid adapter, ID, receipt provenance and contract-inadmissible terms never authorize a payment observation
+  ---
+  duration_ms: 64.1684
+  type: 'test'
+  ...
+# Subtest: invalid funding scalar types, token metadata and adapter immutables fail before the numeric search bound
+ok 9 - invalid funding scalar types, token metadata and adapter immutables fail before the numeric search bound
+  ---
+  duration_ms: 48.1298
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5881.9985

@@ -12,6 +12,7 @@ Orbital is being built for multi-token concentrated stablecoin liquidity, held i
 - [Frontend](docs/FRONTEND.md), [Privy](docs/PRIVY_RESEARCH.md), [decisions](docs/DECISIONS.md).
 - [Aqua research](docs/AQUA_RESEARCH.md), [Arc research](docs/ARC_RESEARCH.md), [fresh Arc deployment observations](docs/ARC_DEPLOYMENT_STATUS.md).
 - [Evidence index](test/evidence/INDEX.md).
+- [Payment quote implementation](test/evidence/payment-foundation.md): bounded search and invoice/funding checks; the public payment quote endpoint is still unfinished.
 
 The original [SPEC](SPEC.md) and [PLAN](docs/PLAN.md) describe a superseded custodial architecture. Do not implement them as a second product.
 

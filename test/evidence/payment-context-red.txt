@@ -1,0 +1,148 @@
+TAP version 13
+# Subtest: payment context uses eight independent exact reads at one hash pin and deduplicates direct USDC decimals
+not ok 1 - payment context uses eight independent exact reads at one hash pin and deduplicates direct USDC decimals
+  ---
+  duration_ms: 3.0836
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-context.test.ts:24:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    preparePaymentContext (C:\Users\gujja\aqua-orbital\apps\api\src\payment-context.ts:6:93)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-context.test.ts:26:45)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: complete reordered results retain exact bigint invoice and funding amounts without granting payment authority
+not ok 2 - complete reordered results retain exact bigint invoice and funding amounts without granting payment authority
+  ---
+  duration_ms: 1.0062
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-context.test.ts:39:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    preparePaymentContext (C:\Users\gujja\aqua-orbital\apps\api\src\payment-context.ts:6:93)
+    Object.observations (C:\Users\gujja\aqua-orbital\apps\api\test\payment-context.test.ts:12:52)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-context.test.ts:40:66)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: invalid request, manifest, role or pin never creates a context call plan
+not ok 3 - invalid request, manifest, role or pin never creates a context call plan
+  ---
+  duration_ms: 5.2509
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-context.test.ts:48:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /PAYMENT_CONTEXT_INPUT_INVALID/. Input:
+    
+    'Error: NOT_IMPLEMENTED'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: 'NOT_IMPLEMENTED'
+  stack: |-
+    preparePaymentContext (C:\Users\gujja\aqua-orbital\apps\api\src\payment-context.ts:6:93)
+    <anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-context.test.ts:50:252)
+    getActual (node:assert:530:5)
+    Function.throws (node:assert:676:24)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-context.test.ts:50:241)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-context.test.ts:50:241)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: context result set rejects missing, duplicate, changed-caller, mixed-block, foreign and reverted members
+not ok 4 - context result set rejects missing, duplicate, changed-caller, mixed-block, foreign and reverted members
+  ---
+  duration_ms: 0.7812
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-context.test.ts:56:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    preparePaymentContext (C:\Users\gujja\aqua-orbital\apps\api\src\payment-context.ts:6:93)
+    Object.observations (C:\Users\gujja\aqua-orbital\apps\api\test\payment-context.test.ts:12:52)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-context.test.ts:57:38)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: noncanonical or malformed ABI and inconsistent immutable/token bindings cannot become funding observations
+not ok 5 - noncanonical or malformed ABI and inconsistent immutable/token bindings cannot become funding observations
+  ---
+  duration_ms: 6.0889
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-context.test.ts:66:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    preparePaymentContext (C:\Users\gujja\aqua-orbital\apps\api\src\payment-context.ts:6:93)
+    Object.observations (C:\Users\gujja\aqua-orbital\apps\api\test\payment-context.test.ts:12:52)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-context.test.ts:72:45)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: raw invoice statuses remain distinguishable and do not authenticate indexed absence or payment eligibility
+not ok 6 - raw invoice statuses remain distinguishable and do not authenticate indexed absence or payment eligibility
+  ---
+  duration_ms: 2.5843
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-context.test.ts:76:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    preparePaymentContext (C:\Users\gujja\aqua-orbital\apps\api\src\payment-context.ts:6:93)
+    Object.observations (C:\Users\gujja\aqua-orbital\apps\api\test\payment-context.test.ts:12:52)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-context.test.ts:77:128)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 0
+# fail 6
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7429.1036
+undefined
+C:\Users\gujja\aqua-orbital\apps\api:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: tsx --test test/payment-context.test.ts

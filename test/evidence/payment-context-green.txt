@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: payment context uses eight independent exact reads at one hash pin and deduplicates direct USDC decimals
+ok 1 - payment context uses eight independent exact reads at one hash pin and deduplicates direct USDC decimals
+  ---
+  duration_ms: 24.4812
+  type: 'test'
+  ...
+# Subtest: complete reordered results retain exact bigint invoice and funding amounts without granting payment authority
+ok 2 - complete reordered results retain exact bigint invoice and funding amounts without granting payment authority
+  ---
+  duration_ms: 16.7541
+  type: 'test'
+  ...
+# Subtest: invalid request, manifest, role or pin never creates a context call plan
+ok 3 - invalid request, manifest, role or pin never creates a context call plan
+  ---
+  duration_ms: 7.0109
+  type: 'test'
+  ...
+# Subtest: context result set rejects missing, duplicate, changed-caller, mixed-block, foreign and reverted members
+ok 4 - context result set rejects missing, duplicate, changed-caller, mixed-block, foreign and reverted members
+  ---
+  duration_ms: 11.2035
+  type: 'test'
+  ...
+# Subtest: noncanonical or malformed ABI and inconsistent immutable/token bindings cannot become funding observations
+ok 5 - noncanonical or malformed ABI and inconsistent immutable/token bindings cannot become funding observations
+  ---
+  duration_ms: 27.2929
+  type: 'test'
+  ...
+# Subtest: raw invoice statuses remain distinguishable and do not authenticate indexed absence or payment eligibility
+ok 6 - raw invoice statuses remain distinguishable and do not authenticate indexed absence or payment eligibility
+  ---
+  duration_ms: 10.9255
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5048.1368

@@ -1,0 +1,277 @@
+TAP version 13
+# Subtest: search retains a complete sufficient stage and bounds all amounts with exact bigint counters
+not ok 1 - search retains a complete sufficient stage and bounds all amounts with exact bigint counters
+  ---
+  duration_ms: 2.7143
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-search.test.ts:12:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    searchPaymentInput (C:\Users\gujja\aqua-orbital\apps\api\src\payment-search.ts:5:8)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:14:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: 32 eligible orders force four complete stages and reserve the final expansion for the cap
+not ok 2 - 32 eligible orders force four complete stages and reserve the final expansion for the cap
+  ---
+  duration_ms: 0.6622
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-search.test.ts:22:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    searchPaymentInput (C:\Users\gujja\aqua-orbital\apps\api\src\payment-search.ts:5:8)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:24:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: E9 reaches the 28-batch ceiling while staying below128 quote members
+not ok 3 - E9 reaches the 28-batch ceiling while staying below128 quote members
+  ---
+  duration_ms: 0.3623
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-search.test.ts:30:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    searchPaymentInput (C:\Users\gujja\aqua-orbital\apps\api\src\payment-search.ts:5:8)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:32:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: all eligible counts obey exact aggregate and native-batch ceilings without silently truncating a stage
+not ok 4 - all eligible counts obey exact aggregate and native-batch ceilings without silently truncating a stage
+  ---
+  duration_ms: 0.6149
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-search.test.ts:38:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    searchPaymentInput (C:\Users\gujja\aqua-orbital\apps\api\src\payment-search.ts:5:8)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:40:52)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: partial-oracle countermodel may miss a lower sufficient point and never certifies a minimum
+not ok 5 - partial-oracle countermodel may miss a lower sufficient point and never certifies a minimum
+  ---
+  duration_ms: 0.4562
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-search.test.ts:48:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    searchPaymentInput (C:\Users\gujja\aqua-orbital\apps\api\src\payment-search.ts:5:8)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:51:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: saturation, clamping, adjacent bounds and fee plateaus use integer arithmetic
+not ok 6 - saturation, clamping, adjacent bounds and fee plateaus use integer arithmetic
+  ---
+  duration_ms: 1.486
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-search.test.ts:56:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    searchPaymentInput (C:\Users\gujja\aqua-orbital\apps\api\src\payment-search.ts:5:8)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:59:21)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: no eligible strategies consume no quote stage and preserve an explicit unavailable search outcome
+not ok 7 - no eligible strategies consume no quote stage and preserve an explicit unavailable search outcome
+  ---
+  duration_ms: 0.8945
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-search.test.ts:67:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    searchPaymentInput (C:\Users\gujja\aqua-orbital\apps\api\src\payment-search.ts:5:8)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:69:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: missing, duplicated, changed, extra, malformed or contradictory stage outcomes abort instead of retaining a partial result
+not ok 8 - missing, duplicated, changed, extra, malformed or contradictory stage outcomes abort instead of retaining a partial result
+  ---
+  duration_ms: 3.2035
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-search.test.ts:73:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /PAYMENT_STAGE_INVALID/. Input:
+    
+    'Error: NOT_IMPLEMENTED'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: 'NOT_IMPLEMENTED'
+  stack: |-
+    searchPaymentInput (C:\Users\gujja\aqua-orbital\apps\api\src\payment-search.ts:5:8)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:84:48)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:84:27)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: transport failures, cancellation and a failed final checkpoint cannot return an earlier sufficient result
+not ok 9 - transport failures, cancellation and a failed final checkpoint cannot return an earlier sufficient result
+  ---
+  duration_ms: 1.3788
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-search.test.ts:87:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /transport/. Input:
+    
+    'Error: NOT_IMPLEMENTED'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: 'NOT_IMPLEMENTED'
+  stack: |-
+    searchPaymentInput (C:\Users\gujja\aqua-orbital\apps\api\src\payment-search.ts:5:8)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:91:24)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:91:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: latency reserve skips optional refinement while requiring the final checkpoint
+not ok 10 - latency reserve skips optional refinement while requiring the final checkpoint
+  ---
+  duration_ms: 0.9862
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-search.test.ts:96:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    searchPaymentInput (C:\Users\gujja\aqua-orbital\apps\api\src\payment-search.ts:5:8)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:98:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: retained sufficient result is isolated from mutation by a later probe
+not ok 11 - retained sufficient result is isolated from mutation by a later probe
+  ---
+  duration_ms: 0.4487
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-search.test.ts:102:1'
+  failureType: 'testCodeFailure'
+  error: 'NOT_IMPLEMENTED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    searchPaymentInput (C:\Users\gujja\aqua-orbital\apps\api\src\payment-search.ts:5:8)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:104:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: invalid numeric domains or eligible sets are rejected before probing
+not ok 12 - invalid numeric domains or eligible sets are rejected before probing
+  ---
+  duration_ms: 0.7678
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-search.test.ts:108:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /PAYMENT_SEARCH_INVALID/. Input:
+    
+    'Error: NOT_IMPLEMENTED'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: 'NOT_IMPLEMENTED'
+  stack: |-
+    searchPaymentInput (C:\Users\gujja\aqua-orbital\apps\api\src\payment-search.ts:5:8)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:110:41)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-search.test.ts:110:20)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 0
+# fail 12
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 776.8028
+undefined
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: tsx --test test/payment-search.test.ts

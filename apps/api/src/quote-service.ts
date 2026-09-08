@@ -45,7 +45,7 @@ export async function observeQuote(input:DeploymentManifest|null,intent:RoutingI
   if(r.chainId!==manifest.chainId||typeof r.head!=='bigint'||r.head<0n||r.head>=(1n<<256n)||!r.block||r.block.height!==pin.height||!hashSchema.safeParse(r.block.hash).success||r.block.hash.toLowerCase()!==pin.hash.toLowerCase()
    ||typeof r.block.timestamp!=='bigint'||r.block.timestamp<0n||r.block.timestamp+20n>=(1n<<40n)||r.head<BigInt(pin.height)+2n)fail('QUOTE_RPC_IDENTITY_INVALID');
  }
- function clock(timestamp:bigint){const observed=now();if(Number(timestamp)*1000>observed+1000)fail('QUOTE_BLOCK_TIME_INVALID');if(Number(timestamp+20n)*1000<=observed)fail('QUOTE_EXPIRED');}
+ function clock(timestamp:bigint){const observed=now(),limit=timestamp+20n,expires=request.invoiceExpiry!==null&&request.invoiceExpiry<limit?request.invoiceExpiry:limit;if(Number(timestamp)*1000>observed+1000)fail('QUOTE_BLOCK_TIME_INVALID');if(Number(expires)*1000<=observed)fail('QUOTE_EXPIRED');}
  try{
   checkpoint();const query:StrategyReadQuery={kind:'candidates',tokenIn:request.tokenIn,tokenOut:request.tokenOut};
   const before=await run(()=>deps.readDatabase(manifest,query),'QUOTE_DATABASE_UNAVAILABLE');source(before);age(before);

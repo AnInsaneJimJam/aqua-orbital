@@ -56,5 +56,20 @@
       "payWithSwap(bytes32,(address,uint256,bytes),uint8,uint256,uint256,uint40,uint8)": "39c6c554",
       "payWithUSDC(bytes32)": "57bf7054"
     }
+  },
+  {
+    "exportName": "paymentsReadAbi",
+    "source": "packages/contracts/src/OrbitalPayments.sol",
+    "sourceSha256": "02f8c9d2ff55fea0dae6c78c3b28ac251a9067a189a880c3441c367551bef743",
+    "compiler": "0.8.30+commit.73712a01",
+    "evmVersion": "cancun",
+    "optimizerRuns": 700,
+    "viaIR": true,
+    "methodIdentifiers": {
+      "ROUTER()": "32fe7b26",
+      "USDC()": "89a30271",
+      "allowedToken(address)": "756742f8",
+      "getInvoice(bytes32)": "cb802c8b"
+    }
   }
 ]

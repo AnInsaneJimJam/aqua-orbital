@@ -20,6 +20,8 @@ export type DeploymentManifest=z.infer<typeof manifestSchema>;
 export type Token=z.infer<typeof tokenSchema>;
 export const quoteRequestSchema=z.object({wallet:nonzeroAddressSchema,recipient:nonzeroAddressSchema,tokenIn:nonzeroAddressSchema,tokenOut:nonzeroAddressSchema,amountInRaw:uintSchema.pipe(z.string().refine(v=>BigInt(v)>0n)),slippageBps:z.number().int().min(0).max(500),maxCrossings:z.number().int().min(0).max(16)}).strict().refine(v=>v.tokenIn.toLowerCase()!==v.tokenOut.toLowerCase(),'Distinct pair required');
 export type QuoteRequest=z.infer<typeof quoteRequestSchema>;
+export const paymentQuoteRequestSchema=z.object({invoiceId:hashSchema,payer:nonzeroAddressSchema,tokenIn:nonzeroAddressSchema,maxInputRaw:uintSchema.refine(v=>BigInt(v)>0n),maxCrossings:z.number().int().min(0).max(16)}).strict();
+export type PaymentQuoteRequest=z.infer<typeof paymentQuoteRequestSchema>;
 export const configDTOSchema=z.object({schemaVersion:z.literal(1),chainId:uintSchema,router:nonzeroAddressSchema,maker:nonzeroAddressSchema,makerNonce:uint64Schema,tokens:z.array(nonzeroAddressSchema).min(2).max(8),decimals:z.array(z.number().int().min(0).max(18)).min(2).max(8),tickKeys:z.array(uint64Schema).min(1).max(8),radiiInternal:z.array(uintSchema).min(1).max(8),feePpm:z.union([z.literal(100),z.literal(500),z.literal(1000)]),initialAmountsRaw:z.array(uintSchema).min(2).max(8)}).strict();
 export type ConfigDTO=z.infer<typeof configDTOSchema>;
 export const orderDTOSchema=z.object({maker:nonzeroAddressSchema,traits:uintSchema,data:bytesSchema.max(218)}).strict();

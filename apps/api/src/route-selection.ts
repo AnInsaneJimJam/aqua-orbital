@@ -5,7 +5,7 @@ import {configFromDTO,buildOrder,feeIn,takerData,lifecycleAbi,routerAbi} from '@
 import type {StrategyReadSnapshot,StrategyRecord} from '@orbital/db';
 import {readinessDeploymentScope} from './deployment-scope.js';
 import {strategyRecord,strategyFinancial} from './strategy-validation.js';
-export type RoutingIntent={kind:'swap';wallet:string;recipient:string;tokenIn:string;tokenOut:string;amountInRaw:string;slippageBps:number;maxCrossings:number}|{kind:'payment';payer:string;tokenIn:string;amountInRaw:string;minimumOutRaw:string;slippageBps:number;maxCrossings:number};
+export type RoutingIntent={kind:'swap';wallet:string;recipient:string;tokenIn:string;tokenOut:string;amountInRaw:string;slippageBps:number;maxCrossings:number}|{kind:'payment';payer:string;tokenIn:string;amountInRaw:string;minimumOutRaw:string;invoiceExpiresAt:string;maxCrossings:number};
 export type RoutingInput={manifest:DeploymentManifest;snapshot:StrategyReadSnapshot;intent:RoutingIntent;blockTimestamp:string};
 export type StaticReadCall={id:string;method:'eth_call';params:[{from:string;to:string;data:string;value:'0x0'},{blockHash:string;requireCanonical:true}]};
 export type StaticReadResult={request:StaticReadCall;status:'fulfilled';data:string}|{request:StaticReadCall;status:'rejected';reason:'revert'|'transport'|'invalid_response'};
@@ -22,17 +22,18 @@ const batches=(calls:StaticReadCall[])=>Array.from({length:Math.ceil(calls.lengt
 export function validateRoutingIntent(manifest:DeploymentManifest,intent:RoutingIntent){
  try{
   manifest=manifestSchema.parse(manifest);if(!manifest.verified)throw Error();
-  const keys=intent.kind==='swap'?['kind','wallet','recipient','tokenIn','tokenOut','amountInRaw','slippageBps','maxCrossings']:['kind','payer','tokenIn','amountInRaw','minimumOutRaw','slippageBps','maxCrossings'];
+  const keys=intent.kind==='swap'?['kind','wallet','recipient','tokenIn','tokenOut','amountInRaw','slippageBps','maxCrossings']:['kind','payer','tokenIn','amountInRaw','minimumOutRaw','invoiceExpiresAt','maxCrossings'];
   if(!['swap','payment'].includes(intent.kind)||Object.keys(intent).some(k=>!keys.includes(k)))throw Error();
-  const raw={wallet:intent.kind==='swap'?intent.wallet:intent.payer,recipient:intent.kind==='swap'?intent.recipient:manifest.payments,tokenIn:intent.tokenIn,tokenOut:intent.kind==='swap'?intent.tokenOut:manifest.usdc,amountInRaw:intent.amountInRaw,slippageBps:intent.slippageBps,maxCrossings:intent.maxCrossings};
+  const raw={wallet:intent.kind==='swap'?intent.wallet:intent.payer,recipient:intent.kind==='swap'?intent.recipient:manifest.payments,tokenIn:intent.tokenIn,tokenOut:intent.kind==='swap'?intent.tokenOut:manifest.usdc,amountInRaw:intent.amountInRaw,slippageBps:intent.kind==='swap'?intent.slippageBps:0,maxCrossings:intent.maxCrossings};
   const parsed=quoteRequestSchema.parse(raw),payer=lower(parsed.wallet),caller=intent.kind==='payment'?lower(manifest.payments):payer,recipient=lower(parsed.recipient);
   if([manifest.router,manifest.aqua,manifest.payments].map(lower).includes(payer)||[manifest.router,manifest.aqua].map(lower).includes(recipient)
    ||[parsed.tokenIn,parsed.tokenOut].some(t=>!manifest.tokens.some(a=>lower(a.address)===lower(t))))throw Error();
   const minimum=intent.kind==='payment'?BigInt(uintSchema.parse(intent.minimumOutRaw)):0n;if(intent.kind==='payment'&&minimum===0n)throw Error();
-  return {...parsed,payer,caller,recipient,tokenIn:lower(parsed.tokenIn),tokenOut:lower(parsed.tokenOut),minimum};
+  const invoiceExpiry=intent.kind==='payment'?BigInt(uint40Schema.parse(intent.invoiceExpiresAt)):null;
+  return {...parsed,payer,caller,recipient,tokenIn:lower(parsed.tokenIn),tokenOut:lower(parsed.tokenOut),minimum,invoiceExpiry};
  }catch{return fail('ROUTING_INPUT_INVALID');}
 }
-function request(input:RoutingInput,manifest:DeploymentManifest){const r=validateRoutingIntent(manifest,input.intent);try{const timestamp=BigInt(uint40Schema.parse(input.blockTimestamp));if(timestamp+20n>=(1n<<40n))throw Error();return {...r,deadline:timestamp+20n};}catch{return fail('ROUTING_INPUT_INVALID');}}
+function request(input:RoutingInput,manifest:DeploymentManifest){const r=validateRoutingIntent(manifest,input.intent);try{const timestamp=BigInt(uint40Schema.parse(input.blockTimestamp)),limit=timestamp+20n,deadline=r.invoiceExpiry!==null&&r.invoiceExpiry<limit?r.invoiceExpiry:limit;if(deadline<=timestamp||deadline>=(1n<<40n))throw Error();return {...r,deadline};}catch{return fail('ROUTING_INPUT_INVALID');}}
 function call(input:RoutingInput,caller:string,id:string,data:Hex):StaticReadCall{return {id,method:'eth_call',params:[{from:caller,to:lower(input.manifest.router),data,value:'0x0'},{blockHash:lower(input.snapshot.asOf!.hash),requireCanonical:true}]};}
 function setup(input:RoutingInput){
  const parsed=manifestSchema.safeParse(input.manifest);if(!parsed.success||!parsed.data.verified)return fail('ROUTING_INPUT_INVALID');
@@ -100,7 +101,7 @@ export function selectWholeSizeQuotes(input:RoutingInput,observations:StaticRead
    if(decoded[0]!==BigInt(p.r.amountInRaw))code='PARTIAL_FILL';else if(decoded[1]===0n||decoded[1]<p.r.minimum)code='MINIMUM_NOT_MET';else if(decoded[1]>BigInt(c.financial.availability[c.outputIndex]!.fundingCeilingRaw))code='OUTPUT_UNAVAILABLE';else out=decoded[1];
   }catch{code='QUOTE_DATA_INVALID';}
   if(code){p.plan.counts.failed++;p.plan.diagnostics.push({orderHash:c.dto.orderHash,code});continue;}
-  let minimum=out*BigInt(10000-p.r.slippageBps)/10000n;if(minimum<p.r.minimum)minimum=p.r.minimum;if(minimum===0n)minimum=1n;
+  let minimum=input.intent.kind==='payment'?p.r.minimum:out*BigInt(10000-p.r.slippageBps)/10000n;if(minimum===0n)minimum=1n;
   routes.push({kind:input.intent.kind,payer:p.r.payer,orderHash:c.dto.orderHash,configHash:c.dto.configHash,config:c.dto.config,stateVersion:c.dto.version,caller:p.r.caller,recipient:p.r.recipient,tokenIn:p.r.tokenIn,tokenOut:p.r.tokenOut,amountInRaw:p.r.amountInRaw,amountOutRaw:out.toString(),feeRaw:c.feeRaw,feePpm:c.dto.config.feePpm,minimumOutRaw:minimum.toString(),expiresAt:p.r.deadline.toString(),maxCrossings:p.r.maxCrossings});p.plan.diagnostics.push({orderHash:c.dto.orderHash,code:'QUOTED'});
  }
  routes.sort((a,b)=>BigInt(a.amountOutRaw)!==BigInt(b.amountOutRaw)?BigInt(a.amountOutRaw)>BigInt(b.amountOutRaw)?-1:1:a.feePpm!==b.feePpm?a.feePpm-b.feePpm:lower(a.orderHash).localeCompare(lower(b.orderHash)));

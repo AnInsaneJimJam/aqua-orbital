@@ -54,10 +54,10 @@ test('swap strict decoding rejects wrong topics and truncated ordered crossing d
  assert.deepEqual(expected(event).crossedInward,[true,false,true]);
 });
 
-test('swap provenance pins source, concrete implementation and compiler without changing prior record counts',()=>{
+test('swap provenance pins source, concrete implementation and compiler independently of the additive payment read group',()=>{
  const originalFunctions=JSON.parse(readFileSync(new URL('../src/generated/provenance.json',import.meta.url),'utf8'));
  const originalEvents=JSON.parse(readFileSync(new URL('../src/generated/events-provenance.json',import.meta.url),'utf8'));
- assert.equal(originalFunctions.length,4);assert.equal(originalEvents.length,2);
+ assert.deepEqual(originalFunctions.map((record:{exportName:string})=>record.exportName),['routerAbi','lifecycleAbi','aquaAbi','paymentsAbi','paymentsReadAbi']);assert.equal(originalEvents.length,2);
  const records=JSON.parse(readFileSync(new URL('../src/generated/swap-events-provenance.json',import.meta.url),'utf8')) as Array<Record<string,any>>;
  assert.equal(records.length,1);const record=records[0]!;
  assert.equal(record.exportName,'swapEventsAbi');

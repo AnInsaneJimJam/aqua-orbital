@@ -1,0 +1,172 @@
+TAP version 13
+# Subtest: payment reads use one complete reserved 7/8-member native batch and decode unordered replies
+ok 1 - payment reads use one complete reserved 7/8-member native batch and decode unordered replies
+  ---
+  duration_ms: 150.7483
+  type: 'test'
+  ...
+# Subtest: unknown invoice revert, incomplete IDs and changed immutables reject the entire payment context
+ok 2 - unknown invoice revert, incomplete IDs and changed immutables reject the entire payment context
+  ---
+  duration_ms: 24.644
+  type: 'test'
+  ...
+# Subtest: payment input validation and pre-cancellation happen before RPC reservation
+ok 3 - payment input validation and pre-cancellation happen before RPC reservation
+  ---
+  duration_ms: 12.2432
+  type: 'test'
+  ...
+# Subtest: payment retries retain one reservation and byte-identical internally generated batch
+ok 4 - payment retries retain one reservation and byte-identical internally generated batch
+  ---
+  duration_ms: 1029.2107
+  type: 'test'
+  ...
+# Subtest: payment deadline, cancellation and response size checks release all reserved capacity
+ok 5 - payment deadline, cancellation and response size checks release all reserved capacity
+  ---
+  duration_ms: 84.6732
+  type: 'test'
+  ...
+# Subtest: payment context uses eight independent exact reads at one hash pin and deduplicates direct USDC decimals
+ok 6 - payment context uses eight independent exact reads at one hash pin and deduplicates direct USDC decimals
+  ---
+  duration_ms: 23.3959
+  type: 'test'
+  ...
+# Subtest: complete reordered results retain exact bigint invoice and funding amounts without granting payment authority
+ok 7 - complete reordered results retain exact bigint invoice and funding amounts without granting payment authority
+  ---
+  duration_ms: 13.8748
+  type: 'test'
+  ...
+# Subtest: invalid request, manifest, role or pin never creates a context call plan
+ok 8 - invalid request, manifest, role or pin never creates a context call plan
+  ---
+  duration_ms: 5.4027
+  type: 'test'
+  ...
+# Subtest: context result set rejects missing, duplicate, changed-caller, mixed-block, foreign and reverted members
+ok 9 - context result set rejects missing, duplicate, changed-caller, mixed-block, foreign and reverted members
+  ---
+  duration_ms: 11.7101
+  type: 'test'
+  ...
+# Subtest: noncanonical or malformed ABI and inconsistent immutable/token bindings cannot become funding observations
+ok 10 - noncanonical or malformed ABI and inconsistent immutable/token bindings cannot become funding observations
+  ---
+  duration_ms: 30.1178
+  type: 'test'
+  ...
+# Subtest: raw invoice statuses remain distinguishable and do not authenticate indexed absence or payment eligibility
+ok 11 - raw invoice statuses remain distinguishable and do not authenticate indexed absence or payment eligibility
+  ---
+  duration_ms: 14.6189
+  type: 'test'
+  ...
+# Subtest: search retains a complete sufficient stage and bounds all amounts with exact bigint counters
+ok 12 - search retains a complete sufficient stage and bounds all amounts with exact bigint counters
+  ---
+  duration_ms: 6.9689
+  type: 'test'
+  ...
+# Subtest: 32 eligible orders force four complete stages and reserve the final expansion for the cap
+ok 13 - 32 eligible orders force four complete stages and reserve the final expansion for the cap
+  ---
+  duration_ms: 0.7328
+  type: 'test'
+  ...
+# Subtest: E9 reaches the 28-batch ceiling while staying below128 quote members
+ok 14 - E9 reaches the 28-batch ceiling while staying below128 quote members
+  ---
+  duration_ms: 1.7657
+  type: 'test'
+  ...
+# Subtest: all eligible counts obey exact aggregate and native-batch ceilings without silently truncating a stage
+ok 15 - all eligible counts obey exact aggregate and native-batch ceilings without silently truncating a stage
+  ---
+  duration_ms: 12.6026
+  type: 'test'
+  ...
+# Subtest: partial-oracle countermodel may miss a lower sufficient point and never certifies a minimum
+ok 16 - partial-oracle countermodel may miss a lower sufficient point and never certifies a minimum
+  ---
+  duration_ms: 1.0826
+  type: 'test'
+  ...
+# Subtest: saturation, clamping, adjacent bounds and fee plateaus use integer arithmetic
+ok 17 - saturation, clamping, adjacent bounds and fee plateaus use integer arithmetic
+  ---
+  duration_ms: 1.03
+  type: 'test'
+  ...
+# Subtest: no eligible strategies consume no quote stage and preserve an explicit unavailable search outcome
+ok 18 - no eligible strategies consume no quote stage and preserve an explicit unavailable search outcome
+  ---
+  duration_ms: 0.2529
+  type: 'test'
+  ...
+# Subtest: missing, duplicated, changed, extra, malformed or contradictory stage outcomes abort instead of retaining a partial result
+ok 19 - missing, duplicated, changed, extra, malformed or contradictory stage outcomes abort instead of retaining a partial result
+  ---
+  duration_ms: 1.3361
+  type: 'test'
+  ...
+# Subtest: transport failures, cancellation and a failed final checkpoint cannot return an earlier sufficient result
+ok 20 - transport failures, cancellation and a failed final checkpoint cannot return an earlier sufficient result
+  ---
+  duration_ms: 1.1457
+  type: 'test'
+  ...
+# Subtest: latency reserve skips optional refinement while requiring the final checkpoint
+ok 21 - latency reserve skips optional refinement while requiring the final checkpoint
+  ---
+  duration_ms: 0.7923
+  type: 'test'
+  ...
+# Subtest: retained sufficient result is isolated from mutation by a later probe
+ok 22 - retained sufficient result is isolated from mutation by a later probe
+  ---
+  duration_ms: 0.3313
+  type: 'test'
+  ...
+# Subtest: invalid numeric domains or eligible sets are rejected before probing
+ok 23 - invalid numeric domains or eligible sets are rejected before probing
+  ---
+  duration_ms: 0.5619
+  type: 'test'
+  ...
+# Subtest: shared memory, accessors, cycles and non-data values cannot be retained as a quote result
+ok 24 - shared memory, accessors, cycles and non-data values cannot be retained as a quote result
+  ---
+  duration_ms: 1.757
+  type: 'test'
+  ...
+# Subtest: a final-return checkpoint failure discards the retained quote after optional refinement is declined
+ok 25 - a final-return checkpoint failure discards the retained quote after optional refinement is declined
+  ---
+  duration_ms: 0.4034
+  type: 'test'
+  ...
+# Subtest: a complete reordered stage can include both quoted and unavailable strategies
+ok 26 - a complete reordered stage can include both quoted and unavailable strategies
+  ---
+  duration_ms: 0.4677
+  type: 'test'
+  ...
+# Subtest: an exhausted bounded search can miss its sole sufficient input without claiming liquidity is insufficient
+ok 27 - an exhausted bounded search can miss its sole sufficient input without claiming liquidity is insufficient
+  ---
+  duration_ms: 0.2991
+  type: 'test'
+  ...
+1..27
+# tests 27
+# suites 0
+# pass 27
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17974.7241

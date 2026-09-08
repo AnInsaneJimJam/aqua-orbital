@@ -1,0 +1,91 @@
+TAP version 13
+# Subtest: bounded preparation sorts canonical block/log activity and caps inspections without claiming eligibility
+ok 1 - bounded preparation sorts canonical block/log activity and caps inspections without claiming eligibility
+  ---
+  duration_ms: 234.7842
+  type: 'test'
+  ...
+# Subtest: inspection and quote plans preserve exact caller, recipient, canonical bytes and one hash pin
+ok 2 - inspection and quote plans preserve exact caller, recipient, canonical bytes and one hash pin
+  ---
+  duration_ms: 94.3646
+  type: 'test'
+  ...
+# Subtest: payment planning uses adapter caller/recipient and an independent payer without invoice authorization
+not ok 3 - payment planning uses adapter caller/recipient and an independent payer without invoice authorization
+  ---
+  duration_ms: 7.7664
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\route-selection.test.ts:20:1'
+  failureType: 'testCodeFailure'
+  error: 'ROUTING_INPUT_INVALID'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    fail (C:\Users\gujja\aqua-orbital\apps\api\src\route-selection.ts:20:40)
+    validateRoutingIntent (C:\Users\gujja\aqua-orbital\apps\api\src\route-selection.ts:33:16)
+    request (C:\Users\gujja\aqua-orbital\apps\api\src\route-selection.ts:35:74)
+    setup (C:\Users\gujja\aqua-orbital\apps\api\src\route-selection.ts:39:24)
+    prepareRouting (C:\Users\gujja\aqua-orbital\apps\api\src\route-selection.ts:92:64)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\route-selection.test.ts:22:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+  ...
+# Subtest: payment deadline is clipped once and expired, malformed or caller-slippage variants cannot prepare quotes
+not ok 4 - payment deadline is clipped once and expired, malformed or caller-slippage variants cannot prepare quotes
+  ---
+  duration_ms: 9.0476
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\route-selection.test.ts:30:1'
+  failureType: 'testCodeFailure'
+  error: 'ROUTING_INPUT_INVALID'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    fail (C:\Users\gujja\aqua-orbital\apps\api\src\route-selection.ts:20:40)
+    validateRoutingIntent (C:\Users\gujja\aqua-orbital\apps\api\src\route-selection.ts:33:16)
+    request (C:\Users\gujja\aqua-orbital\apps\api\src\route-selection.ts:35:74)
+    setup (C:\Users\gujja\aqua-orbital\apps\api\src\route-selection.ts:39:24)
+    prepareRouting (C:\Users\gujja\aqua-orbital\apps\api\src\route-selection.ts:92:64)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\route-selection.test.ts:32:62)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+  ...
+# Subtest: whole-size results rank exact output then fee/hash and return no more than three alternatives
+ok 5 - whole-size results rank exact output then fee/hash and return no more than three alternatives
+  ---
+  duration_ms: 183.0905
+  type: 'test'
+  ...
+# Subtest: more than32 locally valid but untradeable observations retain exact failure and cap counts
+ok 6 - more than32 locally valid but untradeable observations retain exact failure and cap counts
+  ---
+  duration_ms: 385.366
+  type: 'test'
+  ...
+# Subtest: partial fills, excess inventory, wrong order bytes, reverts and absent observations are discarded
+ok 7 - partial fills, excess inventory, wrong order bytes, reverts and absent observations are discarded
+  ---
+  duration_ms: 105.6293
+  type: 'test'
+  ...
+# Subtest: invalid source scope, token roles and numeric limits cannot create call plans
+ok 8 - invalid source scope, token roles and numeric limits cannot create call plans
+  ---
+  duration_ms: 28.5275
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 6
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7070.2225
+undefined
+C:\Users\gujja\aqua-orbital\apps\api:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: tsx --test test/route-selection.test.ts

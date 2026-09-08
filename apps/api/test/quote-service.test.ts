@@ -6,6 +6,7 @@ import {reconcileCanonicalChain} from '@orbital/db';
 import {observeQuote as service,type QuoteDependencies} from '../src/quote-service.js';
 import {prepareRouting,prepareWholeSizeQuotes,type RoutingIntent,type StaticReadCall,type StaticReadResult} from '../src/route-selection.js';
 import {strategyFixture,manifest,address,hash,header} from './strategies-fixture.js';
+import {routingFixture} from './route-selection-fixture.js';
 
 const intent:RoutingIntent={kind:'swap',wallet:address(22),recipient:address(23),tokenIn:address(1),tokenOut:address(3),amountInRaw:'1000000',slippageBps:50,maxCrossings:16};
 async function observeQuote(...args:Parameters<typeof service>){return JSON.parse(JSON.stringify(await service(...args)));}
@@ -78,4 +79,18 @@ test('every RPC group receives the remaining total budget instead of a fresh eig
 test('final indexed freshness and source changes invalidate an otherwise completed quote selection',async()=>{
  for(const sql of ["UPDATE indexer_state SET updated_at=now()-interval '15 seconds'",'DELETE FROM swap_receipts']){const f=await fixture();try{assert.equal((await observeQuote(manifest,intent,f.deps)).status,'observed');const original=f.deps.readIdentity;let count=0;f.deps.readIdentity=async(...args)=>{const result=await original(...args);if(++count===2)await f.db.pool.query(sql);return result;};const result=await observeQuote(manifest,intent,f.deps);assert.equal(result.data,null);assert.equal(result.status,'unavailable');assert.equal(count,2);
  }finally{await f.close();}}
+});
+
+test('internal payment observation cannot survive invoice expiry during the final database recheck',async()=>{
+ const f=routingFixture(1),timestamp=1700000003n;let reads=0;
+ f.input.intent={kind:'payment',payer:address(22),tokenIn:address(3),amountInRaw:'1000000000000000000',minimumOutRaw:'1000000',invoiceExpiresAt:(timestamp+1n).toString(),maxCrossings:4};
+ f.input.snapshot.indexedAt=new Date(Number(timestamp)*1000).toISOString();
+ const deps:QuoteDependencies={
+  async readDatabase(){if(++reads===2)await new Promise(resolve=>setTimeout(resolve,300));return structuredClone(f.input.snapshot);},
+  async readIdentity(){return {chainId:31337,head:5n,block:{height:'3',hash:hash(3),timestamp}};},
+  async readBatch(input,phase){const batches=phase.kind==='inspection'?prepareRouting(input).batches:prepareWholeSizeQuotes(input,phase.observations).quoteBatches;
+   return phase.kind==='inspection'?f.inspections(batches[phase.batchIndex]!):f.quotes(batches[phase.batchIndex]!,()=>2_000_000n);},
+ };
+ const result=await observeQuote(manifest,f.input.intent,deps,{now:()=>Number(timestamp+1n)*1000-250});
+ assert.equal(reads,2);assert.equal(result.status,'unavailable');assert.equal(result.code,'QUOTE_EXPIRED');assert.equal(result.data,null);
 });

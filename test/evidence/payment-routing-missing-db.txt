@@ -1,0 +1,543 @@
+TAP version 13
+# Subtest: search retains a complete sufficient stage and bounds all amounts with exact bigint counters
+ok 1 - search retains a complete sufficient stage and bounds all amounts with exact bigint counters
+  ---
+  duration_ms: 16.8795
+  type: 'test'
+  ...
+# Subtest: 32 eligible orders force four complete stages and reserve the final expansion for the cap
+ok 2 - 32 eligible orders force four complete stages and reserve the final expansion for the cap
+  ---
+  duration_ms: 1.4038
+  type: 'test'
+  ...
+# Subtest: E9 reaches the 28-batch ceiling while staying below128 quote members
+ok 3 - E9 reaches the 28-batch ceiling while staying below128 quote members
+  ---
+  duration_ms: 3.552
+  type: 'test'
+  ...
+# Subtest: all eligible counts obey exact aggregate and native-batch ceilings without silently truncating a stage
+ok 4 - all eligible counts obey exact aggregate and native-batch ceilings without silently truncating a stage
+  ---
+  duration_ms: 29.463
+  type: 'test'
+  ...
+# Subtest: partial-oracle countermodel may miss a lower sufficient point and never certifies a minimum
+ok 5 - partial-oracle countermodel may miss a lower sufficient point and never certifies a minimum
+  ---
+  duration_ms: 2.087
+  type: 'test'
+  ...
+# Subtest: saturation, clamping, adjacent bounds and fee plateaus use integer arithmetic
+ok 6 - saturation, clamping, adjacent bounds and fee plateaus use integer arithmetic
+  ---
+  duration_ms: 2.097
+  type: 'test'
+  ...
+# Subtest: no eligible strategies consume no quote stage and preserve an explicit unavailable search outcome
+ok 7 - no eligible strategies consume no quote stage and preserve an explicit unavailable search outcome
+  ---
+  duration_ms: 0.6838
+  type: 'test'
+  ...
+# Subtest: missing, duplicated, changed, extra, malformed or contradictory stage outcomes abort instead of retaining a partial result
+ok 8 - missing, duplicated, changed, extra, malformed or contradictory stage outcomes abort instead of retaining a partial result
+  ---
+  duration_ms: 4.3493
+  type: 'test'
+  ...
+# Subtest: transport failures, cancellation and a failed final checkpoint cannot return an earlier sufficient result
+ok 9 - transport failures, cancellation and a failed final checkpoint cannot return an earlier sufficient result
+  ---
+  duration_ms: 2.9526
+  type: 'test'
+  ...
+# Subtest: latency reserve skips optional refinement while requiring the final checkpoint
+ok 10 - latency reserve skips optional refinement while requiring the final checkpoint
+  ---
+  duration_ms: 2.1942
+  type: 'test'
+  ...
+# Subtest: retained sufficient result is isolated from mutation by a later probe
+ok 11 - retained sufficient result is isolated from mutation by a later probe
+  ---
+  duration_ms: 0.9888
+  type: 'test'
+  ...
+# Subtest: invalid numeric domains or eligible sets are rejected before probing
+ok 12 - invalid numeric domains or eligible sets are rejected before probing
+  ---
+  duration_ms: 1.982
+  type: 'test'
+  ...
+# Subtest: shared memory, accessors, cycles and non-data values cannot be retained as a quote result
+ok 13 - shared memory, accessors, cycles and non-data values cannot be retained as a quote result
+  ---
+  duration_ms: 5.158
+  type: 'test'
+  ...
+# Subtest: a final-return checkpoint failure discards the retained quote after optional refinement is declined
+ok 14 - a final-return checkpoint failure discards the retained quote after optional refinement is declined
+  ---
+  duration_ms: 2.2453
+  type: 'test'
+  ...
+# Subtest: a complete reordered stage can include both quoted and unavailable strategies
+ok 15 - a complete reordered stage can include both quoted and unavailable strategies
+  ---
+  duration_ms: 1.1378
+  type: 'test'
+  ...
+# Subtest: an exhausted bounded search can miss its sole sufficient input without claiming liquidity is insufficient
+ok 16 - an exhausted bounded search can miss its sole sufficient input without claiming liquidity is insufficient
+  ---
+  duration_ms: 0.8492
+  type: 'test'
+  ...
+# Subtest: identity is one reserved native three-read batch with mandatory canonical timestamp
+ok 17 - identity is one reserved native three-read batch with mandatory canonical timestamp
+  ---
+  duration_ms: 50.0479
+  type: 'test'
+  ...
+# Subtest: inspection batches are regenerated, bounded to eight, hash pinned and returned in planned order
+ok 18 - inspection batches are regenerated, bounded to eight, hash pinned and returned in planned order
+  ---
+  duration_ms: 167.3949
+  type: 'test'
+  ...
+# Subtest: quote phase regenerates complete calldata from inspected state and preserves payment adapter caller
+ok 19 - quote phase regenerates complete calldata from inspected state and preserves payment adapter caller
+  ---
+  duration_ms: 75.4728
+  type: 'test'
+  ...
+# Subtest: invalid input, phase, pin, configuration and cancelled work never reserve or fetch
+ok 20 - invalid input, phase, pin, configuration and cancelled work never reserve or fetch
+  ---
+  duration_ms: 111.8428
+  type: 'test'
+  ...
+# Subtest: reservation failure makes no request and does not release capacity it never acquired
+ok 21 - reservation failure makes no request and does not release capacity it never acquired
+  ---
+  duration_ms: 2.3312
+  type: 'test'
+  ...
+# Subtest: wrong chain, noncanonical quantities, missing timestamp, wrong hash and shallow head fail closed
+ok 22 - wrong chain, noncanonical quantities, missing timestamp, wrong hash and shallow head fail closed
+  ---
+  duration_ms: 18.2089
+  type: 'test'
+  ...
+# Subtest: missing, duplicate, unknown and mistyped IDs or malformed envelopes reject the whole batch without retry
+ok 23 - missing, duplicate, unknown and mistyped IDs or malformed envelopes reject the whole batch without retry
+  ---
+  duration_ms: 16.8196
+  type: 'test'
+  ...
+# Subtest: only explicit EVM reverts are per-call failures, with no remote error details returned
+ok 24 - only explicit EVM reverts are per-call failures, with no remote error details returned
+  ---
+  duration_ms: 182.1862
+  type: 'test'
+  ...
+# Subtest: nonhex, odd hex, malformed JSON and invalid UTF8 never become partial observations
+ok 25 - nonhex, odd hex, malformed JSON and invalid UTF8 never become partial observations
+  ---
+  duration_ms: 46.525
+  type: 'test'
+  ...
+# Subtest: aggregate stream and per-result byte limits reject oversized responses before observations escape
+ok 26 - aggregate stream and per-result byte limits reject oversized responses before observations escape
+  ---
+  duration_ms: 57.5104
+  type: 'test'
+  ...
+# Subtest: only transport failures retry twice under one reservation and native batch identity is stable
+ok 27 - only transport failures retry twice under one reservation and native batch identity is stable
+  ---
+  duration_ms: 1027.4902
+  type: 'test'
+  ...
+# Subtest: stalled fetch and streamed body deadlines abort native work and always release capacity
+ok 28 - stalled fetch and streamed body deadlines abort native work and always release capacity
+  ---
+  duration_ms: 77.6063
+  type: 'test'
+  ...
+# Subtest: caller and shutdown cancellation interrupt retries and remove listeners for later work
+ok 29 - caller and shutdown cancellation interrupt retries and remove listeners for later work
+  ---
+  duration_ms: 71.0927
+  type: 'test'
+  ...
+# Subtest: ready empty chunks cannot starve the monotonic body deadline
+ok 30 - ready empty chunks cannot starve the monotonic body deadline
+  ---
+  duration_ms: 5.7856
+  type: 'test'
+  ...
+# Subtest: one short total timeout also covers retry wait and rejects invalid deadlines before reservation
+ok 31 - one short total timeout also covers retry wait and rejects invalid deadlines before reservation
+  ---
+  duration_ms: 41.4523
+  type: 'test'
+  ...
+# Subtest: actual localhost JSON-RPC supports native identity and inspection arrays with unordered responses
+ok 32 - actual localhost JSON-RPC supports native identity and inspection arrays with unordered responses
+  ---
+  duration_ms: 113.7873
+  type: 'test'
+  ...
+# Subtest: internal production runtime obtains canonical swap and adapter quote observations through native HTTP batches
+not ok 33 - internal production runtime obtains canonical swap and adapter quote observations through native HTTP batches
+  ---
+  duration_ms: 8.5815
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-runtime.test.ts:6:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    quoteRuntimeFixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-runtime-fixture.ts:15:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-runtime.test.ts:7:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: runtime bounds admitted quote services and shares eight logical RPC slots with existing readers
+not ok 34 - runtime bounds admitted quote services and shares eight logical RPC slots with existing readers
+  ---
+  duration_ms: 4.2362
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-runtime.test.ts:12:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    quoteRuntimeFixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-runtime-fixture.ts:15:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-runtime.test.ts:14:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: runtime shutdown cancels the active batch and never starts later quote work
+not ok 35 - runtime shutdown cancels the active batch and never starts later quote work
+  ---
+  duration_ms: 1.6293
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-runtime.test.ts:21:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    quoteRuntimeFixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-runtime-fixture.ts:15:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-runtime.test.ts:23:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: timed-out service admission remains occupied until its pending database transaction has settled
+not ok 36 - timed-out service admission remains occupied until its pending database transaction has settled
+  ---
+  duration_ms: 1.9114
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-runtime.test.ts:27:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    quoteRuntimeFixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-runtime-fixture.ts:15:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-runtime.test.ts:28:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: service binds real canonical candidates to RPC timestamp and final identity/database checks
+not ok 37 - service binds real canonical candidates to RPC timestamp and final identity/database checks
+  ---
+  duration_ms: 3.1006
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-service.test.ts:25:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    fixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:13:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:26:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: unavailable or malformed input never becomes an observed quote or starts RPC batches
+not ok 38 - unavailable or malformed input never becomes an observed quote or starts RPC batches
+  ---
+  duration_ms: 0.7439
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-service.test.ts:30:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    fixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:13:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:31:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: per-candidate getter and quote reverts retain diagnostics while other whole-size routes survive
+not ok 39 - per-candidate getter and quote reverts retain diagnostics while other whole-size routes survive
+  ---
+  duration_ms: 0.3999
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-service.test.ts:37:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    fixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:13:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:38:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: group transport failures discard partial results and prevent queued quote work
+not ok 40 - group transport failures discard partial results and prevent queued quote work
+  ---
+  duration_ms: 0.3611
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-service.test.ts:43:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    fixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:13:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:44:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: wrong identities, future or expired pinned timestamps and stale indexing fail before quote reads
+not ok 41 - wrong identities, future or expired pinned timestamps and stale indexing fail before quote reads
+  ---
+  duration_ms: 0.4354
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-service.test.ts:48:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    fixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:13:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:49:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: reorg after quotes discards all output; ordinary tip advancement can retain identical pinned observations
+not ok 42 - reorg after quotes discards all output; ordinary tip advancement can retain identical pinned observations
+  ---
+  duration_ms: 0.4379
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-service.test.ts:54:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    fixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:13:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:55:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: cancellation and total deadline stop superseded work without returning a partial selection
+not ok 43 - cancellation and total deadline stop superseded work without returning a partial selection
+  ---
+  duration_ms: 0.5237
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-service.test.ts:60:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    fixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:13:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:61:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: all inspected reverts report no route in the inspected set after canonical rechecks
+not ok 44 - all inspected reverts report no route in the inspected set after canonical rechecks
+  ---
+  duration_ms: 0.3587
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-service.test.ts:67:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    fixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:13:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:68:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: every RPC group receives the remaining total budget instead of a fresh eight seconds
+not ok 45 - every RPC group receives the remaining total budget instead of a fresh eight seconds
+  ---
+  duration_ms: 1.0187
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-service.test.ts:72:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    fixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:13:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:73:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: final indexed freshness and source changes invalidate an otherwise completed quote selection
+not ok 46 - final indexed freshness and source changes invalidate an otherwise completed quote selection
+  ---
+  duration_ms: 1.1222
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\quote-service.test.ts:78:1'
+  failureType: 'testCodeFailure'
+  error: 'TEST_DATABASE_URL required; PostgreSQL tests must not silently skip'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    isolatedDatabase (C:\Users\gujja\aqua-orbital\packages\db\test\helpers.ts:6:20)
+    strategyFixture (C:\Users\gujja\aqua-orbital\apps\api\test\strategies-fixture.ts:23:17)
+    fixture (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:13:16)
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\quote-service.test.ts:79:130)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: bounded preparation sorts canonical block/log activity and caps inspections without claiming eligibility
+ok 47 - bounded preparation sorts canonical block/log activity and caps inspections without claiming eligibility
+  ---
+  duration_ms: 301.6477
+  type: 'test'
+  ...
+# Subtest: inspection and quote plans preserve exact caller, recipient, canonical bytes and one hash pin
+ok 48 - inspection and quote plans preserve exact caller, recipient, canonical bytes and one hash pin
+  ---
+  duration_ms: 127.4551
+  type: 'test'
+  ...
+# Subtest: payment planning uses adapter caller/recipient and an independent payer without invoice authorization
+ok 49 - payment planning uses adapter caller/recipient and an independent payer without invoice authorization
+  ---
+  duration_ms: 192.8246
+  type: 'test'
+  ...
+# Subtest: payment deadline is clipped once and expired, malformed or caller-slippage variants cannot prepare quotes
+ok 50 - payment deadline is clipped once and expired, malformed or caller-slippage variants cannot prepare quotes
+  ---
+  duration_ms: 96.3216
+  type: 'test'
+  ...
+# Subtest: whole-size results rank exact output then fee/hash and return no more than three alternatives
+ok 51 - whole-size results rank exact output then fee/hash and return no more than three alternatives
+  ---
+  duration_ms: 300.0618
+  type: 'test'
+  ...
+# Subtest: more than32 locally valid but untradeable observations retain exact failure and cap counts
+ok 52 - more than32 locally valid but untradeable observations retain exact failure and cap counts
+  ---
+  duration_ms: 539.682
+  type: 'test'
+  ...
+# Subtest: partial fills, excess inventory, wrong order bytes, reverts and absent observations are discarded
+ok 53 - partial fills, excess inventory, wrong order bytes, reverts and absent observations are discarded
+  ---
+  duration_ms: 144.7149
+  type: 'test'
+  ...
+# Subtest: invalid source scope, token roles and numeric limits cannot create call plans
+ok 54 - invalid source scope, token roles and numeric limits cannot create call plans
+  ---
+  duration_ms: 40.437
+  type: 'test'
+  ...
+1..54
+# tests 54
+# suites 0
+# pass 40
+# fail 14
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 39103.014
+undefined
+C:\Users\gujja\aqua-orbital\apps\api:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: tsx --test --test-concurrency=1 test/payment-search.test.ts test/route-selection.test.ts test/quote-rpc.test.ts test/quote-service.test.ts test/quote-runtime.test.ts

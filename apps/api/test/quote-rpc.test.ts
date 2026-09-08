@@ -38,7 +38,7 @@ test('inspection batches are regenerated, bounded to eight, hash pinned and retu
  for(const batch of f.calls)for(const c of batch){assert.equal(c.method,'eth_call');assert.deepEqual(c.params[1],{blockHash:pin.hash,requireCanonical:true});assert.equal((c.params[0] as {to:string}).to,manifest.router.toLowerCase());}
 });
 test('quote phase regenerates complete calldata from inspected state and preserves payment adapter caller',async()=>{
- const fixture=routingFixture(2);fixture.input.intent={kind:'payment',payer:address(22),tokenIn:address(3),amountInRaw:'9007199254740993',minimumOutRaw:'1',slippageBps:50,maxCrossings:16};
+ const fixture=routingFixture(2);fixture.input.intent={kind:'payment',payer:address(22),tokenIn:address(3),amountInRaw:'9007199254740993',minimumOutRaw:'1',invoiceExpiresAt:'1700001000',maxCrossings:16};
  const inspections=fixture.inspections(prepareRouting(fixture.input).inspectionCalls),plan=prepareWholeSizeQuotes(fixture.input,inspections),rows=fixture.quotes(plan.quoteCalls),data=rawResults(rows);
  const f=setup(async calls=>response(calls,c=>data.get(String(c.id)))),r=await readQuoteBatch(fixture.input,{kind:'quote',batchIndex:0,observations:inspections},f.options);
  assert.deepEqual(r,rows);assert.deepEqual(f.weights,[2]);for(const c of f.calls[0]!){assert.equal((c.params[0] as {from:string}).from,manifest.payments.toLowerCase());assert.equal(c.method,'eth_call');}

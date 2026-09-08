@@ -1,8 +1,9 @@
-import {manifestSchema, hashSchema, nonzeroAddressSchema, invoiceListQuerySchema, invoiceCursorSchema, invoiceReadSchema,
+import {manifestSchema, hashSchema, nonzeroAddressSchema, invoiceListQuerySchema, invoiceCursorSchema,
   type DeploymentManifest, type InvoiceReadDTO} from '@orbital/shared';
 import type {InvoiceReadQuery, InvoiceReadSnapshot} from '@orbital/db';
 import type {MetricsDependencies} from './metrics.js';
 import {readinessDeploymentScope} from './deployment-scope.js';
+import {invoiceView} from './invoice-view.js';
 export type InvoiceReadDependencies = {
   readDatabase(manifest: DeploymentManifest, query: InvoiceReadQuery): Promise<InvoiceReadSnapshot>;
   readRpc: MetricsDependencies['readRpc'];
@@ -58,15 +59,7 @@ export async function getInvoices(input: DeploymentManifest | null, request: {id
   if (!before.asOf || !before.currentCursor || !before.indexedAt || !before.items) return fail('INVOICE_DATA_INVALID');
   let items: InvoiceView[];
   try {
-    const token = (address: string) => { const found = manifest.tokens.find(t => t.address.toLowerCase() === address.toLowerCase()); if (!found) throw Error('INVALID_TOKEN'); return found; };
-    items = before.items.map(inv => {
-      let remaining = BigInt(inv.amountDueRaw);
-      const recipients = inv.recipients.map((r, i) => { const amount = i + 1 === inv.recipients.length ? remaining : BigInt(inv.amountDueRaw) * BigInt(r.bps) / 10000n; remaining -= amount; return {...r, amountRaw: amount.toString()}; });
-      return invoiceReadSchema.parse({...inv, recipients, created: {...inv.created, event: 'InvoiceCreated'},
-        updated: {...inv.updated, event: inv.status === 'unpaid' ? 'InvoiceCreated' : inv.status === 'paid' ? 'InvoicePaid' : 'InvoiceCancelled'},
-        settlementToken: token(manifest.usdc), paymentEligibilityVerified: false,
-        payment: inv.payment ? {...inv.payment, inputToken: token(inv.payment.tokenIn), kind: /^0x0{64}$/i.test(inv.payment.routeHash) ? 'direct' : 'swap'} : null});
-    });
+    items = before.items.map(inv => invoiceView(manifest,inv));
   } catch { return fail('INVOICE_DATA_INVALID'); }
   const observed = before.asOf;
   let rpc: Awaited<ReturnType<InvoiceReadDependencies['readRpc']>>;

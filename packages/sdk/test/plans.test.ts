@@ -156,7 +156,7 @@ test('config/order/program/invoice bytes match independently generated cast gold
 });
 test('generated actions match pinned source hashes and compiler selectors',()=>{
  const provenance=JSON.parse(readFileSync(new URL('../src/generated/provenance.json',import.meta.url),'utf8'));
- const abis={routerAbi:sdk.routerAbi,lifecycleAbi:sdk.lifecycleAbi,aquaAbi:sdk.aquaAbi,paymentsAbi:sdk.paymentsAbi};
+ const abis={routerAbi:sdk.routerAbi,lifecycleAbi:sdk.lifecycleAbi,aquaAbi:sdk.aquaAbi,paymentsAbi:sdk.paymentsAbi,paymentsReadAbi:sdk.paymentsReadAbi};
  for(const item of provenance){
   const bytes=readFileSync(new URL(`../../../${item.source}`,import.meta.url));
   assert.equal(createHash('sha256').update(bytes).digest('hex'),item.sourceSha256,'Rebuild and regenerate an ABI after source changes');

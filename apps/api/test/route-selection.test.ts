@@ -18,12 +18,23 @@ test('inspection and quote plans preserve exact caller, recipient, canonical byt
  for(const call of q.quoteCalls){const decoded=decodeFunctionData({abi:routerAbi,data:call.params[0].data as Hex});assert.equal(decoded.functionName,'quote');assert.equal(decoded.args[1],9007199254740993n);assert.equal(decoded.args[2],takerData({taker:address(22),recipient:address(23),minimum:0n,deadline:1700000023n,input:0,output:2,maxCrossings:16}));}
 });
 test('payment planning uses adapter caller/recipient and an independent payer without invoice authorization',()=>{
- const f=routingFixture();f.input.intent={kind:'payment',payer:address(22),tokenIn:address(3),amountInRaw:'1000000000000000000',minimumOutRaw:'1234567',slippageBps:100,maxCrossings:4};
+ const f=routingFixture();f.input.intent={kind:'payment',payer:address(22),tokenIn:address(3),amountInRaw:'1000000000000000000',minimumOutRaw:'1234567',invoiceExpiresAt:'1700000010',maxCrossings:4};
  const p=prepareRouting(f.input),q=prepareWholeSizeQuotes(f.input,f.inspections(p.inspectionCalls));assert.equal(q.quoteCalls.length,6);
- const call=q.quoteCalls[0]!;assert.equal(call.params[0].from,manifest.payments.toLowerCase());const decoded=decodeFunctionData({abi:routerAbi,data:call.params[0].data as Hex});assert.equal(decoded.args[2],takerData({taker:address(12),recipient:address(12),minimum:1234567n,deadline:1700000023n,input:2,output:0,maxCrossings:4}));
+ const call=q.quoteCalls[0]!;assert.equal(call.params[0].from,manifest.payments.toLowerCase());const decoded=decodeFunctionData({abi:routerAbi,data:call.params[0].data as Hex});assert.equal(decoded.args[2],takerData({taker:address(12),recipient:address(12),minimum:1234567n,deadline:1700000010n,input:2,output:0,maxCrossings:4}));
  const selected=selectWholeSizeQuotes(f.input,f.inspections(p.inspectionCalls),f.quotes(q.quoteCalls,()=>2_000_000n));assert.ok(selected.best);assert.equal(selected.best.payer,address(22).toLowerCase());assert.equal(selected.best.kind,'payment');assert.equal(selected.best.caller,manifest.payments.toLowerCase());
+ assert.equal(selected.best.minimumOutRaw,'1234567');assert.equal(selected.best.expiresAt,'1700000010');
  f.input.intent.payer=f.configs[0]!.maker;assert.equal(prepareRouting(f.input).counts.locallyAccepted,0);
  const payment=f.input.intent;for(const bad of [manifest.router,manifest.aqua,manifest.payments,address(0)])assert.throws(()=>prepareRouting({...f.input,intent:{...payment,payer:bad}}),/ROUTING_INPUT/);
+});
+
+test('payment deadline is clipped once and expired, malformed or caller-slippage variants cannot prepare quotes',()=>{
+ const f=routingFixture();const payment={kind:'payment' as const,payer:address(22),tokenIn:address(3),amountInRaw:'1000000000000000000',minimumOutRaw:'1234567',invoiceExpiresAt:'1700001000',maxCrossings:4};
+ const input={...f.input,intent:payment} as typeof f.input,p=prepareRouting(input),observed=f.inspections(p.inspectionCalls),q=prepareWholeSizeQuotes(input,observed);
+ const decoded=decodeFunctionData({abi:routerAbi,data:q.quoteCalls[0]!.params[0].data as Hex});
+ assert.equal(decoded.args[2],takerData({taker:address(12),recipient:address(12),minimum:1234567n,deadline:1700000023n,input:2,output:0,maxCrossings:4}));
+ for(const changed of [{invoiceExpiresAt:'1700000003'},{invoiceExpiresAt:'1700000002'},{invoiceExpiresAt:(1n<<40n).toString()},{invoiceExpiresAt:'1e10'},{minimumOutRaw:'0'},{slippageBps:50}]){
+  assert.throws(()=>prepareRouting({...input,intent:{...payment,...changed} as never}),/ROUTING_INPUT_INVALID/);
+ }
 });
 test('whole-size results rank exact output then fee/hash and return no more than three alternatives',()=>{
  const f=routingFixture(9),p=prepareRouting(f.input),observed=f.inspections(p.inspectionCalls),q=prepareWholeSizeQuotes(f.input,observed);
