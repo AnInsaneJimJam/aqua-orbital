@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-08T12:56:12.424Z",
+  "generatedAt": "2026-09-08T13:47:48.803Z",
   "items": [
     {
       "id": "reference",
@@ -17,7 +17,7 @@
       "id": "sdk",
       "label": "SDK transaction plans and recovery",
       "status": "verified",
-      "detail": "92 recorded fixture tests for local calldata construction, review validation and wallet execution recovery. No live wallet transaction is claimed."
+      "detail": "100 recorded fixture tests for local calldata construction, review validation and wallet execution recovery. No live wallet transaction is claimed."
     },
     {
       "id": "indexer",
@@ -35,13 +35,13 @@
       "id": "engine",
       "label": "Complete engine release acceptance",
       "status": "not-run",
-      "detail": "Certified interior and mixed paths execute locally through both custom instructions with one final payout and shared crossing/refinement budgets. Equality/discovery liveness, broad differential/economic campaigns and worst-range transaction gas remain open. Financial UI submission remains unavailable."
+      "detail": "Certified interior and mixed paths execute locally through both custom instructions with one final payout and shared crossing/refinement budgets. Equality/discovery liveness, broad differential/economic campaigns and worst-range transaction gas remain open. A verified application deployment and live Privy/Arc demonstration remain outstanding."
     },
     {
       "id": "browser",
       "label": "Development browser workflows",
       "status": "verified",
-      "detail": "19 recorded tests: validated swap observations with expiry/context recovery, public invoice reads, external-wallet fixtures, navigation and 320px layout. Synthetic HTTP receipts are not live transactions. Production performance and full accessibility campaigns are outstanding."
+      "detail": "31 recorded tests: public swap/invoice observations, separate payment approval and signing, expiry/account changes, receipt/storage recovery, external-wallet fixtures, navigation and 320px layout. Synthetic HTTP/RPC receipts are not live transactions. Production performance and full accessibility campaigns are outstanding."
     },
     {
       "id": "privy-login",

@@ -5,4 +5,5 @@ export * from './execution';
 export * from './invoice-read';
 export * from './quote-read';
 export * from './payment-read';
+export * from './payment-review';
 export {lifecycleEventsAbi,paymentsEventsAbi,swapEventsAbi,paymentsReadAbi} from './generated/abi';

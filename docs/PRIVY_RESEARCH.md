@@ -31,3 +31,13 @@ The owner supplied public app ID `cmtrvczqp00qh0cjv4b16j1ag` on 2026-09-08. It i
 For a different origin, configure it in the Privy dashboard before testing. Keep email authentication and EVM wallet creation enabled. The application uses `useSetActiveWallet` for an explicit selected wallet and Privy `logout` rather than wagmi's disconnect shim in the Privy profile. Source: [official wagmi integration](https://docs.privy.io/wallets/connectors/ethereum/integrations/wagmi), reviewed again on 2026-09-08.
 
 `pnpm test:e2e` starts a separate development server with an empty public app ID and injected wallet fixtures. These tests cannot count toward live Privy eligibility. SDK transaction-port tests likewise verify application behavior, not the hosted Privy service.
+
+## Payment execution boundary (2026-09-08)
+
+The invoice controller now uses the same imperative wagmi identity and transaction bridge for either wallet type. Its review is reconstructed locally, checked against a canonical live invoice and token balances, simulated without state overrides, and submitted only on the user's explicit action. Exact token approval and payment are separate reviews; the browser fetches a new payment observation after approval. Saved public transaction data supports receipt recovery without signing again. No identity or email field was added to the API or invoice.
+
+Arc exposes native USDC at 18 decimals and ERC-20 USDC at six decimals over the same balance. The payment review therefore reserves `amountRaw * 10^12` native units in addition to its gas budget when the input is Arc USDC. Local Anvil ETH and non-USDC input assets remain distinct inventories. This is an implementation of the [official stablecoin model](https://docs.arc.io/arc/concepts/stablecoin-native-model), checked on 2026-09-08; it is not a live Arc funding observation.
+
+The installed viem 2.56.3 `call` API supports `blockHash` with `requireCanonical`; invoice/allowance reads and simulation use that option. The browser separately rechecks canonical block hashes around gas estimation. The [official fee action](https://viem.sh/docs/actions/public/estimateFeesPerGas) supplies EIP-1559 maximum and priority fees, which are passed with the reviewed gas limit to the wallet. A changed budget requires another review. This adds no gas sponsorship or commercial Privy feature.
+
+Live embedded-wallet creation, reconnect, rejection, active-wallet selection and financial receipts are still unverified. The new browser transaction fixture is an application behavior check only. The deployment manifest and numerical/target release obligations remain separate prerequisites for a live demonstration.

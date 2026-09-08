@@ -2,9 +2,12 @@
 import Link from 'next/link';
 import {copy} from '../content';
 import {useInvoice, type InvoiceViewState} from './useInvoice';
+import {usePayment} from './usePayment';
+import {PaymentView} from './Payment';
+import type {ReactNode} from 'react';
 import styles from './Invoice.module.css';
 
-export function InvoiceView({state}: {state: InvoiceViewState}) {
+export function InvoiceView({state,payment}: {state: InvoiceViewState;payment?:ReactNode}) {
   const {phase, terms, observation} = state;
   const unavailable = phase === 'unavailable', invalid = phase === 'invalid', absent = phase === 'not-found';
   return <section className="page">
@@ -35,7 +38,7 @@ export function InvoiceView({state}: {state: InvoiceViewState}) {
           {terms.payment.inputDemo && <p className="hint">{copy.invoice.demoInput}</p>}
         </div>}
         <p className="hint">{copy.invoice.readOnly}</p>
-        <button className="button full" disabled>Payment unavailable</button>
+        {payment??<button className="button full" disabled>Payment unavailable</button>}
         <details><summary>Receipt details</summary><div className="stack">
           {terms.receipts.map(r => <div key={r.label}>{r.href ? <a href={r.href} target="_blank" rel="noopener noreferrer">{r.label}</a> : <span>{r.label}</span>}<div className="mono">{r.hash}</div></div>)}
           <div>Invoice adapter<div className="mono">{terms.adapter}</div></div>
@@ -51,4 +54,9 @@ export function InvoiceView({state}: {state: InvoiceViewState}) {
     </div>
   </section>;
 }
-export default function Invoice({id}: {id: string}) { return <InvoiceView state={useInvoice(id)}/>; }
+export default function Invoice({id}: {id: string}) {
+ const state=useInvoice(id),eligible=state.payable===true;
+ const payment=usePayment(id,eligible,state.refresh);
+ // Keep submitted receipt recovery visible even if an invoice refresh fails.
+ return <><InvoiceView state={state} payment={<PaymentView state={payment}/>}/>{state.phase!=='loaded'&&payment.pending&&<section className="page"><div className="panel"><PaymentView state={payment}/></div></section>}</>;
+}

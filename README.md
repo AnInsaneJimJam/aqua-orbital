@@ -12,7 +12,7 @@ Orbital is being built for multi-token concentrated stablecoin liquidity, held i
 - [Frontend](docs/FRONTEND.md), [Privy](docs/PRIVY_RESEARCH.md), [decisions](docs/DECISIONS.md).
 - [Aqua research](docs/AQUA_RESEARCH.md), [Arc research](docs/ARC_RESEARCH.md), [fresh Arc deployment observations](docs/ARC_DEPLOYMENT_STATUS.md).
 - [Evidence index](test/evidence/INDEX.md).
-- [Payment quote implementation](test/evidence/payment-endpoint.md): canonical direct/swap observations and validated unsigned plans through both public aliases; wallet execution remains unfinished.
+- [Payment quote implementation](test/evidence/payment-endpoint.md) and [payment workflow](test/evidence/payment-flow.md): canonical direct/swap observations, live preflight, separate approval/payment reviews and public receipt recovery. Live Privy/Arc execution remains unverified.
 
 The original [SPEC](SPEC.md) and [PLAN](docs/PLAN.md) describe a superseded custodial architecture. Do not implement them as a second product.
 
@@ -72,7 +72,7 @@ The optional app container profile is `docker compose up --build` (stop host ser
 
 The repository contains a high-precision explicit-tick oracle, retained counterexamples, signed wide intervals, endpoint/slack certificates, scalar and both-root event enclosures, a global support-gap certificate, a minimal SwapVM fork, maker lifecycle on official Aqua, an atomic invoice adapter, resumable SDK transaction plans, bounded PostgreSQL reorg recovery, API readiness/SSE invalidations and all frontend routes. The UI separates swap orchestration from presentation and isolates Privy in the wallet module. The current frontend template is retained while protocol implementation continues.
 
-`GET /ready` checks the verified deployment identity, canonical RPC block and fresh confirmed raw and deployment projection cursors. Lifecycle/invoice projections support canonical rollback; a raw cursor alone cannot satisfy readiness. Financial execution remains disabled while deployment eligibility and transaction controllers are unfinished. `GET /events` emits committed invalidations when these dependencies are ready; clients must refresh canonical reads and cannot treat notifications as balances or payment receipts.
+`GET /ready` checks the verified deployment identity, canonical RPC block and fresh confirmed raw and deployment projection cursors. Lifecycle/invoice projections support canonical rollback; a raw cursor alone cannot satisfy readiness. No persistent verified deployment is configured. Public API observations do not grant signing authority; payment reviews separately check wallet identity, live state, funding and simulation. `GET /events` emits committed invalidations when these dependencies are ready; clients must refresh canonical reads and cannot treat notifications as balances or payment receipts.
 
 `GET /metrics` (also `/api/v1/metrics`) reads canonical custom swap receipts with complete historical projection coverage and checked block dates. Totals preserve separate token units and distinguish demo assets; stale data is labeled and missing coverage returns unavailable. Active strategy count describes lifecycle status, not current funding. [Metrics evidence](test/evidence/metrics.md).
 
@@ -90,7 +90,7 @@ A [composed frontier certificate](test/evidence/frontier-composition.md) joins i
 
 An [independent initialized mixed pilot](test/evidence/mixed-pilot.md) now matches all 128 net-input actions across 32 configurations, following recovery of a retained eight-tick reversal. All 129 reference regressions pass. Two large concentrated diagnostic calls exceed the provisional Arc transaction cap before full settlement; the finite pilot does not establish release or target gas acceptance.
 
-[Public canonical swap observations](test/evidence/swap-quote-http.md) pass their database/RPC/HTTP checks and [render in the existing swap screen](test/evidence/swap-observation-ui.md) with expiry and context invalidation. Payment quotes, financial transaction controllers, integrated demo and full release campaigns remain unfinished. See [progress](PROGRESS.md) and [numerical obligations](test/evidence/numerics.md). No persistent application or Arc contract deployment is configured.
+[Public canonical swap observations](test/evidence/swap-quote-http.md) pass their database/RPC/HTTP checks and [render in the existing swap screen](test/evidence/swap-observation-ui.md) with expiry and context invalidation. The invoice screen supports direct-USDC and swap-funded payment review, exact approval and receipt recovery through the shared wallet module. Standalone swap execution, strategy publication, invoice creation/cancellation, integrated demo and full release campaigns remain unfinished. See [progress](PROGRESS.md) and [numerical obligations](test/evidence/numerics.md). No persistent application or Arc contract deployment is configured.
 
 `node scripts/local-deployment.mjs plan` validates the compiled local dependency graph. `node scripts/local-deployment.mjs test-run` deploys it only to a fresh, owned disposable Anvil chain, verifies linked runtimes and mined receipts, then closes that chain. The recorded run verified 12 contracts and 16 receipts; it does not configure the application or produce a verified target manifest. [Commands, prerequisites and evidence](test/evidence/local-deployment.md).
 

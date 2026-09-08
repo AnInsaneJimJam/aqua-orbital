@@ -14,7 +14,7 @@ export const copy={
   invalid:'Use the full 32-byte invoice identifier from the correct network.',
   unavailable:'Canonical invoice history could not be checked. Refresh to try again.',
   loading:'Reading the verified deployment and its indexed invoice history.',
-  readOnly:'These are indexed invoice terms. Payment availability has not been verified; payment actions are not enabled in this build.',
+  readOnly:'These are indexed invoice terms. A payment review checks current wallet funds, invoice state and transaction simulation separately.',
   stale:'The index is behind or its latest check is old. Refresh to check for updates.',
   demoSettlement:'This deployment uses demo USDC with no redemption value.',
   demoInput:'The input asset in this test receipt is a demo token with no redemption value.',

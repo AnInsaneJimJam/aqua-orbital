@@ -6,7 +6,7 @@ import {apiBase, request, requestPayload} from './api';
 
 type ReceiptView = {label: string; hash: string; href: string | null};
 export type InvoiceViewState = {
-  id: string; phase: 'invalid' | 'loading' | 'unavailable' | 'not-found' | 'loaded'; refreshing: boolean; refresh: () => void;
+  id: string; phase: 'invalid' | 'loading' | 'unavailable' | 'not-found' | 'loaded'; refreshing: boolean; refresh: () => void; payable?:boolean;
   terms?: {amount: string; status: string; merchant: string; deadline: string; network: string; demo: boolean;
     recipients: {address: string; share: string; amount: string}[];
     payment: null | {label: string; payer: string; input: string; refund: string; inputDemo: boolean};
@@ -67,5 +67,5 @@ export function useInvoice(id: string): InvoiceViewState {
   const {manifest, observation: data} = query.data;
   state.observation = {block: data.asOf.height, hash: data.asOf.hash, indexedAt: data.freshness.indexedAt, stale: data.freshness.stale, historical: data.historical};
   if (!data.data.invoice) return {...state, phase: 'not-found'};
-  return {...state, phase: 'loaded', terms: terms(data, manifest)};
+  return {...state, phase: 'loaded', terms: terms(data, manifest),payable:data.data.invoice.status==='unpaid'&&!refreshing&&!data.freshness.stale&&!data.historical};
 }

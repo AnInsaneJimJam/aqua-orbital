@@ -1,0 +1,96 @@
+[WebServer] (node:20660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:22400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:19744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 2 tests using 1 worker
+
+(node:12228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/2] test\payment.spec.ts:101:1 › wallet and chain changes discard the payment review before signing
+[WebServer] (node:10248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+  1) test\payment.spec.ts:101:1 › wallet and chain changes discard the payment review before signing 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('heading', { name: 'Review payment', exact: true })
+    Expected: 0
+    Received: 1
+    Timeout:  1000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('heading', { name: 'Review payment', exact: true }) with timeout 1000ms
+      - waiting for getByRole('heading', { name: 'Review payment', exact: true })
+        11 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      102 |  const f=await setup(page,{approved:true});await page.getByRole('button',{name:'Get payment quote'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();
+      103 |  await page.evaluate(()=>(window as any).paymentWallet.account('0x000000000000000000000000000000000000002a'));await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toHaveCount(0);
+    > 104 |  await page.evaluate(address=>(window as any).paymentWallet.account(address),f.f.request.payer);await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toHaveCount(0,{timeout:1000});
+          |                                                                                                                                                                            ^
+      105 |  await page.evaluate(()=>(window as any).paymentWallet.chain('0x1'));await expect(page.getByText(/Switch your wallet to the invoice network/)).toBeVisible();expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(0);
+      106 | });
+      107 | test('receipt identity must match the queried hash as well as the reviewed calldata',async({page})=>{
+        at C:\Users\gujja\aqua-orbital\apps\web\test\payment.spec.ts:104:172
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\payment-wallet-and-chain-c-00126-yment-review-before-signing\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\payment-wallet-and-chain-c-00126-yment-review-before-signing\error-context.md
+
+
+(node:1976) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[2/2] test\payment.spec.ts:107:1 › receipt identity must match the queried hash as well as the reviewed calldata
+[WebServer] (node:19268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+  2) test\payment.spec.ts:107:1 › receipt identity must match the queried hash as well as the reviewed calldata 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText(/Receipt transaction does not match/)
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText(/Receipt transaction does not match/) with timeout 5000ms
+      - waiting for getByText(/Receipt transaction does not match/)
+
+
+      106 | });
+      107 | test('receipt identity must match the queried hash as well as the reviewed calldata',async({page})=>{
+    > 108 |  await setup(page,{approved:true,wrongReceiptTransactionHash:true});await page.getByRole('button',{name:'Get payment quote'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Receipt transaction does not match/)).toBeVisible({timeout:5000});await expect(page.getByText(/Payment transaction confirmed/)).toHaveCount(0);
+          |                                                                                                                                                                                                                                                                                     ^
+      109 | });
+      110 | test('expired review cannot request a signature',async({page})=>{
+      111 |  await setup(page,{approved:true});await page.getByRole('button',{name:'Get payment quote'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();await page.clock.fastForward(20000);
+        at C:\Users\gujja\aqua-orbital\apps\web\test\payment.spec.ts:108:277
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\payment-receipt-identity-m-7ff21-ll-as-the-reviewed-calldata\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\payment-receipt-identity-m-7ff21-ll-as-the-reviewed-calldata\error-context.md
+
+
+  2 failed
+    test\payment.spec.ts:101:1 › wallet and chain changes discard the payment review before signing 
+    test\payment.spec.ts:107:1 › receipt identity must match the queried hash as well as the reviewed calldata 
+undefined
+C:\Users\gujja\aqua-orbital\apps\web:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: playwright test payment.spec.ts --grep wallet and chain changes|receipt identity --reporter=line

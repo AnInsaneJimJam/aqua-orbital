@@ -1,0 +1,29 @@
+{
+  "scope": "Final browser artifacts; synthetic fixtures, no live receipt claim",
+  "files": [
+    {
+      "path": "test/evidence/payment-approval-mobile.png",
+      "sha256": "eebadf09254fa5823dfaba065ff95cb91129e761bc84b6a8a344ea9775811fb3"
+    },
+    {
+      "path": "test/evidence/payment-review-desktop.png",
+      "sha256": "8a8a109dea013219b8ad994b16a1d8fb8d80f6113150fe7bf13d5bbdc144a13f"
+    },
+    {
+      "path": "test/evidence/invoice-mobile.png",
+      "sha256": "079b8a5e4fb6f7a4e099ef4c5b2a01d464c610aacde8d2caec692144148aae30"
+    },
+    {
+      "path": "test/evidence/invoice-paid-desktop.png",
+      "sha256": "9c95ad1145cc8c5d2edeb966c308e4bd1f4b49264ca26f4ddd757c10d4349e07"
+    },
+    {
+      "path": "test/evidence/swap-observation-mobile.png",
+      "sha256": "afb7eb14c7158cac61771c9fb968576e74f6dacbdddf3420e558982cf1aab739"
+    },
+    {
+      "path": "test/evidence/swap-observation-desktop.png",
+      "sha256": "52002a0bf59303674a6ff69e047d690314d1680f48c0ebbdd6e10e654c987853"
+    }
+  ]
+}
