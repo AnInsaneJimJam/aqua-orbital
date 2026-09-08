@@ -53,10 +53,20 @@ The owner replaced the instruction to retain the lavender template with black-an
 
 The owner supplied the Orbital paper visualization and SVG logo and explicitly replaced previous visual directions. Use the original video and logo, a matching deep blue canvas, chartreuse accents, local editorial/sans typography and restrained diagram framing throughout the frontend. Keep media optional with poster, pause and reduced-motion behavior; credit Paradigm without implying endorsement or using the illustration as live data. Preserve D34's useful decluttering and the established financial review/recovery boundaries. [Frontend](FRONTEND.md), [asset provenance](ASSETS.md).
 
-## D36 — Integration first and user-signed Arc preparation (2026-09-09)
+## D36 — Integration first and user-signed Arc preparation (2026-09-09; registry prerequisite superseded by D38)
 
 The owner reiterated integration-first work and supplied a public Arc deployer. Use a separate Arc/Privy profile on ports 3002/3003 and a loopback browser-signing deployment utility on 3100. Keep the local Anvil profile available, authenticate compiled deployment inputs and receipts, and retain the master specification's missing official-Aqua identity requirement. Observed funding is not proof of wallet control or sponsor acceptance. No backend signer or application-held key is introduced. Preserve mathematical/release obligations, but defer their broad campaigns while completing integration. [Deployment](ARC_DEPLOYMENT.md), [live walkthrough](ARC_DEMO.md).
+
+The official/canonical registry prerequisite above records the decision at that time. D38 replaces that prerequisite; the signing, source verification and integration-first boundaries remain.
 
 ## D37 — Separate the 1inch demonstration from Arc availability (2026-09-09)
 
 The owner highlighted the explicit allowance for modified SwapVM/custom instructions and local-fork demonstrations. Treat Orbital's custom app as aligned with that scope and prepare 1inch execution evidence independently of the missing Arc registry. The earlier canonical-Arc requirement belongs to the combined project deployment, not an extra sponsor requirement. Preserve official-source provenance and distinguish fresh Anvil deployments from forks of deployed contracts. Arc/Privy verification and mathematical release acceptance remain separate. [Sponsor criteria](https://ethglobal.com/events/ethonline2026/prizes/1inch), [local runbook](LOCAL_DEMO.md).
+
+## D38 — Authorized upstream AquaRouter self-deployment on Arc (2026-09-09)
+
+The owner explicitly authorizes unchanged upstream Aqua self-deployment on Arc Testnet. Use `self-deployed-upstream`, the pinned `vendor/aqua/src/AquaRouter.sol:AquaRouter` wrapper, and authorized signer `0x5eBA55e1b43c8714E4432250Dada7A518780C871`. Prepare `deployments/5042002/plans/self-deployment.json` with `prepare --self-deploy-aqua`; preserve the old blocked plan and canonical CREATE3 research as history. Missing canonical Aqua and sponsor acceptance no longer block functional deployment. The project address and build remain distinct from the published official deployment; qualification stays unverified.
+
+The new graph contains twelve transactions: AquaRouter, six linked libraries, two demo tokens, the custom router, payments adapter, and custom-router renunciation, in the generated dependency/nonce order. AquaRouter retains the authorized deployer as its upstream rescue owner for accidentally sent funds; verify and disclose that ownership. OrbitalSwapVMRouter still must renounce ownership before application activation. Use exact source/build, constructor, receipt, runtime, chain, USDC and binding verification without adding application-held keys or backend signing. Deployment authority is already supplied by the owner; signatures remain explicit user-wallet actions.
+
+This supersedes D36's official-registry prerequisite and the earlier combined-project restriction described in D37. It does not change the invariant, maker custody, custom instructions, mathematical obligations or required live Privy swap/invoice evidence. No live receipts were available at this decision. [Deployment workflow](ARC_DEPLOYMENT.md), [network history](ARC_DEPLOYMENT_STATUS.md).

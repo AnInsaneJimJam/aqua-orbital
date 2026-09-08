@@ -4,7 +4,7 @@ Orbital is being built for multi-token concentrated stablecoin liquidity, held i
 
 **A persistent local application is connected. Arc deployment and Privy financial-flow qualification remain unverified.** The browser uses actual local Aqua, Orbital and invoice receipts. See [PROGRESS](PROGRESS.md) for actual results. The mathematical engine and complete application must both pass their gates.
 
-Current delivery priority: preserve the verified local flows and prepare live Privy/Arc integration. The latest increment uses focused type, database and HTTP checks; broad mathematical and release campaigns are deferred at the user's request. Earlier local browser receipts remain the [integration checkpoint](test/evidence/local-integration.md), not evidence of a live Privy or Arc financial flow.
+Current delivery priority: complete live Privy/Arc integration using the owner-authorized deployment of unchanged upstream AquaRouter on Arc Testnet. The new twelve-transaction plan is ready for browser-wallet signatures; its first constructor simulation passed. Broad mathematical and release campaigns are deferred at the user's request. Earlier local browser receipts remain the [integration checkpoint](test/evidence/local-integration.md), not evidence of a live Privy or Arc financial flow.
 
 ## Start here
 
@@ -46,7 +46,15 @@ Run `pnpm dev:arc` for web http://127.0.0.1:3002 and API http://127.0.0.1:3003. 
 
 The wallet control supports explicit embedded-wallet creation, selection once the corresponding connector is ready, and recoverable onboarding errors. Live creation, reconnection and signing still require verification; no new Privy-wallet Orbital swap or invoice receipt has been recorded. An empty app ID retains the external injected-wallet profile. Backend environment variables are process variables; copying root `.env.example` does not automatically load them into Node.
 
-`pnpm deploy:arc` implements read-only inspection, unsigned preparation, status, receipt verification and verified-manifest activation. `pnpm deploy:arc:wallet --plan FILE` serves the reviewed wallet utility at http://127.0.0.1:3100. The locally prepared plan contains eleven transactions: six libraries, two demo tokens, router, payments and router ownership renunciation. **None has been broadcast. Live writes are blocked by the missing authenticated official Aqua deployment on Arc.** See [deployment prerequisites and recovery](docs/ARC_DEPLOYMENT.md).
+`pnpm deploy:arc` implements inspection, unsigned preparation, status, receipt verification and verified-manifest activation. The owner-authorized project mode deploys the unchanged pinned AquaRouter, six libraries, two demo tokens, Orbital router and payments, then renounces the custom router: twelve wallet-signed transactions. AquaRouter retains the deployment wallet as owner of its upstream fund-recovery helper. This is a project address, not the canonical 1inch deployment; sponsor acceptance remains unverified and does not block this testnet integration.
+
+```powershell
+forge build --root packages/contracts vendor/aqua/src/AquaRouter.sol
+pnpm deploy:arc prepare --self-deploy-aqua --deployer 0x5eBA55e1b43c8714E4432250Dada7A518780C871 --plan deployments/5042002/plans/self-deployment.json
+pnpm deploy:arc:wallet --plan deployments/5042002/plans/self-deployment.json
+```
+
+Preparation refuses to overwrite an existing plan: on this workspace, use the already prepared `self-deployment.json` and run only the wallet utility. Open http://127.0.0.1:3100, connect that wallet and review each step. **The preparation checkpoint records zero submitted/confirmed transactions; no live deployment is claimed.** Its first AquaRouter constructor was simulated successfully on Arc. Each receipt is verified before the next step, and activation checks all runtimes and bindings. The original eleven-transaction existing-registry plan remains historical. See [deployment and recovery](docs/ARC_DEPLOYMENT.md) and [focused evidence](test/evidence/self-arc-integration.md).
 
 A hash-pinned read at Arc block 61,123,941 observed 20 testnet USDC and nonce 0 for the supplied public address `0x5eBA55e1b43c8714E4432250Dada7A518780C871`. This does not establish wallet control or sufficient deployment gas budget. [Read-only observation](deployments/5042002/research-2026-09-09.json).
 

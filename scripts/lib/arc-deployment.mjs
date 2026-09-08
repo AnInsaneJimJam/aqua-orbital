@@ -13,6 +13,8 @@ export const ARC = Object.freeze({chainId: 5042002, rpcUrl: 'https://rpc.testnet
   explorerUrl: 'https://testnet.arcscan.app', usdc: '0x3600000000000000000000000000000000000000',
   aqua: '0x1111113ccf1426a8e30e2bff5e005d929bf6a90a'});
 export const DEFAULT_PLAN = resolve(root, 'deployments/5042002/plans/deployment.json');
+export const SELF_DEPLOYMENT_PLAN = resolve(root, 'deployments/5042002/plans/self-deployment.json');
+const AQUA_ROUTER = 'vendor/aqua/src/AquaRouter.sol:AquaRouter';
 const activeDirectory = resolve(root, 'deployments/5042002');
 const revision = '81c26e4619ce21556ab02b3284ee2685de21fb18';
 const address = x => typeof x === 'string' && /^0x[0-9a-fA-F]{40}$/.test(x) && BigInt(x) !== 0n;
@@ -64,8 +66,9 @@ async function network(rpc) {
   return {block, pin: {blockHash: block.hash, requireCanonical: true}};
 }
 
-let cachedArtifacts;
-async function artifacts() {
+const artifactCache = new Map();
+async function artifacts(selfDeployAqua = false) {
+  const cachedArtifacts = artifactCache.get(selfDeployAqua);
   if (cachedArtifacts) {
     // Re-hash actual bytes, not just mtimes, before reusing expensive parsed
     // compiler metadata. A source or artifact edit invalidates this process.
@@ -74,7 +77,8 @@ async function artifacts() {
     }
     return cachedArtifacts.build;
   }
-  const graph = await buildGraph({contracts: resolve(root, 'packages/contracts'), roots: [ROOTS.router, ROOTS.payments, ROOTS.demo]});
+  const graph = await buildGraph({contracts: resolve(root, 'packages/contracts'),
+    roots: [ROOTS.router, ROOTS.payments, ROOTS.demo, ...(selfDeployAqua ? [AQUA_ROUTER] : [])]});
   const upstreamBytes = await readFile(resolve(root, 'test/evidence/upstream.json'), 'utf8');
   const aqua = JSON.parse(upstreamBytes).aqua;
   if (aqua.url !== 'https://github.com/1inch/aqua.git' || aqua.revision !== revision) fail('Aqua source pin changed.');
@@ -103,7 +107,7 @@ async function artifacts() {
     for (const source of node.integrity.sources) fileHashes.set(resolve(root, 'packages/contracts', source.source), source.sha256);
   }
   for (const [name, expected] of Object.entries(aqua.files)) fileHashes.set(resolve(root, 'packages/contracts/vendor/aqua', name), expected);
-  cachedArtifacts = {build, fileHashes};
+  artifactCache.set(selfDeployAqua, {build, fileHashes});
   return build;
 }
 
@@ -126,7 +130,7 @@ function evidenceRecord(value) {
   return value;
 }
 
-function makeSteps(build, deployer, baseNonce, aqua) {
+function makeSteps(build, deployer, baseNonce, aqua, selfDeployAqua = false) {
   const nodes = new Map(build.graph.nodes.map(n => [n.fqn, n]));
   const links = new Map();
   const steps = [];
@@ -144,6 +148,12 @@ function makeSteps(build, deployer, baseNonce, aqua) {
     links.set(fqn, predicted);
     return predicted;
   }
+  // The upstream wrapper has no linked libraries. Preserve its helper owner:
+  // only Orbital's custom router is renounced at the end of this plan.
+  if (selfDeployAqua) {
+    if (nodes.get(AQUA_ROUTER).dependencies.length) fail('Review new AquaRouter library dependencies before preparing deployment.');
+    addresses.aqua = deploy(AQUA_ROUTER, [deployer], 'AquaRouter (unchanged upstream)');
+  }
   for (const node of build.graph.nodes) if (!build.graph.roots.includes(node.fqn)) deploy(node.fqn, [], node.fqn.split(':')[1]);
   addresses.demo6 = deploy(ROOTS.demo, [6], 'Orbital Demo Dollar 6');
   addresses.demo18 = deploy(ROOTS.demo, [18], 'Orbital Demo Dollar 18');
@@ -151,15 +161,16 @@ function makeSteps(build, deployer, baseNonce, aqua) {
     {address: addresses.demo6, decimals: 6, symbol: 'oUSD6', mock: true},
     {address: addresses.demo18, decimals: 18, symbol: 'oUSD18', mock: true}]
     .sort((a, b) => BigInt(a.address) < BigInt(b.address) ? -1 : 1);
-  addresses.router = deploy(ROOTS.router, [aqua, deployer, tokens.map(t => t.address), tokens.map(t => t.decimals)], 'Orbital SwapVM router');
+  addresses.router = deploy(ROOTS.router, [addresses.aqua, deployer, tokens.map(t => t.address), tokens.map(t => t.decimals)], 'Orbital SwapVM router');
   addresses.payments = deploy(ROOTS.payments, [ARC.usdc, addresses.router, tokens.map(t => t.address)], 'Orbital payments');
   steps.push({label: 'Renounce router ownership', nonce: (BigInt(baseNonce) + BigInt(steps.length)).toString(),
     to: addresses.router, data: encodeFunctionData({abi: nodes.get(ROOTS.router).artifact.abi, functionName: 'renounceOwnership'})});
   return {steps, addresses, tokens};
 }
 
-async function preflight(rpc, deployer, evidence) {
-  const {block, pin} = await network(rpc), aqua = evidence?.address ?? ARC.aqua;
+async function preflight(rpc, deployer, evidence, {selfDeployAqua = false, aquaAddress, aquaRuntime = null, requireAqua = false} = {}) {
+  const {block, pin} = await network(rpc), aqua = selfDeployAqua ? aquaAddress : evidence?.address ?? ARC.aqua;
+  if (!address(aqua)) fail('Aqua deployment address is missing.');
   const [aquaCode, usdcCode, decimals, balance, nonce, pendingNonce] = await Promise.all([
     rpc('eth_getCode', [aqua, pin]), rpc('eth_getCode', [ARC.usdc, pin]),
     rpc('eth_call', [{to: ARC.usdc, data: '0x313ce567'}, pin]),
@@ -167,11 +178,17 @@ async function preflight(rpc, deployer, evidence) {
     rpc('eth_getTransactionCount', [deployer, 'pending'])]);
   const blockers = [];
   if (usdcCode === '0x' || decimals !== '0x' + '0'.repeat(63) + '6') blockers.push('Arc system USDC code/decimal verification failed.');
-  if (aquaCode === '0x') blockers.push(`No Aqua contract is deployed at ${aqua} on Arc Testnet.`);
-  if (!evidence) blockers.push('Official Arc Aqua deployment evidence or explicit maintainer acceptance is missing. See docs/ARC_DEPLOYMENT_STATUS.md.');
-  else if (aquaCode !== '0x' && keccak256(aquaCode) !== evidence.runtimeKeccak256.toLowerCase()) blockers.push('Aqua runtime differs from its reviewed primary-source identity.');
+  if (selfDeployAqua) {
+    if (aquaCode === '0x' && requireAqua) blockers.push('The confirmed project-deployed Aqua runtime is missing.');
+    if (aquaCode !== '0x' && !aquaRuntime) blockers.push('The planned Aqua address already contains code without a verified deployment receipt.');
+    if (aquaCode !== '0x' && aquaRuntime && keccak256(aquaCode) !== aquaRuntime.runtimeKeccak256) blockers.push('Project-deployed Aqua runtime differs from its authenticated deployment receipt.');
+  } else {
+    if (aquaCode === '0x') blockers.push(`No Aqua contract is deployed at ${aqua} on Arc Testnet.`);
+    if (!evidence) blockers.push('Official Arc Aqua deployment evidence or explicit maintainer acceptance is missing. Use the explicitly selected project deployment mode for a separate upstream Aqua deployment.');
+    else if (aquaCode !== '0x' && keccak256(aquaCode) !== evidence.runtimeKeccak256.toLowerCase()) blockers.push('Aqua runtime differs from its reviewed primary-source identity.');
+  }
   let aquaAbiProbe = false;
-  if (aquaCode !== '0x') {
+  if (aquaCode !== '0x' && (!selfDeployAqua || aquaRuntime)) {
     const abi = [{type: 'function', name: 'rawBalances', stateMutability: 'view',
       inputs: [{name: 'maker', type: 'address'}, {name: 'app', type: 'address'}, {name: 'strategyHash', type: 'bytes32'}, {name: 'token', type: 'address'}],
       outputs: [{name: 'balance', type: 'uint248'}, {name: 'tokensCount', type: 'uint8'}]}];
@@ -187,40 +204,58 @@ async function preflight(rpc, deployer, evidence) {
     nonce, pendingNonce, blockers};
 }
 
-export async function inspectArc({deployer, rpcUrl = process.env.ARC_RPC_URL ?? ARC.rpcUrl, evidence = null} = {}) {
+export async function inspectArc({deployer, rpcUrl = process.env.ARC_RPC_URL ?? ARC.rpcUrl, evidence = null, selfDeployAqua = false} = {}) {
   if (!address(deployer)) fail('Provide the authorized public deployment wallet address.');
+  if (typeof selfDeployAqua !== 'boolean' || (selfDeployAqua && evidence !== null)) fail('Select either project deployment or existing Aqua evidence, not both.');
+  const rpc = rpcAt(endpoint(rpcUrl));
+  const options = selfDeployAqua ? {selfDeployAqua, aquaAddress: getContractAddress({from: deployer,
+    nonce: BigInt(await rpc('eth_getTransactionCount', [deployer, 'latest']))})} : {};
   return {chainId: ARC.chainId, rpcUrl: endpoint(rpcUrl), deployer, observedAt: new Date().toISOString(),
-    ...await preflight(rpcAt(endpoint(rpcUrl)), deployer, evidenceRecord(evidence))};
+    ...(selfDeployAqua ? {aquaDeployment: 'project-deployed-upstream'} : {}),
+    ...await preflight(rpc, deployer, evidenceRecord(evidence), options)};
 }
 
 export async function prepareArcDeployment({deployer, rpcUrl = process.env.ARC_RPC_URL ?? ARC.rpcUrl,
-  evidence = null, planPath = DEFAULT_PLAN} = {}) {
+  evidence = null, selfDeployAqua = false, planPath = selfDeployAqua ? SELF_DEPLOYMENT_PLAN : DEFAULT_PLAN} = {}) {
   if (!address(deployer)) fail('Provide --deployer with the authorized public wallet address.');
   planPath = resolve(planPath);
-  const build = await artifacts();
-  const observation = await inspectArc({deployer, rpcUrl, evidence});
-  const plan = {schemaVersion: 1, chainId: ARC.chainId, rpcUrl: observation.rpcUrl, deployer,
+  const build = await artifacts(selfDeployAqua);
+  const observation = await inspectArc({deployer, rpcUrl, evidence, selfDeployAqua});
+  const steps = makeSteps(build, deployer, observation.nonce, observation.aqua, selfDeployAqua);
+  eq(steps.addresses.aqua, observation.aqua, 'Deployer nonce changed during preparation; retry with a fresh plan.');
+  const plan = {schemaVersion: selfDeployAqua ? 2 : 1,
+    ...(selfDeployAqua ? {aquaDeployment: 'project-deployed-upstream'} : {}),
+    chainId: ARC.chainId, rpcUrl: observation.rpcUrl, deployer,
     preparedAt: observation.observedAt, baseNonce: BigInt(observation.nonce).toString(),
     evidence: evidenceRecord(evidence), buildFingerprint: build.fingerprint, buildIdentity: build.identity,
-    gasLimitCap: '8000000', ...makeSteps(build, deployer, observation.nonce, observation.aqua), observation};
+    gasLimitCap: '8000000', ...steps, observation};
   plan.planId = digest(plan);
   await mkdir(dirname(planPath), {recursive: true});
   // Never overwrite a signed or partially completed deployment plan.
   await writeFile(planPath, json(plan), {flag: 'wx'});
-  return {planPath, planId: plan.planId, transactions: plan.steps.length, addresses: plan.addresses, blockers: observation.blockers};
+  return {planPath, planId: plan.planId, aquaDeployment: selfDeployAqua ? 'project-deployed-upstream' : 'existing-authenticated',
+    transactions: plan.steps.length, addresses: plan.addresses, blockers: observation.blockers};
 }
 
 async function loadPlan(planPath) {
   const plan = await readJson(resolve(planPath)), {planId, ...content} = plan;
-  if (digest(content) !== planId || plan.schemaVersion !== 1 || plan.chainId !== ARC.chainId ||
+  const selfDeployAqua = plan.schemaVersion === 2 && plan.aquaDeployment === 'project-deployed-upstream';
+  if (digest(content) !== planId || (!selfDeployAqua && plan.schemaVersion !== 1) ||
+      (selfDeployAqua && plan.evidence !== null) || (!selfDeployAqua && plan.aquaDeployment !== undefined) || plan.chainId !== ARC.chainId ||
       !address(plan.deployer) || !/^(0|[1-9][0-9]*)$/.test(plan.baseNonce) || plan.gasLimitCap !== '8000000') fail('Invalid or edited Arc deployment plan. Prepare a new plan.');
   endpoint(plan.rpcUrl); evidenceRecord(plan.evidence);
-  const build = await artifacts();
+  const build = await artifacts(selfDeployAqua);
   eq(build.fingerprint, plan.buildFingerprint, 'Compiled source changed since preparation. Retain this plan and prepare another.');
   eq(build.identity, plan.buildIdentity, 'Plan build identity was modified.');
-  const expected = makeSteps(build, plan.deployer, plan.baseNonce, plan.evidence?.address ?? ARC.aqua);
+  const expected = makeSteps(build, plan.deployer, plan.baseNonce, plan.evidence?.address ?? ARC.aqua, selfDeployAqua);
   for (const key of ['steps', 'addresses', 'tokens']) eq(plan[key], expected[key], `Deployment ${key} differ from authenticated artifacts.`);
   return {plan, build, rpc: rpcAt(plan.rpcUrl)};
+}
+
+function aquaPreflightOptions(plan, state) {
+  if (plan.aquaDeployment !== 'project-deployed-upstream') return {};
+  return {selfDeployAqua: true, aquaAddress: plan.addresses.aqua,
+    aquaRuntime: state.confirmed[0]?.runtime ?? null, requireAqua: state.confirmed.length > 0};
 }
 
 async function locked(planPath, action) {
@@ -307,13 +342,14 @@ export async function getArcStatus(planPath = DEFAULT_PLAN) {
   return locked(planPath, async path => {
     const {plan, rpc} = await loadPlan(path), state = await stateFor(path, plan);
     const status = {planId: plan.planId, deployer: plan.deployer, chainId: ARC.chainId, phase: 'blocked',
+      aquaDeployment: plan.aquaDeployment ?? 'existing-authenticated',
       blockers: [], confirmed: state.confirmed.length, total: plan.steps.length, addresses: plan.addresses};
     try {
       await network(rpc);
       await refresh(path, plan, state, rpc);
       status.confirmed = state.confirmed.length;
       if (state.pendingHash) return {...status, phase: 'pending', pendingHash: state.pendingHash};
-      const observation = await preflight(rpc, plan.deployer, plan.evidence);
+      const observation = await preflight(rpc, plan.deployer, plan.evidence, aquaPreflightOptions(plan, state));
       eq(observation.usdcCodeHash, plan.observation.usdcCodeHash, 'Arc system USDC runtime changed since deployment preparation.');
       // Funding is needed only while a transaction remains; verification is free.
       status.blockers = observation.blockers.filter(b => !(state.confirmed.length === plan.steps.length && b.includes('needs Arc testnet USDC')));
@@ -329,7 +365,7 @@ export async function getArcStatus(planPath = DEFAULT_PLAN) {
         if (BigInt(block.baseFeePerGas) > BigInt(tx.maxFeePerGas)) fail('Network base fee exceeds this saved review. Wait for fees to fall; this tool preserves the transaction already shown in your wallet.');
         if (BigInt(observation.balanceNative) < budget) fail(`Insufficient USDC for the saved gas budget (${usdcGas(budget)} USDC).`);
         // Never replace a quote while another tab or wallet may be signing it.
-        return {...status, phase: 'ready', next: {label: step.label, transaction: tx, gasBudgetUsdc: usdcGas(budget)}};
+        return {...status, phase: 'ready', next: {label: step.label, address: step.address, transaction: tx, gasBudgetUsdc: usdcGas(budget)}};
       }
       const priority = BigInt(await rpc('eth_maxPriorityFeePerGas'));
       const maxFee = BigInt(block.baseFeePerGas) * 2n + priority;
@@ -345,7 +381,7 @@ export async function getArcStatus(planPath = DEFAULT_PLAN) {
       if (step.address) verifyRuntime(step.runtimeTemplate, step.immutableReferences, simulatedRuntime, simulatedRuntime);
       state.review = {step: state.confirmed.length, transaction: tx, simulatedRuntime, estimatedGas: estimated.toString(), reviewedAt: new Date().toISOString()};
       await save(`${path}.state.json`, state);
-      return {...status, phase: 'ready', next: {label: step.label, transaction: tx, gasBudgetUsdc: usdcGas(gas * maxFee)}};
+      return {...status, phase: 'ready', next: {label: step.label, address: step.address, transaction: tx, gasBudgetUsdc: usdcGas(gas * maxFee)}};
     } catch (error) {
       return {...status, phase: 'blocked', ...(state.pendingHash ? {pendingHash: state.pendingHash} : {}),
         blockers: [error instanceof Error ? error.message : 'Arc deployment verification failed.']};
@@ -381,6 +417,10 @@ async function bindings(plan, build, rpc) {
   }
   const router = (fn, args) => read(ROOTS.router, plan.addresses.router, fn, args);
   const payments = (fn, args) => read(ROOTS.payments, plan.addresses.payments, fn, args);
+  if (plan.aquaDeployment === 'project-deployed-upstream') {
+    eq(await read(AQUA_ROUTER, plan.addresses.aqua, 'owner'), plan.deployer, 'Upstream AquaRouter helper owner differs from the deployment wallet.');
+    eq(await read(AQUA_ROUTER, plan.addresses.aqua, 'multicall', [[]]), [], 'Upstream AquaRouter empty multicall failed.');
+  }
   eq(await router('AQUA'), plan.addresses.aqua, 'Router Aqua binding mismatch.');
   eq(await router('WETH'), zeroAddress, 'Router must not wrap native USDC.');
   eq(await router('CHAIN_ID'), BigInt(ARC.chainId), 'Router chain binding mismatch.');
@@ -413,7 +453,8 @@ async function bindings(plan, build, rpc) {
   eq(await router('allowedToken', [zeroAddress]), false, 'Router allows native token.');
   eq(await payments('allowedToken', [zeroAddress]), false, 'Payments allows native token.');
   eq((await rpc('eth_getBlockByNumber', [block.number, false])).hash, block.hash, 'Verification block was orphaned.');
-  return {blockNumber: block.number, blockHash: block.hash, owner: zeroAddress, eip712DomainVerified: true};
+  return {blockNumber: block.number, blockHash: block.hash, owner: zeroAddress, eip712DomainVerified: true,
+    ...(plan.aquaDeployment === 'project-deployed-upstream' ? {aquaHelperOwner: plan.deployer, aquaMulticallVerified: true} : {})};
 }
 
 async function verifiedCompletion(path, {readOnly = false} = {}) {
@@ -424,7 +465,7 @@ async function verifiedCompletion(path, {readOnly = false} = {}) {
     for (let i = 0; i < state.confirmed.length; i++) await verifyEntry(rpc, plan, plan.steps[i], state.confirmed[i]);
   } else await refresh(path, plan, state, rpc);
   if (state.pendingHash || state.confirmed.length !== plan.steps.length) fail('All deployment and ownership-renunciation receipts are required before activation.');
-  const observation = await preflight(rpc, plan.deployer, plan.evidence);
+  const observation = await preflight(rpc, plan.deployer, plan.evidence, aquaPreflightOptions(plan, state));
   eq(observation.usdcCodeHash, plan.observation.usdcCodeHash, 'Arc system USDC runtime changed since deployment preparation.');
   const blockers = observation.blockers.filter(b => !b.includes('needs Arc testnet USDC'));
   if (blockers.length) fail(blockers.join(' '));
@@ -441,12 +482,15 @@ export async function activateArcDeployment(planPath = DEFAULT_PLAN) {
     const existing = await readJson(resolve(activeDirectory, 'manifest.json'), null);
     if (existing) eq(existing, result.manifest, 'A different Arc deployment is already active. Archive and review it explicitly before replacement.');
     const report = {schemaVersion: 1, verified: true, scope: 'arc-testnet-runtime-identity',
+      aquaDeployment: result.plan.aquaDeployment ?? 'existing-authenticated',
       releaseAccepted: false, privyVerified: false, sponsorQualificationVerified: false,
       planPath: path, planId: result.plan.planId, verifiedAt: new Date().toISOString(), manifest: result.manifest,
       observation: result.observation, bindings: result.bindings,
       receipts: result.state.confirmed.map(entry => ({hash: entry.hash, receipt: entry.receipt, runtime: entry.runtime})),
       limitations: ['Numerical and release campaigns remain open.', 'Real Privy swap and invoice receipts must be demonstrated separately.',
-        'Aqua provenance is a retained human-reviewed source record, not an automatic sponsor endorsement.']};
+        result.plan.aquaDeployment === 'project-deployed-upstream'
+          ? 'AquaRouter is project-deployed unchanged upstream source at a project address; it is not the canonical 1inch deployment. Sponsor acceptance remains unverified.'
+          : 'Aqua provenance is a retained human-reviewed source record, not an automatic sponsor endorsement.']};
     // Publish verification first; the manifest is the final enabling write.
     await save(resolve(activeDirectory, 'verification.json'), report);
     await save(resolve(activeDirectory, 'manifest.json'), result.manifest);
@@ -460,11 +504,13 @@ export async function verifyActiveArcDeployment() {
   // Read-only: an active deployment has no pending entries to promote or save.
   const result = await verifiedCompletion(report.planPath, {readOnly: true});
   eq(report.planId, result.plan.planId, 'Active report plan mismatch.');
+  eq(report.aquaDeployment ?? 'existing-authenticated', result.plan.aquaDeployment ?? 'existing-authenticated', 'Active Aqua provenance mismatch.');
   eq(report.observation?.usdcCodeHash, result.observation.usdcCodeHash, 'Arc system USDC runtime differs from activation evidence.');
   eq(report.observation?.aquaCodeHash, result.observation.aquaCodeHash, 'Aqua runtime differs from activation evidence.');
   eq(report.manifest, result.manifest, 'Active report manifest mismatch.');
   eq(await readJson(resolve(activeDirectory, 'manifest.json')), result.manifest, 'Active manifest differs from verified deployment.');
   eq(report.receipts, result.state.confirmed.map(entry => ({hash: entry.hash, receipt: entry.receipt, runtime: entry.runtime})), 'Active receipt evidence changed.');
   return {verified: true, chainId: ARC.chainId, contracts: result.plan.addresses, asOf: result.bindings,
-    releaseAccepted: false, privyVerified: false};
+    aquaDeployment: result.plan.aquaDeployment ?? 'existing-authenticated',
+    releaseAccepted: false, privyVerified: false, sponsorQualificationVerified: false};
 }

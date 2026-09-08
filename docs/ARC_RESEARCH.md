@@ -16,7 +16,7 @@ Arc documents differing native and ERC-20 balance/transfer semantics. Verify the
 
 ## Address verification status
 
-Update 2026-09-08: `node scripts/verify-network.mjs` successfully read chain ID 5042002 and block `0x3a27661` (hash `0xea0a3e04d0fd29253731d52426b2578a2cc774a946698c4409f267fc02d439e0`). At that block the supplied Aqua candidate returned empty runtime code (`0x`); USDC decimals returned 6. This is a concrete target blocker for that address, not proof that no official Aqua deployment exists elsewhere. See `deployments/5042002/verification.json`. Writes remain disabled pending a source-verified official address and remaining compatibility checks. The earlier failed attempts below are historical.
+Update 2026-09-08: `node scripts/verify-network.mjs` successfully read chain ID 5042002 and block `0x3a27661` (hash `0xea0a3e04d0fd29253731d52426b2578a2cc774a946698c4409f267fc02d439e0`). At that block the supplied Aqua candidate returned empty runtime code (`0x`); USDC decimals returned 6. This blocks use of that address, not every possible Arc deployment. The earlier canonical-only write gate is historical: on September 9 the owner explicitly authorized a project deployment of unchanged upstream AquaRouter. The new [self-deployment route](ARC_DEPLOYMENT.md) verifies its actual source, runtime and receipts without requiring canonical-address availability or sponsor acceptance. It does not claim an official canonical deployment. The earlier failed attempts below are historical.
 
 The user's Aqua and router addresses are attributed to official 1inch deployment tables in [AQUA_RESEARCH.md](AQUA_RESEARCH.md). Their existence and implementation on Arc remain **unverified** here.
 

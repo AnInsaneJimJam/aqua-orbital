@@ -1,6 +1,6 @@
 # Master build prompt — Orbital on Aqua and Arc
 
-Version 2.2 · September 9, 2026 · Financial behavior is normative; visual defaults are editable.
+Version 2.3 · September 9, 2026 · Financial behavior is normative; visual defaults are editable.
 
 Use this prompt in the repository containing the linked mathematical and test documents. Those files are part of the prompt's input, not optional background. Implementation status is recorded in PROGRESS.md and test/evidence/INDEX.md; this specification does not imply implementation or deployment completion.
 
@@ -36,7 +36,7 @@ The mechanism is the user's [Orbital paper](https://www.paradigm.xyz/writing/orb
 | Earlier contract | Aqua implementation decision |
 | --- | --- |
 | One custodied `OrbitalPool` aggregating multiple LP owners | One maker owns a complete Aqua strategy containing several Orbital ticks; makers have independent states |
-| Factory deploys/funds a pool | Deploy one Orbital SwapVM router; makers ship immutable orders to official Aqua and explicitly activate them |
+| Factory deploys/funds a pool | Deploy one Orbital SwapVM router; makers ship immutable orders to verified unchanged upstream Aqua and explicitly activate them |
 | Shared radius shares and LP position NFTs/IDs | Strategy ownership is the maker wallet; no cross-maker share token or redemption claim |
 | Permanently inaccessible funded anchor | Positive full-range tick in each active strategy; maker can deactivate the **entire** strategy at any time |
 | Mint/increase/burn at arbitrary state | Approve → ship → activate; resize/reconfigure by deactivate/dock and publish a fresh order |
@@ -88,7 +88,7 @@ Convert each reference price using `b_depeg` in MATH, quantize to the smallest v
 
 Pin SwapVM to `1inch/swap-vm` commit `f09a41e689240adc645934f965c8061749397cd2`. Pin its official Aqua v1.0.0 dependency to commit `81c26e4619ce21556ab02b3284ee2685de21fb18`. Use Solidity `0.8.30`, optimizer 700 runs, via-IR enabled, and explicitly selected Cancun EVM target after verifying Arc transient-storage compatibility. Preserve the upstream dependency versions recorded in AQUA_RESEARCH and lock their exact resolved revisions. Changes to these pins require renewed ABI, opcode-collision, and upstream regression checks.
 
-Store the minimal SwapVM fork in `packages/contracts/vendor/swap-vm-orbital/`, with an unmodified source baseline and a reproducible patch/diff report. Use the official Aqua contracts unchanged. Do not create a lookalike Aqua registry for the qualifying live demonstration. Local tests may deploy the unmodified official Aqua source.
+Store the minimal SwapVM fork in `packages/contracts/vendor/swap-vm-orbital/`, with an unmodified source baseline and a reproducible patch/diff report. Use the official Aqua source unchanged. The owner explicitly authorizes deploying the pinned upstream `AquaRouter` wrapper on Arc Testnet as a **project-deployed upstream AquaRouter**. Retain its source/build provenance and label its resulting address separately from the official canonical deployment. Do not substitute a mock registry or claim sponsor approval. Local tests may deploy the unmodified official Aqua source.
 
 **Sponsor scope clarified by the owner, September 9:** the [1inch track](https://ethglobal.com/events/ethonline2026/prizes/1inch) explicitly permits modified SwapVM deployments, custom instructions, and local-fork token-transfer demonstrations. Orbital's custom curve/instruction architecture fits that scope. The track does not require its demonstration to run on Arc. Assess the 1inch demonstration separately from Arc deployment and Privy's authenticated financial flow; missing canonical Aqua on Arc must not block preparing the 1inch demonstration. Retain official Aqua provenance, actual execution evidence and meaningful Git history. A fresh Anvil deployment of upstream source is distinct from a fork containing an existing official deployment; label each accurately. The modified-SwapVM exception alone is not evidence that every independently deployed Aqua address has official status.
 
@@ -104,19 +104,23 @@ Preserve license headers, mark changes, and provide corresponding fork source an
 | USDC ERC-20 interface | `0x3600000000000000000000000000000000000000` |
 | User-supplied official Aqua candidate | `0x1111113ccf1426a8e30e2bff5e005d929bf6a90a` |
 | User-supplied official router reference | `0x111111338c5091E8440b67B168bAe16a668AC0De` |
+| Selected Aqua deployment mode | `self-deployed-upstream`: project-deployed unchanged pinned `AquaRouter`, address derived from the new plan and verified after deployment |
+| Authorized Arc deployer / AquaRouter rescue owner | `0x5eBA55e1b43c8714E4432250Dada7A518780C871` |
 | Actual Orbital custom router | Determined by deployment; **not** the published router address |
 
-The RPC/address verification attempts during prompt preparation did not establish deployment identity. Before enabling real transactions, `verify-network` must capture chain ID, block/hash, Aqua runtime code identity and ABI, system USDC identity and decimals, router `AQUA()` binding, deployed fork bytecode/build, and EVM compatibility in `deployments/5042002/verification.json`. Compare published addresses with official deployment evidence, not only `eth_getCode` presence. The published router cannot acquire new opcodes through configuration; custom bytecode requires its own deployment.
+The recorded RPC observations did not establish code at the published canonical Aqua and stock SwapVM addresses on Arc. This does not prevent the authorized project deployment. Before enabling application transactions, the deployment verifier must capture chain ID, block/hash, Aqua source/build/runtime identity, creation receipt, constructor owner and ABI, system USDC identity and decimals, router `AQUA()` binding, deployed fork bytecode/build, and EVM compatibility in `deployments/5042002/verification.json`. `verify-network` subsequently checks the active record read-only. Source provenance and exact runtime/receipt checks establish the project deployment's identity; they do not confer official canonical status. The published stock router cannot acquire new opcodes through configuration; Orbital requires its own deployment.
 
-If the supplied Aqua candidate cannot be verified on Arc: keep the chain disabled for writes; finish the local official-Aqua implementation and deployment artifacts; identify the exact missing official deployment evidence. Do not substitute a mock or another network while describing the Arc track as complete. An unmodified Aqua deployment at another address is not automatically a sponsor-approved official deployment; obtain the needed evidence before making that claim.
+**Owner-authorized deployment update, September 9:** proceed with unchanged upstream AquaRouter self-deployment on verified Arc Testnet. Missing canonical Aqua or sponsor acceptance must not block this functional integration. Use `prepare --self-deploy-aqua --plan deployments/5042002/plans/self-deployment.json` with the authorized deployer; retain the earlier blocked `plans/deployment.json` and canonical-address research as history. Prepare a new nonce-bound graph rather than modifying or executing the old plan. Keep application writes disabled until the new deployment's receipts, runtimes and bindings verify successfully. Sponsor qualification remains unverified and separate from functional deployment.
 
-This is the current project's Arc deployment requirement, not an additional 1inch rule demanding an official Arc deployment. Continue the permitted official-Aqua local-fork demonstration independently. Source provenance, runtime verification, sponsor evidence and mathematical release acceptance are separate checks.
+This update supersedes the earlier project requirement to obtain an official canonical Arc registry or maintainer exception before deployment. The 1inch track permits custom SwapVM and local-fork demonstrations; keep fresh Anvil, canonical-network fork and project-deployed Arc evidence accurately labeled. Source provenance, runtime verification, sponsor assessment and mathematical release acceptance are separate checks.
 
-The current user-signed deployment workflow is documented in [ARC_DEPLOYMENT](docs/ARC_DEPLOYMENT.md). `deploy:arc` prepares authenticated, nonce-bound transactions; the loopback browser utility requests each signature from the authorized wallet. Only successful receipt/runtime/binding verification publishes an active manifest. The separate [Arc/Privy profile](docs/ARC_DEMO.md) permits public browsing and login while deployment is unavailable. These implemented tools do not establish successful live deployment or sponsor qualification.
+The current user-signed deployment workflow is documented in [ARC_DEPLOYMENT](docs/ARC_DEPLOYMENT.md). `deploy:arc` prepares authenticated, nonce-bound transactions; the loopback browser utility requests each signature from the authorized wallet. The self-deployment graph contains twelve transactions: AquaRouter, six linked libraries, two demo tokens, the custom Orbital router, payments adapter, and custom-router ownership renunciation. Follow the generated dependency/nonce order. Only successful receipt/runtime/binding verification publishes an active manifest. The separate [Arc/Privy profile](docs/ARC_DEMO.md) permits public browsing and login while deployment is unavailable. No live deployment receipts were present when this specification update was written; tooling and authorization do not establish successful deployment or sponsor qualification.
 
 For Arc balances, use the ERC-20 representation for token amounts/approvals and native units for gas estimation. Both represent the same USDC inventory. `msg.value` is always zero on Orbital swaps/payments. Set the unused WETH immutable to zero and reject native/wrapping traits before execution; never deploy “wrapped USDC” merely to satisfy a WETH constructor argument. Test that the pinned base accepts this unused value.
 
 The fork retains no operational administrator. Deploy with the deployer as the upstream rescue-only owner, then renounce ownership before activation/client enablement and verify `owner()==0`; `activateStrategy` enforces this onchain. Normal transactions end with zero router token delta. Accidental external router donations remain inert. Do not add upgradeability, arbitrary token rescue, admin curve edits, or maker-key management.
+
+This renunciation requirement applies to **OrbitalSwapVMRouter**, not the upstream **AquaRouter** registry wrapper. Deploy AquaRouter unchanged with the authorized deployer as its constructor owner and preserve its existing rescue helper for funds accidentally sent to that wrapper. Verify and disclose that owner. This does not introduce pooled custody, a new administrative curve capability, or application-held keys; maker funds remain in maker wallets under the existing Aqua lifecycle.
 
 ## 5. System architecture and exact ownership
 
@@ -125,7 +129,7 @@ Maker wallet                  Taker / payer wallet
   | approve Aqua                 | approve router or payment adapter
   | ship order                   |
   v                              v
-Official Aqua <---------- OrbitalSwapVMRouter <----- OrbitalPayments
+Upstream Aqua <---------- OrbitalSwapVMRouter <----- OrbitalPayments
   | allocation accounting       | custom instructions      | invoice + splits
   | maker-to-recipient pull     | maker/order state        | atomic USDC receipt
   | router-to-maker push        | certified Orbital math   |
@@ -358,7 +362,7 @@ Indexer runs read-only with respect to the chain. It publishes PostgreSQL notifi
 
 Local Docker Compose provides Postgres, API, indexer, web and Anvil. Ports: web 3000, API 3001, Postgres 5432, Anvil 8545. Production artifacts are Dockerfiles for web/API/indexer plus database migrations; the master prompt does not choose a paid hosting account or publish without authorization.
 
-Configuration: `DATABASE_URL`, `ARC_RPC_URL`, `CHAIN_ID`, `DEPLOYMENT_MANIFEST`, `INDEXER_START_BLOCK`, `PUBLIC_APP_URL`, `PUBLIC_API_URL`, and `LOG_LEVEL`. Deployment signer credentials are read only by explicit deployment scripts from the user's secure environment; never by web/API/indexer. Provide `.env.example` with names/descriptions and harmless local values, never real credentials. Use structured logs with request/chain/order/transaction IDs and latency; redact user-provided free text and secrets.
+Configuration: `DATABASE_URL`, `ARC_RPC_URL`, `CHAIN_ID`, `DEPLOYMENT_MANIFEST`, `INDEXER_START_BLOCK`, `PUBLIC_APP_URL`, `PUBLIC_API_URL`, and `LOG_LEVEL`. Deployment signatures come from the authorized browser wallet; deployment tooling, web, API and indexer do not read signer keys. Provide `.env.example` with names/descriptions and harmless local values, never real credentials. Use structured logs with request/chain/order/transaction IDs and latency; redact user-provided free text and secrets.
 
 Required script names: `dev`, `build`, `lint`, `typecheck`, `test:contracts`, `test:reference`, `test:sdk`, `test:backend`, `test:e2e`, `test:invariants`, `test:all`, `verify:network`, `deploy:local`, `deploy:arc`, `demo:seed`, `demo:judge`, `db:migrate`, `db:replay`, `evidence:build`. Define them during scaffold and treat their actual configuration as executable truth. Avoid inventing passed command results in documentation.
 
@@ -465,7 +469,7 @@ Unpaid, expired, cancelled, pending and paid screens are separate. Paid screen r
 
 ### 14.3 `/proof`
 
-This page is for judges and technical reviewers. It is public and factual. Sections: network/contracts with verification state and source links; official Aqua integration; custom opcode bytecode and rationale; all-pairs shared-state demonstration; crossing regression; wallet custody before/after; USDC payment and split receipt; tests/coverage/gas evidence with run timestamp/build hash; known limits.
+This page is for judges and technical reviewers. It is public and factual. Sections: network/contracts with verification state and source links; unchanged upstream Aqua integration with explicit deployment provenance; custom opcode bytecode and rationale; all-pairs shared-state demonstration; crossing regression; wallet custody before/after; USDC payment and split receipt; tests/coverage/gas evidence with run timestamp/build hash; known limits.
 
 For each criterion display Verified/Failed/Not run/Unavailable and a real artifact link. “Verified” must be generated from the evidence manifest for that build, not hard-coded in JSX. If no live deployment exists, show the local trace separately and keep Arc verification incomplete. Hide no failure by replacing it with illustrative graphics.
 
@@ -530,19 +534,19 @@ Mock mode is permitted only in explicit test/Storybook-like fixture routes not s
 
 ## 17. Implementation milestones and acceptance gates
 
-This plan supersedes the older pooled-contract P0–P8 plan. Each row starts with its tests, completes implementation, then produces evidence. Independent frontend scaffold and static design work may proceed while chain verification is blocked, but a live-looking mock does not complete a protocol gate.
+This plan supersedes the older pooled-contract P0–P8 plan. The owner's current integration-first order uses focused verification while implementation is completed; the broader exit suites below remain required to close each gate. Independent frontend scaffold and static design work may proceed while chain verification is blocked, but a live-looking mock does not complete a protocol gate.
 
 | Gate | Work and dependency | Required exit evidence |
 | --- | --- | --- |
 | **G0: reproducible scaffold** | Read/pin sources; create monorepo, exact toolchain lock, schemas/ABI stubs, Docker/local chain, requirement matrix and network verifier | Build/test interfaces compile; meaningful behavior tests red; source commits and address verification status recorded |
 | **G1: mathematical engine** | Independent per-tick high-precision reference, retained numeric library, sphere/cap math and both-direction crossing tests | Analytic fixtures/duality checks; conservative integer outputs; documented bounds/proofs; no unexplained valid-state reverts |
 | **G2: actual SwapVM extension** | Minimal pair-resolution fork, canonical encoder, 0x72/0x52 dispatch, maker state and static quotes | AQ-HASH/PAIR/OPCODE/FEE/STATIC pass; all-pairs trace proves one shared state; upstream regression tests for preserved behavior pass |
-| **G3: Aqua lifecycle/settlement** | Official Aqua local deployment; maker approval/ship/activate/retire/dock; controlled settlement and security | AQ-LIFE/SETTLE/DONATION/SHARED/SECURITY pass; no pooled deposits or contract fee claims |
+| **G3: Aqua lifecycle/settlement** | Unchanged upstream Aqua local deployment; maker approval/ship/activate/retire/dock; controlled settlement and security | AQ-LIFE/SETTLE/DONATION/SHARED/SECURITY pass; no pooled deposits or contract fee claims |
 | **G4: Arc payments** | Invoice adapter and real USDC chain adapter, local analog tests then target verification | PAY-ATOMIC/REPLAY/DIRECT pass; Arc identity/dual-unit tests; deployment eligibility clearly recorded |
 | **G5: SDK/backend** | Canonical SDK, indexer, database, quotes, metrics, SSE, proof DTOs | Hash/calldata golden tests; ingestion/reorg/caller-context/rate/error tests; no signing service |
 | **G6: complete application UI** | All routes, wallet/form state machines, supplied Orbital media and logo, fallback/reduced motion, Privy and external-wallet integration | All specified pages/states rendered; complete local wallet E2E; responsive/accessibility screenshots and checks |
 | **G7: integrated qualification demo** | Seed distinct makers/taker/merchant/treasury; execute full scenario and build evidence | Actual source-backed opcode trace, all-pairs/crossing/custody proof, invoice split receipt, UI connects to that deployment |
-| **G8: release candidate** | Full fuzz/invariant/mutation, gas/bytecode/performance/dependency review; target deployment when authorized and funded | Tests and measurements recorded, official target Aqua verified, custom deployment identity recorded, no hidden failed criteria |
+| **G8: release candidate** | Full fuzz/invariant/mutation, gas/bytecode/performance/dependency review; authorized user-signed target deployment | Tests and measurements recorded, unchanged upstream target Aqua source/runtime/receipts verified with explicit project-deployment provenance, custom deployment identity recorded, no hidden failed criteria |
 
 Do not add frontend simulations that claim to be certified quotes; reference math is for tests and explicit educational views. Do not drop the crossing solver to meet a demo deadline. If a mathematical proof fails, keep the counterexample and fix the responsible specification/implementation before declaring G1/G2 done.
 
@@ -554,7 +558,7 @@ Provide a deterministic local `demo:judge` script plus a manual browser runbook.
 
 Demonstration sequence:
 
-1. Print actual chain ID, official Aqua source/address verification, custom router address, `AQUA()` binding, code identity, source commits and opcode bytes.
+1. Print actual chain ID, Aqua source/address verification and deployment mode, custom router address, `AQUA()` binding, code identity, source commits and opcode bytes. Label the selected Arc registry project-deployed upstream AquaRouter, without implying canonical status or sponsor approval.
 2. Fund makers with genuine testnet USDC (or clearly identified local USDC test fixture for local-only mode) and the two demo tokens. Show wallet token balances and token custody at Aqua/router before publishing.
 3. Maker A publishes Balanced and maker B Wide, each with the default fee/config; record ship and activation receipts. Verify no LP token transfers into a vault on ship/activation; distinguish USDC gas expenditure.
 4. Quote and fill each of the six directed pairs on a three-token strategy with small valid amounts. Demonstrate one actual inward/outward tick crossing scenario using independently prepared input amounts, not hard-coded output balances.
@@ -570,7 +574,7 @@ Track evidence matrix:
 
 | Track requirement | What demonstrates it |
 | --- | --- |
-| Official Aqua contracts used | Verified chain-specific Aqua deployment and direct ship/pull/push/dock receipts |
+| Official Aqua source used | Verified chain-specific unchanged-source Aqua deployment, explicit project/canonical provenance, and direct ship/pull/push/dock receipts; sponsor qualification assessed separately |
 | Sophisticated Aqua position | One maker's nested multi-token Orbital tick bundle and actual crossings |
 | Modified SwapVM/custom instructions | Pinned upstream fork diff, deployed code, 0x72/0x52 dispatch trace and relevant negative tests |
 | Position demonstrated through scripts/UI | Full local/target runbook and working LP/swap screens |
@@ -588,7 +592,7 @@ Before editing, inspect existing work and preserve unrelated changes. Use task-s
 
 A discovered upstream incompatibility is handled with a concrete failing fixture and a minimal source patch consistent with this architecture; do not silently switch to a different protocol or old ABI. A missing external address/RPC/credential is an environmental gate. Continue local implementation, tests, UI and unsigned deployment artifacts, while accurately marking target-network completion pending.
 
-Before any live deployment, finish the reviewable code, tests and manifest; use only an explicitly authorized funded signer and verified Arc Testnet. A quotation of a hackathon's deployment invitation does not provide the agent with credentials or authorize mainnet transactions. Never use a local test mnemonic on the live network or deploy a fake “official Aqua” to pass a gate. No action in the documentation-writing task broadcasts a transaction.
+Before any live deployment, finish the reviewable code, build artifacts and nonce-bound plan with focused verification in the owner's integration-first order; broader deferred tests remain open release obligations. Use only the explicitly authorized funded signer and verified Arc Testnet. The owner has authorized unchanged AquaRouter self-deployment; browser wallet transaction reviews provide the signatures without another sponsor-permission gate. A hackathon invitation alone supplies neither credentials nor mainnet authorization. Never use a local test mnemonic on the live network, substitute a mock registry, or describe a project-deployed address as the official canonical Aqua deployment. Documentation edits do not broadcast transactions.
 
 Final implementation handoff must report: what works; exact entry commands; local UI URL; source and dependency pins; custom opcode meanings/bytes; verified addresses and deployment receipts; tests actually run and failures; numerical proof status; backend/indexer freshness; supported dimension/tick/work limits; demo instructions; and remaining external blockers. Link artifacts. Distinguish working local implementation, target-testnet verification and deployment, independent security audit, and production readiness.
 

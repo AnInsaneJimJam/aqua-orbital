@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-08T21:03:21.714Z",
+  "scope": "arc-project-aqua-preparation-and-constructor-simulation",
+  "aquaDeployment": "project-deployed-upstream",
+  "planId": "be861a38e9ec7fdf9a08a8e3fb46fdb1bce0d85f87aef582b0911961019a4ad1",
+  "chainId": 5042002,
+  "deployer": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+  "baseNonce": "0",
+  "transactions": [
+    {
+      "label": "AquaRouter (unchanged upstream)",
+      "nonce": "0",
+      "address": "0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE",
+      "to": null
+    },
+    {
+      "label": "FrontierEndpoint",
+      "nonce": "1",
+      "address": "0xdA2E82aa2f5a1Ec1d103C507219380Cf5002eeD7",
+      "to": null
+    },
+    {
+      "label": "FrontierComposition",
+      "nonce": "2",
+      "address": "0xDA1C415b6EC73E380a9C83e0e4ba809D7c28e3e5",
+      "to": null
+    },
+    {
+      "label": "OrbitalOrderCodec",
+      "nonce": "3",
+      "address": "0x602d4CE6fBC11651ef70CfE273970625A970760A",
+      "to": null
+    },
+    {
+      "label": "StrategyInitializer",
+      "nonce": "4",
+      "address": "0x63E45d5038eAFff718a15Ef6C474C4A07b53D3A2",
+      "to": null
+    },
+    {
+      "label": "OrbitalStorage",
+      "nonce": "5",
+      "address": "0xbc80763Cad55C35ca534C59246F97290198Ada38",
+      "to": null
+    },
+    {
+      "label": "OrbitalSettlement",
+      "nonce": "6",
+      "address": "0xB73ABbFa96AcC4bC40C9ac0dB729FcfAf3728F20",
+      "to": null
+    },
+    {
+      "label": "Orbital Demo Dollar 6",
+      "nonce": "7",
+      "address": "0x37af59078638387f0416Bef031D8D70B9B6b00f2",
+      "to": null
+    },
+    {
+      "label": "Orbital Demo Dollar 18",
+      "nonce": "8",
+      "address": "0xCa8c7b1d7489BDd0bbD4e2f51Ee7558e14B2725B",
+      "to": null
+    },
+    {
+      "label": "Orbital SwapVM router",
+      "nonce": "9",
+      "address": "0x449420E9042c48Eac6E695020613678aD5A55D41",
+      "to": null
+    },
+    {
+      "label": "Orbital payments",
+      "nonce": "10",
+      "address": "0xf64e4664D534AeA5d240e1E29DAE9E80D2e393d6",
+      "to": null
+    },
+    {
+      "label": "Renounce router ownership",
+      "nonce": "11",
+      "to": "0x449420E9042c48Eac6E695020613678aD5A55D41"
+    }
+  ],
+  "addresses": {
+    "aqua": "0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE",
+    "usdc": "0x3600000000000000000000000000000000000000",
+    "demo6": "0x37af59078638387f0416Bef031D8D70B9B6b00f2",
+    "demo18": "0xCa8c7b1d7489BDd0bbD4e2f51Ee7558e14B2725B",
+    "router": "0x449420E9042c48Eac6E695020613678aD5A55D41",
+    "payments": "0xf64e4664D534AeA5d240e1E29DAE9E80D2e393d6"
+  },
+  "preparationObservation": {
+    "chainId": 5042002,
+    "rpcUrl": "https://rpc.testnet.arc.io",
+    "deployer": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+    "observedAt": "2026-09-08T21:00:11.082Z",
+    "aquaDeployment": "project-deployed-upstream",
+    "block": {
+      "number": "0x3a4c667",
+      "hash": "0xe066186e5c59710770b0e2ff00c7b38db13f85d84dc485abe393c04bf0b90fda"
+    },
+    "aqua": "0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE",
+    "aquaCodeHash": null,
+    "aquaAbiProbe": false,
+    "usdcCodeHash": "0xc9987bd3af6b26a030951faa7eacc017b68343aeedf3ce5fe68f821c4b93939d",
+    "balanceNative": "0x1158e460913d00000",
+    "balanceUsdc": "20.000000000000000000",
+    "nonce": "0x0",
+    "pendingNonce": "0x0",
+    "blockers": []
+  },
+  "firstStep": {
+    "label": "AquaRouter (unchanged upstream)",
+    "address": "0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE",
+    "source": "vendor/aqua/src/AquaRouter.sol:AquaRouter",
+    "compilerSettings": {
+      "compilationTarget": {
+        "vendor/aqua/src/AquaRouter.sol": "AquaRouter"
+      },
+      "evmVersion": "cancun",
+      "libraries": {},
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "optimizer": {
+        "enabled": true,
+        "runs": 700
+      },
+      "remappings": [
+        ":@1inch/aqua/=vendor/aqua/",
+        ":@1inch/solidity-utils/=node_modules/@1inch/solidity-utils/",
+        ":@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/",
+        ":aqua/=vendor/aqua/src/",
+        ":forge-std/=vendor/forge-std/src/",
+        ":swap-vm-orbital/=vendor/swap-vm-orbital/src/",
+        ":swap-vm/=vendor/swap-vm/src/"
+      ],
+      "viaIR": true
+    },
+    "artifactSha256": "14aab072dd5cb861093acd6603e3ab8f9c03ac98ecd1345669824abfbf3c7e0b",
+    "creationDataSha256": "e43cfac48dcd307ed05b8a0349aa1b2aad3b6d05e0d4c234fb50242c57acc866",
+    "reviewedAt": "2026-09-08T21:00:28.630Z",
+    "estimatedGas": "905044",
+    "gasLimit": "0x10b974",
+    "maxFeePerGas": "0x959174fd0",
+    "simulatedRuntime": {
+      "runtimeBytes": 3778,
+      "runtimeKeccak256": "0xcb04f3a0c6360a5854235ff32b878f44744d1d059d9099b8461e1aaf66451aea",
+      "immutableValues": {}
+    }
+  },
+  "confirmedAtCheckpoint": 0,
+  "pendingHash": null,
+  "releaseAccepted": false,
+  "privyVerified": false,
+  "sponsorQualificationVerified": false,
+  "limitations": [
+    "Constructor simulation is not an onchain deployment receipt.",
+    "The remaining constructors are simulated only as prior linked deployments become available.",
+    "No full numerical, security or release campaign ran for this checkpoint."
+  ]
+}
