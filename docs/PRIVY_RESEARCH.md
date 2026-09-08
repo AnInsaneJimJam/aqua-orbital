@@ -45,3 +45,5 @@ Live embedded-wallet creation, reconnect, rejection, active-wallet selection and
 ## Standalone swap boundary (2026-09-08)
 
 Standalone swaps now use the same imperative wallet identity/send bridge, canonical RPC simulation and gas-budget checks as invoice payments. Exact router approval requires a separate fresh swap review. Recovery binds the saved public transaction and decodes actual Orbital settlement events before displaying success. [Application fixture evidence](../test/evidence/swap-flow.md). This adds no provider-specific contract, backend account or private-key handling. Embedded-wallet creation, reconnect and live swap/payment receipts remain unverified.
+
+The shared transaction bridge now requests network changes through the current wagmi connector. Local browser fixtures cover successful and rejected requests; they do not establish Privy embedded-wallet chain switching. Device swap settings and public balance reads add no identity fields or provider account service. Gas-aware USDC Max uses actual candidate simulation and retains unavailable gas explicitly when future approval prevents that simulation. [Controls](../test/evidence/swap-controls.md).

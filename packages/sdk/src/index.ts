@@ -8,4 +8,5 @@ export * from './payment-read';
 export * from './payment-review';
 export * from './swap-review';
 export * from './swap-receipt';
+export * from './swap-controls';
 export {lifecycleEventsAbi,paymentsEventsAbi,swapEventsAbi,paymentsReadAbi} from './generated/abi';

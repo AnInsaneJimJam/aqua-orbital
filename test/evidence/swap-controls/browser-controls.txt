@@ -1,0 +1,36 @@
+[WebServer] (node:21928) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:928) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:20888) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 19 tests using 1 worker
+
+(node:22832) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/19] test\swap-controls.spec.ts:4:1 › swap starts with USDC to oUSD6, blank input and documented device defaults
+[2/19] test\swap-controls.spec.ts:9:1 › saved slippage and deadline alter the actual review and reset explicitly
+[3/19] test\swap-controls.spec.ts:16:1 › invalid slippage clears old amounts and prevents quotes and signatures
+[4/19] test\swap-controls.spec.ts:21:1 › amount edits wait 300ms and only the final amount is requested
+[5/19] test\swap-controls.spec.ts:25:1 › USDC Max re-estimates a smaller candidate when the required gas reserve increases
+[6/19] test\swap-controls.spec.ts:29:1 › unknown remaining swap gas offers an explicitly editable reserve instead of entire-balance Max
+[7/19] test\swap-controls.spec.ts:32:1 › non-USDC Max uses the full token balance without deducting native gas
+[8/19] test\swap-controls.spec.ts:35:1 › failed or inconsistent balance reads never display zero or enable Max
+[9/19] test\swap-controls.spec.ts:38:1 › wrong token precision cannot become a displayed balance
+[10/19] test\swap-controls.spec.ts:41:1 › network selection requests the configured chain without quoting or signing a blank input
+[11/19] test\swap-controls.spec.ts:44:1 › rejected network selection retains the amount and never requests a signature
+[12/19] test\swap.spec.ts:71:1 › checked swap observation shows exact amounts, recipient and bounded coverage without requesting signatures
+[13/19] test\swap.spec.ts:92:1 › edits clear the previous quote and malformed responses expose no amounts
+[14/19] test\swap.spec.ts:101:1 › quote freshness expires on screen and refresh obtains a new checked observation
+[15/19] test\swap.spec.ts:113:1 › wallet and chain changes invalidate observations and wrong chain sends no new quote request
+[16/19] test\swap.spec.ts:123:1 › bounded absence and outage are distinct, and failed refresh removes previously checked amounts
+[17/19] test\swap.spec.ts:134:1 › an interrupted quote cannot restore old amounts after input changes
+[18/19] test\swap.spec.ts:144:1 › a stalled quote times out and permits retry
+[19/19] test\swap.spec.ts:155:1 › deployment rotation during a quote rejects the observation and a fresh attempt recovers
+  19 passed (55.1s)

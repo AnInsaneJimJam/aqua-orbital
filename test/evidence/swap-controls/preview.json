@@ -1,0 +1,98 @@
+{
+  "observedAt": "2026-09-08T15:07:41.729009+00:00",
+  "origin": "http://127.0.0.1:3002",
+  "route": "/swap",
+  "status": 200,
+  "assets": [
+    {
+      "path": "/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/0nyvg17irpb5f.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/0ow-u2gpe2izt.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/0qeysri22kmia.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/181eou1a42imw.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/1f-zhys1ysesb.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/1m5htjm4362b_.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/1mu1grp6f_dqr.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/1n-l13p3z55yd.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/1rzarhd4i23r_.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/2fzmxdtr1-82a.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/2h_65rxjabdcw.css",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/2wtbecg2m4qdb.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/33favdr5bbmvt.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/33harckupm3mk.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/381lsbvybz38y.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/3a_furd3l1q7g.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/3lnfh9vpivklh.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/3n1gxxbn29fbd.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/3ow6lfr1ymrb4.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/3rb63bzlg9kkg.js",
+      "status": 200
+    },
+    {
+      "path": "/_next/static/chunks/turbopack-3hpd9bmjpeq2l.js",
+      "status": 200
+    }
+  ],
+  "accepted": true,
+  "scope": "Public production route and referenced assets only; no authenticated wallet or financial transaction."
+}

@@ -32,7 +32,7 @@ The focused browser run passed thirteen checks: approval followed by fresh swap,
 
 Ten new SDK checks cover review identity/funding/expiry/gas and strict receipt decoding. Existing payment and public observation regressions remain required after extracting the common RPC execution port. [Retained failures and preliminary observations](swap-flow/preliminary-notes.md).
 
-The [320px review](swap-review-mobile.png) and [desktop actual receipt](swap-receipt-desktop.png) were inspected for readable amounts, recipient, minimum, gas, transaction and crossing information. The fixture deliberately uses a very large input and an output differing from its quote by seven raw units. These images use synthetic wallet/RPC data; the lifecycle fixture is not a numerical witness.
+The [320px review](swap-flow/swap-review-mobile.png) and [desktop actual receipt](swap-flow/swap-receipt-desktop.png) were inspected for readable amounts, recipient, minimum, gas, transaction and crossing information. The fixture deliberately uses a very large input and an output differing from its quote by seven raw units. These images use synthetic wallet/RPC data; the lifecycle fixture is not a numerical witness.
 
 ## Remaining requirements
 

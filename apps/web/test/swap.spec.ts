@@ -6,7 +6,7 @@ import wire from '../../../packages/sdk/test/fixtures/swap-quote-observation.jso
 const now = 1700000003200, wallet = wire.request.wallet;
 const headers = {'access-control-allow-origin': '*', 'cache-control': 'no-store'};
 function fixture() {
-  const value = structuredClone(wire);
+  const value = structuredClone(wire);value.request.slippageBps=value.observed.request.slippageBps=10;
   value.manifest.chainId = 5042002;
   value.observed.chainId = 5042002;
   value.observed.deploymentId = keccak256(encodeAbiParameters([{type:'uint256'}, {type:'address'}, {type:'address'}, {type:'address'}],
@@ -14,7 +14,7 @@ function fixture() {
   value.request.recipient = wallet; value.observed.request.recipient = wallet;
   const hashes = new Map<string,string>();
   for (const r of [value.observed.data.best, ...value.observed.data.alternatives]) {
-    const old = r.orderHash; r.recipient = wallet; r.config.chainId = '5042002';
+    r.minimumOutRaw=(BigInt(r.amountOutRaw)*9990n/10000n).toString();const old = r.orderHash; r.recipient = wallet; r.config.chainId = '5042002';
     const config = configFromDTO(r.config); r.configHash = hashConfig(config); r.orderHash = hashOrder(buildOrder(config)); hashes.set(old, r.orderHash);
   }
   for (const d of value.observed.data.diagnostics) d.orderHash = hashes.get(d.orderHash)!;
@@ -48,6 +48,7 @@ async function installWallet(page: Page) {
 }
 async function setup(page:Page, respond:(body:unknown)=>unknown = ()=>fixture().observed, status:()=>number = ()=>200) {
   await installWallet(page);
+  await page.route('https://rpc.testnet.arc.io/**',route=>route.abort());
   await page.route('**/deployment', route=>route.fulfill({json:fixture().manifest,headers}));
   await page.route('**/quotes/swap', async route=>{
     if(route.request().method()==='OPTIONS')return route.fulfill({status:204,headers:{...headers,'access-control-allow-methods':'POST','access-control-allow-headers':'content-type'}});
@@ -57,12 +58,13 @@ async function setup(page:Page, respond:(body:unknown)=>unknown = ()=>fixture().
   await page.getByRole('button',{name:'Connect wallet',exact:true}).first().click();
   await expect(page.getByRole('button',{name:'Manage connected wallet'})).toBeVisible();
   await page.getByLabel('Input token').selectOption('USDC'); await page.getByLabel('You receive').selectOption('oUSD18');
-  await page.getByLabel('You pay').fill('9007199254.740993');
+
   // Keep timers running: TanStack schedules notifications through timers too.
   // Install after hydration so cold development compilation does not age data.
   await page.clock.install({time:new Date(now)});
+  await page.getByLabel('You pay').fill('9007199254.740993');
 }
-const getQuote=(page:Page)=>page.getByRole('button',{name:/^(Get quote|Review swap)$/});
+const getQuote=(page:Page)=>page.getByRole('button',{name:/^(Get quote|Refresh quote|Switch to Arc Testnet)$/});
 const refresh=(page:Page)=>page.getByRole('button',{name:'Refresh quote',exact:true});
 const output=(page:Page)=>page.getByLabel('Quoted output',{exact:true});
 
@@ -72,13 +74,13 @@ test('checked swap observation shows exact amounts, recipient and bounded covera
   await expect(output(page)).toBeVisible({timeout:5000});
   await expect(output(page)).toHaveText('20 oUSD18');
   expect(body).toEqual(fixture().request);
-  await expect(page.getByText('19.9 oUSD18',{exact:true})).toBeVisible();
+  await expect(page.getByText('19.98 oUSD18',{exact:true})).toBeVisible();
   await expect(page.getByText('900719.925475 USDC',{exact:true})).toBeVisible();
   await expect(page.getByText('Quote observation. Review checks current funds, strategy availability and transaction simulation before any signature.',{exact:true})).toBeVisible();
   await expect(page.getByText(wallet,{exact:true})).toBeVisible();
   await expect(page.getByRole('button',{name:/approve|confirm swap/i})).toHaveCount(0);
   await page.getByText('Quote details',{exact:true}).click();
-  await expect(page.getByText('Best result among 4 inspected strategies.',{exact:true})).toBeVisible();
+  await expect(page.getByText('Best among the strategies checked · 4 inspected.',{exact:true})).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
   const calls=await page.evaluate(()=>(window as unknown as {swapWallet:{calls:string[]}}).swapWallet.calls);
   expect(calls.some(m=>/sendTransaction|sign|estimateGas/i.test(m))).toBeFalsy();
@@ -99,12 +101,13 @@ test('edits clear the previous quote and malformed responses expose no amounts',
 test('quote freshness expires on screen and refresh obtains a new checked observation',async({page})=>{
   let current=now;await setup(page,()=>{const f=fixture(),seconds=Math.floor(current/1000);
     f.observed.freshness={...f.observed.freshness,indexedAt:new Date(current-100).toISOString(),observedAt:new Date(current).toISOString(),blockTimestamp:String(seconds)};
-    for(const r of [f.observed.data.best,...f.observed.data.alternatives])r.expiresAt=String(seconds+20);return f.observed;
+    for(const r of [f.observed.data.best,...f.observed.data.alternatives]){r.expiresAt=String(seconds+20);if(current>now){r.amountOutRaw='21000000000000000000';r.minimumOutRaw=(BigInt(r.amountOutRaw)*9990n/10000n).toString();}}return f.observed;
   });
   await getQuote(page).click();await expect(output(page)).toBeVisible({timeout:5000});
-  current+=11000;await page.clock.fastForward(11000);await expect(output(page)).toHaveCount(0);
+  current+=11000;await page.clock.fastForward(11000);await expect(output(page)).toHaveText('21 oUSD18');
+  await page.evaluate(()=>{Object.defineProperty(document,'visibilityState',{value:'hidden',configurable:true});document.dispatchEvent(new Event('visibilitychange'));});current+=21000;await page.clock.fastForward(21000);await expect(output(page)).toHaveCount(0);
   await expect(page.getByText('Quote expired. Refresh to check current amounts.',{exact:true})).toBeVisible();
-  await refresh(page).click();await expect(output(page)).toBeVisible({timeout:5000});
+  await page.evaluate(()=>{Object.defineProperty(document,'visibilityState',{value:'visible',configurable:true});document.dispatchEvent(new Event('visibilitychange'));});await expect(output(page)).toBeVisible({timeout:5000});
 });
 
 test('wallet and chain changes invalidate observations and wrong chain sends no new quote request',async({page})=>{
@@ -114,7 +117,7 @@ test('wallet and chain changes invalidate observations and wrong chain sends no 
   await page.evaluate(({address})=>(window as unknown as {swapWallet:{account:(a:string)=>void;chain:(c:string)=>void}}).swapWallet.account(address),{address:wallet});
   await expect(output(page)).toHaveCount(0);await getQuote(page).click();await expect(output(page)).toBeVisible({timeout:5000});
   await page.evaluate(()=>(window as unknown as {swapWallet:{chain:(c:string)=>void}}).swapWallet.chain('0x1'));
-  await expect(output(page)).toHaveCount(0);await getQuote(page).click();await expect(page.getByRole('main').getByRole('alert')).toContainText('Switch to Arc Testnet');expect(count).toBe(2);
+  await expect(output(page)).toHaveCount(0);await getQuote(page).click();await expect(page.getByRole('main').getByRole('alert')).toContainText('Switch to Arc Testnet');const stopped=count;await page.clock.runFor(350);expect(count).toBe(stopped);
 });
 
 test('bounded absence and outage are distinct, and failed refresh removes previously checked amounts',async({page})=>{
@@ -134,8 +137,8 @@ test('an interrupted quote cannot restore old amounts after input changes',async
     if(route.request().method()==='OPTIONS')return route.fallback();started++;
     await new Promise<void>(resolve=>{release=resolve;});await route.fulfill({json:fixture().observed,headers}).catch(()=>{});finished++;
   });
-  await getQuote(page).click();await expect.poll(()=>started).toBe(1);await page.getByLabel('You pay').fill('1');
-  await expect(getQuote(page)).toBeEnabled();release?.();await expect.poll(()=>finished).toBe(1);await expect(output(page)).toHaveCount(0);
+  await getQuote(page).click();await expect.poll(()=>started).toBe(1);await page.getByLabel('You pay').fill('');
+  await expect(page.getByRole('button',{name:'Enter an amount',exact:true})).toBeDisabled();release?.();await expect.poll(()=>finished).toBe(1);await expect(output(page)).toHaveCount(0);
 });
 
 test('a stalled quote times out and permits retry',async({page})=>{
