@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "transactions": [
+    "0x33fb9bde4243a073a22225116e9ea343307b140c5d29d88e913c42d4922631a3",
+    "0x774cea5512fa4f92d7a8ccfaf6fe144805fb37dfa5c1d964bff525ed80174ad4"
+  ],
+  "body": "Local development · Anvil wallet fixtures · No real assets\nSkip to content\nOrbital\nSwap\nLiquidity\nPayments\n0x976e…0aa9\nLOCAL ANVIL\nGet ready to trade.\n\nFund your wallet, then return to swaps or liquidity.\n\nDemo tokens have no redemption value. The faucet gives 1,000 units per token, once every 24 hours.\n\nYour wallet: 0x976ea74026e726554db657fa54763abd0c3a0aa9\n\nLocal wallets use test ETH for gas. USDC here is a local fixture. The development wallet accounts already have test ETH.\n\noUSD18\nBalance: 0\nReview oUSD18 faucet\nUSDC\nBalance: 1000\nReview USDC faucet\noUSD6\nBalance: 1000\nReview oUSD6 faucet\nRefresh balances\n\n1000 USDC received. Receipt: 0x774cea5512fa4f92d7a8ccfaf6fe144805fb37dfa5c1d964bff525ed80174ad4\n\nGo to swap · Provide liquidity\n\nBuild evidence\nRead the paper ↗\nLocal Anvil\n\nTestnet application. Demo tokens have no redemption value. Concentrated liquidity can lose value.\n\nPowered by SwapVM — © Degensoft Ltd 2025"
+}

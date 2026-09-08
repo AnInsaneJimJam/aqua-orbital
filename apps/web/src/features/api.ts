@@ -18,3 +18,16 @@ export async function request<T>(path:string,signal?:AbortSignal,body?:unknown):
 }
 export function useDeployment(){return useQuery({queryKey:['deployment'],queryFn:async({signal})=>manifestSchema.parse(await request<DeploymentManifest>('/deployment',signal)),retry:false,staleTime:30000});}
 export function useResource<T>(path:string){return useQuery({queryKey:['resource',path],queryFn:({signal})=>request<T>(path,signal),retry:false});}
+
+/** Read-only retries absorb a confirmed-index cursor advancing during a quote.
+ * No signing or transaction submission is retried here. Caller owns the deadline. */
+export async function requestQuotePayload(path:'/quotes/swap'|'/quotes/payment',signal:AbortSignal,body:unknown){
+ for(let attempt=0;;attempt++){
+  const response=await requestPayload(path,signal,body),v=response.data as {code?:string;retryable?:boolean};
+  if(attempt>=2||response.status!==503||v.retryable!==true||!v.code||!/(INDEXER_STALE|SOURCE_CHANGED|SOURCE_UNAVAILABLE|RESPONSE_UNAVAILABLE)$/.test(v.code))return response;
+  await new Promise<void>((resolve,reject)=>{
+   const abort=()=>{clearTimeout(timer);reject(Error('Quote cancelled'));},timer=setTimeout(()=>{signal.removeEventListener('abort',abort);resolve();},600);
+   signal.addEventListener('abort',abort,{once:true});if(signal.aborted)abort();
+  });
+ }
+}

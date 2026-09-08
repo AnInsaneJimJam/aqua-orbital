@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "deploymentId": "0x3bbb35386236c01c42cb2bda1871a343cd357d2fcd9f22f48c57ed6312360b59",
+  "manifest": {
+    "chainId": 31337,
+    "rpcUrl": "http://127.0.0.1:8545",
+    "explorerUrl": "http://127.0.0.1:8545",
+    "verified": true,
+    "aqua": "0x0165878a594ca255338adfa4d48449f69242eb8f",
+    "router": "0x610178da211fef7d417bc0e6fed39f05609ad788",
+    "payments": "0xb7f8bc63bbcad18155201308c8f3540b07f84f5e",
+    "usdc": "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+    "startBlock": "45",
+    "tokens": [
+      {
+        "address": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+        "symbol": "oUSD18",
+        "decimals": 18,
+        "mock": true
+      },
+      {
+        "address": "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+        "symbol": "USDC",
+        "decimals": 6,
+        "mock": true
+      },
+      {
+        "address": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+        "symbol": "oUSD6",
+        "decimals": 6,
+        "mock": true
+      }
+    ]
+  },
+  "roles": {
+    "maker": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+    "secondMaker": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+    "taker": "0x90f79bf6eb2c4f870365e785982e1f101e93b906",
+    "merchant": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+    "treasury": "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc"
+  },
+  "strategies": [
+    {
+      "preset": "Balanced",
+      "config": {
+        "schemaVersion": 1,
+        "chainId": "31337",
+        "router": "0x610178da211fef7d417bc0e6fed39f05609ad788",
+        "maker": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+        "makerNonce": "0",
+        "tokens": [
+          "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+          "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+          "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"
+        ],
+        "decimals": [
+          18,
+          6,
+          6
+        ],
+        "tickKeys": [
+          "5445883524",
+          "5447936453",
+          "18446744073709551615"
+        ],
+        "radiiInternal": [
+          "287080311575943061879967934348922270365802",
+          "28526201096390603038450955794354534829239",
+          "436454650955068425255731519889635454357"
+        ],
+        "feePpm": 500,
+        "initialAmountsRaw": [
+          "100000000000000000000",
+          "100000000",
+          "100000000"
+        ]
+      },
+      "order": {
+        "maker": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+        "traits": "28948022309345504152553859025372987423956659195481894094225317213215909740544",
+        "data": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe68a791620dd6260079bf849dc5567adc3f2fdc318722045f7f70173e402aeb898dd630ac5dc404605981651a8ca566b84022c6ecd4353522045f7f70173e402aeb898dd630ac5dc404605981651a8ca566b84022c6ecd4353"
+      },
+      "hash": "0x7f079f82ced8a56d7b9e269a12215abb946bdb7e169e0ba5812b3adb9a83dca5",
+      "activated": true
+    },
+    {
+      "preset": "Wide",
+      "config": {
+        "schemaVersion": 1,
+        "chainId": "31337",
+        "router": "0x610178da211fef7d417bc0e6fed39f05609ad788",
+        "maker": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "makerNonce": "0",
+        "tokens": [
+          "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+          "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+          "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"
+        ],
+        "decimals": [
+          18,
+          6,
+          6
+        ],
+        "tickKeys": [
+          "5445883524",
+          "5454630112",
+          "18446744073709551615"
+        ],
+        "radiiInternal": [
+          "95693437191981020626655978116307423454575",
+          "14159046353036591123173126807820078602816",
+          "2182273254775342126278657599448177271788"
+        ],
+        "feePpm": 500,
+        "initialAmountsRaw": [
+          "100000000000000000000",
+          "100000000",
+          "100000000"
+        ]
+      },
+      "order": {
+        "maker": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "traits": "28948022309345504152553859025372987423956659195481894094225317213215909740544",
+        "data": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe68a791620dd6260079bf849dc5567adc3f2fdc318722028edd0660c60a563a529a082a8a10128f27ff59b49ec46c85357855f34163aac522028edd0660c60a563a529a082a8a10128f27ff59b49ec46c85357855f34163aac"
+      },
+      "hash": "0x0c6a935155ffcdd1df804bc133b3e6adae6032794270327950a7001c0e96b257",
+      "activated": true
+    }
+  ],
+  "invoices": [
+    {
+      "id": "0x9f550baa7ab8af112507bf24f304564795231f6dd7022f07053dbe87b13895c1",
+      "terms": {
+        "merchantNonce": "0",
+        "amountDueRaw": "5000000",
+        "expiresAt": "1789493390",
+        "recipients": [
+          "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+          "0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc"
+        ],
+        "bps": [
+          9000,
+          1000
+        ],
+        "memoHash": "0x5f370ddf49d93764a6c4f555b048c071c90a306b37e87069209dda60253c166c"
+      }
+    }
+  ],
+  "transactions": [
+    {
+      "hash": "0xeb457f7f5cd003b5e6743f4605b640c064cb8e1d7927e6215754f09db0b2c443",
+      "label": "Fund local fixture oUSD18",
+      "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "receipt": {
+        "blockNumber": "552",
+        "blockHash": "0x80d932cad98829fc2fad59255c29e11d8e59bc11f768a76492faf834317b333c",
+        "gasUsed": "72795"
+      }
+    },
+    {
+      "hash": "0x512938fd6453b16ec839c2fac703ac7f17a42d9dd1761454c70a1de5dd89106d",
+      "label": "Fund local fixture USDC",
+      "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "receipt": {
+        "blockNumber": "553",
+        "blockHash": "0xccf0d4f4f1652b1c2c62280dee2810490b156e3227c9b4cb9da7711bfaa9c18a",
+        "gasUsed": "72787"
+      }
+    },
+    {
+      "hash": "0x138bd0dd223891ef0e2a3f9b5422bbe5512002d4dda699c92f6b2c6388db7aea",
+      "label": "Fund local fixture oUSD6",
+      "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "receipt": {
+        "blockNumber": "554",
+        "blockHash": "0x0c30d9a47f4d7124acfb2729df3f290866b1b6ce46c80b4dd6c99cfa07306236",
+        "gasUsed": "72795"
+      }
+    },
+    {
+      "hash": "0xcd5825124c673feffef5465ebf6c60aad60094b205eed29dd86576ede90ab01f",
+      "label": "Fund local fixture oUSD18",
+      "account": "0x90f79bf6eb2c4f870365e785982e1f101e93b906",
+      "receipt": {
+        "blockNumber": "555",
+        "blockHash": "0x77bc9a1c7d9b39decdd519a6a46042f5ffc259c059fb146f8b8cbce171c5b758",
+        "gasUsed": "72795"
+      }
+    },
+    {
+      "hash": "0x2f984035e58f8335e0ce25c40149b0ced52368769ab862f48018c95799deae23",
+      "label": "Fund local fixture USDC",
+      "account": "0x90f79bf6eb2c4f870365e785982e1f101e93b906",
+      "receipt": {
+        "blockNumber": "556",
+        "blockHash": "0xfab77a01a47013db0235d82d5abec01949e1dd5685900b5e930cebcbdf042797",
+        "gasUsed": "72787"
+      }
+    },
+    {
+      "hash": "0xe0e617972d818db44667a2b02ed85decd3659d64cff9b403062e26456ddb4a74",
+      "label": "Fund local fixture oUSD6",
+      "account": "0x90f79bf6eb2c4f870365e785982e1f101e93b906",
+      "receipt": {
+        "blockNumber": "557",
+        "blockHash": "0xa9aff266d98b8c2b07c354776db34fc1deb81dee6fbb5fe972b1e587f17f4076",
+        "gasUsed": "72795"
+      }
+    },
+    {
+      "hash": "0xc622cac949ed33f725027998255c9d1ebe4e21595c7f96fbc7840be55bf1a745",
+      "label": "Fund local fixture oUSD18",
+      "account": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+      "receipt": {
+        "blockNumber": "558",
+        "blockHash": "0xde52f20783d074b163fa96fb019459a019078ceb55c24f4ad22b8ffbe498a9a7",
+        "gasUsed": "72795"
+      }
+    },
+    {
+      "hash": "0x2860663c1958cda4647c6677c815dbdaafb027c9d860055e2bcf80740e45a954",
+      "label": "Fund local fixture USDC",
+      "account": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+      "receipt": {
+        "blockNumber": "559",
+        "blockHash": "0x775bb6223a0d90a1320dc598f063cad6d19190c24a13509337c4fc4bf630cf73",
+        "gasUsed": "72787"
+      }
+    },
+    {
+      "hash": "0x9aad23fd598cb632ec8dc4b09e2dc1417c7ce4cce1e0852c83c72bd975812622",
+      "label": "Fund local fixture oUSD6",
+      "account": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+      "receipt": {
+        "blockNumber": "560",
+        "blockHash": "0x9a1649692df17f75373e0150ee85e0abcffaacd5829f8fdb522ab4a4df872aba",
+        "gasUsed": "72795"
+      }
+    },
+    {
+      "hash": "0x47e51fb26086a7060983fc776259235578267a939d952ad5deaa72818693dd2a",
+      "label": "Approve reviewed amount",
+      "account": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "receipt": {
+        "blockNumber": "561",
+        "blockHash": "0xfb4c42b84f25e9e646df4977bfe3b38cf946df6b0e7b23090e2e8ecf4d32ee36",
+        "gasUsed": "45969"
+      }
+    },
+    {
+      "hash": "0xa8c8fec1469a21a77b97738cefa606338960f85457aa2d257322bfaa4d2a3071",
+      "label": "Approve reviewed amount",
+      "account": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "receipt": {
+        "blockNumber": "562",
+        "blockHash": "0x310459c43cb5e8170745d1c4b457b27f5b6fcaf8ec58a065e77801cfc910d6bf",
+        "gasUsed": "45913"
+      }
+    },
+    {
+      "hash": "0x7d05964175c621e53782c97ba24d0d260d8e96c215020ae31a1fe89c52a1ac4a",
+      "label": "Approve reviewed amount",
+      "account": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "receipt": {
+        "blockNumber": "563",
+        "blockHash": "0x69bb754268721a32c38d323caf9533ca9441797ebee607518847d52010be5fd8",
+        "gasUsed": "45921"
+      }
+    },
+    {
+      "hash": "0xb7b8572410fd2b66ee082f109f6ce0c3301c77f8ffc4c8912a49a2bfa0ee13bb",
+      "label": "Ship strategy to Aqua",
+      "account": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "receipt": {
+        "blockNumber": "564",
+        "blockHash": "0x69a39abe2679d5ddd06c469f155c49d48126527ab16b9326cb318c6bf7104b47",
+        "gasUsed": "107977"
+      }
+    },
+    {
+      "hash": "0x5ababa1103597784e4341637c4d57208cf43dc9df91fbf1b17f07e91848c7e6b",
+      "label": "Activate reviewed strategy",
+      "account": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "receipt": {
+        "blockNumber": "565",
+        "blockHash": "0xf032ed16e70b7e2876e84b56b7216612a42468c6caae48d13ff80d7fef5a8cc9",
+        "gasUsed": "1818291"
+      }
+    },
+    {
+      "hash": "0x71f06678adbee174ec7acb8d05efe30163d24fd792df43da0e410c4b6b5580fd",
+      "label": "Approve reviewed amount",
+      "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "receipt": {
+        "blockNumber": "566",
+        "blockHash": "0x622955a34d9c01f2224eb8ee7f91fca92bb0b1b3173836740044c4d401a5db30",
+        "gasUsed": "45969"
+      }
+    },
+    {
+      "hash": "0x5146cb71005ab6c5acddd6358db2502bfe107b50eea7c649fd02b45b73c190a6",
+      "label": "Approve reviewed amount",
+      "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "receipt": {
+        "blockNumber": "567",
+        "blockHash": "0x49409418ce652085bcea0d4170eb32348b9f404462e189194aed89eadbd1b160",
+        "gasUsed": "45913"
+      }
+    },
+    {
+      "hash": "0x503197658f8d5350d0a7f695e0ac381a1542759b393d1ef7cd71675846dba45b",
+      "label": "Approve reviewed amount",
+      "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "receipt": {
+        "blockNumber": "568",
+        "blockHash": "0x1b137f92684678cf059339f94b0f979dc1d1917f9f0fac3fd7a57981c6dd0c93",
+        "gasUsed": "45921"
+      }
+    },
+    {
+      "hash": "0xb5c71d4702552a7bb3fe7892412bb049d370e9d7630369aebce22e81face8258",
+      "label": "Ship strategy to Aqua",
+      "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "receipt": {
+        "blockNumber": "569",
+        "blockHash": "0x63f30a77754da749d0397b4e53bd2cd089c082b0e9f711cdebbf8411716a6fdc",
+        "gasUsed": "107965"
+      }
+    },
+    {
+      "hash": "0x8fda1dc0adea00209438924017db2499db0ac14f7254a6e08228a8858643d106",
+      "label": "Activate reviewed strategy",
+      "account": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "receipt": {
+        "blockNumber": "570",
+        "blockHash": "0x4250149c577c38b00dd32ed14a149e8f5308cb774a8fe8cea10862353b72fd2e",
+        "gasUsed": "1819189"
+      }
+    },
+    {
+      "hash": "0x8b7a63637dd328c08017cbd215bbd88d4aa287e0284add2354015e442aa490ba",
+      "label": "Create reviewed invoice",
+      "account": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+      "receipt": {
+        "blockNumber": "571",
+        "blockHash": "0x5807d83e4348e24e532adf854e6c90992f677c381c4e1122fbc5b6c5637a3798",
+        "gasUsed": "279238"
+      }
+    }
+  ]
+}

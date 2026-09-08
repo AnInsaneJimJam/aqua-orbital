@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import type {ReactNode} from 'react';
 import type {DeploymentManifest} from '@orbital/shared';
+import {IncompleteShipments} from './IncompleteShipments';
 import {copy} from '../content';
 import {useStrategies,type StrategiesViewState} from './useStrategies';
 import {useStrategy} from './useStrategy';
@@ -32,4 +33,4 @@ export function StrategiesView({state,cards}:{state:StrategiesViewState;cards?:R
   </>}
  </section>;
 }
-export default function Strategies(){const state=useStrategies();return <StrategiesView state={state} cards={state.items?.map(item=><StrategyCard key={`${state.deployment!.chainId}:${state.deployment!.router}:${item.hash}`} item={item} deployment={state.deployment!}/>)}/>;}
+export default function Strategies(){const state=useStrategies();return <><StrategiesView state={state} cards={state.items?.map(item=><StrategyCard key={`${state.deployment!.chainId}:${state.deployment!.router}:${item.hash}`} item={item} deployment={state.deployment!}/>)}/><section className="page"><IncompleteShipments/></section></>;}

@@ -10,7 +10,7 @@ const contracts=resolve(root,'packages/contracts');
 const targets=[
  ['routerAbi','ISwapVM','vendor/swap-vm-orbital/src/interfaces/ISwapVM.sol',['quote','swap']],
  ['lifecycleAbi','IOrbitalLifecycle','src/interfaces/IOrbitalLifecycle.sol',['activateStrategy','retireStrategy','nextMakerNonce','getStrategyConfig','getStrategyState','getStrategyAvailability']],
- ['aquaAbi','IAqua','vendor/aqua/src/interfaces/IAqua.sol',['ship','dock']],
+ ['aquaAbi','IAqua','vendor/aqua/src/interfaces/IAqua.sol',['ship','dock','rawBalances']],
  ['aquaEventsAbi','IAqua','vendor/aqua/src/interfaces/IAqua.sol',['Shipped','Docked'],'event'],
  ['paymentsAbi','OrbitalPayments','src/OrbitalPayments.sol',['createInvoice','cancelInvoice','payWithUSDC','payWithSwap']],
  ['paymentsReadAbi','OrbitalPayments','src/OrbitalPayments.sol',['getInvoice','USDC','ROUTER','allowedToken','nextMerchantNonce']],

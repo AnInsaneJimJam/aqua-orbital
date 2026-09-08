@@ -95,4 +95,4 @@ export function validateLocalIdentity({rpcUrl,chainId,clientVersion,instanceId,e
  if(url.protocol!=='http:'||url.hostname!=='127.0.0.1'||!url.port||Number(url.port)<1||url.port==='8545'||url.username||url.password||url.pathname!=='/'||url.search||url.hash
   ||chainId!=='0x7a69'||!/^anvil\//i.test(clientVersion??'')||!/^0x[0-9a-f]{64}$/i.test(instanceId??'')||instanceId!==expectedInstanceId||processAlive!==true)fail('LOCAL_IDENTITY');
 }
-export function parseAction(args){if(!Array.isArray(args)||args.length!==1||!['plan','test-run'].includes(args[0]))fail('USAGE','node scripts/local-deployment.mjs plan|test-run');return args[0];}
+export function parseAction(args){if(!Array.isArray(args)||args.length!==1||!['plan','test-run','persistent'].includes(args[0]))fail('USAGE','node scripts/local-deployment.mjs plan|test-run|persistent');return args[0];}

@@ -1,0 +1,36 @@
+{
+  "scope": "Local native Anvil dump interrupted during shutdown; no application transaction fabricated",
+  "failure": {
+    "fileBytes": 267486823,
+    "sha256": "6f091e7d7df2d1f77d383b3c73fb99826293a04a9293f02ae8da3689b0de7419",
+    "incompleteField": "historical_states",
+    "completeFields": [
+      "block",
+      "accounts",
+      "best_block_number",
+      "blocks",
+      "transactions"
+    ]
+  },
+  "recovery": {
+    "accounts": 24,
+    "blocks": 1779,
+    "transactions": 54,
+    "restoredCompleteFields": true,
+    "historicalStatesRetained": false,
+    "recoveredBytes": 4549140,
+    "sha256": "fef624f6f1d362df15fa186c862300ac9123b09789ffc0d9ab9968260f237aa9"
+  },
+  "replacement": "scripts/anvil-state.mjs atomic thirty-second snapshots; accounts, blocks, transactions and bounded 128-state history",
+  "verifiedAfterRestart": "receipts-after-restart.json",
+  "limitations": [
+    "Up to thirty seconds of writes can be lost in an abrupt engine crash",
+    "Historical EVM state is bounded to 128 recent blocks",
+    "This is local development infrastructure"
+  ],
+  "additionalAttempts": [
+    "Preserving 128 states took longer than one block interval; before/after identity checks correctly refused inconsistent snapshots.",
+    "Disabling automine alone does not disable interval mining in Anvil v1.5.1. The final writer pauses interval mining with anvil_setIntervalMining(0), then restores 3 seconds in finally.",
+    "Repeated Anvil loads accumulated multiple startup genesis headers in the hash-keyed block map. A strict deployment reuse check caught LOCAL_GENESIS_CHANGED. Snapshot output now selects canonical headers for duplicate heights, selecting genesis via block 1 parentHash, and filters associated orphan transaction entries. The identity guard remains unchanged."
+  ]
+}

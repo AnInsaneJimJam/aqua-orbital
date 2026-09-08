@@ -35,3 +35,12 @@
 | 2026-09-08 D31 | Prioritize application integration with lightweight immediate verification | Owner instruction supersedes tests-first scheduling during implementation. Use builds/types and focused smoke checks as needed; defer broad campaigns and additional coverage without presenting deferred release obligations as passed |
 
 Routine CSS edits need no decision entry. Changes to economics, supported ranges, source pins, key control, or source-derived mathematical assumptions do. Retain superseded decisions with links to replacements.
+
+
+### D32 — Persistent local integration before release campaigns
+
+Implement working end-to-end flows using the authenticated local graph and an explicit user-confirmed Anvil wallet fixture. Keep generated active manifests out of Git, preserve Docker state and reverify runtime before reusing a deployment. Existing real mathematical and security obligations remain release blockers; the owner has deferred broad testing while integration is completed. `local:setup` and `dev:local` form the supported local entry point.
+
+### D33 — Separate incomplete receipts from registered inventory
+
+The liquidity screen combines the existing paginated registered-strategy endpoint with `GET /makers/:address/shipments`, a second canonical paginated history derived from Aqua raw receipts. This keeps records with unknown config parameters out of the registered financial-state schema. It still exposes incomplete and pre-activation docked orders, their commitment and receipt; local unsigned drafts supply the missing parameters for resumption. No synthetic activation is written by an API.

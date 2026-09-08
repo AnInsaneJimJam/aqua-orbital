@@ -5,6 +5,7 @@ import {resolve} from 'node:path';
 import {createRequire} from 'node:module';
 import {buildGraph,linkObject,verifyRuntime,ROOTS} from './local-deployment.mjs';
 import {startOwnedAnvil} from './local-anvil.mjs';
+import {connectPersistentAnvil} from './persistent-anvil.mjs';
 const {encodeDeployData,encodeFunctionData,decodeFunctionResult,encodeFunctionResult,getContractAddress,keccak256,hashTypedData,toHex,zeroAddress}=createRequire(new URL('../../packages/sdk/package.json',import.meta.url))('viem');
 const root=fileURLToPath(new URL('../../',import.meta.url)),contracts=resolve(root,'packages/contracts');
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
@@ -12,7 +13,7 @@ const json=x=>JSON.stringify(x,(_key,value)=>typeof value==='bigint'?value.toStr
 const eq=(a,b,code)=>{if(typeof a==='string'&&typeof b==='string'&&a.startsWith('0x')&&b.startsWith('0x')?a.toLowerCase()!==b.toLowerCase():json(a)!==json(b))throw Error(code);};
 const fail=code=>{throw Error(code);};
 const quantity=n=>'0x'+BigInt(n).toString(16);
-const sources=['scripts/local-deployment.mjs','scripts/lib/local-deployment.mjs','scripts/lib/local-anvil.mjs','scripts/lib/local-deployment-runner.mjs','packages/sdk/scripts/artifact-integrity.mjs','packages/contracts/foundry.toml','packages/contracts/remappings.txt','pnpm-lock.yaml'];
+const sources=['scripts/local-deployment.mjs','scripts/lib/local-deployment.mjs','scripts/lib/local-anvil.mjs','scripts/lib/persistent-anvil.mjs','scripts/lib/local-deployment-runner.mjs','packages/sdk/scripts/artifact-integrity.mjs','packages/contracts/foundry.toml','packages/contracts/remappings.txt','pnpm-lock.yaml'];
 async function sourceHashes(){return Object.fromEntries(await Promise.all(sources.map(async p=>[p,sha(await readFile(resolve(root,p)))])));}
 async function upstream(graph){
  const bytes=await readFile(resolve(root,'test/evidence/upstream.json')),entry=JSON.parse(bytes).aqua;
@@ -57,16 +58,30 @@ export function verifyTransaction({transaction,receipt,block,from,to,data,nonce,
  eq(receipt.contractAddress,predictedAddress??null,'CREATION_ADDRESS');
  if(!block.transactions.includes(transaction.hash))fail('TRANSACTION_BLOCK_MEMBERSHIP');
 }
-export async function runLocalDeployment(){
+export async function runLocalDeployment({persistent=false}={}){
  // Authentication completes before starting a node or creating a deployment.
- const plan=await buildLocalPlan(),graph=plan.graph,byFqn=new Map(graph.nodes.map(n=>[n.fqn,n]));
+ const plan=await buildLocalPlan();
+ if(persistent){
+  let existing;try{existing=JSON.parse(await readFile(resolve(root,'deployments/31337/manifest.json'),'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
+  if(existing){
+   if(existing.verified!==true||existing.chainId!==31337||existing.rpcUrl!=='http://127.0.0.1:8545')fail('EXISTING_LOCAL_MANIFEST_INVALID');
+   const verification=JSON.parse(await readFile(resolve(root,'deployments/31337/verification.json'),'utf8'));
+   const directory=resolve(root,verification.reportPath),report=JSON.parse(await readFile(resolve(directory,'report.json'),'utf8'));
+   eq(existing,report.manifest,'EXISTING_MANIFEST_CHANGED');eq(serialGraph(plan.graph),report.graph,'DEPLOYED_BUILD_DIFFERS_RETAIN_EXISTING_STATE');
+   const local=await connectPersistentAnvil();eq(local.identity.genesisHash,report.chain.genesisHash,'LOCAL_GENESIS_CHANGED');
+   const block=await local.request('eth_getBlockByNumber',[quantity(report.asOf.number),false]);eq(block?.hash,report.asOf.hash,'LOCAL_DEPLOYMENT_HISTORY_MISSING');
+   for(const contract of report.contracts)eq(await local.request('eth_getCode',[contract.address,'latest']),contract.deployedRuntime,'LOCAL_DEPLOYMENT_CODE_CHANGED');
+   await local.assertIdentity();return {directory,report:{...report,status:'existing-local-deployment-verified'}};
+  }
+ }
+ const graph=plan.graph,byFqn=new Map(graph.nodes.map(n=>[n.fqn,n]));
  const directory=resolve(root,'test/evidence/local-deployment',`${new Date().toISOString().replaceAll(':','-')}-${randomUUID()}`);
  await mkdir(resolve(root,'test/evidence/local-deployment'),{recursive:true});await mkdir(directory);
- const report={schemaVersion:1,status:'running',startedAt:new Date().toISOString(),scope:'disposable-local-deployment',financialExecutionEnabled:false,
+ const report={schemaVersion:1,status:'running',startedAt:new Date().toISOString(),scope:persistent?'persistent-local-development':'disposable-local-deployment',financialExecutionEnabled:false,
   upstream:plan.upstream,sourceHashes:plan.sourceHashes,graph:serialGraph(graph),contracts:[],receipts:[],assets:[],faucets:[],bindings:{},manifest:{verified:false,chainId:31337},chainStopped:false};
  let local;
  try{
-  local=await startOwnedAnvil();report.chain=local.identity;
+  local=persistent?await connectPersistentAnvil():await startOwnedAnvil();report.chain=local.identity;
   const accounts=await local.request('eth_accounts'),from=accounts[0],faucetCaller=accounts[1];report.deployer=from;report.faucetCaller=faucetCaller;
   const addresses=new Map();
   async function transact(data,to=null){
@@ -162,9 +177,21 @@ export async function runLocalDeployment(){
   report.manifest={verified:false,chainId:31337,scope:'disposable-local-only',aqua:aqua.address,router:router.address,payments:payments.address,usdc:usdc.address,
    tokens:sorted,asOf:report.asOf,reason:'Evidence candidate; no persistent runtime identity, G1 release, Arc identity or live Privy qualification is established.'};
   report.status='local-verification-passed';
+  if(persistent){
+   // Runtime verification enables this local development profile only. It does
+   // not certify mathematical release acceptance or sponsor qualification.
+   report.manifest={verified:true,chainId:31337,rpcUrl:local.rpcUrl,explorerUrl:'http://127.0.0.1:8545',
+    aqua:aqua.address,router:router.address,payments:payments.address,usdc:usdc.address,startBlock:BigInt(aqua.receipt.blockNumber).toString(),
+    tokens:sorted.map(t=>({address:t.address,decimals:t.decimals,symbol:t.role==='local-usdc-fixture'?'USDC':`oUSD${t.decimals}`,mock:true}))};
+   await mkdir(resolve(root,'deployments/31337'),{recursive:true});
+   await writeFile(resolve(root,'deployments/31337/manifest.json'),json(report.manifest));
+   await writeFile(resolve(root,'deployments/31337/verification.json'),json({verified:true,scope:report.scope,releaseAccepted:false,privyVerified:false,arcVerified:false,
+    chain:report.chain,asOf:report.asOf,upstream:report.upstream,reportPath:directory.replace(root,'').replaceAll('\\','/'),contracts:report.contracts.map(c=>({fqn:c.fqn,address:c.address,runtime:c.runtime,transactionHash:c.receipt.transactionHash})),
+    limitations:['Local demo assets only','Numerical/release obligations remain open','No Arc or hosted-wallet receipt claim']}));
+  }
  }catch(error){report.status='local-verification-failed';report.error=error instanceof Error?error.message:'LOCAL_RUN_FAILED';throw error;}
  finally{
-  if(local)await local.close();report.chainStopped=true;report.finishedAt=new Date().toISOString();
+  if(local)await local.close();report.chainStopped=!persistent;report.finishedAt=new Date().toISOString();
   await writeFile(resolve(directory,'report.json'),json(report),{flag:'wx'});
   await writeFile(resolve(directory,'manifest.candidate.json'),json(report.manifest),{flag:'wx'});
  }

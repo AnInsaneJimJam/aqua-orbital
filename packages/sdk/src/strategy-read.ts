@@ -1,7 +1,7 @@
-import {manifestSchema,hashSchema,strategyDetailSchema,strategyListSchema,strategyFiltersSchema,strategyCursorSchema,
+import {shipmentListSchema,manifestSchema,hashSchema,strategyDetailSchema,strategyListSchema,strategyFiltersSchema,strategyCursorSchema,
  type DeploymentManifest,type StrategyReadDTO,type StrategyDetailDTO,type StrategyListDTO} from '@orbital/shared';
 import {encodeAbiParameters,keccak256,type Address} from 'viem';
-import {buildOrder,encodeOrder,hashConfig,hashOrder,formatAmount} from './codec';
+import {buildOrder,encodeOrder,hashConfig,hashOrder,formatAmount,program} from './codec';
 import {configFromDTO,orderFromDTO} from './dto';
 const same=(a:string,b:string)=>a.toLowerCase()===b.toLowerCase();
 const fail=(message:string):never=>{throw Error(message);};
@@ -110,4 +110,15 @@ export function strategyInventory(r:StrategyReadDTO,m:DeploymentManifest){
    fractionalPrincipal:BigInt(s.principalInternal[i]!)%scale(token!.decimals)!==0n,live:a.live,backed:a.backingValid,
    limited:BigInt(a.fundingCeilingRaw)<BigInt(s.principalInternal[i]!)/scale(token!.decimals)};
  });
+}
+
+export function decodeShipmentList(value:unknown,httpStatus:number,manifest:DeploymentManifest,maker:string){
+ const m=manifestSchema.parse(manifest),v=shipmentListSchema.parse(value),c=v.coverage,pin=BigInt(v.asOf.height);
+ if(httpStatus!==200||!m.verified||v.chainId!==m.chainId||!same(v.router,m.router)||!same(v.aqua,m.aqua)||!same(v.maker,maker)||c.fromBlock!==m.startBlock||c.toBlock!==v.asOf.height||BigInt(c.expectedBlocks)!==pin-BigInt(m.startBlock)+1n||c.canonicalBlocks!==c.expectedBlocks||c.coveredBlocks!==c.expectedBlocks)throw Error('Shipment observation mismatch');
+ for(const item of v.data.items){const order=orderFromDTO(item.order);
+  if(!same(item.maker,maker)||!same(item.router,m.router)||!same(order.maker,maker)||!same(hashOrder(order),item.hash)||order.traits!==((1n<<254n)|(0x0028002800280028n<<160n))||order.data.length!==218||order.data.slice(82).toLowerCase()!==program(item.configHash as `0x${string}`).slice(2).toLowerCase())throw Error('Shipment commitment mismatch');
+  if(item.status==='docked'!==!!item.docked)throw Error('Shipment lifecycle mismatch');
+  for(const r of [item.created,...(item.docked?[item.docked]:[])])if(BigInt(r.height)<BigInt(m.startBlock)||BigInt(r.height)>pin||r.height===v.asOf.height&&!same(r.blockHash,v.asOf.hash))throw Error('Shipment receipt outside observed history');
+ }
+ return v;
 }

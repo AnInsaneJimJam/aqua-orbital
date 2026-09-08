@@ -1,3 +1,6 @@
+import {readShipmentEvents} from '@orbital/db';
+import {aquaEventsAbi} from '@orbital/sdk';
+import type {ShipmentDependencies} from './shipments.js';
 import pg from 'pg';
 import {createPublicClient, encodeEventTopics, http} from 'viem';
 import {swapEventsAbi, paymentsEventsAbi, lifecycleEventsAbi} from '@orbital/sdk';
@@ -125,6 +128,9 @@ export function createReadDependencies(databaseUrl: string) {
     },
     readRpc:(manifest,pin,orderHash)=>readStrategyRpc(manifest,pin,orderHash,{reserve:reserveRpc,shutdownSignal:shutdown.signal}),
   };
+  const shipmentDependencies:ShipmentDependencies={strategies:strategyDependencies,events:(m,pin,maker,limit,after)=>{
+   const scope=readinessDeploymentScope(m);return readShipmentEvents(pool,{...scope,startBlock:BigInt(scope.startBlock)},pin,maker,{shipped:encodeEventTopics({abi:aquaEventsAbi,eventName:'Shipped'})[0]!,docked:encodeEventTopics({abi:aquaEventsAbi,eventName:'Docked'})[0]!},limit,after);
+  }};
   const quoteDependencies:QuoteDependencies={
     readDatabase:(manifest,query)=>strategyDependencies.readDatabase(manifest,query),
     readIdentity:(manifest,pin,signal,timeoutMs)=>readQuoteIdentity(manifest,pin,{reserve:reserveRpc,shutdownSignal:shutdown.signal,signal,timeoutMs}),
@@ -164,5 +170,5 @@ export function createReadDependencies(databaseUrl: string) {
     try{return await observePaymentQuoteService(manifest,request,serviceDependencies,{...options,signal:lease.signal});}
     finally{lease.release();}
   }
-  return {dependencies, metricsDependencies, invoiceDependencies, strategyDependencies, observeQuote, observePaymentQuote, close: () => { shutdown.abort(); quoteCache.clear(); return closing??=pool.end(); }};
+  return {shipmentDependencies,dependencies, metricsDependencies, invoiceDependencies, strategyDependencies, observeQuote, observePaymentQuote, close: () => { shutdown.abort(); quoteCache.clear(); return closing??=pool.end(); }};
 }

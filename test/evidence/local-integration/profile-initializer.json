@@ -1,0 +1,414 @@
+{
+  "scope": "Six local initializer comparisons; not independent math or full-range release verification",
+  "library": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+  "results": [
+    {
+      "allocation": "10",
+      "preset": "Wide",
+      "config": {
+        "schemaVersion": 1,
+        "chainId": "31337",
+        "router": "0x610178da211fef7d417bc0e6fed39f05609ad788",
+        "maker": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+        "makerNonce": "0",
+        "tokens": [
+          "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+          "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+          "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"
+        ],
+        "decimals": [
+          18,
+          6,
+          6
+        ],
+        "tickKeys": [
+          "5445883524",
+          "5454630112",
+          "18446744073709551615"
+        ],
+        "radiiInternal": [
+          "9569343719198102062665597811630742344523",
+          "1415904635303659112317312680782007860189",
+          "218227325477534212627865759944817727178"
+        ],
+        "feePpm": 500,
+        "initialAmountsRaw": [
+          "10000000000000000000",
+          "10000000",
+          "10000000"
+        ]
+      },
+      "ticks": [
+        {
+          "key": "5445883524",
+          "share": 20,
+          "reference": "0.99 reference",
+          "radius": "9569343719198102062665597811630742344523",
+          "threshold": {
+            "lower": "0.989999974",
+            "upper": "0.989999975"
+          }
+        },
+        {
+          "key": "5454630112",
+          "share": 30,
+          "reference": "0.9 reference",
+          "radius": "1415904635303659112317312680782007860189",
+          "threshold": {
+            "lower": "0.899999998",
+            "upper": "0.899999999"
+          }
+        },
+        {
+          "key": "18446744073709551615",
+          "share": 50,
+          "reference": "Full range",
+          "radius": "218227325477534212627865759944817727178",
+          "threshold": null
+        }
+      ],
+      "principalInternal": "184467440737095516159999999999999999993",
+      "slackBoundInternal": "66"
+    },
+    {
+      "allocation": "10",
+      "preset": "Balanced",
+      "config": {
+        "schemaVersion": 1,
+        "chainId": "31337",
+        "router": "0x610178da211fef7d417bc0e6fed39f05609ad788",
+        "maker": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+        "makerNonce": "0",
+        "tokens": [
+          "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+          "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+          "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"
+        ],
+        "decimals": [
+          18,
+          6,
+          6
+        ],
+        "tickKeys": [
+          "5445883524",
+          "5447936453",
+          "18446744073709551615"
+        ],
+        "radiiInternal": [
+          "28708031157594306187996793434892227035646",
+          "2852620109639060303845095579435453482738",
+          "43645465095506842525573151988963545435"
+        ],
+        "feePpm": 500,
+        "initialAmountsRaw": [
+          "10000000000000000000",
+          "10000000",
+          "10000000"
+        ]
+      },
+      "ticks": [
+        {
+          "key": "5445883524",
+          "share": 60,
+          "reference": "0.99 reference",
+          "radius": "28708031157594306187996793434892227035646",
+          "threshold": {
+            "lower": "0.989999974",
+            "upper": "0.989999975"
+          }
+        },
+        {
+          "key": "5447936453",
+          "share": 30,
+          "reference": "0.95 reference",
+          "radius": "2852620109639060303845095579435453482738",
+          "threshold": {
+            "lower": "0.949999997",
+            "upper": "0.949999998"
+          }
+        },
+        {
+          "key": "18446744073709551615",
+          "share": 10,
+          "reference": "Full range",
+          "radius": "43645465095506842525573151988963545435",
+          "threshold": null
+        }
+      ],
+      "principalInternal": "184467440737095516159999999999999999993",
+      "slackBoundInternal": "188"
+    },
+    {
+      "allocation": "10",
+      "preset": "Focused",
+      "config": {
+        "schemaVersion": 1,
+        "chainId": "31337",
+        "router": "0x610178da211fef7d417bc0e6fed39f05609ad788",
+        "maker": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+        "makerNonce": "0",
+        "tokens": [
+          "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+          "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+          "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"
+        ],
+        "decimals": [
+          18,
+          6,
+          6
+        ],
+        "tickKeys": [
+          "5445801142",
+          "5445883524",
+          "18446744073709551615"
+        ],
+        "radiiInternal": [
+          "335345256738478166474062652727539875907082",
+          "9569343719198102062665597811630742344523",
+          "43645465095506842525573151988963545435"
+        ],
+        "feePpm": 500,
+        "initialAmountsRaw": [
+          "10000000000000000000",
+          "10000000",
+          "10000000"
+        ]
+      },
+      "ticks": [
+        {
+          "key": "5445801142",
+          "share": 70,
+          "reference": "0.999 reference",
+          "radius": "335345256738478166474062652727539875907082",
+          "threshold": {
+            "lower": "0.998999757",
+            "upper": "0.998999758"
+          }
+        },
+        {
+          "key": "5445883524",
+          "share": 20,
+          "reference": "0.99 reference",
+          "radius": "9569343719198102062665597811630742344523",
+          "threshold": {
+            "lower": "0.989999974",
+            "upper": "0.989999975"
+          }
+        },
+        {
+          "key": "18446744073709551615",
+          "share": 10,
+          "reference": "Full range",
+          "radius": "43645465095506842525573151988963545435",
+          "threshold": null
+        }
+      ],
+      "principalInternal": "184467440737095516159999999999999999993",
+      "slackBoundInternal": "2030"
+    },
+    {
+      "allocation": "100",
+      "preset": "Wide",
+      "config": {
+        "schemaVersion": 1,
+        "chainId": "31337",
+        "router": "0x610178da211fef7d417bc0e6fed39f05609ad788",
+        "maker": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+        "makerNonce": "0",
+        "tokens": [
+          "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+          "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+          "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"
+        ],
+        "decimals": [
+          18,
+          6,
+          6
+        ],
+        "tickKeys": [
+          "5445883524",
+          "5454630112",
+          "18446744073709551615"
+        ],
+        "radiiInternal": [
+          "95693437191981020626655978116307423454575",
+          "14159046353036591123173126807820078602816",
+          "2182273254775342126278657599448177271788"
+        ],
+        "feePpm": 500,
+        "initialAmountsRaw": [
+          "100000000000000000000",
+          "100000000",
+          "100000000"
+        ]
+      },
+      "ticks": [
+        {
+          "key": "5445883524",
+          "share": 20,
+          "reference": "0.99 reference",
+          "radius": "95693437191981020626655978116307423454575",
+          "threshold": {
+            "lower": "0.989999974",
+            "upper": "0.989999975"
+          }
+        },
+        {
+          "key": "5454630112",
+          "share": 30,
+          "reference": "0.9 reference",
+          "radius": "14159046353036591123173126807820078602816",
+          "threshold": {
+            "lower": "0.899999998",
+            "upper": "0.899999999"
+          }
+        },
+        {
+          "key": "18446744073709551615",
+          "share": 50,
+          "reference": "Full range",
+          "radius": "2182273254775342126278657599448177271788",
+          "threshold": null
+        }
+      ],
+      "principalInternal": "1844674407370955161599999999999999999993",
+      "slackBoundInternal": "660"
+    },
+    {
+      "allocation": "100",
+      "preset": "Balanced",
+      "config": {
+        "schemaVersion": 1,
+        "chainId": "31337",
+        "router": "0x610178da211fef7d417bc0e6fed39f05609ad788",
+        "maker": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+        "makerNonce": "0",
+        "tokens": [
+          "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+          "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+          "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"
+        ],
+        "decimals": [
+          18,
+          6,
+          6
+        ],
+        "tickKeys": [
+          "5445883524",
+          "5447936453",
+          "18446744073709551615"
+        ],
+        "radiiInternal": [
+          "287080311575943061879967934348922270365802",
+          "28526201096390603038450955794354534829239",
+          "436454650955068425255731519889635454357"
+        ],
+        "feePpm": 500,
+        "initialAmountsRaw": [
+          "100000000000000000000",
+          "100000000",
+          "100000000"
+        ]
+      },
+      "ticks": [
+        {
+          "key": "5445883524",
+          "share": 60,
+          "reference": "0.99 reference",
+          "radius": "287080311575943061879967934348922270365802",
+          "threshold": {
+            "lower": "0.989999974",
+            "upper": "0.989999975"
+          }
+        },
+        {
+          "key": "5447936453",
+          "share": 30,
+          "reference": "0.95 reference",
+          "radius": "28526201096390603038450955794354534829239",
+          "threshold": {
+            "lower": "0.949999997",
+            "upper": "0.949999998"
+          }
+        },
+        {
+          "key": "18446744073709551615",
+          "share": 10,
+          "reference": "Full range",
+          "radius": "436454650955068425255731519889635454357",
+          "threshold": null
+        }
+      ],
+      "principalInternal": "1844674407370955161599999999999999999994",
+      "slackBoundInternal": "1860"
+    },
+    {
+      "allocation": "100",
+      "preset": "Focused",
+      "config": {
+        "schemaVersion": 1,
+        "chainId": "31337",
+        "router": "0x610178da211fef7d417bc0e6fed39f05609ad788",
+        "maker": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+        "makerNonce": "0",
+        "tokens": [
+          "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+          "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+          "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"
+        ],
+        "decimals": [
+          18,
+          6,
+          6
+        ],
+        "tickKeys": [
+          "5445801142",
+          "5445883524",
+          "18446744073709551615"
+        ],
+        "radiiInternal": [
+          "3353452567384781664740626527275398759164314",
+          "95693437191981020626655978116307423454575",
+          "436454650955068425255731519889635454357"
+        ],
+        "feePpm": 500,
+        "initialAmountsRaw": [
+          "100000000000000000000",
+          "100000000",
+          "100000000"
+        ]
+      },
+      "ticks": [
+        {
+          "key": "5445801142",
+          "share": 70,
+          "reference": "0.999 reference",
+          "radius": "3353452567384781664740626527275398759164314",
+          "threshold": {
+            "lower": "0.998999757",
+            "upper": "0.998999758"
+          }
+        },
+        {
+          "key": "5445883524",
+          "share": 20,
+          "reference": "0.99 reference",
+          "radius": "95693437191981020626655978116307423454575",
+          "threshold": {
+            "lower": "0.989999974",
+            "upper": "0.989999975"
+          }
+        },
+        {
+          "key": "18446744073709551615",
+          "share": 10,
+          "reference": "Full range",
+          "radius": "436454650955068425255731519889635454357",
+          "threshold": null
+        }
+      ],
+      "principalInternal": "1844674407370955161599999999999999999994",
+      "slackBoundInternal": "20278"
+    }
+  ]
+}

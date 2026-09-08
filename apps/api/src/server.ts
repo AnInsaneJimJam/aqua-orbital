@@ -1,3 +1,4 @@
+import {getShipments} from './shipments.js';
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import rateLimit from '@fastify/rate-limit';
@@ -37,6 +38,10 @@ export async function createServer(options:{manifestPath?:string;proofPath?:stri
   return reply.header('cache-control','no-store').code(result.status==='unavailable'?503:200).send(result);
  });
  for(const prefix of ['', '/api/v1']){
+  app.get<{Params:{address:string};Querystring:Record<string,unknown>}>(`${prefix}/makers/:address/shipments`,async(req,reply)=>{
+   const {httpStatus,...result}=await getShipments(await manifest(),req.params.address,req.query,runtime?.shipmentDependencies);
+   return reply.header('cache-control','no-store').code(httpStatus).send(result);
+  });
   app.get<{Querystring:Record<string,unknown>}>(`${prefix}/strategies`,async(req,reply)=>{
    const {httpStatus,...result}=await getStrategies(await manifest(),{query:req.query},strategyDependencies,options.now?.()??Date.now());
    return reply.header('cache-control','no-store').code(httpStatus).send({...result,...(httpStatus>=400?{requestId:req.id}:{})});

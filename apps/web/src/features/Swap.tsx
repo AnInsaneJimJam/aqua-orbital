@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import {useSwap,type SwapViewState} from './useSwap';
 import {copy} from '../content';
 import {SwapExecution} from './SwapExecution';
@@ -29,6 +30,6 @@ export function SwapView(state:SwapViewState){
  {state.quoteView&&<button className="button full" onClick={state.execution.prepare} disabled={!state.execution.canPrepare||state.pending}>Review swap</button>}
  <button className={`button full ${state.quoteView?'secondary':''}`} onClick={quote} disabled={state.disabled||state.execution.busy}>{state.actionLabel}</button>
  </>}
- <details><summary>How execution works</summary><p className="hint">The maker’s tokens remain in their wallet until settlement. Your wallet approves the Orbital router for the reviewed input. Minimum output and deadline are enforced onchain.</p></details></div></div>;
+ <p className="hint"><Link href="/fund">Get demo tokens</Link></p><details><summary>How execution works</summary><p className="hint">The maker’s tokens remain in their wallet until settlement. Your wallet approves the Orbital router for the reviewed input. Minimum output and deadline are enforced onchain.</p></details></div></div>;
 }
 export default function Swap(){return <SwapView {...useSwap()}/>;}

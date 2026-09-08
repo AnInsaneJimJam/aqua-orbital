@@ -4,6 +4,7 @@ import {keccak256,toHex,type Address} from 'viem';
 import {parseAmount} from '@orbital/sdk';
 import {useWallet} from '../wallet/WalletProvider';
 import {useInvoiceAdmin} from './useInvoiceAdmin';
+import {InvoiceHistory} from './InvoiceHistory';
 import {InvoiceAdminView} from './InvoiceAdmin';
 export default function Payments(){
  const [amount,setAmount]=useState('5'),[expiry,setExpiry]=useState('24'),[reference,setReference]=useState('');
@@ -25,5 +26,5 @@ export default function Payments(){
    <div className="field"><label htmlFor="expiry">Expires in</label><select id="expiry" value={expiry} disabled={locked} onChange={e=>setExpiry(e.target.value)}><option value="1">1 hour</option><option value="24">24 hours</option><option value="168">7 days</option></select></div>
    <div className="field"><label htmlFor="reference">Reference (optional)</label><input id="reference" value={reference} disabled={locked} onChange={e=>setReference(e.target.value)} maxLength={120}/><span className="hint">Only its hash goes onchain. Do not enter private invoice details.</span></div>
    <InvoiceAdminView state={state}/>
-  </div></section>;
+  </div><InvoiceHistory/></section>;
 }

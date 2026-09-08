@@ -5,7 +5,7 @@ import {createPaymentDraft,preparePaymentReview,executePaymentReview,formatAmoun
 import {useWallet} from '../wallet/WalletProvider';
 import {createPaymentPort} from '../wallet/paymentPort';
 import {selectedChain} from '../wallet/config';
-import {request,requestPayload,useDeployment} from './api';
+import {request,requestQuotePayload,useDeployment} from './api';
 import {decodePendingPayment,encodePendingPayment,paymentStorageKey,type PendingPayment} from './paymentStorage';
 
 type Phase='idle'|'preparing'|'review'|'submitting'|'pending'|'confirmed'|'reverted'|'error'|'stale';
@@ -56,7 +56,7 @@ export function usePayment(id:string,eligible:boolean,onReceipt:()=>void):Paymen
    if(!manifest.verified||manifest.chainId!==selectedChain.id)throw Error('Verified deployment unavailable');
    const asset=manifest.tokens.find(t=>t.symbol===token);if(!asset||manifest.tokens.filter(t=>t.symbol===token).length!==1)throw Error('Select a supported input token');
    const intent=paymentQuoteRequestSchema.parse({invoiceId:id,payer:wallet.address,tokenIn:asset.address,maxInputRaw:parseAmount(maximum,asset.decimals).toString(),maxCrossings:16});
-   const response=await requestPayload('/quotes/payment',controller.signal,intent);
+   const response=await requestQuotePayload('/quotes/payment',controller.signal,intent);
    const verify=async()=>{const latest=manifestSchema.parse(await request('/deployment',controller.signal));if(JSON.stringify(latest)!==JSON.stringify(manifest))throw Error('Deployment changed. Review again.');};
    await verify();if(!current())throw Error('Payment review interrupted. Try again.');
    const draft=createPaymentDraft(response.data,response.status,manifest,intent),port=createPaymentPort(wallet,current,verify);

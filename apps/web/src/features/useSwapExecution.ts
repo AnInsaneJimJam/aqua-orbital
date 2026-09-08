@@ -40,6 +40,7 @@ export function useSwapExecution(context:string,enabled:boolean,deadlineSeconds:
   setState({context,phase:'preparing'});
   try{
    const data=await fetchQuote(controller.signal);if(!current())throw Error('Swap review interrupted');
+   if(data.observation.status!=='observed')throw Error('The quote changed while the index caught up. Request a fresh review.');
    const draft=createSwapDraft(data.observation,200,data.manifest,data.requested,{deadlineSeconds});
    const verify=async()=>{const manifest=manifestSchema.parse(await request('/deployment',controller.signal));if(JSON.stringify(manifest)!==JSON.stringify(data.manifest))throw Error('Deployment changed. Review again.');};
    const port=createSwapPort(wallet,current,verify),review=await prepareSwapReview(draft,port);

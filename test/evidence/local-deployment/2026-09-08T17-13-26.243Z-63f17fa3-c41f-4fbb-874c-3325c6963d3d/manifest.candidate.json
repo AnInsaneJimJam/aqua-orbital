@@ -1,0 +1,31 @@
+{
+  "verified": true,
+  "chainId": 31337,
+  "rpcUrl": "http://127.0.0.1:8545",
+  "explorerUrl": "http://127.0.0.1:8545",
+  "aqua": "0x0165878a594ca255338adfa4d48449f69242eb8f",
+  "router": "0x610178da211fef7d417bc0e6fed39f05609ad788",
+  "payments": "0xb7f8bc63bbcad18155201308c8f3540b07f84f5e",
+  "usdc": "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+  "startBlock": "45",
+  "tokens": [
+    {
+      "address": "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6",
+      "decimals": 18,
+      "symbol": "oUSD18",
+      "mock": true
+    },
+    {
+      "address": "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+      "decimals": 6,
+      "symbol": "USDC",
+      "mock": true
+    },
+    {
+      "address": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+      "decimals": 6,
+      "symbol": "oUSD6",
+      "mock": true
+    }
+  ]
+}

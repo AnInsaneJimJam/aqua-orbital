@@ -7,6 +7,8 @@
   "scripts": {
     "dev": "pnpm --parallel --filter @orbital/web --filter @orbital/api dev",
     "dev:indexer": "pnpm --filter @orbital/indexer dev",
+    "local:setup": "node scripts/setup-local.mjs",
+    "dev:local": "node scripts/dev-local.mjs",
     "build": "pnpm -r --if-present build",
     "lint": "node scripts/gate.mjs lint",
     "typecheck": "pnpm -r --if-present typecheck",
@@ -21,10 +23,10 @@
     "test:invariants": "node scripts/gate.mjs test:invariants",
     "test:all": "pnpm test:reference && pnpm test:contracts && pnpm test:shared && pnpm test:sdk && pnpm test:database && pnpm test:indexer && pnpm test:backend && pnpm test:e2e",
     "verify:network": "node scripts/verify-network.mjs",
-    "deploy:local": "node scripts/gate.mjs deploy:local",
+    "deploy:local": "node scripts/local-deployment.mjs persistent",
     "deploy:arc": "node scripts/gate.mjs deploy:arc",
-    "demo:seed": "node scripts/gate.mjs demo:seed",
-    "demo:judge": "node scripts/gate.mjs demo:judge",
+    "demo:seed": "node packages/sdk/node_modules/tsx/dist/cli.mjs packages/sdk/scripts/local-demo.ts",
+    "demo:judge": "node packages/sdk/node_modules/tsx/dist/cli.mjs packages/sdk/scripts/judge-demo.ts",
     "db:migrate": "pnpm --filter @orbital/db migrate",
     "db:replay": "pnpm --filter @orbital/indexer replay",
     "evidence:build": "node scripts/evidence.mjs"

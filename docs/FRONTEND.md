@@ -57,3 +57,12 @@ The [payment workflow evidence](../test/evidence/payment-flow.md) extends the or
 Registered liquidity listing/detail now use `useStrategies.ts`, `useStrategy.ts`, typed `StrategiesView` / `StrategyView`, and the SDK strategy read decoder. Each inventory observation has its own block and freshness label. Principal, received fees and output ceilings remain distinct; invalid refreshes remove prior financial data. Presentation keeps the current template and builds no calldata. [Read workflow scope](../test/evidence/strategy-read.md). Owner instruction now prioritizes integration and lightweight build/type/smoke verification; broader visual/browser/release campaigns are deferred.
 
 Strategy owner actions use `useStrategyAdmin.ts`, typed `StrategyAdminView`, SDK `strategy-admin.ts`, direct hash-pinned `wallet/strategyAdminPort.ts` and public `strategyAdminStorage.ts`. Retirement and docking stay separate reviewed signatures; allowance resets explicitly disclose shared-strategy interruption. Actual local-chain browser execution remains pending. [Implementation checkpoint](../test/evidence/strategy-admin.md).
+
+
+## Connected local workflows (2026-09-08)
+
+The current template is retained. `useStrategyPublication` owns preset preparation, nonce reads and draft persistence; `useStrategyAdmin` owns each approval/ship/activate/retire/dock review. `Liquidity` and `StrategyAdminView` receive display data and callbacks. Tokens remain in the maker wallet throughout publication.
+
+`/fund` provides demo funding through `useDemoFunding`. Invoice history uses `useInvoices`; unactivated Aqua allocations use a separate canonical, paginated shipment read. These views do not construct calldata. Registered strategy details expose current principal, cumulative fees and funding separately. A new configuration uses a new maker nonce; retired orders are terminal.
+
+The local fixture wallet is restricted to a loopback development build on chain 31337. Privy and external-wallet providers use the same transaction ports. A slow wallet initialization exposes a retry after 15 seconds. In-place fee increases are followed only when the replacement matches the original sender, nonce, destination, calldata and value. An unavailable original transaction remains a recovery limitation; it cannot be labeled as the requested action merely from a different hash.

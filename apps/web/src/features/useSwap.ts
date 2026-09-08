@@ -5,7 +5,7 @@ import {createSwapDraft, prepareSwapReview, estimateMaximumSwap, maximumSwapInpu
 import {manifestSchema, quoteRequestSchema} from '@orbital/shared';
 import {useWallet} from '../wallet/WalletProvider';
 import {selectedChain} from '../wallet/config';
-import {apiBase, useDeployment, request, requestPayload} from './api';
+import {apiBase, useDeployment, request, requestQuotePayload} from './api';
 import {copy} from '../content';
 import {useSwapExecution} from './useSwapExecution';
 import {useSwapSettings} from './useSwapSettings';
@@ -47,7 +47,7 @@ export function useSwap() {
         const tokenIn = inputs[0]!, tokenOut = outputs[0]!;
         const requested = quoteRequestSchema.parse({wallet: wallet.address, recipient: wallet.address, tokenIn: tokenIn.address, tokenOut: tokenOut.address,
           amountInRaw: parseAmount(overrideAmount, tokenIn.decimals).toString(), slippageBps: settings.value?.slippageBps, maxCrossings: 16});
-        const response = await requestPayload('/quotes/swap', controller.signal, requested);
+        const response = await requestQuotePayload('/quotes/swap', controller.signal, requested);
         const finalManifest = manifestSchema.parse(await request<unknown>('/deployment', controller.signal));
         if (JSON.stringify(finalManifest) !== JSON.stringify(manifest)) throw Error('Deployment changed during quote');
         if (controller.signal.aborted) throw Error('Quote cancelled');

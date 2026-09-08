@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "claim_id": "LOCAL-PRESET-SIX-CONFIGURATIONS",
+  "repository": {
+    "commit": "2899139aba98e446ae25e945ac70dd6ea18a1392",
+    "dirty": true
+  },
+  "command": [
+    "node packages/sdk/node_modules/tsx/dist/cli.mjs packages/sdk/scripts/profile-smoke.ts",
+    "copy .cache/profile-smoke.json test/evidence/local-integration/profile-initializer.json",
+    "python packages/reference/profile_smoke.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "Node",
+        "version": "22.18.0"
+      },
+      {
+        "name": "Python",
+        "version": "3.12.10"
+      },
+      {
+        "name": "Solidity",
+        "version": "0.8.30"
+      },
+      {
+        "name": "Anvil",
+        "version": "1.5.1"
+      }
+    ],
+    "hardware": "Windows host; local Docker Anvil"
+  },
+  "mathematics": {
+    "assertion_tested": "Six SDK preset configurations match deployed initializer X/P/V; independent cap/support calculations, depeg key ceilings, threshold brackets and raw principal ceilings agree at 110/160 digits.",
+    "coefficient_domain": "Exact integers/Q128 and independent Decimal real approximation",
+    "conventions": "Three sorted token addresses, decimals 6/6/18, GRID=2^32, internal unit=2^64, radii floor, raw amount ceiling.",
+    "inputs": [
+      {
+        "path": "packages/sdk/src/strategy-profile.ts",
+        "sha256": "dbead8feebf43b716fc2110f6b5b1f0ab14b7573044d972826c5cd3076a22be1"
+      },
+      {
+        "path": "packages/sdk/scripts/profile-smoke.ts",
+        "sha256": "c6b46119f05a78f203109432b5b6cce3b0d70e826b664f75aa34fba6183d1673"
+      },
+      {
+        "path": "packages/reference/profile_smoke.py",
+        "sha256": "d39a80404f7b8d646070cf0bdb363922092648137952565ff0928225f849e468"
+      },
+      {
+        "path": "packages/contracts/src/libraries/StrategyInitializer.sol",
+        "sha256": "8c6d4566ce4c7c1bcea85714afa1c33997fd72adc3a099a376bed2db266ed8b0"
+      },
+      {
+        "path": "packages/contracts/src/libraries/TickGeometry.sol",
+        "sha256": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b"
+      }
+    ],
+    "bounds": {
+      "allocationsPerToken": [
+        "10",
+        "100"
+      ],
+      "presets": [
+        "Wide",
+        "Balanced",
+        "Focused"
+      ],
+      "tokens": 3,
+      "ticks": 3,
+      "decimalPrecisions": [
+        110,
+        160
+      ],
+      "cases": 6
+    },
+    "non_claims": [
+      "Universal proof",
+      "Full onchain supported range",
+      "Complete solver liveness",
+      "Economic or release acceptance"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "none",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-08 (UTC); exact start not retained",
+    "runtime_seconds": 0.006609201431274414,
+    "exit_status": 0,
+    "timing_scope": "Independent Decimal pass only; initializer command wall time not retained"
+  },
+  "outputs": [
+    {
+      "path": "test/evidence/local-integration/profile-initializer.json",
+      "sha256": "45add5aa0ced570d06934817183e21b6ae2438d987091ec64fcb867b3980062c"
+    },
+    {
+      "path": "test/evidence/local-integration/profile-independent.json",
+      "sha256": "7a790b0a9b81aba35625e2ddf59f38641b48441f4c1f531085590197a75e1306"
+    }
+  ],
+  "checks": [
+    "Exact initialized X/P/V for each configuration",
+    "Independent cap minimum against budget/principal",
+    "Independent single-depeg branch inversion and key ceiling",
+    "110/160-digit identical bounded decisions"
+  ],
+  "result": "passed for the stated six configurations",
+  "residual_risks": [
+    "No full range campaign",
+    "No new general proof audit",
+    "Earlier initializer harness selector/enum decoding failures were repaired; retained scope does not count them as protocol failures"
+  ]
+}

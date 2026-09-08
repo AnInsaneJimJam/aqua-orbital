@@ -1,0 +1,50 @@
+
+> orbital@0.1.0 demo:judge C:\Users\gujja\aqua-orbital
+> node packages/sdk/node_modules/tsx/dist/cli.mjs packages/sdk/scripts/judge-demo.ts
+
+{
+  "status": "local-data-connected",
+  "app": "http://127.0.0.1:3000",
+  "strategies": [
+    {
+      "hash": "0x7f079f82ced8a56d7b9e269a12215abb946bdb7e169e0ba5812b3adb9a83dca5",
+      "href": "http://127.0.0.1:3000/liquidity/0x7f079f82ced8a56d7b9e269a12215abb946bdb7e169e0ba5812b3adb9a83dca5",
+      "lifecycle": "active",
+      "version": "3"
+    },
+    {
+      "hash": "0x0c6a935155ffcdd1df804bc133b3e6adae6032794270327950a7001c0e96b257",
+      "href": "http://127.0.0.1:3000/liquidity/0x0c6a935155ffcdd1df804bc133b3e6adae6032794270327950a7001c0e96b257",
+      "lifecycle": "active",
+      "version": "1"
+    }
+  ],
+  "invoice": {
+    "href": "http://127.0.0.1:3000/pay/0x9f550baa7ab8af112507bf24f304564795231f6dd7022f07053dbe87b13895c1",
+    "status": "paid",
+    "amountDueRaw": "5000000",
+    "payment": {
+      "payer": "0x90f79bf6eb2c4f870365e785982e1f101e93b906",
+      "tokenIn": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+      "inputToken": {
+        "address": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+        "symbol": "oUSD6",
+        "decimals": 6,
+        "mock": true
+      },
+      "inputRaw": "5019531",
+      "receivedRaw": "5015490",
+      "refundRaw": "15490",
+      "routeHash": "0x7f079f82ced8a56d7b9e269a12215abb946bdb7e169e0ba5812b3adb9a83dca5",
+      "kind": "swap"
+    },
+    "receipt": {
+      "blockNumber": "1235",
+      "blockHash": "0x98f3223989feaa8e015311de9df69889e766e4b2890a7d0f7fee008d405f8bd0",
+      "txHash": "0xd1154948adadfc69e975b354c935bb8d8b21db69ab64626cc0fa474b58382d26",
+      "logIndex": 14,
+      "event": "InvoicePaid"
+    }
+  },
+  "guide": ".cache/local-demo/judge.json"
+}

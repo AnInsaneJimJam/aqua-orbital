@@ -25,3 +25,5 @@ export async function atomicBlock(pool:pg.Pool,chainId:number,block:{number:bigi
   await client.query('COMMIT');
  }catch(error){await client.query('ROLLBACK');throw error;}finally{client.release();}
 }
+
+export * from './shipment-reads.js';

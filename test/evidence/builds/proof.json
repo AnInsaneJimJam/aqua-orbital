@@ -1,6 +1,12 @@
 {
-  "generatedAt": "2026-09-08T16:03:13.103Z",
+  "generatedAt": "2026-09-08T18:41:41.658Z",
   "items": [
+    {
+      "id": "local-integration",
+      "label": "Connected local application",
+      "status": "verified",
+      "detail": "Local Anvil contracts, API, indexer and browser flows connected. Fourteen retained browser transaction receipts were checked after an atomic-snapshot restart: swap, swap-funded invoice, funding, publication recovery, retire/dock and invoice creation/cancellation. This is a dated local checkpoint; live Privy/Arc and broad regressions remain unverified."
+    },
     {
       "id": "reference",
       "label": "Independent reference fixtures",
@@ -17,13 +23,13 @@
       "id": "sdk",
       "label": "SDK transaction plans and recovery",
       "status": "verified",
-      "detail": "123 recorded fixture tests for local calldata construction, review validation and wallet execution recovery. No live wallet transaction is claimed."
+      "detail": "129 recorded fixture tests for local calldata construction, review validation and wallet execution recovery. No live wallet transaction is claimed."
     },
     {
       "id": "indexer",
       "label": "Canonical ingestion and projections",
       "status": "verified",
-      "detail": "37 recorded PostgreSQL/worker tests. Bounded replay, lifecycle/invoice and canonical swap-receipt projections with separate backfill coverage are implemented. Full rebuild campaigns and incomplete shipment coverage remain outstanding."
+      "detail": "37 recorded PostgreSQL/worker tests. Bounded replay, lifecycle/invoice and canonical swap-receipt projections with separate backfill coverage are implemented. Full rebuild campaigns and broader shipment coverage checks remain outstanding."
     },
     {
       "id": "api",
@@ -35,7 +41,7 @@
       "id": "engine",
       "label": "Complete engine release acceptance",
       "status": "not-run",
-      "detail": "Certified interior and mixed paths execute locally through both custom instructions with one final payout and shared crossing/refinement budgets. Equality/discovery liveness, broad differential/economic campaigns and worst-range transaction gas remain open. A verified application deployment and live Privy/Arc demonstration remain outstanding."
+      "detail": "Certified interior and mixed paths execute locally through both custom instructions with one final payout and shared crossing/refinement budgets. Equality/discovery liveness, broad differential/economic campaigns and worst-range transaction gas remain open. The local application is connected; live Privy/Arc demonstration remains outstanding."
     },
     {
       "id": "browser",

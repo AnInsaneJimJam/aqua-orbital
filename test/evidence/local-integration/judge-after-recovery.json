@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-08T18:24:03.476Z",
+  "scope": "persistent-local-integration",
+  "app": "http://127.0.0.1:3000",
+  "strategies": [
+    {
+      "hash": "0x7f079f82ced8a56d7b9e269a12215abb946bdb7e169e0ba5812b3adb9a83dca5",
+      "href": "http://127.0.0.1:3000/liquidity/0x7f079f82ced8a56d7b9e269a12215abb946bdb7e169e0ba5812b3adb9a83dca5",
+      "lifecycle": "active",
+      "version": "3"
+    },
+    {
+      "hash": "0x0c6a935155ffcdd1df804bc133b3e6adae6032794270327950a7001c0e96b257",
+      "href": "http://127.0.0.1:3000/liquidity/0x0c6a935155ffcdd1df804bc133b3e6adae6032794270327950a7001c0e96b257",
+      "lifecycle": "active",
+      "version": "1"
+    }
+  ],
+  "invoice": {
+    "href": "http://127.0.0.1:3000/pay/0x9f550baa7ab8af112507bf24f304564795231f6dd7022f07053dbe87b13895c1",
+    "status": "paid",
+    "amountDueRaw": "5000000",
+    "payment": {
+      "payer": "0x90f79bf6eb2c4f870365e785982e1f101e93b906",
+      "tokenIn": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+      "inputToken": {
+        "address": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+        "symbol": "oUSD6",
+        "decimals": 6,
+        "mock": true
+      },
+      "inputRaw": "5019531",
+      "receivedRaw": "5015490",
+      "refundRaw": "15490",
+      "routeHash": "0x7f079f82ced8a56d7b9e269a12215abb946bdb7e169e0ba5812b3adb9a83dca5",
+      "kind": "swap"
+    },
+    "receipt": {
+      "blockNumber": "1235",
+      "blockHash": "0x98f3223989feaa8e015311de9df69889e766e4b2890a7d0f7fee008d405f8bd0",
+      "txHash": "0xd1154948adadfc69e975b354c935bb8d8b21db69ab64626cc0fa474b58382d26",
+      "logIndex": 14,
+      "event": "InvoicePaid"
+    }
+  },
+  "metrics": {
+    "status": 200,
+    "data": {
+      "schemaVersion": 1,
+      "status": "available",
+      "code": "METRICS_AVAILABLE",
+      "financialExecutionEnabled": false,
+      "chainId": 31337,
+      "deploymentId": "0xf960d9dee5c5fb62ce63745cf3c446859cf1535c599b9561bb6ce4d1946791b1",
+      "cursor": {
+        "height": "1824",
+        "hash": "0x041cd0c49a789ca97f5f2096cf8667f01d4ad7cbcc1f3c6e3e75c665005ebfac"
+      },
+      "coverage": {
+        "fromBlock": "45",
+        "toBlock": "1824",
+        "expectedBlocks": "1780",
+        "canonicalBlocks": "1780",
+        "coveredBlocks": "1780",
+        "complete": true
+      },
+      "freshness": {
+        "indexedAt": "2026-09-08T18:24:00.356Z",
+        "ageMs": 3213,
+        "head": "1826",
+        "stale": false
+      },
+      "totals": {
+        "basis": "canonical-OrbitalSwapExecuted",
+        "swapCount": "2",
+        "activeStrategyCount": "3",
+        "activeStrategyCountBasis": "lifecycle-active",
+        "fundabilityVerified": false,
+        "inputTokens": [
+          {
+            "token": {
+              "address": "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+              "symbol": "USDC",
+              "decimals": 6,
+              "kind": "demo-token",
+              "nativeUsdc": false
+            },
+            "grossInputRaw": "1000000",
+            "netInputRaw": "999500",
+            "feeRaw": "500"
+          },
+          {
+            "token": {
+              "address": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+              "symbol": "oUSD6",
+              "decimals": 6,
+              "kind": "demo-token",
+              "nativeUsdc": false
+            },
+            "grossInputRaw": "5019531",
+            "netInputRaw": "5017021",
+            "feeRaw": "2510"
+          }
+        ],
+        "pairs": [
+          {
+            "tokenIn": "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+            "tokenOut": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+            "inputDecimals": 6,
+            "outputDecimals": 6,
+            "swapCount": "1",
+            "grossInputRaw": "1000000",
+            "netInputRaw": "999500",
+            "feeRaw": "500",
+            "amountOutRaw": "999399",
+            "inputToken": {
+              "address": "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+              "symbol": "USDC",
+              "decimals": 6,
+              "kind": "demo-token",
+              "nativeUsdc": false
+            },
+            "outputToken": {
+              "address": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+              "symbol": "oUSD6",
+              "decimals": 6,
+              "kind": "demo-token",
+              "nativeUsdc": false
+            }
+          },
+          {
+            "tokenIn": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+            "tokenOut": "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+            "inputDecimals": 6,
+            "outputDecimals": 6,
+            "swapCount": "1",
+            "grossInputRaw": "5019531",
+            "netInputRaw": "5017021",
+            "feeRaw": "2510",
+            "amountOutRaw": "5015490",
+            "inputToken": {
+              "address": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+              "symbol": "oUSD6",
+              "decimals": 6,
+              "kind": "demo-token",
+              "nativeUsdc": false
+            },
+            "outputToken": {
+              "address": "0x8a791620dd6260079bf849dc5567adc3f2fdc318",
+              "symbol": "USDC",
+              "decimals": 6,
+              "kind": "demo-token",
+              "nativeUsdc": false
+            }
+          }
+        ],
+        "observedDates": {
+          "first": {
+            "height": "1172",
+            "hash": "0xd33669f1f95a55e9e70229c770824becfed2b98f927e2c05ab89ed5db1a37efe",
+            "timestampSeconds": "1788889721",
+            "iso": "2026-09-08T17:48:41.000Z"
+          },
+          "last": {
+            "height": "1235",
+            "hash": "0x98f3223989feaa8e015311de9df69889e766e4b2890a7d0f7fee008d405f8bd0",
+            "timestampSeconds": "1788889850",
+            "iso": "2026-09-08T17:50:50.000Z"
+          }
+        }
+      }
+    }
+  },
+  "steps": [
+    "Connect the local wallet (funded taker by default).",
+    "Swap 1 USDC to oUSD6, reviewing exact approval and swap separately.",
+    "Use the wallet control to select the merchant and create a fresh 5 USDC invoice.",
+    "Switch to the taker and pay that invoice with oUSD6, reviewing adapter approval and payment separately.",
+    "Publish liquidity, reload after shipping, then activate; manage it through retire and dock reviews."
+  ],
+  "qualifications": {
+    "privy": "unverified",
+    "arc": "unverified",
+    "release": "deferred"
+  },
+  "source": ".cache/local-demo/seed.json"
+}

@@ -1,0 +1,105 @@
+{
+  "scope": "Six preset allocations, independent Decimal cap/support calculation at 110 and 160 digits; not a universal initialization or solver proof",
+  "status": "passed",
+  "cases": [
+    {
+      "allocation": "10",
+      "preset": "Wide",
+      "keys": [
+        "5445883524",
+        "5454630112",
+        "18446744073709551615"
+      ],
+      "raw": [
+        "10000000000000000000",
+        "10000000",
+        "10000000"
+      ],
+      "principalUpper": true,
+      "thresholdBracket": true
+    },
+    {
+      "allocation": "10",
+      "preset": "Balanced",
+      "keys": [
+        "5445883524",
+        "5447936453",
+        "18446744073709551615"
+      ],
+      "raw": [
+        "10000000000000000000",
+        "10000000",
+        "10000000"
+      ],
+      "principalUpper": true,
+      "thresholdBracket": true
+    },
+    {
+      "allocation": "10",
+      "preset": "Focused",
+      "keys": [
+        "5445801142",
+        "5445883524",
+        "18446744073709551615"
+      ],
+      "raw": [
+        "10000000000000000000",
+        "10000000",
+        "10000000"
+      ],
+      "principalUpper": true,
+      "thresholdBracket": true
+    },
+    {
+      "allocation": "100",
+      "preset": "Wide",
+      "keys": [
+        "5445883524",
+        "5454630112",
+        "18446744073709551615"
+      ],
+      "raw": [
+        "100000000000000000000",
+        "100000000",
+        "100000000"
+      ],
+      "principalUpper": true,
+      "thresholdBracket": true
+    },
+    {
+      "allocation": "100",
+      "preset": "Balanced",
+      "keys": [
+        "5445883524",
+        "5447936453",
+        "18446744073709551615"
+      ],
+      "raw": [
+        "100000000000000000000",
+        "100000000",
+        "100000000"
+      ],
+      "principalUpper": true,
+      "thresholdBracket": true
+    },
+    {
+      "allocation": "100",
+      "preset": "Focused",
+      "keys": [
+        "5445801142",
+        "5445883524",
+        "18446744073709551615"
+      ],
+      "raw": [
+        "100000000000000000000",
+        "100000000",
+        "100000000"
+      ],
+      "principalUpper": true,
+      "thresholdBracket": true
+    }
+  ],
+  "precisionStable": true,
+  "inputSha256": "45add5aa0ced570d06934817183e21b6ae2438d987091ec64fcb867b3980062c",
+  "runtimeSeconds": 0.006609201431274414
+}

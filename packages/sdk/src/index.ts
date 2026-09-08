@@ -12,5 +12,7 @@ export * from './swap-controls';
 export * from './invoice-admin';
 export * from './strategy-read';
 export * from './strategy-admin';
+export * from './strategy-profile';
 export {aquaEventsAbi} from './generated/abi';
 export {lifecycleEventsAbi,paymentsEventsAbi,swapEventsAbi,paymentsReadAbi} from './generated/abi';
+export * from './funding';

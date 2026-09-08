@@ -161,3 +161,14 @@ resolves the named initialized reverse-trade deferral without claiming general
 event equality or seed discovery. The current full contract and reference
 checkpoints, deployment observations and release blockers remain separately
 listed in [the evidence index](../test/evidence/INDEX.md).
+
+
+## Publication preset preparation
+
+`packages/sdk/src/strategy-profile.ts` implements the existing three-token preset construction, with integer square roots and directed Q128 coefficients. The public parameter choices remain in `strategyPresets`; presentation receives actual keys/radii and raw allocations from the controller.
+
+For a single-coin reference price, the tick key is the ceiling of `GRID*b_depeg(p)` from the existing [math specification](MATH.md). The implementation selects the root in the documented depeg interval `[0,1]` when displaying a realized threshold bracket. This is a scenario reference, not a universal price floor.
+
+For each tick, the radius is floored against its share budget using the upper principal coefficient. Each of the two capped ticks reserves four internal units. The sum of the two virtual-reserve floor errors and the equal-coordinate ceiling error is less than three internal units, so that reserve covers the aggregate upward reconstruction before raw ceiling. The full-range anchor is handled separately and checked against the one-whole-token requirements after rounding. These are repository-derived implementation choices, not new paper statements.
+
+Six configurations (10 and 100 units per asset, each of Wide/Balanced/Focused) were accepted by the deployed initializer with identical X, P and V. The separate `packages/reference/profile_smoke.py` computes the cap minima and threshold inversion with Decimal at 110/160 digits, checks the raw ceilings and budget inequalities, and retains identical decisions. See [local integration evidence](../test/evidence/local-integration.md). The tested range is six configurations; this does not close general solver liveness, supporting-price proofs or wider release campaigns.

@@ -1,23 +1,24 @@
 import {encodeAbiParameters,encodeEventTopics,decodeEventLog,erc20Abi,type Address,type Hex} from 'viem';
 import {hashSchema} from '@orbital/shared';
 import {hashOrder,hashConfig,encodeOrder,buildOrder,type Config,type TransactionPlan} from './codec';
-import {buildRetireTx,buildDockTx,buildMakerApprovalTx,validateTransactionPlan,type StrategyInput,type PlanContext,type PlanIntent} from './plans';
+import {buildRetireTx,buildDockTx,buildMakerApprovalTx,buildShipTx,buildActivateTx,validateTransactionPlan,type StrategyInput,type PlanContext,type PlanIntent} from './plans';
 import {lifecycleEventsAbi,aquaEventsAbi} from './generated/abi';
 import {executeReviewed,type ExecutionPort,type TransactionEstimate,type TransactionReceipt,type PendingTransaction} from './execution';
 import {freeze,same,funded,withinBudget} from './review-core';
 import type {PaymentBlock} from './payment-review';
 
-export type StrategyAdminIntent={kind:'deactivate'}|{kind:'approve';token:Address};
+export type StrategyAdminIntent={kind:'deactivate'}|{kind:'publish'}|{kind:'approve';token:Address};
 export type StrategyAdminDraft={context:PlanContext;input:StrategyInput;intent:StrategyAdminIntent};
-export type StrategyAdminLive={chainId:number;block:PaymentBlock;config:Config;maker:Address;configHash:Hex;status:1|2;version:bigint;
- availability:{token:Address;liveTokenCount:number;allocation:bigint;allowance:bigint}[]};
+export type StrategyAdminLive={chainId:number;block:PaymentBlock;config:Config;maker:Address;configHash:Hex;status:0|1|2;version:bigint;nextNonce?:bigint;
+ availability:{token:Address;liveTokenCount:number;allocation:bigint;allowance:bigint;walletBalance?:bigint}[]};
 export type StrategyAdminPort=ExecutionPort&{observe:(draft:StrategyAdminDraft)=>Promise<StrategyAdminLive>;canonical:(block:Pick<PaymentBlock,'number'|'hash'>)=>Promise<void>};
-export type StrategyAdminReceiptIntent={kind:'retire'|'dock'|'approval';context:PlanContext;input:StrategyInput;token?:Address;reset?:boolean;plan:TransactionPlan};
+export type StrategyAdminReceiptIntent={kind:'retire'|'dock'|'approval'|'ship'|'activate';context:PlanContext;input:StrategyInput;token?:Address;reset?:boolean;plan:TransactionPlan};
 export type StrategyAdminReview=StrategyAdminReceiptIntent&{draft:StrategyAdminDraft;estimate:TransactionEstimate;block:PaymentBlock;version:bigint;expiresAtMs:number};
 const drafts=new WeakSet<object>(),reviews=new WeakSet<object>();
 export function createStrategyAdminDraft(context:PlanContext,input:StrategyInput,intent:StrategyAdminIntent):StrategyAdminDraft{
  buildRetireTx(context,input);
  if(intent.kind==='approve')buildMakerApprovalTx(context,{...input,token:intent.token,reset:false});
+ else if(intent.kind==='publish'){buildShipTx(context,input);buildActivateTx(context,input);}
  else if(intent.kind!=='deactivate')throw Error('Unknown strategy administration action');
  const draft=freeze(structuredClone({context,input,intent}));drafts.add(draft);return draft;
 }
@@ -31,7 +32,7 @@ async function liveState(draft:StrategyAdminDraft,port:StrategyAdminPort,now:()=
  if(identity.chainId!==c.chainId||!identity.account||!same(identity.account,c.account))throw Error('Wallet or network changed. Review again.');
  const live=await port.observe(draft);freshBlock(live.block,now);
  if(live.chainId!==c.chainId||!same(live.maker,c.account)||!same(live.configHash,hashConfig(input.config))
-  ||!same(encodeOrder(buildOrder(live.config)),encodeOrder(input.order))||![1,2].includes(live.status)||typeof live.version!=='bigint'||live.version<1n||live.version>=(1n<<64n))throw Error('Strategy identity changed');
+  ||!same(encodeOrder(buildOrder(live.config)),encodeOrder(input.order))||!(draft.intent.kind==='publish'?[0,1,2]:[1,2]).includes(live.status)||typeof live.version!=='bigint'||live.version<(live.status===0?0n:1n)||live.version>=(1n<<64n))throw Error('Strategy identity changed');
  if(live.availability.length!==input.config.tokens.length||live.availability.some((a,i)=>!same(a.token,input.config.tokens[i]!)
   ||!Number.isInteger(a.liveTokenCount)||a.liveTokenCount<0||a.liveTokenCount>255||typeof a.allocation!=='bigint'||a.allocation<0n||a.allocation>=(1n<<248n)
   ||typeof a.allowance!=='bigint'||a.allowance<0n||a.allowance>=(1n<<256n)||(a.liveTokenCount===255&&a.allocation!==0n)))throw Error('Strategy allocation unavailable');
@@ -40,6 +41,17 @@ async function liveState(draft:StrategyAdminDraft,port:StrategyAdminPort,now:()=
 function nextPlan(draft:StrategyAdminDraft,live:StrategyAdminLive):StrategyAdminReceiptIntent{
  const context={...draft.context,now:live.block.timestamp},input=draft.input,base={context,input};
  const docked=live.availability.every(a=>a.liveTokenCount===255),allLive=live.availability.every(a=>a.liveTokenCount===input.config.tokens.length);
+ if(draft.intent.kind==='publish'){
+  if(live.status===1)throw Error('This strategy is already active. Open its detail page.');
+  if(live.status===2||docked)throw Error('This order was retired or docked. Create a replacement configuration.');
+  if(live.nextNonce!==input.config.makerNonce||live.version!==0n)throw Error('Maker nonce changed. Refresh the configuration.');
+  const empty=live.availability.every(a=>a.liveTokenCount===0&&a.allocation===0n);
+  if(!empty&&(!allLive||live.availability.some((a,i)=>a.allocation!==input.config.initialAmountsRaw[i])))throw Error('Aqua allocation differs from this publication.');
+  if(live.availability.some((a,i)=>typeof a.walletBalance!=='bigint'||a.walletBalance<input.config.initialAmountsRaw[i]!))throw Error('Fund every strategy asset before publication.');
+  const i=live.availability.findIndex((a,i)=>a.allowance<input.config.initialAmountsRaw[i]!*4n);
+  if(i>=0){const token=input.config.tokens[i]!,reset=live.availability[i]!.allowance>0n;return {...base,kind:'approval',token,reset,plan:buildMakerApprovalTx(context,{...input,token,reset})};}
+  return empty?{...base,kind:'ship',plan:buildShipTx(context,input)}:{...base,kind:'activate',plan:buildActivateTx(context,input)};
+ }
  if(draft.intent.kind==='deactivate'){
   if(live.status===1)return {...base,kind:'retire',plan:buildRetireTx(context,input)};
   if(docked)throw Error('This strategy is already retired and docked.');
@@ -71,7 +83,7 @@ export async function executeStrategyAdminReview(review:StrategyAdminReview,port
 }
 export function validateStrategyAdminReceiptIntent(i:StrategyAdminReceiptIntent){
  let intent:PlanIntent;
- if(i.kind==='retire'||i.kind==='dock')intent={kind:i.kind,input:i.input};
+ if(i.kind==='retire'||i.kind==='dock'||i.kind==='ship'||i.kind==='activate')intent={kind:i.kind,input:i.input};
  else if(i.kind==='approval'&&i.token&&typeof i.reset==='boolean')intent={kind:'makerApproval',input:{...i.input,token:i.token,reset:i.reset}};
  else throw Error('Invalid saved strategy action');
  validateTransactionPlan(i.plan,i.context,intent);return i;
@@ -80,11 +92,16 @@ export function decodeStrategyAdminReceipt(receipt:TransactionReceipt,input:Stra
  const i=validateStrategyAdminReceiptIntent(input),orderHash=hashOrder(i.input.order),bad=():never=>{throw Error('Receipt does not establish the reviewed strategy action');};
  if(receipt.status!=='success'||!hashSchema.safeParse(receipt.hash).success||!hashSchema.safeParse(receipt.blockHash).success||typeof receipt.blockNumber!=='bigint'||receipt.blockNumber<0n||!Array.isArray(receipt.logs)
   ||typeof receipt.gasUsed!=='bigint'||receipt.gasUsed<=0n||typeof receipt.effectiveGasPrice!=='bigint'||receipt.effectiveGasPrice<0n)return bad();
- const signature=i.kind==='retire'?encodeEventTopics({abi:lifecycleEventsAbi,eventName:'StrategyRetired'})[0]!:i.kind==='dock'?encodeEventTopics({abi:aquaEventsAbi,eventName:'Docked'})[0]!:encodeEventTopics({abi:erc20Abi,eventName:'Approval'})[0]!;
+ const signature=i.kind==='ship'?encodeEventTopics({abi:aquaEventsAbi,eventName:'Shipped'})[0]!:i.kind==='activate'?encodeEventTopics({abi:lifecycleEventsAbi,eventName:'StrategyActivated'})[0]!:i.kind==='retire'?encodeEventTopics({abi:lifecycleEventsAbi,eventName:'StrategyRetired'})[0]!:i.kind==='dock'?encodeEventTopics({abi:aquaEventsAbi,eventName:'Docked'})[0]!:encodeEventTopics({abi:erc20Abi,eventName:'Approval'})[0]!;
  const logs=receipt.logs.filter(l=>same(l.address,i.plan.to)&&l.topics[0]&&same(l.topics[0],signature));if(logs.length!==1)return bad();const log=logs[0]!;
  if(log.removed!==false||log.blockNumber!==receipt.blockNumber||!same(log.blockHash,receipt.blockHash!)||!same(log.transactionHash,receipt.hash)||!Number.isSafeInteger(log.logIndex)||log.logIndex<0)return bad();
  let topics:readonly (Hex|Hex[]|null)[],data:Hex;
- if(i.kind==='retire'){
+ if(i.kind==='ship'){
+  topics=encodeEventTopics({abi:aquaEventsAbi,eventName:'Shipped'});
+  data=encodeAbiParameters([{type:'address'},{type:'address'},{type:'bytes32'},{type:'bytes'}],[i.plan.account,i.context.manifest.router as Address,orderHash,encodeOrder(i.input.order)]);
+ }else if(i.kind==='activate'){
+  topics=encodeEventTopics({abi:lifecycleEventsAbi,eventName:'StrategyActivated',args:{maker:i.plan.account,orderHash,configHash:hashConfig(i.input.config)}});data='0x';
+ }else if(i.kind==='retire'){
   const decoded=decodeEventLog({abi:lifecycleEventsAbi,data:log.data,topics:log.topics as [Hex,...Hex[]],strict:true});
   if(decoded.eventName!=='StrategyRetired'||decoded.args.version<2n)return bad();
   topics=encodeEventTopics({abi:lifecycleEventsAbi,eventName:'StrategyRetired',args:{maker:i.plan.account,orderHash}});

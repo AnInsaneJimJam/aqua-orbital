@@ -39,6 +39,7 @@
     "viaIR": true,
     "methodIdentifiers": {
       "dock(address,bytes32,address[])": "28defc17",
+      "rawBalances(address,address,bytes32,address)": "6d58b4cc",
       "ship(address,bytes,address[],uint256[])": "f50b870f"
     }
   },

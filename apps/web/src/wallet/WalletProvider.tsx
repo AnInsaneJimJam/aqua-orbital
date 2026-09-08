@@ -11,9 +11,10 @@ import {selectedChain} from './config';
 const PublicContent=createContext<ReactNode>(null);
 function LoadingWallet(){return <>{useContext(PublicContent)}</>;}
 const PrivyWallet=dynamic(()=>import('./PrivyWallet'),{ssr:false,loading:LoadingWallet});
+const LocalDemoWallet=dynamic(()=>import('./LocalDemoWallet'),{ssr:false,loading:LoadingWallet});
 const wagmiConfig=createConfig({chains:[selectedChain],transports:{[selectedChain.id]:http()},connectors:[injected()],ssr:true});
-export type WalletOption={address:Address;kind:'external'|'privy'};
-export type Session={ready:boolean;address?:Address;chainId?:number;connected:boolean;kind:'external'|'privy'|'none';wallets:WalletOption[];select?:(address:Address)=>Promise<void>;connect:()=>void;disconnect:()=>void;switchNetwork?:()=>Promise<void>;identity:()=>Promise<{account?:Address;chainId:number}>;send:(plan:TransactionPlan,fees?:TransactionFees)=>Promise<Hex>;error?:string};
+export type WalletOption={address:Address;kind:'external'|'privy'|'local'};
+export type Session={ready:boolean;address?:Address;chainId?:number;connected:boolean;kind:'external'|'privy'|'local'|'none';wallets:WalletOption[];select?:(address:Address)=>Promise<void>;connect:()=>void;disconnect:()=>void;switchNetwork?:()=>Promise<void>;identity:()=>Promise<{account?:Address;chainId:number}>;send:(plan:TransactionPlan,fees?:TransactionFees)=>Promise<Hex>;error?:string};
 const Context=createContext<Session>({ready:false,connected:false,kind:'none',wallets:[],connect:()=>{},disconnect:()=>{},identity:async()=>({chainId:selectedChain.id}),send:async()=>{throw Error('Connect a wallet first');}});
 export const useWallet=()=>useContext(Context);
 export function SessionProvider({value,children}:{value:Session;children:ReactNode}){return <Context.Provider value={value}>{children}</Context.Provider>;}
@@ -48,6 +49,7 @@ function External({children}:{children:ReactNode}){
 export default function WalletProvider({children}:{children:ReactNode}){
  const [query]=useState(()=>new QueryClient({defaultOptions:{queries:{retry:1,refetchOnWindowFocus:false}}}));
  const appId=process.env.NEXT_PUBLIC_PRIVY_APP_ID;
+ if(process.env.NODE_ENV==='development'&&selectedChain.id===31337&&process.env.NEXT_PUBLIC_LOCAL_DEMO_WALLET==='true')return <QueryClientProvider client={query}><PublicContent.Provider value={children}><LocalDemoWallet>{children}</LocalDemoWallet></PublicContent.Provider></QueryClientProvider>;
  if(appId)return <QueryClientProvider client={query}><PublicContent.Provider value={children}><PrivyWallet appId={appId}>{children}</PrivyWallet></PublicContent.Provider></QueryClientProvider>;
  return <QueryClientProvider client={query}><WagmiProvider config={wagmiConfig}><External>{children}</External></WagmiProvider></QueryClientProvider>;
 }

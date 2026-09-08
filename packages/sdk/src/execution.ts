@@ -2,7 +2,7 @@ import {isAddress, type Address, type Hex} from 'viem';
 import type {TransactionPlan} from './index';
 
 export type ReceiptLog={address:Address;topics:Hex[];data:Hex;blockNumber:bigint;blockHash:Hex;transactionHash:Hex;logIndex:number;removed:boolean};
-export type TransactionReceipt={hash:Hex;status:'success'|'reverted';blockNumber:bigint;blockHash?:Hex;gasUsed?:bigint;effectiveGasPrice?:bigint;logs?:ReceiptLog[]};
+export type TransactionReceipt={hash:Hex;repricedFrom?:Hex;status:'success'|'reverted';blockNumber:bigint;blockHash?:Hex;gasUsed?:bigint;effectiveGasPrice?:bigint;logs?:ReceiptLog[]};
 export type TransactionFees={gas:bigint;maxFeePerGas:bigint;maxPriorityFeePerGas?:bigint};
 export type TransactionEstimate=TransactionFees&{nativeBalance:bigint;nativeSpend?:bigint};
 /** Wallet/provider boundary. A fixture port is not evidence of Privy execution. */
@@ -21,7 +21,7 @@ async function assertIdentity(plan:Pick<TransactionPlan,'account'|'chainId'>,por
 }
 async function checkedReceipt(hash:Hex,port:ExecutionPort){
  const receipt=await port.receipt(hash);
- if(typeof receipt.hash!=='string'||receipt.hash.toLowerCase()!==hash.toLowerCase()||!['success','reverted'].includes(receipt.status)||typeof receipt.blockNumber!=='bigint'||receipt.blockNumber<0n)throw Error('RPC returned an invalid or mismatched transaction receipt');
+ if(typeof receipt.hash!=='string'||!/^0x[0-9a-fA-F]{64}$/.test(receipt.hash)||(receipt.hash.toLowerCase()!==hash.toLowerCase()&&receipt.repricedFrom?.toLowerCase()!==hash.toLowerCase())||!['success','reverted'].includes(receipt.status)||typeof receipt.blockNumber!=='bigint'||receipt.blockNumber<0n)throw Error('RPC returned an invalid or mismatched transaction receipt');
  for(const value of [receipt.gasUsed,receipt.effectiveGasPrice])if(value!==undefined&&(typeof value!=='bigint'||value<0n))throw Error('RPC returned invalid receipt gas');
  return receipt;
 }

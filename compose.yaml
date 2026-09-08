@@ -40,9 +40,38 @@ services:
       interval: 3s
       timeout: 3s
       retries: 10
+  anvil-data:
+    image: ghcr.io/foundry-rs/foundry:v1.5.1
+    user: "0:0"
+    entrypoint: ["chown", "1000:1000", "/data"]
+    volumes: [orbital_anvil:/data]
   anvil:
     image: ghcr.io/foundry-rs/foundry:v1.5.1
-    entrypoint: ["anvil", "--host", "0.0.0.0", "--chain-id", "31337", "--hardfork", "cancun"]
+    entrypoint: ["sh", "/orbital/anvil-entrypoint.sh", "--host", "0.0.0.0", "--chain-id", "31337", "--hardfork", "cancun", "--block-time", "3", "--prune-history", "128", "--quiet"]
+    volumes:
+      - orbital_anvil:/data
+      - ./scripts/anvil-entrypoint.sh:/orbital/anvil-entrypoint.sh:ro
+    stop_signal: SIGINT
+    stop_grace_period: 60s
+    depends_on:
+      anvil-data: {condition: service_completed_successfully}
     ports: ["127.0.0.1:8545:8545"]
+  anvil-state:
+    image: node:22.18.0-bookworm-slim
+    user: "1000:1000"
+    command: ["node", "/orbital/anvil-state.mjs"]
+    volumes:
+      - orbital_anvil:/data
+      - ./scripts/anvil-state.mjs:/orbital/anvil-state.mjs:ro
+    depends_on:
+      anvil: {condition: service_started}
+    stop_grace_period: 30s
+    healthcheck:
+      test: ["CMD", "node", "-e", "if(Date.now()-require('fs').statSync('/data/state.json').mtimeMs>90000)process.exit(1)"]
+      interval: 10s
+      timeout: 3s
+      start_period: 15s
+      retries: 3
 volumes:
   orbital_pg:
+  orbital_anvil:

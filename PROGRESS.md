@@ -1,6 +1,6 @@
 # Orbital progress
 
-Updated 2026-09-08. Status records observed implementation, never planned success.
+Updated 2026-09-09. Status records observed implementation, never planned success.
 
 | Gate | Status | Next evidence |
 | --- | --- | --- |
@@ -10,9 +10,9 @@ Updated 2026-09-08. Status records observed implementation, never planned succes
 | G2 SwapVM extension | In progress; depends on G1 | Actual 0x72 fee and interior/mixed 0x52 execution pass local integration tests; complete release campaigns and target gas acceptance outstanding |
 | G3 Aqua settlement | In progress; depends on G2 | Official Aqua lifecycle, exact transfer deltas, all-token backing and real six-pair execution pass; full security/release campaigns outstanding |
 | G4 Arc payments | In progress | Local interior and mixed swaps fund split USDC invoices; mined mixed failure/rollback and recovery verified. Arc/Privy receipts and full PAY campaign outstanding |
-| G5 SDK/backend | In progress | Validated plans, compiled event ABIs, canonical projections, receipt metrics, invoice/strategy reads, public swap/payment observations and bounded quote cache; incomplete shipments, full replay and transaction-controller wiring outstanding |
-| G6 application | In progress | All routes scaffolded, editable presentation/controller split, public invoice reads/recovery, Privy login UI verified and external fixture browser tests. Payment, standalone swap and invoice administration review/recovery implemented; replacement tracking, route detail, liquidity publication/replacement and live embedded-wallet execution outstanding; registered strategy reads and owner approval/retire/dock controllers implemented |
-| G7 demo | Prerequisites in progress; integrated demo not run | Disposable authenticated 12-contract deployment passes; persistent demo, user-wallet receipts and source-linked requirement matrix remain open |
+| G5 SDK/backend | In progress | Validated plans, compiled event ABIs, canonical projections, receipt metrics, invoice/strategy reads, public swap/payment observations and bounded quote cache; wallet flows and separate incomplete-shipment pagination connected locally; full rebuild/release campaigns outstanding |
+| G6 application | In progress | All routes scaffolded, editable presentation/controller split, public invoice reads/recovery, Privy login UI verified and external fixture browser tests. Payment, standalone swap and invoice administration review/recovery implemented; publication, nonce-based replacements, funding, invoice history, registered/incomplete liquidity and owner administration connected; same-action repricing tracking implemented. Live embedded-wallet execution and broader recovery checks outstanding |
+| G7 demo | Local integration demonstrated; sponsor/target demo open | Persistent authenticated 12-contract deployment, two seeded makers, browser publication, swap and swap-funded invoice run locally; reload recovery, activation, retirement/docking, funding and invoice creation/cancellation executed; canonical receipts survive restart. Privy/Arc receipts remain open |
 | G8 release | Not started | Full campaigns, limits, gas, accessibility/performance |
 
 ## Environment and external dependencies
@@ -23,10 +23,17 @@ Updated 2026-09-08. Status records observed implementation, never planned succes
 - Arc RPC/chain ID/USDC decimals were observed. The candidate Aqua address had **empty runtime code** at the recorded block; official Arc deployment identity remains unresolved. See deployments/5042002/verification.json.
 - A fresh read-only check at Arc block 61,024,262 still finds empty code at both published Aqua/stock-router addresses. Hash-pinned reads and transient-storage simulation work; the observed block gas limit is 30M. A possible Osaka per-transaction limit is recorded as conditional, not verified. See [fresh Arc observations](docs/ARC_DEPLOYMENT_STATUS.md); no transaction was submitted.
 - Owner supplied public Privy app ID `cmtrvczqp00qh0cjv4b16j1ag`; configured in ignored apps/web/.env.local. Email/external-wallet login UI opens at http://127.0.0.1:3002. No authenticated embedded wallet, signing or reconnection has been verified.
-- No Arc deployment or funding has been performed. A disposable isolated local Anvil deployment produced actual success/failure receipts; its test container was stopped afterward. No persistent application deployment is configured.
+- No Arc deployment or funding has been performed. A disposable isolated local Anvil deployment produced actual success/failure receipts; its test container was stopped afterward. A separate persistent local application deployment is now configured; its generated manifest is ignored and tied to this machine’s Anvil state.
 - During this increment Docker's engine stopped while its app/proxy remained running. Restarting Docker Desktop recovered the existing PostgreSQL/Anvil containers and preserved the database volume. Anvil's in-memory state restarted; no live deployment was configured.
 
 ## Working log
+
+- Local setup now compiles application artifacts without compiling the full test suite, verifies/reuses the deployed graph, migrates and seeds idempotently. Repaired interrupted Anvil persistence with atomic snapshots; retained complete accounts/blocks/transactions and reverified their identities. The app runner starts API/indexer/web together and stops only its owned processes. [Runbook](docs/LOCAL_DEMO.md).
+
+- Connected the persistent local contract graph to the API, indexer and browser. Added idempotent deployment verification, local setup/seed/demo commands and an explicit loopback-only Anvil wallet fixture with per-transaction confirmation. Live Privy and Arc verification remain separate.
+- Added the three quantized publication presets, bounded approvals, ship/activate reviews and saved-draft recovery. Six 10/100-unit configurations match the deployed initializer; independent Decimal cap/support checks are stable at 110/160 digits. This bounded check does not close general mathematical obligations.
+- Added merchant invoice history, reviewed demo funding, confirmed-index quote retries, a wallet initialization retry control, and same-action replacement identity checks. Incomplete Aqua receipts are read from existing canonical raw history and exposed separately without inventing configuration parameters.
+- The real browser executed a 1 USDC swap and paid a 5 USDC invoice with 5.019531 oUSD6, yielding 5.015490 USDC and refunding 0.015490 USDC. Recipients received 4.5 and 0.5 USDC. Demo funding also produced mined receipts. Broad testing remains deferred at the owner’s request.
 
 - Implemented strategy owner approval updates and separate retirement/docking reviews with canonical state rechecks and per-hash receipt recovery. The SDK smoke covers three synthetic actions and the web build passes; actual UI-to-contract lifecycle execution remains deferred until the persistent local deployment is connected. [Lightweight checkpoint](test/evidence/strategy-admin.md).
 - Owner priority update: finish remaining workflows and end-to-end integration first; keep immediate checks to builds/types and focused smoke checks. Broader testing and optimization are deferred. The in-flight broad strategy browser rerun was intentionally stopped; its checkpoint remains unaccepted, with already completed SDK/shared results retained.
@@ -100,6 +107,8 @@ Updated 2026-09-08. Status records observed implementation, never planned succes
 
 ## Latest verification
 
+- **Current integration checkpoint (2026-09-09):** twelve deployed local contracts, fourteen retained browser transaction receipts and six API observations verified after a graceful restart. Browser smoke includes publication reload recovery, separate incomplete-shipment indexing, activate/retire/dock, swap, swap-funded invoice, funding and invoice creation/cancellation. Current workspace types and production frontend build pass. Full regression counts below describe earlier frozen checkpoints, not reruns of this increment. [Current scope, failures and artifacts](test/evidence/local-integration.md).
+
 - Latest liquidity read checkpoint: production build and workspace types pass with 759 unchanged authored inputs. Six focused browser cases and the subsequent 129-SDK/7-shared run are recorded separately; broad browser testing was intentionally deferred. The production preview serves both liquidity routes and referenced assets. [Scope](test/evidence/strategy-read.md).
 - Solidity: full checkpoint is **398 tests across 46 suites**, seed `0x20260908`, default fuzz 256 and invariant 32×64 with unexpected reverts forbidden. All source/configuration inputs stayed unchanged; elapsed time 511.885 seconds including compilation. The earlier verified 388-test checkpoint and preliminary invalidated runner remain historical. Router/Storage/Composition/Endpoint runtimes are 22,221/23,240/23,138/22,826 bytes. Fresh actual cold external mixed calls use 5,167,894/5,834,667 gas, excluding transaction intrinsic/minimum-forwarding requirements. The older 8×8 activation observation is 3,791,206 gas on its archived graph. None establishes worst-range or Arc acceptance.
 - Reference: **129 tests passed in 53.508 seconds**, with unchanged input hashes and a valid computation manifest. New coverage includes mixed-pilot consistency/actual baskets, reversal literal binding, and an exact pair-difference/bisection oracle: 47 Solidity proposal fixtures plus 625 exhaustive small oracle controls. The separate full pilot generator produced identical 110/160-digit corpora in 560.278 seconds. Earlier scalar, root, initializer, both-root, price, slack and retention counterexamples remain included. Numerical/reference histories are not onchain receipts or universal proofs.
@@ -119,6 +128,6 @@ Updated 2026-09-08. Status records observed implementation, never planned succes
 
 ## Next concrete work
 
-Connect a persistent local deployment through the indexer/API and user transaction flows, and complete liquidity publication/replacement against it. Owner administration is wired but still needs that integrated execution. Keep reviews and resumable transactions mandatory. Prioritize working coverage across departments before further optimization; the measured n8 gas blocker and [release-gap obligations](docs/audits/RELEASE_GAP_REVIEW.md) remain explicit. Live Privy verification and Arc identity/deployment are separate prerequisites. Keep the current frontend template, make verified local commits and leave pushing to the user.
+The local application is connected at http://127.0.0.1:3000; use `pnpm local:setup` and `pnpm dev:local` to reproduce it. Next configure/verify live Privy authentication and wallet execution, resolve the target Arc deployment/signer prerequisites, then run the deferred numerical, security, regression and release campaigns. Recorded local evidence cannot close those gates. Keep the current frontend template; pushing remains with the user.
 
 Detailed commands and outcomes belong in [the evidence index](test/evidence/INDEX.md).

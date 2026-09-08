@@ -49,3 +49,12 @@ Standalone swaps now use the same imperative wallet identity/send bridge, canoni
 The shared transaction bridge now requests network changes through the current wagmi connector. Local browser fixtures cover successful and rejected requests; they do not establish Privy embedded-wallet chain switching. Device swap settings and public balance reads add no identity fields or provider account service. Gas-aware USDC Max uses actual candidate simulation and retains unavailable gas explicitly when future approval prevents that simulation. [Controls](../test/evidence/swap-controls.md).
 
 Invoice creation and merchant cancellation also use this same wallet bridge, with explicit zero-token-value actions, reviewed gas, nonce/status rechecks and canonical event recovery. Plain reference text is hashed locally and omitted from recovery storage. [Application checks](../test/evidence/invoice-admin.md) use injected wallet/RPC fixtures; no additional Privy capability or live qualification is claimed.
+
+
+## Current integration increment
+
+Rechecked the [official wagmi integration](https://docs.privy.io/wallets/connectors/ethereum/integrations/wagmi) on 2026-09-08. When Privy has loaded connected wallets but wagmi has no valid active wallet, the bridge restores a device preference or selects the embedded wallet, then the first available wallet. It preserves an already active wallet. Selection remains editable in the shared wallet control. Login, wallet creation and all financial signing still belong to the user.
+
+The [official Arc connection reference](https://docs.arc.io/arc/references/connect-to-arc) identifies the [Circle faucet](https://faucet.circle.com) for testnet USDC. The funding page links to it and labels local USDC fixtures separately. This adds no onramp, gas sponsorship or commercial feature claim.
+
+The integrated browser receipts in this increment use explicit Anvil fixtures. They prove application-to-contract wiring locally, not Privy wallet creation, reconnect, hosted signing or sponsor eligibility. The public app ID remains configured; live authentication is still required.

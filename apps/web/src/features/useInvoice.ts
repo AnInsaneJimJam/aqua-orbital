@@ -46,7 +46,7 @@ function terms(observation: InvoiceDetailDTO, manifest: DeploymentManifest): Non
 export function useInvoice(id: string): InvoiceViewState {
   const valid = hashSchema.safeParse(id).success;
   const query = useQuery({
-    queryKey: ['invoice', apiBase, id.toLowerCase()], enabled: valid, retry: false, staleTime: 0,
+    queryKey: ['invoice', apiBase, id.toLowerCase()], enabled: valid, retry: false, staleTime: 0, refetchInterval:10000,
     queryFn: async ({signal}) => {
       // Refresh both as one read operation. The decoder rejects a deployment
       // rotation between requests; another explicit refresh can then recover.

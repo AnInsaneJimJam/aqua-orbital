@@ -35,14 +35,21 @@ export function createWalletExecutionPort(wallet:Pick<Session,'identity'|'send'>
   receipt:async hash=>{
    // Public recovery survives changes to the active account or feature inputs.
    if(await client.getChainId()!==selectedChain.id)throw Error('Wrong receipt RPC network');
-   const receipt=await client.waitForTransactionReceipt({hash,confirmations:1,timeout:120000,pollingInterval:2000});
-   if(!same(receipt.transactionHash,hash))throw Error('Transaction was replaced. Check the submitted hash before retrying.');
-   const tx=await client.getTransaction({hash}),expected=submittedPlan;
-   if(!expected||!tx.to||!tx.blockHash||!same(tx.hash,hash)||!same(tx.blockHash,receipt.blockHash)||tx.blockNumber!==receipt.blockNumber||!same(tx.from,expected.account)||!same(tx.to,expected.to)||!same(tx.input,expected.data)||tx.value!==expected.value
+   const expected=submittedPlan;
+   // Inspect the original transaction before waiting. Repricing may change fees,
+   // but it cannot change the sender, nonce, destination, calldata or value.
+   let original;try{original=await client.getTransaction({hash});}catch{/* The wallet may return before RPC propagation. */}
+   const receipt=await client.waitForTransactionReceipt({hash,confirmations:1,timeout:120000,pollingInterval:2000,
+    onReplaced:replacement=>{if(same(replacement.replacedTransaction.hash,hash))original=replacement.replacedTransaction;}});
+   const actualHash=receipt.transactionHash,tx=await client.getTransaction({hash:actualHash});
+   if(!same(actualHash,hash)){
+    if(!original||!expected||!original.to||!same(original.hash,hash)||!same(original.from,expected.account)||!same(original.to,expected.to)||!same(original.input,expected.data)||original.value!==expected.value||tx.nonce!==original.nonce)throw Error('Replacement identity unavailable. Keep the original hash and check your wallet activity.');
+   }
+   if(!expected||!tx.to||!tx.blockHash||!same(tx.hash,actualHash)||!same(tx.blockHash,receipt.blockHash)||tx.blockNumber!==receipt.blockNumber||!same(tx.from,expected.account)||!same(tx.to,expected.to)||!same(tx.input,expected.data)||tx.value!==expected.value
     ||!receipt.to||!same(receipt.from,expected.account)||!same(receipt.to,expected.to)||!['success','reverted'].includes(receipt.status)||typeof receipt.gasUsed!=='bigint'||receipt.gasUsed<0n||typeof receipt.effectiveGasPrice!=='bigint'||receipt.effectiveGasPrice<0n)throw Error('Receipt transaction does not match the reviewed action');
    const block=await client.getBlock({blockNumber:receipt.blockNumber});
    if(!block.hash||!same(block.hash,receipt.blockHash))throw Error('Receipt is no longer canonical');
-   return {hash:receipt.transactionHash,status:receipt.status,blockNumber:receipt.blockNumber,blockHash:receipt.blockHash,gasUsed:receipt.gasUsed,effectiveGasPrice:receipt.effectiveGasPrice,logs:receipt.logs as ReceiptLog[]};
+   return {hash:receipt.transactionHash,...(!same(actualHash,hash)?{repricedFrom:hash}:{}),status:receipt.status,blockNumber:receipt.blockNumber,blockHash:receipt.blockHash,gasUsed:receipt.gasUsed,effectiveGasPrice:receipt.effectiveGasPrice,logs:receipt.logs as ReceiptLog[]};
   }
  };
  return {...execution,canonical,read,guard};

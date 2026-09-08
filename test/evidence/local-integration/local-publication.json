@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "confirmations": [
+    "Local Anvil wallet fixture\nActivate reviewed strategy\nAccount: 0x90f79bf6eb2c4f870365e785982e1f101e93b906\nContract: 0x610178da211fef7d417bc0e6fed39f05609ad788\nNo real assets. Submit this transaction?"
+  ],
+  "body": "Local development · Anvil wallet fixtures · No real assets\nSkip to content\nOrbital\nSwap\nLiquidity\nPayments\n0x90f7…b906\n← Your liquidity\nBUILD A STRATEGY\nFind your concentration.\n\nOne wallet. Three assets. Your choice of exposure.\n\n1\nAssets\n2\nConcentration\n3\nReview\n4\nPublish\nPublish from your wallet.\n\nLocal Anvil · Maker nonce 0\n\noUSD18\n10 allocated · 40 maximum Aqua allowance\nUSDC\n10 allocated · 40 maximum Aqua allowance\noUSD6\n10 allocated · 40 maximum Aqua allowance\nQuantized curve configuration\n\nStrategy is active. The index will show its receipt shortly.\n\nView strategy\nCreate another strategy\nBalanced\n\nInitial funded principal allocation\n\nFull range\n10%\n0.95 reference\n30%\n0.99 reference\n60%\n\nReference thresholds describe a single-coin depeg scenario. Actual quantized thresholds are shown only after certified configuration. They are not guaranteed price floors.\n\nBuild evidence\nRead the paper ↗\nLocal Anvil\n\nTestnet application. Demo tokens have no redemption value. Concentrated liquidity can lose value.\n\nPowered by SwapVM — © Degensoft Ltd 2025"
+}

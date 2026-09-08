@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "invoice": "/pay/0x87b7d0b9956e49c34687b97c84617be1f50553949a6ea4cb76e710620b164a72",
+  "transactions": [
+    "0x9be5b88b07c6bc2577a9245434e4200452c2a910d9c510e51d7c463e7d5878df",
+    "0x8b0680bee02f5e156dfb0fd1803faf1a09de214ef142c193835b629766a52c1e"
+  ],
+  "body": "Local development · Anvil wallet fixtures · No real assets\nSkip to content\nOrbital\nSwap\nLiquidity\nPayments\n0x15d3…6a65\n← Payments\nInvoice\n\n0x87b7d0b9956e49c34687b97c84617be1f50553949a6ea4cb76e710620b164a72\n\nLOCAL ANVIL · USDC SETTLEMENT\n2 USDC\n\nUnpaid at indexed block\n\nThis deployment uses demo USDC with no redemption value.\n\nMerchant\n0x15d34aaf54267db7d7c367839aaf71a00a2c6a65\nInvoice deadline\n2026-09-09 18:26:31 UTC\nRecipients\n0x15d34aaf54267db7d7c367839aaf71a00a2c6a65\n100%\n2 USDC\n\nThese are indexed invoice terms. A payment review checks current wallet funds, invoice state and transaction simulation separately.\n\nPay invoice\nPayment token\noUSD18\nUSDC\noUSD6\nMaximum input\n\nGet a fresh quote before reviewing the payment.\n\nGet payment quote\n\nInvoice cancellation confirmed. Refreshing indexed terms.\n\nConfirmed invoice transaction\nReview cancellation\nReceipt details\n\nIndexed through block 1886.\n\nIndex observation\nRefresh invoice\nBuild evidence\nRead the paper ↗\nLocal Anvil\n\nTestnet application. Demo tokens have no redemption value. Concentrated liquidity can lose value.\n\nPowered by SwapVM — © Degensoft Ltd 2025"
+}

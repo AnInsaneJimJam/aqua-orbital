@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "scope": "Exact router runtime read from a retained pre-restart historical state",
+  "observedAt": "2026-09-08T18:46:14.736Z",
+  "height": "0x888",
+  "blockHash": "0xd83003ad94888fd8c765e7fbce4f2778becee684d57163a813bc615c08ee5028",
+  "runtimeBytes": 22221,
+  "runtimeSha256": "bb8fa6fc97a670646a3381a106d8f50260d76134a51cb55134f1b854b9cb6493"
+}

@@ -94,6 +94,9 @@ export const invoiceDetailSchema=z.object({
  }else if(v.code!=='INVOICE_NOT_FOUND'||v.retryable!==false||v.field!=='id')fail('Invalid indexed absence');
 });
 export type InvoiceDetailDTO=z.infer<typeof invoiceDetailSchema>;
+export const invoiceListSchema=z.object({...invoiceDetailSchema.shape,code:z.enum(['INVOICES_AVAILABLE','INVOICES_STALE']),
+ data:z.object({items:z.array(invoiceReadSchema).max(50),limit:z.number().int().min(1).max(50),nextCursor:z.string().min(1).max(1024).regex(/^[A-Za-z0-9_-]+$/).nullable()}).strict()}).strict();
+export type InvoiceListDTO=z.infer<typeof invoiceListSchema>;
 
 export const strategyFiltersSchema=z.object({maker:nonzeroAddressSchema.optional(),tokenIn:nonzeroAddressSchema.optional(),tokenOut:nonzeroAddressSchema.optional(),status:z.enum(['all','active','retired']).default('all')}).strict().superRefine((v,ctx)=>{
  if(!!v.tokenIn!==!!v.tokenOut||(v.tokenIn&&v.tokenOut&&v.tokenIn.toLowerCase()===v.tokenOut.toLowerCase()))ctx.addIssue({code:'custom',message:'Distinct complete pair required'});
@@ -187,3 +190,7 @@ export const paymentQuoteUnavailableSchema=swapQuoteUnavailableSchema.extend({pa
 export const paymentQuoteObservationSchema=z.union([paymentQuoteObservedSchema,paymentQuoteAbsentSchema,paymentQuoteUnavailableSchema]);
 export type PaymentQuoteObservationDTO=z.infer<typeof paymentQuoteObservationSchema>;
 export type PaymentQuoteObservedDTO=z.infer<typeof paymentQuoteObservedSchema>;
+
+const shipmentReceiptSchema=z.object({height:uintSchema,blockHash:hashSchema,txHash:hashSchema,logIndex:z.number().int().min(0)}).strict();
+export const shipmentListSchema=z.object({schemaVersion:z.literal(1),status:z.literal('available'),code:z.literal('SHIPMENTS_AVAILABLE'),financialExecutionEnabled:z.literal(false),chainId:chainIdSchema,maker:nonzeroAddressSchema,router:nonzeroAddressSchema,aqua:nonzeroAddressSchema,asOf:invoiceBlockSchema,coverage:invoiceDetailSchema.shape.coverage,
+ data:z.object({limit:z.literal(6),nextCursor:z.string().min(1).max(1024).nullable(),items:z.array(z.object({hash:hashSchema,maker:nonzeroAddressSchema,router:nonzeroAddressSchema,configHash:hashSchema,order:orderDTOSchema,status:z.enum(['incomplete','docked']),created:shipmentReceiptSchema,docked:shipmentReceiptSchema.nullable()}).strict()).max(6)}).strict()}).strict();

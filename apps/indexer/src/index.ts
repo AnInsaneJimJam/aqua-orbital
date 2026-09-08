@@ -7,6 +7,8 @@ if(!process.env.DEPLOYMENT_MANIFEST||!process.env.DATABASE_URL)throw Error('DEPL
 const manifest=manifestSchema.parse(JSON.parse(await readFile(process.env.DEPLOYMENT_MANIFEST,'utf8')));
 if(!manifest.verified)throw Error('Deployment is not verified');
 if(process.argv.includes('--replay'))throw Error('Full destructive materialization rebuild is not implemented. Bounded canonical reorg rollback/replay runs automatically.');
+const pollMs=Number(process.env.INDEXER_POLL_MS??'1000');
+if(!Number.isSafeInteger(pollMs)||pollMs<250||pollMs>10000)throw Error('Invalid INDEXER_POLL_MS');
 const pool=database(process.env.DATABASE_URL);
 const {rpc,close}=createMaterializationRpc(manifest.rpcUrl);
 let running=true;for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>{running=false;close();});
@@ -24,6 +26,6 @@ try{
    const code=error instanceof Error&&/^[A-Z][A-Z_]+$/.test(error.message)?error.message:'RPC_OR_DATABASE_UNAVAILABLE';
    console.error(JSON.stringify({event:'indexer_error',chainId:manifest.chainId,code,elapsedMs:Date.now()-started}));
   }
-  await new Promise(resolve=>setTimeout(resolve,2000));
+  await new Promise(resolve=>setTimeout(resolve,pollMs));
  }
 }finally{close();await pool.end();}
