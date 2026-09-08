@@ -52,3 +52,7 @@ The owner replaced the instruction to retain the lavender template with black-an
 ## D35 — Identity built around supplied Orbital media (2026-09-09)
 
 The owner supplied the Orbital paper visualization and SVG logo and explicitly replaced previous visual directions. Use the original video and logo, a matching deep blue canvas, chartreuse accents, local editorial/sans typography and restrained diagram framing throughout the frontend. Keep media optional with poster, pause and reduced-motion behavior; credit Paradigm without implying endorsement or using the illustration as live data. Preserve D34's useful decluttering and the established financial review/recovery boundaries. [Frontend](FRONTEND.md), [asset provenance](ASSETS.md).
+
+## D36 — Integration first and user-signed Arc preparation (2026-09-09)
+
+The owner reiterated integration-first work and supplied a public Arc deployer. Use a separate Arc/Privy profile on ports 3002/3003 and a loopback browser-signing deployment utility on 3100. Keep the local Anvil profile available, authenticate compiled deployment inputs and receipts, and retain the master specification's missing official-Aqua identity requirement. Observed funding is not proof of wallet control or sponsor acceptance. No backend signer or application-held key is introduced. Preserve mathematical/release obligations, but defer their broad campaigns while completing integration. [Deployment](ARC_DEPLOYMENT.md), [live walkthrough](ARC_DEMO.md).

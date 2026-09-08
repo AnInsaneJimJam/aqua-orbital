@@ -1,5 +1,7 @@
 # Evidence index
 
+Latest remaining-integration checkpoint: [Arc profile, Privy onboarding and database recovery](arc-integration.md). Types, public login/HTTP checks, one read-only deployment simulation and one database recovery test passed. Eleven Arc transactions are prepared but **zero submitted**; official Aqua identity, authenticated Privy wallets and live financial receipts remain unresolved. This does not replace the numerical or receipt checkpoints below.
+
 Updated 2026-09-09. Initially all checks were not started. The table below records actual partial implementation; **no G1–G8 acceptance is claimed**. A gate is verified only when all its required evidence exists.
 
 | Requirement | Status | Implementation / evidence | Blocker |

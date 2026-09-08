@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-08T20:26:02.027443+00:00",
+  "scope": "Remaining integration; light checks only",
+  "sources": {
+    "scripts/arc-deployment.mjs": "50492ee5b32d3cc23a8a8010f41126c9970f00959e8e69ac0314f6ffc25bc6f1",
+    "scripts/lib/arc-deployment.mjs": "fac51ba97363f0fe55f87ec9d7ca4da015b4d80be92c855d233c492639e13aed",
+    "scripts/arc-wallet-server.mjs": "d3df525fba0feb49ef83632d58e97ed590384b86435cb3900bf3e023262e607a",
+    "scripts/dev-arc.mjs": "dc6cdb43c51a21eac561d4d3c9fcfca5d25dd4dc616691adbc6b582e768d16b4",
+    "scripts/verify-network.mjs": "0bf2efde08cbefa3e09593633ebf519bde7435217b6eddce91ae1200174247d7",
+    "scripts/lib/local-deployment.mjs": "7ac2c3cacdfdf5287bc1095ec8ad88ec87f3dad3fe13c3ff92b70921cf4ea3b0",
+    "packages/sdk/scripts/artifact-integrity.mjs": "9f2f9e92ebf193adebbd19895a01d3bb2898dd22f629fc5cb6a56af0885158f3",
+    "apps/web/next.config.ts": "29a0206e591eea37dbd6b86adf239a334d3e898a6e7b19973f85d48f14de3087",
+    "apps/web/src/wallet/PrivyWallet.tsx": "9fd80f7a5d45a6fdf610664c2c461cc7edabae33420d0d32803d6515d755c33d",
+    "apps/web/src/wallet/WalletProvider.tsx": "12eb3a8eefdc292af905cd959020730d29ec04957e2002a6f88af67c08f61036",
+    "apps/web/src/wallet/WalletControl.tsx": "2467129bf5e728ec02f598023853cf2934d4d4bdd2db5f2c58ef1551b5e25f28",
+    "apps/web/src/wallet/WalletControl.module.css": "fb3639e6e94e77f08cdb7637001248469aaf7eca90ea0e21b0a8d110250f9300",
+    "apps/web/src/wallet/config.ts": "873459a2c7e9f1c27c5958b468d0d7edcd292c7654b0f0c1346642f68ae1ad54",
+    "packages/db/src/index.ts": "8fae7401d2b536d47e48c420fd3cb612433ef92e192112ef3503967126a62e31",
+    "apps/api/src/runtime.ts": "b5e6c2f54fed41b503f5c89c988618adfdc432020644a00d4a12e281031a64f8",
+    "apps/indexer/src/index.ts": "d96aebfe3cac28c18ff8e386839f3dda4ade6d4466fc54abb1577c099edb220d",
+    "apps/api/test/database-recovery.test.ts": "6500ee332b8e58117d46ba5f92cac27641bdf0023b8ac9f754c4471bfdec5f49",
+    "package.json": "e86c66045915f347df578f51f9d58237698f362a052ec74a364d90d39340b1f8",
+    "pnpm-lock.yaml": "3dcdd192b12769d53e971d2518506e96019f40c7870e78cec2aa6c3bec189129"
+  },
+  "observations": {
+    "test/evidence/arc-integration/privy-login.json": "94afd690d11e58f867d4656eefc9db03ec1359519ff4bd391beefa2a36b4130f",
+    "test/evidence/arc-integration/privy-login.png": "7e3c5b21a33a370ec61a03fcad474a5b4b5bed2e6d19a3c220ed2f39d0943cdd",
+    "test/evidence/arc-integration/first-deployment-simulation.json": "75387aa49c84136a46e95a228173aeb9d2bd7eb0876d608b2fbe2899728767f9",
+    "deployments/5042002/research-2026-09-09.json": "220ca00c74dec9c5d2178ff0874b99b6b5b04b0388889450516f7459e7a73f52",
+    "apps/api/test/database-recovery.md": "483622e89565df20df5115ecf34f2fa891d9fb6632407121e61e33117415ac4b"
+  },
+  "arcTransactionsSubmitted": 0,
+  "livePrivyWalletVerified": false,
+  "arcDeploymentVerified": false,
+  "releaseAccepted": false,
+  "limits": [
+    "First-library eth_call is not deployment or a full gas estimate.",
+    "Public Privy modal is not authentication, wallet creation or a financial flow.",
+    "Successful deployment signing/receipt/activation paths remain unverified.",
+    "Existing mathematical and release campaigns remain open."
+  ]
+}

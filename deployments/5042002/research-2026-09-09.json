@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "scope": "read-only-Arc-research-not-deployment-verification",
+  "checkedAt": "2026-09-08T20:05:24.922Z",
+  "finishedAt": "2026-09-08T20:05:27.565Z",
+  "chainId": 5042002,
+  "rpcUrl": "https://rpc.testnet.arc.io",
+  "block": {
+    "number": "61123941",
+    "hash": "0xd4b8d5a8ada072b1de758adca803817db4899f057db573204f5239c496099f5a",
+    "timestamp": "2026-09-08T20:05:23.000Z",
+    "gasLimit": "30000000",
+    "baseFeePerGas": "20000000000",
+    "canonicalHashRechecked": true
+  },
+  "aqua": {
+    "address": "0x1111113ccf1426a8e30e2bff5e005d929bf6a90a",
+    "runtimeBytes": 0,
+    "code": "0x",
+    "officialArcIdentityResolved": false
+  },
+  "stockSwapVm": {
+    "address": "0x111111338c5091e8440b67b168bae16a668ac0de",
+    "runtimeBytes": 0,
+    "code": "0x"
+  },
+  "usdc": {
+    "address": "0x3600000000000000000000000000000000000000",
+    "runtimeBytes": 1798,
+    "runtimeSha256": "d06405421b354a12b2f03fcc8aac4b324f274aed5b8ecc5fd62d8fa119067154",
+    "erc20Decimals": 6,
+    "nativeDecimals": 18
+  },
+  "requestedDeployer": {
+    "address": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+    "nativeBalanceRaw": "20000000000000000000",
+    "erc20BalanceRaw": "20000000",
+    "nativeBalanceUsdc": "20.000000000000000000",
+    "nonce": "0",
+    "runtimeBytes": 0,
+    "nativeAndErc20BalanceAgree": true,
+    "hasGasFunds": true,
+    "deploymentBudgetSufficiencyVerified": false,
+    "walletControlVerified": false
+  },
+  "transactionGasCap": {
+    "status": "unresolved",
+    "provisionalOsakaInference": "16777216"
+  },
+  "sourceUrls": [
+    "https://ethglobal.com/events/ethonline2026/prizes",
+    "https://ethglobal.com/events/ethonline2026/prizes/1inch",
+    "https://ethglobal.com/events/ethonline2026/prizes/arc",
+    "https://ethglobal.com/events/ethonline2026/prizes/privy",
+    "https://business.1inch.com/portal/documentation/aqua/reference/contract-addresses",
+    "https://business.1inch.com/portal/documentation/aqua/reference/verified-contract-addresses",
+    "https://github.com/1inch/aqua/blob/9c5c42e5840e8741fba3597c48456c9510212b66/README.md#deployments",
+    "https://docs.arc.io/arc/references/gas-and-fees",
+    "https://docs.arc.io/arc/references/evm-differences"
+  ],
+  "limitations": [
+    "No transaction was signed, funded, submitted or deployed.",
+    "Code absence applies only to the inspected addresses and pinned block.",
+    "Balance observations do not prove control of the requested public deployer or sufficient funds for the final deployment graph.",
+    "This file does not activate a manifest or replace verification.json."
+  ]
+}

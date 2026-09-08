@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "scope": "read-only-first-library-creation-simulation",
+  "checkedAt": "2026-09-08T20:23:20.748Z",
+  "status": "simulated",
+  "chainId": 5042002,
+  "transactionsBroadcast": 0,
+  "contractsCreated": 0,
+  "arcDeploymentVerified": false,
+  "aquaGateBypassed": false,
+  "limits": [
+    "Only the first library constructor is simulated.",
+    "An eth_call runtime and gas estimate are not a deployment receipt or full integration result.",
+    "The missing official Aqua identity still blocks actual deployment."
+  ],
+  "planId": "f4d8844142e754179f1af65b0cd743d676581f0af1dd355cc344b9d80a05ce3e",
+  "deployer": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+  "label": "FrontierEndpoint",
+  "contractIdentity": "src/libraries/FrontierEndpoint.sol:FrontierEndpoint",
+  "nonce": "0",
+  "predictedAddress": "0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE",
+  "initcodeKeccak256": "0x75e07e9b522bc881e23c5eb05ddf910ad584a377a9b70f36f79c4c5bf125e20f",
+  "initcodeBytes": 22856,
+  "block": {
+    "number": "61126033",
+    "hash": "0x61b4726b94de0f0ac2a53c0b8ba86cdeac257eb18e7c91471797f0211d93071f",
+    "timestamp": "2026-09-08T20:23:18.000Z",
+    "gasLimit": "30000000",
+    "baseFeePerGas": "20000000000"
+  },
+  "estimatedGas": "5029740",
+  "reviewGasLimit": "6045688",
+  "gasCeiling": "8000000",
+  "maxFeePerGas": "40149405648",
+  "maxPriorityFeePerGas": "149405648",
+  "maximumGasBudgetNativeRaw": "242730779933245824",
+  "maximumGasBudgetUsdc": "0.242730779933245824",
+  "runtime": {
+    "runtimeBytes": 22826,
+    "runtimeKeccak256": "0x261da1b3a4a6d825529b357a5c6d499cba4aa0ead61821167828a3bea632ee53",
+    "immutableValues": {}
+  },
+  "canonicalHashRechecked": true,
+  "deployerNonceAfter": "0",
+  "finishedAt": "2026-09-08T20:23:23.245Z"
+}

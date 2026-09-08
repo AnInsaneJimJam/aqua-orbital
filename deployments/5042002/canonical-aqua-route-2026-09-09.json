@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "scope": "read-only-canonical-Aqua-deployment-route-research",
+  "recordedAt": "2026-09-08T20:31:04.359Z",
+  "officialAquaOnArcResolved": false,
+  "transactionsBroadcast": 0,
+  "guide": {
+    "url": "https://github.com/1inch/aqua/blob/9c5c42e5840e8741fba3597c48456c9510212b66/DEPLOY.md",
+    "scriptUrl": "https://github.com/1inch/aqua/blob/9c5c42e5840e8741fba3597c48456c9510212b66/script/DeployAquaRouter.s.sol",
+    "creationMethod": "CREATE",
+    "factory": null,
+    "salt": null,
+    "constructor": "AquaRouter(address owner)",
+    "ownerConfigPath": ".owner.5042002",
+    "arcOwnerInPublishedConfig": false,
+    "compiler": "0.8.30",
+    "optimizerRuns": 10000000,
+    "viaIR": true,
+    "explicitEvmTargetInPublishedFoundryConfig": false
+  },
+  "canonical": {
+    "network": "Ethereum",
+    "chainId": 1,
+    "registry": "0x1111113CCf1426A8E30e2bfF5E005d929bF6a90a",
+    "creationTransaction": "0xe37e4dd7e73302a57cbf8ef6cff2424a787df9bf462d69f2de6d149dca43fb1a",
+    "creationBlock": 25567141,
+    "creationTimestamp": "2026-07-19T13:45:47.000000Z",
+    "transactionFrom": "0x0BD61d605C64A857C3D94779aEf7cA295702b3A2",
+    "transactionType": 2,
+    "factory": "0x71481C3B9C6FBa3066AE84961EA22378A80cabe7",
+    "salt": "0x1aaabc7bf2f7000329f7f5000000000000000000000000000000000000000000",
+    "proxy": "0x6C51dEc3597cf764906306686b8aebbCc83a188B",
+    "proxyInitcode": "0x67363d3d37363d34f03d5260086018f3",
+    "proxyInitcodeKeccak256": "0x21c35dbe1b344a2488cf3321d6ce542f8e9f305544ff09e4993a62319a497c1f",
+    "targetCalculationVerified": true,
+    "registryInitcodeBytes": 5859,
+    "registryInitcodeKeccak256": "0xd3488f3a8e4211b34cf9f85777bc239da5f2dc21168b71b6e0c4b34747a827e6",
+    "registryConstructorOwner": "0x4134e66d52efc4c77dd8ccc952d87b9e92e0c352",
+    "verifiedCompiler": "v0.8.30+commit.73712a01",
+    "verifiedOptimizerRuns": 10000000,
+    "verifiedEvmVersion": "prague"
+  },
+  "factory": {
+    "address": "0x71481C3B9C6FBa3066AE84961EA22378A80cabe7",
+    "name": "Create3Deployer",
+    "deploymentAccess": "onlyOwner",
+    "constructorOwner": "msg.sender",
+    "creationDeployer": "0xef3c29bc05a77B266A76f2cEa11d8b8886342e8a",
+    "creationNonce": "0",
+    "creationTransaction": "0xb6d1baae2042327077defddd67949a55fa0cb91d8ae5f2ce04ce8ff80583e9c5",
+    "creationTransactionType": 2,
+    "creationBlock": 25561009,
+    "creationTimestamp": "2026-07-18T17:13:23.000000Z",
+    "creationAddressCalculationVerified": true,
+    "initcodeBytes": 1449,
+    "initcodeKeccak256": "0xed187ae8a51c23b448dd7b883f73b8b7af6e482b134ffbe4e782152bbd4df11b",
+    "runtimeBytes": 1289,
+    "runtimeKeccak256": "0xb828e21bfbdcd579bf051cb91899c365c2fa818f7b3d3e8d666a3a702d8c2431",
+    "verifiedCompiler": "v0.8.23+commit.f704f362",
+    "verifiedOptimizerRuns": 200,
+    "verifiedEvmVersion": "shanghai"
+  },
+  "arc": {
+    "rpcUrl": "https://rpc.testnet.arc.io",
+    "chainId": 5042002,
+    "blockNumber": "61126613",
+    "blockHash": "0xc6339c74cd3790567f24980159c1bf3bbd7106c8d35ea393b2e18245338b80e5",
+    "canonicalBlockHashSelector": true,
+    "factoryCode": "0x",
+    "factoryDeployerNonce": "0",
+    "deploymentHubNonce": "0"
+  },
+  "requestedWallet": {
+    "address": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+    "plainCreateNonceZero": "0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE",
+    "matchesCanonicalFactoryDeployer": false
+  },
+  "sources": [
+    "https://eth.blockscout.com/api/v2/smart-contracts/0x71481C3B9C6FBa3066AE84961EA22378A80cabe7",
+    "https://eth.blockscout.com/api/v2/smart-contracts/0x1111113ccf1426a8e30e2bff5e005d929bf6a90a",
+    "https://eth.blockscout.com/api/v2/transactions/0xe37e4dd7e73302a57cbf8ef6cff2424a787df9bf462d69f2de6d149dca43fb1a",
+    "https://eth.blockscout.com/api/v2/transactions/0xb6d1baae2042327077defddd67949a55fa0cb91d8ae5f2ce04ce8ff80583e9c5",
+    "https://github.com/1inch/aqua/blob/9c5c42e5840e8741fba3597c48456c9510212b66/script/utils/Config.sol",
+    "https://github.com/1inch/aqua/blob/9c5c42e5840e8741fba3597c48456c9510212b66/config/constants.json"
+  ],
+  "conclusion": "Canonical address construction is reproducible from public factory/salt/proxy data. The inspected route requires the exact original factory deployment identity and its owner authorization; it is not a permissionless deployment available to the supplied wallet. The generic guide instead produces a new CREATE address.",
+  "limitations": [
+    "No private key availability or owner willingness was inferred.",
+    "No signing, deployment or code override was performed.",
+    "These observations do not establish canonical Aqua presence on Arc or sponsor approval for a new address.",
+    "The factory owner at the observed successful Ethereum registry deployment is inferred from onlyOwner and its transaction sender; current owner was not independently queried."
+  ]
+}

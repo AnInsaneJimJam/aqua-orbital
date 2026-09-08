@@ -1,0 +1,17 @@
+{
+  "observedAt": "2026-09-08T20:22:16.465Z",
+  "origin": "http://127.0.0.1:3002",
+  "profile": "Arc Testnet 5042002",
+  "loginVisible": true,
+  "externalWalletOptions": [
+    "Continue with a wallet"
+  ],
+  "logo": {
+    "visible": true,
+    "width": 80,
+    "height": 80,
+    "filter": "invert(0.96) sepia(0.08) saturate(1.93) hue-rotate(5deg) brightness(1) contrast(0.91)"
+  },
+  "failures": [],
+  "scope": "Public Privy login UI and logo contrast only. Fresh browser context. No email entry, authentication, wallet creation, signature or transaction. No authentication state retained."
+}

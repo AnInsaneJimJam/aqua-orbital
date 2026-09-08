@@ -5,3 +5,5 @@
 .wallet[aria-pressed=true] { border-color: var(--ink); background: var(--inset); box-shadow: var(--pressed); }
 .wallet span:last-child { font-size: 12px; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+/* Privy replaces inline logo styles; a class preserves the brand's light mark. */
+.privyLogo { object-fit: contain; filter: invert(96%) sepia(8%) saturate(193%) hue-rotate(5deg) brightness(100%) contrast(91%); }

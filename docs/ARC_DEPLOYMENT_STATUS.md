@@ -1,6 +1,83 @@
 # Arc deployment prerequisites: fresh read-only review
 
-Reviewed **2026-09-08, 04:58–05:11 UTC**. This focused update supplements [Arc research](ARC_RESEARCH.md), [Aqua research](AQUA_RESEARCH.md), and the deployment and gas gates in [MASTER_PROMPT.md](../MASTER_PROMPT.md). It is research evidence, not a verified deployment manifest. The existing [verification record](../deployments/5042002/verification.json) was left unchanged. No transaction was signed, funded, submitted, or deployed.
+Latest source review and RPC observation: **2026-09-08, 19:48–20:05 UTC** (**September 9** in the workspace timezone). This update supplements [Arc research](ARC_RESEARCH.md), [Aqua research](AQUA_RESEARCH.md), and the deployment and gas gates in [MASTER_PROMPT.md](../MASTER_PROMPT.md). The compact [research observation](../deployments/5042002/research-2026-09-09.json) is separate from the [verification record](../deployments/5042002/verification.json), which this review did not modify. No transaction was signed, funded, submitted, or deployed. The detailed prerequisite analysis below retains the earlier September 8, 04:58–05:11 UTC review with its original observations.
+
+## Latest observation and requested deployer
+
+**The requested deployer has 20 testnet USDC. Official Aqua identity on Arc is still unresolved.** The current [1inch contract matrix](https://business.1inch.com/portal/documentation/aqua/reference/contract-addresses) and [verification notes](https://business.1inch.com/portal/documentation/aqua/reference/verified-contract-addresses) independently omit Arc, while the published registry and stock router both returned empty code at the canonical Arc block below. Aqua upstream HEAD remains `9c5c42e5840e8741fba3597c48456c9510212b66`. A bounded absence finding at two published addresses does not prove that no other deployment exists.
+
+Read-only calls used `https://rpc.testnet.arc.io` during `2026-09-08T20:05:24.922Z`–`2026-09-08T20:05:27.565Z`. Account/code/token reads used `{blockHash, requireCanonical: true}`; a repeat block-number lookup returned the same hash.
+
+| Observation | Result |
+| --- | --- |
+| Chain ID | `5042002` |
+| Block number | `61123941` |
+| Block hash | `0xd4b8d5a8ada072b1de758adca803817db4899f057db573204f5239c496099f5a` |
+| Block timestamp | `2026-09-08T20:05:23.000Z` |
+| Block gas limit / base fee | `30,000,000` / `20,000,000,000` native atomic units per gas |
+| Aqua `0x1111113ccf1426a8e30e2bff5e005d929bf6a90a` | `eth_getCode = 0x` |
+| Stock SwapVM `0x111111338c5091e8440b67b168bae16a668ac0de` | `eth_getCode = 0x` |
+| System USDC | `0x3600000000000000000000000000000000000000`, 1,798 runtime bytes, 6 ERC-20 decimals |
+| Requested public deployer | `0x5eBA55e1b43c8714E4432250Dada7A518780C871` |
+| Deployer native balance | `20000000000000000000` raw, **20 USDC** at 18 decimals |
+| Deployer ERC-20 USDC balance | `20000000` raw, **20 USDC** at 6 decimals |
+| Deployer transaction nonce / runtime code | `0` / empty |
+
+The native and ERC-20 observations describe the same USDC inventory; they must not be added into a 40-USDC total. The observed runtime SHA-256 for system USDC remains `d06405421b354a12b2f03fcc8aac4b324f274aed5b8ecc5fd62d8fa119067154`. Its interpretation remains limited to the returned runtime bytes, not a complete proxy/system implementation attestation.
+
+Funds are present for gas, but this read does not prove control of the requested address or sufficient funding for the final deployment graph and subsequent demo. Those depend on user-controlled signing and the actual reviewed gas estimates. No key, signature, balance mutation or faucet request was used to inspect the public address. Deployment tooling can prepare reviewable transactions while the upstream identity prerequisite is resolved; it must not activate Arc writes merely because this account is funded.
+
+## Matching sponsor requirements
+
+The user's screenshot and pasted Privy requirements match the complete [ETHOnline 2026 sponsor matrix](https://ethglobal.com/events/ethonline2026/prizes). Source requirements must come from this event rather than another ETHGlobal event with a similarly named track:
+
+- [1inch Build an Aqua App](https://ethglobal.com/events/ethonline2026/prizes/1inch) requires official Aqua/SwapVM contracts, permits modified SwapVM redeployments, accepts local forks for the transfer demonstration, and requires meaningful Git history. Its wording supplies no explicit Arc-specific Aqua redeployment exception.
+- [Arc Best DeFi/Onchain Finance Application](https://ethglobal.com/events/ethonline2026/prizes/arc) fits Orbital's liquidity and programmable USDC settlement. It calls for a working frontend/backend, architecture diagram, source and demonstration. The separate Launch track adds mainnet deployment/readiness by September 30; a testnet walkthrough alone does not establish that extra requirement.
+- [Privy Best financial flow](https://ethglobal.com/events/ethonline2026/prizes/privy) requires an actual Privy wallet and a working financial flow using a generally available feature. The intended Orbital evidence remains a Privy-wallet swap and swap-funded USDC invoice. Configured login alone is incomplete.
+
+No explicit sponsor or maintainer acceptance of a project-deployed Aqua registry on Arc was located in the inspected official sources. The practical missing input remains an official Arc Aqua address with provenance, or an authenticated exception accepting unmodified Aqua deployment for this network. The generic upstream deployment guide below provides a technical route, not that evidence. The [Arc/Privy runbook](ARC_DEMO.md) separates login-only startup from verified deployment operation.
+
+## Can the upstream deployment guide reproduce the canonical address?
+
+**The guide deploys an unchanged AquaRouter, but its normal command does not reproduce the canonical registry address. The canonical deployment uses a separate, owner-controlled CREATE3 factory.** This follow-up inspected the public Ethereum creation transactions and verified source, then checked the exact factory on Arc. The compact [canonical deployment-route record](../deployments/5042002/canonical-aqua-route-2026-09-09.json) retains the public parameters and independent address calculations. No deployment or code override was performed.
+
+### What the guide actually runs
+
+[`DeployAquaRouter.s.sol`](https://github.com/1inch/aqua/blob/9c5c42e5840e8741fba3597c48456c9510212b66/script/DeployAquaRouter.s.sol) broadcasts a plain `new AquaRouter(owner)`. It specifies neither a factory nor a salt. The resulting CREATE address depends on the signing account and nonce. For the requested wallet at nonce zero, that address is `0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE`, not the canonical Aqua registry. This is the same next CREATE address already reserved by the first Orbital library plan; deploying Aqua with that wallet now would also invalidate that existing plan's nonce predictions.
+
+The [configuration reader](https://github.com/1inch/aqua/blob/9c5c42e5840e8741fba3597c48456c9510212b66/script/utils/Config.sol) requires a nonzero owner at `.owner.5042002`, which the [published configuration](https://github.com/1inch/aqua/blob/9c5c42e5840e8741fba3597c48456c9510212b66/config/constants.json) does not supply. AquaRouter's owner controls rescue functionality; the [constructor](https://github.com/1inch/aqua/blob/9c5c42e5840e8741fba3597c48456c9510212b66/src/AquaRouter.sol) accepts an explicit owner rather than requiring that owner to equal `msg.sender`. The [upstream build settings](https://github.com/1inch/aqua/blob/9c5c42e5840e8741fba3597c48456c9510212b66/foundry.toml) use Solidity 0.8.30, via-IR and 10,000,000 optimizer runs, and do not explicitly pin the EVM target. Orbital's 700-run Cancun build settings cannot be treated as the canonical wrapper's build.
+
+### How the canonical address was produced
+
+The [Ethereum registry creation transaction](https://eth.blockscout.com/tx/0xe37e4dd7e73302a57cbf8ef6cff2424a787df9bf462d69f2de6d149dca43fb1a) calls the factory identified in [1inch's deployment reference](https://business.1inch.com/portal/documentation/aqua/reference/contract-addresses). The explorer's [verified factory source](https://eth.blockscout.com/api/v2/smart-contracts/0x71481C3B9C6FBa3066AE84961EA22378A80cabe7) exposes `deploy(bytes32 salt, bytes code)` under an `onlyOwner` check.
+
+| Parameter | Public value |
+| --- | --- |
+| CREATE3 factory | `0x71481C3B9C6FBa3066AE84961EA22378A80cabe7` |
+| Registry deployment caller | `0x0BD61d605C64A857C3D94779aEf7cA295702b3A2` |
+| Salt | `0x1aaabc7bf2f7000329f7f5000000000000000000000000000000000000000000` |
+| Intermediate CREATE2 proxy | `0x6C51dEc3597cf764906306686b8aebbCc83a188B` |
+| Proxy initcode | `0x67363d3d37363d34f03d5260086018f3` |
+| Proxy's first CREATE result | `0x1111113ccf1426a8e30e2bff5e005d929bf6a90a` |
+| AquaRouter constructor owner | `0x4134e66d52efc4c77dd8ccc952d87b9e92e0c352` |
+| Registry initcode | 5,859 bytes; keccak256 `0xd3488f3a8e4211b34cf9f85777bc239da5f2dc21168b71b6e0c4b34747a827e6` |
+| Verified registry compiler/build | Solidity `0.8.30+commit.73712a01`, 10,000,000 optimizer runs, Prague EVM |
+
+The salt and complete registry initcode are public in the [transaction data](https://eth.blockscout.com/api/v2/transactions/0xe37e4dd7e73302a57cbf8ef6cff2424a787df9bf462d69f2de6d149dca43fb1a). Independent CREATE2-then-CREATE calculations reproduced both the intermediate proxy and canonical registry addresses exactly. CREATE3 decouples the final address from the registry initcode, so recovering this address formula alone does not authenticate the contract deployed there; the exact source, runtime and owner still matter. The [verified AquaRouter record](https://eth.blockscout.com/api/v2/smart-contracts/0x1111113ccf1426a8e30e2bff5e005d929bf6a90a) supplies the build identity above.
+
+The [factory creation transaction](https://eth.blockscout.com/api/v2/transactions/0xb6d1baae2042327077defddd67949a55fa0cb91d8ae5f2ce04ce8ff80583e9c5) was an ordinary CREATE from `0xef3c29bc05a77B266A76f2cEa11d8b8886342e8a` at nonce 0. Its factory constructor initially assigns ownership to `msg.sender`; deployment calls subsequently require the factory owner. The original factory address was independently reproduced from that creator/nonce. Our requested deployment wallet is a different address.
+
+### Concrete Arc route and remaining authority
+
+At Arc block `61126613` (`0x3a4b7d5`), hash `0xc6339c74cd3790567f24980159c1bf3bbd7106c8d35ea393b2e18245338b80e5`, the canonical factory returned **empty code**. The original factory deployer and deployment-hub account each returned nonce 0 using the same canonical block-hash selector. The inspected source does not expose a permissionless route for our wallet to recreate that factory at its required address or bypass `onlyOwner`.
+
+The technically reproducible canonical route is for the original factory deployment account to create the same factory on Arc at nonce 0, then for its owner to call the public salt/initcode deployment, followed by independent registry source/runtime/owner verification. The upstream team may have another authorized bootstrap mechanism, but none was established by this review. The available salt and bytecode solve the address-reproduction question; authority over the required factory deployment account and owner remains the practical missing part.
+
+An ordinary unchanged AquaRouter self-deployment using the guide is technically a different route at a new address. It needs its own correct build/configuration and explicit acceptance for Orbital's official-Aqua requirement. It must not be labeled the existing canonical deployment or silently substituted into the prepared plan.
+
+Suggested maintainer request, **not sent**:
+
+> We are building Orbital with custom SwapVM instructions and USDC settlement on Arc Testnet (chain 5042002). The canonical Aqua registry and CREATE3 factory currently return no code there. Could 1inch deploy the canonical factory/registry on Arc, or provide its authorized bootstrap instructions? If that is unavailable, can you explicitly confirm whether an unchanged Aqua/AquaRouter project deployment on Arc is accepted for the ETHOnline 2026 Aqua track, and specify the expected source revision and ownership configuration?
 
 ## Result
 
@@ -20,7 +97,7 @@ GitHub's current-main commit endpoints were read at `2026-09-08T05:00:00.292Z`. 
 
 Sources: [Aqua HEAD](https://api.github.com/repos/1inch/aqua/commits/main), [SwapVM HEAD](https://api.github.com/repos/1inch/swap-vm/commits/main), [template HEAD](https://api.github.com/repos/1inch/swap-vm-template/commits/main). HEAD endpoints are mutable; the hashes above identify this review.
 
-The Aqua README identifies registry `0x1111113ccf1426a8e30e2bff5e005d929bf6a90a` and stock SwapVM router `0x111111338c5091e8440b67b168bae16a668ac0de` across its supported networks. Arc is absent from that list. An address's deterministic construction does not establish deployment on an omitted network. The stock router would not supply Orbital's custom instructions even if present. [Deployment table](https://github.com/1inch/aqua/blob/9c5c42e5840e8741fba3597c48456c9510212b66/README.md#deployment-addresses)
+The Aqua README identifies registry `0x1111113ccf1426a8e30e2bff5e005d929bf6a90a` and stock SwapVM router `0x111111338c5091e8440b67b168bae16a668ac0de` across its supported networks. Arc is absent from that list. An address's deterministic construction does not establish deployment on an omitted network. The stock router would not supply Orbital's custom instructions even if present. [Deployment table](https://github.com/1inch/aqua/blob/9c5c42e5840e8741fba3597c48456c9510212b66/README.md#deployments)
 
 Two official source examples exist:
 
