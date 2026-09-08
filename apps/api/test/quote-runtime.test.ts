@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {address,hash,manifest} from './strategies-fixture.js';
 import {quoteRuntimeFixture as fixture} from './quote-runtime-fixture.js';
+import {awaitServiceBarrier} from './http-barrier.js';
 const intent={kind:'swap' as const,wallet:address(22),recipient:address(23),tokenIn:address(1),tokenOut:address(3),amountInRaw:'1000000',slippageBps:50,maxCrossings:16};
 test('internal production runtime obtains canonical swap and adapter quote observations through native HTTP batches',async()=>{
  const f=await fixture();try{assert.equal(typeof (f.runtime as any).observeQuote,'function');const result=await (f.runtime as any).observeQuote(f.configured,intent);assert.equal(result.status,'observed');assert.equal(result.financialExecutionEnabled,false);assert.equal(result.data.counts.quoted,6);assert.equal(result.data.best.expiresAt,(f.timestamp+20n).toString());assert.deepEqual(f.requests.map(b=>b.length),[3,8,8,2,6,3]);
@@ -12,7 +13,7 @@ test('internal production runtime obtains canonical swap and adapter quote obser
 test('runtime bounds admitted quote services and shares eight logical RPC slots with existing readers',async()=>{
  let release!:()=>void,reached!:()=>void;const barrier=new Promise<void>(resolve=>{release=resolve;}),arrived=new Promise<void>(resolve=>{reached=resolve;});
  const f=await fixture(async batch=>{if(batch.length===8){reached();await barrier;}});
- try{assert.equal(typeof (f.runtime as any).observeQuote,'function');const first=(f.runtime as any).observeQuote(f.configured,intent);await arrived;
+ try{assert.equal(typeof (f.runtime as any).observeQuote,'function');const first=(f.runtime as any).observeQuote(f.configured,intent);await awaitServiceBarrier(arrived,first);
   await assert.rejects(()=>f.runtime.metricsDependencies.readRpc(f.configured,[{height:'3',hash:hash(3)}]),/RPC_CAPACITY/);
   const second=(f.runtime as any).observeQuote(f.configured,intent),third=await (f.runtime as any).observeQuote(f.configured,intent);assert.equal(third.code,'QUOTE_CAPACITY');assert.equal(third.data,null);assert.equal((await second).data,null);release();assert.equal((await first).status,'observed');
   assert.equal((await (f.runtime as any).observeQuote(f.configured,intent)).status,'observed');
@@ -21,7 +22,7 @@ test('runtime bounds admitted quote services and shares eight logical RPC slots 
 test('runtime shutdown cancels the active batch and never starts later quote work',async()=>{
  let release!:()=>void,reached!:()=>void;const barrier=new Promise<void>(resolve=>{release=resolve;}),arrived=new Promise<void>(resolve=>{reached=resolve;});
  const f=await fixture(async batch=>{if(batch.length===8){reached();await barrier;}});
- try{assert.equal(typeof (f.runtime as any).observeQuote,'function');const pending=(f.runtime as any).observeQuote(f.configured,intent);await arrived;await f.runtime.close();const result=await pending;assert.equal(result.code,'QUOTE_CANCELLED');assert.equal(result.data,null);assert.equal(f.requests.length,2);release();
+ try{assert.equal(typeof (f.runtime as any).observeQuote,'function');const pending=(f.runtime as any).observeQuote(f.configured,intent);await awaitServiceBarrier(arrived,pending);await f.runtime.close();const result=await pending;assert.equal(result.code,'QUOTE_CANCELLED');assert.equal(result.data,null);assert.equal(f.requests.length,2);release();
  }finally{release();await f.close();}
 });
 test('timed-out service admission remains occupied until its pending database transaction has settled',async()=>{

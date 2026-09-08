@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {request as httpRequest} from 'node:http';
+import {requestUntilBarrier,awaitServiceBarrier} from './http-barrier.js';
 import Fastify from 'fastify';
 import {decodePaymentQuoteObservation} from '@orbital/sdk';
 import {registerPaymentQuotes} from '../src/payment-http.js';
@@ -65,7 +65,7 @@ test('the total HTTP deadline bounds both initial and final manifest reads',asyn
   const f=fixture(true),app=Fastify({logger:false});let reached!:()=>void,reads=0;
   const arrived=new Promise<void>(resolve=>{reached=resolve;});
   registerPaymentQuotes(app,async()=>{if(++reads===blockedRead){reached();return new Promise(()=>{});}return f.input.manifest;},async(m,r,o)=>observePaymentQuote(m,r,f.deps,{...o,now:()=>f.now}),()=>f.now);
-  try{const pending=app.inject({method:'POST',url:'/quotes/payment',payload:f.input.request});await arrived;t.mock.timers.tick(20000);const response=await pending;
+  try{const pending=app.inject({method:'POST',url:'/quotes/payment',payload:f.input.request});await awaitServiceBarrier(arrived,pending);t.mock.timers.tick(20000);const response=await pending;
    assert.equal(response.statusCode,504,response.body);assert.equal(response.json().code,'PAYMENT_HTTP_TIMEOUT');assert.equal(response.json().data,null);assert.equal(reads,blockedRead);
   }finally{await app.close();}
  }
@@ -74,8 +74,12 @@ test('a real client disconnect aborts payment reads and subsequent requests reco
  let release!:()=>void,reached!:()=>void;const barrier=new Promise<void>(resolve=>{release=resolve;}),arrived=new Promise<void>(resolve=>{reached=resolve;});let hold=true;
  const f=await paymentRuntimeFixture(async batch=>{if(hold&&batch.length===8){reached();await barrier;}}),app=Fastify({logger:false});
  try{registerPaymentQuotes(app,async()=>f.configured,f.runtime.observePaymentQuote);const base=await app.listen({host:'127.0.0.1',port:0});
-  const req=httpRequest(`${base}/quotes/payment`,{method:'POST',headers:{'content-type':'application/json'}},()=>{});req.on('error',()=>{});req.end(JSON.stringify(f.request));await arrived;req.destroy();
+  const req=await requestUntilBarrier(`${base}/quotes/payment`,f.request,arrived);req.destroy();
   await new Promise(resolve=>setTimeout(resolve,50));assert.equal(f.batches.length,2);hold=false;release();
   const recovered=await app.inject({method:'POST',url:'/api/v1/quotes/payment',payload:f.request});assert.equal(recovered.statusCode,200,recovered.body);assert.equal(decodePaymentQuoteObservation(recovered.json(),200,f.configured,f.request).status,'observed');
  }finally{release();await app.close();await f.close();}
+});
+test('a response before the expected RPC barrier fails with its bounded status/body instead of hanging',async()=>{
+ const app=Fastify({logger:false});registerPaymentQuotes(app,async()=>null,undefined);
+ try{const base=await app.listen({host:'127.0.0.1',port:0});await assert.rejects(requestUntilBarrier(`${base}/quotes/payment`,fixture().input.request,new Promise(()=>{})),/503.*PAYMENT_DEPLOYMENT_UNAVAILABLE/s);}finally{await app.close();}
 });

@@ -14,7 +14,7 @@ test('direct USDC returns exact invoice payment and bounded approval only after 
  assert.equal(r.data.amountInRaw,'100');assert.equal(r.data.amountOutRaw,'100');assert.equal(r.data.minimumOutRaw,'100');assert.equal(r.data.feeRaw,'0');assert.equal(r.data.refundRaw,'0');
  assert.equal(r.data.search,null);assert.equal(r.data.routing,null);assert.equal(r.data.reviewOnly,true);assert.equal(r.financialExecutionEnabled,false);assert.equal(r.paymentEligibilityVerified,false);
  assert.deepEqual(f.calls.map(c=>c.kind),['invoices','identity','context','context','identity','invoices']);
- assert.deepEqual(r.data.work,{identityMembers:6,contextMembers:14,inspectionMembers:0,quoteMembers:0,logicalMembers:20,nativeBatches:4});
+ assert.deepEqual(r.data.work,{identityMembers:6,contextMembers:14,inspectionMembers:0,quoteMembers:0,logicalMembers:20,nativeBatches:4,cacheHitMembers:0,cacheHitBatches:0});
  const plan=decodeFunctionData({abi:paymentsAbi,data:r.data.plan.data});assert.equal(plan.functionName,'payWithUSDC');assert.deepEqual(plan.args,[f.input.request.invoiceId]);
  assert.equal(r.data.approval?.to.toLowerCase(),f.input.manifest.usdc.toLowerCase());assert.equal(r.data.funding.approvalRequired,true);assert.doesNotThrow(()=>JSON.stringify(r));
  f.context.allowanceRaw=100n;const approved=await observe(f);assert.equal(approved.status,'observed');if(approved.status==='observed')assert.equal(approved.data.approval,null);
@@ -126,6 +126,12 @@ test('32 inspections with nine eligible orders can attain the 44-batch bound whi
  f.deps.readBatch=async(...args)=>(await original(...args)).map(row=>args[1].kind==='inspection'&&!eligible.has(row.request.id.split(':')[0]!)?{request:row.request,status:'rejected' as const,reason:'revert' as const}:row);
  const r=await observe(f);assert.equal(r.status,'observed');if(r.status!=='observed')return;
  assert.equal(r.data.amountInRaw,'65536');assert.equal(r.data.search?.stagesUsed,14);assert.equal(r.data.search?.quoteCallsUsed,126);assert.equal(r.data.search?.quoteBatchesUsed,28);
- assert.deepEqual(r.data.work,{identityMembers:6,contextMembers:16,inspectionMembers:96,quoteMembers:126,logicalMembers:244,nativeBatches:44});
+ assert.deepEqual(r.data.work,{identityMembers:6,contextMembers:16,inspectionMembers:96,quoteMembers:126,logicalMembers:244,nativeBatches:44,cacheHitMembers:0,cacheHitBatches:0});
  assert.equal(f.calls.filter(c=>c.members).length,44);assert.equal(f.calls.reduce((n,c)=>n+(c.members??0),0),244);
+});
+test('cache annotations retain planned search limits and duplicate reports fail closed',async()=>{
+ for(const duplicate of [false,true]){const f=fixture(),original=f.deps.readBatch;
+  f.deps.readBatch=async(input,phase,signal,timeout,onCacheHit)=>{if(phase.kind==='quote'){onCacheHit?.();if(duplicate)onCacheHit?.();}return original(input,phase,signal,timeout);};
+  const r=await observe(f);if(duplicate){assert.equal(r.code,'PAYMENT_CACHE_ACCOUNTING_INVALID');assert.equal(r.data,null);}else{assert.equal(r.status,'observed');if(r.status==='observed'){const w=r.data.work;assert.equal(w.cacheHitMembers,w.quoteMembers);assert.equal(w.cacheHitBatches,r.data.search!.quoteBatchesUsed);assert.equal(w.nativeBatches,5);assert.equal(w.nativeBatches+w.cacheHitBatches,f.calls.filter(c=>c.members).length);assert.equal(w.quoteMembers,r.data.search!.quoteCallsUsed);}}
+ }
 });

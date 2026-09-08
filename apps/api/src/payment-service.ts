@@ -16,7 +16,7 @@ export type PaymentQuoteDependencies=QuoteDependencies&{
 type Selection=ReturnType<typeof selectWholeSizeQuotes>;
 type RoutingData=Pick<Selection,'best'|'alternatives'|'counts'|'coverage'|'diagnostics'>;
 export type PaymentSearchSummary=Omit<PaymentSearchResult<RoutingData>,'selected'>;
-export type PaymentWork={identityMembers:number;contextMembers:number;inspectionMembers:number;quoteMembers:number;logicalMembers:number;nativeBatches:number};
+export type PaymentWork={identityMembers:number;contextMembers:number;inspectionMembers:number;quoteMembers:number;logicalMembers:number;nativeBatches:number;cacheHitMembers:number;cacheHitBatches:number};
 export type PaymentWirePlan=Omit<TransactionPlan,'value'>&{value:'0'};
 type ObservationScope={chainId:number;deploymentId:string;asOf:{height:string;hash:string};currentIndexedBlock:{height:string;hash:string};historical:boolean;
  freshness:{indexedAt:string;ageMs:number;head:string;blockTimestamp:string;observedAt:string};coverage:InvoiceReadSnapshot['coverage']&{complete:true}};
@@ -48,7 +48,7 @@ export async function observePaymentQuote(input:DeploymentManifest|null,request:
  options.signal?.addEventListener('abort',abort,{once:true});
  const timer=setTimeout(abort,timeout),now=()=>base+performance.now()-started,indexedTimes:number[]=[];
  let blockTimestamp:bigint|undefined,invoiceDeadline:bigint|undefined;
- const work:PaymentWork={identityMembers:0,contextMembers:0,inspectionMembers:0,quoteMembers:0,logicalMembers:0,nativeBatches:0};
+ const work:PaymentWork={identityMembers:0,contextMembers:0,inspectionMembers:0,quoteMembers:0,logicalMembers:0,nativeBatches:0,cacheHitMembers:0,cacheHitBatches:0};
  function checkpoint(){
   if(options.signal?.aborted)fail('PAYMENT_QUOTE_CANCELLED');
   if(group.signal.aborted||performance.now()-started>=timeout){abort();fail('PAYMENT_QUOTE_TIMEOUT',504);}
@@ -61,7 +61,7 @@ export async function observePaymentQuote(input:DeploymentManifest|null,request:
  function charge(kind:'identityMembers'|'contextMembers'|'inspectionMembers'|'quoteMembers',count:number){
   checkpoint();if(!Number.isInteger(count)||count<1||count>8)fail('PAYMENT_WORK_INVALID');
   work[kind]+=count;work.logicalMembers+=count;work.nativeBatches++;
-  if(work.identityMembers>6||work.contextMembers>16||work.inspectionMembers>96||work.quoteMembers>128||work.logicalMembers>246||work.nativeBatches>44)fail('PAYMENT_WORK_EXCEEDED');
+  if(work.identityMembers>6||work.contextMembers>16||work.inspectionMembers>96||work.quoteMembers>128||work.logicalMembers>246||work.nativeBatches+work.cacheHitBatches>44)fail('PAYMENT_WORK_EXCEEDED');
  }
  async function run<T>(operation:()=>Promise<T>,code:string):Promise<T>{
   checkpoint();let stop:(()=>void)|undefined;
@@ -124,7 +124,8 @@ export async function observePaymentQuote(input:DeploymentManifest|null,request:
       if(!isDeepStrictEqual(ids,eligible))fail('PAYMENT_ELIGIBLE_SET_CHANGED');
       const quotes:StaticReadResult[]=[];
       for(let batchIndex=0;batchIndex<prepared.quoteBatches.length;batchIndex++){const batch=prepared.quoteBatches[batchIndex]!;charge('quoteMembers',batch.length);
-       quotes.push(...complete(batch,await run(()=>deps.readBatch(input,{kind:'quote',batchIndex,observations:inspections},group.signal,rpcBudget()),'PAYMENT_RPC_UNAVAILABLE')));}
+       let hit=false;const onCacheHit=()=>{checkpoint();if(hit)fail('PAYMENT_CACHE_ACCOUNTING_INVALID');hit=true;work.nativeBatches--;work.cacheHitBatches++;work.cacheHitMembers+=batch.length;};
+       quotes.push(...complete(batch,await run(()=>deps.readBatch(input,{kind:'quote',batchIndex,observations:inspections},group.signal,rpcBudget(),onCacheHit),'PAYMENT_RPC_UNAVAILABLE')));}
       const selected=selectWholeSizeQuotes(input,inspections,quotes),quoted=new Set(selected.diagnostics.filter(d=>d.code==='QUOTED').map(d=>d.orderHash));
       const value:RoutingData={best:selected.best,alternatives:selected.alternatives,counts:selected.counts,coverage:selected.coverage,diagnostics:selected.diagnostics};
       return {outcomes:eligible.map(orderHash=>({orderHash,status:quoted.has(orderHash)?'quoted' as const:'unavailable' as const})),value:selected.best?value:null};

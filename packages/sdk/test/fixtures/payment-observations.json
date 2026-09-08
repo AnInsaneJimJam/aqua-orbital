@@ -61,10 +61,10 @@
       "historical": false,
       "freshness": {
         "indexedAt": "2023-11-14T22:13:23.000Z",
-        "ageMs": 25,
+        "ageMs": 29,
         "head": "5",
         "blockTimestamp": "1700000003",
-        "observedAt": "2023-11-14T22:13:23.024Z"
+        "observedAt": "2023-11-14T22:13:23.028Z"
       },
       "coverage": {
         "fromBlock": "1",
@@ -154,7 +154,9 @@
           "inspectionMembers": 0,
           "quoteMembers": 0,
           "logicalMembers": 20,
-          "nativeBatches": 4
+          "nativeBatches": 4,
+          "cacheHitMembers": 0,
+          "cacheHitBatches": 0
         },
         "reviewOnly": true,
         "plan": {
@@ -242,10 +244,10 @@
       "historical": false,
       "freshness": {
         "indexedAt": "2023-11-14T22:13:23.000Z",
-        "ageMs": 368,
+        "ageMs": 436,
         "head": "5",
         "blockTimestamp": "1700000003",
-        "observedAt": "2023-11-14T22:13:23.367Z"
+        "observedAt": "2023-11-14T22:13:23.435Z"
       },
       "coverage": {
         "fromBlock": "1",
@@ -494,7 +496,9 @@
           "inspectionMembers": 6,
           "quoteMembers": 18,
           "logicalMembers": 46,
-          "nativeBatches": 14
+          "nativeBatches": 14,
+          "cacheHitMembers": 0,
+          "cacheHitBatches": 0
         },
         "reviewOnly": true,
         "plan": {
@@ -584,10 +588,10 @@
       "historical": false,
       "freshness": {
         "indexedAt": "2023-11-14T22:13:23.000Z",
-        "ageMs": 1,
+        "ageMs": 2,
         "head": "5",
         "blockTimestamp": "1700000003",
-        "observedAt": "2023-11-14T22:13:23.000Z"
+        "observedAt": "2023-11-14T22:13:23.001Z"
       },
       "coverage": {
         "fromBlock": "1",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-08T12:12:27.145Z",
+  "generatedAt": "2026-09-08T12:56:12.424Z",
   "items": [
     {
       "id": "reference",
@@ -17,7 +17,7 @@
       "id": "sdk",
       "label": "SDK transaction plans and recovery",
       "status": "verified",
-      "detail": "89 recorded fixture tests for local calldata construction, review validation and wallet execution recovery. No live wallet transaction is claimed."
+      "detail": "92 recorded fixture tests for local calldata construction, review validation and wallet execution recovery. No live wallet transaction is claimed."
     },
     {
       "id": "indexer",
@@ -29,7 +29,7 @@
       "id": "api",
       "label": "Canonical read API and recovery",
       "status": "verified",
-      "detail": "195 recorded local API tests, including receipt metrics, pinned invoice reads, registered strategy financial observations, coverage checks and readiness/recovery. These use database/RPC fixtures and do not establish live Arc activity or financial eligibility."
+      "detail": "210 recorded local API tests, including receipt metrics, pinned invoice reads, registered strategy financial observations, coverage checks and readiness/recovery. These use database/RPC fixtures and do not establish live Arc activity or financial eligibility."
     },
     {
       "id": "engine",

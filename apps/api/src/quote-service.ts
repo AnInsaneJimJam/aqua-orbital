@@ -5,7 +5,7 @@ import {prepareRouting,prepareWholeSizeQuotes,selectWholeSizeQuotes,validateRout
 import type {QuoteRpcPhase} from './quote-rpc.js';
 import {readinessDeploymentScope} from './deployment-scope.js';
 export type QuoteIdentity={chainId:number;head:bigint;block:{height:string;hash:string;timestamp:bigint}};
-export type QuoteDependencies={readDatabase(manifest:DeploymentManifest,query:StrategyReadQuery):Promise<StrategyReadSnapshot>;readIdentity(manifest:DeploymentManifest,pin:{height:string;hash:string},signal:AbortSignal,timeoutMs:number):Promise<QuoteIdentity>;readBatch(input:RoutingInput,phase:QuoteRpcPhase,signal:AbortSignal,timeoutMs:number):Promise<StaticReadResult[]>};
+export type QuoteDependencies={readDatabase(manifest:DeploymentManifest,query:StrategyReadQuery):Promise<StrategyReadSnapshot>;readIdentity(manifest:DeploymentManifest,pin:{height:string;hash:string},signal:AbortSignal,timeoutMs:number):Promise<QuoteIdentity>;readBatch(input:RoutingInput,phase:QuoteRpcPhase,signal:AbortSignal,timeoutMs:number,onCacheHit?:()=>void):Promise<StaticReadResult[]>};
 export type QuoteOptions={signal?:AbortSignal;now?:()=>number;timeoutMs?:number};
 type Selection=ReturnType<typeof selectWholeSizeQuotes>;
 type QuoteData=Pick<Selection,'best'|'alternatives'|'counts'|'coverage'|'diagnostics'>;

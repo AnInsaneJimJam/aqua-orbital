@@ -1,0 +1,326 @@
+TAP version 13
+# Subtest: both public aliases expose validated direct/swap observations with exact unsigned review plans
+ok 1 - both public aliases expose validated direct/swap observations with exact unsigned review plans
+  ---
+  duration_ms: 2283.5118
+  type: 'test'
+  ...
+# Subtest: invalid public fields and query parameters fail before discovery or wallet/contract reads
+ok 2 - invalid public fields and query parameters fail before discovery or wallet/contract reads
+  ---
+  duration_ms: 26.1567
+  type: 'test'
+  ...
+# Subtest: canonical absence retains verified scope while funding failure uses a bounded unavailable envelope
+ok 3 - canonical absence retains verified scope while funding failure uses a bounded unavailable envelope
+  ---
+  duration_ms: 47.5504
+  type: 'test'
+  ...
+# Subtest: final deployment replacement or clock expiry cannot publish a completed observation
+ok 4 - final deployment replacement or clock expiry cannot publish a completed observation
+  ---
+  duration_ms: 52.7455
+  type: 'test'
+  ...
+# Subtest: malformed service plans are rejected by the HTTP/SDK boundary before publication
+ok 5 - malformed service plans are rejected by the HTTP/SDK boundary before publication
+  ---
+  duration_ms: 24.0233
+  type: 'test'
+  ...
+# Subtest: all swap/payment aliases consume one per-IP rate budget
+ok 6 - all swap/payment aliases consume one per-IP rate budget
+  ---
+  duration_ms: 27.8127
+  type: 'test'
+  ...
+# Subtest: real native RPC and PostgreSQL payment runtime is compatible with both public response and SDK validation
+ok 7 - real native RPC and PostgreSQL payment runtime is compatible with both public response and SDK validation
+  ---
+  duration_ms: 1862.1817
+  type: 'test'
+  ...
+# (node:25408) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: production registration supplies both aliases and structured no-store body-limit failures
+ok 8 - production registration supplies both aliases and structured no-store body-limit failures
+  ---
+  duration_ms: 84.9004
+  type: 'test'
+  ...
+# Subtest: the total HTTP deadline bounds both initial and final manifest reads
+ok 9 - the total HTTP deadline bounds both initial and final manifest reads
+  ---
+  duration_ms: 48.7171
+  type: 'test'
+  ...
+# Subtest: a real client disconnect aborts payment reads and subsequent requests recover shared capacity
+ok 10 - a real client disconnect aborts payment reads and subsequent requests recover shared capacity
+  ---
+  duration_ms: 1482.6367
+  type: 'test'
+  ...
+# Subtest: production payment runtime composes canonical PostgreSQL records and complete native RPC batches for direct and swap funding
+ok 11 - production payment runtime composes canonical PostgreSQL records and complete native RPC batches for direct and swap funding
+  ---
+  duration_ms: 2509.5671
+  type: 'test'
+  ...
+# Subtest: payment and swap share two admission slots until cancelled PostgreSQL work releases its clients
+ok 12 - payment and swap share two admission slots until cancelled PostgreSQL work releases its clients
+  ---
+  duration_ms: 1631.8013
+  type: 'test'
+  ...
+# Subtest: payment context shares the eight weighted RPC slots with other readers and releases them for recovery
+ok 13 - payment context shares the eight weighted RPC slots with other readers and releases them for recovery
+  ---
+  duration_ms: 2149.216
+  type: 'test'
+  ...
+# Subtest: runtime shutdown cancels a payment context and starts no later search batches
+ok 14 - runtime shutdown cancels a payment context and starts no later search batches
+  ---
+  duration_ms: 941.0663
+  type: 'test'
+  ...
+# Subtest: direct USDC returns exact invoice payment and bounded approval only after both context and canonical rechecks
+ok 15 - direct USDC returns exact invoice payment and bounded approval only after both context and canonical rechecks
+  ---
+  duration_ms: 160.2352
+  type: 'test'
+  ...
+# Subtest: swap search uses one candidate/inspection set and exact adapter traits; retained quote and unsigned plan agree
+ok 16 - swap search uses one candidate/inspection set and exact adapter traits; retained quote and unsigned plan agree
+  ---
+  duration_ms: 766.3437
+  type: 'test'
+  ...
+# Subtest: all 32 eligible orders stay below aggregate limits and unsuccessful discovery is unavailable, never insufficient liquidity
+ok 17 - all 32 eligible orders stay below aggregate limits and unsuccessful discovery is unavailable, never insufficient liquidity
+  ---
+  duration_ms: 5659.2363
+  type: 'test'
+  ...
+# Subtest: initial malformed source, request or configuration never starts quote work
+ok 18 - initial malformed source, request or configuration never starts quote work
+  ---
+  duration_ms: 51.4744
+  type: 'test'
+  ...
+# Subtest: only complete canonically rechecked indexed absence returns 404; getter failures return unavailable
+ok 19 - only complete canonically rechecked indexed absence returns 404; getter failures return unavailable
+  ---
+  duration_ms: 25.8564
+  type: 'test'
+  ...
+# Subtest: changed final context, invoice source, candidate source or canonical identity discards every retained quote
+ok 20 - changed final context, invoice source, candidate source or canonical identity discards every retained quote
+  ---
+  duration_ms: 2055.9907
+  type: 'test'
+  ...
+# Subtest: ordinary confirmed tip advancement retains the original pin only when both final database scopes match the new head
+ok 21 - ordinary confirmed tip advancement retains the original pin only when both final database scopes match the new head
+  ---
+  duration_ms: 294.9523
+  type: 'test'
+  ...
+# Subtest: incomplete quote batches, non-EVM failures and late transport failure cannot return an earlier sufficient stage
+ok 22 - incomplete quote batches, non-EVM failures and late transport failure cannot return an earlier sufficient stage
+  ---
+  duration_ms: 299.2451
+  type: 'test'
+  ...
+# Subtest: a matching terminal invoice or exact direct funding deficit returns its specific conflict after final checks
+ok 23 - a matching terminal invoice or exact direct funding deficit returns its specific conflict after final checks
+  ---
+  duration_ms: 42.9007
+  type: 'test'
+  ...
+# Subtest: cancellation or the single total timeout interrupts stalled dependencies and removes listeners
+ok 24 - cancellation or the single total timeout interrupts stalled dependencies and removes listeners
+  ---
+  duration_ms: 150.5314
+  type: 'test'
+  ...
+# Subtest: expiry and index freshness are checked again after slow final database work
+ok 25 - expiry and index freshness are checked again after slow final database work
+  ---
+  duration_ms: 334.2898
+  type: 'test'
+  ...
+# Subtest: optional refinement yields to final checks under one short remaining budget
+ok 26 - optional refinement yields to final checks under one short remaining budget
+  ---
+  duration_ms: 83.5114
+  type: 'test'
+  ...
+# Subtest: 32 inspections with nine eligible orders can attain the 44-batch bound while retaining a sufficient cap quote
+not ok 27 - 32 inspections with nine eligible orders can attain the 44-batch bound while retaining a sufficient cap quote
+  ---
+  duration_ms: 4522.2916
+  type: 'test'
+  location: 'C:\\Users\\gujja\\aqua-orbital\\apps\\api\\test\\payment-service.test.ts:122:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+    +   cacheHitBatches: 0,
+    +   cacheHitMembers: 0,
+        contextMembers: 16,
+        identityMembers: 6,
+        inspectionMembers: 96,
+        logicalMembers: 244,
+        nativeBatches: 44,
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    identityMembers: 6
+    contextMembers: 16
+    inspectionMembers: 96
+    quoteMembers: 126
+    logicalMembers: 244
+    nativeBatches: 44
+  actual:
+    identityMembers: 6
+    contextMembers: 16
+    inspectionMembers: 96
+    quoteMembers: 126
+    logicalMembers: 244
+    nativeBatches: 44
+    cacheHitMembers: 0
+    cacheHitBatches: 0
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\gujja\aqua-orbital\apps\api\test\payment-service.test.ts:129:9)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: runtime retains quote batches across observations but repeats all identity and inspection reads
+ok 28 - runtime retains quote batches across observations but repeats all identity and inspection reads
+  ---
+  duration_ms: 1804.3261
+  type: 'test'
+  ...
+# Subtest: payment cache hits preserve exact plans and report actual native work while payer context stays fresh
+ok 29 - payment cache hits preserve exact plans and report actual native work while payer context stays fresh
+  ---
+  duration_ms: 2877.804
+  type: 'test'
+  ...
+# Subtest: warm quotes cannot bypass final canonical identity or resync-required database coverage
+ok 30 - warm quotes cannot bypass final canonical identity or resync-required database coverage
+  ---
+  duration_ms: 1223.036
+  type: 'test'
+  ...
+# Subtest: identity is one reserved native three-read batch with mandatory canonical timestamp
+ok 31 - identity is one reserved native three-read batch with mandatory canonical timestamp
+  ---
+  duration_ms: 24.0139
+  type: 'test'
+  ...
+# Subtest: inspection batches are regenerated, bounded to eight, hash pinned and returned in planned order
+ok 32 - inspection batches are regenerated, bounded to eight, hash pinned and returned in planned order
+  ---
+  duration_ms: 96.4502
+  type: 'test'
+  ...
+# Subtest: quote phase regenerates complete calldata from inspected state and preserves payment adapter caller
+ok 33 - quote phase regenerates complete calldata from inspected state and preserves payment adapter caller
+  ---
+  duration_ms: 59.3397
+  type: 'test'
+  ...
+# Subtest: invalid input, phase, pin, configuration and cancelled work never reserve or fetch
+ok 34 - invalid input, phase, pin, configuration and cancelled work never reserve or fetch
+  ---
+  duration_ms: 73.702
+  type: 'test'
+  ...
+# Subtest: reservation failure makes no request and does not release capacity it never acquired
+ok 35 - reservation failure makes no request and does not release capacity it never acquired
+  ---
+  duration_ms: 1.8784
+  type: 'test'
+  ...
+# Subtest: wrong chain, noncanonical quantities, missing timestamp, wrong hash and shallow head fail closed
+ok 36 - wrong chain, noncanonical quantities, missing timestamp, wrong hash and shallow head fail closed
+  ---
+  duration_ms: 16.1429
+  type: 'test'
+  ...
+# Subtest: missing, duplicate, unknown and mistyped IDs or malformed envelopes reject the whole batch without retry
+ok 37 - missing, duplicate, unknown and mistyped IDs or malformed envelopes reject the whole batch without retry
+  ---
+  duration_ms: 12.6817
+  type: 'test'
+  ...
+# Subtest: only explicit EVM reverts are per-call failures, with no remote error details returned
+ok 38 - only explicit EVM reverts are per-call failures, with no remote error details returned
+  ---
+  duration_ms: 34.6447
+  type: 'test'
+  ...
+# Subtest: nonhex, odd hex, malformed JSON and invalid UTF8 never become partial observations
+ok 39 - nonhex, odd hex, malformed JSON and invalid UTF8 never become partial observations
+  ---
+  duration_ms: 15.1286
+  type: 'test'
+  ...
+# Subtest: aggregate stream and per-result byte limits reject oversized responses before observations escape
+ok 40 - aggregate stream and per-result byte limits reject oversized responses before observations escape
+  ---
+  duration_ms: 33.6207
+  type: 'test'
+  ...
+# Subtest: only transport failures retry twice under one reservation and native batch identity is stable
+ok 41 - only transport failures retry twice under one reservation and native batch identity is stable
+  ---
+  duration_ms: 1007.6326
+  type: 'test'
+  ...
+# Subtest: stalled fetch and streamed body deadlines abort native work and always release capacity
+ok 42 - stalled fetch and streamed body deadlines abort native work and always release capacity
+  ---
+  duration_ms: 65.4187
+  type: 'test'
+  ...
+# Subtest: caller and shutdown cancellation interrupt retries and remove listeners for later work
+ok 43 - caller and shutdown cancellation interrupt retries and remove listeners for later work
+  ---
+  duration_ms: 67.3264
+  type: 'test'
+  ...
+# Subtest: ready empty chunks cannot starve the monotonic body deadline
+ok 44 - ready empty chunks cannot starve the monotonic body deadline
+  ---
+  duration_ms: 5.6345
+  type: 'test'
+  ...
+# Subtest: one short total timeout also covers retry wait and rejects invalid deadlines before reservation
+ok 45 - one short total timeout also covers retry wait and rejects invalid deadlines before reservation
+  ---
+  duration_ms: 42.3197
+  type: 'test'
+  ...
+# Subtest: actual localhost JSON-RPC supports native identity and inspection arrays with unordered responses
+ok 46 - actual localhost JSON-RPC supports native identity and inspection arrays with unordered responses
+  ---
+  duration_ms: 84.7392
+  type: 'test'
+  ...
+1..46
+# tests 46
+# suites 0
+# pass 45
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 68452.0912

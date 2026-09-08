@@ -1,7 +1,11 @@
 import {manifestSchema,hashSchema,uintSchema,type DeploymentManifest} from '@orbital/shared';
+import {createHash} from 'node:crypto';
+import {decodeFunctionResult,encodeFunctionResult,type Hex} from 'viem';
+import {routerAbi} from '@orbital/sdk';
 import {prepareRouting,prepareWholeSizeQuotes,type RoutingInput,type StaticReadCall,type StaticReadResult} from './route-selection.js';
 import {preparePaymentContext,decodePaymentContext,type PaymentContextInput,type PaymentContext} from './payment-context.js';
-export type QuoteRpcOptions={reserve:(weight:number)=>()=>void;shutdownSignal:AbortSignal;signal?:AbortSignal;fetcher?:typeof fetch;timeoutMs?:number};
+import type {QuoteCache} from './quote-cache.js';
+export type QuoteRpcOptions={reserve:(weight:number)=>()=>void;shutdownSignal:AbortSignal;signal?:AbortSignal;fetcher?:typeof fetch;timeoutMs?:number;cache?:QuoteCache;onCacheHit?:()=>void};
 export type QuoteRpcPhase={kind:'inspection';batchIndex:number}|{kind:'quote';batchIndex:number;observations:StaticReadResult[]};
 type Request={id:string|number;method:string;params:unknown[]};
 type Reply={result:unknown;reverted:false}|{reverted:true};
@@ -131,10 +135,37 @@ export async function readQuoteBatch(input:RoutingInput,phase:QuoteRpcPhase,opti
   ||Object.keys(phase).sort().join()!==(phase.kind==='inspection'?'batchIndex,kind':'batchIndex,kind,observations'))return fail('RPC_INPUT_INVALID');
  const plans=phase.kind==='inspection'?prepareRouting(input).batches:prepareWholeSizeQuotes(input,phase.observations).quoteBatches;
  const requests:StaticReadCall[]|undefined=plans[phase.batchIndex];if(!requests)return fail('RPC_INPUT_INVALID');
- return batch(manifest.rpcUrl,requests,true,options,end,values=>values.map((v,index):StaticReadResult=>{
+ const active=()=>{check(options.shutdownSignal,end);if(options.signal)check(options.signal,end);};
+ let key:string|undefined;
+ if(phase.kind==='quote'&&options.cache){
+  const orders=new Set(requests.map(r=>r.id.split(':')[0]!));
+  // Full exact call bytes bind pair/amount/caller/recipient/minimum/deadline and
+  // crossing limit. Intent additionally binds payer and swap slippage. Fresh
+  // canonical getters and explicit record versions bind the inspected state.
+  key=createHash('sha256').update(JSON.stringify({schemaVersion:1,manifest,pin:input.snapshot.asOf,timestamp:input.blockTimestamp,intent:input.intent,requests,
+   versions:input.snapshot.items!.filter(r=>orders.has(r.orderHash)).map(r=>[r.orderHash,r.version]).sort(),
+   inspections:phase.observations.filter(r=>orders.has(r.request.id.split(':')[0]!)).map(r=>[r.request.id,r.status==='fulfilled'?r.data.toLowerCase():null]).sort(),
+  })).digest('hex');
+  active();const cached=options.cache.get(key);active();
+  if(cached&&cached.length===requests.length){options.onCacheHit?.();active();return requests.map((request,i)=>({request,status:'fulfilled',data:cached[i]!}));}
+ }
+ active();const stamp=key?options.cache!.begin():null;
+ const result=await batch(manifest.rpcUrl,requests,true,options,end,values=>values.map((v,index):StaticReadResult=>{
   const request=requests[index]!;if(v.reverted)return {request,status:'rejected',reason:'revert'};
   if(!hex(v.result))return fail();return {request,status:'fulfilled',data:v.result};
  }));
+ active();
+ if(key){
+  // Do not retain reverts, malformed ABI, partial fills or empty quotes. The
+  // pure core still checks minimum/output availability on every cache hit.
+  const values:string[]=[];
+  try{for(const row of result){if(row.status!=='fulfilled')throw Error();const decoded=decodeFunctionResult({abi:routerAbi,functionName:'quote',data:row.data as Hex});
+   if(encodeFunctionResult({abi:routerAbi,functionName:'quote',result:decoded}).toLowerCase()!==row.data.toLowerCase()||decoded[0]!==BigInt(input.intent.amountInRaw)||decoded[1]===0n||decoded[2].toLowerCase()!==row.request.id.split(':')[0]!.toLowerCase())throw Error();
+   values.push(row.data.toLowerCase());
+  }}catch{values.length=0;}
+  active();if(values.length===requests.length)options.cache!.put(key,stamp,values);
+ }
+ return result;
 }
 
 /** One internally generated context batch, under the same weighted capacity,

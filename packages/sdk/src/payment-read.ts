@@ -4,6 +4,7 @@ import {decodeInvoiceDetail} from './invoice-read';
 import {buildOrder,feeIn,hashConfig,hashOrder} from './codec';
 import {configFromDTO} from './dto';
 import {buildPaymentTx,validateTransactionPlan,type PaymentInput,type InvoiceSnapshot,type PlanContext} from './plans';
+import {validPaymentCacheCounts} from './payment-cache-counts';
 
 const same=(a:string,b:string)=>a.toLowerCase()===b.toLowerCase();
 const invalid=():never=>{throw Error('Invalid payment quote observation');};
@@ -46,7 +47,7 @@ export function decodePaymentQuoteObservation(input:unknown,httpStatus:number,co
  const w=d.work;
  if(w.logicalMembers!==w.identityMembers+w.contextMembers+w.inspectionMembers+w.quoteMembers)return invalid();
  if(direct){
-  if(d.routing!==null||d.search!==null||amount!==due||output!==due||d.feeRaw!=='0'||d.refundRaw!=='0'||w.contextMembers!==14||w.inspectionMembers!==0||w.quoteMembers!==0||w.logicalMembers!==20||w.nativeBatches!==4)return invalid();
+  if(d.routing!==null||d.search!==null||amount!==due||output!==due||d.feeRaw!=='0'||d.refundRaw!=='0'||w.contextMembers!==14||w.inspectionMembers!==0||w.quoteMembers!==0||w.logicalMembers!==20||w.nativeBatches!==4||w.cacheHitMembers!==0||w.cacheHitBatches!==0)return invalid();
  }else{
   if(!d.routing||!d.search)return invalid();
   const routing=d.routing,search=d.search,c=routing.counts,diagnostics=routing.diagnostics,E=c.eligible,stages=search.stagesUsed;
@@ -66,7 +67,8 @@ export function decodePaymentQuoteObservation(input:unknown,httpStatus:number,co
    ||stages!==search.expansionStages+search.refinementStages||search.expansionStages>Math.min(8,stageCap)||stages>stageCap||search.quoteCallsUsed!==E*stages||search.quoteBatchesUsed!==stages*Math.ceil(E/8)
    ||(search.stopReason==='aggregate_limit'&&stages!==stageCap)||(search.stopReason==='refinement_limit'&&search.refinementStages!==8)
    ||(search.stopReason==='refinement_skipped'&&(stages===stageCap||search.refinementStages===8))
-   ||w.contextMembers!==16||w.inspectionMembers!==3*c.inspected||w.quoteMembers!==search.quoteCallsUsed||w.nativeBatches!==4+Math.ceil(w.inspectionMembers/8)+search.quoteBatchesUsed)return invalid();
+   ||w.contextMembers!==16||w.inspectionMembers!==3*c.inspected||w.quoteMembers!==search.quoteCallsUsed||w.nativeBatches+w.cacheHitBatches!==4+Math.ceil(w.inspectionMembers/8)+search.quoteBatchesUsed)return invalid();
+  if(!validPaymentCacheCounts(E,stages,w.cacheHitMembers,w.cacheHitBatches))return invalid();
   const routes=[routing.best,...routing.alternatives];if(new Set(routes.map(r=>r.orderHash.toLowerCase())).size!==routes.length)return invalid();
   for(let index=0;index<routes.length;index++){
    const route=routes[index]!,config=configFromDTO(route.config),order=buildOrder(config),gross=BigInt(route.amountInRaw),out=BigInt(route.amountOutRaw);

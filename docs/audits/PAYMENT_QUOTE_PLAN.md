@@ -3,8 +3,8 @@
 **Current implementation status, 2026-09-08:** the strict request, generated read
 ABI, invoice/funding validation, bounded search, canonical service/final checks,
 shared runtime/HTTP admission, public aliases and unsigned-plan SDK decoder are
-implemented and tested. Quote caching and wallet transaction integration remain
-unfinished. [Current evidence](../../test/evidence/payment-endpoint.md) and
+implemented and tested. A bounded exact-context quote cache is also integrated;
+wallet transaction integration remains unfinished. [Current cache evidence](../../test/evidence/quote-cache.md), [endpoint evidence](../../test/evidence/payment-endpoint.md) and
 [search policy](PAYMENT_SEARCH_POLICY.md) supersede the original implementation
 status and proposed larger work ceilings below. The 8/8, 16-stage, 128-member
 policy stays within the master specification's maxima.

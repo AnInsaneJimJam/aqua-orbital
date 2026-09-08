@@ -164,7 +164,7 @@ export const paymentQuoteObservedSchema=z.object({schemaVersion:z.literal(1),sta
  data:z.object({request:paymentQuoteRequestSchema,kind:z.enum(['direct','swap']),invoice:invoiceReadSchema,tokenIn:tokenSchema,amountInRaw:quotePositiveUint,amountOutRaw:quotePositiveUint,minimumOutRaw:quotePositiveUint,feeRaw:uintSchema,refundRaw:uintSchema,expiresAt:uint40Schema,
   funding:z.object({balanceRaw:uintSchema,allowanceRaw:uintSchema,boundRaw:uintSchema,spender:nonzeroAddressSchema,approvalRequired:z.boolean()}).strict(),
   routing:paymentRoutingSchema.nullable(),search:paymentSearchSchema.nullable(),
-  work:z.object({identityMembers:z.literal(6),contextMembers:quoteCount(16),inspectionMembers:quoteCount(96),quoteMembers:quoteCount(128),logicalMembers:quoteCount(246),nativeBatches:quoteCount(44)}).strict(),
+  work:z.object({identityMembers:z.literal(6),contextMembers:quoteCount(16),inspectionMembers:quoteCount(96),quoteMembers:quoteCount(128),logicalMembers:quoteCount(246),nativeBatches:quoteCount(44),cacheHitMembers:quoteCount(128),cacheHitBatches:quoteCount(28)}).strict(),
   reviewOnly:z.literal(true),plan:paymentPlanSchema,approval:paymentPlanSchema.nullable(),
  }).strict(),
 }).strict();

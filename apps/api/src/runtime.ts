@@ -13,11 +13,13 @@ import {observeQuote as observeQuoteService,type QuoteDependencies,type QuoteOpt
 import type {RoutingIntent} from './route-selection.js';
 import type {DeploymentManifest,PaymentQuoteRequest} from '@orbital/shared';
 import {observePaymentQuote as observePaymentQuoteService,paymentUnavailable,type PaymentQuoteDependencies} from './payment-service.js';
+import {createQuoteCache} from './quote-cache.js';
 
 export function createReadDependencies(databaseUrl: string) {
   const pool = new pg.Pool({connectionString: databaseUrl, max: 4, connectionTimeoutMillis: 3000, query_timeout: 3000, statement_timeout: 3000});
   pool.on('error', () => {}); // A later readiness read reports the failure without leaking connection details.
   const shutdown = new AbortController();
+  const quoteCache=createQuoteCache();
   let activeRpcRequests = 0;
   let activeQuoteServices=0,closing:Promise<void>|undefined;
   const reserveRpc=(weight:number)=>{
@@ -126,7 +128,7 @@ export function createReadDependencies(databaseUrl: string) {
   const quoteDependencies:QuoteDependencies={
     readDatabase:(manifest,query)=>strategyDependencies.readDatabase(manifest,query),
     readIdentity:(manifest,pin,signal,timeoutMs)=>readQuoteIdentity(manifest,pin,{reserve:reserveRpc,shutdownSignal:shutdown.signal,signal,timeoutMs}),
-    readBatch:(input,phase,signal,timeoutMs)=>readQuoteBatch(input,phase,{reserve:reserveRpc,shutdownSignal:shutdown.signal,signal,timeoutMs}),
+    readBatch:(input,phase,signal,timeoutMs,onCacheHit)=>readQuoteBatch(input,phase,{reserve:reserveRpc,shutdownSignal:shutdown.signal,signal,timeoutMs,cache:quoteCache,...(onCacheHit?{onCacheHit}:{})}),
   };
   function quoteLease(options:QuoteOptions){
     activeQuoteServices++;
@@ -162,5 +164,5 @@ export function createReadDependencies(databaseUrl: string) {
     try{return await observePaymentQuoteService(manifest,request,serviceDependencies,{...options,signal:lease.signal});}
     finally{lease.release();}
   }
-  return {dependencies, metricsDependencies, invoiceDependencies, strategyDependencies, observeQuote, observePaymentQuote, close: () => { shutdown.abort(); return closing??=pool.end(); }};
+  return {dependencies, metricsDependencies, invoiceDependencies, strategyDependencies, observeQuote, observePaymentQuote, close: () => { shutdown.abort(); quoteCache.clear(); return closing??=pool.end(); }};
 }

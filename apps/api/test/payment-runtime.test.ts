@@ -5,6 +5,7 @@ import {address,hash} from './strategies-fixture.js';
 import type {PaymentQuoteRequest} from '@orbital/shared';
 import type {PaymentQuoteObservation,PaymentQuoteUnavailable} from '../src/payment-service.js';
 import type {QuoteOptions} from '../src/quote-service.js';
+import {awaitServiceBarrier} from './http-barrier.js';
 
 const read=(f:Awaited<ReturnType<typeof fixture>>,request=f.request,options?:QuoteOptions)=>(f.runtime as typeof f.runtime&{observePaymentQuote:(manifest:typeof f.configured,request:PaymentQuoteRequest,options?:QuoteOptions)=>Promise<PaymentQuoteObservation|PaymentQuoteUnavailable>}).observePaymentQuote(f.configured,request,options);
 const swap={kind:'swap' as const,wallet:address(22),recipient:address(23),tokenIn:address(2),tokenOut:address(1),amountInRaw:'200',slippageBps:50,maxCrossings:16};
@@ -33,7 +34,7 @@ test('payment and swap share two admission slots until cancelled PostgreSQL work
 test('payment context shares the eight weighted RPC slots with other readers and releases them for recovery',async()=>{
  let reached!:()=>void,release!:()=>void;const arrived=new Promise<void>(resolve=>{reached=resolve;}),barrier=new Promise<void>(resolve=>{release=resolve;});
  const f=await fixture(async batch=>{if(batch.length===8){reached();await barrier;}});try{
-  const pending=read(f);await arrived;await assert.rejects(f.runtime.metricsDependencies.readRpc(f.configured,[{height:'3',hash:hash(3)}]),/RPC_CAPACITY/);
+  const pending=read(f);await awaitServiceBarrier(arrived,pending);await assert.rejects(f.runtime.metricsDependencies.readRpc(f.configured,[{height:'3',hash:hash(3)}]),/RPC_CAPACITY/);
   const second=await read(f);assert.equal(second.code,'PAYMENT_QUOTE_CAPACITY');assert.equal(second.httpStatus,429);release();assert.equal((await pending).status,'observed');assert.equal((await read(f)).status,'observed');
  }finally{release();await f.close();}
 });
@@ -41,6 +42,6 @@ test('payment context shares the eight weighted RPC slots with other readers and
 test('runtime shutdown cancels a payment context and starts no later search batches',async()=>{
  let reached!:()=>void,release!:()=>void;const arrived=new Promise<void>(resolve=>{reached=resolve;}),barrier=new Promise<void>(resolve=>{release=resolve;});
  const f=await fixture(async batch=>{if(batch.length===8){reached();await barrier;}});try{
-  const pending=read(f);await arrived;await f.runtime.close();const result=await pending;assert.equal(result.code,'PAYMENT_QUOTE_CANCELLED');assert.equal(result.data,null);assert.equal(f.batches.length,2);
+  const pending=read(f);await awaitServiceBarrier(arrived,pending);await f.runtime.close();const result=await pending;assert.equal(result.code,'PAYMENT_QUOTE_CANCELLED');assert.equal(result.data,null);assert.equal(f.batches.length,2);
  }finally{release();await f.close();}
 });

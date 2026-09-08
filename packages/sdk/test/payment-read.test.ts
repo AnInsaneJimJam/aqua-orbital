@@ -40,6 +40,12 @@ test('an eligible quote can exceed live output funding while another retained ro
  routing.diagnostics.find((d:any)=>d.orderHash===other).code='OUTPUT_UNAVAILABLE';
  assert.equal(decode(f).status,'observed');
 });
+test('cache counters distinguish saved work from actual native batches with exact stage arithmetic',()=>{
+ const f=fixture(),d=f.payload.data,w=d.work;w.cacheHitMembers=w.quoteMembers;w.cacheHitBatches=d.search.quoteBatchesUsed;w.nativeBatches-=w.cacheHitBatches;
+ assert.equal(decode(f).status,'observed');
+ for(const change of [{cacheHitMembers:w.cacheHitMembers-1},{cacheHitBatches:w.cacheHitBatches-1},{nativeBatches:w.nativeBatches+1},{cacheHitMembers:0},{cacheHitBatches:29}]){const altered=structuredClone(f);Object.assign(altered.payload.data.work,change);assert.throws(()=>decode(altered));}
+ const direct=fixture('direct');direct.payload.data.work.cacheHitMembers=1;direct.payload.data.work.cacheHitBatches=1;assert.throws(()=>decode(direct));
+});
 test('unsigned payment and approval bytes are reconstructed instead of trusted as server-authored transactions',()=>{
  assert.equal(decode().status,'observed');
  for(const kind of ['direct','swap'])for(const plan of ['plan','approval'])for(const mutate of [(p:any)=>{p.to=address(99);},(p:any)=>{p.account=address(99);},(p:any)=>{p.chainId=5042002;},(p:any)=>{p.data+='00';},(p:any)=>{p.data=p.data.slice(0,-2)+'ff';},(p:any)=>{p.label='Sign to continue';}]){const f=fixture(kind);mutate(f.payload.data[plan]);assert.throws(()=>decode(f));}

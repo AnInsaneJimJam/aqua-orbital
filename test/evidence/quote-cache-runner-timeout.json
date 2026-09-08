@@ -1,0 +1,23 @@
+{
+  "status": "timed_out",
+  "stage": "api",
+  "timeoutSeconds": 600,
+  "capturedTranscript": false,
+  "checkpointWritten": false,
+  "scope": "Manual record of the first cache full-run failure observed in the tool session. The old runner buffered stdout and lost the partial transcript on TimeoutExpired; no passed-suite claim is made.",
+  "ownedTestProcess": 22960,
+  "parentProcess": 17340,
+  "manualChildStopAt": "2026-09-08T18:11:50.6859757+05:30",
+  "ownedSchemaRemoved": "orbital_test_22960_766e71656ab1452eba351eee839f8b16",
+  "observations": [
+    "Payment HTTP test child remained live for over five minutes with one isolated schema remaining.",
+    "Only that identity-checked child was stopped; its exact isolated schema was removed.",
+    "The full runner later timed out; a subsequent process inventory found no remaining Node test processes."
+  ],
+  "cause": "The original service rejection and stalled barrier were not captured. An early failure before an awaited RPC barrier is a supported harness failure mode; the past trigger remains unresolved.",
+  "followup": [
+    "HTTP barriers now surface bounded early status/body errors and have a fixed timeout.",
+    "Service barriers race the expected callback against the already-bounded service completion.",
+    "The runner streams transcripts and records timeout/owned-tree cleanup; its two tests pass."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "observedAt": "2026-09-08T12:39:21.908Z",
+  "hostBeforeMs": 1788871161880,
+  "hostAfterMs": 1788871161908,
+  "databaseMs": 1788871162687,
+  "offsetIntervalMs": [
+    779,
+    807
+  ],
+  "scope": "Read-only clock observation after the retained unresolved fixture rejection; does not establish its past cause."
+}

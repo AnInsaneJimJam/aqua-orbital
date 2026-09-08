@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {request as httpRequest} from 'node:http';
+import {requestUntilBarrier} from './http-barrier.js';
 import Fastify from 'fastify';
 import {writeFile} from 'node:fs/promises';
 import {createServer} from '../src/server.js';
@@ -47,7 +47,7 @@ test('actual client disconnect cancels the active RPC group without starting quo
  let release!:()=>void,reached!:()=>void;const barrier=new Promise<void>(resolve=>{release=resolve;}),arrived=new Promise<void>(resolve=>{reached=resolve;});let hold=false;
  const f=await quoteRuntimeFixture(async batch=>{if(hold&&batch.length===8){reached();await barrier;}}),app=await createServer({manifestPath:f.manifestPath,databaseUrl:f.f.db.pool.options.connectionString,logger:false});
  try{assert.equal((await app.inject({method:'POST',url:'/quotes/swap',payload:body})).statusCode,200);f.requests.length=0;hold=true;const base=await app.listen({host:'127.0.0.1',port:0});
-  const req=httpRequest(`${base}/api/v1/quotes/swap`,{method:'POST',headers:{'content-type':'application/json'}},()=>{});req.on('error',()=>{});req.end(JSON.stringify(body));await arrived;req.destroy();await new Promise(resolve=>setTimeout(resolve,50));assert.equal(f.requests.length,2);hold=false;release();
+  const req=await requestUntilBarrier(`${base}/api/v1/quotes/swap`,body,arrived);req.destroy();await new Promise(resolve=>setTimeout(resolve,50));assert.equal(f.requests.length,2);hold=false;release();
   const recovered=await app.inject({method:'POST',url:'/quotes/swap',payload:body});assert.equal(recovered.statusCode,200);assert.equal(recovered.json().financialExecutionEnabled,false);
  }finally{release();await app.close();await f.close();}
 });
