@@ -1,0 +1,37 @@
+{
+  "observedLocalDate": "2026-09-09",
+  "timezone": "Asia/Calcutta",
+  "scope": "bounded-read-only-provider-diagnostic",
+  "officialSource": "https://docs.arc.io/arc/references/rpc-endpoints",
+  "chainId": 5042002,
+  "blockNumber": "61131616",
+  "blockHash": "0xae30a0c7bbf64b540f257518a5d852ff3f9f902f831cf350090af36929f6f918",
+  "emitters": [
+    "0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE",
+    "0x449420E9042c48Eac6E695020613678aD5A55D41",
+    "0xf64e4664D534AeA5d240e1E29DAE9E80D2e393d6"
+  ],
+  "observations": [
+    {"url":"https://rpc.testnet.arc.io","method":"eth_chainId","status":200,"ms":457,"result":"0x4cef52"},
+    {"url":"https://rpc.testnet.arc.io","method":"eth_blockNumber","status":200,"ms":208,"result":"61134623"},
+    {"url":"https://rpc.testnet.arc.io","method":"eth_getBlockByNumber","status":200,"ms":208,"matchingBlock":true,"transactions":20},
+    {"url":"https://rpc.testnet.arc.io","method":"eth_getLogs","filter":"blockHash","statuses":[429,429,429],"latenciesMs":[179,178,176],"result":"RPC_TRANSPORT_UNAVAILABLE"},
+    {"url":"https://rpc.testnet.arc.io","method":"eth_getLogs","filter":"blockHash","status":429,"error":{"code":-32005,"message":"rate limit exceeded"},"retryAfter":null},
+    {"url":"https://rpc.testnet.arc.io","method":"eth_getLogs","filter":"fromBlock=toBlock","status":429,"error":{"code":-32005,"message":"rate limit exceeded"},"retryAfter":null},
+    {"url":"https://rpc.testnet.arc.io","method":"eth_getBlockReceipts","status":429,"ms":588,"error":{"code":-32005,"message":"rate limit exceeded"}},
+    {"url":"https://rpc.blockdaemon.testnet.arc.io","method":"eth_chainId","status":200,"ms":1186,"result":"0x4cef52"},
+    {"url":"https://rpc.blockdaemon.testnet.arc.io","method":"eth_getBlockByNumber","status":200,"ms":219,"matchingBlock":true},
+    {"url":"https://rpc.blockdaemon.testnet.arc.io","method":"eth_getLogs","filter":"blockHash","status":200,"ms":220,"count":1,"matchingBlock":true},
+    {"url":"https://rpc.drpc.testnet.arc.io","method":"eth_chainId","status":200,"ms":490,"result":"0x4cef52"},
+    {"url":"https://rpc.drpc.testnet.arc.io","method":"eth_getBlockByNumber","status":200,"ms":398,"matchingBlock":true},
+    {"url":"https://rpc.drpc.testnet.arc.io","method":"eth_getLogs","filter":"blockHash","status":200,"ms":287,"count":1,"matchingBlock":true},
+    {"url":"https://rpc.quicknode.testnet.arc.io","method":"eth_chainId","status":200,"ms":633,"result":"0x4cef52"},
+    {"url":"https://rpc.quicknode.testnet.arc.io","method":"eth_getBlockByNumber","status":200,"ms":217,"matchingBlock":true},
+    {"url":"https://rpc.quicknode.testnet.arc.io","method":"eth_getLogs","filter":"blockHash","status":429,"ms":178,"error":{"code":-32005,"message":"rate limit exceeded"}}
+  ],
+  "limits": [
+    "This JSON transcribes the observed bounded diagnostic calls; it is not a complete HTTP transcript.",
+    "Method throttling was observed, but provider quota/window configuration was not established.",
+    "No signatures, transactions, deployment changes, database writes or sustained throughput benchmark were performed by this probe."
+  ]
+}

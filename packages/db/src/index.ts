@@ -1,6 +1,7 @@
 import pg from 'pg';
 export * from './reorg.js';
 export * from './materialization.js';
+export * from './empty-materialization.js';
 export * from './metrics.js';
 export * from './invoice-reads.js';
 export * from './strategy-reads.js';

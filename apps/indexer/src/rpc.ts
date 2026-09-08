@@ -6,6 +6,21 @@ const object=(value:unknown):Record<string,unknown>=>{if(!value||typeof value!==
 const text=(value:unknown)=>{if(typeof value!=='string')throw Error('RPC_INVALID_RESPONSE');return value;};
 const quantity=(value:unknown)=>{const v=text(value);if(!/^0x(?:0|[1-9a-fA-F][0-9a-fA-F]*)$/.test(v))throw Error('RPC_INVALID_RESPONSE');return BigInt(v);};
 const safeNumber=(value:unknown)=>{const n=quantity(value);if(n>BigInt(Number.MAX_SAFE_INTEGER))throw Error('RPC_INVALID_RESPONSE');return Number(n);};
+function parseLogs(logs:unknown){
+ if(!Array.isArray(logs))throw Error('RPC_INVALID_RESPONSE');
+ return logs.map(value=>{const log=object(value);if(!Array.isArray(log.topics)||typeof log.removed!=='boolean')throw Error('RPC_INVALID_RESPONSE');return {blockNumber:quantity(log.blockNumber),blockHash:text(log.blockHash),transactionHash:text(log.transactionHash),transactionIndex:safeNumber(log.transactionIndex),logIndex:safeNumber(log.logIndex),address:text(log.address),topics:log.topics.map(text),data:text(log.data),removed:log.removed};});
+}
+
+/** Explicit operator-selected read transport; never an automatic fallback or
+ * replacement for the verified deployment's chain/address/source identity. */
+export function indexerRpcUrl(manifestUrl:string,override?:string):string{
+ if(override===undefined)return manifestUrl;
+ try{
+  const url=new URL(override);
+  if(url.protocol!=='https:'||url.username||url.password||url.search||url.hash)throw Error();
+  return url.href.replace(/\/$/,'');
+ }catch{throw Error('INVALID_INDEXER_RPC_URL');}
+}
 
 /** Read-only RPC, fixed eight-second end-to-end request deadline, <=8 requests.
  * Only transport failures retry (250/750 ms), never application/RPC errors.
@@ -51,8 +66,11 @@ export function createMaterializationRpc(url:string,fetcher:typeof fetch=fetch,t
   async getBlock(number){const block=object(await request('eth_getBlockByNumber',[`0x${number.toString(16)}`,false]));if(!Array.isArray(block.transactions))throw Error('RPC_INVALID_RESPONSE');return {number:quantity(block.number),hash:text(block.hash),parentHash:text(block.parentHash),transactions:block.transactions.map(text)};},
   async getLogs(_number,emitters,blockHash){
    if(!/^0x[0-9a-fA-F]{64}$/.test(blockHash))throw Error('RPC_BLOCK_HASH_REQUIRED');
-   const logs=await request('eth_getLogs',[{address:[...emitters],blockHash}]);if(!Array.isArray(logs))throw Error('RPC_INVALID_RESPONSE');
-   return logs.map(value=>{const log=object(value);if(!Array.isArray(log.topics)||typeof log.removed!=='boolean')throw Error('RPC_INVALID_RESPONSE');return {blockNumber:quantity(log.blockNumber),blockHash:text(log.blockHash),transactionHash:text(log.transactionHash),transactionIndex:safeNumber(log.transactionIndex),logIndex:safeNumber(log.logIndex),address:text(log.address),topics:log.topics.map(text),data:text(log.data),removed:log.removed};});
+   return parseLogs(await request('eth_getLogs',[{address:[...emitters],blockHash}]));
+  },
+  async getLogsRange(from,to,emitters){
+   if(from<0n||to<from||to-from>=64n||to>=(1n<<256n))throw Error('INVALID_BLOCK_BATCH');
+   return parseLogs(await request('eth_getLogs',[{address:[...emitters],fromBlock:`0x${from.toString(16)}`,toBlock:`0x${to.toString(16)}`} ]));
   },
   async call(call,block){const result=text(await request('eth_call',[call,block]));if(!/^0x(?:[0-9a-fA-F]{2})*$/.test(result))throw Error('RPC_INVALID_RESPONSE');return result as Hex;},
  };

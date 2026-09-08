@@ -1,17 +1,18 @@
 import {readFile} from 'node:fs/promises';
 import {manifestSchema} from '@orbital/shared';
 import {database} from '@orbital/db';
-import {syncDeploymentOnce} from './materializer.js';
-import {createMaterializationRpc} from './rpc.js';
+import {syncDeploymentOnce,MAX_SYNC_BLOCKS} from './materializer.js';
+import {createMaterializationRpc,indexerRpcUrl} from './rpc.js';
 if(!process.env.DEPLOYMENT_MANIFEST||!process.env.DATABASE_URL)throw Error('DEPLOYMENT_MANIFEST and DATABASE_URL are required. No fixture indexing fallback.');
 const manifest=manifestSchema.parse(JSON.parse(await readFile(process.env.DEPLOYMENT_MANIFEST,'utf8')));
 if(!manifest.verified)throw Error('Deployment is not verified');
 if(process.argv.includes('--replay'))throw Error('Full destructive materialization rebuild is not implemented. Bounded canonical reorg rollback/replay runs automatically.');
 const pollMs=Number(process.env.INDEXER_POLL_MS??'1000');
 if(!Number.isSafeInteger(pollMs)||pollMs<250||pollMs>10000)throw Error('Invalid INDEXER_POLL_MS');
+const rpcUrl=indexerRpcUrl(manifest.rpcUrl,process.env.INDEXER_RPC_URL);
 const pool=database(process.env.DATABASE_URL);
 pool.on('error',()=>{console.error(JSON.stringify({event:'indexer_error',chainId:manifest.chainId,code:'DATABASE_CONNECTION_LOST'}));});
-const {rpc,close}=createMaterializationRpc(manifest.rpcUrl);
+const {rpc,close}=createMaterializationRpc(rpcUrl);
 let running=true;for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>{running=false;close();});
 try{
  while(running){
@@ -19,7 +20,7 @@ try{
   try{
    // syncDeploymentOnce verifies RPC identity on every attempt. Transient
    // startup failures use this same retry path, never an uncaught preflight.
-   const result=await syncDeploymentOnce(pool,manifest,rpc);
+   const result=await syncDeploymentOnce(pool,manifest,rpc,{maxBlocks:MAX_SYNC_BLOCKS});
    if(result.status!=='idle')console.log(JSON.stringify({event:`indexer_${result.status}`,chainId:manifest.chainId,...result,block:result.block?.toString(),elapsedMs:Date.now()-started}));
    if(result.status==='resync_required'){process.exitCode=1;break;}
    if(result.status==='indexed'||result.status==='backfilled'||result.status==='rolled_back')continue;

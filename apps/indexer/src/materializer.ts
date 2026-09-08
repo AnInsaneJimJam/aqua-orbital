@@ -3,12 +3,13 @@ import {manifestSchema,type DeploymentManifest} from '@orbital/shared';
 import {encodeAbiParameters,encodeEventTopics,decodeEventLog,decodeFunctionResult,encodeFunctionData,keccak256,toEventSelector,isAddress,type Address,type Hex,type AbiEvent} from 'viem';
 import {buildOrder,hashConfig,hashOrder,configToDTO,configFromDTO,lifecycleAbi,lifecycleEventsAbi,paymentsEventsAbi,swapEventsAbi,type Config} from '@orbital/sdk';
 import type {ReadRpc,RawLog,SyncResult} from './worker.js';
-import {atomicDeploymentBlock,atomicSwapBackfill,pendingSwapBackfill,deploymentCursor,indexerSnapshot,reconcileCanonicalChain,type BlockHeader,type DeploymentScope,type ProjectionEvent} from '@orbital/db';
+import {atomicDeploymentBlock,atomicEmptyDeploymentBlocks,atomicSwapBackfill,pendingSwapBackfill,deploymentCursor,indexerSnapshot,reconcileCanonicalChain,type BlockHeader,type DeploymentScope,type ProjectionEvent} from '@orbital/db';
 
 export type MaterializationRpc=Omit<ReadRpc,'getBlock'|'getLogs'>&{
  getChainId():Promise<number>;
  getBlock(number:bigint):Promise<BlockHeader&{transactions:readonly string[]}>;
  getLogs(number:bigint,emitters:readonly string[],blockHash:string):Promise<readonly RawLog[]>;
+ getLogsRange?(from:bigint,to:bigint,emitters:readonly string[]):Promise<readonly RawLog[]>;
  call(request:{to:Address;data:Hex},block:{blockHash:Hex;requireCanonical:true}):Promise<Hex>;
 };
 const HASH=/^0x[0-9a-fA-F]{64}$/;
@@ -18,6 +19,7 @@ const validAddress=(value:unknown):value is Address=>typeof value==='string'&&is
 const allEvents=[...lifecycleEventsAbi,...paymentsEventsAbi,...swapEventsAbi] as readonly AbiEvent[];
 export const MAX_BLOCK_LOGS=2000;
 export const MAX_BLOCK_HYDRATIONS=32;
+export const MAX_SYNC_BLOCKS=64;
 
 export function deploymentScope(input:DeploymentManifest):DeploymentScope{
  const manifest=manifestSchema.parse(input);
@@ -31,13 +33,15 @@ export function deploymentScope(input:DeploymentManifest):DeploymentScope{
  return {chainId,id,...roles,startBlock:BigInt(manifest.startBlock),identity};
 }
 
-export async function syncDeploymentOnce(pool:pg.Pool,manifest:DeploymentManifest,rpc:MaterializationRpc):Promise<SyncResult>{
+export async function syncDeploymentOnce(pool:pg.Pool,manifest:DeploymentManifest,rpc:MaterializationRpc,options:{maxBlocks?:number}={}):Promise<SyncResult>{
+ const maxBlocks=options.maxBlocks??1;
+ if(!Number.isSafeInteger(maxBlocks)||maxBlocks<1||maxBlocks>MAX_SYNC_BLOCKS)throw Error('INVALID_BLOCK_BATCH');
  const scope=deploymentScope(manifest);
  const snapshot=await indexerSnapshot(pool,scope.chainId);
  if(snapshot.status==='resync_required')return {status:'resync_required'};
  const cursor=await deploymentCursor(pool,scope);
- if(await rpc.getChainId()!==scope.chainId)throw Error('RPC_CHAIN_MISMATCH');
- const head=await rpc.getBlockNumber();
+ const [chainId,head]=await settledReads([()=>rpc.getChainId(),()=>rpc.getBlockNumber()] as const);
+ if(chainId!==scope.chainId)throw Error('RPC_CHAIN_MISMATCH');
  if(snapshot.cursor){
   if(head<snapshot.cursor.height)return {status:'retry'};
   const canonical:BlockHeader[]=[];
@@ -75,9 +79,69 @@ export async function syncDeploymentOnce(pool:pg.Pool,manifest:DeploymentManifes
  }
  const next=cursor?cursor.height+1n:scope.startBlock;
  if(head<next+2n)return {status:'idle'};
- const block=await checkedBlock(rpc,next);
- if(cursor&&block.parentHash!==cursor.hash)return {status:'retry'};
- const logs=canonicalLogs(await rpc.getLogs(next,[scope.aqua,scope.router,scope.payments],block.hash),block,scope);
+ const count=Number(head-next-1n<BigInt(maxBlocks)?head-next-1n:BigInt(maxBlocks));
+ // Work is bounded to sixty-four blocks and eight outstanding reads. Each RPC
+ // keeps the existing payload/deadline/retry limits. No detached work survives
+ // a failed group; the next synchronization attempt starts from the DB cursor.
+ const blocks=await groupedReads(Array.from({length:count},(_,i)=>()=>checkedBlock(rpc,next+BigInt(i))));
+ for(let i=0;i<blocks.length;i++){
+  const prior=i===0?cursor:blocks[i-1]!;
+  if(prior&&blocks[i]!.parentHash!==prior.hash)return {status:'retry'};
+ }
+ const emitters=[scope.aqua,scope.router,scope.payments];
+ let logsByBlock:RawLog[][];
+ if(rpc.getLogsRange){
+  const range=await rpc.getLogsRange(next,blocks.at(-1)!.number,emitters);
+  if(range.length>blocks.length*MAX_BLOCK_LOGS)throw Error('BLOCK_LOG_LIMIT');
+  const buckets:RawLog[][]=blocks.map(()=>[]);
+  for(const log of range){
+   if(log.blockNumber<next||log.blockNumber>blocks.at(-1)!.number)throw Error('RPC_INVALID_BLOCK_LOG');
+   buckets[Number(log.blockNumber-next)]!.push(log);
+  }
+  logsByBlock=buckets.map((logs,i)=>canonicalLogs(logs,blocks[i]!,scope));
+ }else logsByBlock=await groupedReads(blocks.map(block=>async()=>canonicalLogs(await rpc.getLogs(block.number,emitters,block.hash),block,scope)));
+ const prepared=[];
+ for(let i=0;i<blocks.length;i++){
+  const block=blocks[i]!,logs=logsByBlock[i]!;
+  // Hydration is sequential across blocks, at most four calls within a block.
+  // In particular, a full batch never fans out sixty-four times four getters.
+  prepared.push({block,logs,projections:await prepareProjections(rpc,scope,manifest,block,logs)});
+ }
+ const tip=blocks.at(-1)!;
+ // Consecutive parent hashes bind the entire prefetched window to this freshly
+ // observed canonical tip. A changed tip discards all prepared blocks before
+ // any commit. This is a canonical observation, not a finality guarantee.
+ if((await checkedBlock(rpc,tip.number)).hash!==tip.hash)return {status:'retry'};
+ let totalLogs=0;
+ for(let i=0;i<prepared.length;){
+  const {block,logs,projections}=prepared[i]!;
+  try{
+   if(logs.length===0){
+    const empty:BlockHeader[]=[];
+    while(i<prepared.length&&prepared[i]!.logs.length===0)empty.push(prepared[i++]!.block);
+    await atomicEmptyDeploymentBlocks(pool,scope,empty);
+   }else{
+    await atomicDeploymentBlock(pool,scope,block,logs.map(log=>({txHash:log.transactionHash,logIndex:log.logIndex,emitter:log.address,topic:log.topics[0]??'0x',payload:{version:1,topics:log.topics,data:log.data}})),projections);
+    i++;
+   }
+  }catch(error){if(error instanceof Error&&error.message==='REORG_REQUIRES_REPLAY')return {status:'retry'};throw error;}
+  totalLogs+=logs.length;
+ }
+ return {status:'indexed',block:tip.number,hash:tip.hash,logs:totalLogs};
+}
+
+async function settledReads<T extends readonly (()=>Promise<unknown>)[]>(reads:T):Promise<{[K in keyof T]:Awaited<ReturnType<T[K]>>}>{
+ const results=await Promise.allSettled(reads.map(read=>read()));
+ const failed=results.find(result=>result.status==='rejected');if(failed?.status==='rejected')throw failed.reason;
+ return results.map(result=>(result as PromiseFulfilledResult<unknown>).value) as {[K in keyof T]:Awaited<ReturnType<T[K]>>};
+}
+async function groupedReads<T>(reads:readonly (()=>Promise<T>)[]):Promise<T[]>{
+ const result:T[]=[];
+ for(let start=0;start<reads.length;start+=8)result.push(...await settledReads(reads.slice(start,start+8)));
+ return result;
+}
+
+async function prepareProjections(rpc:MaterializationRpc,scope:DeploymentScope,manifest:DeploymentManifest,block:Awaited<ReturnType<typeof checkedBlock>>,logs:RawLog[]):Promise<ProjectionEvent[]>{
  const decoded=logs.map(log=>({log,event:decode(log,scope)}));
  const activations=decoded.filter(item=>item.event?.eventName==='StrategyActivated');
  if(activations.length>MAX_BLOCK_HYDRATIONS)throw Error('BLOCK_HYDRATION_LIMIT');
@@ -95,12 +159,7 @@ export async function syncDeploymentOnce(pool:pg.Pool,manifest:DeploymentManifes
   }));
   const failed=results.find(result=>result.status==='rejected');if(failed?.status==='rejected')throw failed.reason;
  }
- const projections=decoded.filter(item=>item.event).map(item=>projection(item.log,item.event!,scope,manifest,configs));
- if((await checkedBlock(rpc,next)).hash!==block.hash)return {status:'retry'};
- try{
-  await atomicDeploymentBlock(pool,scope,block,logs.map(log=>({txHash:log.transactionHash,logIndex:log.logIndex,emitter:log.address,topic:log.topics[0]??'0x',payload:{version:1,topics:log.topics,data:log.data}})),projections);
- }catch(error){if(error instanceof Error&&error.message==='REORG_REQUIRES_REPLAY')return {status:'retry'};throw error;}
- return {status:'indexed',block:next,hash:block.hash,logs:logs.length};
+ return decoded.filter(item=>item.event).map(item=>projection(item.log,item.event!,scope,manifest,configs));
 }
 
 async function checkedBlock(rpc:MaterializationRpc,number:bigint){
