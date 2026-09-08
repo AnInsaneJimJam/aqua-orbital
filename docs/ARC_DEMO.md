@@ -54,7 +54,7 @@ Services use `DATABASE_URL`, defaulting to the existing local PostgreSQL databas
 
 ## Minimal live walkthrough
 
-**Current checkpoint: maker funding and strategy publication (steps 2–3) are complete. Start at step 4.** Strategy `0xc64a158e90a2b3f9bd211748fe96f1cd59b7f785c18c093b99d033f6ff589eee` has three backed 10-unit allocations at a 0.05% fee. Its recorded quote used a synthetic read-only caller, not an authenticated trader. Refresh the quote in the actual trader wallet.
+**Current checkpoint: funding, strategy publication and the first trader swap (through step 5) are complete. Continue at step 6.** The [actual swap receipt](../test/evidence/arc-integration/first-swap.json) confirms 1 USDC → 0.998491 oUSD6 from trader `0x954ACE1023Cdb3798F69582bbdDcBAcd878B73A9`. Use its received **oUSD6** for the 0.5-USDC invoice, checking the fresh input quote and current balance; the oUSD18 variant below remains optional. The receipt does not reveal which wallet provider the user selected.
 
 Use **wallet A**, the external maker/deployer `0x5eBA55e1b43c8714E4432250Dada7A518780C871`, and **wallet B**, any different user-controlled wallet, as trader/payer. Both may be external wallets for ordinary application use. To obtain Privy qualification evidence, use an actual Privy embedded wallet as B and link its identity to the swap/payment receipts. A may also be the merchant, so two signing wallets suffice for this minimal flow.
 

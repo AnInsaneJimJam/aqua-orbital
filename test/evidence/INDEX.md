@@ -1,5 +1,7 @@
 # Evidence index
 
+Latest live financial result: [actual first Arc swap receipt](arc-integration/first-swap.json), **1 USDC → 0.998491 oUSD6**, fee 0.0005 USDC, canonical success and exact input/output transfer legs verified. No signature was submitted by the verifier. Swap-funded invoice and Privy wallet-provider association remain open; this supersedes missing-first-swap statements below.
+
 Quote follow-up: [review clocks, background recovery and invoice polling](quote-refresh/README.md). Live Arc quote reads succeed with the application retry helper; wallet review, negative preflight and browser fixture checks are tracked separately from actual user-signed financial receipts.
 
 Latest financial checkpoint: [first Arc strategy activation, live backing and successful quote](arc-integration/first-strategy.md). The user published three 10-unit allocations at a 0.05% fee; the focused read-only check matched the canonical receipt and returned 0.998491 oUSD6 for 1 USDC. Its caller was synthetic; actual trader swap/payment and Privy wallet receipts remain open. This supersedes missing-liquidity statements in the historical checkpoints below.
