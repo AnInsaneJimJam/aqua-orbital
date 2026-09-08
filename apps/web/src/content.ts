@@ -4,6 +4,14 @@ export const copy={
  heroBody:'Concentrate stablecoin liquidity around the peg. Keep your tokens in your wallet. Trade through a shared, multi-token curve.',
  disclosure:'Testnet application. Demo tokens have no redemption value. Concentrated liquidity can lose value.',
  attribution:'Powered by SwapVM — © Degensoft Ltd 2025',
+ strategy:{
+  invalid:'Use the full 32-byte strategy hash from the correct network.',
+  unavailable:'Canonical strategy state could not be checked. Refresh to try again.',
+  stale:'This observation is stale. Refresh before relying on these amounts.',
+  custody:'Tokens stay in the maker’s wallet. Other wallet activity can reduce this strategy’s available inventory.',
+  capacity:'The output ceiling is a funding bound at the observed block. A fresh curve quote may return less or find no executable trade.',
+  fees:'Fees have already been received in the maker’s wallet. They are separate from principal and are not a claimable reward or an APY.',
+ },
  swap:{
   unavailable:'Quote unavailable. The amounts could not be checked. Try again.',
   readOnly:'Quote observation. Review checks current funds, strategy availability and transaction simulation before any signature.',

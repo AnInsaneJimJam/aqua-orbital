@@ -113,6 +113,17 @@ export const strategyReadSchema=z.object({orderHash:hashSchema,router:nonzeroAdd
 export type StrategyReadDTO=z.infer<typeof strategyReadSchema>;
 export type StrategyFinancialDTO=z.infer<typeof strategyFinancialSchema>;
 
+/** Public registered-history observations. These never authorize a transaction. */
+const strategyObservationFields={schemaVersion:z.literal(1),status:z.enum(['available','stale']),code:z.enum(['STRATEGIES_AVAILABLE','STRATEGIES_STALE','STRATEGY_NOT_FOUND']),
+ financialExecutionEnabled:z.literal(false),chainId:chainIdSchema,deploymentId:hashSchema,asOf:invoiceBlockSchema,currentIndexedBlock:invoiceBlockSchema,historical:z.boolean(),
+ freshness:z.object({indexedAt:z.string().datetime(),ageMs:z.number().int().min(0).max(Number.MAX_SAFE_INTEGER),head:uintSchema,stale:z.boolean()}).strict(),
+ coverage:z.object({fromBlock:uintSchema,toBlock:uintSchema,expectedBlocks:uintSchema,canonicalBlocks:uintSchema,coveredBlocks:uintSchema,complete:z.literal(true),scope:z.literal('registered_strategies'),unactivatedShipments:z.literal(false)}).strict(),
+ message:z.string().max(500).optional(),retryable:z.boolean().optional(),field:z.string().nullable().optional(),requestId:z.string().max(200).optional()};
+export const strategyDetailSchema=z.object({...strategyObservationFields,data:z.object({strategy:strategyReadSchema.nullable()}).strict()}).strict();
+export const strategyListSchema=z.object({...strategyObservationFields,data:z.object({items:z.array(strategyReadSchema).max(50),limit:z.number().int().min(1).max(50),nextCursor:z.string().min(1).max(1024).regex(/^[A-Za-z0-9_-]+$/).nullable()}).strict()}).strict();
+export type StrategyDetailDTO=z.infer<typeof strategyDetailSchema>;
+export type StrategyListDTO=z.infer<typeof strategyListSchema>;
+
 /** Strict read observations only. SDK validates deployment/request/configuration
  * and exact arithmetic; neither this schema nor a decoded result authorizes a transaction. */
 const quoteCount=(max:number)=>z.number().int().min(0).max(max);

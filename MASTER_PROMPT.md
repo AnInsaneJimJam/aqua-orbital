@@ -491,6 +491,8 @@ Performance targets measured on the production build: landing LCP <=2.5s under a
 
 ## 16. Mandatory tests before implementation
 
+**Current execution order (owner instruction, 2026-09-08):** prioritize implementing the remaining workflows and getting the frontend, API, indexer and contracts working together. Keep immediate verification light: builds, types and focused smoke checks as needed. Defer broad regression campaigns, additional test coverage and optimization until that integration works. The release requirements below remain the later acceptance criteria; deferred checks are not passing checks.
+
 The earlier mathematical suite remains extensive. The new integration tests must establish that the build truly uses Aqua and custom SwapVM rather than a superficially similar standalone AMM.
 
 ### 16.1 Contract and mathematical suites

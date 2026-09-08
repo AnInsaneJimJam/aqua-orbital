@@ -1,0 +1,55 @@
+[WebServer] (node:17016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:23400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:5292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 1 test using 1 worker
+
+(node:12576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/1] test\strategy.spec.ts:17:1 › public strategy detail separates exact principal, received fees and funded capacity on mobile
+[WebServer] (node:24168) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+  1) test\strategy.spec.ts:17:1 › public strategy detail separates exact principal, received fees and funded capacity on mobile 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'USDC / oUSD6 / oUSD18', exact: true })
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'USDC / oUSD6 / oUSD18', exact: true }) with timeout 30000ms
+      - waiting for getByRole('heading', { name: 'USDC / oUSD6 / oUSD18', exact: true })
+
+
+      17 | test('public strategy detail separates exact principal, received fees and funded capacity on mobile',async({page})=>{
+      18 |  await fixture(page);await page.setViewportSize({width:320,height:680});await page.goto(path);
+    > 19 |  await expect(page.getByRole('heading',{name:'USDC / oUSD6 / oUSD18',exact:true})).toBeVisible();
+         |                                                                                    ^
+      20 |  await expect(page.getByText('Active / available at observed block',{exact:true})).toBeVisible();
+      21 |  const usdc=page.getByRole('region',{name:'USDC inventory'});
+      22 |  await expect(usdc.getByText('300.000000000000000001 USDC',{exact:true})).toBeVisible();await expect(usdc.getByText('0.000007 USDC',{exact:true})).toBeVisible();
+        at C:\Users\gujja\aqua-orbital\apps\web\test\strategy.spec.ts:19:84
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\strategy-public-strategy-d-8d2fd-d-funded-capacity-on-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\strategy-public-strategy-d-8d2fd-d-funded-capacity-on-mobile\error-context.md
+
+
+  1 failed
+    test\strategy.spec.ts:17:1 › public strategy detail separates exact principal, received fees and funded capacity on mobile 
+undefined
+C:\Users\gujja\aqua-orbital\apps\web:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: playwright test strategy.spec.ts --grep public strategy detail --reporter=line

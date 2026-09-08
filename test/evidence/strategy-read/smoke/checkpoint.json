@@ -1,0 +1,3136 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-08T16:43:29.056335+00:00",
+  "scope": "Production compilation and workspace types only; broad test campaigns deferred at user request.",
+  "parentCommit": "71c038e77d000f08628c3960a7aa6ccbab066bea",
+  "inputs": [
+    {
+      "path": "apps/api/package.json",
+      "sha256": "535ffa73bc1c95b8539f1d0988b2f34196dd223f2c12fa8003be3e135eadad1e"
+    },
+    {
+      "path": "apps/api/src/deployment-scope.ts",
+      "sha256": "d98d1766b6e5389568fb63ca985ee0841f9215593fd9f13ead8aa11468f4c941"
+    },
+    {
+      "path": "apps/api/src/event-stream.ts",
+      "sha256": "867cc311829084a38cd27f12bbde24d05959a43bfacea6ef144b92e998bfbad0"
+    },
+    {
+      "path": "apps/api/src/events.ts",
+      "sha256": "76d09b1fcb2c553c5167f0aadabe05335eea909a26d017b3959d70c01a0ac7cf"
+    },
+    {
+      "path": "apps/api/src/index.ts",
+      "sha256": "2da948fe3ccf9cd813e1bcb206df70802b6e85423411959179ce3b3de4183bb1"
+    },
+    {
+      "path": "apps/api/src/invoice-view.ts",
+      "sha256": "b4365437d7fb2d25a752bfb3cb382944de8e7eafb2355caed6ca3b1e59f9d36d"
+    },
+    {
+      "path": "apps/api/src/invoices.ts",
+      "sha256": "88f67232146cbd1a3196562c325149e4fbcaa7397d87c280d627ac106724c0a6"
+    },
+    {
+      "path": "apps/api/src/metrics.ts",
+      "sha256": "d3adc4fd1da37b44cff8cedaac39df54ff65d389cffc0dd80b436663c367a2dc"
+    },
+    {
+      "path": "apps/api/src/payment-context.ts",
+      "sha256": "0630cbf475607b5a7f68a474e8736c2f357d1abacdb2d49adc9ae231da919b42"
+    },
+    {
+      "path": "apps/api/src/payment-http.ts",
+      "sha256": "aa04d0053c742836f548a5d26ce7f5997cf07b0db44630c90d4b81a1089c82b7"
+    },
+    {
+      "path": "apps/api/src/payment-search.ts",
+      "sha256": "02ad64d617dde797d53b8cddccf49f0f274470b8ff995edcf12cc369f1af80d0"
+    },
+    {
+      "path": "apps/api/src/payment-service.ts",
+      "sha256": "cf73e8f89950f4608ef40c377bfbd7c9ddf1b82d3202ad0b9bb9e4997d13b430"
+    },
+    {
+      "path": "apps/api/src/payment-validation.ts",
+      "sha256": "5a1c83bb50023024a6ce90cf5391fcaf4af1b1428d599ac446b89694f7ca3c9b"
+    },
+    {
+      "path": "apps/api/src/postgres-events.ts",
+      "sha256": "af16e23db1575dadbb476061b9ea03bf8952583886002deb44e7906b3f7e320b"
+    },
+    {
+      "path": "apps/api/src/quote-cache.ts",
+      "sha256": "90f9988982f2aacab9289e8de47e39f845482e91e3b69a58a49a86fc51943282"
+    },
+    {
+      "path": "apps/api/src/quote-http.ts",
+      "sha256": "89109b34886421141ca730ebee45d62d9709762970c12c8ca44aa59fa2c79fc1"
+    },
+    {
+      "path": "apps/api/src/quote-rpc.ts",
+      "sha256": "47aa715e75608c43be76040b40069565cbc8528cbb320a7a16d8f1a33e847da2"
+    },
+    {
+      "path": "apps/api/src/quote-service.ts",
+      "sha256": "eb798f7518512e3c661027a94684125be668961d6e1d38a25b382018ef6ba90c"
+    },
+    {
+      "path": "apps/api/src/readiness.ts",
+      "sha256": "3f6f36525b868f2ea7a5f304d018942a90633c7de16ff7ed78aefa4d947dd81b"
+    },
+    {
+      "path": "apps/api/src/route-selection.ts",
+      "sha256": "f6c3f395e649ac4c1dfc8329b3a1bbe1d66e96b160004232c9f29b306f2c9651"
+    },
+    {
+      "path": "apps/api/src/runtime.ts",
+      "sha256": "43905850e717577734bb3d695bbac480d096b017084b64fb6bde7b09e3af13fd"
+    },
+    {
+      "path": "apps/api/src/server.ts",
+      "sha256": "3f0062b09af68d1aeda826007078a962845b231fab5aa4b2c5deb7545f704897"
+    },
+    {
+      "path": "apps/api/src/strategies.ts",
+      "sha256": "753a35c4ab41c18a90ce1d5f1c9398e4a52d9d933bd5a6518f821dd702d5978b"
+    },
+    {
+      "path": "apps/api/src/strategy-rpc.ts",
+      "sha256": "f2b7cf5c35e6030f409c31936c06bf50f075442dd53356555838cb52003e095e"
+    },
+    {
+      "path": "apps/api/src/strategy-validation.ts",
+      "sha256": "bf8c8a51cb8d9559d5ce624592ab0dd01c3ef60bf84956f4546f3d2026d9c04a"
+    },
+    {
+      "path": "apps/api/test/events.test.ts",
+      "sha256": "965b5b8a1a029cb01e421734f5ee4f5a704c89b3b506f128f96e613b7f5d7a97"
+    },
+    {
+      "path": "apps/api/test/http-barrier.ts",
+      "sha256": "8e501921dc0eadee0d9ae11b8d92f731a72f47737e98eb78e8aaa85d03854b8b"
+    },
+    {
+      "path": "apps/api/test/invoices-fixture.ts",
+      "sha256": "ea9620b077dc2dce98cb51d9718fbfe48220f30d778f8c53910fbeb72e4660f1"
+    },
+    {
+      "path": "apps/api/test/invoices.test.ts",
+      "sha256": "c54d3a30710c2d36046bb81d0b5b327f725adbd670e64c8c223c0430916cf8b5"
+    },
+    {
+      "path": "apps/api/test/materialization-readiness.test.ts",
+      "sha256": "cd3cef062dfd9fc3f0a41da459ebdbc07689b615d4c8c079852b49235c71597e"
+    },
+    {
+      "path": "apps/api/test/metrics-fixture.ts",
+      "sha256": "f3919c8a542f365412c02034d25d3615d4cec5e594420e0cf3592ddda846c826"
+    },
+    {
+      "path": "apps/api/test/metrics-runtime.test.ts",
+      "sha256": "ca9bbd9b3ec8b0e4a9dbd340f78d156c43608122fb175424baa64df8848e7a15"
+    },
+    {
+      "path": "apps/api/test/metrics.test.ts",
+      "sha256": "7d988b33421ee0e3ceda9d45158dc66c09ed4f35be7ac714ba0cf549561804eb"
+    },
+    {
+      "path": "apps/api/test/payment-context-fixture.ts",
+      "sha256": "b7db22e81a23e869e07c5b3797a137df812e58c36c1c919cc741df5b31f7eefb"
+    },
+    {
+      "path": "apps/api/test/payment-context-rpc.test.ts",
+      "sha256": "bd1326adc93083d4461e986f7060fbb3790e4680d0e8687355eefc17ac58e361"
+    },
+    {
+      "path": "apps/api/test/payment-context.test.ts",
+      "sha256": "2939383387b7ac672175ed709b2d36573ae922c5d619a56482655a7ee04f1420"
+    },
+    {
+      "path": "apps/api/test/payment-http.test.ts",
+      "sha256": "c14723c804e9a61974486e593f5ae4086f8be80fe4c05379d2d867ec6a2f5f61"
+    },
+    {
+      "path": "apps/api/test/payment-runtime-fixture.ts",
+      "sha256": "86714fea98612c118bbfa1940e1bb7d3480344166a77128ba5057aa188bdfacf"
+    },
+    {
+      "path": "apps/api/test/payment-runtime.test.ts",
+      "sha256": "a14169af28dd8cd7e9855cc28468edb673a3d6701c180bdf5d7303bd23924d17"
+    },
+    {
+      "path": "apps/api/test/payment-search.test.ts",
+      "sha256": "bf2d691997c6ac3ca636b73de417caaef04322fbe8022097e2a59fd6124a7dc8"
+    },
+    {
+      "path": "apps/api/test/payment-service-fixture.ts",
+      "sha256": "723c2ce919d5c215d90bbdaf02d2fb8576b4d08b8418ad80ef506e237c860308"
+    },
+    {
+      "path": "apps/api/test/payment-service.test.ts",
+      "sha256": "da2d4f6891b0a093f403808bc05d76aacefec4d9b68c8d1af57aeafdbaffd2f8"
+    },
+    {
+      "path": "apps/api/test/payment-validation.test.ts",
+      "sha256": "da4dfbb884e6da15498ed76958158f43bbb4637492252b507682c6ac2a041380"
+    },
+    {
+      "path": "apps/api/test/postgres-events.test.ts",
+      "sha256": "0450872e7efda34de8e9847be10e12dc5a3e4ea718b2382f4d30306fdd5906ba"
+    },
+    {
+      "path": "apps/api/test/quote-cache-rpc.test.ts",
+      "sha256": "521b7edc3a3a5899d2c0619b8907fef91b6334fe2dfff937f8d932cbeeaa091c"
+    },
+    {
+      "path": "apps/api/test/quote-cache-runtime.test.ts",
+      "sha256": "f5ecf6916d0589380db58bf537030b81e44ef35ff73a7d0419218d2bdbbbbc0c"
+    },
+    {
+      "path": "apps/api/test/quote-cache.test.ts",
+      "sha256": "b40d72e263232b4dad8c411d74407b58f751454b82b2ef437931c2a18a11ccaa"
+    },
+    {
+      "path": "apps/api/test/quote-dto.test.ts",
+      "sha256": "6eddfd2efc211cde1c8b7db0be93c36e44b712a2e1637f065dd3fd485b1c3933"
+    },
+    {
+      "path": "apps/api/test/quote-http-fixture.ts",
+      "sha256": "2eee6a16e696649755cc20fd1b690f417ee2aedd7a92b88fd8951f881fc0fffc"
+    },
+    {
+      "path": "apps/api/test/quote-http.test.ts",
+      "sha256": "010da6fa1084eea6acfb7540802029b4ca6ffefdbe587f5f6d694a18430b503f"
+    },
+    {
+      "path": "apps/api/test/quote-rpc.test.ts",
+      "sha256": "a1e879f24ab2afb885c229d168996804ddb1fb43d45d5b1fbebd8c1688f2ed09"
+    },
+    {
+      "path": "apps/api/test/quote-runtime-fixture.ts",
+      "sha256": "968f40309745a8f75031233fa9667ccab86405598490762d1c09424fc77f3b5e"
+    },
+    {
+      "path": "apps/api/test/quote-runtime.test.ts",
+      "sha256": "93dd8ddc09e85ae154242a8e8378a81ab0d0f344d0be9d61dec9b580afc34e2c"
+    },
+    {
+      "path": "apps/api/test/quote-service.test.ts",
+      "sha256": "83b08a0af4c29ea01ff044c149d9b73ac7a9af00b3a297ecd650103f6b0a0342"
+    },
+    {
+      "path": "apps/api/test/readiness.test.ts",
+      "sha256": "58979f778204d84927cb04b4aec3f2e45781c25270138ed67a6b8ad633f16a42"
+    },
+    {
+      "path": "apps/api/test/route-candidates.test.ts",
+      "sha256": "c813a424debf58f1b2a81a7589d42556b925f2fd87c28f506c4975283b59335e"
+    },
+    {
+      "path": "apps/api/test/route-selection-fixture.ts",
+      "sha256": "b8aa53bb8095a9b6ef9501f3fc53aa571bf128e82b66d9f91501186937b7f555"
+    },
+    {
+      "path": "apps/api/test/route-selection.test.ts",
+      "sha256": "dd02e249883bdf0e4c397524773b1a7200581ff599489686409139f6db638f31"
+    },
+    {
+      "path": "apps/api/test/server-live.test.ts",
+      "sha256": "e815302df2cd3465c0d9211aabcaab85e2f05d5f748df9d8086ec0373f209327"
+    },
+    {
+      "path": "apps/api/test/server.test.ts",
+      "sha256": "7bb7ee0fe461171f58cb1a85d1a1ae3948c15a2be4c68a1377378fcb1494e5c8"
+    },
+    {
+      "path": "apps/api/test/strategies-fixture.ts",
+      "sha256": "217f82f5aaf2d750422d825bc4b17d2e82d31ab06fbf5d5157921e4bdb0b07fc"
+    },
+    {
+      "path": "apps/api/test/strategies-http.test.ts",
+      "sha256": "48f60c5c865045cc96b9551b8ef8aea4dc6b23f8c79891b4eaf79bcf069f1bde"
+    },
+    {
+      "path": "apps/api/test/strategies-runtime.test.ts",
+      "sha256": "8bf7ab1ebc9fdb9178dc6d6420d207753fcf856b7f7a1dc420c31c35db61a744"
+    },
+    {
+      "path": "apps/api/test/strategies.test.ts",
+      "sha256": "1a443bfd117e4c05142968570059abe9c564e2354d9771f976d6f44a79206d5b"
+    },
+    {
+      "path": "apps/api/test/strategy-rpc.test.ts",
+      "sha256": "25981184f1217e03b8dac41b42be4582be5f70d88af53303ee9fbddd640b3e7c"
+    },
+    {
+      "path": "apps/api/test/write-payment-observation-fixture.ts",
+      "sha256": "65e4ad4b98000bd01103d5933fe9b840ea5a74b8e85df551e4b9aaced68feb30"
+    },
+    {
+      "path": "apps/api/tsconfig.json",
+      "sha256": "e8b933a8437fe166fd427407e52ebeb030732ad2103746e074d7c9febb8fe87b"
+    },
+    {
+      "path": "apps/indexer/package.json",
+      "sha256": "656fa55a031ffa9b2220de18ec880f19802e435d2549da991c63cb64c65b78a3"
+    },
+    {
+      "path": "apps/indexer/src/index.ts",
+      "sha256": "9c98cc994b71b86600547a4585d888422aa97f671b6701220ce070c03c6b8725"
+    },
+    {
+      "path": "apps/indexer/src/materializer.ts",
+      "sha256": "71c8694cc2b441cd356305f73fa019ad8d2aa590f4e25973bb42bccb5e98f8d4"
+    },
+    {
+      "path": "apps/indexer/src/rpc.ts",
+      "sha256": "edcb98b553c71fc176d11717895310c757137937859717dacd51fa3e6385a61e"
+    },
+    {
+      "path": "apps/indexer/src/worker.ts",
+      "sha256": "17363b17b051e24c8e7dc39816cad820db66fdc8235a079fa2e281988f70ecce"
+    },
+    {
+      "path": "apps/indexer/test/materialization.test.ts",
+      "sha256": "5fa05801994a7de83a1a870091360072c0700638da4b34277c0d23680f0eefe5"
+    },
+    {
+      "path": "apps/indexer/test/rpc.test.ts",
+      "sha256": "7875f2b7a0dc4c1fc194cc7604fdcca1ed4c8fb45db104415d04853d289e48a2"
+    },
+    {
+      "path": "apps/indexer/test/swaps.test.ts",
+      "sha256": "1a59cb8c9021a50af5e161d667784d44e2494575953863fd613c316920b5ad5e"
+    },
+    {
+      "path": "apps/indexer/test/worker.test.ts",
+      "sha256": "ba8fd18759729903c7e66eef9a63dbbb4f99f76909917bbeffafac5695775a33"
+    },
+    {
+      "path": "apps/indexer/tsconfig.json",
+      "sha256": "e8b933a8437fe166fd427407e52ebeb030732ad2103746e074d7c9febb8fe87b"
+    },
+    {
+      "path": "apps/web/next.config.ts",
+      "sha256": "90f5ab0af1eb97846c02041a932299c4d46069e09c868ea0bfbd6fbe37b59490"
+    },
+    {
+      "path": "apps/web/package.json",
+      "sha256": "e93746153029f1c624809458fbc8df76e45b578a73c2250c9ba3b8be46e193d4"
+    },
+    {
+      "path": "apps/web/playwright.config.ts",
+      "sha256": "5b3b5f94520c7422cbe9827ffb4b2fe16434e95d11fdf0bbbae827a1da82bf02"
+    },
+    {
+      "path": "apps/web/src/app/globals.css",
+      "sha256": "e6389466626dfb65925ec42749261bd1c1176666c452e367e039b486cc63ff5f"
+    },
+    {
+      "path": "apps/web/src/app/layout.tsx",
+      "sha256": "8806a9cda9be26f9ac55b9aea77cd4730f6507b46ba9da5590cd09c8c746b774"
+    },
+    {
+      "path": "apps/web/src/app/liquidity/[strategyHash]/page.tsx",
+      "sha256": "160b9476befd640d370d8272ceedb1e945e5cf0703a51d1a3c14d824968414fa"
+    },
+    {
+      "path": "apps/web/src/app/liquidity/new/page.tsx",
+      "sha256": "c3a7dddb328752d568e966f9e42aefe0a263897018d99c7e23cff566adb82ccb"
+    },
+    {
+      "path": "apps/web/src/app/liquidity/page.tsx",
+      "sha256": "9d108fd522edad4c93c7c8b541d96255f234373f0d535c23ba182a5923ccbf57"
+    },
+    {
+      "path": "apps/web/src/app/page.module.css",
+      "sha256": "8291f8bba59e5bdee19e29fdc1d282cdb69e8cad178334cdac2388ca70281a80"
+    },
+    {
+      "path": "apps/web/src/app/page.tsx",
+      "sha256": "073d90b6a50dca74ce2f95107f2831b97650c67389a747af8e3292cf194a6326"
+    },
+    {
+      "path": "apps/web/src/app/pay/[invoiceId]/page.tsx",
+      "sha256": "b8a8e74219b889b52f4d53c6830ad9a098db502231bdf30bee40018d97a72aee"
+    },
+    {
+      "path": "apps/web/src/app/pay/page.tsx",
+      "sha256": "b0622ccc47997cc858afec8dedbb6afa6748f0856e98f334c34c6d0dcaa90aa0"
+    },
+    {
+      "path": "apps/web/src/app/proof/page.tsx",
+      "sha256": "2f67a925d1cd670d6a999c8f9277cdbc4b79e96e4f6e9313790fa45fdf33b4dc"
+    },
+    {
+      "path": "apps/web/src/app/swap/page.tsx",
+      "sha256": "e46c6fa6c3ee07f40304d6337d5f2fed6c26e4765a4954b619e123e94ecd37fd"
+    },
+    {
+      "path": "apps/web/src/components/Shell.module.css",
+      "sha256": "23e5e5da603313e4e0604c5af1a033fe9ae5f9aab5bfe9dc1766fad9482d32e6"
+    },
+    {
+      "path": "apps/web/src/components/Shell.tsx",
+      "sha256": "bf4daecc1a2098da543fbd6302825eacebbc77e81d29239f449644f5991437ca"
+    },
+    {
+      "path": "apps/web/src/content.ts",
+      "sha256": "01bf23abb2ee138715867531e05bb0d2e96c86506bab6a9fd31ad4167b62f725"
+    },
+    {
+      "path": "apps/web/src/features/Entity.tsx",
+      "sha256": "e1c0aa145e197d1258b0e393d0a2ffb3c0305abc651969e8e449df04737407f5"
+    },
+    {
+      "path": "apps/web/src/features/Invoice.module.css",
+      "sha256": "c8d1e7b22b4d37be6a4ac43a8d91662ebf06eb2083a2ea948ca9a917e37831e8"
+    },
+    {
+      "path": "apps/web/src/features/Invoice.tsx",
+      "sha256": "aaf61829ed38eb169f392f88e0ee1ff3f654408fd19d2cbd615bce8d33c265ed"
+    },
+    {
+      "path": "apps/web/src/features/InvoiceAdmin.tsx",
+      "sha256": "0dcde3b11a8839b4afde8efb02b142d1abf326c96639900c486d3a0fb698048a"
+    },
+    {
+      "path": "apps/web/src/features/Liquidity.module.css",
+      "sha256": "06befb8c9fd52961093bea47d93ae1fe59cdd24b2927c611674914cc7c82e67e"
+    },
+    {
+      "path": "apps/web/src/features/Liquidity.tsx",
+      "sha256": "45848af6866b423de0b151256008fd8d2e7397673d7995e72e4e27ce8e3daab6"
+    },
+    {
+      "path": "apps/web/src/features/Payment.tsx",
+      "sha256": "6561f54024af7a377f4f2702f4736325b927ba2289d954baca0ee80f7df57ef3"
+    },
+    {
+      "path": "apps/web/src/features/Payments.tsx",
+      "sha256": "7f163a714fcdf143dbf3647f8768241f99f8c20ce4c5491ddac2041af555aeb6"
+    },
+    {
+      "path": "apps/web/src/features/Proof.tsx",
+      "sha256": "21ec743658da5ae33a459bb7ee50caa7047eb2be21e666f144aa18a932957ee7"
+    },
+    {
+      "path": "apps/web/src/features/Strategies.tsx",
+      "sha256": "18bb569957af7f0bcd20efdbe9f7618f34b779af959c71be4963426abe6e12aa"
+    },
+    {
+      "path": "apps/web/src/features/Strategy.module.css",
+      "sha256": "28de148d465d42de29e764a488cdcb11a1cfcc9f443b3681b422d27323a8a1cb"
+    },
+    {
+      "path": "apps/web/src/features/Strategy.tsx",
+      "sha256": "f99ba375335607d1cb4e69355673e54ca2a41db8bb6cbc3748f6d1b8255e609b"
+    },
+    {
+      "path": "apps/web/src/features/Swap.tsx",
+      "sha256": "25f15a9a1bdac411f3487269ebf1a8d37dc883a7044438ed0fea98a8a5dce8bf"
+    },
+    {
+      "path": "apps/web/src/features/SwapExecution.tsx",
+      "sha256": "6af3ef7eb011f8e273dd09b4bb5bf3a2c1bbcec56d3ae5dbefa8aadbb1900c45"
+    },
+    {
+      "path": "apps/web/src/features/SwapSettings.tsx",
+      "sha256": "db0eac93f8153104b044b3e2de5abb630947d07d82a13e6a6caba02a4cbe2452"
+    },
+    {
+      "path": "apps/web/src/features/api.ts",
+      "sha256": "9af006f21a6807cd9073a7d2f1949391019434b99e11c5162d09cf19a6ba7693"
+    },
+    {
+      "path": "apps/web/src/features/invoiceAdminStorage.ts",
+      "sha256": "94ee78b916ca00c379277fefbf5beb95255eed04dbe81c5e950163a77e92138b"
+    },
+    {
+      "path": "apps/web/src/features/paymentStorage.ts",
+      "sha256": "c20241b457c5fd94d17708dd3cfb9eb706c709fe581b053d795693f93ceb81bd"
+    },
+    {
+      "path": "apps/web/src/features/swapStorage.ts",
+      "sha256": "9e415d42ab178ea54216c890ef1ea57a676c5434a642ab705e555b6630d0af99"
+    },
+    {
+      "path": "apps/web/src/features/useInvoice.ts",
+      "sha256": "852d402678ba42e78abc754cc86b4d7f6518a871f33d970c1685425ef7c45f09"
+    },
+    {
+      "path": "apps/web/src/features/useInvoiceAdmin.ts",
+      "sha256": "17fe142e3a6972d65f29c066c87bfce339d2c47d7b74760919b0ebf6d6d13972"
+    },
+    {
+      "path": "apps/web/src/features/usePageActive.ts",
+      "sha256": "90888e3d8b9c854f45673d4e2874f0c97f71e52098fdf5fe8cb9d60a53d19fb0"
+    },
+    {
+      "path": "apps/web/src/features/usePayment.ts",
+      "sha256": "f3a6520fc87ce5bdbc322faae90a3fbf2584445a621c5d9bb86401f3f5f7b631"
+    },
+    {
+      "path": "apps/web/src/features/useStrategies.ts",
+      "sha256": "dfe0fea83cf8f5168c880c46be1240e0191795ee7da6871a2cae221fd685dc4a"
+    },
+    {
+      "path": "apps/web/src/features/useStrategy.ts",
+      "sha256": "4ff497b8dd4f762080198a7d85a5dd507f7f48d820cdcb45c745ca8ba450dae3"
+    },
+    {
+      "path": "apps/web/src/features/useSwap.ts",
+      "sha256": "4a2bf5938f1a1d509fccc370aa07ae58a6f23cae032565a60ffcca2417a173bc"
+    },
+    {
+      "path": "apps/web/src/features/useSwapBalance.ts",
+      "sha256": "4110660bfe89f529ed916a4b357044159fa2547ab887fbae9eb5e9e42dfc3796"
+    },
+    {
+      "path": "apps/web/src/features/useSwapExecution.ts",
+      "sha256": "183e77aaa7267693aacd1e871ab2584e42a51cb67908404d142a48b96ff199ca"
+    },
+    {
+      "path": "apps/web/src/features/useSwapSettings.ts",
+      "sha256": "257c16a516fe2b3f34d52bfbb1e8c16752018b5ab26a5bb501eae3aac06e39dc"
+    },
+    {
+      "path": "apps/web/src/wallet/PrivyWallet.tsx",
+      "sha256": "99642bf1a697cc269b046f9e43754cf3d6715b9e231919827fcb4fe7a5f2f9af"
+    },
+    {
+      "path": "apps/web/src/wallet/WalletControl.module.css",
+      "sha256": "28915d481f7327c7010c2a7f049175ddafc57b8da5cab4f283dca583f7db6373"
+    },
+    {
+      "path": "apps/web/src/wallet/WalletControl.tsx",
+      "sha256": "20d0b77dd0145c25bcc1302bbaad7c865ec3ecbc92f238044b73455bb93971f2"
+    },
+    {
+      "path": "apps/web/src/wallet/WalletProvider.tsx",
+      "sha256": "c2ccc85d4767e433ff8f4fc3700277ba85ba19970e370fb25db6792dfe4f6444"
+    },
+    {
+      "path": "apps/web/src/wallet/balancePort.ts",
+      "sha256": "2721d8f4f5e381064215a0ecbb7703ef2b8cfc8ecc3486085991ae13999ada6e"
+    },
+    {
+      "path": "apps/web/src/wallet/config.ts",
+      "sha256": "0d48b5b394f5742039d36faee2063afc077d6a29f67d422cfe7f32064994aac1"
+    },
+    {
+      "path": "apps/web/src/wallet/invoiceAdminPort.ts",
+      "sha256": "974e0c3bfa5e19bda837264371e006914341ae9505acf9ad90019d1ff8bc7800"
+    },
+    {
+      "path": "apps/web/src/wallet/paymentPort.ts",
+      "sha256": "70deaa39d15b9efb646306021537daec2068752209a94f6d50dd6578c9ed54de"
+    },
+    {
+      "path": "apps/web/src/wallet/swapPort.ts",
+      "sha256": "5f5d8dbbb0bce479abff09384f6e41f96cf32b3990c459b9ef3975a0057ffa6f"
+    },
+    {
+      "path": "apps/web/src/wallet/transactionPort.ts",
+      "sha256": "4a23541433465b9de334ec3a830351346da21147b1d93df54592c20ff84f17c0"
+    },
+    {
+      "path": "apps/web/test/fixtures/invoice-admin.ts",
+      "sha256": "e9fc053b03e33b69ace0fc62d1834c27ec248378a5fd2f553af803fb5f0ea0cc"
+    },
+    {
+      "path": "apps/web/test/fixtures/swap.ts",
+      "sha256": "6b7ddcc3424909532f14a5368a6b9a708ca1a460349f8ade95e5c630021c52b9"
+    },
+    {
+      "path": "apps/web/test/invoice-admin-storage.spec.ts",
+      "sha256": "942c7f3829cbea67aeb1f9bbf297e49d94d948281a9b3aa7f4e4cba360e166ff"
+    },
+    {
+      "path": "apps/web/test/invoice-admin.spec.ts",
+      "sha256": "9184ea4d38c223b91fb8090c74c0683e9ed4e05d4a98948a1f6c55a32c1e90da"
+    },
+    {
+      "path": "apps/web/test/invoice.spec.ts",
+      "sha256": "7e0796669a63227b45972e91454e4b88b90e5de354ce36776736086a5d980394"
+    },
+    {
+      "path": "apps/web/test/payment.spec.ts",
+      "sha256": "739beb912f2d52480ca02553e08e164af0f36e12d7692985a27290b88293e809"
+    },
+    {
+      "path": "apps/web/test/strategy.spec.ts",
+      "sha256": "0d0b3bfc0738493a02689e903060b7c8bdb1cde6a8ff839536c12acb86d2812d"
+    },
+    {
+      "path": "apps/web/test/swap-controls.spec.ts",
+      "sha256": "742285056dcb99fe5999fe75427eb61f44b72fab5849aea9c947b62aee06a3d7"
+    },
+    {
+      "path": "apps/web/test/swap-execution.spec.ts",
+      "sha256": "8b6fecc63a2c925fc2cf236935a77e13001266a1557697fd444eecdad3fd5040"
+    },
+    {
+      "path": "apps/web/test/swap-storage.spec.ts",
+      "sha256": "d762acd0f6260cf8ee2fc03db6c4f89ed82f583c0fe7ccc152d85264788502f0"
+    },
+    {
+      "path": "apps/web/test/swap.spec.ts",
+      "sha256": "90291efa4a1eb9de235005965519b4916f705f04807d39028ae850d4690bd1cb"
+    },
+    {
+      "path": "apps/web/test/wallet.spec.ts",
+      "sha256": "2497630b573ea7cea4006121146001ba1b69fc1e64898cafa020af0f3555abfc"
+    },
+    {
+      "path": "apps/web/test/workflows.spec.ts",
+      "sha256": "d75ef641b1ae5345074d3efa901a1241d5b2414b3e4efeaf8ec8cc782ff901ae"
+    },
+    {
+      "path": "apps/web/tsconfig.json",
+      "sha256": "f88ab638c75ef2b8c551978dea5f45b6b3df26500196f7729836dc42d191dc45"
+    },
+    {
+      "path": "package.json",
+      "sha256": "913f6f18ee4552281685b7693e32a749aa8e189fa4b3e69d895cee851e8de4f8"
+    },
+    {
+      "path": "packages/contracts/foundry.toml",
+      "sha256": "8837e44a7819ccc323dfe5d24eb65b9a5fe4a9fc2d6c47418a88aaa94bfd4f9a"
+    },
+    {
+      "path": "packages/contracts/package.json",
+      "sha256": "4ab1ef88f80fae61f1b3c982d576f66e7377307dc7a332514673e001b6e7fba0"
+    },
+    {
+      "path": "packages/contracts/src/OrbitalDemoDollar.sol",
+      "sha256": "5a0140e4bd04c49f8a2c46f5b877bd68e5829aeed504774b966e6f2af60260c9"
+    },
+    {
+      "path": "packages/contracts/src/OrbitalPayments.sol",
+      "sha256": "02f8c9d2ff55fea0dae6c78c3b28ac251a9067a189a880c3441c367551bef743"
+    },
+    {
+      "path": "packages/contracts/src/OrbitalSwapVMRouter.sol",
+      "sha256": "e6c91e3c134e386369d7f5b39d74ccc8aa05f1e8894e2431630c39a4436c1f4a"
+    },
+    {
+      "path": "packages/contracts/src/interfaces/IOrbitalLifecycle.sol",
+      "sha256": "e00b423829a861235d2464258ef8aa9fb5d8396b404e7167ed6dad25e9c2fc48"
+    },
+    {
+      "path": "packages/contracts/src/interfaces/IOrbitalRouter.sol",
+      "sha256": "74427f23e2643d1bbabc12b0ecba598153e90a7aa12a24cfc7cdbdf646f1c73f"
+    },
+    {
+      "path": "packages/contracts/src/libraries/CurveEvaluation.sol",
+      "sha256": "1537bc49e14837d32279279f99a1f09f937c3a9c17e7226fd7dbceab61a864be"
+    },
+    {
+      "path": "packages/contracts/src/libraries/DualCertificate.sol",
+      "sha256": "255a4d483f465c976a580df452f91327565c2f5dc17376f524c32d03dd0f0448"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierComposition.sol",
+      "sha256": "2b0cced7ca334b9eb814d821edbdcd4ebb40b4fc9219dd9beddf7bc07599069f"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierEndpoint.sol",
+      "sha256": "7d7569a25afd6d38dedcf3e59b117f9f3de02f57116a05fb728ebbaa4c937058"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierEvents.sol",
+      "sha256": "69b8bb0ed565bb5c39782b58adb467c7f49794e1ad7fbb9dceda64874893ba43"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierSchedule.sol",
+      "sha256": "36a26f299bcb9d3cb59b4b32480364b2cd6fea18752e2c416ef073e7c60662ef"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierTurn.sol",
+      "sha256": "f1d9fc9cf528310040214af00101907ee011efd2be18f58b9394ea7843378e34"
+    },
+    {
+      "path": "packages/contracts/src/libraries/InteriorSwap.sol",
+      "sha256": "692b9445961ebb785d7f00ec0f9fc72af98e675fa3f6f8d5c93ab44f0a6716c6"
+    },
+    {
+      "path": "packages/contracts/src/libraries/IntervalMath.sol",
+      "sha256": "e7ea7cd4aa5bb7a63f52b665f1311667bb52715f8a4a5ad32a4dde30bd820898"
+    },
+    {
+      "path": "packages/contracts/src/libraries/LowerSheetProposal.sol",
+      "sha256": "30f6f54d6b1491e9ee5d62ee30163c9bc8b1f58a4bc8297c227aecbb1548f9cb"
+    },
+    {
+      "path": "packages/contracts/src/libraries/OrbitalMath.sol",
+      "sha256": "6454e86f8b8bea61506c2f5eead0df7936df8a89415597aabf76d3618acbfaeb"
+    },
+    {
+      "path": "packages/contracts/src/libraries/OrbitalOrderCodec.sol",
+      "sha256": "f802e2cd7361c1353c0fa17e98a32454707ceb993274572bb35240b75509e717"
+    },
+    {
+      "path": "packages/contracts/src/libraries/OrbitalSettlement.sol",
+      "sha256": "ec74cc5714beb38330f02d61bec16791cb9b9f97853a21cd43d091df0811673a"
+    },
+    {
+      "path": "packages/contracts/src/libraries/OrbitalStorage.sol",
+      "sha256": "7565599cc48ffe1080ff37770db0d3b400603a44bb7f9ebd18c163bac0699883"
+    },
+    {
+      "path": "packages/contracts/src/libraries/RootBracket.sol",
+      "sha256": "0e19eb8cb8c7daa41a3ea4ed32c1f6751d254edf689ff140cb155a554dad529d"
+    },
+    {
+      "path": "packages/contracts/src/libraries/SignedWide.sol",
+      "sha256": "8142108db5cc11ddf3a33e17855c7ca4a467f22687194967c28588aef6cb4426"
+    },
+    {
+      "path": "packages/contracts/src/libraries/SlackCertificate.sol",
+      "sha256": "1f4fafba1f78f98fa1ac868ed6ddaad91e40bbef5dc079ca5cdddf50f72c4e17"
+    },
+    {
+      "path": "packages/contracts/src/libraries/SphereStep.sol",
+      "sha256": "fc913149d1c166afd5c15a3a9be37f05a026b1bb5d2fa2573ed867bb9e4f1de6"
+    },
+    {
+      "path": "packages/contracts/src/libraries/StrategyInitializer.sol",
+      "sha256": "8c6d4566ce4c7c1bcea85714afa1c33997fd72adc3a099a376bed2db266ed8b0"
+    },
+    {
+      "path": "packages/contracts/src/libraries/TickGeometry.sol",
+      "sha256": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b"
+    },
+    {
+      "path": "packages/contracts/src/libraries/WideMath.sol",
+      "sha256": "61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d"
+    },
+    {
+      "path": "packages/contracts/test/Certificate.t.sol",
+      "sha256": "251eea7801234631e7438beb81a53651ced99b5ec57b7c5290cdcd488480ead2"
+    },
+    {
+      "path": "packages/contracts/test/Codec.t.sol",
+      "sha256": "4a23eae322c39c7d2dde240fc45235e4b11b6c365922816856a098fb162bf115"
+    },
+    {
+      "path": "packages/contracts/test/CurveEvaluation.t.sol",
+      "sha256": "34de5ba1aeaea49826d38959cc53e506ddff8b3da3d73149ec59c0c2292cdee4"
+    },
+    {
+      "path": "packages/contracts/test/DemoDollar.t.sol",
+      "sha256": "8c83228596c0e821ec35bb048912d30fa8b6e33d957462bca1ec629e4a5295ab"
+    },
+    {
+      "path": "packages/contracts/test/DualCertificate.t.sol",
+      "sha256": "c2d949595b1d4e824920dd8b411213a0ef3e62923bbb4ea9e047e08f378c86b8"
+    },
+    {
+      "path": "packages/contracts/test/FeeInstruction.t.sol",
+      "sha256": "40c4340ca1093797c7ecdb0c8b5a621fafaec111c2e6920126b9b83118b51c32"
+    },
+    {
+      "path": "packages/contracts/test/ForkResolution.t.sol",
+      "sha256": "a0fec14391ad4fbe2b4e3a9d0b7093ea34bf667723b332cc5a28f8363dba42d9"
+    },
+    {
+      "path": "packages/contracts/test/FrontierComposition.t.sol",
+      "sha256": "c8e0a09a2fb3bcc1ebdb56f018527d8d6a33a74e1cc13473373ab5d861cc248f"
+    },
+    {
+      "path": "packages/contracts/test/FrontierCompositionGas.t.sol",
+      "sha256": "db8fac5643a75e62605c753deb22089422a1298ce0f1419a34eaffbd10571c71"
+    },
+    {
+      "path": "packages/contracts/test/FrontierEndpoint.t.sol",
+      "sha256": "388d2d09b98ca6574f23f6ea47741e9e7b7fbb715c0446eda45c4a01d43a618e"
+    },
+    {
+      "path": "packages/contracts/test/FrontierEvents.t.sol",
+      "sha256": "8dede26540626afb1cd817159327fa96cd8a52dfcbfdc7f2fea13cf9986761da"
+    },
+    {
+      "path": "packages/contracts/test/FrontierPriceExclusion.t.sol",
+      "sha256": "d1df583e9d344de0060358992b0799af2b5fc5c3d04a554d372670a3f5aa167d"
+    },
+    {
+      "path": "packages/contracts/test/FrontierSchedule.t.sol",
+      "sha256": "17acdc4350563bfdfc370a79231a14805f644c73e0dcf78f0cc3f9540b4f6239"
+    },
+    {
+      "path": "packages/contracts/test/FrontierTurn.t.sol",
+      "sha256": "0b5d386a1e504fa2447c47895c552b20d464e22a6b1b85ac7d0132207deb188b"
+    },
+    {
+      "path": "packages/contracts/test/InitializerOracle.t.sol",
+      "sha256": "37de1a64acf8c382cc032e6f21fbba937db929c108f6f120c23d166589487b12"
+    },
+    {
+      "path": "packages/contracts/test/InteriorExecution.t.sol",
+      "sha256": "6c6f860dee5f44c0c4f7e2aa0b3fdeff4700ed4401118e0590753c38bc6e4e0a"
+    },
+    {
+      "path": "packages/contracts/test/InteriorProbe.t.sol",
+      "sha256": "ec51c09e9bd0aef2ecc9bbb03cec0ebf92458b7cd9e102de85d115885015f0fc"
+    },
+    {
+      "path": "packages/contracts/test/InteriorStateful.t.sol",
+      "sha256": "8a565158b8af8514b640b8439c60f2525b3dfa381753f6b36355cddf21196027"
+    },
+    {
+      "path": "packages/contracts/test/InteriorSwap.t.sol",
+      "sha256": "443a06b3e2aa5054667fbf24522d9bc997cc1e013e65adcebf3f03f0815eb065"
+    },
+    {
+      "path": "packages/contracts/test/IntervalMath.t.sol",
+      "sha256": "95279e7b163bdafbe18caf8e27d27727f1e84c05bf2cd1b953b6c6f64b2d9da4"
+    },
+    {
+      "path": "packages/contracts/test/LinkedMath.t.sol",
+      "sha256": "bce46f7ddff1c31376bbf3d2c9fc0d0f56818e99d90c3adf4f7ae6a170e5dfe9"
+    },
+    {
+      "path": "packages/contracts/test/LocalUSDC.t.sol",
+      "sha256": "4bd6d5004e741d475e5cedcbb00ef626f0e84142b3a03a22b04843844d5d0a26"
+    },
+    {
+      "path": "packages/contracts/test/LowerSheetProposal.t.sol",
+      "sha256": "dd957d4776e58dcdf4dba9c5222d5b6c642c88b525396a6c678d50b3a5e151c8"
+    },
+    {
+      "path": "packages/contracts/test/MaximumActivation.t.sol",
+      "sha256": "3b3761be30c1d627a1529df21ff4af648eeb2db5781f002acc97e687c85afed3"
+    },
+    {
+      "path": "packages/contracts/test/MixedExecution.t.sol",
+      "sha256": "17f9b30499cc69b0cbb7849f7c769aef1585e2873180d7178fafd8a2aab25c4a"
+    },
+    {
+      "path": "packages/contracts/test/MixedInvoice.t.sol",
+      "sha256": "9c3edbd0308e08f76b79837ad966ecc27631dd713498e9b76db4bb0f913c0344"
+    },
+    {
+      "path": "packages/contracts/test/OutwardRetention.t.sol",
+      "sha256": "7875fabbe587e22ac9a6b41aae51e0b9857b2925b409d8baad4a564119db87e0"
+    },
+    {
+      "path": "packages/contracts/test/PaymentSwap.t.sol",
+      "sha256": "88e8774581db0305d46f9686c28c5a1ee0765744bae78ccd27d8da0be01326d8"
+    },
+    {
+      "path": "packages/contracts/test/Payments.t.sol",
+      "sha256": "08f55e1a21a4479597707cd55f65e03e6767b02195e3019fbb766a5a4c9a96d2"
+    },
+    {
+      "path": "packages/contracts/test/PayoutBracket.t.sol",
+      "sha256": "6b4bf37f110c539d9aeaad6ce2bd9ba58b971e3793891ceecc1df98be9a031fe"
+    },
+    {
+      "path": "packages/contracts/test/PayoutEndpoint.t.sol",
+      "sha256": "7e28fce616af6cb7aa35adb0ce8bbc93113f8834f190e9800a41a5bf63d3a736"
+    },
+    {
+      "path": "packages/contracts/test/PilotGas.t.sol",
+      "sha256": "4df2c5a4081bb7501d14705ac6bf5cfc6bd283d3bea2e7f0f13da88433f4b59a"
+    },
+    {
+      "path": "packages/contracts/test/PilotReversal.t.sol",
+      "sha256": "6270a283dc3b02559c9849ce4d2aa6d02ae67654018239d7f7d796ecf9482597"
+    },
+    {
+      "path": "packages/contracts/test/ReachableComposition.t.sol",
+      "sha256": "6a87720431f6bd0b39f6de68a700b34e64ff8c59719f986876d377ce0c075cf3"
+    },
+    {
+      "path": "packages/contracts/test/RootBracket.t.sol",
+      "sha256": "2b89df005bf1014a6dcfa5800c2581351e472edbda1ca0265b22809a56554f6b"
+    },
+    {
+      "path": "packages/contracts/test/RouterLifecycle.t.sol",
+      "sha256": "f41aade4879841fac7b0a4206f12e9e554e48890f757e7d5a7145f8e8dae70d8"
+    },
+    {
+      "path": "packages/contracts/test/RouterSettlementSecurity.t.sol",
+      "sha256": "43b6669f623dcc935b5a21266489f48372ec32e707d25ec953b116922dd2a1e2"
+    },
+    {
+      "path": "packages/contracts/test/SeedProposal.t.sol",
+      "sha256": "eb565a54196ca6dd5090fa4a0f63fc42a0e1e5220cc844bedc05027664a4d39a"
+    },
+    {
+      "path": "packages/contracts/test/Settlement.t.sol",
+      "sha256": "5d29e794e46970fa280cd73c8a49851a7b1170f8dbbbab1fa4e34cf94609b07a"
+    },
+    {
+      "path": "packages/contracts/test/SharedInventory.t.sol",
+      "sha256": "eef282439a03c0a905c981e9732e11ab496aba207bd35499e6192347f9750392"
+    },
+    {
+      "path": "packages/contracts/test/SignedWide.t.sol",
+      "sha256": "0a020a1c93eaf39f5685e12812aa9055e476f6352fea81ee5bf0a10ae49d7a82"
+    },
+    {
+      "path": "packages/contracts/test/SlackCertificate.t.sol",
+      "sha256": "5a6631553e3777af5892706f371dc8bc284123743b810a886cbae1f1a0240c11"
+    },
+    {
+      "path": "packages/contracts/test/SlackGridRelease.t.sol",
+      "sha256": "f0b5ec21cd4248edd243697c910f6c8cddb156ad47e037e62c7f502219523252"
+    },
+    {
+      "path": "packages/contracts/test/SphereStep.t.sol",
+      "sha256": "d10ad7d00744c84fbe0069e8edf698bac7d68e78384bfbe0abd8f309b5869d9c"
+    },
+    {
+      "path": "packages/contracts/test/TickGeometry.t.sol",
+      "sha256": "bdfc6f583c0f7da0c3ed5a0eec20ff893f7071a98e4a698598edf0206955f6d7"
+    },
+    {
+      "path": "packages/contracts/test/WideMath.t.sol",
+      "sha256": "abecb4d1fd0940e05bb77e59f8ae3fb8832099390c68bb6f67012d3e889311ef"
+    },
+    {
+      "path": "packages/contracts/test/WideMathFast.t.sol",
+      "sha256": "213a4ca61912c7a7e89381fe325ac6e454e62915a30a5a40a4a37fd808ab96b5"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/CurvePrimitiveFixtures.sol",
+      "sha256": "ef0c9b0d9ecc07af1c754a85f5459510c1e9a54fd055b3d058201816a9357d5b"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/InitializerOracleFixtures.sol",
+      "sha256": "a7a8320f75fc740ccd9849444c9fee77a2b2fa474058c6e030f3cfed15a2e1e8"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/LocalUSDC.sol",
+      "sha256": "214d19937c70edcf518f929e4e8c426a0105362f34de4ab342898ad7b6b92cad"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/LowerSheetFixtures.sol",
+      "sha256": "c3dc33805e3ca552bd97eaaab6b07f78bcc61c155385c5f25d50904e4ea652cf"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/MixedPilotHarness.sol",
+      "sha256": "15cac64a17f28af1ddf4411803800d5205e75bbc0302fb3f8db31b94cf27c52d"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/PilotGasFixtures.sol",
+      "sha256": "24574a6786cb538da06385e78497cfb4c2786fc48a730e6f611e84f3a6046e64"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/foundry.toml",
+      "sha256": "bde0cb1c802a855de3706bf1152e0c97df62c962ddcf913a4c3344afad73e5fa"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/package.json",
+      "sha256": "991b489c3585517c355d936cd87ffbf69a530fbc7d3be358569ba97c903f7825"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/src/Aqua.sol",
+      "sha256": "de94a67c58f7b8b9e95c03f6a9c2acbacf525b5f43f8255111a83a0f5156b68c"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/src/AquaApp.sol",
+      "sha256": "ddff18fadb8d7c266f1a6bd32d5aa0fac365a29130fbd77a6575186ad5bff053"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/src/AquaRouter.sol",
+      "sha256": "86929386fdb9712e914a071f25491d000f1ae9581422c8134578852c69b9ca4b"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/src/interfaces/IAqua.sol",
+      "sha256": "915cbe38c77b46c3927143693a1a1b8ca0f32f75dc34cd5c18526a8103e94fd9"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/src/libs/Balance.sol",
+      "sha256": "b0a33ae9b8864f874b2fac31d8197c2edd5fbb8022b77491c3243fc7949225ce"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/test/AquaBalances.t.sol",
+      "sha256": "9326f700b4781c4af9fa603a5d1ffac784e015bb1c065af2d45b3dab807d8853"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/test/AquaEvents.t.sol",
+      "sha256": "b35eda8e58ca76605727614215669667db4ada648c250672a52ee613195d116c"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/test/AquaLifecycle.t.sol",
+      "sha256": "2612fc8fe6b1a65b778bc212b4671b951c981760bfc63befbeeda0f84579f14d"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/test/AquaPushPull.t.sol",
+      "sha256": "82abc5bc1e762810185b44e6d6ff63df4ba39e502472c085c9d17321390582eb"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/test/AquaRouter.t.sol",
+      "sha256": "7d2f9ab4afce96bf532799543bcbae5479045d48f5fc32c2e12de4c4b40b5ab3"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/test/AquaShipDock.t.sol",
+      "sha256": "3034d903496ac8d6ff08cd568c1f4464ec8e2f71d4512b7d6549aa6474e490f9"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/test/AquaStorageTest.t.sol",
+      "sha256": "507b9c3cee53946c18bde3c627d762e4bd517d57cd7ba8561e498c2fb00b4fce"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/test/base/AquaTestBase.sol",
+      "sha256": "f5f1c01376b86c7a038571f13766e6dba63d8c20139421883623cb71119de1e3"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/test/mock/ERC20.sol",
+      "sha256": "0796e56eccca5a801740d8e82c3d98b0fa8dbecc666f43200dd202a46d203a81"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/test/utils/Dynamic.sol",
+      "sha256": "db22c7876a8604a78582c3c5482437198f22fecb51b3e8a687d79b606e7c474e"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/test/utils/StorageAccesses.sol",
+      "sha256": "6e13fb29afecc6f73393462db19a9cae5f3f320cc37a2089adc692acebcb1b11"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/foundry.toml",
+      "sha256": "c6e4d3d32ea50b9dda335464ac240fb7530fddf63ab5e20fe9ba13b82e44fbd8"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/package.json",
+      "sha256": "e411cd702de0c6671a0dce5d53186b45d18ca1af0e55fdac08ac12d93f3c2c72"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/Base.sol",
+      "sha256": "fc32a987e0555c69c646d995981acbcc57d5cd0173a364d37b9f79e3aa00ff0e"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/Config.sol",
+      "sha256": "2644da0b989dddfa1a8fa0451dd9d41e8120ce9375fe589c61670caf3cafb925"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/LibVariable.sol",
+      "sha256": "65820c5909b7c1c1f1ba44be07539da535fb51d2088bce85d90e0240a294ebea"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/Script.sol",
+      "sha256": "69481d9a1b816761680fe82700233d0ecbb85f81f4e2826841664779cbb6f535"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdAssertions.sol",
+      "sha256": "dcb4e4fe9fdd74f3f04e6f3b46d4d42375ea1f63ca9488902b4b0c289ada0295"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdChains.sol",
+      "sha256": "a2cb4497c4ee5a2ba0ada8b816ea3bb1c9ba62303b70955dc0a2d99b3f98d326"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdCheats.sol",
+      "sha256": "29af42f9d670fd22e9fc3ebe3c2da194471e93e210361c41d3d26ef04e9dca28"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdConfig.sol",
+      "sha256": "3405e18df85fe73911ed93a772c902749a3f981c18270b80a794892b8604a89a"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdConstants.sol",
+      "sha256": "6c785abd2fb9d42560f867d8e43e729c55f5bda2c06e5ddae27b17e301de4f04"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdError.sol",
+      "sha256": "82ca17e33a03775e95b4612bd604a8732c73b2982a0278d214e06c68a886dc11"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdInvariant.sol",
+      "sha256": "f572e991cfe874844b3b75a540e38e2161c29b5d9ab1635a3c4f1a16c548f987"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdJson.sol",
+      "sha256": "0211b47e93dbeb6a7de6112470a77137038ed73b79b015847f013e49fcd7511f"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdMath.sol",
+      "sha256": "f04fc0616741563eb32d66c11af7fdca55a7202221e14282268c7be851fc63ab"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdStorage.sol",
+      "sha256": "829b263a1fe1a6637fee1a2129ef3cbc716f6020ed56637c8a5be7277ef812ce"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdStyle.sol",
+      "sha256": "324c2b0e100e88edbdb75f60f8a4c42f056f8d618ae5f56b1c404df64e8280a7"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdToml.sol",
+      "sha256": "de3fb35af79a1fd2a2de9bc4ca7866e4102f9d3fbf11f66f3fe82696412d47e2"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdUtils.sol",
+      "sha256": "812afd6b5b43b1db9a3da817425b7a789149d7b8baf0670520a2224812799706"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/Test.sol",
+      "sha256": "b1b48a4dfbd65fed186163326dc8870316679f64a195aa18050f83657d2df39c"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/Vm.sol",
+      "sha256": "c44d7bc0c4c4e47df60ee863291632df7947cb58d5395b3a02a4e93d029c6f06"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/console.sol",
+      "sha256": "896c5a5a5c235cb11a39876d430e1fc2c621e7950c4637ca58251b84b053f178"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/console2.sol",
+      "sha256": "3bbe2e07ec53d8cf9c091667fe10234fcb3e2b45eab2c711002188806f46e779"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/interfaces/IERC1155.sol",
+      "sha256": "d44fde880db31958113ed5b490ed30766f7843137947893506e35b161b959000"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/interfaces/IERC165.sol",
+      "sha256": "9bdab733bba2df028853aef1f5e06871fb4157d15c3c6a670be13f9b614c193b"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/interfaces/IERC20.sol",
+      "sha256": "283cedb0cf82640370b77b8a42175bc417c69a02d8989ac6d6a99be2157acd4d"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/interfaces/IERC4626.sol",
+      "sha256": "6a5115bfcaba28ad7f11d1e3973718683f5bac596f0e567d0a1cd4d3308e98b7"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/interfaces/IERC6909.sol",
+      "sha256": "b42d2ff602839f784bbf1012e124c01e11784b5b08bc828fbc6b151d2477f517"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/interfaces/IERC721.sol",
+      "sha256": "f6383f58bcf3a0f34717ae4ed5866b78201fd646df2e5eb2b7234d2ea2466ae5"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/interfaces/IERC7540.sol",
+      "sha256": "c6a7854c86bf3772a996fd70fc11b84930b03f136e98fce6e8cc36534af1d6c1"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/interfaces/IERC7575.sol",
+      "sha256": "31c45af17a667da7fe1710097cdc1edb6dbae0665f12a361b8632a4be0ead219"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/interfaces/IMulticall3.sol",
+      "sha256": "6620d9c5ea2e2291440e1dcce5072f948b7ec4d65075876a0d0ac9267d3342e3"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/safeconsole.sol",
+      "sha256": "ed11aa2efc83fa8e575215a11dd7a9be385cf49dacbc379630168d7334899e46"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/CommonBase.t.sol",
+      "sha256": "562b45d90eaa12a15d04f2bc1142017c5012af16de42d30199a29017365a341e"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/Config.t.sol",
+      "sha256": "a2c47e20dd867ea8e698bd6e7ae8530714474ccb36ed0b7993bdd668988ab0cc"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/LibVariable.t.sol",
+      "sha256": "0fc258d119965cf6426f1ab3729fd5813cfd7b697a39c7f35ccdbdd1c1a92380"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/StdAssertions.t.sol",
+      "sha256": "0f0cf037043f6e966067aae9c9680cb347750a5a48866bb6583f2d383734d8b6"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/StdChains.t.sol",
+      "sha256": "d7a28a9a7dcfa1145d94071e9b5f8696a03306f0f5336cff66e65bd39a7b8516"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/StdCheats.t.sol",
+      "sha256": "ee7e6c565cb97e9465c64047006d8f447d767bd18eb625716669a563fe8a382f"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/StdConstants.t.sol",
+      "sha256": "faa18ef14e923a75e09d45bf8a20cce0fc0af5f77369abadeaa8d6d50c0db4cb"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/StdError.t.sol",
+      "sha256": "ceba17e9d47573426035d2e19be2f4f6b74608f38cfc9d1a863d958e2b1f0df6"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/StdJson.t.sol",
+      "sha256": "eb681668002d081005b5f940a00cb5938083cace76f1c1db279e417b73350465"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/StdMath.t.sol",
+      "sha256": "04412a88c3b97ddbe18cc9ca77836ced2e27ffc4f2cf8afa9187a236f5881424"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/StdStorage.t.sol",
+      "sha256": "e4218145bb5e9c67fd4d6cacc7123300eec3b8aed39509e0059e9c6de1530827"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/StdStyle.t.sol",
+      "sha256": "2ab347f127d90f67e6caecbfd0b1824e29479d5e828828e1e53d78e66409fd9b"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/StdToml.t.sol",
+      "sha256": "f80ff211b9e2c4fadd9ee1aea4fbbd7211b1eb2257c48cbdbdbc647133c0fe34"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/StdUtils.t.sol",
+      "sha256": "5a7f75424c579b5cb38fe84f5e0baf88f053d7e4939ae2c3d6b79367dfdeeacf"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/Vm.t.sol",
+      "sha256": "9ec6459bc84e2701f9a87151c758a43057ec235aa14ab5fc1528b23dcf8a8b28"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/compilation/CompilationScript.sol",
+      "sha256": "507ab377552f634b9c9b937b5c7e7a3e00f3945611cb90c54d912dda93e02341"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/compilation/CompilationScriptBase.sol",
+      "sha256": "2daed8720080a460c8e04ac0f5fd00fcb2bda25ee3c7a99f47ccf049c5c8b1d5"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/compilation/CompilationTest.sol",
+      "sha256": "c5fcb0de979e2e604bad745d030983aa9212cb6e4fc9aa4e4d4df471199ca6b1"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/compilation/CompilationTestBase.sol",
+      "sha256": "08b3be5175e9fe035805093b9e9e4f2672893aef423946c05e601849d8e9d8e0"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/fixtures/broadcast.log.json",
+      "sha256": "567f1109599f4961096d36a5641d8115d73c098813331cff10b972490c72cc39"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/fixtures/config.toml",
+      "sha256": "94740ba258f40f52e77d45df237969741d31c7fa56f0e4e61986aec5f48b82dd"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/fixtures/test.json",
+      "sha256": "79965907225af6bd76ccc20c0279e84e1d916529a423fbaba8f5b6ef91d5ee26"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/test/fixtures/test.toml",
+      "sha256": "6996badd8df6c4f7a8aac58a1b8c97a7c0ba8ec302a3c4645f2042ae45354cf2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/foundry.toml",
+      "sha256": "e564445f3ac0ae137ebdc2f8d35d50d7daf2fff7be65302f00f6b3da3aaf0a8d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/mocks/ProtocolFeeProviderMock.sol",
+      "sha256": "8307b7117ebe22e2f67fad8256d305b25c6115210f85579eb838279ec0c54aa5"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/package.json",
+      "sha256": "034de181b5cccfa468a34e08b3ae4c097c11ad5cd14f115e65041d60f42b9cc9"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/SwapVM.sol",
+      "sha256": "56ad0b028912653eb0742c89184b99899396e81912f2e088b220a29fe1f932dc"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/Balances.sol",
+      "sha256": "a609d6c5756908f01e972e4e94ce7ed70c54d12d3690eecfbad18b51e04bc970"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/BaseFeeAdjuster.sol",
+      "sha256": "7f89cf6f0a7aa2e2c31fa2d0875491bf2717f83db018f995b3a7719216315aa6"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/Controls.sol",
+      "sha256": "300f0564f6049af04ca5ea4ec09f7fc48a84495a32cfcffd56dd5cfce6c08612"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/Debug.sol",
+      "sha256": "911d7d39cc00a722ff6f93c8903ffe24bbf27b60b63473ff89d40973ba3aa8ed"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/Decay.sol",
+      "sha256": "267bf6a7d4c9d2b46fdfdc0ea8cbaed1ed2b456a3e704163890bd61ac9ec8610"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/DutchAuction.sol",
+      "sha256": "43444b40555677e461b25a39917a18b852c1a8dfcab8330646351010eae46094"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/Extruction.sol",
+      "sha256": "b919826e83f8eab262ce999cf679edcc87b1deaa30b043da592a82490ef3271d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/FeeFlat.sol",
+      "sha256": "f3f69e9888b4eedf8e3e6473268b43094816f0c1ce0d9abfe5753b9ee961080d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/FeeProtocol.sol",
+      "sha256": "23b50c859669b2b111a1eeb0b7483e871a45fbb3697ee03d5d86bd4998fd1993"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/Invalidators.sol",
+      "sha256": "ec6fe57b810edef89e579b2455954e0d74e7fb1abd5927f9c1a3cef7067743c6"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/Jumps.sol",
+      "sha256": "324a7e2670b78182af1f0a2309cd5750ebfc327b84be926587af36e8f67e45da"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/LimitSwap.sol",
+      "sha256": "943aa3ce1d706dde3e1319df20b92ab79d4afc28672c4d9dcbd99353f420ed80"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/MinRate.sol",
+      "sha256": "08287f16227cefa38ffcee584dde6ac091d396444ddeea563b1d54ee953fc0fe"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/OraclePriceAdjuster.sol",
+      "sha256": "73c82082861bcf5aec9990e1744accb845c732dcef35d656f68e3a1848189222"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/PeggedSwap.sol",
+      "sha256": "3e9aed925e9704db142584640107cdaf45e74acfccdbcd847a4d5bc7e2a78ec2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/PiecewiseLinearScale.sol",
+      "sha256": "9553f86905317b6096defb3d0fae00cd118f64b0a959e5250aa3f2ad882a7f1f"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/SeriesEpochManager.sol",
+      "sha256": "1a369f1d2d3402d65a275426e1e088ad2a780acee7048f91230d6527e2d8210d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/TWAPSwap.sol",
+      "sha256": "c1e3978fea0fd3cdfc7c0f60bd57ce8299a66b89f5d95a06f962d9d5a780e733"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/TokenValidators.sol",
+      "sha256": "63ee7805caedbb23904baebdd4ebac079f80b904a8440f4272ebc5b8870ae4b4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/Whitelist.sol",
+      "sha256": "223bb7f2c8a72dff7f0d05bc0394e8356c93276d33e7766616bbe5ba67fadad3"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/XYCConcentrate.sol",
+      "sha256": "a6dab43e99e951ea7d77239354d97ae702fb720d0c441a4765c1507af3c5ce51"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/XYCSwap.sol",
+      "sha256": "065ada9c53ba9aa4e54e00141c9c1ad2a2b6ecab036da1576f0b044fa9ddcff4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/interfaces/IPriceOracle.sol",
+      "sha256": "fc342c488fa9a487e876819ea5b8fa68717e31c876cfac74bdef8eb4849e70eb"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/instructions/interfaces/IProtocolFeeProvider.sol",
+      "sha256": "47f7d1b657957692cd114e3a86bc7408c62710d4a6e4f2e88b22821d130cbf8c"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/interfaces/IMakerHooks.sol",
+      "sha256": "a60fc7993839fe88db5e81ef3b6d447b8fc0641a638e14f618d7e5166b5f9c6e"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/interfaces/ISwapVM.sol",
+      "sha256": "3739663b65fa61213dfe5867944cc4a120b0d4899fbbbb4c884001b12821bf46"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/interfaces/ITakerCallbacks.sol",
+      "sha256": "1a0577f50221291d8eef3a35a6451b0934a42086433c70fa2b841add2496c561"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/InstructionArgs.sol",
+      "sha256": "035ef4162a56291cfbb265264b0b4bf8f42c8d7d1ae73fe07aa673b5f104b24f"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/InstructionBuilder.sol",
+      "sha256": "90212ab796e2bc6c038131d87f2e3d9bc0e71b94f794556adb7929085fd6c041"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/MakerTraits.sol",
+      "sha256": "d8fc0d15046c497cf9d53785a052c992abe03960e7cb02ca6ec7f3e609a67ec2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/MemoryPtr.sol",
+      "sha256": "eb9950fd1c82047556f4904aeb9214fc84770f0aabd462f225a54231ecc66d53"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/OpcodeList.sol",
+      "sha256": "304a5244962a69345e8508950ab62fc7a6024eaface73124c29690b7b322c96c"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/PeggedSwapMath.sol",
+      "sha256": "3b36c7a167a487d7556bf066b539e8742a74b4a74f94e7a0e1e8b0ac4011e7a7"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/Power.sol",
+      "sha256": "52bcfe6120ba2e6d3e896a26f149676178c02e4808c1a1800295529c50370099"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/ProtocolFee.sol",
+      "sha256": "9bf03ea167b4b1c5c8252d040300efd028f4ad3c0e2c50a2ba79f1a21ebd0069"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/StorageSlots.sol",
+      "sha256": "4ad0b6deb24e94ef7fd288ab4e466f69e32b98b029c1ca3a2c5bd95ca0175efc"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/TakerTraits.sol",
+      "sha256": "197e6d9a35546dc8b2f63998fe4adb16c86f88ce84baad3ac91ca97b8079a525"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/VM.sol",
+      "sha256": "31707c8697667ef9f09c7346dafcd07d469a454889930ed97b5fef318ee94622"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/opcodes/AquaOpcodes.sol",
+      "sha256": "3c7f6377b1361a3123b6749a5fbd80689075bac2c06b11c0fbb581f82284a05c"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/opcodes/AquaOpcodesDebug.sol",
+      "sha256": "95e177ac3546fa4c9bcfd0a74d562b462bb72adb0e93f2cf9c47640d7099c651"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/opcodes/LimitOpcodes.sol",
+      "sha256": "9f7be660edc9da4f7271a182c5eff27db99489035271b7a6c30dde0e85d0b5c3"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/opcodes/LimitOpcodesDebug.sol",
+      "sha256": "0a0f5458c40ae316aa4feee65e77196dc58847dee77ee61e4f11b83a50d5a380"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/opcodes/Opcodes.sol",
+      "sha256": "76a4bab10146edecef2cda773a75baaabf2e54d828cac2bd7c3bd7b792f01e93"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/opcodes/OpcodesDebug.sol",
+      "sha256": "086b5172845c10d1105e8f659fa117071a099738c6e8f9913f1dcfadb884ae51"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/routers/AquaSwapVMRouter.sol",
+      "sha256": "ff572a4358357c7f35a9fabc690c053caa475884f218cb205b97efd369035f75"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/routers/AquaSwapVMRouterDebug.sol",
+      "sha256": "fee9a80a9d5772af78166bd9340d29b1972571d1b0417eea6c9cc83ba0618459"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/routers/LimitSwapVMRouter.sol",
+      "sha256": "ce3c22f64a5fb0b10eeac20b6d2122e5ac47881929ac5959019748cd663c468d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/routers/LimitSwapVMRouterDebug.sol",
+      "sha256": "e44979f4f6175ab1e912960c41e9c29f85fcdb785c72547ec9fea6504efcdc5d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/routers/SwapVMRouter.sol",
+      "sha256": "06d0938ebbd5690cb4607f05f76d8a55a703169299eecea338c3070a71c05e2b"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/routers/SwapVMRouterDebug.sol",
+      "sha256": "1a1bd023ff4407b47ffb3644d46fcdda80e6a17251058bda375fe7fbfdc45ce4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/strategies/Strategies.sol",
+      "sha256": "11a2353ec4fb5a1c2157fc1d6abeb73fdea8da81ed38121570feda46c3bdf91e"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/AquaAccounting.t.sol",
+      "sha256": "919a76593a771202b3e0efc174cd76a6d0785724716ad6273ace73568fa2b554"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/BaseFeeAdjuster.t.sol",
+      "sha256": "f0cc8a6a59e7fb7528981dee9ab9a7e7f576efa7cf420dee40471c8ea0ede897"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/ConcentrateXYCRounding.t.sol",
+      "sha256": "c3868589046ce4d73851fa8e530eae93ebe4a3ff8d30d4d84eeecc6e0d3c2950"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/Controls.t.sol",
+      "sha256": "df7818da4bb8e2565612035c645c5b90fef23a7dec762e98bebf46b4e69b3040"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/ControlsAqua.t.sol",
+      "sha256": "85acfcd7fe97dae716be47268c4eb26a8b904a30d991162305343942ae5fd289"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/Debug.t.sol",
+      "sha256": "4828b03ee05bb3f72117b4afd69172cb6f0325c1e0e91d3d0c8bbbf94e997844"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/Decay.t.sol",
+      "sha256": "3faf6b534c49e254fc8024b17f7ffc8d83f1e2d0fd928cd5dc74ba334454d43e"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/DutchAuction.t.sol",
+      "sha256": "a0ed90262e61a5f3da95b91e0ea281a621743902b67ad167b29c06016d0baefa"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/DynamicProtocolFee.t.sol",
+      "sha256": "6e5965dca4db5c61bad035ea5d4f9d019e674afd3d8fe40c548a00a7808769f5"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/Fee.t.sol",
+      "sha256": "9b3d3a92d5d76d660b8b0eea1e340fd1cf3f9eae25455d95732ebddbe77ebd7b"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/FeeAqua.t.sol",
+      "sha256": "4866283699da15ae20b8a541dea794a363e1e1a9f2e427f2c6f343e22b9e9d14"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/FeeFlatPartialFill.t.sol",
+      "sha256": "910353e0dcec5328c7a8f0fcbdb326878804b39f095161bed32b3638466b40f2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/FeeIndifferencyToSwap.t.sol",
+      "sha256": "19bc383546eacd5b832572990cd8722d47226d8985701596a7097db288b97c92"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/FeeOutAdditivityViolation.t.sol",
+      "sha256": "c9435a8680468b3c0281a5a7fd26d0429e98e062d9d07b623194faf3fa6c2467"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/FeeProtocolCombinations.t.sol",
+      "sha256": "75e13cc0b2b6bdcb4fcc27c1ea997fd70c16d8c4eadb4bbab3b201a200853019"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/FeeProtocolCommissions.t.sol",
+      "sha256": "69b031ce67346ade9a1fd5e543605affebebd232768d4ae058d6e8373a874552"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/FeeProtocolPartialFill.t.sol",
+      "sha256": "2b6fba5e583197beaed18976684e8ecd9661b8526e82c3a63abfa07a576ab9af"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/Invalidators.t.sol",
+      "sha256": "fad540e1897216ad7399b180d001d757fb96f4842e9daa8e856e873b96ba6442"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/LimitSwapFullAmountOneSideZero.t.sol",
+      "sha256": "465851760d7dbefba400fd7fee468ac753a8ddb404a11b411ca50ef9f2877031"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/LimitSwapPartialFill.t.sol",
+      "sha256": "f1ec24a093503c2eb5e18bc5c537f0fead72fe1a9c639e46b6e177544adf8b82"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/MakerHooks.t.sol",
+      "sha256": "da8639e08e48db8769ab6c7791082e617b9613271ba63829a392d238299f5d48"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/MemoryPtr.t.sol",
+      "sha256": "d99a8d6160e9e2fc2f5c10891b5d919c618fed218589a6e78c835822c5d92693"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/MinRate.t.sol",
+      "sha256": "51e2873bbb703d5a0b103aa5880820e1d4db62317b63379afa3798bc86fc4185"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/NativePayment.t.sol",
+      "sha256": "e19743b8bf5e3703855f25205b610f72524fed82e1ee9494f77f6918e551aa38"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/OpcodeEnumCheck.t.sol",
+      "sha256": "7651517bba041d70c2a60de0913e57b94899664417e718757144aa3593e43cb8"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/PeggedSwap.t.sol",
+      "sha256": "f05286b5999615352f6156938b9eff66a285ca3dc61e3ee66a28fbb901c67887"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/PiecewiseLinearScale.t.sol",
+      "sha256": "530f85f403ccc68a51171bf9bee288a8d1af023bd2cb6b37ea34e8bd8f2f6516"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/PrivateOrder.t.sol",
+      "sha256": "3cd2417c1f4357126f7729e7ebd1fa02591eeebc67206051d3bd8df0593b9d97"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/ProtocolFee.t.sol",
+      "sha256": "ba0e51cb6a699a016f3df52132110a18dab08c972b4650352c60594c327507ca"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/ProtocolFeeAqua.t.sol",
+      "sha256": "490ef23bf331b737c7099c85bd584afbce20d870e5920f81f635d8a743696526"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/ProtocolFeeProviderMock.t.sol",
+      "sha256": "72e55d5eb53ce10f07cb13103c3b9e8b97e4545c81d5aed0a5021c1eee536a2b"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/ProtocolSurplusPartialFill.t.sol",
+      "sha256": "4e61de5f6f75dbfe72d48466360758b21b681bde82c5de1906062b93a8be3ea2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/RunLoop.t.sol",
+      "sha256": "fcc3be67b1d1d2e03a7187d716cbbb42eafd421916e0eff87f2a04d47b0387da"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/SeriesEpochManager.t.sol",
+      "sha256": "9f5abb20c1cb79eab531c2ae6f392c2a4607b8566090c1386249f4828c52e78b"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/StorageSlots.t.sol",
+      "sha256": "f9f747c6eebeffd55b3f2dd0f203eb2ab260b2bd0035d99c8f293cbbea1d4e15"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/Strategies.t.sol",
+      "sha256": "6007b427f8d42dab26d05f2596316d6088846ef9e0bb1d0242f3563e81cfe9ec"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/SwapVM.t.sol",
+      "sha256": "9c7a1d34806435653d6cd88170a8e9e47dc3f5ebbadf23d463b6e84cff19c797"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/SwapVMAqua.t.sol",
+      "sha256": "8375730d989c5460af6f03be1082c34e6aab720f474f8a10caa95335516852f9"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/SwapVmAccounting.t.sol",
+      "sha256": "c78068e73366c9438c49a30dbe7b9ec761500470d0b3a5bdfdf51c5cbdd12ba6"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/SwapVmRescueFunds.t.sol",
+      "sha256": "f860d9459078b71e4e140af8e39ea05bb7185180d13d72b21bd2268b88152fd0"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/TWAPSwap.t.sol",
+      "sha256": "06f7ff5bfa35ff7984f4506155e9b2d89d8f0e8e47d50824a9af9754df4eb5da"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/TakerCallbackAquaNegative.t.sol",
+      "sha256": "0f4542bde5e9e6e19f48df4553cb801efe3a51f2c1ffda34489882fa80c991b1"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/TakerTraits.t.sol",
+      "sha256": "e90484f25d83cba110ec29619cf93867dbd2c909abc2951a779286264ef5b285"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/TakerTraitsPartialFill.t.sol",
+      "sha256": "775db03e77d6ff5431c0d32bc187687992512db0afcaa326f27fc7f768c03627"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/TransferModesCombinations.t.sol",
+      "sha256": "bbfd0e66653ecfb5e6e63bea58d363d4722ddf7ceaa8b10a7326e32fbd0bb6fd"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/UnwrapWeth.t.sol",
+      "sha256": "2e4ca4d80b7de8c92de60f12809daf5524fb4ee9ab9fbf438e6b62b146418474"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/Whitelist.t.sol",
+      "sha256": "05656153ba8f20a56505643ac571de39f36b700ee4f6f6e5d6092af745818c56"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/XYCConcentrate.t.sol",
+      "sha256": "b55eba919cd274d8d11fb5c7fe10acba3bf82b7139982bb2a09aea71715f4b36"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/XYCConcentrateCapitalEfficiency.t.sol",
+      "sha256": "bf23887d78c46ab40c0109c1ced8ed547a6952dc0df60873d63cc1bba86635d3"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/XYCConcentrateFeeEffectivePriceBounds.t.sol",
+      "sha256": "5fcc56f1bb907f9904bac3b99006311b30182c92ac2e611b300f333adcf44782"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/XYCConcentrateFeeTrackingDetailed.t.sol",
+      "sha256": "e072437e044786ee87f8e2e3e4b0cb0019467848b1981be66b810990dd124a6a"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/XYCConcentratePnL.t.sol",
+      "sha256": "cf04064fe57d4b0e72826e86be22fb883ca2a3a88d65a5742dcd85fbe4b287ab"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/XYCSwap.t.sol",
+      "sha256": "2aa687e14b8066394e34a9b75d6d21db3f1415655b3892310a7e5a211c5259b6"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/XYCSwapAqua.t.sol",
+      "sha256": "fb7c2ba60396903a9bac132cb8f8d624c99fb03d22ef2160d8f014489c470df9"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/base/AquaStrategyBuilders.sol",
+      "sha256": "422f01582256ba618ff7f43c2c0afef1dbc0aaf013046003c867b28b5256703f"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/base/AquaSwapVMTest.sol",
+      "sha256": "be5c9661aba1055c9aa261740ecd7b8fc4774c46f451491a3fb4db056d6b62d3"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/base/TestConstants.sol",
+      "sha256": "5aa9a421f1950a2002214cc34e91abb0e77573c7669ee22d6c470378f8e53ccd"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/gas/Gas.t.sol",
+      "sha256": "72df2e5d0944a480f4a80aeecc8ceeb9578dd8aefe012f234cbd9692f8989f8a"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/gas/OpcodeGas.t.sol",
+      "sha256": "2f9e333f90bbb1f79faf034f93ba9f3b247c9c71725d87bda9c3f3db9d797bb2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/helpers/AquaSwapVMHelper.sol",
+      "sha256": "5c844b4c1fe60b7ee54f1eeabda902489b208742e4c146026f40fad36a1665f0"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/helpers/DirectModeTaker.sol",
+      "sha256": "111f756ce4d296535deb9a7303800d8f06721311934cededd1ccda88859a73a9"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/helpers/DirectSwapVMHelper.sol",
+      "sha256": "5ca9302b956700c52d462fc1f9a7c6fbe6874343f4700dff1ad7d25e9d552918"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/BaseFeeAdjusterFeesInvariants.t.sol",
+      "sha256": "ff402846fb8eb3c9e711cace2d0cfadf53c79413f7ffc66921df020635abb7a4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/BaseFeeAdjusterInvariants.t.sol",
+      "sha256": "d7940b82e3b9a5940f595abb86a9b7267c3afe6fafd394b510b65ba37da8dde2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/ConcentrateXYCDecayFeesInvariants.t.sol",
+      "sha256": "4b72630a249d687a663fa33c55f4bde1935f08a1a2a68da07132ab05af4abd90"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/ConcentrateXYCDecayInvariants.t.sol",
+      "sha256": "ff76f5fa6a39e96611d4fcc32aca24d3460e9c47771cdd547e975553a28943e1"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/ConcentrateXYCFeesInvariants.t.sol",
+      "sha256": "47e14a606b1eb9c2575c231322dc3d124a61082e96e417d455a04651f8554954"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/ConcentrateXYCInvariants.t.sol",
+      "sha256": "155175d33c75d9caa004946a7a366664823700a93363f9e20e42ceb76ed02656"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/CoreInvariants.t.sol",
+      "sha256": "6ede7810bd196480127837a79f9f12811764fea6888a44cca419c70770ee2948"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/DecayXYCFeesInvariants.t.sol",
+      "sha256": "966e0104ba18535e3a472698970100a088a0adca37884e44c9e06ddced026780"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/DecayXYCInvariants.t.sol",
+      "sha256": "835b699313fc19e2d2c964c8fe20f54c9f063c76b591e700b7d8dff55b335794"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/DutchAuctionLimitSwapFeesInvariants.t.sol",
+      "sha256": "62dd82d34b515d6fddd4bacd6130e5b73986e226302e4384583f939624e4dcc0"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/DutchAuctionLimitSwapInvariants.t.sol",
+      "sha256": "4466aea6e8d0f23d63464a53a16c30f1c834233e4a8064e644dd7c9ea33e7e30"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/ExactInOutSymmetry.t.sol",
+      "sha256": "099f68c38bce0a40c1e579a4602eae4140eab60209f57b354880b91de7f211e1"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/ExampleInvariantUsage.t.sol",
+      "sha256": "e634ceb21121f512b54bd735f65da881f245971f25ea7a73b2fab940af070ac2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/MinRateInvariants.t.sol",
+      "sha256": "e0a901086b0a4ee3b8b0813d264ac3d0a77b65be5cf5d6c59dada64ec23121d3"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/PeggedFeesInvariants.t.sol",
+      "sha256": "46fe384a3c14f2ad207ae0a1d7187119ad00b45beac1bf780a4d583d6d3fbcf4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/PeggedSwapInvariants.t.sol",
+      "sha256": "87a40ee3aee8d3f0e3bafae71d985eaf8577f394fb0f2eee14a3b49323310dc9"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/RoundingInvariants.sol",
+      "sha256": "f1bf8c353ade6f749170d36d9b1776652982a5f2552aa8162ca39c885146a2c4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/TWAPLimitSwapInvariants.t.sol",
+      "sha256": "11812bf38a2e5eed78686d1186d2b973fd04127a099d6d1ec385f27faaaf522a"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/XYCFeesInvariants.t.sol",
+      "sha256": "83bdb3733988f2581593b4a8ae65604c1de1d563462e8614ed1332bf41de4f36"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/concentrate/DustAmounts.t.sol",
+      "sha256": "053721b95ab471719db1f7d3d3d9dd7eefd15c36e41c0552d7d2450611e59f4d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/concentrate/EdgePriceRange.t.sol",
+      "sha256": "7085a03e272a6780474cdde7f6ae6cd69a2fcfa850f39e3399b6a7c6bdbbe54e"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/concentrate/HugeLiquidity.t.sol",
+      "sha256": "5be554f806b1bcaa766f7a786338b192b30100f5caed58fce088a93013047c96"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/concentrate/LargeAmounts.t.sol",
+      "sha256": "b41c8f00c333f14d6fa16f67557b147df570b5c63e9c3119ba806f76238480b7"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/concentrate/MicroAmounts.t.sol",
+      "sha256": "798489bf6ef9549b4700c541741b1353e34cd841bac86c1c7839499f2460c7a5"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/concentrate/NarrowRange.t.sol",
+      "sha256": "b465d5c4d92ce62a3620e293f2e0a09121709c5eadf8e764c84157538f4dba8a"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/concentrate/SmallAmounts.t.sol",
+      "sha256": "59c3252901f1d56fdef7284e2b9148ef1c6d8d8885cfe3ed08d6ae058c61516f"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/concentrate/TinyLiquidity.t.sol",
+      "sha256": "e98331ec6c991b23af46d22253e6d7111040c57ad0f9085176d58251aa242d5c"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/concentrate/WideRange.t.sol",
+      "sha256": "8b30baa2a3bd98018246c9c16276afaf519a41e7182d6209ead5605dd970037f"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/BalancedCurve.t.sol",
+      "sha256": "ae90f362020c66cc018becc371749a4745f044d6d21e5d35710f5f0e0029c104"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/BalancedPoolEdgeFees.t.sol",
+      "sha256": "786a1a45b20b4b12074773f1950a55c22a51cd396c359b9c013681d680753e72"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/DustAmounts.t.sol",
+      "sha256": "356cedcc1e276a48c74d56f6e6fba9b2a29559713910c9c50cf96116e5d15400"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/HugeLiquidity.t.sol",
+      "sha256": "ca5965b1d4b91794737af72d776bc54446767b7faacab0f2c37a4b9f4483b4dc"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/ImbalancedPoolHighFees.t.sol",
+      "sha256": "29902f260f4f5e66c8530e629a62b54365f746601617f8ccb316b43144e93012"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/ImbalancedPoolLowFees.t.sol",
+      "sha256": "9ece978adfe1084ba55c5f0190862f1feb4463c6c5759da9c2afbb19a6d8d4c4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/LargeAmounts.t.sol",
+      "sha256": "17b661dec5e20396831950fee786b5acfa59aee8ecc0314b5facf22eb399c164"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/LargeDifferentDecimals.t.sol",
+      "sha256": "b4a27ab08e6244e270fa06ca6eb0df5377decc8b1c4eb26f44412761e1c05ef9"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/MostlyCurved.t.sol",
+      "sha256": "b43c465cb2942ee6bcd23c9d735155b56d2906512e31948f14ad5b9cb9298b21"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/PureSquareRoot.t.sol",
+      "sha256": "73d6c558f59986aeae16aee1ade09ea0392215d1f14034b4434bd67f06664061"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/SmallAmounts.t.sol",
+      "sha256": "74f9b4996520ad42911eff24bbd0fecb90269c8b086541339b4d90a998c77ad2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/TinyLiquidity.t.sol",
+      "sha256": "b82e3d8226da40762e2e987e4027b2746e582e89d43cd49621aa3a852b90f4c7"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/VeryImbalancedDifferentDecimals.t.sol",
+      "sha256": "d696709e3a221fe930c1a9b26509b005e2712998d8a8da5e40f68139a8028429"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/pegged/VeryLinear.t.sol",
+      "sha256": "f2ba512c9157719e8486e64c8c914e57b35018473eca1565be7374b30433cddf"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/xyc/BalancedPoolEdgeFees.t.sol",
+      "sha256": "af3f4bd1cf1129438985f1a6af1654d07e1f588c9823c9236698f64b2b4680c2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/xyc/DustAmounts.t.sol",
+      "sha256": "7215424e361aa24eaa96f75ef57b355bf263c6e89b1e7090b721b9e06913150a"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/xyc/HugeLiquidity.t.sol",
+      "sha256": "571e8c36520f2e5e25516529fcdda35141228ea02e73c143f63bb637aa62ea30"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/xyc/ImbalancedPoolHighFees.t.sol",
+      "sha256": "1e84f3cdbba7b47e0e144a6f78d440ee176af1074a876d3c737660a7a8cada33"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/xyc/ImbalancedPoolLowFees.t.sol",
+      "sha256": "1567334adefbb0075f53f26bbe2d699545670e1bc6ecab2d922eb17e5a85a36d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/xyc/LargeAmounts.t.sol",
+      "sha256": "39a040c482c2293dd232ee4b46b7f440e4f79ba8d402a773d96af025c4ff7a57"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/xyc/SmallAmounts.t.sol",
+      "sha256": "3a4a3f37572988c7591d06614c92022e297d3fc8a943f9712e74dae5d8c726cf"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/invariants/xyc/TinyLiquidity.t.sol",
+      "sha256": "aa975867d582e5c8cc76bcd4401cbd59826cc03fe2a8ecd4e565bec08bb6fd79"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/mocks/BestRouteSelector.sol",
+      "sha256": "a1fd03cf8ba146466d59ed4385613ca9c545d127d1866a0307416074a3fbef1b"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/mocks/InvalidProtocolFeeProviderMock.sol",
+      "sha256": "ef74387f5c2fe79fbfbde7fc7c629babddaa0ac8b5d26ad86dce87e3ab51c9d7"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/mocks/MockMakerHooks.sol",
+      "sha256": "236fee2541e757bf9c74761c323828617f538339a2e13dd3741f2f0fb7dae86f"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/mocks/MockNft.sol",
+      "sha256": "9fcdebcea5908575814e9f35ecfba929ec8a10b2fdcfd9364fce0a178487ce0a"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/mocks/MockTaker.sol",
+      "sha256": "a8792a741f0c9b7e00f262b235d72fe7938ad75d7d75ed6829df3889436291fa"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/mocks/MockTakerBrokenCallback.sol",
+      "sha256": "f3719b21ddbd01345fe88a8e4098c0005cffc46873180d21f507357848dfd021"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/mocks/MockTakerFirstTransfer.sol",
+      "sha256": "2eeea14b3209933190e14311e4ea079668618b917c95b66e8628b083424da776"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/mocks/RevertingMakerHooks.sol",
+      "sha256": "de18ef0fa798e7449878e045278b3285a84f5cbcdf818938f5ea8e6ab11b1b5c"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/mocks/TokenMockDecimals.sol",
+      "sha256": "576e879a3a144b9eb2e27aa9a2d9a41744eebd6752ab1d0df2b5b41cc2adab10"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/mocks/WETHMock.sol",
+      "sha256": "dc52d77ef54e5c500db2efcc07f8bce7f95fb6e2e3bb8fff83f0440efd201e1e"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/utils/Dynamic.sol",
+      "sha256": "91d12e2a4fa3567cea6948e732bb4db348db0e67ac4c07d8972977a6a913ed8e"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/utils/FeeBuilders.sol",
+      "sha256": "3440be2371f133fa72d89294d8c5b0614d2f958852aa7fe7b268a6dd695681f7"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/utils/FormatLib.sol",
+      "sha256": "cb6f368d165452e44eaed247862de0f2558ce449190a538f6435c3f85f98e106"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/test/utils/OrderHasher.sol",
+      "sha256": "717fc982ce46b24c888a023e38efef1faa005e74f03c33d879ce3b95c3445b87"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/foundry.toml",
+      "sha256": "e564445f3ac0ae137ebdc2f8d35d50d7daf2fff7be65302f00f6b3da3aaf0a8d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/mocks/ProtocolFeeProviderMock.sol",
+      "sha256": "8307b7117ebe22e2f67fad8256d305b25c6115210f85579eb838279ec0c54aa5"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/package.json",
+      "sha256": "034de181b5cccfa468a34e08b3ae4c097c11ad5cd14f115e65041d60f42b9cc9"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/SwapVM.sol",
+      "sha256": "cc1570a009d967497290ce604c0f3942cd84416c3d2b996cab6e965eef1fe9bf"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/Balances.sol",
+      "sha256": "a609d6c5756908f01e972e4e94ce7ed70c54d12d3690eecfbad18b51e04bc970"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/BaseFeeAdjuster.sol",
+      "sha256": "7f89cf6f0a7aa2e2c31fa2d0875491bf2717f83db018f995b3a7719216315aa6"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/Controls.sol",
+      "sha256": "300f0564f6049af04ca5ea4ec09f7fc48a84495a32cfcffd56dd5cfce6c08612"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/Debug.sol",
+      "sha256": "911d7d39cc00a722ff6f93c8903ffe24bbf27b60b63473ff89d40973ba3aa8ed"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/Decay.sol",
+      "sha256": "267bf6a7d4c9d2b46fdfdc0ea8cbaed1ed2b456a3e704163890bd61ac9ec8610"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/DutchAuction.sol",
+      "sha256": "43444b40555677e461b25a39917a18b852c1a8dfcab8330646351010eae46094"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/Extruction.sol",
+      "sha256": "b919826e83f8eab262ce999cf679edcc87b1deaa30b043da592a82490ef3271d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/FeeFlat.sol",
+      "sha256": "f3f69e9888b4eedf8e3e6473268b43094816f0c1ce0d9abfe5753b9ee961080d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/FeeProtocol.sol",
+      "sha256": "23b50c859669b2b111a1eeb0b7483e871a45fbb3697ee03d5d86bd4998fd1993"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/Invalidators.sol",
+      "sha256": "ec6fe57b810edef89e579b2455954e0d74e7fb1abd5927f9c1a3cef7067743c6"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/Jumps.sol",
+      "sha256": "324a7e2670b78182af1f0a2309cd5750ebfc327b84be926587af36e8f67e45da"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/LimitSwap.sol",
+      "sha256": "943aa3ce1d706dde3e1319df20b92ab79d4afc28672c4d9dcbd99353f420ed80"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/MinRate.sol",
+      "sha256": "08287f16227cefa38ffcee584dde6ac091d396444ddeea563b1d54ee953fc0fe"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/OraclePriceAdjuster.sol",
+      "sha256": "73c82082861bcf5aec9990e1744accb845c732dcef35d656f68e3a1848189222"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/PeggedSwap.sol",
+      "sha256": "3e9aed925e9704db142584640107cdaf45e74acfccdbcd847a4d5bc7e2a78ec2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/PiecewiseLinearScale.sol",
+      "sha256": "9553f86905317b6096defb3d0fae00cd118f64b0a959e5250aa3f2ad882a7f1f"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/SeriesEpochManager.sol",
+      "sha256": "1a369f1d2d3402d65a275426e1e088ad2a780acee7048f91230d6527e2d8210d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/TWAPSwap.sol",
+      "sha256": "c1e3978fea0fd3cdfc7c0f60bd57ce8299a66b89f5d95a06f962d9d5a780e733"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/TokenValidators.sol",
+      "sha256": "63ee7805caedbb23904baebdd4ebac079f80b904a8440f4272ebc5b8870ae4b4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/Whitelist.sol",
+      "sha256": "223bb7f2c8a72dff7f0d05bc0394e8356c93276d33e7766616bbe5ba67fadad3"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/XYCConcentrate.sol",
+      "sha256": "a6dab43e99e951ea7d77239354d97ae702fb720d0c441a4765c1507af3c5ce51"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/XYCSwap.sol",
+      "sha256": "065ada9c53ba9aa4e54e00141c9c1ad2a2b6ecab036da1576f0b044fa9ddcff4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/interfaces/IPriceOracle.sol",
+      "sha256": "fc342c488fa9a487e876819ea5b8fa68717e31c876cfac74bdef8eb4849e70eb"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/instructions/interfaces/IProtocolFeeProvider.sol",
+      "sha256": "47f7d1b657957692cd114e3a86bc7408c62710d4a6e4f2e88b22821d130cbf8c"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/interfaces/IMakerHooks.sol",
+      "sha256": "a60fc7993839fe88db5e81ef3b6d447b8fc0641a638e14f618d7e5166b5f9c6e"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/interfaces/ISwapVM.sol",
+      "sha256": "3739663b65fa61213dfe5867944cc4a120b0d4899fbbbb4c884001b12821bf46"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/interfaces/ITakerCallbacks.sol",
+      "sha256": "1a0577f50221291d8eef3a35a6451b0934a42086433c70fa2b841add2496c561"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/libs/InstructionArgs.sol",
+      "sha256": "035ef4162a56291cfbb265264b0b4bf8f42c8d7d1ae73fe07aa673b5f104b24f"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/libs/InstructionBuilder.sol",
+      "sha256": "90212ab796e2bc6c038131d87f2e3d9bc0e71b94f794556adb7929085fd6c041"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/libs/MakerTraits.sol",
+      "sha256": "d8fc0d15046c497cf9d53785a052c992abe03960e7cb02ca6ec7f3e609a67ec2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/libs/MemoryPtr.sol",
+      "sha256": "eb9950fd1c82047556f4904aeb9214fc84770f0aabd462f225a54231ecc66d53"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/libs/OpcodeList.sol",
+      "sha256": "304a5244962a69345e8508950ab62fc7a6024eaface73124c29690b7b322c96c"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/libs/PeggedSwapMath.sol",
+      "sha256": "3b36c7a167a487d7556bf066b539e8742a74b4a74f94e7a0e1e8b0ac4011e7a7"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/libs/Power.sol",
+      "sha256": "52bcfe6120ba2e6d3e896a26f149676178c02e4808c1a1800295529c50370099"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/libs/ProtocolFee.sol",
+      "sha256": "9bf03ea167b4b1c5c8252d040300efd028f4ad3c0e2c50a2ba79f1a21ebd0069"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/libs/StorageSlots.sol",
+      "sha256": "4ad0b6deb24e94ef7fd288ab4e466f69e32b98b029c1ca3a2c5bd95ca0175efc"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/libs/TakerTraits.sol",
+      "sha256": "197e6d9a35546dc8b2f63998fe4adb16c86f88ce84baad3ac91ca97b8079a525"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/libs/VM.sol",
+      "sha256": "31707c8697667ef9f09c7346dafcd07d469a454889930ed97b5fef318ee94622"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/opcodes/AquaOpcodes.sol",
+      "sha256": "3c7f6377b1361a3123b6749a5fbd80689075bac2c06b11c0fbb581f82284a05c"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/opcodes/AquaOpcodesDebug.sol",
+      "sha256": "95e177ac3546fa4c9bcfd0a74d562b462bb72adb0e93f2cf9c47640d7099c651"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/opcodes/LimitOpcodes.sol",
+      "sha256": "9f7be660edc9da4f7271a182c5eff27db99489035271b7a6c30dde0e85d0b5c3"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/opcodes/LimitOpcodesDebug.sol",
+      "sha256": "0a0f5458c40ae316aa4feee65e77196dc58847dee77ee61e4f11b83a50d5a380"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/opcodes/Opcodes.sol",
+      "sha256": "76a4bab10146edecef2cda773a75baaabf2e54d828cac2bd7c3bd7b792f01e93"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/opcodes/OpcodesDebug.sol",
+      "sha256": "086b5172845c10d1105e8f659fa117071a099738c6e8f9913f1dcfadb884ae51"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/routers/AquaSwapVMRouter.sol",
+      "sha256": "ff572a4358357c7f35a9fabc690c053caa475884f218cb205b97efd369035f75"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/routers/AquaSwapVMRouterDebug.sol",
+      "sha256": "fee9a80a9d5772af78166bd9340d29b1972571d1b0417eea6c9cc83ba0618459"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/routers/LimitSwapVMRouter.sol",
+      "sha256": "ce3c22f64a5fb0b10eeac20b6d2122e5ac47881929ac5959019748cd663c468d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/routers/LimitSwapVMRouterDebug.sol",
+      "sha256": "e44979f4f6175ab1e912960c41e9c29f85fcdb785c72547ec9fea6504efcdc5d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/routers/SwapVMRouter.sol",
+      "sha256": "06d0938ebbd5690cb4607f05f76d8a55a703169299eecea338c3070a71c05e2b"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/routers/SwapVMRouterDebug.sol",
+      "sha256": "1a1bd023ff4407b47ffb3644d46fcdda80e6a17251058bda375fe7fbfdc45ce4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/src/strategies/Strategies.sol",
+      "sha256": "11a2353ec4fb5a1c2157fc1d6abeb73fdea8da81ed38121570feda46c3bdf91e"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/AquaAccounting.t.sol",
+      "sha256": "919a76593a771202b3e0efc174cd76a6d0785724716ad6273ace73568fa2b554"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/BaseFeeAdjuster.t.sol",
+      "sha256": "f0cc8a6a59e7fb7528981dee9ab9a7e7f576efa7cf420dee40471c8ea0ede897"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/ConcentrateXYCRounding.t.sol",
+      "sha256": "c3868589046ce4d73851fa8e530eae93ebe4a3ff8d30d4d84eeecc6e0d3c2950"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/Controls.t.sol",
+      "sha256": "df7818da4bb8e2565612035c645c5b90fef23a7dec762e98bebf46b4e69b3040"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/ControlsAqua.t.sol",
+      "sha256": "85acfcd7fe97dae716be47268c4eb26a8b904a30d991162305343942ae5fd289"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/Debug.t.sol",
+      "sha256": "4828b03ee05bb3f72117b4afd69172cb6f0325c1e0e91d3d0c8bbbf94e997844"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/Decay.t.sol",
+      "sha256": "3faf6b534c49e254fc8024b17f7ffc8d83f1e2d0fd928cd5dc74ba334454d43e"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/DutchAuction.t.sol",
+      "sha256": "a0ed90262e61a5f3da95b91e0ea281a621743902b67ad167b29c06016d0baefa"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/DynamicProtocolFee.t.sol",
+      "sha256": "6e5965dca4db5c61bad035ea5d4f9d019e674afd3d8fe40c548a00a7808769f5"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/Fee.t.sol",
+      "sha256": "9b3d3a92d5d76d660b8b0eea1e340fd1cf3f9eae25455d95732ebddbe77ebd7b"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/FeeAqua.t.sol",
+      "sha256": "4866283699da15ae20b8a541dea794a363e1e1a9f2e427f2c6f343e22b9e9d14"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/FeeFlatPartialFill.t.sol",
+      "sha256": "910353e0dcec5328c7a8f0fcbdb326878804b39f095161bed32b3638466b40f2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/FeeIndifferencyToSwap.t.sol",
+      "sha256": "19bc383546eacd5b832572990cd8722d47226d8985701596a7097db288b97c92"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/FeeOutAdditivityViolation.t.sol",
+      "sha256": "c9435a8680468b3c0281a5a7fd26d0429e98e062d9d07b623194faf3fa6c2467"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/FeeProtocolCombinations.t.sol",
+      "sha256": "75e13cc0b2b6bdcb4fcc27c1ea997fd70c16d8c4eadb4bbab3b201a200853019"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/FeeProtocolCommissions.t.sol",
+      "sha256": "69b031ce67346ade9a1fd5e543605affebebd232768d4ae058d6e8373a874552"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/FeeProtocolPartialFill.t.sol",
+      "sha256": "2b6fba5e583197beaed18976684e8ecd9661b8526e82c3a63abfa07a576ab9af"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/Invalidators.t.sol",
+      "sha256": "fad540e1897216ad7399b180d001d757fb96f4842e9daa8e856e873b96ba6442"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/LimitSwapFullAmountOneSideZero.t.sol",
+      "sha256": "465851760d7dbefba400fd7fee468ac753a8ddb404a11b411ca50ef9f2877031"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/LimitSwapPartialFill.t.sol",
+      "sha256": "f1ec24a093503c2eb5e18bc5c537f0fead72fe1a9c639e46b6e177544adf8b82"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/MakerHooks.t.sol",
+      "sha256": "da8639e08e48db8769ab6c7791082e617b9613271ba63829a392d238299f5d48"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/MemoryPtr.t.sol",
+      "sha256": "d99a8d6160e9e2fc2f5c10891b5d919c618fed218589a6e78c835822c5d92693"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/MinRate.t.sol",
+      "sha256": "51e2873bbb703d5a0b103aa5880820e1d4db62317b63379afa3798bc86fc4185"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/NativePayment.t.sol",
+      "sha256": "e19743b8bf5e3703855f25205b610f72524fed82e1ee9494f77f6918e551aa38"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/OpcodeEnumCheck.t.sol",
+      "sha256": "7651517bba041d70c2a60de0913e57b94899664417e718757144aa3593e43cb8"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/PeggedSwap.t.sol",
+      "sha256": "f05286b5999615352f6156938b9eff66a285ca3dc61e3ee66a28fbb901c67887"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/PiecewiseLinearScale.t.sol",
+      "sha256": "530f85f403ccc68a51171bf9bee288a8d1af023bd2cb6b37ea34e8bd8f2f6516"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/PrivateOrder.t.sol",
+      "sha256": "3cd2417c1f4357126f7729e7ebd1fa02591eeebc67206051d3bd8df0593b9d97"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/ProtocolFee.t.sol",
+      "sha256": "ba0e51cb6a699a016f3df52132110a18dab08c972b4650352c60594c327507ca"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/ProtocolFeeAqua.t.sol",
+      "sha256": "490ef23bf331b737c7099c85bd584afbce20d870e5920f81f635d8a743696526"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/ProtocolFeeProviderMock.t.sol",
+      "sha256": "72e55d5eb53ce10f07cb13103c3b9e8b97e4545c81d5aed0a5021c1eee536a2b"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/ProtocolSurplusPartialFill.t.sol",
+      "sha256": "4e61de5f6f75dbfe72d48466360758b21b681bde82c5de1906062b93a8be3ea2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/RunLoop.t.sol",
+      "sha256": "fcc3be67b1d1d2e03a7187d716cbbb42eafd421916e0eff87f2a04d47b0387da"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/SeriesEpochManager.t.sol",
+      "sha256": "9f5abb20c1cb79eab531c2ae6f392c2a4607b8566090c1386249f4828c52e78b"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/StorageSlots.t.sol",
+      "sha256": "f9f747c6eebeffd55b3f2dd0f203eb2ab260b2bd0035d99c8f293cbbea1d4e15"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/Strategies.t.sol",
+      "sha256": "6007b427f8d42dab26d05f2596316d6088846ef9e0bb1d0242f3563e81cfe9ec"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/SwapVM.t.sol",
+      "sha256": "9c7a1d34806435653d6cd88170a8e9e47dc3f5ebbadf23d463b6e84cff19c797"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/SwapVMAqua.t.sol",
+      "sha256": "8375730d989c5460af6f03be1082c34e6aab720f474f8a10caa95335516852f9"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/SwapVmAccounting.t.sol",
+      "sha256": "c78068e73366c9438c49a30dbe7b9ec761500470d0b3a5bdfdf51c5cbdd12ba6"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/SwapVmRescueFunds.t.sol",
+      "sha256": "f860d9459078b71e4e140af8e39ea05bb7185180d13d72b21bd2268b88152fd0"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/TWAPSwap.t.sol",
+      "sha256": "06f7ff5bfa35ff7984f4506155e9b2d89d8f0e8e47d50824a9af9754df4eb5da"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/TakerCallbackAquaNegative.t.sol",
+      "sha256": "0f4542bde5e9e6e19f48df4553cb801efe3a51f2c1ffda34489882fa80c991b1"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/TakerTraits.t.sol",
+      "sha256": "e90484f25d83cba110ec29619cf93867dbd2c909abc2951a779286264ef5b285"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/TakerTraitsPartialFill.t.sol",
+      "sha256": "775db03e77d6ff5431c0d32bc187687992512db0afcaa326f27fc7f768c03627"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/TransferModesCombinations.t.sol",
+      "sha256": "bbfd0e66653ecfb5e6e63bea58d363d4722ddf7ceaa8b10a7326e32fbd0bb6fd"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/UnwrapWeth.t.sol",
+      "sha256": "2e4ca4d80b7de8c92de60f12809daf5524fb4ee9ab9fbf438e6b62b146418474"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/Whitelist.t.sol",
+      "sha256": "05656153ba8f20a56505643ac571de39f36b700ee4f6f6e5d6092af745818c56"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/XYCConcentrate.t.sol",
+      "sha256": "b55eba919cd274d8d11fb5c7fe10acba3bf82b7139982bb2a09aea71715f4b36"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/XYCConcentrateCapitalEfficiency.t.sol",
+      "sha256": "bf23887d78c46ab40c0109c1ced8ed547a6952dc0df60873d63cc1bba86635d3"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/XYCConcentrateFeeEffectivePriceBounds.t.sol",
+      "sha256": "5fcc56f1bb907f9904bac3b99006311b30182c92ac2e611b300f333adcf44782"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/XYCConcentrateFeeTrackingDetailed.t.sol",
+      "sha256": "e072437e044786ee87f8e2e3e4b0cb0019467848b1981be66b810990dd124a6a"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/XYCConcentratePnL.t.sol",
+      "sha256": "cf04064fe57d4b0e72826e86be22fb883ca2a3a88d65a5742dcd85fbe4b287ab"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/XYCSwap.t.sol",
+      "sha256": "2aa687e14b8066394e34a9b75d6d21db3f1415655b3892310a7e5a211c5259b6"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/XYCSwapAqua.t.sol",
+      "sha256": "fb7c2ba60396903a9bac132cb8f8d624c99fb03d22ef2160d8f014489c470df9"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/base/AquaStrategyBuilders.sol",
+      "sha256": "422f01582256ba618ff7f43c2c0afef1dbc0aaf013046003c867b28b5256703f"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/base/AquaSwapVMTest.sol",
+      "sha256": "be5c9661aba1055c9aa261740ecd7b8fc4774c46f451491a3fb4db056d6b62d3"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/base/TestConstants.sol",
+      "sha256": "5aa9a421f1950a2002214cc34e91abb0e77573c7669ee22d6c470378f8e53ccd"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/gas/Gas.t.sol",
+      "sha256": "72df2e5d0944a480f4a80aeecc8ceeb9578dd8aefe012f234cbd9692f8989f8a"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/gas/OpcodeGas.t.sol",
+      "sha256": "2f9e333f90bbb1f79faf034f93ba9f3b247c9c71725d87bda9c3f3db9d797bb2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/helpers/AquaSwapVMHelper.sol",
+      "sha256": "5c844b4c1fe60b7ee54f1eeabda902489b208742e4c146026f40fad36a1665f0"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/helpers/DirectModeTaker.sol",
+      "sha256": "111f756ce4d296535deb9a7303800d8f06721311934cededd1ccda88859a73a9"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/helpers/DirectSwapVMHelper.sol",
+      "sha256": "5ca9302b956700c52d462fc1f9a7c6fbe6874343f4700dff1ad7d25e9d552918"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/BaseFeeAdjusterFeesInvariants.t.sol",
+      "sha256": "ff402846fb8eb3c9e711cace2d0cfadf53c79413f7ffc66921df020635abb7a4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/BaseFeeAdjusterInvariants.t.sol",
+      "sha256": "d7940b82e3b9a5940f595abb86a9b7267c3afe6fafd394b510b65ba37da8dde2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/ConcentrateXYCDecayFeesInvariants.t.sol",
+      "sha256": "4b72630a249d687a663fa33c55f4bde1935f08a1a2a68da07132ab05af4abd90"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/ConcentrateXYCDecayInvariants.t.sol",
+      "sha256": "ff76f5fa6a39e96611d4fcc32aca24d3460e9c47771cdd547e975553a28943e1"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/ConcentrateXYCFeesInvariants.t.sol",
+      "sha256": "47e14a606b1eb9c2575c231322dc3d124a61082e96e417d455a04651f8554954"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/ConcentrateXYCInvariants.t.sol",
+      "sha256": "155175d33c75d9caa004946a7a366664823700a93363f9e20e42ceb76ed02656"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/CoreInvariants.t.sol",
+      "sha256": "6ede7810bd196480127837a79f9f12811764fea6888a44cca419c70770ee2948"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/DecayXYCFeesInvariants.t.sol",
+      "sha256": "966e0104ba18535e3a472698970100a088a0adca37884e44c9e06ddced026780"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/DecayXYCInvariants.t.sol",
+      "sha256": "835b699313fc19e2d2c964c8fe20f54c9f063c76b591e700b7d8dff55b335794"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/DutchAuctionLimitSwapFeesInvariants.t.sol",
+      "sha256": "62dd82d34b515d6fddd4bacd6130e5b73986e226302e4384583f939624e4dcc0"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/DutchAuctionLimitSwapInvariants.t.sol",
+      "sha256": "4466aea6e8d0f23d63464a53a16c30f1c834233e4a8064e644dd7c9ea33e7e30"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/ExactInOutSymmetry.t.sol",
+      "sha256": "099f68c38bce0a40c1e579a4602eae4140eab60209f57b354880b91de7f211e1"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/ExampleInvariantUsage.t.sol",
+      "sha256": "e634ceb21121f512b54bd735f65da881f245971f25ea7a73b2fab940af070ac2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/MinRateInvariants.t.sol",
+      "sha256": "e0a901086b0a4ee3b8b0813d264ac3d0a77b65be5cf5d6c59dada64ec23121d3"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/PeggedFeesInvariants.t.sol",
+      "sha256": "46fe384a3c14f2ad207ae0a1d7187119ad00b45beac1bf780a4d583d6d3fbcf4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/PeggedSwapInvariants.t.sol",
+      "sha256": "87a40ee3aee8d3f0e3bafae71d985eaf8577f394fb0f2eee14a3b49323310dc9"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/RoundingInvariants.sol",
+      "sha256": "f1bf8c353ade6f749170d36d9b1776652982a5f2552aa8162ca39c885146a2c4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/TWAPLimitSwapInvariants.t.sol",
+      "sha256": "11812bf38a2e5eed78686d1186d2b973fd04127a099d6d1ec385f27faaaf522a"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/XYCFeesInvariants.t.sol",
+      "sha256": "83bdb3733988f2581593b4a8ae65604c1de1d563462e8614ed1332bf41de4f36"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/concentrate/DustAmounts.t.sol",
+      "sha256": "053721b95ab471719db1f7d3d3d9dd7eefd15c36e41c0552d7d2450611e59f4d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/concentrate/EdgePriceRange.t.sol",
+      "sha256": "7085a03e272a6780474cdde7f6ae6cd69a2fcfa850f39e3399b6a7c6bdbbe54e"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/concentrate/HugeLiquidity.t.sol",
+      "sha256": "5be554f806b1bcaa766f7a786338b192b30100f5caed58fce088a93013047c96"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/concentrate/LargeAmounts.t.sol",
+      "sha256": "b41c8f00c333f14d6fa16f67557b147df570b5c63e9c3119ba806f76238480b7"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/concentrate/MicroAmounts.t.sol",
+      "sha256": "798489bf6ef9549b4700c541741b1353e34cd841bac86c1c7839499f2460c7a5"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/concentrate/NarrowRange.t.sol",
+      "sha256": "b465d5c4d92ce62a3620e293f2e0a09121709c5eadf8e764c84157538f4dba8a"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/concentrate/SmallAmounts.t.sol",
+      "sha256": "59c3252901f1d56fdef7284e2b9148ef1c6d8d8885cfe3ed08d6ae058c61516f"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/concentrate/TinyLiquidity.t.sol",
+      "sha256": "e98331ec6c991b23af46d22253e6d7111040c57ad0f9085176d58251aa242d5c"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/concentrate/WideRange.t.sol",
+      "sha256": "8b30baa2a3bd98018246c9c16276afaf519a41e7182d6209ead5605dd970037f"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/BalancedCurve.t.sol",
+      "sha256": "ae90f362020c66cc018becc371749a4745f044d6d21e5d35710f5f0e0029c104"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/BalancedPoolEdgeFees.t.sol",
+      "sha256": "786a1a45b20b4b12074773f1950a55c22a51cd396c359b9c013681d680753e72"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/DustAmounts.t.sol",
+      "sha256": "356cedcc1e276a48c74d56f6e6fba9b2a29559713910c9c50cf96116e5d15400"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/HugeLiquidity.t.sol",
+      "sha256": "ca5965b1d4b91794737af72d776bc54446767b7faacab0f2c37a4b9f4483b4dc"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/ImbalancedPoolHighFees.t.sol",
+      "sha256": "29902f260f4f5e66c8530e629a62b54365f746601617f8ccb316b43144e93012"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/ImbalancedPoolLowFees.t.sol",
+      "sha256": "9ece978adfe1084ba55c5f0190862f1feb4463c6c5759da9c2afbb19a6d8d4c4"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/LargeAmounts.t.sol",
+      "sha256": "17b661dec5e20396831950fee786b5acfa59aee8ecc0314b5facf22eb399c164"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/LargeDifferentDecimals.t.sol",
+      "sha256": "b4a27ab08e6244e270fa06ca6eb0df5377decc8b1c4eb26f44412761e1c05ef9"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/MostlyCurved.t.sol",
+      "sha256": "b43c465cb2942ee6bcd23c9d735155b56d2906512e31948f14ad5b9cb9298b21"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/PureSquareRoot.t.sol",
+      "sha256": "73d6c558f59986aeae16aee1ade09ea0392215d1f14034b4434bd67f06664061"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/SmallAmounts.t.sol",
+      "sha256": "74f9b4996520ad42911eff24bbd0fecb90269c8b086541339b4d90a998c77ad2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/TinyLiquidity.t.sol",
+      "sha256": "b82e3d8226da40762e2e987e4027b2746e582e89d43cd49621aa3a852b90f4c7"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/VeryImbalancedDifferentDecimals.t.sol",
+      "sha256": "d696709e3a221fe930c1a9b26509b005e2712998d8a8da5e40f68139a8028429"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/pegged/VeryLinear.t.sol",
+      "sha256": "f2ba512c9157719e8486e64c8c914e57b35018473eca1565be7374b30433cddf"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/xyc/BalancedPoolEdgeFees.t.sol",
+      "sha256": "af3f4bd1cf1129438985f1a6af1654d07e1f588c9823c9236698f64b2b4680c2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/xyc/DustAmounts.t.sol",
+      "sha256": "7215424e361aa24eaa96f75ef57b355bf263c6e89b1e7090b721b9e06913150a"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/xyc/HugeLiquidity.t.sol",
+      "sha256": "571e8c36520f2e5e25516529fcdda35141228ea02e73c143f63bb637aa62ea30"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/xyc/ImbalancedPoolHighFees.t.sol",
+      "sha256": "1e84f3cdbba7b47e0e144a6f78d440ee176af1074a876d3c737660a7a8cada33"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/xyc/ImbalancedPoolLowFees.t.sol",
+      "sha256": "1567334adefbb0075f53f26bbe2d699545670e1bc6ecab2d922eb17e5a85a36d"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/xyc/LargeAmounts.t.sol",
+      "sha256": "39a040c482c2293dd232ee4b46b7f440e4f79ba8d402a773d96af025c4ff7a57"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/xyc/SmallAmounts.t.sol",
+      "sha256": "3a4a3f37572988c7591d06614c92022e297d3fc8a943f9712e74dae5d8c726cf"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/invariants/xyc/TinyLiquidity.t.sol",
+      "sha256": "aa975867d582e5c8cc76bcd4401cbd59826cc03fe2a8ecd4e565bec08bb6fd79"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/mocks/BestRouteSelector.sol",
+      "sha256": "a1fd03cf8ba146466d59ed4385613ca9c545d127d1866a0307416074a3fbef1b"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/mocks/InvalidProtocolFeeProviderMock.sol",
+      "sha256": "ef74387f5c2fe79fbfbde7fc7c629babddaa0ac8b5d26ad86dce87e3ab51c9d7"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/mocks/MockMakerHooks.sol",
+      "sha256": "236fee2541e757bf9c74761c323828617f538339a2e13dd3741f2f0fb7dae86f"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/mocks/MockNft.sol",
+      "sha256": "9fcdebcea5908575814e9f35ecfba929ec8a10b2fdcfd9364fce0a178487ce0a"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/mocks/MockTaker.sol",
+      "sha256": "a8792a741f0c9b7e00f262b235d72fe7938ad75d7d75ed6829df3889436291fa"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/mocks/MockTakerBrokenCallback.sol",
+      "sha256": "f3719b21ddbd01345fe88a8e4098c0005cffc46873180d21f507357848dfd021"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/mocks/MockTakerFirstTransfer.sol",
+      "sha256": "2eeea14b3209933190e14311e4ea079668618b917c95b66e8628b083424da776"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/mocks/RevertingMakerHooks.sol",
+      "sha256": "de18ef0fa798e7449878e045278b3285a84f5cbcdf818938f5ea8e6ab11b1b5c"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/mocks/TokenMockDecimals.sol",
+      "sha256": "576e879a3a144b9eb2e27aa9a2d9a41744eebd6752ab1d0df2b5b41cc2adab10"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/mocks/WETHMock.sol",
+      "sha256": "dc52d77ef54e5c500db2efcc07f8bce7f95fb6e2e3bb8fff83f0440efd201e1e"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/utils/Dynamic.sol",
+      "sha256": "91d12e2a4fa3567cea6948e732bb4db348db0e67ac4c07d8972977a6a913ed8e"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/utils/FeeBuilders.sol",
+      "sha256": "3440be2371f133fa72d89294d8c5b0614d2f958852aa7fe7b268a6dd695681f7"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/utils/FormatLib.sol",
+      "sha256": "cb6f368d165452e44eaed247862de0f2558ce449190a538f6435c3f85f98e106"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm/test/utils/OrderHasher.sol",
+      "sha256": "717fc982ce46b24c888a023e38efef1faa005e74f03c33d879ce3b95c3445b87"
+    },
+    {
+      "path": "packages/db/migrations/0001_ingestion.sql",
+      "sha256": "39559be3ed69638841d6f6402d911b3a350acf954e9d06afbe24c2d2f739e501"
+    },
+    {
+      "path": "packages/db/migrations/0002_indexer_state.sql",
+      "sha256": "939e18555c2095cc3c9ed9c6896e81b74797f25254917d520e545d8d9e788c6e"
+    },
+    {
+      "path": "packages/db/migrations/0003_materialization.sql",
+      "sha256": "1dcdb0b45bf9ac98b3685762018a5a0b17c2982cd0bb47c3eccb10743130f20b"
+    },
+    {
+      "path": "packages/db/migrations/0004_swap_receipts.sql",
+      "sha256": "54cdc62ee03438a104eafd474e8839d7407a64757f76055d3408057e78c0de9d"
+    },
+    {
+      "path": "packages/db/package.json",
+      "sha256": "538169ac7b49e3dbdfeec5a8363fe7b35debd239b7533c0ce83e2e5b567cffe9"
+    },
+    {
+      "path": "packages/db/src/index.ts",
+      "sha256": "d0dbd39cc0b070d222b604ea8d768832f17c5284b02b7bcfeaa1cead0a0dc414"
+    },
+    {
+      "path": "packages/db/src/invoice-reads.ts",
+      "sha256": "edf72d60ee1020bd3d172e108b1f4a386d3f917b29e4bdccca47f495f3718a87"
+    },
+    {
+      "path": "packages/db/src/materialization.ts",
+      "sha256": "3fbaf83d43519cf924b0b0b558184e67e6f4bdbfbd55684e16ee2eaf455dbcad"
+    },
+    {
+      "path": "packages/db/src/materializationSchema.ts",
+      "sha256": "a0189f767100a7bc85ebcca8cb255afee00b968ac1f42a8dad8516d435d5e3bd"
+    },
+    {
+      "path": "packages/db/src/metrics.ts",
+      "sha256": "e2271bbaa118d4eff6aac793156b205ba0ceb01a062f9d5ac47cd2e6a7259ea0"
+    },
+    {
+      "path": "packages/db/src/migrate.ts",
+      "sha256": "4f9f7d507160b6db81d57c87c3024b5f33fada7ffb117b64cc62f70127f53bc0"
+    },
+    {
+      "path": "packages/db/src/reorg.ts",
+      "sha256": "ef1a49a45de9c60ba8ef11d82821ae2aee10517c512add3bbc4ad3f35b99e838"
+    },
+    {
+      "path": "packages/db/src/schema.ts",
+      "sha256": "f78c60c55746cedb8442f8f973f55be03b61e8b0902175f384d3ec596bb20c71"
+    },
+    {
+      "path": "packages/db/src/strategy-reads.ts",
+      "sha256": "cfebb8700c0040b893a41c4104b7e34400e3cb9ec4fa5896d30dd0352008f1da"
+    },
+    {
+      "path": "packages/db/test/helpers.ts",
+      "sha256": "a2cb06d7c34c9d760372bcda8a71476dc359c2dfb4b6a7e9d3257a2e18a57334"
+    },
+    {
+      "path": "packages/db/test/ingestion.test.ts",
+      "sha256": "d2b2a9092168e994d59c36cf900e8728e972a5b7d0788a0e2d74a5482a23163e"
+    },
+    {
+      "path": "packages/db/test/reorg.test.ts",
+      "sha256": "1a1f67a83a02d60740cf9790f3b2dd57e15a430076df6e0ae2c0772b114f2f6b"
+    },
+    {
+      "path": "packages/db/tsconfig.json",
+      "sha256": "e8b933a8437fe166fd427407e52ebeb030732ad2103746e074d7c9febb8fe87b"
+    },
+    {
+      "path": "packages/reference/fixtures/curve-primitives.json",
+      "sha256": "46c5a3225a34958c184c83aaba3458000d29e5586c64d896e28e99270e761ce4"
+    },
+    {
+      "path": "packages/reference/fixtures/frontier-composition.json",
+      "sha256": "832677c7978400a750a82c34a5ff93a8e918f912e59da921dbee17cf194d82d5"
+    },
+    {
+      "path": "packages/reference/fixtures/initializer-oracle.json",
+      "sha256": "91604a9f57e06b2b6660ae74cf51d8a96dd3628c55e436f506035f81ee0ab061"
+    },
+    {
+      "path": "packages/reference/fixtures/mixed-pilot.json",
+      "sha256": "faa71990daf327d438935b3a0a2ea545036a84549e4af252658c6b393fea28a3"
+    },
+    {
+      "path": "packages/reference/fixtures/reachable-traversal.json",
+      "sha256": "3711128a0e5e71986046cb07ab8f7096ecdf6fcc7251e8477a9444778a54cd51"
+    },
+    {
+      "path": "packages/reference/package.json",
+      "sha256": "7fb7c5c52e84f85911582a3c30f19ed9037d4aa1212940cb73c3b70ae987f874"
+    },
+    {
+      "path": "packages/sdk/package.json",
+      "sha256": "47db6ead0fd5af6cf9766ef7c645be157b38aac8345d16d2361d8ea469f1865c"
+    },
+    {
+      "path": "packages/sdk/scripts/artifact-integrity.mjs",
+      "sha256": "9f2f9e92ebf193adebbd19895a01d3bb2898dd22f629fc5cb6a56af0885158f3"
+    },
+    {
+      "path": "packages/sdk/scripts/generate-abi.mjs",
+      "sha256": "95a57dee8d198a84a2e8893305c12e18c321cc144df9551615fc0ef6ea7c0e89"
+    },
+    {
+      "path": "packages/sdk/scripts/generate-event-goldens.mjs",
+      "sha256": "079bad452a1a38acaf0d473807a7aab46ffd6dbd99291bdba5ececad054ad258"
+    },
+    {
+      "path": "packages/sdk/scripts/generate-goldens.mjs",
+      "sha256": "092f02cf6459eb471e7536f62dfa0dca29848f0ca147fcda271143bcd85c9312"
+    },
+    {
+      "path": "packages/sdk/src/codec.ts",
+      "sha256": "9859903cef7cd3b408ff4e0bc8894d1efcb252394a65ef623652ad54a19187ac"
+    },
+    {
+      "path": "packages/sdk/src/dto.ts",
+      "sha256": "c9b2600e8eded90b31434d2133f3aee49056081c16bf5151b1ed66a4a6779a25"
+    },
+    {
+      "path": "packages/sdk/src/execution.ts",
+      "sha256": "e616b2620c3324b3955f94dd9d2c2ce3e851f91c8e838049cb07f4bfc416fed2"
+    },
+    {
+      "path": "packages/sdk/src/generated/abi.ts",
+      "sha256": "65c3bc62b1d10688a66e549ef3d44278cc753a27e3dd5c493729e02324c1695f"
+    },
+    {
+      "path": "packages/sdk/src/generated/artifact-integrity.json",
+      "sha256": "3f848b5615fbef6f9b384053b2cc6795905379c2b3196633e870c122da83e323"
+    },
+    {
+      "path": "packages/sdk/src/generated/demo-token-provenance.json",
+      "sha256": "715ddccd24b7d70694554527b45600e4238bf6bcc48b23a143a6f13532f9e34f"
+    },
+    {
+      "path": "packages/sdk/src/generated/events-provenance.json",
+      "sha256": "ead6ac5261a8fc30e24919837a712dc3fb314c87b5649e67f1c761ad8df6707d"
+    },
+    {
+      "path": "packages/sdk/src/generated/provenance.json",
+      "sha256": "9b5b60be609d69412c27a4351dc671b548368b130515ef07db296943b422f1f6"
+    },
+    {
+      "path": "packages/sdk/src/generated/swap-events-provenance.json",
+      "sha256": "461fd6cec85372b737984f8fff4dec58d49e6105298ae9d98538b5d5b5920bce"
+    },
+    {
+      "path": "packages/sdk/src/index.ts",
+      "sha256": "bded55e7dec88ac529f38f61133302c8614eb5c9a22266fc3457cd3a0ccdc22f"
+    },
+    {
+      "path": "packages/sdk/src/invoice-admin.ts",
+      "sha256": "3920b53c9c8e283362b7ded8339877f51bdbcbe8d3ca40c2b4f71b94538daeed"
+    },
+    {
+      "path": "packages/sdk/src/invoice-read.ts",
+      "sha256": "dc52ed60465ae3afc94dcb55054bb9a701bf9539eb293fd613be9c0f6d996d0b"
+    },
+    {
+      "path": "packages/sdk/src/payment-cache-counts.ts",
+      "sha256": "0f49fc31f338c625031a5b6e587ed4c02024d4941a0a7474ae9bd9daf762bf2b"
+    },
+    {
+      "path": "packages/sdk/src/payment-read.ts",
+      "sha256": "82004de46a29adc46ce34292bb4256f52f7e3daa2cf27ee3c08a986ee5e1a453"
+    },
+    {
+      "path": "packages/sdk/src/payment-review.ts",
+      "sha256": "8d75339aa12cdfeafe1188b88204e909f4d0ab2396b81e94df5913e4d7c89d0f"
+    },
+    {
+      "path": "packages/sdk/src/plans.ts",
+      "sha256": "7e78a9a4a3cfcc6822e735e900fee59302c502aebc088bb5ed1486131d4edda2"
+    },
+    {
+      "path": "packages/sdk/src/quote-read.ts",
+      "sha256": "f18c61bf4410fe3d5037db3e6a7edf87b2df469880ee9eb0804b6fbcf87bcce5"
+    },
+    {
+      "path": "packages/sdk/src/review-core.ts",
+      "sha256": "d409a5106b2fadd13ca792ab311c3817bb122ad1979dc2dbab4887f61b6415c4"
+    },
+    {
+      "path": "packages/sdk/src/strategy-read.ts",
+      "sha256": "346f0d348cb785988ad57c59c59ea919ad70613999a4ceb516766d550c805cf1"
+    },
+    {
+      "path": "packages/sdk/src/swap-controls.ts",
+      "sha256": "db12b94e667302fae5622ff534060699d15a133a7739ccf7c806d387bdda8ec4"
+    },
+    {
+      "path": "packages/sdk/src/swap-receipt.ts",
+      "sha256": "8136726e253b9b8d65ff016b6852ef95fb46668e7f19b5a52e07dceebd2bd62e"
+    },
+    {
+      "path": "packages/sdk/src/swap-review.ts",
+      "sha256": "ee7e98153cc9f93e9bb1f37af0d21267f18cabfb0a4359f0a4df00837f6d489b"
+    },
+    {
+      "path": "packages/sdk/test/artifact-integrity.test.ts",
+      "sha256": "4afde6d684cf4f6cbfc157443bc8a27e1b39ce6ec5eb27aa2b60ad17d37b90d5"
+    },
+    {
+      "path": "packages/sdk/test/events.test.ts",
+      "sha256": "f46780295c41922bb2b3ab3918faaa9fd85abd82f3805e4e39903680aea8f284"
+    },
+    {
+      "path": "packages/sdk/test/execution.test.ts",
+      "sha256": "2e0b8f11643687ec92cf8856622e56ee06feb9f3ccb6969c09f1f62351f7a2ba"
+    },
+    {
+      "path": "packages/sdk/test/faucet.test.ts",
+      "sha256": "21435d12ff1d424c71a99ad885d8086a48e127e36456d41dbd79615c0bf915cf"
+    },
+    {
+      "path": "packages/sdk/test/fixtures/canonical.json",
+      "sha256": "28843a776647062319011a38dab7d3a320c1fa95dbc4b0e46db88133bd1b2a5c"
+    },
+    {
+      "path": "packages/sdk/test/fixtures/events.json",
+      "sha256": "d8b311b1d87d821d7044a5cc95c56c56e55f2c82024eee91bca86e4a0b517b58"
+    },
+    {
+      "path": "packages/sdk/test/fixtures/invoice.ts",
+      "sha256": "a37fbbb41f707df8b70a0cc942ffb23f3aa0860058649e6832e60f5c712268e5"
+    },
+    {
+      "path": "packages/sdk/test/fixtures/payment-observations.json",
+      "sha256": "aeafa67baf6b9bf1f9087f61337d877814cfa8f0cdfd56016c53479c2eb32823"
+    },
+    {
+      "path": "packages/sdk/test/fixtures/strategy.ts",
+      "sha256": "4d2b6a85e654558ff7032684f3fadfa9a2df36d25df803e5f4c6c0ec24e21a56"
+    },
+    {
+      "path": "packages/sdk/test/fixtures/swap-events.json",
+      "sha256": "e5b72329f9303cd3df4ca86468c9e7faf836ff4d0c1e7cc30758d55c56c821e7"
+    },
+    {
+      "path": "packages/sdk/test/fixtures/swap-quote-observation.json",
+      "sha256": "23544df0333c8ed01e36575049796adf8cb61a6678b92424b8e1435339886eb7"
+    },
+    {
+      "path": "packages/sdk/test/invoice-admin.test.ts",
+      "sha256": "c02f3eec58b2f418dcdc6b651b42914a4083db3854c909d0ad8fba19d83a6900"
+    },
+    {
+      "path": "packages/sdk/test/invoice-read.test.ts",
+      "sha256": "99e2670d4a9c99f4ceb1dd8c3c6d6a72ad9e9001f2d1c174ff396e89af052b39"
+    },
+    {
+      "path": "packages/sdk/test/payment-cache-counts.test.ts",
+      "sha256": "c023ed583568d6c0a59dd464627c33f605473f03148fa73018bcee06ca56ee1b"
+    },
+    {
+      "path": "packages/sdk/test/payment-read-abi.test.ts",
+      "sha256": "fe6193d0485dfae4047ce40e9994e097ff3878f6c614ece1bfa1c349863deb33"
+    },
+    {
+      "path": "packages/sdk/test/payment-read.test.ts",
+      "sha256": "38e9f3af4af24046af32b1a7b3f0844964f7940dde968b92513710cbfd7e57d9"
+    },
+    {
+      "path": "packages/sdk/test/payment-review.test.ts",
+      "sha256": "4a08aa672f81affbebc63209f13fedee918473b1e5429893780f044a0227c423"
+    },
+    {
+      "path": "packages/sdk/test/plans.test.ts",
+      "sha256": "e52571f352f5d0b2e8626aae7162c10813f1c518e67f4264d250a97090365ba3"
+    },
+    {
+      "path": "packages/sdk/test/quote-read.test.ts",
+      "sha256": "852463a6a8a9bea186f79109fec9ffbadeee292941501b24b36fead377ce3b67"
+    },
+    {
+      "path": "packages/sdk/test/sdk.test.ts",
+      "sha256": "9668f32c0909da32afbf598918f28537d7e9d323e6f262d78d510928cb16ead1"
+    },
+    {
+      "path": "packages/sdk/test/strategy-read.test.ts",
+      "sha256": "a56dba4bd87c893de45e5f0d3fe728e426c3cc5ea9b0d8cdc9b04ac58df6b990"
+    },
+    {
+      "path": "packages/sdk/test/swap-controls.test.ts",
+      "sha256": "a39e304c6fcfde5460d45871a33b3a9c778d4c5a21f42d020a2705f96e70b859"
+    },
+    {
+      "path": "packages/sdk/test/swap-events.test.ts",
+      "sha256": "a1f07716980e3b6db7812d717fde7a782d31c1f36267f39c6f9787aa3d813a43"
+    },
+    {
+      "path": "packages/sdk/test/swap-receipt.test.ts",
+      "sha256": "a69c22621d1d42f7db9250e0591e15189bec70613a2f54505563b5777b3f479c"
+    },
+    {
+      "path": "packages/sdk/test/swap-review.test.ts",
+      "sha256": "5eb87b94b030b98cdb8c261e5f33e7cf95610c9c99c621e6f2a12967fa22e52f"
+    },
+    {
+      "path": "packages/sdk/tsconfig.json",
+      "sha256": "e8b933a8437fe166fd427407e52ebeb030732ad2103746e074d7c9febb8fe87b"
+    },
+    {
+      "path": "packages/shared/package.json",
+      "sha256": "c5068729022834e7f4a466462f3eb9a0c16a0a02cbd3937d38c65677e994d10d"
+    },
+    {
+      "path": "packages/shared/src/index.ts",
+      "sha256": "1f0adc8f5e98c76dfe5de832f269f8162c03cf4a3c85e4cdf6a24f678a38a3f7"
+    },
+    {
+      "path": "packages/shared/test/payment-request.test.ts",
+      "sha256": "a6f8c03aff6b03842b96a544242d6f3b9054e0e668f1220f14cc7bf52c581688"
+    },
+    {
+      "path": "packages/shared/test/payment-response.test.ts",
+      "sha256": "a5401213d0ae75439b8365a4ef7c439adbb685185d0cf6934170a50d20969a9d"
+    },
+    {
+      "path": "packages/shared/test/schemas.test.ts",
+      "sha256": "380e82830239e456fca86a8e99f791f822715eddf42ac9d4749d9e8d0ebf6b8a"
+    },
+    {
+      "path": "packages/shared/tsconfig.json",
+      "sha256": "e8b933a8437fe166fd427407e52ebeb030732ad2103746e074d7c9febb8fe87b"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "3dcdd192b12769d53e971d2518506e96019f40c7870e78cec2aa6c3bec189129"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "sha256": "19c392315485a69356424a92bf6f4881cb9b8fb5b0009a8ca131dcf12668b977"
+    },
+    {
+      "path": "scripts/audit-invoice-admin.py",
+      "sha256": "a38298e1a2b74044305999628ba564e5ff5203a0ec5af205f817d3d77029f51f"
+    },
+    {
+      "path": "scripts/audit-payment-ui.py",
+      "sha256": "566ffa8b24d7a3cc7e16cdfb685b07572ba38aab3e2a4d63108b2a8b4f9fc590"
+    },
+    {
+      "path": "scripts/audit-strategy-read.py",
+      "sha256": "a2257b3f487e44d353435930bb0380abe2d960f96bbb542e9d7f65890052046a"
+    },
+    {
+      "path": "scripts/audit-swap-controls.py",
+      "sha256": "ca7f06df478f0525e1a3e5c9bc6640b3cfd8097fd25967654dcfb76612571057"
+    },
+    {
+      "path": "scripts/audit-swap-ui.py",
+      "sha256": "1b908f5506081539cc6374cf7036c3eeaac33b38a679c7b4f55e2e2d0e1faf02"
+    },
+    {
+      "path": "scripts/evidence.mjs",
+      "sha256": "059f6523e4dec91b2c5538d0cafb85f8ed5ad2ec7ea524173e3f5cc12b76166e"
+    },
+    {
+      "path": "scripts/recorded_command.py",
+      "sha256": "9e0107abfa509cf12ecf251aea3f81ebe95a40d7a8f18cbfd442728e03cb1d6e"
+    },
+    {
+      "path": "tsconfig.base.json",
+      "sha256": "6c1fd9b8e55e3fc4fece98c467e6449b48b63a4f751f9e4c28b42bc66a58fade"
+    },
+    {
+      "path": "scripts/check-strategy-read.py",
+      "sha256": "ead3f863a16f6958b65928abfb83c6e8f15269b35110031264489a6cdd044271"
+    }
+  ],
+  "reusedRuns": [
+    {
+      "label": "sdk",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "packages/sdk/node_modules/tsx/dist/cli.mjs",
+        "--test",
+        "packages/sdk/test/artifact-integrity.test.ts",
+        "packages/sdk/test/events.test.ts",
+        "packages/sdk/test/execution.test.ts",
+        "packages/sdk/test/faucet.test.ts",
+        "packages/sdk/test/invoice-admin.test.ts",
+        "packages/sdk/test/invoice-read.test.ts",
+        "packages/sdk/test/payment-cache-counts.test.ts",
+        "packages/sdk/test/payment-read-abi.test.ts",
+        "packages/sdk/test/payment-read.test.ts",
+        "packages/sdk/test/payment-review.test.ts",
+        "packages/sdk/test/plans.test.ts",
+        "packages/sdk/test/quote-read.test.ts",
+        "packages/sdk/test/sdk.test.ts",
+        "packages/sdk/test/strategy-read.test.ts",
+        "packages/sdk/test/swap-controls.test.ts",
+        "packages/sdk/test/swap-events.test.ts",
+        "packages/sdk/test/swap-receipt.test.ts",
+        "packages/sdk/test/swap-review.test.ts"
+      ],
+      "exitStatus": 0,
+      "timedOut": false,
+      "ownedPid": 2752,
+      "cleanup": null,
+      "terminal": true,
+      "seconds": 31.243,
+      "transcript": "test/evidence/strategy-read/final/sdk.txt",
+      "sha256": "dd5b79606f6598a2c47cc5486dd1df34994fd2763b60863a20e18448b8ad765f"
+    },
+    {
+      "label": "shared",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "packages/shared/node_modules/tsx/dist/cli.mjs",
+        "--test",
+        "packages/shared/test/payment-request.test.ts",
+        "packages/shared/test/payment-response.test.ts",
+        "packages/shared/test/schemas.test.ts"
+      ],
+      "exitStatus": 0,
+      "timedOut": false,
+      "ownedPid": 16700,
+      "cleanup": null,
+      "terminal": true,
+      "seconds": 1.855,
+      "transcript": "test/evidence/strategy-read/final/shared.txt",
+      "sha256": "aeaacdd577c520f0bbb925f5e9483c8c91c247d6978c0158c405eee7791390be"
+    }
+  ],
+  "interruptedRun": "test/evidence/strategy-read/final/checkpoint.json",
+  "runs": [
+    {
+      "label": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\pnpm.CMD",
+        "--filter",
+        "@orbital/web",
+        "build"
+      ],
+      "exitStatus": 0,
+      "timedOut": false,
+      "ownedPid": 23464,
+      "cleanup": null,
+      "terminal": true,
+      "seconds": 76.459,
+      "transcript": "test/evidence/strategy-read/smoke/build.txt",
+      "sha256": "6c0202ab548cbc277611bc1e86951f13ee6921bc72b6a2209e7e1e37fc775220"
+    },
+    {
+      "label": "types",
+      "command": [
+        "C:\\Program Files\\nodejs\\pnpm.CMD",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "timedOut": false,
+      "ownedPid": 19196,
+      "cleanup": null,
+      "terminal": true,
+      "seconds": 84.961,
+      "transcript": "test/evidence/strategy-read/smoke/types.txt",
+      "sha256": "8626c7838ec7a1799b820e681030225aba7ba9b1a4cde96b5a7620f4e24a2b94"
+    }
+  ],
+  "accepted": true,
+  "inputsUnchanged": true
+}

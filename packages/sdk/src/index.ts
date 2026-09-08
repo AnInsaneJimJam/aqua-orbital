@@ -10,4 +10,5 @@ export * from './swap-review';
 export * from './swap-receipt';
 export * from './swap-controls';
 export * from './invoice-admin';
+export * from './strategy-read';
 export {lifecycleEventsAbi,paymentsEventsAbi,swapEventsAbi,paymentsReadAbi} from './generated/abi';

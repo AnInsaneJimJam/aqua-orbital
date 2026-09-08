@@ -1,0 +1,17 @@
+
+> orbital@0.1.0 typecheck C:\Users\gujja\aqua-orbital
+> pnpm -r --if-present typecheck
+
+Scope: 8 of 9 workspace projects
+packages/db typecheck$ tsc --noEmit
+packages/shared typecheck$ tsc --noEmit
+packages/shared typecheck: Done
+packages/db typecheck: Done
+packages/sdk typecheck$ tsc --noEmit
+packages/sdk typecheck: Done
+apps/indexer typecheck$ tsc --noEmit
+apps/api typecheck$ tsc --noEmit
+apps/web typecheck$ tsc --noEmit
+apps/indexer typecheck: Done
+apps/api typecheck: Done
+apps/web typecheck: Done

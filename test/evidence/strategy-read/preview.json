@@ -1,0 +1,178 @@
+{
+  "capturedAt": "2026-09-08T16:47:04.129924+00:00",
+  "scope": "Production HTTP and referenced asset availability; no wallet or financial execution",
+  "pages": [
+    {
+      "route": "/liquidity",
+      "status": 200,
+      "assets": [
+        {
+          "asset": "/_next/static/chunks/0cz1d0mv5g_q7.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/0ikif2avuhsrl.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/0nyvg17irpb5f.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/0ow-u2gpe2izt.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/0xsn-aai_dib5.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/1-sovlvf44gjv.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/1vw44fefzdsjo.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/2fxlbjo_kdg1d.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/2h_65rxjabdcw.css",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/2lz0guzhfcotq.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/2wtbecg2m4qdb.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/2zmifrbzzm3no.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/33favdr5bbmvt.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/381lsbvybz38y.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/3a_furd3l1q7g.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/3d0v8_urzqr2q.css",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/3g_g7fy0fxs52.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/3uiclje1z715i.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/3ulsy4rjm-p0u.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/turbopack-3hpd9bmjpeq2l.js",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "route": "/liquidity/0x0101010101010101010101010101010101010101010101010101010101010101",
+      "status": 200,
+      "assets": [
+        {
+          "asset": "/_next/static/chunks/0cz1d0mv5g_q7.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/0ikif2avuhsrl.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/0nyvg17irpb5f.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/0ow-u2gpe2izt.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/0xsn-aai_dib5.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/1-sovlvf44gjv.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/1d1f0dohnybrp.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/1vw44fefzdsjo.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/2h_65rxjabdcw.css",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/2lz0guzhfcotq.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/2wtbecg2m4qdb.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/2zmifrbzzm3no.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/33favdr5bbmvt.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/381lsbvybz38y.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/3a_furd3l1q7g.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/3d0v8_urzqr2q.css",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/3g_g7fy0fxs52.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/3uiclje1z715i.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/3ulsy4rjm-p0u.js",
+          "status": 200
+        },
+        {
+          "asset": "/_next/static/chunks/turbopack-3hpd9bmjpeq2l.js",
+          "status": 200
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+[WebServer] (node:15756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:3648) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:9088) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 78 tests using 1 worker
+
+(node:14928) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/78] test\invoice-admin-storage.spec.ts:8:1 › invoice recovery preserves canonical calldata and never permits a changed scope
+[2/78] test\invoice-admin-storage.spec.ts:12:1 › invoice recovery rejects a changed action kind, appended data and malformed hashes
+[3/78] test\invoice-admin.spec.ts:6:1 › merchant reviews split amounts and shares only the confirmed creation ID
+[4/78] test\invoice-admin.spec.ts:19:1 › invalid invoice shares and inadequate gas never request a signature
+[5/78] test\invoice-admin.spec.ts:24:1 › edited terms and expiry invalidate creation review

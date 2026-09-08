@@ -5,7 +5,7 @@ import {useWallet} from '../wallet/WalletProvider';
 import {useDeployment} from './api';
 import {presets} from '../content';
 import styles from './Liquidity.module.css';
-export function Liquidity(){const wallet=useWallet(),deployment=useDeployment();return <section className="page"><div className="page-head"><div><div className="eyebrow">Maker-owned strategies</div><h1>Your liquidity, still yours.</h1><p>Concentrate around the peg. Tokens move only when a swap settles.</p></div><Link className="button" href="/liquidity/new">Create strategy <span aria-hidden="true">+</span></Link></div><div className="panel empty"><div className={styles.emptyOrbit} aria-hidden="true"/><h2>{wallet.connected?'Strategy availability':'Your wallet is your starting point.'}</h2><p>{wallet.connected?(deployment.error?.message??'Checking the indexed deployment…'):'Connect a wallet to view its strategies and publish a new allocation.'}</p>{!wallet.connected&&<button className="button secondary" onClick={wallet.connect}>Connect wallet</button>}</div></section>;}
+export {default as Liquidity} from './Strategies';
 export function NewStrategy(){
  const [step,setStep]=useState(0),[allocation,setAllocation]=useState('10'),[preset,setPreset]=useState(1),[fee,setFee]=useState('500'),[risk,setRisk]=useState(false),[shared,setShared]=useState(false);
  const deployment=useDeployment(),wallet=useWallet();const choice=presets[preset]!;

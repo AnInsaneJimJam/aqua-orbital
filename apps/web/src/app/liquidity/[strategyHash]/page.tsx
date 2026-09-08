@@ -1,2 +1,2 @@
-import Entity from '../../../features/Entity';
-export default async function Page({params}:{params:Promise<{strategyHash:string}>}){const {strategyHash}=await params;return <Entity kind="strategy" id={strategyHash}/>;}
+import Strategy from '../../../features/Strategy';
+export default async function Page({params}:{params:Promise<{strategyHash:string}>}){const {strategyHash}=await params;return <Strategy id={strategyHash}/>;}

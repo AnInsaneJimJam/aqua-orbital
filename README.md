@@ -4,6 +4,8 @@ Orbital is being built for multi-token concentrated stablecoin liquidity, held i
 
 **Implementation in progress. No Arc deployment or sponsor qualification has been verified.** Disposable local deployments are used for receipt tests. See [PROGRESS](PROGRESS.md) for actual results. The mathematical engine and complete application must both pass their gates.
 
+Current delivery priority: finish the missing workflows and connect the application end to end. Immediate checks stay light; broad regression and release campaigns are deferred. Registered liquidity listing and public inventory/detail reads are now implemented alongside swaps and invoice workflows. [Read workflow scope](test/evidence/strategy-read.md).
+
 ## Start here
 
 - [Master specification](MASTER_PROMPT.md): active architecture and G0–G8 acceptance gates.
