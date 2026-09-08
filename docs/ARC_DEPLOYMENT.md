@@ -1,12 +1,27 @@
 # User-signed Arc deployment
 
-The owner authorizes deploying **unchanged upstream AquaRouter** and Orbital on Arc Testnet, chain **5042002**, with wallet `0x5eBA55e1b43c8714E4432250Dada7A518780C871`. The selected mode is `self-deployed-upstream`. Its registry must be labeled **project-deployed upstream AquaRouter**, with its actual address, source pin and receipt evidence. Sponsor acceptance and official canonical deployment status are separate from the ability to deploy and run this application.
+**Arc deployment is complete and activated.** Wallet `0x5eBA55e1b43c8714E4432250Dada7A518780C871` signed all twelve transactions on Arc Testnet, chain **5042002**. The selected mode is `self-deployed-upstream`; the registry is **project-deployed upstream AquaRouter**, compiled from unchanged pinned source. Sponsor acceptance and official canonical deployment status remain separate.
 
 The deployment tool prepares exact transactions and verifies transactions submitted by the authorized browser wallet. It holds no private key and has no RPC broadcast method. It uses real Arc system USDC and authenticates the unchanged pinned Aqua source; no local USDC fixture or substitute Aqua implementation is used.
 
-No live deployment receipts were present when this update was written. The old eleven-step plan at `deployments/5042002/plans/deployment.json` remains a historical blocked attempt to use an existing canonical registry. The new twelve-step graph uses `deployments/5042002/plans/self-deployment.json`; do not overwrite or continue the old plan. Retain the [dated canonical-address research](ARC_DEPLOYMENT_STATUS.md) as provenance, not a prerequisite for the authorized self-deployment.
+The [verification report](../deployments/5042002/verification.json) records twelve successful receipts and activation at **2026-09-08T21:23:44.913Z** (September 9 local time). The [active manifest](../deployments/5042002/manifest.json) begins indexing at block **61131616** and records these identities:
+
+| Contract / asset | Verified Arc address |
+| --- | --- |
+| Project-deployed upstream AquaRouter | `0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE` |
+| OrbitalSwapVMRouter | `0x449420E9042c48Eac6E695020613678aD5A55D41` |
+| OrbitalPayments | `0xf64e4664D534AeA5d240e1E29DAE9E80D2e393d6` |
+| System USDC | `0x3600000000000000000000000000000000000000` |
+| oUSD6 — demo token | `0x37af59078638387f0416Bef031D8D70B9B6b00f2` |
+| oUSD18 — demo token | `0xCa8c7b1d7489BDd0bbD4e2f51Ee7558e14B2725B` |
+
+AquaRouter retains the deployer as its rescue owner; OrbitalSwapVMRouter's owner is zero. The old eleven-step `deployments/5042002/plans/deployment.json` remains a historical blocked attempt to use an existing canonical registry. The completed graph is retained at `deployments/5042002/plans/self-deployment.json`; do not overwrite either plan or repeat completed transactions. [Canonical-address research](ARC_DEPLOYMENT_STATUS.md) remains provenance history.
+
+The application and API run on ports 3002/3003. Indexer catch-up remains an active integration concern. No live Orbital strategy, swap or invoice is demonstrated yet, and Privy embedded-wallet creation and financial-flow qualification remain unverified. Continue with [ARC_DEMO.md](ARC_DEMO.md), not another deployment.
 
 ## Prepare and sign the new plan
+
+This section preserves the procedure used for the completed plan and for future separately named deployments. **The current plan is already activated.** For a read-only check of it, use the commands under [Verification and application activation](#verification-and-application-activation).
 
 Run from the repository root with installed dependencies and current Foundry artifacts. If artifacts are absent or stale, compile the application with `forge build --root packages/contracts --skip test --skip script`, then explicitly compile the upstream wrapper with `forge build --root packages/contracts vendor/aqua/src/AquaRouter.sol`. The wrapper is a separate deployment root and is not imported by the custom router. These are builds, not a release test campaign.
 
@@ -16,11 +31,11 @@ pnpm deploy:arc status --plan deployments/5042002/plans/self-deployment.json
 pnpm deploy:arc:wallet --plan deployments/5042002/plans/self-deployment.json
 ```
 
-Preparation refuses to overwrite an existing plan. If this new plan already exists, begin with `status` and the wallet utility. Use a new file name if verified inputs or the starting nonce change. Plan/state files contain public deployment data and are ignored by Git; retain them for recovery. Blocked status uses exit code 2; malformed configuration or verification errors use code 1. `pnpm verify:network` is read-only and cannot erase activation evidence.
+Preparation refuses to overwrite an existing plan. The current file already exists and is complete; `status` can inspect it, but there is no remaining deployment signature to request. Use a new file name for any later deployment with different verified inputs or starting nonce. Plan/state files contain public deployment data and are ignored by Git; retain them for recovery. Blocked status uses exit code 2; malformed configuration or verification errors use code 1. `pnpm verify:network` is read-only and cannot erase activation evidence.
 
 Open **http://127.0.0.1:3100** in the browser containing the authorized deployment wallet. The operator utility displays the deployment mode, deployer, any technical blockers, progress, planned addresses, exact calldata, nonce and maximum USDC gas budget. Connect that wallet, select Arc Testnet, then review each transaction and approve it in the wallet. The owner has already authorized this deployment route; no sponsor confirmation is required to proceed. Source, chain, nonce, simulation and funding checks still apply to each transaction.
 
-The generated plan contains **twelve transactions**:
+The completed plan contains **twelve successful transactions**:
 
 | Transactions | Purpose |
 | --- | --- |
@@ -51,9 +66,19 @@ Before offering each step, the tool checks Arc identity, system USDC, account no
 
 Confirmation requires the authorized sender, chain, nonce, calldata, recipient, zero value and bounded gas/fees to match. Successful receipts must belong to their canonical block. Creation addresses must match the planned nonce; deployed code must exactly match the constructor simulation and compiler runtime outside declared immutable slots. Library self-addresses, previous receipts and current runtimes are rechecked. USDC runtime changes invalidate retained identity observations.
 
-Activation checks the AquaRouter's unchanged-source identity and retained deployer ownership; the custom router's Aqua/WETH/chain/renounced-owner bindings, EIP-712 domain and order hash; token allowlists/decimals; demo faucet constants; and payment adapter bindings. Only then does it write `deployments/5042002/verification.json`, followed by the enabling `manifest.json`. `pnpm deploy:arc verify-active` repeats identity verification without advancing pending state or writing files. `pnpm dev:arc` requires this check whenever an active manifest exists.
+Activation checked the AquaRouter's unchanged-source identity and retained deployer ownership; the custom router's Aqua/WETH/chain/renounced-owner bindings, EIP-712 domain and order hash; token allowlists/decimals; demo faucet constants; and payment adapter bindings. It wrote `deployments/5042002/verification.json`, followed by the enabling `manifest.json`. `pnpm deploy:arc verify-active` repeats identity verification without advancing pending state or writing files. `pnpm dev:arc` requires this check whenever an active manifest exists.
 
-After activation, start or restart `pnpm dev:arc` and follow [ARC_DEMO.md](ARC_DEMO.md): fund maker/taker wallets, publish real liquidity, execute the Privy-wallet swap, and settle a swap-funded USDC invoice. Deployment receipts alone do not demonstrate those financial flows. The active `verified` flag establishes checked testnet runtime identity; release acceptance, sponsor qualification and Privy financial-flow evidence remain separate.
+The primary Arc RPC returned HTTP 429 during log ingestion. The current application profile explicitly selects `https://rpc.blockdaemon.testnet.arc.io`, an endpoint listed in [Arc's official RPC reference](https://docs.arc.io/arc/references/rpc-endpoints). To revalidate the existing deployment through it without changing the historical manifest/report:
+
+```powershell
+pnpm deploy:arc verify-active --rpc-url https://rpc.blockdaemon.testnet.arc.io
+```
+
+The override rechecks **all twelve receipt identities**, authenticated source/build inputs, exact live runtimes and immutable bindings through that endpoint. It is not just a chain-ID probe. The read-only verifier preserves the original manifest/report, including the original RPC URL.
+
+`pnpm dev:arc` reads public RPC settings from ignored root `.env.arc.local` with process-environment overrides. Set `ARC_RPC_URL` and `NEXT_PUBLIC_ARC_RPC_URL` to the same selected public endpoint; optional `INDEXER_RPC_URL` defaults to it. After the full read-only verification succeeds, the runner writes ignored `.cache/arc-runtime/manifest.json` with the same verified deployment and the selected application RPC. The API/indexer use this derived manifest; historical activation evidence is unchanged. See [profile configuration](ARC_DEMO.md#start-the-profile).
+
+Start or restart `pnpm dev:arc` as needed and follow [ARC_DEMO.md](ARC_DEMO.md). Wallet A, the deployer, is the maker; wallet B can be any different user-controlled wallet for trading/payment. Use a Privy embedded B when gathering Privy evidence. Wait for API/indexer readiness, fund the wallets, publish real liquidity, execute the swap and settle a swap-funded USDC invoice. Deployment receipts alone do not demonstrate those financial flows. The active `verified` flag establishes checked testnet runtime identity; release acceptance, sponsor qualification and Privy financial-flow evidence remain separate.
 
 ## Recovery and current limits
 
@@ -63,4 +88,4 @@ CLI recovery uses `pnpm deploy:arc record --plan PATH --hash HASH`; activation a
 
 Fee replacements, mined deployment failures and rebasing a partially executed plan are not automated in this first integration. A changed nonce halts the plan because subsequent addresses would differ. Inspect actual receipts first; if a new deployment is needed, preserve the old plan and prepare a new one at the current nonce. Already deployed contracts remain at their original addresses. A crashed command may leave a `.lock` file; stop all tools using that plan before removing only that exact lock file.
 
-Earlier syntax, blocked-plan and bounded HTTP checks concern the original existing-registry workflow. The retained first-library Arc simulation is read-only historical evidence, not a receipt or verification of the new complete graph. Current self-deployment checks and any later live receipts must be recorded separately. Broader mathematical, security and release campaigns remain deferred in the owner's integration-first order.
+Earlier syntax, blocked-plan, bounded HTTP and first-library simulation records remain historical evidence. The live self-deployment now has its own complete twelve-receipt verification report linked above. These deployment checks do not close the initial financial walkthrough, indexer readiness, Privy wallet verification or the broader mathematical, security and release campaigns deferred in the owner's integration-first order.

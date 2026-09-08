@@ -1,0 +1,180 @@
+{
+  "observedAt": "2026-09-08T21:29:57.427Z",
+  "origin": "http://127.0.0.1:3002",
+  "profile": "Arc Testnet 5042002",
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "title": "Orbital — a new shape for liquidity",
+      "headings": [
+        "A new shapefor liquidity."
+      ],
+      "connectWalletVisible": true,
+      "fixtureWalletUiVisible": false,
+      "deploymentMissingVisible": false,
+      "arcLabelVisible": true,
+      "tokens": [
+        "USDC"
+      ]
+    },
+    {
+      "route": "/swap",
+      "status": 200,
+      "title": "Orbital — a new shape for liquidity",
+      "headings": [
+        "Swap"
+      ],
+      "connectWalletVisible": true,
+      "fixtureWalletUiVisible": false,
+      "deploymentMissingVisible": false,
+      "arcLabelVisible": true,
+      "tokens": [
+        "USDC",
+        "oUSD6",
+        "oUSD18"
+      ]
+    },
+    {
+      "route": "/fund",
+      "status": 200,
+      "title": "Orbital — a new shape for liquidity",
+      "headings": [
+        "Demo funding"
+      ],
+      "connectWalletVisible": true,
+      "fixtureWalletUiVisible": false,
+      "deploymentMissingVisible": false,
+      "arcLabelVisible": true,
+      "tokens": [
+        "USDC"
+      ]
+    },
+    {
+      "route": "/liquidity/new",
+      "status": 200,
+      "title": "Orbital — a new shape for liquidity",
+      "headings": [
+        "Provide liquidity"
+      ],
+      "connectWalletVisible": true,
+      "fixtureWalletUiVisible": false,
+      "deploymentMissingVisible": false,
+      "arcLabelVisible": true,
+      "tokens": [
+        "USDC",
+        "oUSD6",
+        "oUSD18"
+      ]
+    }
+  ],
+  "deployments": [
+    {
+      "status": 200,
+      "chainId": 5042002,
+      "verified": true,
+      "aqua": "0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE",
+      "router": "0x449420E9042c48Eac6E695020613678aD5A55D41",
+      "payments": "0xf64e4664D534AeA5d240e1E29DAE9E80D2e393d6",
+      "usdc": "0x3600000000000000000000000000000000000000",
+      "tokens": [
+        {
+          "address": "0x3600000000000000000000000000000000000000",
+          "symbol": "USDC",
+          "decimals": 6,
+          "mock": false
+        },
+        {
+          "address": "0x37af59078638387f0416Bef031D8D70B9B6b00f2",
+          "symbol": "oUSD6",
+          "decimals": 6,
+          "mock": true
+        },
+        {
+          "address": "0xCa8c7b1d7489BDd0bbD4e2f51Ee7558e14B2725B",
+          "symbol": "oUSD18",
+          "decimals": 18,
+          "mock": true
+        }
+      ],
+      "addressesMatch": true
+    },
+    {
+      "status": 200,
+      "bodyCapture": "unavailable to observer; not a validated payload"
+    },
+    {
+      "status": 200,
+      "bodyCapture": "unavailable to observer; not a validated payload"
+    },
+    {
+      "status": 200,
+      "chainId": 5042002,
+      "verified": true,
+      "aqua": "0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE",
+      "router": "0x449420E9042c48Eac6E695020613678aD5A55D41",
+      "payments": "0xf64e4664D534AeA5d240e1E29DAE9E80D2e393d6",
+      "usdc": "0x3600000000000000000000000000000000000000",
+      "tokens": [
+        {
+          "address": "0x3600000000000000000000000000000000000000",
+          "symbol": "USDC",
+          "decimals": 6,
+          "mock": false
+        },
+        {
+          "address": "0x37af59078638387f0416Bef031D8D70B9B6b00f2",
+          "symbol": "oUSD6",
+          "decimals": 6,
+          "mock": true
+        },
+        {
+          "address": "0xCa8c7b1d7489BDd0bbD4e2f51Ee7558e14B2725B",
+          "symbol": "oUSD18",
+          "decimals": 18,
+          "mock": true
+        }
+      ],
+      "addressesMatch": true
+    },
+    {
+      "status": 200,
+      "chainId": 5042002,
+      "verified": true,
+      "aqua": "0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE",
+      "router": "0x449420E9042c48Eac6E695020613678aD5A55D41",
+      "payments": "0xf64e4664D534AeA5d240e1E29DAE9E80D2e393d6",
+      "usdc": "0x3600000000000000000000000000000000000000",
+      "tokens": [
+        {
+          "address": "0x3600000000000000000000000000000000000000",
+          "symbol": "USDC",
+          "decimals": 6,
+          "mock": false
+        },
+        {
+          "address": "0x37af59078638387f0416Bef031D8D70B9B6b00f2",
+          "symbol": "oUSD6",
+          "decimals": 6,
+          "mock": true
+        },
+        {
+          "address": "0xCa8c7b1d7489BDd0bbD4e2f51Ee7558e14B2725B",
+          "symbol": "oUSD18",
+          "decimals": 18,
+          "mock": true
+        }
+      ],
+      "addressesMatch": true
+    }
+  ],
+  "login": {
+    "visible": true,
+    "emailEntryVisible": true,
+    "externalWalletOptionVisible": true
+  },
+  "browserErrors": [],
+  "failedResponses": [],
+  "scope": "One fresh unauthenticated Chromium context, public pages and Privy modal only. No fixture injection, email entry, wallet authentication, signing, funding, publication or transaction; no authentication state retained.",
+  "observerNote": "Two HTTP 200 deployment response bodies could not be read by the async observer while navigating; their payloads are not classified. Three fully captured deployment payloads match the activated manifest."
+}

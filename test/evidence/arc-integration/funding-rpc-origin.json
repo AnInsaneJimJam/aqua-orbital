@@ -1,0 +1,179 @@
+{
+  "observedAt": "2026-09-08T21:46:21.387Z",
+  "account": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+  "results": [
+    {
+      "url": "https://rpc.testnet.arc.io",
+      "origin": "http://127.0.0.1:3002",
+      "calls": [
+        {
+          "label": "chain",
+          "method": "eth_chainId",
+          "status": 200,
+          "ms": 3471,
+          "result": "0x4cef52"
+        },
+        {
+          "label": "latest header",
+          "method": "eth_getBlockByNumber",
+          "status": 200,
+          "ms": 186,
+          "result": {
+            "number": "0x3a4db62",
+            "hash": "0x9622afd4d18efac1d280a0a8bcee964f67d53f58d53cfa8aa230ae72ef7682ca"
+          }
+        },
+        {
+          "label": "native USDC balance",
+          "method": "eth_getBalance",
+          "status": 200,
+          "ms": 184,
+          "result": "0x10d329a1477662740"
+        },
+        {
+          "label": "oUSD6 balance",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 187,
+          "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "label": "oUSD18 balance",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 190,
+          "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "label": "oUSD6 nextMintAt canonical",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 238,
+          "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "label": "oUSD6 FAUCET_AMOUNT canonical",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 185,
+          "result": "0x000000000000000000000000000000000000000000000000000000003b9aca00"
+        },
+        {
+          "label": "oUSD6 COOLDOWN canonical",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 187,
+          "result": "0x0000000000000000000000000000000000000000000000000000000000015180"
+        },
+        {
+          "label": "oUSD6 CHAIN_ID canonical",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 186,
+          "result": "0x00000000000000000000000000000000000000000000000000000000004cef52"
+        },
+        {
+          "label": "oUSD6 faucet simulation",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 189,
+          "result": "0x"
+        },
+        {
+          "label": "oUSD6 faucet gas estimation",
+          "method": "eth_estimateGas",
+          "status": 200,
+          "ms": 185,
+          "result": "0x162d3"
+        }
+      ]
+    },
+    {
+      "url": "https://rpc.blockdaemon.testnet.arc.io",
+      "origin": "http://127.0.0.1:3002",
+      "calls": [
+        {
+          "label": "chain",
+          "method": "eth_chainId",
+          "status": 200,
+          "ms": 846,
+          "result": "0x4cef52"
+        },
+        {
+          "label": "latest header",
+          "method": "eth_getBlockByNumber",
+          "status": 200,
+          "ms": 222,
+          "result": {
+            "number": "0x3a4db67",
+            "hash": "0xbe558cee26b259ce6fcce6aa9cedeceeae6301b9b719c30481dd9cfe488dfe0e"
+          }
+        },
+        {
+          "label": "native USDC balance",
+          "method": "eth_getBalance",
+          "status": 200,
+          "ms": 230,
+          "result": "0x10d329a1477662740"
+        },
+        {
+          "label": "oUSD6 balance",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 229,
+          "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "label": "oUSD18 balance",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 222,
+          "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "label": "oUSD6 nextMintAt canonical",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 223,
+          "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "label": "oUSD6 FAUCET_AMOUNT canonical",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 225,
+          "result": "0x000000000000000000000000000000000000000000000000000000003b9aca00"
+        },
+        {
+          "label": "oUSD6 COOLDOWN canonical",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 226,
+          "result": "0x0000000000000000000000000000000000000000000000000000000000015180"
+        },
+        {
+          "label": "oUSD6 CHAIN_ID canonical",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 223,
+          "result": "0x00000000000000000000000000000000000000000000000000000000004cef52"
+        },
+        {
+          "label": "oUSD6 faucet simulation",
+          "method": "eth_call",
+          "status": 200,
+          "ms": 224,
+          "result": "0x"
+        },
+        {
+          "label": "oUSD6 faucet gas estimation",
+          "method": "eth_estimateGas",
+          "status": 200,
+          "ms": 251,
+          "result": "0x162d3"
+        }
+      ]
+    }
+  ],
+  "scope": "Fresh headless Chromium document at the actual Arc web origin, intercepted static test document to avoid loading the app. Real CORS-enforced public RPC reads, canonical eth_call simulations and gas estimation only. No wallet injection, authentication, signing, or transaction broadcast."
+}

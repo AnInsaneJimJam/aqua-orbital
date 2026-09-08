@@ -1,5 +1,5 @@
 import {spawn} from 'node:child_process';
-import {readFile} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,rename} from 'node:fs/promises';
 import {createServer} from 'node:net';
 import {resolve} from 'node:path';
 import {parseEnv} from 'node:util';
@@ -101,8 +101,25 @@ async function verifyRpc(rpcUrl) {
   console.log(`Arc Testnet RPC and six-decimal system USDC observed at block ${BigInt(block.number)}. This does not verify an Orbital deployment.`);
 }
 
+async function verifyIndexerHistory(primaryUrl, indexerUrl, manifest) {
+  const responses = await Promise.allSettled([primaryUrl, indexerUrl].map(async url => {
+    const response = await fetch(url, {method: 'POST', headers: {'content-type': 'application/json'},
+      body: JSON.stringify({jsonrpc: '2.0', id: 1, method: 'eth_getBlockByNumber',
+        params: ['0x' + BigInt(manifest.startBlock).toString(16), false]}), signal: AbortSignal.timeout(15_000)});
+    if (!response.ok) throw Error('Indexer RPC history preflight failed.');
+    const body = await response.json();
+    if (body.error || !/^0x[0-9a-fA-F]{64}$/.test(body.result?.hash ?? '')) throw Error('Indexer RPC history preflight failed.');
+    return body.result.hash.toLowerCase();
+  }));
+  if (responses.some(result => result.status !== 'fulfilled') || responses[0].value !== responses[1].value) {
+    throw Error('The indexer RPC does not agree with the verified deployment RPC at the deployment start block.');
+  }
+  console.log(`Explicit indexer RPC agrees with the deployment start block: ${new URL(indexerUrl).hostname}.`);
+}
+
 async function main() {
   const localEnv = parseEnv(await optionalFile(resolve(root, 'apps/web/.env.local')) ?? '');
+  const profileEnv = parseEnv(await optionalFile(resolve(root, '.env.arc.local')) ?? '');
   // Read just the public wallet identifier; never import the file into process.env.
   const appId = process.env.NEXT_PUBLIC_PRIVY_APP_ID?.trim() || localEnv.NEXT_PUBLIC_PRIVY_APP_ID?.trim();
   if (!appId || !/^[a-zA-Z0-9_-]{8,100}$/.test(appId)) {
@@ -119,15 +136,24 @@ async function main() {
       throw Error('The active Arc manifest must be verified, use chain 5042002 and genuine six-decimal system USDC. Complete the Arc deployment workflow; do not edit verified flags manually.');
     }
   }
-  const rpcUrl = publicRpc(manifest?.rpcUrl ?? process.env.ARC_RPC_URL ?? process.env.NEXT_PUBLIC_ARC_RPC_URL ?? canonicalRpc);
-  for (const value of [process.env.ARC_RPC_URL, process.env.NEXT_PUBLIC_ARC_RPC_URL]) {
-    if (value && publicRpc(value) !== rpcUrl) throw Error('Arc RPC configuration conflicts with the active manifest or wallet RPC. Use one verified public Arc endpoint for this profile.');
+  const rpcUrl = publicRpc(process.env.ARC_RPC_URL ?? profileEnv.ARC_RPC_URL ?? manifest?.rpcUrl ?? process.env.NEXT_PUBLIC_ARC_RPC_URL ?? canonicalRpc);
+  // Import only named public RPC settings from the optional profile file.
+  // Preserve the authenticated deployment artifacts and saved signing plan.
+  const indexerRpcUrl = publicRpc(process.env.INDEXER_RPC_URL ?? profileEnv.INDEXER_RPC_URL ?? rpcUrl);
+  if (new URL(indexerRpcUrl).search) throw Error('INDEXER_RPC_URL must be public and contain no query parameters.');
+  const browserRpc = process.env.NEXT_PUBLIC_ARC_RPC_URL ?? profileEnv.NEXT_PUBLIC_ARC_RPC_URL;
+  for (const value of [process.env.ARC_RPC_URL, browserRpc]) {
+    if (value && publicRpc(value) !== rpcUrl) throw Error('Arc RPC configuration conflicts with the selected application RPC. Set ARC_RPC_URL and NEXT_PUBLIC_ARC_RPC_URL to the same public endpoint.');
   }
-  if (rpcUrl !== canonicalRpc && (!process.env.NEXT_PUBLIC_ARC_RPC_URL || publicRpc(process.env.NEXT_PUBLIC_ARC_RPC_URL) !== rpcUrl)) {
+  if (rpcUrl !== canonicalRpc && (!browserRpc || publicRpc(browserRpc) !== rpcUrl)) {
     throw Error('A custom RPC becomes browser-visible. Set NEXT_PUBLIC_ARC_RPC_URL explicitly to the same public endpoint; do not use an endpoint containing a secret.');
   }
   await Promise.all([availablePort(3002), availablePort(3003)]);
   await verifyRpc(rpcUrl);
+  if (manifest && indexerRpcUrl !== rpcUrl) {
+    await verifyRpc(indexerRpcUrl);
+    await verifyIndexerHistory(rpcUrl, indexerRpcUrl, manifest);
+  }
   if (closing) return;
   const env = {...process.env};
   for (const name of Object.keys(env)) if (/PRIVATE_KEY|MNEMONIC|SEED_PHRASE|PRIVY_APP_SECRET|AUTHORIZATION_KEY/i.test(name)) delete env[name];
@@ -136,12 +162,21 @@ async function main() {
     ARC_RPC_URL: rpcUrl, NEXT_PUBLIC_ARC_RPC_URL: rpcUrl, NEXT_PUBLIC_LOCAL_DEMO_WALLET: 'false', NEXT_PUBLIC_PRIVY_APP_ID: appId,
     PUBLIC_APP_URL: origins, PUBLIC_API_URL: 'http://127.0.0.1:3003', NEXT_PUBLIC_API_URL: 'http://127.0.0.1:3003',
     HOST: '127.0.0.1', PORT: '3003', INDEXER_POLL_MS: process.env.INDEXER_POLL_MS ?? '1000',
+    INDEXER_RPC_URL: indexerRpcUrl,
     DEPLOYMENT_MANIFEST: manifest ? manifestPath : '',
     DATABASE_URL: manifest ? process.env.DATABASE_URL ?? 'postgresql://orbital:orbital_local_only@localhost:5432/orbital' : '',
     PROOF_MANIFEST: process.env.PROOF_MANIFEST || resolve(root, 'test/evidence/builds/proof.json'),
   });
   if (manifest) {
-    await start('Arc deployment verification', ['scripts/arc-deployment.mjs', 'verify-active'], root, env, true);
+    await start('Arc deployment verification', ['scripts/arc-deployment.mjs', 'verify-active', '--rpc-url', rpcUrl], root, env, true);
+    // Preserve the historical deployment manifest/report. The application gets
+    // an explicitly selected provider only after it reproduces that identity.
+    const runtimeDirectory = resolve(root, '.cache/arc-runtime');
+    const runtimePath = resolve(runtimeDirectory, 'manifest.json');
+    await mkdir(runtimeDirectory, {recursive: true});
+    await writeFile(`${runtimePath}.tmp`, JSON.stringify({...manifest, rpcUrl}, null, 2) + '\n');
+    await rename(`${runtimePath}.tmp`, runtimePath);
+    env.DEPLOYMENT_MANIFEST = runtimePath;
   }
   if (closing) return;
   await start('Arc API', ['apps/api/node_modules/tsx/dist/cli.mjs', 'apps/api/src/index.ts'], root, env);
@@ -151,7 +186,7 @@ async function main() {
   await start('Arc web', ['node_modules/next/dist/bin/next', 'dev', '--hostname', '127.0.0.1', '--port', '3002'], resolve(root, 'apps/web'), env);
   console.log('Arc wallet profile: http://127.0.0.1:3002 — API http://127.0.0.1:3003. Ctrl+C stops only these application processes.');
   if (!manifest) console.log('Login-only mode: no verified Arc deployment. Public browsing and Privy login are available; financial API routes report DEPLOYMENT_UNAVAILABLE. No indexer or database connection is started.');
-  else console.log('Verified deployment loaded. Wait for indexer readiness before reviewing transactions. This runner never signs or submits transactions.');
+  else console.log(`Verified deployment loaded using ${new URL(rpcUrl).hostname}. Wait for indexer readiness before reviewing transactions. This runner never signs or submits transactions.`);
 }
 
 main().catch(error => {

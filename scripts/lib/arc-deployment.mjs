@@ -419,7 +419,9 @@ async function bindings(plan, build, rpc) {
   const payments = (fn, args) => read(ROOTS.payments, plan.addresses.payments, fn, args);
   if (plan.aquaDeployment === 'project-deployed-upstream') {
     eq(await read(AQUA_ROUTER, plan.addresses.aqua, 'owner'), plan.deployer, 'Upstream AquaRouter helper owner differs from the deployment wallet.');
-    eq(await read(AQUA_ROUTER, plan.addresses.aqua, 'multicall', [[]]), [], 'Upstream AquaRouter empty multicall failed.');
+    // Pinned upstream Multicall has no outputs (unlike result-returning variants).
+    // read() also re-encodes the decoded result, requiring the exact empty ABI return.
+    eq(await read(AQUA_ROUTER, plan.addresses.aqua, 'multicall', [[]]), undefined, 'Upstream AquaRouter empty multicall failed.');
   }
   eq(await router('AQUA'), plan.addresses.aqua, 'Router Aqua binding mismatch.');
   eq(await router('WETH'), zeroAddress, 'Router must not wrap native USDC.');
@@ -457,8 +459,12 @@ async function bindings(plan, build, rpc) {
     ...(plan.aquaDeployment === 'project-deployed-upstream' ? {aquaHelperOwner: plan.deployer, aquaMulticallVerified: true} : {})};
 }
 
-async function verifiedCompletion(path, {readOnly = false} = {}) {
-  const {plan, build, rpc} = await loadPlan(path), state = await stateFor(path, plan);
+async function verifiedCompletion(path, {readOnly = false, rpcUrl} = {}) {
+  const loaded = await loadPlan(path), {plan, build} = loaded;
+  // A public read provider may differ from the historical deployment endpoint.
+  // Every receipt, canonical block, runtime and binding is still reverified.
+  const rpc = rpcUrl === undefined ? loaded.rpc : rpcAt(endpoint(rpcUrl));
+  const state = await stateFor(path, plan);
   await network(rpc);
   if (readOnly) {
     if (state.pendingHash || state.confirmed.length !== plan.steps.length) fail('Active deployment state must already be complete; read-only verification cannot advance it.');
@@ -498,11 +504,11 @@ export async function activateArcDeployment(planPath = DEFAULT_PLAN) {
   });
 }
 
-export async function verifyActiveArcDeployment() {
+export async function verifyActiveArcDeployment({rpcUrl} = {}) {
   const report = await readJson(resolve(activeDirectory, 'verification.json'));
   if (report.schemaVersion !== 1 || report.verified !== true || report.scope !== 'arc-testnet-runtime-identity' || typeof report.planPath !== 'string') fail('Arc has no completed deployment verification report.');
   // Read-only: an active deployment has no pending entries to promote or save.
-  const result = await verifiedCompletion(report.planPath, {readOnly: true});
+  const result = await verifiedCompletion(report.planPath, {readOnly: true, rpcUrl});
   eq(report.planId, result.plan.planId, 'Active report plan mismatch.');
   eq(report.aquaDeployment ?? 'existing-authenticated', result.plan.aquaDeployment ?? 'existing-authenticated', 'Active Aqua provenance mismatch.');
   eq(report.observation?.usdcCodeHash, result.observation.usdcCodeHash, 'Arc system USDC runtime differs from activation evidence.');
@@ -511,6 +517,7 @@ export async function verifyActiveArcDeployment() {
   eq(await readJson(resolve(activeDirectory, 'manifest.json')), result.manifest, 'Active manifest differs from verified deployment.');
   eq(report.receipts, result.state.confirmed.map(entry => ({hash: entry.hash, receipt: entry.receipt, runtime: entry.runtime})), 'Active receipt evidence changed.');
   return {verified: true, chainId: ARC.chainId, contracts: result.plan.addresses, asOf: result.bindings,
+    readRpcUrl: rpcUrl === undefined ? result.plan.rpcUrl : endpoint(rpcUrl),
     aquaDeployment: result.plan.aquaDeployment ?? 'existing-authenticated',
     releaseAccepted: false, privyVerified: false, sponsorQualificationVerified: false};
 }

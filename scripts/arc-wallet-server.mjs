@@ -186,7 +186,10 @@ async function activate(){
 }
 $('connect').addEventListener('click',connect);$('send').addEventListener('click',send);$('refresh').addEventListener('click',refresh);$('recover-form').addEventListener('submit',recover);$('activate').addEventListener('click',activate);
 window.addEventListener('storage',event=>{if(deployment&&event.key===storageKey()){loadAttempt();render();}});
-void refresh();setInterval(()=>{if(!working)void refresh();},4000);
+// Finished deployment pages must not continuously re-read every receipt/runtime
+// while the application indexer is using the same public RPC. Manual refresh
+// and activation still perform their normal verification.
+void refresh();setInterval(()=>{if(!working&&deployment?.phase!=='complete')void refresh();},4000);
 </script></body></html>`;
 
 const server=createServer(async(request,response)=>{
