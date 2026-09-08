@@ -2,6 +2,8 @@
 
 The local application uses actual contracts, balances, quotes and receipts on chain **31337**. It is a development integration, not Arc deployment, numerical release acceptance or Privy qualification.
 
+The [1inch track](https://ethglobal.com/events/ethonline2026/prizes/1inch) expressly permits custom SwapVM instructions, modified SwapVM deployments and local-fork execution demonstrations. Orbital's architecture fits those provisions. The profile below uses a **fresh Anvil chain with deployed upstream Aqua source**, not a fork of an existing public-network deployment. Its real transfer receipts demonstrate local functionality; do not relabel them as fork evidence. A demonstration against official Aqua on a pinned local fork can be completed independently of canonical Aqua becoming available on Arc. Arc and live Privy receipt requirements remain separate.
+
 ## Start
 
 Install Node 22, pnpm 10.34.5, Python 3.12 and Foundry 1.5.1; start Docker Desktop. From the repository root:

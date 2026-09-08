@@ -25,6 +25,8 @@ The eleven steps are six linked mathematical libraries, `oUSD6`, `oUSD18`, the c
 
 The missing input is an official Arc Aqua address with primary-source provenance, or explicit maintainer acceptance of an unmodified deployment for this use. This requirement comes from [MASTER_PROMPT.md §4.2](../MASTER_PROMPT.md) and the event's [1inch criteria](https://ethglobal.com/events/ethonline2026/prizes/1inch). The latter accept local forks; they do not establish an Arc registry at the published address.
 
+Scope correction: the sponsor requires official contracts and expressly permits modified SwapVM deployments and local-fork demos. Requiring an official deployment **on Arc** is the current project's combined-network requirement, not a condition stated by the 1inch track. The blocked Arc plan does not block a 1inch demonstration using official Aqua on a supported-network fork. Keep the fresh Anvil development profile, canonical local-fork evidence and Arc deployment distinct.
+
 The owner's linked [upstream deployment guide](https://github.com/1inch/aqua/blob/9c5c42e5840e8741fba3597c48456c9510212b66/DEPLOY.md) uses an ordinary `new AquaRouter(owner)` call. It does not recreate the canonical address from this deployer. The canonical registry used a separate owner-restricted CREATE3 factory, currently absent on Arc; its salt is public, but deployment authority is still needed. [Factory/source/transaction evidence](ARC_DEPLOYMENT_STATUS.md). Do not run the Makefile expecting the configured registry address to appear.
 
 After reviewing actual source evidence, retain a JSON record and pass it with `prepare --aqua-evidence PATH`:

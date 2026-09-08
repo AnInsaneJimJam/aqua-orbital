@@ -56,3 +56,7 @@ The owner supplied the Orbital paper visualization and SVG logo and explicitly r
 ## D36 — Integration first and user-signed Arc preparation (2026-09-09)
 
 The owner reiterated integration-first work and supplied a public Arc deployer. Use a separate Arc/Privy profile on ports 3002/3003 and a loopback browser-signing deployment utility on 3100. Keep the local Anvil profile available, authenticate compiled deployment inputs and receipts, and retain the master specification's missing official-Aqua identity requirement. Observed funding is not proof of wallet control or sponsor acceptance. No backend signer or application-held key is introduced. Preserve mathematical/release obligations, but defer their broad campaigns while completing integration. [Deployment](ARC_DEPLOYMENT.md), [live walkthrough](ARC_DEMO.md).
+
+## D37 — Separate the 1inch demonstration from Arc availability (2026-09-09)
+
+The owner highlighted the explicit allowance for modified SwapVM/custom instructions and local-fork demonstrations. Treat Orbital's custom app as aligned with that scope and prepare 1inch execution evidence independently of the missing Arc registry. The earlier canonical-Arc requirement belongs to the combined project deployment, not an extra sponsor requirement. Preserve official-source provenance and distinguish fresh Anvil deployments from forks of deployed contracts. Arc/Privy verification and mathematical release acceptance remain separate. [Sponsor criteria](https://ethglobal.com/events/ethonline2026/prizes/1inch), [local runbook](LOCAL_DEMO.md).

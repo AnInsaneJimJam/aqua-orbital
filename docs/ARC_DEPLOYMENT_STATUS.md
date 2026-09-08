@@ -1,6 +1,6 @@
 # Arc deployment prerequisites: fresh read-only review
 
-Latest source review and RPC observation: **2026-09-08, 19:48–20:05 UTC** (**September 9** in the workspace timezone). This update supplements [Arc research](ARC_RESEARCH.md), [Aqua research](AQUA_RESEARCH.md), and the deployment and gas gates in [MASTER_PROMPT.md](../MASTER_PROMPT.md). The compact [research observation](../deployments/5042002/research-2026-09-09.json) is separate from the [verification record](../deployments/5042002/verification.json), which this review did not modify. No transaction was signed, funded, submitted, or deployed. The detailed prerequisite analysis below retains the earlier September 8, 04:58–05:11 UTC review with its original observations.
+Funding/source review: **2026-09-08, 19:48–20:05 UTC** (**September 9** in the workspace timezone), followed by the canonical CREATE3 investigation below. This update supplements [Arc research](ARC_RESEARCH.md), [Aqua research](AQUA_RESEARCH.md), and the deployment and gas gates in [MASTER_PROMPT.md](../MASTER_PROMPT.md). The compact [research observation](../deployments/5042002/research-2026-09-09.json) is separate from the [verification record](../deployments/5042002/verification.json), which this review did not modify. No transaction was signed, funded, submitted, or deployed. The detailed prerequisite analysis below retains the earlier September 8, 04:58–05:11 UTC review with its original observations.
 
 ## Latest observation and requested deployer
 
@@ -28,6 +28,8 @@ The native and ERC-20 observations describe the same USDC inventory; they must n
 Funds are present for gas, but this read does not prove control of the requested address or sufficient funding for the final deployment graph and subsequent demo. Those depend on user-controlled signing and the actual reviewed gas estimates. No key, signature, balance mutation or faucet request was used to inspect the public address. Deployment tooling can prepare reviewable transactions while the upstream identity prerequisite is resolved; it must not activate Arc writes merely because this account is funded.
 
 ## Matching sponsor requirements
+
+The owner's latest clarification separates the sponsor scopes: modified SwapVM and local-fork execution are explicitly permitted for 1inch, so the missing Arc registry is not a requirement to resolve before demonstrating that track. The canonical Arc investigation below concerns the project's combined Arc deployment. The existing fresh Anvil receipts remain development-chain evidence and have not been relabeled as a public-network fork.
 
 The user's screenshot and pasted Privy requirements match the complete [ETHOnline 2026 sponsor matrix](https://ethglobal.com/events/ethonline2026/prizes). Source requirements must come from this event rather than another ETHGlobal event with a similarly named track:
 
