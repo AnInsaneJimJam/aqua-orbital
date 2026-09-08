@@ -1,4 +1,5 @@
 import {isAddress, type Address, type Hex} from 'viem';
+import {manifestSchema} from '@orbital/shared';
 import type {TransactionPlan} from './index';
 
 export type ReceiptLog={address:Address;topics:Hex[];data:Hex;blockNumber:bigint;blockHash:Hex;transactionHash:Hex;logIndex:number;removed:boolean};
@@ -14,6 +15,15 @@ export type ExecutionPort={
 };
 /** Contains public chain data only; never store login identity or a private key. */
 export type PendingTransaction={schemaVersion:1;hash:Hex;chainId:number;account:Address;label:string};
+/** Receipt lookup may use a reverified provider. This is not permission to
+ * reuse a transaction review: only rpcUrl may differ, and both complete
+ * deployment manifests must remain verified and otherwise identical. */
+export function validateReceiptRecoveryDeployment(saved:unknown,current:unknown){
+ const previous=manifestSchema.parse(saved),latest=manifestSchema.parse(current);
+ const {rpcUrl:previousRpc,...before}=previous,{rpcUrl:currentRpc,...after}=latest;
+ if(!previous.verified||!latest.verified||JSON.stringify(before)!==JSON.stringify(after))throw Error('Saved action belongs to another deployment. Keep its hash and check that deployment before retrying.');
+ return latest;
+}
 async function assertIdentity(plan:Pick<TransactionPlan,'account'|'chainId'>,port:ExecutionPort){
  const identity=await port.identity();
  if(identity.chainId!==plan.chainId)throw Error('The wallet network changed. Review again.');

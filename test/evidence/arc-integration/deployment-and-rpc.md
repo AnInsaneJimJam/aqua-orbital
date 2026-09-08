@@ -16,11 +16,13 @@ The ignored root `.env.arc.local` explicitly selects `https://rpc.blockdaemon.te
 
 Completed deployment pages stop automatic receipt/runtime polling. Manual refresh and activation still verify their normal prerequisites.
 
+The completed-deployment verifier also separates runtime identity from readiness to deploy another transaction. After every deployment/renunciation receipt has been authenticated, an unrelated pending wallet transaction or a depleted deployer balance no longer blocks application startup. Preparation and remaining deployment actions retain the pending-nonce and gas-funding checks. This correction does not skip a deployment receipt or relax runtime verification.
+
 ## Funding-page diagnosis
 
 The reported `Balance: Unavailable` / `HTTP request failed` did not identify a failed faucet transaction. Read-only browser and installed-viem probes completed the funding controller's balance reads, four concurrent canonical faucet getters, exact faucet simulation, gas/fee estimate, native balance and canonical recheck. [Blockdaemon probe](funding-rpc-blockdaemon.json), [primary controller probe](funding-rpc-controller.json), [browser-origin probe](funding-rpc-origin.json).
 
-At that observation the deploying wallet held zero oUSD6 and zero oUSD18, both cooldowns permitted a claim, and the oUSD6 faucet simulation estimated 90,835 gas. The observed native balance was 19.397735957731354432 testnet USDC. These are dated observations, not promised current balances. No authentication, wallet signature or transaction broadcast occurred in these probes. The exact cause of the user's particular failed HTTP request was not captured; intermittent primary-provider failures were reproduced elsewhere in the same session.
+At that observation the deploying wallet held zero oUSD6 and zero oUSD18, the checked oUSD6 cooldown permitted a claim, and its faucet simulation estimated 90,835 gas. The observed native balance was 19.397735957731354432 testnet USDC. These are dated observations, not promised current balances. No authentication, wallet signature or transaction broadcast occurred in these probes. The exact cause of the user's particular failed HTTP request was not captured; intermittent primary-provider failures were reproduced elsewhere in the same session.
 
 ## Scope remaining
 

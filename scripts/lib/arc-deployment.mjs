@@ -168,7 +168,7 @@ function makeSteps(build, deployer, baseNonce, aqua, selfDeployAqua = false) {
   return {steps, addresses, tokens};
 }
 
-async function preflight(rpc, deployer, evidence, {selfDeployAqua = false, aquaAddress, aquaRuntime = null, requireAqua = false} = {}) {
+async function preflight(rpc, deployer, evidence, {selfDeployAqua = false, aquaAddress, aquaRuntime = null, requireAqua = false, requireWalletReady = true} = {}) {
   const {block, pin} = await network(rpc), aqua = selfDeployAqua ? aquaAddress : evidence?.address ?? ARC.aqua;
   if (!address(aqua)) fail('Aqua deployment address is missing.');
   const [aquaCode, usdcCode, decimals, balance, nonce, pendingNonce] = await Promise.all([
@@ -197,8 +197,8 @@ async function preflight(rpc, deployer, evidence, {selfDeployAqua = false, aquaA
     aquaAbiProbe = actual === '0x' + '0'.repeat(128);
     if (!aquaAbiProbe) blockers.push('Aqua rawBalances ABI probe does not match the pinned empty-maker representation.');
   }
-  if (nonce !== pendingNonce) blockers.push('The deployer has a pending transaction; wait for its receipt before preparing deployment.');
-  if (BigInt(balance) === 0n) blockers.push('The deployment wallet needs Arc testnet USDC for gas.');
+  if (requireWalletReady && nonce !== pendingNonce) blockers.push('The deployer has a pending transaction; wait for its receipt before preparing deployment.');
+  if (requireWalletReady && BigInt(balance) === 0n) blockers.push('The deployment wallet needs Arc testnet USDC for gas.');
   return {block: {number: block.number, hash: block.hash}, aqua, aquaCodeHash: aquaCode === '0x' ? null : keccak256(aquaCode),
     aquaAbiProbe, usdcCodeHash: usdcCode === '0x' ? null : keccak256(usdcCode), balanceNative: balance, balanceUsdc: usdcGas(BigInt(balance)),
     nonce, pendingNonce, blockers};
@@ -471,9 +471,12 @@ async function verifiedCompletion(path, {readOnly = false, rpcUrl} = {}) {
     for (let i = 0; i < state.confirmed.length; i++) await verifyEntry(rpc, plan, plan.steps[i], state.confirmed[i]);
   } else await refresh(path, plan, state, rpc);
   if (state.pendingHash || state.confirmed.length !== plan.steps.length) fail('All deployment and ownership-renunciation receipts are required before activation.');
-  const observation = await preflight(rpc, plan.deployer, plan.evidence, aquaPreflightOptions(plan, state));
+  // All deployment receipts are already authenticated. An unrelated pending
+  // wallet action or depleted deployer balance cannot invalidate their runtime
+  // identity. Preparing/sending remaining deployment steps keeps both checks.
+  const observation = await preflight(rpc, plan.deployer, plan.evidence, {...aquaPreflightOptions(plan, state), requireWalletReady: false});
   eq(observation.usdcCodeHash, plan.observation.usdcCodeHash, 'Arc system USDC runtime changed since deployment preparation.');
-  const blockers = observation.blockers.filter(b => !b.includes('needs Arc testnet USDC'));
+  const blockers = observation.blockers;
   if (blockers.length) fail(blockers.join(' '));
   const verifiedBindings = await bindings(plan, build, rpc);
   const manifest = {verified: true, chainId: ARC.chainId, rpcUrl: plan.rpcUrl, explorerUrl: ARC.explorerUrl,

@@ -1,7 +1,7 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
 import {manifestSchema,hashSchema,type DeploymentManifest} from '@orbital/shared';
-import {buildFundingFaucetTx,validateFundingPlan,decodeFundingReceipt,executeReviewed,demoTokenAbi,formatAmount,type PlanContext,type TransactionPlan,type PendingTransaction,type TransactionEstimate,type TransactionReceipt} from '@orbital/sdk';
+import {buildFundingFaucetTx,validateFundingPlan,validateReceiptRecoveryDeployment,decodeFundingReceipt,executeReviewed,demoTokenAbi,formatAmount,type PlanContext,type TransactionPlan,type PendingTransaction,type TransactionEstimate,type TransactionReceipt} from '@orbital/sdk';
 import {erc20Abi,type Address} from 'viem';
 import {useWallet} from '../wallet/WalletProvider';
 import {createWalletExecutionPort,publicClient as client} from '../wallet/transactionPort';
@@ -49,7 +49,7 @@ export function useDemoFunding(){
    }},transaction=>{saved={context:r.context,token:r.token,plan:r.plan,transaction};if(mounted.current)setPending(saved);localStorage.setItem(key(transaction.chainId,transaction.account),JSON.stringify(saved,(_,v)=>typeof v==='bigint'?v.toString():v));});if(saved)await finish(saved,receipt);
   }catch(e){if(mounted.current&&(isCurrent()||saved))setMessage((e as {shortMessage?:string}).shortMessage??(e as Error).message);}finally{working.current=false;if(mounted.current)setBusy(false);}
  }
- async function resume(){const p=pending;if(!p||working.current)return;working.current=true;setBusy(true);try{await freshManifest(p.context.manifest);await finish(p,await createWalletExecutionPort(wallet,()=>true,p.plan).receipt(p.transaction.hash));}catch(e){if(mounted.current)setMessage((e as Error).message);}finally{working.current=false;if(mounted.current)setBusy(false);}}
+ async function resume(){const p=pending;if(!p||working.current)return;working.current=true;setBusy(true);try{validateReceiptRecoveryDeployment(p.context.manifest,await freshManifest());await finish(p,await createWalletExecutionPort(wallet,()=>true,p.plan).receipt(p.transaction.hash));}catch(e){if(mounted.current)setMessage((e as Error).message);}finally{working.current=false;if(mounted.current)setBusy(false);}}
  const r=reviewScope.current===scope?review:undefined;
  return {wrongChain:wallet.connected&&wallet.chainId!==selectedChain.id,switchNetwork:()=>{void wallet.switchNetwork?.().catch(e=>setMessage(e instanceof Error?e.message:'Network change rejected'));},enabled,busy,pending:pending?.transaction.hash,message,network:selectedChain.name,local:selectedChain.id===31337,address:wallet.address,connected:wallet.connected,connect:wallet.connect,
   assets:assets.map(t=>({address:t.address as Address,symbol:t.symbol,balance:balances?.scope===scope?balances.values[t.address]:'Unavailable'})),refresh:()=>{void refresh();},

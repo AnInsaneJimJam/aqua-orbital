@@ -1,12 +1,33 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {executeReviewed, resumeTransaction, type ExecutionPort, type PendingTransaction, type TransactionPlan} from '../src/index';
+import {executeReviewed, resumeTransaction, validateReceiptRecoveryDeployment, type ExecutionPort, type PendingTransaction, type TransactionPlan} from '../src/index';
+import type {DeploymentManifest} from '@orbital/shared';
 const account='0x0000000000000000000000000000000000000001' as const;
 const hash=`0x${'ab'.repeat(32)}` as const;
 const plan:TransactionPlan={chainId:31337,account,to:'0x0000000000000000000000000000000000000002',data:'0x12345678',value:0n,label:'Test transfer'};
 function port(overrides:Partial<ExecutionPort>={}):ExecutionPort {
  return {identity:async()=>({account,chainId:31337}),estimate:async()=>({gas:21000n,maxFeePerGas:3n,nativeBalance:100000n}),send:async()=>hash,receipt:async()=>({hash,status:'success',blockNumber:2n}),...overrides};
 }
+test('receipt recovery permits only a verified RPC URL change and preserves every other deployment field',()=>{
+ const address=(n:number)=>`0x${n.toString(16).padStart(40,'0')}`;
+ const saved:DeploymentManifest={chainId:5042002,rpcUrl:'https://rpc.testnet.arc.io',explorerUrl:'https://testnet.arcscan.app',verified:true,
+  aqua:address(10),router:address(11),payments:address(12),usdc:address(1),startBlock:'1',tokens:[
+   {address:address(1),symbol:'USDC',decimals:6,mock:false},{address:address(2),symbol:'oUSD6',decimals:6,mock:true}]};
+ const current={...structuredClone(saved),rpcUrl:'https://rpc.blockdaemon.testnet.arc.io'};
+ assert.deepEqual(validateReceiptRecoveryDeployment(saved,current),current);
+ assert.equal(saved.rpcUrl,'https://rpc.testnet.arc.io');
+ const mutations:((m:DeploymentManifest)=>void)[]=[
+  m=>{m.verified=false;},m=>{m.chainId=31337;},m=>{m.aqua=address(99);},m=>{m.router=address(99);},m=>{m.payments=address(99);},
+  m=>{m.usdc=address(2);},m=>{m.startBlock='2';},m=>{m.explorerUrl='https://different.invalid';},
+  m=>{m.tokens[1]!.address=address(99);},m=>{m.tokens[1]!.decimals=18;},m=>{m.tokens[1]!.symbol='OTHER';},m=>{m.tokens[1]!.mock=false;},
+  m=>{m.tokens.reverse();},m=>{m.rpcUrl='invalid';},
+ ];
+ for(const mutate of mutations){const changed=structuredClone(current);mutate(changed);assert.throws(()=>validateReceiptRecoveryDeployment(saved,changed));}
+ assert.throws(()=>validateReceiptRecoveryDeployment({...saved,verified:false},current));
+ assert.throws(()=>validateReceiptRecoveryDeployment(saved,{...current,unexpected:true}));
+ assert.throws(()=>validateReceiptRecoveryDeployment(saved,{...current,tokens:undefined}));
+});
+
 test('persists a submitted hash before waiting and resumes without sending again',async()=>{
  let pending:PendingTransaction|undefined;let sends=0;
  const p=port({send:async()=>{sends++;return hash;},receipt:async()=>{throw Error('RPC offline');}});

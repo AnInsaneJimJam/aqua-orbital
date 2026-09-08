@@ -1,7 +1,7 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
 import {manifestSchema} from '@orbital/shared';
-import {createStrategyAdminDraft,prepareStrategyAdminReview,executeStrategyAdminReview,decodeStrategyAdminReceipt,hashOrder,hashConfig,formatAmount,
+import {createStrategyAdminDraft,prepareStrategyAdminReview,executeStrategyAdminReview,decodeStrategyAdminReceipt,validateReceiptRecoveryDeployment,hashOrder,hashConfig,formatAmount,
  type StrategyAdminIntent,type StrategyAdminReview,type StrategyInput,type TransactionReceipt} from '@orbital/sdk';
 import type {Address} from 'viem';
 import {useWallet} from '../wallet/WalletProvider';
@@ -75,7 +75,7 @@ export function useStrategyAdmin(id:string,input?:StrategyInput,onReceipt?:()=>v
  async function resume(){
   const pending=state.pending;if(!pending||busy.current)return;busy.current=true;setActive(true);setState(s=>({...s,phase:'pending',message:'Checking the saved strategy receipt…'}));
   try{
-   const manifest=manifestSchema.parse(await request('/deployment'));if(JSON.stringify(manifest)!==JSON.stringify(pending.context.manifest)||!manifest.verified)throw Error('Saved action belongs to another deployment. Keep its hash and check that deployment before retrying.');
+   validateReceiptRecoveryDeployment(pending.context.manifest,await request('/deployment'));
    finish(pending,await createStrategyAdminPort(wallet,()=>true,async()=>{},pending.plan).receipt(pending.transaction.hash));
   }catch(error){if(mounted.current)setState(s=>({...s,message:message(error)}));}finally{busy.current=false;if(mounted.current)setActive(false);}
  }
