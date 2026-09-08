@@ -10,13 +10,15 @@ if(process.argv.includes('--replay'))throw Error('Full destructive materializati
 const pollMs=Number(process.env.INDEXER_POLL_MS??'1000');
 if(!Number.isSafeInteger(pollMs)||pollMs<250||pollMs>10000)throw Error('Invalid INDEXER_POLL_MS');
 const pool=database(process.env.DATABASE_URL);
+pool.on('error',()=>{console.error(JSON.stringify({event:'indexer_error',chainId:manifest.chainId,code:'DATABASE_CONNECTION_LOST'}));});
 const {rpc,close}=createMaterializationRpc(manifest.rpcUrl);
 let running=true;for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>{running=false;close();});
 try{
- if(await rpc.getChainId()!==manifest.chainId)throw Error('RPC_CHAIN_MISMATCH');
  while(running){
   const started=Date.now();
   try{
+   // syncDeploymentOnce verifies RPC identity on every attempt. Transient
+   // startup failures use this same retry path, never an uncaught preflight.
    const result=await syncDeploymentOnce(pool,manifest,rpc);
    if(result.status!=='idle')console.log(JSON.stringify({event:`indexer_${result.status}`,chainId:manifest.chainId,...result,block:result.block?.toString(),elapsedMs:Date.now()-started}));
    if(result.status==='resync_required'){process.exitCode=1;break;}

@@ -1,10 +1,9 @@
 import {readShipmentEvents} from '@orbital/db';
 import {aquaEventsAbi} from '@orbital/sdk';
 import type {ShipmentDependencies} from './shipments.js';
-import pg from 'pg';
 import {createPublicClient, encodeEventTopics, http} from 'viem';
 import {swapEventsAbi, paymentsEventsAbi, lifecycleEventsAbi} from '@orbital/sdk';
-import {readReceiptMetrics, readInvoices, readStrategies} from '@orbital/db';
+import {database, readReceiptMetrics, readInvoices, readStrategies} from '@orbital/db';
 import type {ReadinessDependencies} from './readiness.js';
 import type {MetricsDependencies} from './metrics.js';
 import type {InvoiceReadDependencies} from './invoices.js';
@@ -19,8 +18,7 @@ import {observePaymentQuote as observePaymentQuoteService,paymentUnavailable,typ
 import {createQuoteCache} from './quote-cache.js';
 
 export function createReadDependencies(databaseUrl: string) {
-  const pool = new pg.Pool({connectionString: databaseUrl, max: 4, connectionTimeoutMillis: 3000, query_timeout: 3000, statement_timeout: 3000});
-  pool.on('error', () => {}); // A later readiness read reports the failure without leaking connection details.
+  const pool = database(databaseUrl, {max: 4, connectionTimeoutMillis: 3000, query_timeout: 3000, statement_timeout: 3000});
   const shutdown = new AbortController();
   const quoteCache=createQuoteCache();
   let activeRpcRequests = 0;

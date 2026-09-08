@@ -5,7 +5,18 @@ export * from './metrics.js';
 export * from './invoice-reads.js';
 export * from './strategy-reads.js';
 export * as materializedSchema from './materializationSchema.js';
-export function database(url:string){return new pg.Pool({connectionString:url,max:8});}
+type DatabaseOptions=Pick<pg.PoolConfig,'max'|'connectionTimeoutMillis'|'query_timeout'|'statement_timeout'>;
+export function database(url:string,options:DatabaseOptions={}){
+ const pool=new pg.Pool({connectionString:url,max:8,connectionTimeoutMillis:3000,...options});
+ // Idle socket failures are EventEmitter errors, outside awaited queries.
+ // pg removes that client; the next operation obtains a new connection.
+ // Keep checked-out clients handled too during gaps between awaited queries:
+ // pg marks a broken client unqueryable and destroys it when released.
+ // Neither listener retries writes, reports readiness, nor logs credentials.
+ pool.on('connect',client=>{client.on('error',()=>{});});
+ pool.on('error',()=>{});
+ return pool;
+}
 export async function atomicBlock(pool:pg.Pool,chainId:number,block:{number:bigint;hash:string;parentHash:string},events:{txHash:string;logIndex:number;emitter:string;topic:string;payload:unknown}[]){
  const client=await pool.connect();
  try{
