@@ -18,7 +18,7 @@ test('strategy HTTP aliases expose typed registered observations and preserve di
    for(const path of [`${prefix}/strategies/bad`,`${prefix}/strategies?limit=51`,`${prefix}/strategies/${f.hashes[0]}?rpcUrl=bad`]){const invalid=await app.inject(path);assert.equal(invalid.statusCode,400);assert.ok(invalid.json().requestId);assert.ok(invalid.json().message);}
   }
   assert.equal((await app.inject({method:'POST',url:'/quotes/swap',payload:{wallet:maker,recipient:manifest.tokens[1]!.address,tokenIn:manifest.tokens[0]!.address,tokenOut:manifest.tokens[1]!.address,amountInRaw:'1000000',slippageBps:50,maxCrossings:0}})).statusCode,503);
-  assert.equal((await app.inject({method:'POST',url:'/quotes/payment',payload:{}})).statusCode,503);
+  assert.equal((await app.inject({method:'POST',url:'/quotes/payment',payload:{}})).statusCode,400);
   assert.equal((await app.inject('/ready')).statusCode,503);
  }finally{await app.close();await f.close();if(dirname(directory)!==tmpdir()||!directory.startsWith(join(tmpdir(),'orbital-strategy-http-')))throw Error('Unsafe fixture path');await rm(directory,{recursive:true,force:true});}
 });

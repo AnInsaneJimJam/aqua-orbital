@@ -4,4 +4,5 @@ export * from './plans';
 export * from './execution';
 export * from './invoice-read';
 export * from './quote-read';
+export * from './payment-read';
 export {lifecycleEventsAbi,paymentsEventsAbi,swapEventsAbi,paymentsReadAbi} from './generated/abi';

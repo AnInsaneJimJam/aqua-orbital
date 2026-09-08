@@ -11,7 +11,8 @@ import {registerEventStream} from './event-stream.js';
 import {getMetrics,type MetricsDependencies} from './metrics.js';
 import {getInvoices,type InvoiceReadDependencies} from './invoices.js';
 import {getStrategies,type StrategyReadDependencies} from './strategies.js';
-import {registerSwapQuotes,isSwapQuotePath,swapQuoteError} from './quote-http.js';
+import {registerSwapQuotes,isSwapQuotePath,swapQuoteError,createSwapQuoteLimiter} from './quote-http.js';
+import {registerPaymentQuotes,isPaymentQuotePath,paymentQuoteError} from './payment-http.js';
 
 export async function createServer(options:{manifestPath?:string;proofPath?:string;databaseUrl?:string;dependencies?:ReadinessDependencies;metricsDependencies?:MetricsDependencies;invoiceDependencies?:InvoiceReadDependencies;strategyDependencies?:StrategyReadDependencies;notifications?:NotificationSource;now?:()=>number;logger?:boolean}={}) {
  const app=Fastify({logger:options.logger??process.env.NODE_ENV!=='test',bodyLimit:16384});
@@ -69,13 +70,13 @@ export async function createServer(options:{manifestPath?:string;proofPath?:stri
   if(options.proofPath){try{return JSON.parse(await readFile(options.proofPath,'utf8'));}catch{/* Honest unavailable state below. */}}
   return {generatedAt:null,items:[{id:'evidence',label:'Build evidence',status:'unavailable',detail:'No generated evidence manifest is configured.'}] satisfies ProofItem[]};
  });
- // No database/chain evidence is fabricated when the indexed deployment is absent.
- const unavailable=async(_request:unknown,reply:{code:(code:number)=>{send:(value:unknown)=>unknown}})=>reply.code(503).send({code:'INDEXER_UNAVAILABLE',message:'Verified chain indexing is not available yet.'});
- registerSwapQuotes(app,manifest,runtime?.observeQuote,options.now);
- app.post('/quotes/payment',{config:{rateLimit:{max:30,timeWindow:'1 minute'}}},unavailable);
+ const quoteLimit=createSwapQuoteLimiter();
+ registerSwapQuotes(app,manifest,runtime?.observeQuote,options.now,quoteLimit);
+ registerPaymentQuotes(app,manifest,runtime?.observePaymentQuote,options.now,quoteLimit);
  registerEventStream(app,readiness,notifications);
  app.setErrorHandler((error,request,reply)=>{
   const status=typeof error==='object'&&error!==null&&'statusCode' in error?Number(error.statusCode):500;
+  if(isPaymentQuotePath(request.routeOptions.url))return reply.header('cache-control','no-store').code(Number.isInteger(status)&&status>=400&&status<600?status:500).send(paymentQuoteError(status===413?'PAYMENT_BODY_TOO_LARGE':status===429?'PAYMENT_RATE_LIMITED':'PAYMENT_REQUEST_FAILED',request.id,status>=429,status>=400&&status<429?'body':null));
   if(isSwapQuotePath(request.routeOptions.url))return reply.header('cache-control','no-store').code(Number.isInteger(status)&&status>=400&&status<600?status:500).send(swapQuoteError(status===413?'QUOTE_BODY_TOO_LARGE':status===429?'QUOTE_RATE_LIMITED':'QUOTE_REQUEST_FAILED',request.id,status>=429,status>=400&&status<429?'body':null));
   reply.code(Number.isInteger(status)&&status>=400&&status<600?status:500).send({code:'REQUEST_FAILED',message:status===429?'Too many requests. Try again shortly.':'The request could not be completed.'});
  });

@@ -1,0 +1,615 @@
+[
+  {
+    "kind": "direct",
+    "manifest": {
+      "chainId": 31337,
+      "rpcUrl": "http://127.0.0.1:8545",
+      "explorerUrl": "https://example.invalid",
+      "verified": true,
+      "aqua": "0x000000000000000000000000000000000000000A",
+      "router": "0x000000000000000000000000000000000000000b",
+      "payments": "0x000000000000000000000000000000000000000C",
+      "usdc": "0x0000000000000000000000000000000000000001",
+      "startBlock": "1",
+      "tokens": [
+        {
+          "address": "0x0000000000000000000000000000000000000001",
+          "symbol": "USDC",
+          "decimals": 6,
+          "mock": true
+        },
+        {
+          "address": "0x0000000000000000000000000000000000000002",
+          "symbol": "oUSD6",
+          "decimals": 6,
+          "mock": true
+        },
+        {
+          "address": "0x0000000000000000000000000000000000000003",
+          "symbol": "oUSD18",
+          "decimals": 18,
+          "mock": true
+        }
+      ]
+    },
+    "request": {
+      "invoiceId": "0x000000000000000000000000000000000000000000000000000000000000005a",
+      "payer": "0x0000000000000000000000000000000000000016",
+      "tokenIn": "0x0000000000000000000000000000000000000001",
+      "maxInputRaw": "1000",
+      "maxCrossings": 16
+    },
+    "nowMs": 1700000004000,
+    "httpStatus": 200,
+    "payload": {
+      "schemaVersion": 1,
+      "status": "observed",
+      "code": "PAYMENT_QUOTE_OBSERVED",
+      "financialExecutionEnabled": false,
+      "paymentEligibilityVerified": false,
+      "canonicalVerification": "verified_at_pin",
+      "chainId": 31337,
+      "deploymentId": "0x96d8d60ed025ca47e6140d302b662e36033639370be25f80268dc3bdbb56e0cc",
+      "asOf": {
+        "height": "3",
+        "hash": "0x0000000000000000000000000000000000000000000000000000000000000003"
+      },
+      "currentIndexedBlock": {
+        "height": "3",
+        "hash": "0x0000000000000000000000000000000000000000000000000000000000000003"
+      },
+      "historical": false,
+      "freshness": {
+        "indexedAt": "2023-11-14T22:13:23.000Z",
+        "ageMs": 25,
+        "head": "5",
+        "blockTimestamp": "1700000003",
+        "observedAt": "2023-11-14T22:13:23.024Z"
+      },
+      "coverage": {
+        "fromBlock": "1",
+        "toBlock": "3",
+        "expectedBlocks": "3",
+        "canonicalBlocks": "3",
+        "coveredBlocks": "3",
+        "complete": true
+      },
+      "data": {
+        "request": {
+          "invoiceId": "0x000000000000000000000000000000000000000000000000000000000000005a",
+          "payer": "0x0000000000000000000000000000000000000016",
+          "tokenIn": "0x0000000000000000000000000000000000000001",
+          "maxInputRaw": "1000",
+          "maxCrossings": 16
+        },
+        "kind": "direct",
+        "invoice": {
+          "invoiceId": "0x000000000000000000000000000000000000000000000000000000000000005a",
+          "merchant": "0x0000000000000000000000000000000000000014",
+          "adapter": "0x000000000000000000000000000000000000000C",
+          "amountDueRaw": "100",
+          "expiresAt": "1700001003",
+          "recipients": [
+            {
+              "address": "0x0000000000000000000000000000000000000014",
+              "bps": 9000,
+              "amountRaw": "90"
+            },
+            {
+              "address": "0x0000000000000000000000000000000000000017",
+              "bps": 1000,
+              "amountRaw": "10"
+            }
+          ],
+          "memoHash": "0x0000000000000000000000000000000000000000000000000000000000000063",
+          "status": "unpaid",
+          "version": "1",
+          "created": {
+            "blockNumber": "1",
+            "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "txHash": "0x0000000000000000000000000000000000000000000000000000000000000065",
+            "logIndex": 0,
+            "event": "InvoiceCreated"
+          },
+          "updated": {
+            "blockNumber": "1",
+            "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "txHash": "0x0000000000000000000000000000000000000000000000000000000000000065",
+            "logIndex": 0,
+            "event": "InvoiceCreated"
+          },
+          "settlementToken": {
+            "address": "0x0000000000000000000000000000000000000001",
+            "symbol": "USDC",
+            "decimals": 6,
+            "mock": true
+          },
+          "paymentEligibilityVerified": false,
+          "payment": null
+        },
+        "tokenIn": {
+          "address": "0x0000000000000000000000000000000000000001",
+          "symbol": "USDC",
+          "decimals": 6,
+          "mock": true
+        },
+        "amountInRaw": "100",
+        "amountOutRaw": "100",
+        "minimumOutRaw": "100",
+        "feeRaw": "0",
+        "refundRaw": "0",
+        "expiresAt": "1700000023",
+        "funding": {
+          "balanceRaw": "1000",
+          "allowanceRaw": "0",
+          "boundRaw": "1000",
+          "spender": "0x000000000000000000000000000000000000000c",
+          "approvalRequired": true
+        },
+        "routing": null,
+        "search": null,
+        "work": {
+          "identityMembers": 6,
+          "contextMembers": 14,
+          "inspectionMembers": 0,
+          "quoteMembers": 0,
+          "logicalMembers": 20,
+          "nativeBatches": 4
+        },
+        "reviewOnly": true,
+        "plan": {
+          "chainId": 31337,
+          "account": "0x0000000000000000000000000000000000000016",
+          "to": "0x000000000000000000000000000000000000000C",
+          "data": "0x57bf7054000000000000000000000000000000000000000000000000000000000000005a",
+          "value": "0",
+          "label": "Pay invoice with USDC"
+        },
+        "approval": {
+          "chainId": 31337,
+          "account": "0x0000000000000000000000000000000000000016",
+          "to": "0x0000000000000000000000000000000000000001",
+          "value": "0",
+          "label": "Approve reviewed amount",
+          "data": "0x095ea7b3000000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000064"
+        }
+      },
+      "requestId": "payment-fixture",
+      "router": "0x000000000000000000000000000000000000000b",
+      "adapter": "0x000000000000000000000000000000000000000c",
+      "deploymentStartBlock": "1"
+    }
+  },
+  {
+    "kind": "swap",
+    "manifest": {
+      "chainId": 31337,
+      "rpcUrl": "http://127.0.0.1:8545",
+      "explorerUrl": "https://example.invalid",
+      "verified": true,
+      "aqua": "0x000000000000000000000000000000000000000A",
+      "router": "0x000000000000000000000000000000000000000b",
+      "payments": "0x000000000000000000000000000000000000000C",
+      "usdc": "0x0000000000000000000000000000000000000001",
+      "startBlock": "1",
+      "tokens": [
+        {
+          "address": "0x0000000000000000000000000000000000000001",
+          "symbol": "USDC",
+          "decimals": 6,
+          "mock": true
+        },
+        {
+          "address": "0x0000000000000000000000000000000000000002",
+          "symbol": "oUSD6",
+          "decimals": 6,
+          "mock": true
+        },
+        {
+          "address": "0x0000000000000000000000000000000000000003",
+          "symbol": "oUSD18",
+          "decimals": 18,
+          "mock": true
+        }
+      ]
+    },
+    "request": {
+      "invoiceId": "0x000000000000000000000000000000000000000000000000000000000000005a",
+      "payer": "0x0000000000000000000000000000000000000016",
+      "tokenIn": "0x0000000000000000000000000000000000000002",
+      "maxInputRaw": "1000",
+      "maxCrossings": 16
+    },
+    "nowMs": 1700000004000,
+    "httpStatus": 200,
+    "payload": {
+      "schemaVersion": 1,
+      "status": "observed",
+      "code": "PAYMENT_QUOTE_OBSERVED",
+      "financialExecutionEnabled": false,
+      "paymentEligibilityVerified": false,
+      "canonicalVerification": "verified_at_pin",
+      "chainId": 31337,
+      "deploymentId": "0x96d8d60ed025ca47e6140d302b662e36033639370be25f80268dc3bdbb56e0cc",
+      "asOf": {
+        "height": "3",
+        "hash": "0x0000000000000000000000000000000000000000000000000000000000000003"
+      },
+      "currentIndexedBlock": {
+        "height": "3",
+        "hash": "0x0000000000000000000000000000000000000000000000000000000000000003"
+      },
+      "historical": false,
+      "freshness": {
+        "indexedAt": "2023-11-14T22:13:23.000Z",
+        "ageMs": 368,
+        "head": "5",
+        "blockTimestamp": "1700000003",
+        "observedAt": "2023-11-14T22:13:23.367Z"
+      },
+      "coverage": {
+        "fromBlock": "1",
+        "toBlock": "3",
+        "expectedBlocks": "3",
+        "canonicalBlocks": "3",
+        "coveredBlocks": "3",
+        "complete": true
+      },
+      "data": {
+        "request": {
+          "invoiceId": "0x000000000000000000000000000000000000000000000000000000000000005a",
+          "payer": "0x0000000000000000000000000000000000000016",
+          "tokenIn": "0x0000000000000000000000000000000000000002",
+          "maxInputRaw": "1000",
+          "maxCrossings": 16
+        },
+        "kind": "swap",
+        "invoice": {
+          "invoiceId": "0x000000000000000000000000000000000000000000000000000000000000005a",
+          "merchant": "0x0000000000000000000000000000000000000014",
+          "adapter": "0x000000000000000000000000000000000000000C",
+          "amountDueRaw": "100",
+          "expiresAt": "1700001003",
+          "recipients": [
+            {
+              "address": "0x0000000000000000000000000000000000000014",
+              "bps": 9000,
+              "amountRaw": "90"
+            },
+            {
+              "address": "0x0000000000000000000000000000000000000017",
+              "bps": 1000,
+              "amountRaw": "10"
+            }
+          ],
+          "memoHash": "0x0000000000000000000000000000000000000000000000000000000000000063",
+          "status": "unpaid",
+          "version": "1",
+          "created": {
+            "blockNumber": "1",
+            "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "txHash": "0x0000000000000000000000000000000000000000000000000000000000000065",
+            "logIndex": 0,
+            "event": "InvoiceCreated"
+          },
+          "updated": {
+            "blockNumber": "1",
+            "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "txHash": "0x0000000000000000000000000000000000000000000000000000000000000065",
+            "logIndex": 0,
+            "event": "InvoiceCreated"
+          },
+          "settlementToken": {
+            "address": "0x0000000000000000000000000000000000000001",
+            "symbol": "USDC",
+            "decimals": 6,
+            "mock": true
+          },
+          "paymentEligibilityVerified": false,
+          "payment": null
+        },
+        "tokenIn": {
+          "address": "0x0000000000000000000000000000000000000002",
+          "symbol": "oUSD6",
+          "decimals": 6,
+          "mock": true
+        },
+        "amountInRaw": "134",
+        "amountOutRaw": "100",
+        "minimumOutRaw": "100",
+        "feeRaw": "1",
+        "refundRaw": "0",
+        "expiresAt": "1700000023",
+        "funding": {
+          "balanceRaw": "1000",
+          "allowanceRaw": "0",
+          "boundRaw": "1000",
+          "spender": "0x000000000000000000000000000000000000000c",
+          "approvalRequired": true
+        },
+        "routing": {
+          "best": {
+            "kind": "payment",
+            "payer": "0x0000000000000000000000000000000000000016",
+            "orderHash": "0xcf53248d83e552db5f7c54f83a61291cd33c36daa7ea69e33512aa0dd6c5e8e5",
+            "configHash": "0x4f55e2bfc64754f4b074946b5a0ef1be6ba7527501a928e8b138a1802acf1d3f",
+            "config": {
+              "schemaVersion": 1,
+              "chainId": "31337",
+              "router": "0x000000000000000000000000000000000000000b",
+              "maker": "0x0000000000000000000000000000000000000014",
+              "makerNonce": "0",
+              "tokens": [
+                "0x0000000000000000000000000000000000000001",
+                "0x0000000000000000000000000000000000000002",
+                "0x0000000000000000000000000000000000000003"
+              ],
+              "decimals": [
+                6,
+                6,
+                18
+              ],
+              "tickKeys": [
+                "6442450944",
+                "7516192768",
+                "18446744073709551615"
+              ],
+              "radiiInternal": [
+                "1844674407370955161600000000000000000000",
+                "3689348814741910323200000000000000000000",
+                "7378697629483820646400000000000000000000"
+              ],
+              "feePpm": 100,
+              "initialAmountsRaw": [
+                "300000000",
+                "300000000",
+                "300000000000000000000"
+              ]
+            },
+            "stateVersion": "1",
+            "caller": "0x000000000000000000000000000000000000000c",
+            "recipient": "0x000000000000000000000000000000000000000c",
+            "tokenIn": "0x0000000000000000000000000000000000000002",
+            "tokenOut": "0x0000000000000000000000000000000000000001",
+            "amountInRaw": "134",
+            "amountOutRaw": "100",
+            "feeRaw": "1",
+            "feePpm": 100,
+            "minimumOutRaw": "100",
+            "expiresAt": "1700000023",
+            "maxCrossings": 16
+          },
+          "alternatives": [
+            {
+              "kind": "payment",
+              "payer": "0x0000000000000000000000000000000000000016",
+              "orderHash": "0x23ed106ec28408f9247e7151de32c011af98298fc0f0c4b6cbaf8da1bfcf55ac",
+              "configHash": "0x5be791eb07eebc7da37d4047c87e46b3baa2e4641f167a59504e1bfde8a87dc3",
+              "config": {
+                "schemaVersion": 1,
+                "chainId": "31337",
+                "router": "0x000000000000000000000000000000000000000b",
+                "maker": "0x0000000000000000000000000000000000000014",
+                "makerNonce": "1",
+                "tokens": [
+                  "0x0000000000000000000000000000000000000001",
+                  "0x0000000000000000000000000000000000000002",
+                  "0x0000000000000000000000000000000000000003"
+                ],
+                "decimals": [
+                  6,
+                  6,
+                  18
+                ],
+                "tickKeys": [
+                  "6442450944",
+                  "7516192768",
+                  "18446744073709551615"
+                ],
+                "radiiInternal": [
+                  "1844674407370955161600000000000000000000",
+                  "3689348814741910323200000000000000000000",
+                  "7378697629483820646400000000000000000000"
+                ],
+                "feePpm": 500,
+                "initialAmountsRaw": [
+                  "300000000",
+                  "300000000",
+                  "300000000000000000000"
+                ]
+              },
+              "stateVersion": "1",
+              "caller": "0x000000000000000000000000000000000000000c",
+              "recipient": "0x000000000000000000000000000000000000000c",
+              "tokenIn": "0x0000000000000000000000000000000000000002",
+              "tokenOut": "0x0000000000000000000000000000000000000001",
+              "amountInRaw": "134",
+              "amountOutRaw": "100",
+              "feeRaw": "1",
+              "feePpm": 500,
+              "minimumOutRaw": "100",
+              "expiresAt": "1700000023",
+              "maxCrossings": 16
+            }
+          ],
+          "counts": {
+            "scanned": 2,
+            "locallyAccepted": 2,
+            "inspected": 2,
+            "eligible": 2,
+            "quoted": 2,
+            "failed": 0,
+            "notInspected": 0
+          },
+          "coverage": {
+            "candidateLimit": 200,
+            "inspectionLimit": 32,
+            "scanTruncated": false,
+            "scope": "bounded_registered_candidates"
+          },
+          "diagnostics": [
+            {
+              "orderHash": "0x23ed106ec28408f9247e7151de32c011af98298fc0f0c4b6cbaf8da1bfcf55ac",
+              "code": "QUOTED"
+            },
+            {
+              "orderHash": "0xcf53248d83e552db5f7c54f83a61291cd33c36daa7ea69e33512aa0dd6c5e8e5",
+              "code": "QUOTED"
+            }
+          ]
+        },
+        "search": {
+          "selection": "sufficient_observed_input",
+          "minimumInputCertified": false,
+          "limits": {
+            "maxExpansions": 8,
+            "maxRefinements": 8,
+            "maxStages": 16,
+            "maxQuoteCalls": 128,
+            "batchSize": 8,
+            "maxEligible": 32
+          },
+          "stagesUsed": 9,
+          "expansionStages": 2,
+          "refinementStages": 7,
+          "quoteCallsUsed": 18,
+          "quoteBatchesUsed": 9,
+          "outcomes": [
+            {
+              "orderHash": "0x23ed106ec28408f9247e7151de32c011af98298fc0f0c4b6cbaf8da1bfcf55ac",
+              "quoted": 4,
+              "unavailable": 5
+            },
+            {
+              "orderHash": "0xcf53248d83e552db5f7c54f83a61291cd33c36daa7ea69e33512aa0dd6c5e8e5",
+              "quoted": 4,
+              "unavailable": 5
+            }
+          ],
+          "stopReason": "adjacent_cursor"
+        },
+        "work": {
+          "identityMembers": 6,
+          "contextMembers": 16,
+          "inspectionMembers": 6,
+          "quoteMembers": 18,
+          "logicalMembers": 46,
+          "nativeBatches": 14
+        },
+        "reviewOnly": true,
+        "plan": {
+          "chainId": 31337,
+          "account": "0x0000000000000000000000000000000000000016",
+          "to": "0x000000000000000000000000000000000000000C",
+          "data": "0x39c6c554000000000000000000000000000000000000000000000000000000000000005a00000000000000000000000000000000000000000000000000000000000000e0000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000860000000000000000000000000000000000000000000000000000000000000064000000000000000000000000000000000000000000000000000000006553f1170000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001440000000002800280028002800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000006c0000000000000000000000000000000000000001000000000000000000000000000000000000000272204f55e2bfc64754f4b074946b5a0ef1be6ba7527501a928e8b138a1802acf1d3f52204f55e2bfc64754f4b074946b5a0ef1be6ba7527501a928e8b138a1802acf1d3f0000000000000000000000000000000000000000",
+          "value": "0",
+          "label": "Swap and pay reviewed invoice"
+        },
+        "approval": {
+          "chainId": 31337,
+          "account": "0x0000000000000000000000000000000000000016",
+          "to": "0x0000000000000000000000000000000000000002",
+          "value": "0",
+          "label": "Approve reviewed amount",
+          "data": "0x095ea7b3000000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000086"
+        }
+      },
+      "requestId": "payment-fixture",
+      "router": "0x000000000000000000000000000000000000000b",
+      "adapter": "0x000000000000000000000000000000000000000c",
+      "deploymentStartBlock": "1"
+    }
+  },
+  {
+    "kind": "absent",
+    "manifest": {
+      "chainId": 31337,
+      "rpcUrl": "http://127.0.0.1:8545",
+      "explorerUrl": "https://example.invalid",
+      "verified": true,
+      "aqua": "0x000000000000000000000000000000000000000A",
+      "router": "0x000000000000000000000000000000000000000b",
+      "payments": "0x000000000000000000000000000000000000000C",
+      "usdc": "0x0000000000000000000000000000000000000001",
+      "startBlock": "1",
+      "tokens": [
+        {
+          "address": "0x0000000000000000000000000000000000000001",
+          "symbol": "USDC",
+          "decimals": 6,
+          "mock": true
+        },
+        {
+          "address": "0x0000000000000000000000000000000000000002",
+          "symbol": "oUSD6",
+          "decimals": 6,
+          "mock": true
+        },
+        {
+          "address": "0x0000000000000000000000000000000000000003",
+          "symbol": "oUSD18",
+          "decimals": 18,
+          "mock": true
+        }
+      ]
+    },
+    "request": {
+      "invoiceId": "0x000000000000000000000000000000000000000000000000000000000000005a",
+      "payer": "0x0000000000000000000000000000000000000016",
+      "tokenIn": "0x0000000000000000000000000000000000000002",
+      "maxInputRaw": "1000",
+      "maxCrossings": 16
+    },
+    "nowMs": 1700000004000,
+    "httpStatus": 404,
+    "payload": {
+      "schemaVersion": 1,
+      "status": "unavailable",
+      "code": "INVOICE_NOT_FOUND",
+      "financialExecutionEnabled": false,
+      "paymentEligibilityVerified": false,
+      "canonicalVerification": "verified_at_pin",
+      "data": null,
+      "message": "A complete canonical payment quote observation is unavailable.",
+      "chainId": 31337,
+      "deploymentId": "0x96d8d60ed025ca47e6140d302b662e36033639370be25f80268dc3bdbb56e0cc",
+      "asOf": {
+        "height": "3",
+        "hash": "0x0000000000000000000000000000000000000000000000000000000000000003"
+      },
+      "currentIndexedBlock": {
+        "height": "3",
+        "hash": "0x0000000000000000000000000000000000000000000000000000000000000003"
+      },
+      "historical": false,
+      "freshness": {
+        "indexedAt": "2023-11-14T22:13:23.000Z",
+        "ageMs": 1,
+        "head": "5",
+        "blockTimestamp": "1700000003",
+        "observedAt": "2023-11-14T22:13:23.000Z"
+      },
+      "coverage": {
+        "fromBlock": "1",
+        "toBlock": "3",
+        "expectedBlocks": "3",
+        "canonicalBlocks": "3",
+        "coveredBlocks": "3",
+        "complete": true
+      },
+      "requestId": "payment-fixture",
+      "router": "0x000000000000000000000000000000000000000b",
+      "adapter": "0x000000000000000000000000000000000000000c",
+      "deploymentStartBlock": "1",
+      "request": {
+        "invoiceId": "0x000000000000000000000000000000000000000000000000000000000000005a",
+        "payer": "0x0000000000000000000000000000000000000016",
+        "tokenIn": "0x0000000000000000000000000000000000000002",
+        "maxInputRaw": "1000",
+        "maxCrossings": 16
+      },
+      "retryable": false,
+      "field": "invoiceId"
+    }
+  }
+]

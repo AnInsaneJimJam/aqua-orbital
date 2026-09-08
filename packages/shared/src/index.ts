@@ -144,3 +144,35 @@ export const swapQuoteUnavailableSchema=z.object({schemaVersion:z.literal(1),sta
 export const swapQuoteObservationSchema=z.discriminatedUnion('status',[swapQuoteObservedSchema,swapQuoteUnavailableSchema]);
 export type SwapQuoteObservationDTO=z.infer<typeof swapQuoteObservationSchema>;
 export type SwapQuoteObservedDTO=z.infer<typeof swapQuoteObservedSchema>;
+
+/** Bounded wire shapes. The SDK additionally reconstructs every financial
+ * relationship and unsigned plan; successful parsing is not execution consent. */
+const paymentRouteSchema=swapQuoteRouteSchema.extend({kind:z.literal('payment')});
+const paymentRoutingSchema=swapQuoteObservedSchema.shape.data.extend({best:paymentRouteSchema,alternatives:z.array(paymentRouteSchema).max(3)});
+const paymentPlanSchema=z.object({chainId:chainIdSchema,account:nonzeroAddressSchema,to:nonzeroAddressSchema,data:bytesSchema.max(32770),value:z.literal('0'),label:z.string().min(1).max(100)}).strict();
+const paymentSearchSchema=z.object({selection:z.literal('sufficient_observed_input'),minimumInputCertified:z.literal(false),
+ limits:z.object({maxExpansions:z.literal(8),maxRefinements:z.literal(8),maxStages:z.literal(16),maxQuoteCalls:z.literal(128),batchSize:z.literal(8),maxEligible:z.literal(32)}).strict(),
+ stagesUsed:quoteCount(16).min(1),expansionStages:quoteCount(8).min(1),refinementStages:quoteCount(8),quoteCallsUsed:quoteCount(128).min(1),quoteBatchesUsed:quoteCount(28).min(1),
+ outcomes:z.array(z.object({orderHash:hashSchema,quoted:quoteCount(16),unavailable:quoteCount(16)}).strict()).min(1).max(32),
+ stopReason:z.enum(['adjacent_cursor','refinement_limit','aggregate_limit','refinement_skipped']),
+}).strict();
+const paymentScopeShape={chainId:chainIdSchema,router:nonzeroAddressSchema,adapter:nonzeroAddressSchema,deploymentId:hashSchema,deploymentStartBlock:uintSchema,
+ asOf:invoiceBlockSchema,currentIndexedBlock:invoiceBlockSchema,historical:z.boolean(),freshness:swapQuoteObservedSchema.shape.freshness,
+ coverage:invoiceDetailSchema.shape.coverage};
+export const paymentQuoteObservedSchema=z.object({schemaVersion:z.literal(1),status:z.literal('observed'),code:z.literal('PAYMENT_QUOTE_OBSERVED'),
+ requestId:z.string().min(1).max(200),financialExecutionEnabled:z.literal(false),paymentEligibilityVerified:z.literal(false),canonicalVerification:z.literal('verified_at_pin'),...paymentScopeShape,
+ data:z.object({request:paymentQuoteRequestSchema,kind:z.enum(['direct','swap']),invoice:invoiceReadSchema,tokenIn:tokenSchema,amountInRaw:quotePositiveUint,amountOutRaw:quotePositiveUint,minimumOutRaw:quotePositiveUint,feeRaw:uintSchema,refundRaw:uintSchema,expiresAt:uint40Schema,
+  funding:z.object({balanceRaw:uintSchema,allowanceRaw:uintSchema,boundRaw:uintSchema,spender:nonzeroAddressSchema,approvalRequired:z.boolean()}).strict(),
+  routing:paymentRoutingSchema.nullable(),search:paymentSearchSchema.nullable(),
+  work:z.object({identityMembers:z.literal(6),contextMembers:quoteCount(16),inspectionMembers:quoteCount(96),quoteMembers:quoteCount(128),logicalMembers:quoteCount(246),nativeBatches:quoteCount(44)}).strict(),
+  reviewOnly:z.literal(true),plan:paymentPlanSchema,approval:paymentPlanSchema.nullable(),
+ }).strict(),
+}).strict();
+export const paymentQuoteAbsentSchema=z.object({schemaVersion:z.literal(1),status:z.literal('unavailable'),code:z.literal('INVOICE_NOT_FOUND'),
+ requestId:z.string().min(1).max(200),financialExecutionEnabled:z.literal(false),paymentEligibilityVerified:z.literal(false),canonicalVerification:z.literal('verified_at_pin'),...paymentScopeShape,
+ request:paymentQuoteRequestSchema,retryable:z.literal(false),field:z.literal('invoiceId'),message:z.string().min(1).max(300),data:z.null(),
+}).strict();
+export const paymentQuoteUnavailableSchema=swapQuoteUnavailableSchema.extend({paymentEligibilityVerified:z.literal(false),code:swapQuoteUnavailableSchema.shape.code.refine(code=>code!=='INVOICE_NOT_FOUND')});
+export const paymentQuoteObservationSchema=z.union([paymentQuoteObservedSchema,paymentQuoteAbsentSchema,paymentQuoteUnavailableSchema]);
+export type PaymentQuoteObservationDTO=z.infer<typeof paymentQuoteObservationSchema>;
+export type PaymentQuoteObservedDTO=z.infer<typeof paymentQuoteObservedSchema>;

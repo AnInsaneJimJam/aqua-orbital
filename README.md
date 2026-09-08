@@ -12,7 +12,7 @@ Orbital is being built for multi-token concentrated stablecoin liquidity, held i
 - [Frontend](docs/FRONTEND.md), [Privy](docs/PRIVY_RESEARCH.md), [decisions](docs/DECISIONS.md).
 - [Aqua research](docs/AQUA_RESEARCH.md), [Arc research](docs/ARC_RESEARCH.md), [fresh Arc deployment observations](docs/ARC_DEPLOYMENT_STATUS.md).
 - [Evidence index](test/evidence/INDEX.md).
-- [Payment quote implementation](test/evidence/payment-foundation.md): bounded search and invoice/funding checks; the public payment quote endpoint is still unfinished.
+- [Payment quote implementation](test/evidence/payment-endpoint.md): canonical direct/swap observations and validated unsigned plans through both public aliases; wallet execution remains unfinished.
 
 The original [SPEC](SPEC.md) and [PLAN](docs/PLAN.md) describe a superseded custodial architecture. Do not implement them as a second product.
 
@@ -72,11 +72,13 @@ The optional app container profile is `docker compose up --build` (stop host ser
 
 The repository contains a high-precision explicit-tick oracle, retained counterexamples, signed wide intervals, endpoint/slack certificates, scalar and both-root event enclosures, a global support-gap certificate, a minimal SwapVM fork, maker lifecycle on official Aqua, an atomic invoice adapter, resumable SDK transaction plans, bounded PostgreSQL reorg recovery, API readiness/SSE invalidations and all frontend routes. The UI separates swap orchestration from presentation and isolates Privy in the wallet module. The current frontend template is retained while protocol implementation continues.
 
-`GET /ready` checks the verified deployment identity, canonical RPC block and fresh confirmed raw and deployment projection cursors. Lifecycle/invoice projections support canonical rollback; a raw cursor alone cannot satisfy readiness. Financial execution remains disabled while deployment eligibility, payment observations and transaction controllers are unfinished. `GET /events` emits committed invalidations when these dependencies are ready; clients must refresh canonical reads and cannot treat notifications as balances or payment receipts.
+`GET /ready` checks the verified deployment identity, canonical RPC block and fresh confirmed raw and deployment projection cursors. Lifecycle/invoice projections support canonical rollback; a raw cursor alone cannot satisfy readiness. Financial execution remains disabled while deployment eligibility and transaction controllers are unfinished. `GET /events` emits committed invalidations when these dependencies are ready; clients must refresh canonical reads and cannot treat notifications as balances or payment receipts.
 
 `GET /metrics` (also `/api/v1/metrics`) reads canonical custom swap receipts with complete historical projection coverage and checked block dates. Totals preserve separate token units and distinguish demo assets; stale data is labeled and missing coverage returns unavailable. Active strategy count describes lifecycle status, not current funding. [Metrics evidence](test/evidence/metrics.md).
 
 `GET /invoices/:id` and `/makers/:address/invoices` (also under `/api/v1`) return canonical invoice terms, exact recipient amounts and status/payment receipts. Paginated lists retain their original canonical block through normal new blocks; reorged pins require restarting the list. Indexed unpaid status does not authorize payment. [Invoice read evidence](test/evidence/invoice-reads.md).
+
+`POST /quotes/payment` (also under `/api/v1`) returns canonical direct-USDC or sufficient-input swap observations, exact invoice splits/refund, and validated unsigned payment/approval plans. It authenticates payer funding and invoice terms at one hash, repeats final checks, and shares swap admission/rate limits. Plans remain review-only; quote caching and wallet execution are unfinished. [Payment endpoint evidence](test/evidence/payment-endpoint.md).
 
 `GET /strategies`, `/makers/:address/strategies` and `/strategies/:hash` (also under `/api/v1`) cover registered strategies with bounded, canonical pagination. Detail reads bind immutable configuration and receipt versions to contract getters at the same block, checking exact principal, fees and all-token Aqua availability. They are public observations with explicit stale/error states; trade eligibility and incomplete shipments remain unfinished. [Strategy read evidence](test/evidence/strategy-reads.md).
 

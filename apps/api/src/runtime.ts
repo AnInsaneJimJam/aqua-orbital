@@ -8,10 +8,11 @@ import type {InvoiceReadDependencies} from './invoices.js';
 import {readinessDeploymentScope} from './deployment-scope.js';
 import type {StrategyReadDependencies} from './strategies.js';
 import {readStrategyRpc} from './strategy-rpc.js';
-import {readQuoteIdentity,readQuoteBatch} from './quote-rpc.js';
+import {readQuoteIdentity,readQuoteBatch,readPaymentContext} from './quote-rpc.js';
 import {observeQuote as observeQuoteService,type QuoteDependencies,type QuoteOptions,type QuoteUnavailable} from './quote-service.js';
 import type {RoutingIntent} from './route-selection.js';
-import type {DeploymentManifest} from '@orbital/shared';
+import type {DeploymentManifest,PaymentQuoteRequest} from '@orbital/shared';
+import {observePaymentQuote as observePaymentQuoteService,paymentUnavailable,type PaymentQuoteDependencies} from './payment-service.js';
 
 export function createReadDependencies(databaseUrl: string) {
   const pool = new pg.Pool({connectionString: databaseUrl, max: 4, connectionTimeoutMillis: 3000, query_timeout: 3000, statement_timeout: 3000});
@@ -127,26 +128,39 @@ export function createReadDependencies(databaseUrl: string) {
     readIdentity:(manifest,pin,signal,timeoutMs)=>readQuoteIdentity(manifest,pin,{reserve:reserveRpc,shutdownSignal:shutdown.signal,signal,timeoutMs}),
     readBatch:(input,phase,signal,timeoutMs)=>readQuoteBatch(input,phase,{reserve:reserveRpc,shutdownSignal:shutdown.signal,signal,timeoutMs}),
   };
-  async function observeQuote(manifest:DeploymentManifest|null,intent:RoutingIntent,options:QuoteOptions={}){
-    // Admission is immediate: at most two service workflows can hold a DB or
-    // batch plan; excess work is rejected rather than queued behind RPC reads.
-    if(shutdown.signal.aborted||activeQuoteServices>=2){const result:QuoteUnavailable={schemaVersion:1,status:'unavailable',code:shutdown.signal.aborted?'QUOTE_CANCELLED':'QUOTE_CAPACITY',financialExecutionEnabled:false,canonicalVerification:'unavailable',data:null,message:'A complete canonical quote observation is unavailable.'};return result;}
+  function quoteLease(options:QuoteOptions){
     activeQuoteServices++;
-    const pendingDatabase=new Set<ReturnType<QuoteDependencies['readDatabase']>>();
-    const serviceDependencies:QuoteDependencies={...quoteDependencies,readDatabase(manifest,query){
-      const operation=quoteDependencies.readDatabase(manifest,query);
+    const pendingDatabase=new Set<Promise<unknown>>();let released=false;
+    function track<T>(operation:Promise<T>):Promise<T>{
       pendingDatabase.add(operation);
       operation.then(()=>pendingDatabase.delete(operation),()=>pendingDatabase.delete(operation));
       return operation;
-    }};
-    try{return await observeQuoteService(manifest,intent,serviceDependencies,{...options,signal:AbortSignal.any([shutdown.signal,...(options.signal?[options.signal]:[])])});}
-    finally{
+    }
+    return {track,signal:AbortSignal.any([shutdown.signal,...(options.signal?[options.signal]:[])]),release(){
+      if(released)return;released=true;
       // AbortSignal ends the response promptly but does not cancel PostgreSQL.
       // Keep admission occupied until the complete read transaction (including
       // rollback and client release) settles under the pool/query time bounds.
       if(pendingDatabase.size)void Promise.allSettled([...pendingDatabase]).then(()=>{activeQuoteServices--;});
       else activeQuoteServices--;
-    }
+    }};
   }
-  return {dependencies, metricsDependencies, invoiceDependencies, strategyDependencies, observeQuote, close: () => { shutdown.abort(); return closing??=pool.end(); }};
+  async function observeQuote(manifest:DeploymentManifest|null,intent:RoutingIntent,options:QuoteOptions={}){
+    // Immediate shared admission, with no queue, for either kind of quote.
+    if(shutdown.signal.aborted||activeQuoteServices>=2){const result:QuoteUnavailable={schemaVersion:1,status:'unavailable',code:shutdown.signal.aborted?'QUOTE_CANCELLED':'QUOTE_CAPACITY',financialExecutionEnabled:false,canonicalVerification:'unavailable',data:null,message:'A complete canonical quote observation is unavailable.'};return result;}
+    const lease=quoteLease(options),serviceDependencies:QuoteDependencies={...quoteDependencies,readDatabase:(manifest,query)=>lease.track(quoteDependencies.readDatabase(manifest,query))};
+    try{return await observeQuoteService(manifest,intent,serviceDependencies,{...options,signal:lease.signal});}
+    finally{lease.release();}
+  }
+  async function observePaymentQuote(manifest:DeploymentManifest|null,request:PaymentQuoteRequest,options:QuoteOptions={}){
+    if(shutdown.signal.aborted||activeQuoteServices>=2)return paymentUnavailable(shutdown.signal.aborted?'PAYMENT_QUOTE_CANCELLED':'PAYMENT_QUOTE_CAPACITY',shutdown.signal.aborted?503:429);
+    const lease=quoteLease(options),serviceDependencies:PaymentQuoteDependencies={...quoteDependencies,
+      readDatabase:(manifest,query)=>lease.track(quoteDependencies.readDatabase(manifest,query)),
+      readInvoices:(manifest,query)=>lease.track(invoiceDependencies.readDatabase(manifest,query)),
+      readContext:(input,signal,timeoutMs)=>readPaymentContext(input,{reserve:reserveRpc,shutdownSignal:shutdown.signal,signal,timeoutMs}),
+    };
+    try{return await observePaymentQuoteService(manifest,request,serviceDependencies,{...options,signal:lease.signal});}
+    finally{lease.release();}
+  }
+  return {dependencies, metricsDependencies, invoiceDependencies, strategyDependencies, observeQuote, observePaymentQuote, close: () => { shutdown.abort(); return closing??=pool.end(); }};
 }

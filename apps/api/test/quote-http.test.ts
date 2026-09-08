@@ -16,7 +16,7 @@ test('swap HTTP aliases expose only strict canonical non-executable observations
  const handles:{request:import('node:http').IncomingMessage;response:import('node:http').ServerResponse;aborted:number;closed:number}[]=[];
  app.addHook('onRequest',async(req,reply)=>{handles.push({request:req.raw,response:reply.raw,aborted:req.raw.listenerCount('aborted'),closed:reply.raw.listenerCount('close')});});
  try{for(const prefix of ['', '/api/v1']){const r=await app.inject({method:'POST',url:`${prefix}/quotes/swap`,payload:body});assert.equal(r.statusCode,200);const result=r.json();assert.equal(swapQuoteObservationSchema.safeParse(result).success,true);assert.deepEqual(decodeSwapQuoteObservation(result,r.statusCode,f.configured,body),result);assert.equal(result.data.counts.quoted,6);assert.equal(result.data.best.config.router.toLowerCase(),f.configured.router.toLowerCase());assert.equal(result.financialExecutionEnabled,false);assert.equal(r.headers['cache-control'],'no-store');assert.ok(result.requestId);}
-  assert.equal((await app.inject({method:'POST',url:'/quotes/payment',payload:{}})).statusCode,503);
+  assert.equal((await app.inject({method:'POST',url:'/quotes/payment',payload:{}})).statusCode,400);
   for(const h of handles){assert.ok(h.request.listenerCount('aborted')<=h.aborted);assert.ok(h.response.listenerCount('close')<=h.closed);}
  }finally{await app.close();await f.close();}
 });

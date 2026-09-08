@@ -22,8 +22,7 @@ export function createSwapQuoteLimiter(clock:()=>number=()=>performance.now(),ca
 export const isSwapQuotePath=(path:string|undefined)=>path==='/quotes/swap'||path==='/api/v1/quotes/swap';
 export function swapQuoteError(code:string,requestId:string,retryable=true,field:'body'|'query'|null=null){return swapQuoteUnavailableSchema.parse({schemaVersion:1,status:'unavailable',code,
  message:'A complete canonical quote observation is unavailable.',retryable,field,requestId,financialExecutionEnabled:false,canonicalVerification:'unavailable',data:null});}
-export function registerSwapQuotes(app:FastifyInstance,loadManifest:()=>Promise<DeploymentManifest|null>,observe:ReturnType<typeof createReadDependencies>['observeQuote']|undefined,wallClock?:()=>number){
- const limit=createSwapQuoteLimiter();
+export function registerSwapQuotes(app:FastifyInstance,loadManifest:()=>Promise<DeploymentManifest|null>,observe:ReturnType<typeof createReadDependencies>['observeQuote']|undefined,wallClock?:()=>number,limit=createSwapQuoteLimiter()){
  for(const url of ['/quotes/swap','/api/v1/quotes/swap'])app.post<{Querystring:Record<string,unknown>}>(url,{config:{rateLimit:false},onRequest:async(req,reply)=>{
   reply.header('cache-control','no-store');const allowed=limit(req.ip);if(!allowed.allowed)return reply.header('retry-after',allowed.retryAfter).code(429).send(swapQuoteError('QUOTE_RATE_LIMITED',req.id));
  }},async(req,reply)=>{

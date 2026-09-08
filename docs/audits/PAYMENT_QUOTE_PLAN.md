@@ -1,10 +1,10 @@
 # Payment quote observations: bounded implementation proposal
 
 **Current implementation status, 2026-09-08:** the strict request, generated read
-ABI, single-batch invoice/funding context, source/term/funding validation and
-bounded pure search are implemented and tested. The public payment endpoint,
-shared service orchestration, response decoder and transaction integration remain
-unfinished. [Current evidence](../../test/evidence/payment-foundation.md) and
+ABI, invoice/funding validation, bounded search, canonical service/final checks,
+shared runtime/HTTP admission, public aliases and unsigned-plan SDK decoder are
+implemented and tested. Quote caching and wallet transaction integration remain
+unfinished. [Current evidence](../../test/evidence/payment-endpoint.md) and
 [search policy](PAYMENT_SEARCH_POLICY.md) supersede the original implementation
 status and proposed larger work ceilings below. The 8/8, 16-stage, 128-member
 policy stays within the master specification's maxima.

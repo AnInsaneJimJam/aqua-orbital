@@ -198,7 +198,7 @@ test('HTTP metrics expose live read projections through documented route without
       assert.equal(response.headers['cache-control'], 'no-store');
     }
     assert.equal((await app.inject('/ready')).statusCode, 503);
-    assert.equal((await app.inject({method: 'POST', url: '/quotes/payment', payload: {}})).statusCode, 503);
+    assert.equal((await app.inject({method: 'POST', url: '/quotes/payment', payload: {}})).statusCode, 400);
     await env.db.pool.query('UPDATE deployment_blocks SET swap_projection_version=0 WHERE height=1');
     const unavailable = await app.inject('/metrics'); assert.equal(unavailable.statusCode, 503); assert.equal(unavailable.json().totals, null);
   } finally { await app.close(); await env.close(); await rm(directory, {recursive: true, force: true}); }

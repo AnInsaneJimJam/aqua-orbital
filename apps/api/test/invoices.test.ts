@@ -149,7 +149,7 @@ test('invoice and merchant HTTP paths return typed reads, canonical404 and bound
       }
     }
     assert.equal((await app.inject('/ready')).statusCode, 503);
-    assert.equal((await app.inject({method: 'POST', url: '/quotes/payment', payload: {}})).statusCode, 503);
+    assert.equal((await app.inject({method: 'POST', url: '/quotes/payment', payload: {}})).statusCode, 400);
   } finally { await app.close(); await env.close(); await rm(directory, {recursive: true, force: true}); }
 });
 
