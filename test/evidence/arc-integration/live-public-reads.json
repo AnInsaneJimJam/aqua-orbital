@@ -1,0 +1,121 @@
+{
+  "scope": "read-only actual Arc strategy and quote API observation; no wallet signing or chain transaction",
+  "observations": [
+    {
+      "observedAt": "2026-09-08T22:11:19.416Z",
+      "path": "/strategies",
+      "httpStatus": 200,
+      "elapsedMs": 1285.2913,
+      "data": {
+        "schemaVersion": 1,
+        "status": "available",
+        "code": "STRATEGIES_AVAILABLE",
+        "financialExecutionEnabled": false,
+        "chainId": 5042002,
+        "deploymentId": "0xe212fdf8415315ce9e85de497b5a0c34bf7593b25ff6ab2fb36402d6ff5a41fc",
+        "asOf": {
+          "height": "61138644",
+          "hash": "0x316045ae76171517029bea08afdc6979889d243ac0310e18492bebed0f0a9e19"
+        },
+        "currentIndexedBlock": {
+          "height": "61138647",
+          "hash": "0xbc5f009c3dcb3b19b7151e9c97d63dfbd022b37081923de0bfa0830cb6d52f57"
+        },
+        "historical": true,
+        "coverage": {
+          "fromBlock": "61131616",
+          "toBlock": "61138644",
+          "expectedBlocks": "7029",
+          "canonicalBlocks": "7029",
+          "coveredBlocks": "7029",
+          "complete": true,
+          "scope": "registered_strategies",
+          "unactivatedShipments": false
+        },
+        "freshness": {
+          "indexedAt": "2026-09-08T22:11:15.623Z",
+          "ageMs": 3783,
+          "head": "61138652",
+          "stale": false
+        },
+        "data": {
+          "items": [],
+          "limit": 20,
+          "nextCursor": null
+        }
+      }
+    },
+    {
+      "observedAt": "2026-09-08T22:11:20.083Z",
+      "path": "/quotes/swap",
+      "request": {
+        "wallet": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+        "recipient": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+        "tokenIn": "0x3600000000000000000000000000000000000000",
+        "tokenOut": "0x37af59078638387f0416Bef031D8D70B9B6b00f2",
+        "amountInRaw": "1000000",
+        "slippageBps": 10,
+        "maxCrossings": 16
+      },
+      "httpStatus": 200,
+      "elapsedMs": 659.3233999999998,
+      "data": {
+        "schemaVersion": 1,
+        "status": "observed",
+        "code": "NO_ROUTE_IN_INSPECTED_SET",
+        "financialExecutionEnabled": false,
+        "canonicalVerification": "verified_at_pin",
+        "requestId": "req-d",
+        "request": {
+          "wallet": "0x5eba55e1b43c8714e4432250dada7a518780c871",
+          "recipient": "0x5eba55e1b43c8714e4432250dada7a518780c871",
+          "tokenIn": "0x3600000000000000000000000000000000000000",
+          "tokenOut": "0x37af59078638387f0416bef031d8d70b9b6b00f2",
+          "amountInRaw": "1000000",
+          "slippageBps": 10,
+          "maxCrossings": 16
+        },
+        "chainId": 5042002,
+        "router": "0x449420e9042c48eac6e695020613678ad5a55d41",
+        "deploymentId": "0xe212fdf8415315ce9e85de497b5a0c34bf7593b25ff6ab2fb36402d6ff5a41fc",
+        "deploymentStartBlock": "61131616",
+        "asOf": {
+          "height": "61138647",
+          "hash": "0xbc5f009c3dcb3b19b7151e9c97d63dfbd022b37081923de0bfa0830cb6d52f57"
+        },
+        "currentIndexedBlock": {
+          "height": "61138647",
+          "hash": "0xbc5f009c3dcb3b19b7151e9c97d63dfbd022b37081923de0bfa0830cb6d52f57"
+        },
+        "historical": false,
+        "freshness": {
+          "indexedAt": "2026-09-08T22:11:17.243Z",
+          "ageMs": 2816,
+          "head": "61138653",
+          "blockTimestamp": "1788905473",
+          "observedAt": "2026-09-08T22:11:20.058Z"
+        },
+        "data": {
+          "best": null,
+          "alternatives": [],
+          "counts": {
+            "scanned": 0,
+            "locallyAccepted": 0,
+            "inspected": 0,
+            "eligible": 0,
+            "quoted": 0,
+            "failed": 0,
+            "notInspected": 0
+          },
+          "coverage": {
+            "candidateLimit": 200,
+            "inspectionLimit": 32,
+            "scanTruncated": false,
+            "scope": "bounded_registered_candidates"
+          },
+          "diagnostics": []
+        }
+      }
+    }
+  ]
+}

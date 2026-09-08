@@ -2,9 +2,9 @@
 
 Orbital is being built for multi-token concentrated stablecoin liquidity, held in maker wallets through 1inch Aqua. The target architecture combines custom SwapVM curve execution, Arc USDC settlement and user-controlled Privy wallets.
 
-**A persistent local application is connected. Arc deployment and Privy financial-flow qualification remain unverified.** The browser uses actual local Aqua, Orbital and invoice receipts. See [PROGRESS](PROGRESS.md) for actual results. The mathematical engine and complete application must both pass their gates.
+**Orbital's contracts are deployed and verified on Arc Testnet.** The frontend loads their actual addresses, the indexer has caught up, and live strategy/quote reads pass. Publish the first maker strategy to supply liquidity; live swaps, invoice payments and Privy wallet verification remain unfinished. The persistent local application retains its recorded working flows. See [PROGRESS](PROGRESS.md) for current results and separate mathematical/release obligations.
 
-Current delivery priority: complete live Privy/Arc integration using the owner-authorized deployment of unchanged upstream AquaRouter on Arc Testnet. The new twelve-transaction plan is ready for browser-wallet signatures; its first constructor simulation passed. Broad mathematical and release campaigns are deferred at the user's request. Earlier local browser receipts remain the [integration checkpoint](test/evidence/local-integration.md), not evidence of a live Privy or Arc financial flow.
+Current delivery priority: finish live application integration around the owner-authorized project deployment of unchanged upstream AquaRouter. All twelve user-signed deployment transactions succeeded and passed activation checks. [Deployment receipts and bindings](deployments/5042002/verification.json). Broad mathematical and release campaigns are deferred at the user's request. Earlier local browser receipts remain the [integration checkpoint](test/evidence/local-integration.md), not evidence of a live Privy or Arc financial flow.
 
 ## Start here
 
@@ -54,7 +54,7 @@ pnpm deploy:arc prepare --self-deploy-aqua --deployer 0x5eBA55e1b43c8714E4432250
 pnpm deploy:arc:wallet --plan deployments/5042002/plans/self-deployment.json
 ```
 
-Preparation refuses to overwrite an existing plan: on this workspace, use the already prepared `self-deployment.json` and run only the wallet utility. Open http://127.0.0.1:3100, connect that wallet and review each step. **The preparation checkpoint records zero submitted/confirmed transactions; no live deployment is claimed.** Its first AquaRouter constructor was simulated successfully on Arc. Each receipt is verified before the next step, and activation checks all runtimes and bindings. The original eleven-transaction existing-registry plan remains historical. See [deployment and recovery](docs/ARC_DEPLOYMENT.md) and [focused evidence](test/evidence/self-arc-integration.md).
+Preparation refuses to overwrite an existing plan. **This workspace has completed and activated all twelve steps; use `pnpm dev:arc` to start the deployed application.** For another deployment, use a new plan and its wallet utility at http://127.0.0.1:3100. Each receipt is verified before the next step, and activation checks all runtimes and bindings. The original eleven-transaction existing-registry plan and initial zero-receipt preparation checkpoint remain historical. See [deployment and recovery](docs/ARC_DEPLOYMENT.md), [preparation evidence](test/evidence/self-arc-integration.md) and [completed deployment](deployments/5042002/verification.json).
 
 A hash-pinned read at Arc block 61,123,941 observed 20 testnet USDC and nonce 0 for the supplied public address `0x5eBA55e1b43c8714E4432250Dada7A518780C871`. This does not establish wallet control or sufficient deployment gas budget. [Read-only observation](deployments/5042002/research-2026-09-09.json).
 

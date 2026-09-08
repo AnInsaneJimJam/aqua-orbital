@@ -1,0 +1,166 @@
+{
+  "scope": "read-only live Arc indexer catch-up observations after bounded64 worker restart",
+  "rpcUrl": "https://rpc.blockdaemon.testnet.arc.io",
+  "observations": [
+    {
+      "observedAt": "2026-09-08T22:08:27.110Z",
+      "cursor": {
+        "height": "61136752",
+        "hash": "0xa43a597ec95c4cb40cb044865de7e19eeb9af7ac92ef7e9838581f605da851ad"
+      },
+      "head": "61138311",
+      "lag": "1559",
+      "httpStatus": 503,
+      "readiness": {
+        "status": "unavailable",
+        "code": "INDEXER_CATCHING_UP",
+        "financialExecutionEnabled": false
+      }
+    },
+    {
+      "observedAt": "2026-09-08T22:08:38.719Z",
+      "cursor": {
+        "height": "61137008",
+        "hash": "0x27f62f28fca577c49f89d9ae9dbcfae22f322161aa6f960cc2b1f292ad7340af"
+      },
+      "head": "61138335",
+      "lag": "1327",
+      "httpStatus": 503,
+      "readiness": {
+        "status": "unavailable",
+        "code": "INDEXER_CATCHING_UP",
+        "financialExecutionEnabled": false
+      }
+    },
+    {
+      "observedAt": "2026-09-08T22:08:50.384Z",
+      "cursor": {
+        "height": "61137200",
+        "hash": "0x6d099badf22efbb08b0e2f07964048bae6897dd2a01efc5f351bd0f4682cab24"
+      },
+      "head": "61138358",
+      "lag": "1158",
+      "httpStatus": 503,
+      "readiness": {
+        "status": "unavailable",
+        "code": "INDEXER_CATCHING_UP",
+        "financialExecutionEnabled": false
+      }
+    },
+    {
+      "observedAt": "2026-09-08T22:09:01.878Z",
+      "cursor": {
+        "height": "61137456",
+        "hash": "0xe2eef11a11108ea91e0ee9454831b841b595b267618b9df71c6d3b9440151e14"
+      },
+      "head": "61138382",
+      "lag": "926",
+      "httpStatus": 503,
+      "readiness": {
+        "status": "unavailable",
+        "code": "INDEXER_CATCHING_UP",
+        "financialExecutionEnabled": false
+      }
+    },
+    {
+      "observedAt": "2026-09-08T22:09:13.324Z",
+      "cursor": {
+        "height": "61137648",
+        "hash": "0xe8e57e237d874f6173fc3a682f40e498ef528779b828328f52952d6455067e16"
+      },
+      "head": "61138404",
+      "lag": "756",
+      "httpStatus": 503,
+      "readiness": {
+        "status": "unavailable",
+        "code": "INDEXER_CATCHING_UP",
+        "financialExecutionEnabled": false
+      }
+    },
+    {
+      "observedAt": "2026-09-08T22:09:24.889Z",
+      "cursor": {
+        "height": "61137904",
+        "hash": "0xcdc4332d36fe7fcb82c2bd841426d22ca66e610809bcfc1d5ce3a889ac4cbf93"
+      },
+      "head": "61138426",
+      "lag": "522",
+      "httpStatus": 503,
+      "readiness": {
+        "status": "unavailable",
+        "code": "INDEXER_CATCHING_UP",
+        "financialExecutionEnabled": false
+      }
+    },
+    {
+      "observedAt": "2026-09-08T22:09:51.755Z",
+      "cursor": {
+        "height": "61138416",
+        "hash": "0x2824629874d550581bd6c0082ad0c8c44ac353f19ab5eee71bc4d4f4bde2299b"
+      },
+      "head": "61138479",
+      "lag": "63",
+      "httpStatus": 503,
+      "readiness": {
+        "status": "unavailable",
+        "code": "INDEXER_CATCHING_UP",
+        "financialExecutionEnabled": false
+      }
+    },
+    {
+      "observedAt": "2026-09-08T22:10:03.369Z",
+      "cursor": {
+        "height": "61138496",
+        "hash": "0x82e21fd71905d517758bdecb57882f26ad0f44968b74ed79aa8b73261b2277f4"
+      },
+      "head": "61138503",
+      "lag": "7",
+      "httpStatus": 200,
+      "readiness": {
+        "status": "ready",
+        "code": "READ_DEPENDENCIES_READY",
+        "financialExecutionEnabled": false,
+        "chainId": 5042002,
+        "block": "61138496",
+        "hash": "0x82e21fd71905d517758bdecb57882f26ad0f44968b74ed79aa8b73261b2277f4",
+        "indexedAt": "2026-09-08T22:10:00.339Z",
+        "ageMs": 3027
+      }
+    },
+    {
+      "observedAt": "2026-09-08T22:10:14.953Z",
+      "cursor": {
+        "height": "61138518",
+        "hash": "0xa71754159436cf3790eb72911c9231d118651d2680cdd700ea0beed9bcbf219e"
+      },
+      "head": "61138525",
+      "lag": "7",
+      "httpStatus": 200,
+      "readiness": {
+        "status": "ready",
+        "code": "READ_DEPENDENCIES_READY",
+        "financialExecutionEnabled": false,
+        "chainId": 5042002,
+        "block": "61138518",
+        "hash": "0xa71754159436cf3790eb72911c9231d118651d2680cdd700ea0beed9bcbf219e",
+        "indexedAt": "2026-09-08T22:10:10.233Z",
+        "ageMs": 4711
+      }
+    },
+    {
+      "observedAt": "2026-09-08T22:10:26.476Z",
+      "cursor": {
+        "height": "61138541",
+        "hash": "0x7f606c1664313e08e25ba2e2a2d14474f868a1830557f24e9921a734dabc1c1d"
+      },
+      "head": "61138548",
+      "lag": "7",
+      "httpStatus": 503,
+      "readiness": {
+        "status": "unavailable",
+        "code": "INDEXER_CHANGED",
+        "financialExecutionEnabled": false
+      }
+    }
+  ]
+}

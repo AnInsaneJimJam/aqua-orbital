@@ -26,4 +26,4 @@ At that observation the deploying wallet held zero oUSD6 and zero oUSD18, the ch
 
 ## Scope remaining
 
-The actual-address public UI and Privy login choices load; [browser observation](deployed-ui.json). Indexer catch-up and readiness need separate live observation. These artifacts do not establish liquidity publication, an Orbital swap, an invoice payment, Privy embedded-wallet creation, sponsor qualification or mathematical/release acceptance.
+The actual-address public UI and Privy login choices load; [browser observation](deployed-ui.json). The final 64-block worker subsequently caught up; [live readiness observations](live-indexer.json) contain two successful ready responses and a later transient cursor-change rejection. [Actual strategy and quote APIs](live-public-reads.json) returned complete available history and an observed empty route set. These artifacts do not establish liquidity publication, an Orbital swap, an invoice payment, Privy embedded-wallet creation, sponsor qualification or mathematical/release acceptance.

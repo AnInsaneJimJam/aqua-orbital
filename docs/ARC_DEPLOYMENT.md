@@ -17,7 +17,7 @@ The [verification report](../deployments/5042002/verification.json) records twel
 
 AquaRouter retains the deployer as its rescue owner; OrbitalSwapVMRouter's owner is zero. The old eleven-step `deployments/5042002/plans/deployment.json` remains a historical blocked attempt to use an existing canonical registry. The completed graph is retained at `deployments/5042002/plans/self-deployment.json`; do not overwrite either plan or repeat completed transactions. [Canonical-address research](ARC_DEPLOYMENT_STATUS.md) remains provenance history.
 
-The application and API run on ports 3002/3003. Indexer catch-up remains an active integration concern. No live Orbital strategy, swap or invoice is demonstrated yet, and Privy embedded-wallet creation and financial-flow qualification remain unverified. Continue with [ARC_DEMO.md](ARC_DEMO.md), not another deployment.
+The application and API run on ports 3002/3003. The indexer has caught up and live readiness/strategy/quote reads passed. No live Orbital strategy, swap or invoice is demonstrated yet, and Privy embedded-wallet creation and financial-flow qualification remain unverified. Continue with [ARC_DEMO.md](ARC_DEMO.md), not another deployment.
 
 ## Prepare and sign the new plan
 

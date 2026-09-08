@@ -1,6 +1,6 @@
 # Arc and Privy demonstration runbook
 
-The Arc Testnet deployment is active on chain **5042002**: all twelve user-signed deployment transactions succeeded and passed receipt/runtime verification. The application runs at **http://127.0.0.1:3002**, with its API at **http://127.0.0.1:3003**. Indexer catch-up work is ongoing; application startup does not itself establish financial readiness.
+The Arc Testnet deployment is active on chain **5042002**: all twelve user-signed deployment transactions succeeded and passed receipt/runtime verification. The application runs at **http://127.0.0.1:3002**, with its API at **http://127.0.0.1:3003**. The indexer caught up and live readiness, strategy reads and the empty-route quote response were observed successfully; [current evidence](../test/evidence/arc-integration/live-public-reads.json). Recheck readiness when starting a new session.
 
 The selected registry is **project-deployed upstream AquaRouter**, using unchanged pinned source. [ARC_DEPLOYMENT.md](ARC_DEPLOYMENT.md) lists the verified addresses and retained deployment evidence. No live Orbital strategy, swap or invoice has yet been demonstrated on this deployment, and Privy embedded-wallet creation remains unverified. A login screen or deployment receipt does not establish a completed Privy financial flow.
 
