@@ -149,7 +149,7 @@ test('protocol notes navigation, evidence links and recoloured brand fit desktop
  await page.goto('/');await ready(page);
  const navigation=page.getByRole('navigation',{name:'Main navigation'});
  await expect(navigation.getByRole('link')).toHaveCount(5);
- const logo=page.getByRole('link',{name:'Orbital home'}).locator('img');
+ const logo=page.getByRole('link',{name:'Orbital home'}).locator('[data-orbit-mark]');
  expect(await logo.evaluate(element=>getComputedStyle(element).filter)).toBe('none');
  const svg=await (await page.request.get('/brand/orbital.svg')).text();
  expect(svg).toContain('fill="#f2f0e7"');expect(svg).toContain('fill="#c5f36b"');

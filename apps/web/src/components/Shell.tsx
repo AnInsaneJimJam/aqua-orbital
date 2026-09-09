@@ -6,10 +6,10 @@ import WalletControl from '../wallet/WalletControl';
 import {selectedChain} from '../wallet/config';
 import {copy} from '../content';
 import styles from './Shell.module.css';
-export function OrbitMark(){return <img className={styles.mark} src="/brand/orbital.svg" width={38} height={38} alt="" aria-hidden="true"/>;}
+import OrbitMark from './OrbitMark';
 export default function Shell({children}:{children:React.ReactNode}){
  const path=usePathname();const wallet=useWallet();
- return <div className={styles.frame}><a className="skip" href="#main">Skip to content</a><header className={styles.header}><Link className={styles.brand} href="/" aria-label="Orbital home"><OrbitMark/>{copy.brand}</Link>
+ return <div className={styles.frame}><a className="skip" href="#main">Skip to content</a><header className={styles.header}><Link className={styles.brand} href="/" aria-label="Orbital home"><OrbitMark className={styles.mark}/>{copy.brand}</Link>
  <nav aria-label="Main navigation">{[['/swap','Swap'],['/liquidity','Liquidity'],['/pay','Payments'],['/fund','Demo tokens'],['/proof','Protocol notes']].map(([url,label])=><Link key={url} href={url!} aria-current={path===url||path.startsWith(`${url}/`)?'page':undefined}>{label}</Link>)}</nav>
  <WalletControl/></header>
  {wallet.error&&<div className="notice" role="alert">{wallet.error}</div>}

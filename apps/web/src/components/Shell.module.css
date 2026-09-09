@@ -8,7 +8,8 @@
 .header nav a { display: inline-flex; align-items: center; justify-content: center; color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; padding: 10px 17px; min-height: 44px; border-radius: 9px; white-space: nowrap; }
 .header nav a:hover { color: var(--ink); background: var(--surface); }
 .header nav a[aria-current] { color: var(--accent); background: var(--surface); box-shadow: 0 1px 4px #0003, inset 0 0 0 1px var(--border); }
-.mark { display: block; width: 36px; height: 36px; }
+.mark { --orbit-size: var(--logo-size); }
+.brand:is(:hover, :focus-visible) .mark { --orbit-play-state: paused; }
 .footer { width: calc(100% - 96px); max-width: 1184px; margin: 64px auto 0; padding: 20px 0 28px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
 .footerTop { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .footer nav { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; }
@@ -22,7 +23,7 @@
 @media (max-width: 760px) {
  .header { display: flex; justify-content: space-between; width: calc(100% - 40px); padding: 18px 0; gap: 18px; flex-wrap: wrap; }
  .brand { font-size: 25px; gap: 9px; }
- .mark { width: 32px; height: 32px; }
+ .mark { --orbit-size: var(--logo-mobile-size); }
  .header :global(.button.compact) { font-size: 12px; padding-inline: 12px; }
  .header nav { order: 3; width: 100%; justify-content: space-between; gap: 2px; border-radius: 12px; }
  .header nav a { flex: 1; padding: 10px 8px; font-size: 12px; min-height: 44px; }

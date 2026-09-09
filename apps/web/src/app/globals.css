@@ -19,6 +19,11 @@
   --raised-small: 0 2px 4px #00000012;
   --pressed: inset 0 1px 3px #0000001c;
   --motion: 180ms;
+  --logo-size: 48px;
+  --logo-mobile-size: 40px;
+  --orbit-outer-duration: 40s;
+  --orbit-middle-duration: 28s;
+  --orbit-inner-duration: 18s;
   --header-height: 96px;
   --content: 1100px;
   --font-mono: ui-monospace, 'Cascadia Code', monospace;

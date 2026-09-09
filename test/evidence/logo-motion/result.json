@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-09-09T02:02:55.190Z",
+  "status": "passed",
+  "scope": "Isolated header presentation observation using current source CSS, logo and font; static header/wallet markup, no Next app, wallet service, transaction or full browser regression.",
+  "checks": [
+    "48px desktop / 40px mobile",
+    "Computed rotation progresses",
+    "Hover and keyboard focus pause rotation",
+    "Reduced motion removes animation and transform",
+    "320px and 390px brand/wallet remain on one row without overlap",
+    "All five nav targets visible, at least 44px high, no horizontal overflow"
+  ],
+  "layouts": [
+    {
+      "width": 320,
+      "brandWidth": 118.921875,
+      "walletWidth": 139.09375,
+      "gap": 21.984375
+    },
+    {
+      "width": 390,
+      "brandWidth": 118.921875,
+      "walletWidth": 139.09375,
+      "gap": 91.984375
+    }
+  ],
+  "inputs": [
+    {
+      "path": "apps/web/src/components/Shell.tsx",
+      "sha256": "c7545c8b738bcbc215525be000ced98f2b1e931a6df42d03128190dc96e56f57"
+    },
+    {
+      "path": "apps/web/src/components/Shell.module.css",
+      "sha256": "2147db5e60c2c4f7c1b17cc2611adc749a11d8f2754c971734b24fda8e2c3f02"
+    },
+    {
+      "path": "apps/web/src/app/globals.css",
+      "sha256": "2ddb6d974f2e6d653b7bceff4f9e6d22b6b58cd6ccde60fff4d9861c69d39ac8"
+    },
+    {
+      "path": "apps/web/src/wallet/WalletControl.module.css",
+      "sha256": "e6d25fcb209f12c76fbf20cbbe6c9584c05b4d7604b02203861fa831a22168d0"
+    },
+    {
+      "path": "apps/web/public/brand/orbital.svg",
+      "sha256": "68d9c50695a2bae13dddea278503e078da550dc3fb5e196dfc93a5c49ffcb325"
+    },
+    {
+      "path": "apps/web/src/fonts/SpaceGrotesk.ttf",
+      "sha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72"
+    }
+  ]
+}

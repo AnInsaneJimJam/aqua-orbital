@@ -1,0 +1,9 @@
+.symbol { display: block; flex-shrink: 0; inline-size: var(--orbit-size, 48px); block-size: var(--orbit-size, 48px); }
+/* SVG user-space coordinates of the core; percentages ignore the viewBox offset. */
+.outer, .middle, .inner { transform-box: view-box; transform-origin: 162.829px 157.18px; animation: orbit linear infinite; animation-play-state: var(--orbit-play-state, running); }
+.outer { fill: var(--ink, #f2f0e7); animation-duration: var(--orbit-outer-duration, 40s); }
+.middle { fill: var(--ink, #f2f0e7); animation-duration: var(--orbit-middle-duration, 28s); animation-direction: reverse; }
+.inner { fill: var(--accent, #c5f36b); animation-duration: var(--orbit-inner-duration, 18s); }
+.core { fill: var(--accent, #c5f36b); }
+@keyframes orbit { to { transform: rotate(1turn); } }
+@media (prefers-reduced-motion: reduce) { .outer, .middle, .inner { animation: none; transform: none; } }
