@@ -77,49 +77,66 @@ async function setup(page:Page,options:{kind?:'direct'|'swap';approved?:boolean;
   };
   return r.fulfill({headers,json:Array.isArray(body)?await Promise.all(body.map(respond)):await respond(body)});
  });
+ await page.clock.install({time:new Date(now)});
  await page.goto(`/pay/${f.request.invoiceId}`);await expect(page.getByRole('heading',{name:'0.0001 USDC',exact:true})).toBeVisible();
  await page.getByRole('button',{name:'Connect wallet',exact:true}).first().click();await expect(page.getByRole('button',{name:'Manage connected wallet'})).toBeVisible();
- await page.clock.install({time:new Date(now)});if(options.kind==='swap')await page.getByLabel('Payment token').selectOption('oUSD6');await page.getByLabel('Maximum input').fill('0.001');
+ if(options.kind==='swap')await page.getByLabel('Payment token').selectOption('oUSD6');
  return {calls,requests:()=>requests,ready:()=>{receiptReady=true;},f,localPlan};
 }
 test('exact approval is a separate signature and a fresh payment quote follows its receipt',async({page})=>{
- const f=await setup(page);await page.getByRole('button',{name:'Get payment quote'}).click();
+ const f=await setup(page);await page.getByRole('button',{name:'Review payment'}).click();
  await expect(page.getByRole('heading',{name:'Review token approval'})).toBeVisible();
  await page.setViewportSize({width:320,height:680});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
- await page.screenshot({path:'../../test/evidence/payment-approval-mobile.png',fullPage:true});
+ await page.screenshot({path:'../../test/evidence/payment-automatic/approval-mobile.png',fullPage:true});
  await page.getByRole('button',{name:'Approve 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Approval confirmed/)).toBeVisible();
- expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(1);expect(f.requests()).toBe(1);
- await page.getByRole('button',{name:'Get payment quote'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();
- expect(f.requests()).toBe(2);await page.setViewportSize({width:1280,height:900});await page.screenshot({path:'../../test/evidence/payment-review-desktop.png',fullPage:true});
+ expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(1);expect(f.requests()).toBeGreaterThanOrEqual(2);const beforePayment=f.requests();
+ await page.getByRole('button',{name:'Review payment'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();
+ expect(f.requests()).toBeGreaterThan(beforePayment);await page.setViewportSize({width:1280,height:900});await page.screenshot({path:'../../test/evidence/payment-automatic/review-desktop.png',fullPage:true});
  await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Payment transaction confirmed/)).toBeVisible();
  const sent=await page.evaluate(()=>(window as any).paymentWallet.sent);expect(sent).toHaveLength(2);expect(sent[0].gas).toBe('0x7530');expect(sent[0].maxFeePerGas).toBeTruthy();expect(sent[1].to.toLowerCase()).toBe(f.f.manifest.payments.toLowerCase());
  // Synthetic receipt confirmation is not permission to invent a paid invoice.
  await expect(page.getByText('Unpaid at indexed block',{exact:true})).toBeVisible();
 });
 test('insufficient native funds never request a signature',async({page})=>{
- await setup(page,{gasPoor:true});await page.getByRole('button',{name:'Get payment quote'}).click();await expect(page.getByText(/Insufficient balance for gas/)).toBeVisible();expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(0);
+ await setup(page,{gasPoor:true});await page.getByRole('button',{name:'Review payment'}).click();await expect(page.getByText(/Insufficient balance for gas/)).toBeVisible();expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(0);
 });
 test('swap-funded invoice reviews the exact selected input and sends the reconstructed adapter plan',async({page})=>{
- const f=await setup(page,{kind:'swap',approved:true});await page.getByRole('button',{name:'Get payment quote'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();
+ const f=await setup(page,{kind:'swap',approved:true});
+ await expect(page.getByLabel('Calculated payment amount')).toHaveText('0.000134 oUSD6');
+ await expect(page.getByLabel('Spending limit (optional)')).toHaveValue('');
+ await expect(page.getByLabel('Maximum input',{exact:true})).toHaveCount(0);
+ expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(0);
+ await page.getByRole('button',{name:'Review payment'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();
  await expect(page.getByRole('button',{name:'Pay 0.000134 oUSD6',exact:true})).toBeVisible();await page.getByRole('button',{name:'Pay 0.000134 oUSD6',exact:true}).click();await expect(page.getByText(/Payment transaction confirmed/)).toBeVisible();
  const sent=await page.evaluate(()=>(window as any).paymentWallet.sent);expect(sent).toHaveLength(1);expect(sent[0].data).toBe(f.localPlan.data);
 });
+
+test('automatic direct payment equals the invoice and optional limits invalidate the calculated amount',async({page})=>{
+ const f=await setup(page,{approved:true});
+ const amount=page.getByLabel('Calculated payment amount');await expect(amount).toHaveText('0.0001 USDC');
+ expect(await amount.evaluate(element=>element.tagName)).toBe('OUTPUT');await page.getByText('Advanced options',{exact:true}).click();
+ await page.getByLabel('Spending limit (optional)').fill('0');
+ await expect(amount).not.toHaveText('0.0001 USDC');
+ await expect(page.getByText(/Enter a positive spending limit/)).toBeVisible();
+ await page.getByLabel('Spending limit (optional)').fill('');
+ await expect(amount).toHaveText('0.0001 USDC');expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(0);
+});
 test('wallet and chain changes discard the payment review before signing',async({page})=>{
- const f=await setup(page,{approved:true});await page.getByRole('button',{name:'Get payment quote'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();
+ const f=await setup(page,{approved:true});await page.getByRole('button',{name:'Review payment'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();
  await page.evaluate(()=>(window as any).paymentWallet.account('0x000000000000000000000000000000000000002a'));await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toHaveCount(0);
  await page.evaluate(address=>(window as any).paymentWallet.account(address),f.f.request.payer);await expect(page.getByRole('button',{name:'Manage connected wallet'})).toContainText('0016');await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toHaveCount(0,{timeout:1000});
  await page.evaluate(()=>(window as any).paymentWallet.chain('0x1'));await expect(page.getByText(/Switch your wallet to the invoice network/)).toBeVisible();expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(0);
 });
 test('receipt identity must match the queried hash as well as the reviewed calldata',async({page})=>{
- await setup(page,{approved:true,wrongReceiptTransactionHash:true});await page.getByRole('button',{name:'Get payment quote'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Receipt transaction does not match/)).toBeVisible({timeout:5000});await expect(page.getByText(/Payment transaction confirmed/)).toHaveCount(0);
+ await setup(page,{approved:true,wrongReceiptTransactionHash:true});await page.getByRole('button',{name:'Review payment'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Receipt transaction does not match/)).toBeVisible({timeout:5000});await expect(page.getByText(/Payment transaction confirmed/)).toHaveCount(0);
 });
 test('expired review cannot request a signature',async({page})=>{
- await setup(page,{approved:true});await page.getByRole('button',{name:'Get payment quote'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();await page.clock.fastForward(61000);
+ await setup(page,{approved:true});await page.getByRole('button',{name:'Review payment'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();await page.clock.fastForward(61000);
  await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toHaveCount(0);expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(0);
 });
 
 test('background invoice polling does not discard the payment review',async({page})=>{
- const f=await setup(page,{approved:true});await page.getByRole('button',{name:'Get payment quote'}).click();
+ const f=await setup(page,{approved:true});await page.getByRole('button',{name:'Review payment'}).click();
  const review=page.getByRole('heading',{name:'Review payment',exact:true});await expect(review).toBeVisible();
  let polling=false,release:()=>void=()=>{};
  await page.route(`**/invoices/${f.f.request.invoiceId}`,async route=>{
@@ -130,27 +147,27 @@ test('background invoice polling does not discard the payment review',async({pag
  expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(0);release();
 });
 test('reverted payment preserves its receipt and displays no paid status',async({page})=>{
- await setup(page,{approved:true,reverted:true});await page.getByRole('button',{name:'Get payment quote'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Transaction reverted. Refresh/)).toBeVisible();await page.getByText('Reverted transaction',{exact:true}).click();await expect(page.getByText(txHash,{exact:true})).toBeVisible();await expect(page.getByText('Gas paid: 0.000025 USDC',{exact:true})).toBeVisible();await expect(page.getByText('Unpaid at indexed block',{exact:true})).toBeVisible();
+ await setup(page,{approved:true,reverted:true});await page.getByRole('button',{name:'Review payment'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Transaction reverted. Refresh/)).toBeVisible();await page.getByText('Reverted transaction',{exact:true}).click();await expect(page.getByText(txHash,{exact:true})).toBeVisible();await expect(page.getByText('Gas paid: 0.000025 USDC',{exact:true})).toBeVisible();await expect(page.getByText('Unpaid at indexed block',{exact:true})).toBeVisible();
 });
 test('a receipt for different transaction bytes remains unresolved',async({page})=>{
- await setup(page,{approved:true,mismatched:true});await page.getByRole('button',{name:'Get payment quote'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Receipt transaction does not match/)).toBeVisible();await expect(page.getByRole('button',{name:'Resume receipt tracking'})).toBeVisible();await expect(page.getByText(/Payment transaction confirmed/)).toHaveCount(0);
+ await setup(page,{approved:true,mismatched:true});await page.getByRole('button',{name:'Review payment'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Receipt transaction does not match/)).toBeVisible();await expect(page.getByRole('button',{name:'Resume receipt tracking'})).toBeVisible();await expect(page.getByText(/Payment transaction confirmed/)).toHaveCount(0);
 });
 test('rejected signatures require a fresh quote without storing a transaction',async({page})=>{
- await setup(page,{approved:true,rejected:true});await page.getByRole('button',{name:'Get payment quote'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/User rejected/)).toBeVisible();expect(await page.evaluate(()=>Object.keys(localStorage).filter(k=>k.startsWith('orbital:payment:')))).toEqual([]);
+ await setup(page,{approved:true,rejected:true});await page.getByRole('button',{name:'Review payment'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/User rejected/)).toBeVisible();expect(await page.evaluate(()=>Object.keys(localStorage).filter(k=>k.startsWith('orbital:payment:')))).toEqual([]);
 });
 test('saved receipt recovery after reload does not repeat the wallet send',async({page})=>{
- const fixture=await setup(page,{approved:true,pending:true});await page.getByRole('button',{name:'Get payment quote'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(txHash,{exact:true})).toBeVisible();
+ const fixture=await setup(page,{approved:true,pending:true});await page.getByRole('button',{name:'Review payment'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(txHash,{exact:true})).toBeVisible();
  await page.reload();await expect(page.getByRole('button',{name:'Manage connected wallet'})).toBeVisible();await expect(page.getByRole('button',{name:'Resume receipt tracking'})).toBeVisible();fixture.ready();
- await page.getByRole('button',{name:'Resume receipt tracking'}).click();await expect(page.getByText(/Payment transaction confirmed/)).toBeVisible();expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(0);expect(fixture.requests()).toBe(1);
+ await page.getByRole('button',{name:'Resume receipt tracking'}).click();await expect(page.getByText(/Payment transaction confirmed/)).toBeVisible();expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(0);expect(fixture.requests()).toBeGreaterThanOrEqual(2);
 });
 test('storage failure after submission keeps the hash visible for read-only recovery',async({page})=>{
- await setup(page,{approved:true});await page.getByRole('button',{name:'Get payment quote'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();
+ await setup(page,{approved:true});await page.getByRole('button',{name:'Review payment'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();
  await page.evaluate(()=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key.startsWith('orbital:payment:'))throw Error('Fixture quota');return original.call(this,key,value);};});
  await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Transaction submitted; recovery storage is unavailable/)).toBeVisible();await expect(page.getByText(txHash,{exact:true})).toBeVisible();
  await page.getByRole('button',{name:'Resume receipt tracking'}).click();await expect(page.getByText(/Payment transaction confirmed/)).toBeVisible();expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(1);
 });
 test('account change while a signature is outstanding preserves the original payer hash',async({page})=>{
- const f=await setup(page,{approved:true,signatureWait:true,pending:true});await page.getByRole('button',{name:'Get payment quote'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();
+ const f=await setup(page,{approved:true,signatureWait:true,pending:true});await page.getByRole('button',{name:'Review payment'}).click();await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();
  await expect.poll(()=>page.evaluate(()=>typeof (window as any).releaseSignature)).toBe('function');
  await page.evaluate(()=>{(window as any).paymentWallet.account('0x000000000000000000000000000000000000002a');(window as any).releaseSignature();});
  await expect(page.getByText(txHash,{exact:true})).toBeVisible();const records=await page.evaluate(()=>Object.keys(localStorage).filter(k=>k.startsWith('orbital:payment:')));expect(records).toEqual([`orbital:payment:1:5042002:${f.f.request.payer.toLowerCase()}:${f.f.request.invoiceId}`]);

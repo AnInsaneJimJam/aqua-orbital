@@ -15,5 +15,6 @@
 .observation { border-top: 1px solid var(--border); padding-top: 12px; font-size: 12px; }
 .refresh { margin-top: 16px; }
 .fields { display: grid; gap: 16px; margin: 24px 0; }
+.calculated { display: block; padding: 16px; border: 1px solid var(--border); border-radius: var(--control-radius); background: var(--inset); font-size: 22px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .fields label { display: grid; gap: 8px; font-size: 13px; }
 .fields input, .fields select { width: 100%; min-width: 0; min-height: 48px; border: 1px solid var(--border); border-radius: var(--control-radius); padding: 12px; background: var(--inset); color: var(--ink); box-shadow: var(--pressed); }

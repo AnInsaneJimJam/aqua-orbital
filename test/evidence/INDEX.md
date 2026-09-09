@@ -1,6 +1,10 @@
 # Evidence index
 
-Latest live financial result: [actual first Arc swap receipt](arc-integration/first-swap.json), **1 USDC → 0.998491 oUSD6**, fee 0.0005 USDC, canonical success and exact input/output transfer legs verified. No signature was submitted by the verifier. Swap-funded invoice and Privy wallet-provider association remain open; this supersedes missing-first-swap statements below.
+Latest UI checkpoint: [automatic invoice input](payment-automatic/README.md), with two helper checks, four focused browser cases, typecheck and desktop/mobile inspection. The payer chooses a token; the quote supplies the read-only amount. Exact approvals, separate payment review and gas checks remain mandatory. Broad testing was not rerun.
+
+Latest live financial result: [actual first Arc swap-funded invoice](arc-integration/first-payment.json), **0.5 oUSD6 → 0.500507 USDC**, with **0.5 USDC paid** and **0.000507 USDC refunded**. Canonical success, invoice/swap events and exact recipient/refund transfers verified read-only. This predates the automatic-input UI change. Privy wallet-provider association remains open; this supersedes missing-invoice statements in earlier checkpoints below.
+
+Earlier live financial result: [actual first Arc swap receipt](arc-integration/first-swap.json), **1 USDC → 0.998491 oUSD6**, fee 0.0005 USDC, canonical success and exact input/output transfer legs verified. No signature was submitted by the verifier. This supersedes missing-first-swap statements below.
 
 Quote follow-up: [review clocks, background recovery and invoice polling](quote-refresh/README.md). Live Arc quote reads succeed with the application retry helper; wallet review, negative preflight and browser fixture checks are tracked separately from actual user-signed financial receipts.
 

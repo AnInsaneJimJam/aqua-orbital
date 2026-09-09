@@ -1,22 +1,25 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {manifestSchema,paymentQuoteRequestSchema} from '@orbital/shared';
-import {createPaymentDraft,preparePaymentReview,executePaymentReview,formatAmount,parseAmount,type PaymentReview,type TransactionReceipt} from '@orbital/sdk';
+import {useQuery} from '@tanstack/react-query';
+import {manifestSchema} from '@orbital/shared';
+import {createPaymentDraft,preparePaymentReview,executePaymentReview,formatAmount,type PaymentReview,type TransactionReceipt} from '@orbital/sdk';
 import {useWallet} from '../wallet/WalletProvider';
 import {createPaymentPort} from '../wallet/paymentPort';
 import {selectedChain} from '../wallet/config';
-import {request,requestQuotePayload,useDeployment} from './api';
+import {apiBase,request,useDeployment} from './api';
+import {fetchPaymentQuote} from './paymentQuote';
+import {usePageActive} from './usePageActive';
 import {decodePendingPayment,encodePendingPayment,paymentStorageKey,type PendingPayment} from './paymentStorage';
 
 type Phase='idle'|'preparing'|'review'|'submitting'|'pending'|'confirmed'|'reverted'|'error'|'stale';
 type Confirmation={hash:string;gas:string;status:'success'|'reverted'};
-type State={context:string;phase:Phase;review?:PaymentReview;pending?:PendingPayment;message?:string;confirmation?:Confirmation};
-export type PaymentViewState={phase:Phase;enabled:boolean;connected:boolean;wrongChain:boolean;token:string;tokens:string[];maximum:string;busy:boolean;message?:string;confirmation?:Confirmation;pending?:{hash:string;stage:string;account:string;network:string};
+type State={context:string;phase:Phase;review?:PaymentReview;pending?:PendingPayment;message?:string;confirmation?:Confirmation;completedPayment?:boolean};
+export type PaymentViewState={phase:Phase;enabled:boolean;connected:boolean;wrongChain:boolean;token:string;tokens:string[];maximum:string;busy:boolean;quoting:boolean;quotedInput?:string;quoteMessage?:string;refreshQuote:()=>void;message?:string;confirmation?:Confirmation;pending?:{hash:string;stage:string;account:string;network:string};
  review?:{stage:'approval'|'payment';input:string;maximum:string;minimum:string;fee:string;refund:string;approval:string;spender:string;network:string;payer:string;gas:string;expires:string;transactionDeadline?:string;demo:boolean;recipients:{address:string;amount:string}[]};
  setToken:(value:string)=>void;setMaximum:(value:string)=>void;prepare:()=>void;submit:()=>void;resume:()=>void};
 function message(error:unknown){const e=error as {shortMessage?:string;message?:string};return (e?.shortMessage??e?.message??'Payment could not be checked. Try again.').split('\n')[0]!.slice(0,240);}
 export function usePayment(id:string,eligible:boolean,onReceipt:()=>void):PaymentViewState {
- const wallet=useWallet(),deployment=useDeployment(),[token,setToken]=useState('USDC'),[maximum,setMaximum]=useState('');
+ const wallet=useWallet(),deployment=useDeployment(),pageActive=usePageActive(),[token,setToken]=useState('USDC'),[maximum,setMaximum]=useState('');
  const context=JSON.stringify([id,eligible,wallet.ready,wallet.connected,wallet.address,wallet.chainId,wallet.kind,token,maximum,deployment.data]);
  const liveContext=useRef(context);liveContext.current=context;
  const mounted=useRef(true),busy=useRef(false),epoch=useRef(0),previousContext=useRef(context),preparingAbort=useRef<AbortController|null>(null);
@@ -44,7 +47,19 @@ export function usePayment(id:string,eligible:boolean,onReceipt:()=>void):Paymen
  },[state.review]);
  const fresh=state.context===context&&(!state.review||Math.max(clock,Date.now())<state.review.expiresAtMs);
  const wrongChain=wallet.connected&&wallet.chainId!==selectedChain.id;
- const enabled=eligible&&wallet.ready&&wallet.connected&&!wrongChain&&recoveryError!==key&&deployment.data?.verified===true&&deployment.data.chainId===selectedChain.id;
+ const enabled=eligible&&wallet.ready&&wallet.connected&&!wrongChain&&recoveryError!==key&&deployment.data?.verified===true&&deployment.data.chainId===selectedChain.id&&!(state.context===context&&state.completedPayment);
+ const quote=useQuery<Awaited<ReturnType<typeof fetchPaymentQuote>>>({
+  queryKey:['payment-observation',apiBase,context],enabled:enabled&&pageActive&&!active&&!(state.review&&fresh)&&!state.pending,
+  retry:false,retryOnMount:false,staleTime:0,gcTime:0,refetchOnWindowFocus:false,refetchOnReconnect:false,
+  refetchInterval:q=>q.state.error?15000:5000,
+  queryFn:async({signal})=>{
+   await new Promise<void>((resolve,reject)=>{const abort=()=>{clearTimeout(timer);reject(Error('Payment calculation cancelled'));},timer=setTimeout(()=>{signal.removeEventListener('abort',abort);resolve();},300);signal.addEventListener('abort',abort,{once:true});if(signal.aborted)abort();});
+   return fetchPaymentQuote(id,token,maximum,wallet,signal,()=>mounted.current&&liveContext.current===context);
+  },
+ });
+ const quoteExpiry=quote.data?Number(quote.data.observation.data.expiresAt)*1000:0;
+ useEffect(()=>{if(!quoteExpiry)return;const timer=setTimeout(()=>setClock(Date.now()),Math.max(0,quoteExpiry-Date.now()));return()=>clearTimeout(timer);},[quoteExpiry]);
+ const quoted=quote.data&&Math.max(clock,Date.now())<quoteExpiry?quote.data.observation.data:undefined;
  async function prepare(){
   if(busy.current||!enabled||state.pending)return;
   busy.current=true;setActive(true);const ticket=++epoch.current,controller=new AbortController(),end=Date.now()+30000,timer=setTimeout(()=>controller.abort(),30000);
@@ -52,14 +67,10 @@ export function usePayment(id:string,eligible:boolean,onReceipt:()=>void):Paymen
   const current=()=>mounted.current&&ticket===epoch.current&&liveContext.current===context&&!controller.signal.aborted&&Date.now()<end;
   setState({context,phase:'preparing'});
   try{
-   const manifest=manifestSchema.parse(await request('/deployment',controller.signal));
-   if(!manifest.verified||manifest.chainId!==selectedChain.id)throw Error('Verified deployment unavailable');
-   const asset=manifest.tokens.find(t=>t.symbol===token);if(!asset||manifest.tokens.filter(t=>t.symbol===token).length!==1)throw Error('Select a supported input token');
-   const intent=paymentQuoteRequestSchema.parse({invoiceId:id,payer:wallet.address,tokenIn:asset.address,maxInputRaw:parseAmount(maximum,asset.decimals).toString(),maxCrossings:16});
-   const response=await requestQuotePayload('/quotes/payment',controller.signal,intent);
+   const {manifest,requested:intent,observation}=await fetchPaymentQuote(id,token,maximum,wallet,controller.signal,current);
    const verify=async()=>{const latest=manifestSchema.parse(await request('/deployment',controller.signal));if(JSON.stringify(latest)!==JSON.stringify(manifest))throw Error('Deployment changed. Review again.');};
    await verify();if(!current())throw Error('Payment review interrupted. Try again.');
-   const draft=createPaymentDraft(response.data,response.status,manifest,intent),port=createPaymentPort(wallet,current,verify);
+   const draft=createPaymentDraft(observation,200,manifest,intent),port=createPaymentPort(wallet,current,verify);
    const review=await preparePaymentReview(draft,port);
    if(current())setState({context,phase:'review',review});
   }catch(error){if(mounted.current&&ticket===epoch.current&&liveContext.current===context)setState({context,phase:'error',message:message(error)});}
@@ -85,7 +96,7 @@ export function usePayment(id:string,eligible:boolean,onReceipt:()=>void):Paymen
  function finish(pending:PendingPayment,receipt:TransactionReceipt){
   const {status}=receipt,confirmation={hash:receipt.hash,status,gas:receipt.gasUsed!==undefined&&receipt.effectiveGasPrice!==undefined?`${formatAmount(receipt.gasUsed*receipt.effectiveGasPrice,18)} ${selectedChain.nativeCurrency.symbol}`:'Unavailable'};
   let storage='';try{localStorage.removeItem(paymentStorageKey(pending.transaction.chainId,pending.transaction.account,pending.invoiceId));}catch{storage=' Recovery storage could not be cleared.';}
-  if(mounted.current){setState({context:liveContext.current,phase:status==='success'?'confirmed':'reverted',confirmation,message:(status==='reverted'?'Transaction reverted. Refresh the quote to review another attempt.':pending.stage==='approval'?'Approval confirmed. Get a fresh quote and review the payment separately.':'Payment transaction confirmed. Refresh the invoice for receipt-backed settlement details.')+storage});onReceipt();}
+  if(mounted.current){setState({context:liveContext.current,phase:status==='success'?'confirmed':'reverted',confirmation,completedPayment:status==='success'&&pending.stage==='payment',message:(status==='reverted'?'Transaction reverted. Refresh the quote to review another attempt.':pending.stage==='approval'?'Approval confirmed. Review the newly calculated payment separately.':'Payment transaction confirmed. Refresh the invoice for receipt-backed settlement details.')+storage});onReceipt();}
  }
  async function resume(){
   const pending=state.pending;if(!pending||busy.current)return;busy.current=true;setActive(true);
@@ -94,8 +105,8 @@ export function usePayment(id:string,eligible:boolean,onReceipt:()=>void):Paymen
   catch(error){if(mounted.current)setState(s=>({...s,message:message(error)}));}finally{busy.current=false;if(mounted.current)setActive(false);}
  }
  const r=fresh||state.phase==='submitting'?state.review:undefined,d=r?.draft.observation.data;
- return {phase:state.pending?state.phase:fresh?state.phase:'stale',enabled,connected:wallet.connected,wrongChain,token,tokens:deployment.data?.tokens.map(t=>t.symbol)??['USDC','oUSD6','oUSD18'],maximum,busy:active,message:state.message,confirmation:state.confirmation,
+ return {phase:state.pending?state.phase:fresh?state.phase:'stale',enabled,connected:wallet.connected,wrongChain,token,tokens:deployment.data?.tokens.map(t=>t.symbol)??['USDC','oUSD6','oUSD18'],maximum,busy:active,quoting:quote.isFetching,quotedInput:quoted?`${formatAmount(BigInt(quoted.amountInRaw),quoted.tokenIn.decimals)} ${quoted.tokenIn.symbol}`:undefined,quoteMessage:!(state.review&&fresh)&&!active&&quote.error?message(quote.error):undefined,refreshQuote:()=>{if(enabled&&!active&&!(state.review&&fresh)&&!state.pending)void quote.refetch();},message:state.message,confirmation:state.confirmation,
   pending:state.pending?{hash:state.pending.transaction.hash,stage:state.pending.stage,account:state.pending.transaction.account,network:selectedChain.name}:undefined,
-  review:r&&d?{stage:r.stage,input:`${formatAmount(BigInt(d.amountInRaw),d.tokenIn.decimals)} ${d.tokenIn.symbol}`,maximum:`${maximum} ${token}`,minimum:`${formatAmount(BigInt(d.minimumOutRaw),6)} USDC`,fee:`${formatAmount(BigInt(d.feeRaw),d.tokenIn.decimals)} ${d.tokenIn.symbol}`,refund:`${formatAmount(BigInt(d.refundRaw),6)} USDC`,approval:r.stage==='approval'?`${formatAmount(BigInt(d.amountInRaw),d.tokenIn.decimals)} ${d.tokenIn.symbol}`:'Already sufficient',spender:r.draft.context.manifest.payments,network:selectedChain.name,payer:r.plan.account,gas:`${formatAmount(r.estimate.gas*r.estimate.maxFeePerGas,18)} ${selectedChain.nativeCurrency.symbol}`,expires:new Date(r.expiresAtMs).toISOString().replace('T',' ').replace('.000Z',' UTC'),transactionDeadline:r.draft.input.kind==='swap'?new Date(Number(r.draft.input.deadline)*1000).toISOString().replace('T',' ').replace('.000Z',' UTC'):undefined,demo:d.tokenIn.mock,recipients:d.invoice.recipients.map(v=>({address:v.address,amount:formatAmount(BigInt(v.amountRaw),6)+' USDC'}))}:undefined,
-  setToken,setMaximum,prepare:()=>{void prepare();},submit:()=>{void submit();},resume:()=>{void resume();}};
+  review:r&&d?{stage:r.stage,input:`${formatAmount(BigInt(d.amountInRaw),d.tokenIn.decimals)} ${d.tokenIn.symbol}`,maximum:`${formatAmount(BigInt(d.amountInRaw),d.tokenIn.decimals)} ${d.tokenIn.symbol}`,minimum:`${formatAmount(BigInt(d.minimumOutRaw),6)} USDC`,fee:`${formatAmount(BigInt(d.feeRaw),d.tokenIn.decimals)} ${d.tokenIn.symbol}`,refund:`${formatAmount(BigInt(d.refundRaw),6)} USDC`,approval:r.stage==='approval'?`${formatAmount(BigInt(d.amountInRaw),d.tokenIn.decimals)} ${d.tokenIn.symbol}`:'Already sufficient',spender:r.draft.context.manifest.payments,network:selectedChain.name,payer:r.plan.account,gas:`${formatAmount(r.estimate.gas*r.estimate.maxFeePerGas,18)} ${selectedChain.nativeCurrency.symbol}`,expires:new Date(r.expiresAtMs).toISOString().replace('T',' ').replace('.000Z',' UTC'),transactionDeadline:r.draft.input.kind==='swap'?new Date(Number(r.draft.input.deadline)*1000).toISOString().replace('T',' ').replace('.000Z',' UTC'):undefined,demo:d.tokenIn.mock,recipients:d.invoice.recipients.map(v=>({address:v.address,amount:formatAmount(BigInt(v.amountRaw),6)+' USDC'}))}:undefined,
+  setToken:(value:string)=>{setMaximum('');setToken(value);},setMaximum,prepare:()=>{void prepare();},submit:()=>{void submit();},resume:()=>{void resume();}};
 }
