@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "sourceStable": true,
+  "completedAt": "2026-09-09T02:06:50.476051+00:00",
+  "scope": "Complete existing contract suite at default Foundry counts and complete existing Python reference suite; no independent audit or full release acceptance.",
+  "report": "test/evidence/engine-suite/README.md",
+  "contracts": {
+    "status": "passed",
+    "passedTests": 404,
+    "failedTests": 0,
+    "skippedTests": 0,
+    "suites": 47,
+    "runtimeSeconds": 570.657,
+    "sourceStable": true,
+    "manifest": "test/evidence/engine-suite/contracts/manifest.json",
+    "stdout": "test/evidence/engine-suite/contracts/stdout.txt",
+    "stderr": "test/evidence/engine-suite/contracts/stderr.txt",
+    "validation": "test/evidence/engine-suite/contracts-validation.txt",
+    "command": [
+      "C:\\Users\\gujja\\.foundry\\bin\\forge.EXE",
+      "test",
+      "--root",
+      "packages/contracts",
+      "--offline",
+      "--threads",
+      "2",
+      "--fuzz-seed",
+      "0x20260908"
+    ],
+    "repository": {
+      "commit": "0dc0ac2a44469c797155009d3ae746654ccfb0ac",
+      "dirty": true
+    },
+    "summary": "test/evidence/engine-suite/contracts-summary.json"
+  },
+  "reference": {
+    "status": "passed",
+    "passedTests": 129,
+    "failedTests": 0,
+    "skippedTests": 0,
+    "suites": null,
+    "runtimeSeconds": 54.422,
+    "sourceStable": true,
+    "manifest": "test/evidence/engine-suite/reference/manifest.json",
+    "stdout": "test/evidence/engine-suite/reference/stdout.txt",
+    "stderr": "test/evidence/engine-suite/reference/stderr.txt",
+    "validation": "test/evidence/engine-suite/reference-validation.txt",
+    "command": [
+      "C:\\Users\\gujja\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "packages/reference/tests",
+      "-v"
+    ],
+    "repository": {
+      "commit": "0dc0ac2a44469c797155009d3ae746654ccfb0ac",
+      "dirty": true
+    },
+    "summary": "test/evidence/engine-suite/reference-summary.json"
+  }
+}

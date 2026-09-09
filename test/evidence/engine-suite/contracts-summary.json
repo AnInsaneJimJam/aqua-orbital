@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "mode": "contracts",
+  "counts": {
+    "suites": 47,
+    "passed": 404,
+    "failed": 0,
+    "skipped": 0
+  },
+  "sourceStable": true,
+  "runtimeSeconds": 570.657,
+  "completedAt": "2026-09-09T02:04:46.544588+00:00",
+  "repository": {
+    "commit": "0dc0ac2a44469c797155009d3ae746654ccfb0ac",
+    "dirty": true
+  },
+  "command": [
+    "C:\\Users\\gujja\\.foundry\\bin\\forge.EXE",
+    "test",
+    "--root",
+    "packages/contracts",
+    "--offline",
+    "--threads",
+    "2",
+    "--fuzz-seed",
+    "0x20260908"
+  ],
+  "bounds": {
+    "selection": "All existing repository contract tests; no method, contract or path filters",
+    "source_units": 153,
+    "test_files": 47,
+    "profile": "default",
+    "fuzz_runs": 256,
+    "invariant_runs": 32,
+    "invariant_depth": 64,
+    "threads": 2,
+    "timeout_seconds": 1800,
+    "combined_log_cap_bytes": 8388608
+  },
+  "manifest": "test/evidence/engine-suite/contracts/manifest.json",
+  "stdout": "test/evidence/engine-suite/contracts/stdout.txt",
+  "stderr": "test/evidence/engine-suite/contracts/stderr.txt",
+  "validation": "test/evidence/engine-suite/contracts-validation.txt",
+  "scope": "Complete existing suite at recorded default bounds; separate from an audit and full release acceptance."
+}

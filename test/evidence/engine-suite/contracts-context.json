@@ -1,0 +1,25 @@
+{
+  "environmentOverrides": {
+    "FOUNDRY_PROFILE": "default",
+    "FOUNDRY_INVARIANT_FAIL_ON_REVERT": "true",
+    "FOUNDRY_GAS_SNAPSHOT_CHECK": "false"
+  },
+  "preRunCommit": "0dc0ac2a44469c797155009d3ae746654ccfb0ac",
+  "preRunDirtyFiles": [
+    " M test/evidence/builds/source.json",
+    "?? test/evidence/engine-suite/"
+  ],
+  "hardware": "Windows 11, ASUS Vivobook Go E1504FA, 7,817,785,344 bytes physical memory, 8 logical processors",
+  "bounds": {
+    "selection": "All existing repository contract tests; no method, contract or path filters",
+    "source_units": 153,
+    "test_files": 47,
+    "profile": "default",
+    "fuzz_runs": 256,
+    "invariant_runs": 32,
+    "invariant_depth": 64,
+    "threads": 2,
+    "timeout_seconds": 1800,
+    "combined_log_cap_bytes": 8388608
+  }
+}

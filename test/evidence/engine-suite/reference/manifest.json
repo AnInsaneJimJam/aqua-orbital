@@ -1,0 +1,880 @@
+{
+  "schema_version": 2,
+  "claim_id": "EXISTING-ENGINE-SUITE-REFERENCE",
+  "repository": {
+    "commit": "0dc0ac2a44469c797155009d3ae746654ccfb0ac",
+    "dirty": true
+  },
+  "command": [
+    "C:\\Users\\gujja\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "packages/reference/tests",
+    "-v"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.12.10"
+      },
+      {
+        "name": "Python",
+        "version": "3.12.10"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "Windows-11-10.0.26200-SP0"
+  },
+  "mathematics": {
+    "assertion_tested": "The complete existing Python reference test suite reproduces its finite mathematical and fixture assertions on the current pinned files.",
+    "coefficient_domain": "Python exact integers and Fraction arithmetic plus arbitrary-precision mpmath under existing per-test precision and tolerance settings.",
+    "conventions": "Repository's existing notation, fixed-point scaling, conservative rounding, explicit tick/reference conventions and test bounds are unchanged. No theorem or implementation changes are made.",
+    "inputs": [
+      "packages/contracts/foundry.toml",
+      "packages/contracts/package.json",
+      "packages/contracts/remappings.txt",
+      "packages/contracts/test/Certificate.t.sol",
+      "packages/contracts/test/Codec.t.sol",
+      "packages/contracts/test/CurveEvaluation.t.sol",
+      "packages/contracts/test/DemoDollar.t.sol",
+      "packages/contracts/test/DualCertificate.t.sol",
+      "packages/contracts/test/FeeInstruction.t.sol",
+      "packages/contracts/test/ForkResolution.t.sol",
+      "packages/contracts/test/FrontierComposition.t.sol",
+      "packages/contracts/test/FrontierCompositionGas.t.sol",
+      "packages/contracts/test/FrontierEndpoint.t.sol",
+      "packages/contracts/test/FrontierEvents.t.sol",
+      "packages/contracts/test/FrontierPriceExclusion.t.sol",
+      "packages/contracts/test/FrontierSchedule.t.sol",
+      "packages/contracts/test/FrontierTurn.t.sol",
+      "packages/contracts/test/InitializerOracle.t.sol",
+      "packages/contracts/test/InteriorExecution.t.sol",
+      "packages/contracts/test/InteriorProbe.t.sol",
+      "packages/contracts/test/InteriorStateful.t.sol",
+      "packages/contracts/test/InteriorSwap.t.sol",
+      "packages/contracts/test/IntervalMath.t.sol",
+      "packages/contracts/test/LinkedMath.t.sol",
+      "packages/contracts/test/LocalUSDC.t.sol",
+      "packages/contracts/test/LowerSheetProposal.t.sol",
+      "packages/contracts/test/MaximumActivation.t.sol",
+      "packages/contracts/test/MixedExecution.t.sol",
+      "packages/contracts/test/MixedInvoice.t.sol",
+      "packages/contracts/test/OutwardRetention.t.sol",
+      "packages/contracts/test/PaymentSwap.t.sol",
+      "packages/contracts/test/Payments.t.sol",
+      "packages/contracts/test/PayoutBracket.t.sol",
+      "packages/contracts/test/PayoutEndpoint.t.sol",
+      "packages/contracts/test/PilotGas.t.sol",
+      "packages/contracts/test/PilotReversal.t.sol",
+      "packages/contracts/test/ReachableComposition.t.sol",
+      "packages/contracts/test/RootBracket.t.sol",
+      "packages/contracts/test/RouterLifecycle.t.sol",
+      "packages/contracts/test/RouterSettlementSecurity.t.sol",
+      "packages/contracts/test/SeedProposal.t.sol",
+      "packages/contracts/test/Settlement.t.sol",
+      "packages/contracts/test/SharedInventory.t.sol",
+      "packages/contracts/test/SignedWide.t.sol",
+      "packages/contracts/test/SlackCertificate.t.sol",
+      "packages/contracts/test/SlackGridRelease.t.sol",
+      "packages/contracts/test/SphereStep.t.sol",
+      "packages/contracts/test/TickGeometry.t.sol",
+      "packages/contracts/test/WideMath.t.sol",
+      "packages/contracts/test/WideMathFast.t.sol",
+      "packages/contracts/test/fixtures/CurvePrimitiveFixtures.sol",
+      "packages/contracts/test/fixtures/InitializerOracleFixtures.sol",
+      "packages/contracts/test/fixtures/LocalUSDC.sol",
+      "packages/contracts/test/fixtures/LowerSheetFixtures.sol",
+      "packages/contracts/test/fixtures/MixedPilotHarness.sol",
+      "packages/contracts/test/fixtures/PilotGasFixtures.sol",
+      "packages/reference/fixtures/curve-primitives.json",
+      "packages/reference/fixtures/frontier-composition.json",
+      "packages/reference/fixtures/initializer-oracle.json",
+      "packages/reference/fixtures/mixed-pilot.json",
+      "packages/reference/fixtures/reachable-traversal.json",
+      "packages/reference/fixtures_curve_primitives.py",
+      "packages/reference/fixtures_execution.py",
+      "packages/reference/fixtures_frontier_composition.py",
+      "packages/reference/fixtures_frontier_endpoint.py",
+      "packages/reference/fixtures_frontier_schedule.py",
+      "packages/reference/fixtures_frontier_turn.py",
+      "packages/reference/fixtures_initializer.py",
+      "packages/reference/fixtures_interior_swap.py",
+      "packages/reference/fixtures_lower_sheet.py",
+      "packages/reference/fixtures_mixed_pilot.py",
+      "packages/reference/fixtures_negative_price.py",
+      "packages/reference/fixtures_outward_retention.py",
+      "packages/reference/fixtures_payout_resume.py",
+      "packages/reference/fixtures_reachable_traversal.py",
+      "packages/reference/fixtures_root_bracket.py",
+      "packages/reference/fixtures_slack.py",
+      "packages/reference/fixtures_slack_grid_release.py",
+      "packages/reference/fixtures_slack_segments.py",
+      "packages/reference/orbital.py",
+      "packages/reference/package.json",
+      "packages/reference/profile_smoke.py",
+      "packages/reference/requirements.txt",
+      "packages/reference/tests/test_curve_primitives.py",
+      "packages/reference/tests/test_events.py",
+      "packages/reference/tests/test_execution_oracle.py",
+      "packages/reference/tests/test_frontier_composition.py",
+      "packages/reference/tests/test_frontier_endpoint.py",
+      "packages/reference/tests/test_frontier_schedule.py",
+      "packages/reference/tests/test_frontier_segment.py",
+      "packages/reference/tests/test_frontier_turn.py",
+      "packages/reference/tests/test_initializer_oracle.py",
+      "packages/reference/tests/test_interior_swap.py",
+      "packages/reference/tests/test_lower_sheet.py",
+      "packages/reference/tests/test_mixed_execution_literals.py",
+      "packages/reference/tests/test_mixed_pilot.py",
+      "packages/reference/tests/test_mixed_pilot_fixture.py",
+      "packages/reference/tests/test_negative_price.py",
+      "packages/reference/tests/test_outward_retention.py",
+      "packages/reference/tests/test_payout_resume.py",
+      "packages/reference/tests/test_reachable_traversal.py",
+      "packages/reference/tests/test_reference.py",
+      "packages/reference/tests/test_root_bracket.py",
+      "packages/reference/tests/test_root_certificate.py",
+      "packages/reference/tests/test_rounding.py",
+      "packages/reference/tests/test_slack_certificate.py",
+      "packages/reference/tests/test_slack_grid_release.py",
+      "packages/reference/tests/test_slack_path.py",
+      "test/evidence/engine-suite/run.py"
+    ],
+    "bounds": {
+      "selection": "All existing unittest-discovered test*.py modules in packages/reference/tests",
+      "test_modules": 25,
+      "precision": "Existing per-test mp.dps and exact arithmetic settings; unchanged",
+      "timeout_seconds": 1800,
+      "combined_log_cap_bytes": 8388608
+    },
+    "non_claims": [
+      "Not a new mathematical proof, independent audit, security certification or full release acceptance.",
+      "No additional CI/release fuzz counts, mutation campaign, target-network gas campaign or Privy wallet proof.",
+      "A finite suite cannot establish universal engine liveness, all-size safety or correctness outside the tested cases.",
+      "Windows enforces runner wall/log bounds but no hard process-tree memory or CPU cap is claimed."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-09T02:05:15.572333+00:00",
+    "runtime_seconds": 54.422,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 1800.0,
+    "max_output_bytes": 8388608,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "packages/contracts/foundry.toml",
+    "packages/contracts/package.json",
+    "packages/contracts/remappings.txt",
+    "packages/contracts/test/Certificate.t.sol",
+    "packages/contracts/test/Codec.t.sol",
+    "packages/contracts/test/CurveEvaluation.t.sol",
+    "packages/contracts/test/DemoDollar.t.sol",
+    "packages/contracts/test/DualCertificate.t.sol",
+    "packages/contracts/test/FeeInstruction.t.sol",
+    "packages/contracts/test/ForkResolution.t.sol",
+    "packages/contracts/test/FrontierComposition.t.sol",
+    "packages/contracts/test/FrontierCompositionGas.t.sol",
+    "packages/contracts/test/FrontierEndpoint.t.sol",
+    "packages/contracts/test/FrontierEvents.t.sol",
+    "packages/contracts/test/FrontierPriceExclusion.t.sol",
+    "packages/contracts/test/FrontierSchedule.t.sol",
+    "packages/contracts/test/FrontierTurn.t.sol",
+    "packages/contracts/test/InitializerOracle.t.sol",
+    "packages/contracts/test/InteriorExecution.t.sol",
+    "packages/contracts/test/InteriorProbe.t.sol",
+    "packages/contracts/test/InteriorStateful.t.sol",
+    "packages/contracts/test/InteriorSwap.t.sol",
+    "packages/contracts/test/IntervalMath.t.sol",
+    "packages/contracts/test/LinkedMath.t.sol",
+    "packages/contracts/test/LocalUSDC.t.sol",
+    "packages/contracts/test/LowerSheetProposal.t.sol",
+    "packages/contracts/test/MaximumActivation.t.sol",
+    "packages/contracts/test/MixedExecution.t.sol",
+    "packages/contracts/test/MixedInvoice.t.sol",
+    "packages/contracts/test/OutwardRetention.t.sol",
+    "packages/contracts/test/PaymentSwap.t.sol",
+    "packages/contracts/test/Payments.t.sol",
+    "packages/contracts/test/PayoutBracket.t.sol",
+    "packages/contracts/test/PayoutEndpoint.t.sol",
+    "packages/contracts/test/PilotGas.t.sol",
+    "packages/contracts/test/PilotReversal.t.sol",
+    "packages/contracts/test/ReachableComposition.t.sol",
+    "packages/contracts/test/RootBracket.t.sol",
+    "packages/contracts/test/RouterLifecycle.t.sol",
+    "packages/contracts/test/RouterSettlementSecurity.t.sol",
+    "packages/contracts/test/SeedProposal.t.sol",
+    "packages/contracts/test/Settlement.t.sol",
+    "packages/contracts/test/SharedInventory.t.sol",
+    "packages/contracts/test/SignedWide.t.sol",
+    "packages/contracts/test/SlackCertificate.t.sol",
+    "packages/contracts/test/SlackGridRelease.t.sol",
+    "packages/contracts/test/SphereStep.t.sol",
+    "packages/contracts/test/TickGeometry.t.sol",
+    "packages/contracts/test/WideMath.t.sol",
+    "packages/contracts/test/WideMathFast.t.sol",
+    "packages/contracts/test/fixtures/CurvePrimitiveFixtures.sol",
+    "packages/contracts/test/fixtures/InitializerOracleFixtures.sol",
+    "packages/contracts/test/fixtures/LocalUSDC.sol",
+    "packages/contracts/test/fixtures/LowerSheetFixtures.sol",
+    "packages/contracts/test/fixtures/MixedPilotHarness.sol",
+    "packages/contracts/test/fixtures/PilotGasFixtures.sol",
+    "packages/reference/fixtures/curve-primitives.json",
+    "packages/reference/fixtures/frontier-composition.json",
+    "packages/reference/fixtures/initializer-oracle.json",
+    "packages/reference/fixtures/mixed-pilot.json",
+    "packages/reference/fixtures/reachable-traversal.json",
+    "packages/reference/fixtures_curve_primitives.py",
+    "packages/reference/fixtures_execution.py",
+    "packages/reference/fixtures_frontier_composition.py",
+    "packages/reference/fixtures_frontier_endpoint.py",
+    "packages/reference/fixtures_frontier_schedule.py",
+    "packages/reference/fixtures_frontier_turn.py",
+    "packages/reference/fixtures_initializer.py",
+    "packages/reference/fixtures_interior_swap.py",
+    "packages/reference/fixtures_lower_sheet.py",
+    "packages/reference/fixtures_mixed_pilot.py",
+    "packages/reference/fixtures_negative_price.py",
+    "packages/reference/fixtures_outward_retention.py",
+    "packages/reference/fixtures_payout_resume.py",
+    "packages/reference/fixtures_reachable_traversal.py",
+    "packages/reference/fixtures_root_bracket.py",
+    "packages/reference/fixtures_slack.py",
+    "packages/reference/fixtures_slack_grid_release.py",
+    "packages/reference/fixtures_slack_segments.py",
+    "packages/reference/orbital.py",
+    "packages/reference/package.json",
+    "packages/reference/profile_smoke.py",
+    "packages/reference/requirements.txt",
+    "packages/reference/tests/test_curve_primitives.py",
+    "packages/reference/tests/test_events.py",
+    "packages/reference/tests/test_execution_oracle.py",
+    "packages/reference/tests/test_frontier_composition.py",
+    "packages/reference/tests/test_frontier_endpoint.py",
+    "packages/reference/tests/test_frontier_schedule.py",
+    "packages/reference/tests/test_frontier_segment.py",
+    "packages/reference/tests/test_frontier_turn.py",
+    "packages/reference/tests/test_initializer_oracle.py",
+    "packages/reference/tests/test_interior_swap.py",
+    "packages/reference/tests/test_lower_sheet.py",
+    "packages/reference/tests/test_mixed_execution_literals.py",
+    "packages/reference/tests/test_mixed_pilot.py",
+    "packages/reference/tests/test_mixed_pilot_fixture.py",
+    "packages/reference/tests/test_negative_price.py",
+    "packages/reference/tests/test_outward_retention.py",
+    "packages/reference/tests/test_payout_resume.py",
+    "packages/reference/tests/test_reachable_traversal.py",
+    "packages/reference/tests/test_reference.py",
+    "packages/reference/tests/test_root_bracket.py",
+    "packages/reference/tests/test_root_certificate.py",
+    "packages/reference/tests/test_rounding.py",
+    "packages/reference/tests/test_slack_certificate.py",
+    "packages/reference/tests/test_slack_grid_release.py",
+    "packages/reference/tests/test_slack_path.py",
+    "test/evidence/engine-suite/run.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "packages/contracts/foundry.toml",
+      "sha256": "8837e44a7819ccc323dfe5d24eb65b9a5fe4a9fc2d6c47418a88aaa94bfd4f9a",
+      "sha256_after": "8837e44a7819ccc323dfe5d24eb65b9a5fe4a9fc2d6c47418a88aaa94bfd4f9a"
+    },
+    {
+      "path": "packages/contracts/package.json",
+      "sha256": "4ab1ef88f80fae61f1b3c982d576f66e7377307dc7a332514673e001b6e7fba0",
+      "sha256_after": "4ab1ef88f80fae61f1b3c982d576f66e7377307dc7a332514673e001b6e7fba0"
+    },
+    {
+      "path": "packages/contracts/remappings.txt",
+      "sha256": "8e8c9650a5da34495b3b5bcee7c4d1a7cf9aee03382396a1578143008e66149d",
+      "sha256_after": "8e8c9650a5da34495b3b5bcee7c4d1a7cf9aee03382396a1578143008e66149d"
+    },
+    {
+      "path": "packages/contracts/test/Certificate.t.sol",
+      "sha256": "251eea7801234631e7438beb81a53651ced99b5ec57b7c5290cdcd488480ead2",
+      "sha256_after": "251eea7801234631e7438beb81a53651ced99b5ec57b7c5290cdcd488480ead2"
+    },
+    {
+      "path": "packages/contracts/test/Codec.t.sol",
+      "sha256": "4a23eae322c39c7d2dde240fc45235e4b11b6c365922816856a098fb162bf115",
+      "sha256_after": "4a23eae322c39c7d2dde240fc45235e4b11b6c365922816856a098fb162bf115"
+    },
+    {
+      "path": "packages/contracts/test/CurveEvaluation.t.sol",
+      "sha256": "34de5ba1aeaea49826d38959cc53e506ddff8b3da3d73149ec59c0c2292cdee4",
+      "sha256_after": "34de5ba1aeaea49826d38959cc53e506ddff8b3da3d73149ec59c0c2292cdee4"
+    },
+    {
+      "path": "packages/contracts/test/DemoDollar.t.sol",
+      "sha256": "8c83228596c0e821ec35bb048912d30fa8b6e33d957462bca1ec629e4a5295ab",
+      "sha256_after": "8c83228596c0e821ec35bb048912d30fa8b6e33d957462bca1ec629e4a5295ab"
+    },
+    {
+      "path": "packages/contracts/test/DualCertificate.t.sol",
+      "sha256": "c2d949595b1d4e824920dd8b411213a0ef3e62923bbb4ea9e047e08f378c86b8",
+      "sha256_after": "c2d949595b1d4e824920dd8b411213a0ef3e62923bbb4ea9e047e08f378c86b8"
+    },
+    {
+      "path": "packages/contracts/test/FeeInstruction.t.sol",
+      "sha256": "40c4340ca1093797c7ecdb0c8b5a621fafaec111c2e6920126b9b83118b51c32",
+      "sha256_after": "40c4340ca1093797c7ecdb0c8b5a621fafaec111c2e6920126b9b83118b51c32"
+    },
+    {
+      "path": "packages/contracts/test/ForkResolution.t.sol",
+      "sha256": "a0fec14391ad4fbe2b4e3a9d0b7093ea34bf667723b332cc5a28f8363dba42d9",
+      "sha256_after": "a0fec14391ad4fbe2b4e3a9d0b7093ea34bf667723b332cc5a28f8363dba42d9"
+    },
+    {
+      "path": "packages/contracts/test/FrontierComposition.t.sol",
+      "sha256": "c8e0a09a2fb3bcc1ebdb56f018527d8d6a33a74e1cc13473373ab5d861cc248f",
+      "sha256_after": "c8e0a09a2fb3bcc1ebdb56f018527d8d6a33a74e1cc13473373ab5d861cc248f"
+    },
+    {
+      "path": "packages/contracts/test/FrontierCompositionGas.t.sol",
+      "sha256": "db8fac5643a75e62605c753deb22089422a1298ce0f1419a34eaffbd10571c71",
+      "sha256_after": "db8fac5643a75e62605c753deb22089422a1298ce0f1419a34eaffbd10571c71"
+    },
+    {
+      "path": "packages/contracts/test/FrontierEndpoint.t.sol",
+      "sha256": "388d2d09b98ca6574f23f6ea47741e9e7b7fbb715c0446eda45c4a01d43a618e",
+      "sha256_after": "388d2d09b98ca6574f23f6ea47741e9e7b7fbb715c0446eda45c4a01d43a618e"
+    },
+    {
+      "path": "packages/contracts/test/FrontierEvents.t.sol",
+      "sha256": "8dede26540626afb1cd817159327fa96cd8a52dfcbfdc7f2fea13cf9986761da",
+      "sha256_after": "8dede26540626afb1cd817159327fa96cd8a52dfcbfdc7f2fea13cf9986761da"
+    },
+    {
+      "path": "packages/contracts/test/FrontierPriceExclusion.t.sol",
+      "sha256": "d1df583e9d344de0060358992b0799af2b5fc5c3d04a554d372670a3f5aa167d",
+      "sha256_after": "d1df583e9d344de0060358992b0799af2b5fc5c3d04a554d372670a3f5aa167d"
+    },
+    {
+      "path": "packages/contracts/test/FrontierSchedule.t.sol",
+      "sha256": "17acdc4350563bfdfc370a79231a14805f644c73e0dcf78f0cc3f9540b4f6239",
+      "sha256_after": "17acdc4350563bfdfc370a79231a14805f644c73e0dcf78f0cc3f9540b4f6239"
+    },
+    {
+      "path": "packages/contracts/test/FrontierTurn.t.sol",
+      "sha256": "0b5d386a1e504fa2447c47895c552b20d464e22a6b1b85ac7d0132207deb188b",
+      "sha256_after": "0b5d386a1e504fa2447c47895c552b20d464e22a6b1b85ac7d0132207deb188b"
+    },
+    {
+      "path": "packages/contracts/test/InitializerOracle.t.sol",
+      "sha256": "37de1a64acf8c382cc032e6f21fbba937db929c108f6f120c23d166589487b12",
+      "sha256_after": "37de1a64acf8c382cc032e6f21fbba937db929c108f6f120c23d166589487b12"
+    },
+    {
+      "path": "packages/contracts/test/InteriorExecution.t.sol",
+      "sha256": "6c6f860dee5f44c0c4f7e2aa0b3fdeff4700ed4401118e0590753c38bc6e4e0a",
+      "sha256_after": "6c6f860dee5f44c0c4f7e2aa0b3fdeff4700ed4401118e0590753c38bc6e4e0a"
+    },
+    {
+      "path": "packages/contracts/test/InteriorProbe.t.sol",
+      "sha256": "ec51c09e9bd0aef2ecc9bbb03cec0ebf92458b7cd9e102de85d115885015f0fc",
+      "sha256_after": "ec51c09e9bd0aef2ecc9bbb03cec0ebf92458b7cd9e102de85d115885015f0fc"
+    },
+    {
+      "path": "packages/contracts/test/InteriorStateful.t.sol",
+      "sha256": "8a565158b8af8514b640b8439c60f2525b3dfa381753f6b36355cddf21196027",
+      "sha256_after": "8a565158b8af8514b640b8439c60f2525b3dfa381753f6b36355cddf21196027"
+    },
+    {
+      "path": "packages/contracts/test/InteriorSwap.t.sol",
+      "sha256": "443a06b3e2aa5054667fbf24522d9bc997cc1e013e65adcebf3f03f0815eb065",
+      "sha256_after": "443a06b3e2aa5054667fbf24522d9bc997cc1e013e65adcebf3f03f0815eb065"
+    },
+    {
+      "path": "packages/contracts/test/IntervalMath.t.sol",
+      "sha256": "95279e7b163bdafbe18caf8e27d27727f1e84c05bf2cd1b953b6c6f64b2d9da4",
+      "sha256_after": "95279e7b163bdafbe18caf8e27d27727f1e84c05bf2cd1b953b6c6f64b2d9da4"
+    },
+    {
+      "path": "packages/contracts/test/LinkedMath.t.sol",
+      "sha256": "bce46f7ddff1c31376bbf3d2c9fc0d0f56818e99d90c3adf4f7ae6a170e5dfe9",
+      "sha256_after": "bce46f7ddff1c31376bbf3d2c9fc0d0f56818e99d90c3adf4f7ae6a170e5dfe9"
+    },
+    {
+      "path": "packages/contracts/test/LocalUSDC.t.sol",
+      "sha256": "4bd6d5004e741d475e5cedcbb00ef626f0e84142b3a03a22b04843844d5d0a26",
+      "sha256_after": "4bd6d5004e741d475e5cedcbb00ef626f0e84142b3a03a22b04843844d5d0a26"
+    },
+    {
+      "path": "packages/contracts/test/LowerSheetProposal.t.sol",
+      "sha256": "dd957d4776e58dcdf4dba9c5222d5b6c642c88b525396a6c678d50b3a5e151c8",
+      "sha256_after": "dd957d4776e58dcdf4dba9c5222d5b6c642c88b525396a6c678d50b3a5e151c8"
+    },
+    {
+      "path": "packages/contracts/test/MaximumActivation.t.sol",
+      "sha256": "3b3761be30c1d627a1529df21ff4af648eeb2db5781f002acc97e687c85afed3",
+      "sha256_after": "3b3761be30c1d627a1529df21ff4af648eeb2db5781f002acc97e687c85afed3"
+    },
+    {
+      "path": "packages/contracts/test/MixedExecution.t.sol",
+      "sha256": "17f9b30499cc69b0cbb7849f7c769aef1585e2873180d7178fafd8a2aab25c4a",
+      "sha256_after": "17f9b30499cc69b0cbb7849f7c769aef1585e2873180d7178fafd8a2aab25c4a"
+    },
+    {
+      "path": "packages/contracts/test/MixedInvoice.t.sol",
+      "sha256": "9c3edbd0308e08f76b79837ad966ecc27631dd713498e9b76db4bb0f913c0344",
+      "sha256_after": "9c3edbd0308e08f76b79837ad966ecc27631dd713498e9b76db4bb0f913c0344"
+    },
+    {
+      "path": "packages/contracts/test/OutwardRetention.t.sol",
+      "sha256": "7875fabbe587e22ac9a6b41aae51e0b9857b2925b409d8baad4a564119db87e0",
+      "sha256_after": "7875fabbe587e22ac9a6b41aae51e0b9857b2925b409d8baad4a564119db87e0"
+    },
+    {
+      "path": "packages/contracts/test/PaymentSwap.t.sol",
+      "sha256": "88e8774581db0305d46f9686c28c5a1ee0765744bae78ccd27d8da0be01326d8",
+      "sha256_after": "88e8774581db0305d46f9686c28c5a1ee0765744bae78ccd27d8da0be01326d8"
+    },
+    {
+      "path": "packages/contracts/test/Payments.t.sol",
+      "sha256": "08f55e1a21a4479597707cd55f65e03e6767b02195e3019fbb766a5a4c9a96d2",
+      "sha256_after": "08f55e1a21a4479597707cd55f65e03e6767b02195e3019fbb766a5a4c9a96d2"
+    },
+    {
+      "path": "packages/contracts/test/PayoutBracket.t.sol",
+      "sha256": "6b4bf37f110c539d9aeaad6ce2bd9ba58b971e3793891ceecc1df98be9a031fe",
+      "sha256_after": "6b4bf37f110c539d9aeaad6ce2bd9ba58b971e3793891ceecc1df98be9a031fe"
+    },
+    {
+      "path": "packages/contracts/test/PayoutEndpoint.t.sol",
+      "sha256": "7e28fce616af6cb7aa35adb0ce8bbc93113f8834f190e9800a41a5bf63d3a736",
+      "sha256_after": "7e28fce616af6cb7aa35adb0ce8bbc93113f8834f190e9800a41a5bf63d3a736"
+    },
+    {
+      "path": "packages/contracts/test/PilotGas.t.sol",
+      "sha256": "4df2c5a4081bb7501d14705ac6bf5cfc6bd283d3bea2e7f0f13da88433f4b59a",
+      "sha256_after": "4df2c5a4081bb7501d14705ac6bf5cfc6bd283d3bea2e7f0f13da88433f4b59a"
+    },
+    {
+      "path": "packages/contracts/test/PilotReversal.t.sol",
+      "sha256": "6270a283dc3b02559c9849ce4d2aa6d02ae67654018239d7f7d796ecf9482597",
+      "sha256_after": "6270a283dc3b02559c9849ce4d2aa6d02ae67654018239d7f7d796ecf9482597"
+    },
+    {
+      "path": "packages/contracts/test/ReachableComposition.t.sol",
+      "sha256": "6a87720431f6bd0b39f6de68a700b34e64ff8c59719f986876d377ce0c075cf3",
+      "sha256_after": "6a87720431f6bd0b39f6de68a700b34e64ff8c59719f986876d377ce0c075cf3"
+    },
+    {
+      "path": "packages/contracts/test/RootBracket.t.sol",
+      "sha256": "2b89df005bf1014a6dcfa5800c2581351e472edbda1ca0265b22809a56554f6b",
+      "sha256_after": "2b89df005bf1014a6dcfa5800c2581351e472edbda1ca0265b22809a56554f6b"
+    },
+    {
+      "path": "packages/contracts/test/RouterLifecycle.t.sol",
+      "sha256": "f41aade4879841fac7b0a4206f12e9e554e48890f757e7d5a7145f8e8dae70d8",
+      "sha256_after": "f41aade4879841fac7b0a4206f12e9e554e48890f757e7d5a7145f8e8dae70d8"
+    },
+    {
+      "path": "packages/contracts/test/RouterSettlementSecurity.t.sol",
+      "sha256": "43b6669f623dcc935b5a21266489f48372ec32e707d25ec953b116922dd2a1e2",
+      "sha256_after": "43b6669f623dcc935b5a21266489f48372ec32e707d25ec953b116922dd2a1e2"
+    },
+    {
+      "path": "packages/contracts/test/SeedProposal.t.sol",
+      "sha256": "eb565a54196ca6dd5090fa4a0f63fc42a0e1e5220cc844bedc05027664a4d39a",
+      "sha256_after": "eb565a54196ca6dd5090fa4a0f63fc42a0e1e5220cc844bedc05027664a4d39a"
+    },
+    {
+      "path": "packages/contracts/test/Settlement.t.sol",
+      "sha256": "5d29e794e46970fa280cd73c8a49851a7b1170f8dbbbab1fa4e34cf94609b07a",
+      "sha256_after": "5d29e794e46970fa280cd73c8a49851a7b1170f8dbbbab1fa4e34cf94609b07a"
+    },
+    {
+      "path": "packages/contracts/test/SharedInventory.t.sol",
+      "sha256": "eef282439a03c0a905c981e9732e11ab496aba207bd35499e6192347f9750392",
+      "sha256_after": "eef282439a03c0a905c981e9732e11ab496aba207bd35499e6192347f9750392"
+    },
+    {
+      "path": "packages/contracts/test/SignedWide.t.sol",
+      "sha256": "0a020a1c93eaf39f5685e12812aa9055e476f6352fea81ee5bf0a10ae49d7a82",
+      "sha256_after": "0a020a1c93eaf39f5685e12812aa9055e476f6352fea81ee5bf0a10ae49d7a82"
+    },
+    {
+      "path": "packages/contracts/test/SlackCertificate.t.sol",
+      "sha256": "5a6631553e3777af5892706f371dc8bc284123743b810a886cbae1f1a0240c11",
+      "sha256_after": "5a6631553e3777af5892706f371dc8bc284123743b810a886cbae1f1a0240c11"
+    },
+    {
+      "path": "packages/contracts/test/SlackGridRelease.t.sol",
+      "sha256": "f0b5ec21cd4248edd243697c910f6c8cddb156ad47e037e62c7f502219523252",
+      "sha256_after": "f0b5ec21cd4248edd243697c910f6c8cddb156ad47e037e62c7f502219523252"
+    },
+    {
+      "path": "packages/contracts/test/SphereStep.t.sol",
+      "sha256": "d10ad7d00744c84fbe0069e8edf698bac7d68e78384bfbe0abd8f309b5869d9c",
+      "sha256_after": "d10ad7d00744c84fbe0069e8edf698bac7d68e78384bfbe0abd8f309b5869d9c"
+    },
+    {
+      "path": "packages/contracts/test/TickGeometry.t.sol",
+      "sha256": "bdfc6f583c0f7da0c3ed5a0eec20ff893f7071a98e4a698598edf0206955f6d7",
+      "sha256_after": "bdfc6f583c0f7da0c3ed5a0eec20ff893f7071a98e4a698598edf0206955f6d7"
+    },
+    {
+      "path": "packages/contracts/test/WideMath.t.sol",
+      "sha256": "abecb4d1fd0940e05bb77e59f8ae3fb8832099390c68bb6f67012d3e889311ef",
+      "sha256_after": "abecb4d1fd0940e05bb77e59f8ae3fb8832099390c68bb6f67012d3e889311ef"
+    },
+    {
+      "path": "packages/contracts/test/WideMathFast.t.sol",
+      "sha256": "213a4ca61912c7a7e89381fe325ac6e454e62915a30a5a40a4a37fd808ab96b5",
+      "sha256_after": "213a4ca61912c7a7e89381fe325ac6e454e62915a30a5a40a4a37fd808ab96b5"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/CurvePrimitiveFixtures.sol",
+      "sha256": "ef0c9b0d9ecc07af1c754a85f5459510c1e9a54fd055b3d058201816a9357d5b",
+      "sha256_after": "ef0c9b0d9ecc07af1c754a85f5459510c1e9a54fd055b3d058201816a9357d5b"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/InitializerOracleFixtures.sol",
+      "sha256": "a7a8320f75fc740ccd9849444c9fee77a2b2fa474058c6e030f3cfed15a2e1e8",
+      "sha256_after": "a7a8320f75fc740ccd9849444c9fee77a2b2fa474058c6e030f3cfed15a2e1e8"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/LocalUSDC.sol",
+      "sha256": "214d19937c70edcf518f929e4e8c426a0105362f34de4ab342898ad7b6b92cad",
+      "sha256_after": "214d19937c70edcf518f929e4e8c426a0105362f34de4ab342898ad7b6b92cad"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/LowerSheetFixtures.sol",
+      "sha256": "c3dc33805e3ca552bd97eaaab6b07f78bcc61c155385c5f25d50904e4ea652cf",
+      "sha256_after": "c3dc33805e3ca552bd97eaaab6b07f78bcc61c155385c5f25d50904e4ea652cf"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/MixedPilotHarness.sol",
+      "sha256": "15cac64a17f28af1ddf4411803800d5205e75bbc0302fb3f8db31b94cf27c52d",
+      "sha256_after": "15cac64a17f28af1ddf4411803800d5205e75bbc0302fb3f8db31b94cf27c52d"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/PilotGasFixtures.sol",
+      "sha256": "24574a6786cb538da06385e78497cfb4c2786fc48a730e6f611e84f3a6046e64",
+      "sha256_after": "24574a6786cb538da06385e78497cfb4c2786fc48a730e6f611e84f3a6046e64"
+    },
+    {
+      "path": "packages/reference/fixtures/curve-primitives.json",
+      "sha256": "46c5a3225a34958c184c83aaba3458000d29e5586c64d896e28e99270e761ce4",
+      "sha256_after": "46c5a3225a34958c184c83aaba3458000d29e5586c64d896e28e99270e761ce4"
+    },
+    {
+      "path": "packages/reference/fixtures/frontier-composition.json",
+      "sha256": "832677c7978400a750a82c34a5ff93a8e918f912e59da921dbee17cf194d82d5",
+      "sha256_after": "832677c7978400a750a82c34a5ff93a8e918f912e59da921dbee17cf194d82d5"
+    },
+    {
+      "path": "packages/reference/fixtures/initializer-oracle.json",
+      "sha256": "91604a9f57e06b2b6660ae74cf51d8a96dd3628c55e436f506035f81ee0ab061",
+      "sha256_after": "91604a9f57e06b2b6660ae74cf51d8a96dd3628c55e436f506035f81ee0ab061"
+    },
+    {
+      "path": "packages/reference/fixtures/mixed-pilot.json",
+      "sha256": "faa71990daf327d438935b3a0a2ea545036a84549e4af252658c6b393fea28a3",
+      "sha256_after": "faa71990daf327d438935b3a0a2ea545036a84549e4af252658c6b393fea28a3"
+    },
+    {
+      "path": "packages/reference/fixtures/reachable-traversal.json",
+      "sha256": "3711128a0e5e71986046cb07ab8f7096ecdf6fcc7251e8477a9444778a54cd51",
+      "sha256_after": "3711128a0e5e71986046cb07ab8f7096ecdf6fcc7251e8477a9444778a54cd51"
+    },
+    {
+      "path": "packages/reference/fixtures_curve_primitives.py",
+      "sha256": "a07127b6a82a935a60496ba5926fdccbbc91722447e4e86f957c3005d92894a2",
+      "sha256_after": "a07127b6a82a935a60496ba5926fdccbbc91722447e4e86f957c3005d92894a2"
+    },
+    {
+      "path": "packages/reference/fixtures_execution.py",
+      "sha256": "e2734f7c2f21b0babdba6e5cfb951c4fca11b4ca6c83107d9895fe77e5dbe0e4",
+      "sha256_after": "e2734f7c2f21b0babdba6e5cfb951c4fca11b4ca6c83107d9895fe77e5dbe0e4"
+    },
+    {
+      "path": "packages/reference/fixtures_frontier_composition.py",
+      "sha256": "4a6a936d157e806391319036e0c9ce0ff8055c83c0a882b9fb7eee0c1cf7d4cf",
+      "sha256_after": "4a6a936d157e806391319036e0c9ce0ff8055c83c0a882b9fb7eee0c1cf7d4cf"
+    },
+    {
+      "path": "packages/reference/fixtures_frontier_endpoint.py",
+      "sha256": "e0ad4a43e00f70b94a79dd24638c63f4eec29bec9f405754355f970cd9217e55",
+      "sha256_after": "e0ad4a43e00f70b94a79dd24638c63f4eec29bec9f405754355f970cd9217e55"
+    },
+    {
+      "path": "packages/reference/fixtures_frontier_schedule.py",
+      "sha256": "7897190646b2133663255b1c49c30ae77a0aa9bcd07f2b6731eaf3ea63b4fc27",
+      "sha256_after": "7897190646b2133663255b1c49c30ae77a0aa9bcd07f2b6731eaf3ea63b4fc27"
+    },
+    {
+      "path": "packages/reference/fixtures_frontier_turn.py",
+      "sha256": "543eb49564639b281f0d4829c809d6de7347e30355a809bb922a65ccc527f2d9",
+      "sha256_after": "543eb49564639b281f0d4829c809d6de7347e30355a809bb922a65ccc527f2d9"
+    },
+    {
+      "path": "packages/reference/fixtures_initializer.py",
+      "sha256": "1254b59923724aaa222981afc681486833189be0e43a29181242e8c0a4f59e95",
+      "sha256_after": "1254b59923724aaa222981afc681486833189be0e43a29181242e8c0a4f59e95"
+    },
+    {
+      "path": "packages/reference/fixtures_interior_swap.py",
+      "sha256": "984b7ba430e5b4ca6cbcc75396c4e7701904544c4f1dffde49d2515884fe8f70",
+      "sha256_after": "984b7ba430e5b4ca6cbcc75396c4e7701904544c4f1dffde49d2515884fe8f70"
+    },
+    {
+      "path": "packages/reference/fixtures_lower_sheet.py",
+      "sha256": "fe5e859e3df971f463c2153fed4e42c281cca13e71b3fe5adeec8b2229efc37f",
+      "sha256_after": "fe5e859e3df971f463c2153fed4e42c281cca13e71b3fe5adeec8b2229efc37f"
+    },
+    {
+      "path": "packages/reference/fixtures_mixed_pilot.py",
+      "sha256": "0c92bdd7293530d3b4e60ad7f945191b41d44137bfc5d69d762db0e362ca72ad",
+      "sha256_after": "0c92bdd7293530d3b4e60ad7f945191b41d44137bfc5d69d762db0e362ca72ad"
+    },
+    {
+      "path": "packages/reference/fixtures_negative_price.py",
+      "sha256": "6ef06af21c255edcfd4b0104c1d3bf7ce96bda14303e86e5df7f420242baa883",
+      "sha256_after": "6ef06af21c255edcfd4b0104c1d3bf7ce96bda14303e86e5df7f420242baa883"
+    },
+    {
+      "path": "packages/reference/fixtures_outward_retention.py",
+      "sha256": "0529d2e381ba95f12586cbafab82e7c482d40848547320867b7e1c7170a84bd8",
+      "sha256_after": "0529d2e381ba95f12586cbafab82e7c482d40848547320867b7e1c7170a84bd8"
+    },
+    {
+      "path": "packages/reference/fixtures_payout_resume.py",
+      "sha256": "64c6dd448ebd138fef8d029dd895657a9e9bcc420fb1e05c55f40ae2f7d39b86",
+      "sha256_after": "64c6dd448ebd138fef8d029dd895657a9e9bcc420fb1e05c55f40ae2f7d39b86"
+    },
+    {
+      "path": "packages/reference/fixtures_reachable_traversal.py",
+      "sha256": "1f522bb1011d260046f564e3ebc36fcb2c1ef58495d7b4559cb3979bf83a0eb5",
+      "sha256_after": "1f522bb1011d260046f564e3ebc36fcb2c1ef58495d7b4559cb3979bf83a0eb5"
+    },
+    {
+      "path": "packages/reference/fixtures_root_bracket.py",
+      "sha256": "6af21f4d853f25cedfacc1cfcdd93e4ff9a2e224598f32c1efcd8da179c3ccdd",
+      "sha256_after": "6af21f4d853f25cedfacc1cfcdd93e4ff9a2e224598f32c1efcd8da179c3ccdd"
+    },
+    {
+      "path": "packages/reference/fixtures_slack.py",
+      "sha256": "778423a8321e27481fdec610d5ee7659f15b57bf6449d75cfb0995b1aff248f7",
+      "sha256_after": "778423a8321e27481fdec610d5ee7659f15b57bf6449d75cfb0995b1aff248f7"
+    },
+    {
+      "path": "packages/reference/fixtures_slack_grid_release.py",
+      "sha256": "cca601ad35340c7a9e19af4c3c5e96e7e9332d17c7f224070d79f87f11eec788",
+      "sha256_after": "cca601ad35340c7a9e19af4c3c5e96e7e9332d17c7f224070d79f87f11eec788"
+    },
+    {
+      "path": "packages/reference/fixtures_slack_segments.py",
+      "sha256": "4255665b8c64c5ded11027ef9ed96bcd009915358d3a1ce75b7c0468488b0b10",
+      "sha256_after": "4255665b8c64c5ded11027ef9ed96bcd009915358d3a1ce75b7c0468488b0b10"
+    },
+    {
+      "path": "packages/reference/orbital.py",
+      "sha256": "4d13eb4a96ff96dcfc32e3a73ec722cf6d3a8694bcb53365e44e887f54dd6352",
+      "sha256_after": "4d13eb4a96ff96dcfc32e3a73ec722cf6d3a8694bcb53365e44e887f54dd6352"
+    },
+    {
+      "path": "packages/reference/package.json",
+      "sha256": "7fb7c5c52e84f85911582a3c30f19ed9037d4aa1212940cb73c3b70ae987f874",
+      "sha256_after": "7fb7c5c52e84f85911582a3c30f19ed9037d4aa1212940cb73c3b70ae987f874"
+    },
+    {
+      "path": "packages/reference/profile_smoke.py",
+      "sha256": "d39a80404f7b8d646070cf0bdb363922092648137952565ff0928225f849e468",
+      "sha256_after": "d39a80404f7b8d646070cf0bdb363922092648137952565ff0928225f849e468"
+    },
+    {
+      "path": "packages/reference/requirements.txt",
+      "sha256": "a699f46ed76bd216f1081b6b2330e4fb45d7c8c5a5354b208694d6590a5a8645",
+      "sha256_after": "a699f46ed76bd216f1081b6b2330e4fb45d7c8c5a5354b208694d6590a5a8645"
+    },
+    {
+      "path": "packages/reference/tests/test_curve_primitives.py",
+      "sha256": "57cf61f2b234c98bab934d5653a3fe6fe90c273f6d62798db84a141042dcd62c",
+      "sha256_after": "57cf61f2b234c98bab934d5653a3fe6fe90c273f6d62798db84a141042dcd62c"
+    },
+    {
+      "path": "packages/reference/tests/test_events.py",
+      "sha256": "aa4b66f6b4de967ac94a5896da2b0b9f6a6d4ee8c6634e14e9b809438c17cf69",
+      "sha256_after": "aa4b66f6b4de967ac94a5896da2b0b9f6a6d4ee8c6634e14e9b809438c17cf69"
+    },
+    {
+      "path": "packages/reference/tests/test_execution_oracle.py",
+      "sha256": "f600f3a75334282cba9dcf00a4a66e582d1e4aa354efb87956e2843d9c68c1ea",
+      "sha256_after": "f600f3a75334282cba9dcf00a4a66e582d1e4aa354efb87956e2843d9c68c1ea"
+    },
+    {
+      "path": "packages/reference/tests/test_frontier_composition.py",
+      "sha256": "c21fefadd1a528485d1a074584ef3e7b017049e62ad7c4ca5aa8564b6806b79b",
+      "sha256_after": "c21fefadd1a528485d1a074584ef3e7b017049e62ad7c4ca5aa8564b6806b79b"
+    },
+    {
+      "path": "packages/reference/tests/test_frontier_endpoint.py",
+      "sha256": "6447d92be27150722767cd93109d9d8dd44bf73cf8240cdbe7fb084f8dc712ff",
+      "sha256_after": "6447d92be27150722767cd93109d9d8dd44bf73cf8240cdbe7fb084f8dc712ff"
+    },
+    {
+      "path": "packages/reference/tests/test_frontier_schedule.py",
+      "sha256": "0479194e3d672065d775a11a7acdf4e1ffac42243e01083c266a1b19d45c4c71",
+      "sha256_after": "0479194e3d672065d775a11a7acdf4e1ffac42243e01083c266a1b19d45c4c71"
+    },
+    {
+      "path": "packages/reference/tests/test_frontier_segment.py",
+      "sha256": "02b7cb4d071fd7bdc3d3ae9527ae052f86be6e10365517288d349c44aca6f677",
+      "sha256_after": "02b7cb4d071fd7bdc3d3ae9527ae052f86be6e10365517288d349c44aca6f677"
+    },
+    {
+      "path": "packages/reference/tests/test_frontier_turn.py",
+      "sha256": "48c2d3889839ad4e9c11bb66b52e3d70da056964f7d1b65c2d26903772fecbf7",
+      "sha256_after": "48c2d3889839ad4e9c11bb66b52e3d70da056964f7d1b65c2d26903772fecbf7"
+    },
+    {
+      "path": "packages/reference/tests/test_initializer_oracle.py",
+      "sha256": "9494ac28d12ebdc716ba4b475c0bf81627d75919befe5dbd3bc6f7bfce089923",
+      "sha256_after": "9494ac28d12ebdc716ba4b475c0bf81627d75919befe5dbd3bc6f7bfce089923"
+    },
+    {
+      "path": "packages/reference/tests/test_interior_swap.py",
+      "sha256": "73b7972e3f1ab7adb774e95699034b505b1998060094f91e2589943efa638c29",
+      "sha256_after": "73b7972e3f1ab7adb774e95699034b505b1998060094f91e2589943efa638c29"
+    },
+    {
+      "path": "packages/reference/tests/test_lower_sheet.py",
+      "sha256": "5427c28632e4a681e12013436b4b7fde2023c55e3d55f4ba57e7e1da9f11539d",
+      "sha256_after": "5427c28632e4a681e12013436b4b7fde2023c55e3d55f4ba57e7e1da9f11539d"
+    },
+    {
+      "path": "packages/reference/tests/test_mixed_execution_literals.py",
+      "sha256": "a3a457fc2993e92346de3c3ee4d84fe8a78f63574581f5558e9e6e31bea5a61b",
+      "sha256_after": "a3a457fc2993e92346de3c3ee4d84fe8a78f63574581f5558e9e6e31bea5a61b"
+    },
+    {
+      "path": "packages/reference/tests/test_mixed_pilot.py",
+      "sha256": "2595488063e629a320fe9d5ce74848aa6edb4089ba4c9c31d3d9e322725b0d1b",
+      "sha256_after": "2595488063e629a320fe9d5ce74848aa6edb4089ba4c9c31d3d9e322725b0d1b"
+    },
+    {
+      "path": "packages/reference/tests/test_mixed_pilot_fixture.py",
+      "sha256": "f44b48a81fe7853e6439d132ae8880eaee019e24510f66546f98b15db71521ff",
+      "sha256_after": "f44b48a81fe7853e6439d132ae8880eaee019e24510f66546f98b15db71521ff"
+    },
+    {
+      "path": "packages/reference/tests/test_negative_price.py",
+      "sha256": "834ee7fcc0b4277ab7bb6267bf63f6a463e4b3b407ae604abe2d888b032682d7",
+      "sha256_after": "834ee7fcc0b4277ab7bb6267bf63f6a463e4b3b407ae604abe2d888b032682d7"
+    },
+    {
+      "path": "packages/reference/tests/test_outward_retention.py",
+      "sha256": "9da77f1de67d9b3b2b468d8fb18f38390b0f75637788f6fe62d299774da75f77",
+      "sha256_after": "9da77f1de67d9b3b2b468d8fb18f38390b0f75637788f6fe62d299774da75f77"
+    },
+    {
+      "path": "packages/reference/tests/test_payout_resume.py",
+      "sha256": "9cc99fbe15363af7fc34b9fced5bf96641b378cb788d04a7ec53c6de355af25b",
+      "sha256_after": "9cc99fbe15363af7fc34b9fced5bf96641b378cb788d04a7ec53c6de355af25b"
+    },
+    {
+      "path": "packages/reference/tests/test_reachable_traversal.py",
+      "sha256": "e27eab21193f212e3a10967d07c92b479f0cde97cca7a2da60c010d41826b36c",
+      "sha256_after": "e27eab21193f212e3a10967d07c92b479f0cde97cca7a2da60c010d41826b36c"
+    },
+    {
+      "path": "packages/reference/tests/test_reference.py",
+      "sha256": "4f1bbf42fd900eb1121b755f53d33e4a2c0cb20278c4d86d095b4d670aaca54a",
+      "sha256_after": "4f1bbf42fd900eb1121b755f53d33e4a2c0cb20278c4d86d095b4d670aaca54a"
+    },
+    {
+      "path": "packages/reference/tests/test_root_bracket.py",
+      "sha256": "771018d96aa72fb5e39da7efe62e08ad617143b3a98f50c8834397931c7264f3",
+      "sha256_after": "771018d96aa72fb5e39da7efe62e08ad617143b3a98f50c8834397931c7264f3"
+    },
+    {
+      "path": "packages/reference/tests/test_root_certificate.py",
+      "sha256": "51cb1b2f081c1ac81325d9cfa3b796b4406a57639d3a1ad4a754d9cabe5c52b8",
+      "sha256_after": "51cb1b2f081c1ac81325d9cfa3b796b4406a57639d3a1ad4a754d9cabe5c52b8"
+    },
+    {
+      "path": "packages/reference/tests/test_rounding.py",
+      "sha256": "1a80d88aedab0c4db0c0bea76039e584ffe2c8d49df09bf87469b50c5ad7120d",
+      "sha256_after": "1a80d88aedab0c4db0c0bea76039e584ffe2c8d49df09bf87469b50c5ad7120d"
+    },
+    {
+      "path": "packages/reference/tests/test_slack_certificate.py",
+      "sha256": "9eb22b6f1e766c1505b08e139185ae41231f8123bd537e61a8dc33466f8a0c8d",
+      "sha256_after": "9eb22b6f1e766c1505b08e139185ae41231f8123bd537e61a8dc33466f8a0c8d"
+    },
+    {
+      "path": "packages/reference/tests/test_slack_grid_release.py",
+      "sha256": "1e5350df1909e79fba2963cc0f8a3d8f0f4991a2756db1532a1c781832206cae",
+      "sha256_after": "1e5350df1909e79fba2963cc0f8a3d8f0f4991a2756db1532a1c781832206cae"
+    },
+    {
+      "path": "packages/reference/tests/test_slack_path.py",
+      "sha256": "452b7d7da4adf23a645d7b980e436e930e429f7263ad93beb2443b293e34009c",
+      "sha256_after": "452b7d7da4adf23a645d7b980e436e930e429f7263ad93beb2443b293e34009c"
+    },
+    {
+      "path": "test/evidence/engine-suite/run.py",
+      "sha256": "ec24d15da07fc6846f14fcd5ac092c9b524b2d2aade44cad444652f0bf445a86",
+      "sha256_after": "ec24d15da07fc6846f14fcd5ac092c9b524b2d2aade44cad444652f0bf445a86"
+    }
+  ],
+  "output_directory": "test/evidence/engine-suite/reference",
+  "declared_results": [],
+  "outputs": [
+    {
+      "path": "test/evidence/engine-suite/reference/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "test/evidence/engine-suite/reference/stderr.txt",
+      "sha256": "c5489935fe06e02ec16d5ca83e6c099e53849f9adccb18c217501b8b7deb77ca",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    },
+    {
+      "check": "Complete existing suite emitted a nonempty result with zero failures and skips",
+      "passed": true
+    }
+  ],
+  "result": "Existing reference suite reproduced within its stated bounds; no independent implementation audit or release acceptance established.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

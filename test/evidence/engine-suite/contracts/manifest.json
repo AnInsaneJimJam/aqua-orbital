@@ -1,0 +1,1230 @@
+{
+  "schema_version": 2,
+  "claim_id": "EXISTING-ENGINE-SUITE-CONTRACTS",
+  "repository": {
+    "commit": "0dc0ac2a44469c797155009d3ae746654ccfb0ac",
+    "dirty": true
+  },
+  "command": [
+    "C:\\Users\\gujja\\.foundry\\bin\\forge.EXE",
+    "test",
+    "--root",
+    "packages/contracts",
+    "--offline",
+    "--threads",
+    "2",
+    "--fuzz-seed",
+    "0x20260908"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.12.10"
+      },
+      {
+        "name": "forge",
+        "version": "forge Version: 1.5.1-stable\nCommit SHA: b0a9dd9ceda36f63e2326ce530c10e6916f4b8a2\nBuild Timestamp: 2025-12-22T11:40:33.870895500Z (1766403633)\nBuild Profile: maxperf"
+      },
+      {
+        "name": "solc",
+        "version": "0.8.30+commit.73712a01"
+      }
+    ],
+    "hardware": "Windows-11-10.0.26200-SP0"
+  },
+  "mathematics": {
+    "assertion_tested": "The complete existing default-profile contract suite passes on the current pinned engine and imported contracts, including numerical, settlement, payment, fuzz and invariant cases.",
+    "coefficient_domain": "Exact Solidity checked integer arithmetic, Uint512 helpers, fixed-point Q64/Q128 quantities and raw ERC20 units; sampled fuzz inputs under existing per-test bounds.",
+    "conventions": "Repository's existing notation, fixed-point scaling, conservative rounding, explicit tick/reference conventions and test bounds are unchanged. No theorem or implementation changes are made.",
+    "inputs": [
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IDaiLikePermit.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IERC20MetadataUppercase.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IERC7597Permit.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IPermit2.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IRescuable.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IWETH.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/Calldata.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/CalldataPtr.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/ECDSA.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/RevertReasonForwarder.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/SafeERC20.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/StringUtil.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/Transient.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/TransientLock.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/TransientLockUnsafe.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/TransientUnsafe.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/UniERC20.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/mixins/EthReceiver.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/mixins/OnlyWethReceiver.sol",
+      "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/mixins/Rescuable.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/access/Ownable.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC1271.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC165.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC20.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/Context.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/Panic.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/Strings.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+      "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
+      "packages/contracts/foundry.toml",
+      "packages/contracts/package.json",
+      "packages/contracts/remappings.txt",
+      "packages/contracts/src/OrbitalDemoDollar.sol",
+      "packages/contracts/src/OrbitalPayments.sol",
+      "packages/contracts/src/OrbitalSwapVMRouter.sol",
+      "packages/contracts/src/interfaces/IOrbitalLifecycle.sol",
+      "packages/contracts/src/interfaces/IOrbitalRouter.sol",
+      "packages/contracts/src/libraries/CurveEvaluation.sol",
+      "packages/contracts/src/libraries/DualCertificate.sol",
+      "packages/contracts/src/libraries/FrontierComposition.sol",
+      "packages/contracts/src/libraries/FrontierEndpoint.sol",
+      "packages/contracts/src/libraries/FrontierEvents.sol",
+      "packages/contracts/src/libraries/FrontierSchedule.sol",
+      "packages/contracts/src/libraries/FrontierTurn.sol",
+      "packages/contracts/src/libraries/InteriorSwap.sol",
+      "packages/contracts/src/libraries/IntervalMath.sol",
+      "packages/contracts/src/libraries/LowerSheetProposal.sol",
+      "packages/contracts/src/libraries/OrbitalMath.sol",
+      "packages/contracts/src/libraries/OrbitalOrderCodec.sol",
+      "packages/contracts/src/libraries/OrbitalSettlement.sol",
+      "packages/contracts/src/libraries/OrbitalStorage.sol",
+      "packages/contracts/src/libraries/RootBracket.sol",
+      "packages/contracts/src/libraries/SignedWide.sol",
+      "packages/contracts/src/libraries/SlackCertificate.sol",
+      "packages/contracts/src/libraries/SphereStep.sol",
+      "packages/contracts/src/libraries/StrategyInitializer.sol",
+      "packages/contracts/src/libraries/TickGeometry.sol",
+      "packages/contracts/src/libraries/WideMath.sol",
+      "packages/contracts/test/Certificate.t.sol",
+      "packages/contracts/test/Codec.t.sol",
+      "packages/contracts/test/CurveEvaluation.t.sol",
+      "packages/contracts/test/DemoDollar.t.sol",
+      "packages/contracts/test/DualCertificate.t.sol",
+      "packages/contracts/test/FeeInstruction.t.sol",
+      "packages/contracts/test/ForkResolution.t.sol",
+      "packages/contracts/test/FrontierComposition.t.sol",
+      "packages/contracts/test/FrontierCompositionGas.t.sol",
+      "packages/contracts/test/FrontierEndpoint.t.sol",
+      "packages/contracts/test/FrontierEvents.t.sol",
+      "packages/contracts/test/FrontierPriceExclusion.t.sol",
+      "packages/contracts/test/FrontierSchedule.t.sol",
+      "packages/contracts/test/FrontierTurn.t.sol",
+      "packages/contracts/test/InitializerOracle.t.sol",
+      "packages/contracts/test/InteriorExecution.t.sol",
+      "packages/contracts/test/InteriorProbe.t.sol",
+      "packages/contracts/test/InteriorStateful.t.sol",
+      "packages/contracts/test/InteriorSwap.t.sol",
+      "packages/contracts/test/IntervalMath.t.sol",
+      "packages/contracts/test/LinkedMath.t.sol",
+      "packages/contracts/test/LocalUSDC.t.sol",
+      "packages/contracts/test/LowerSheetProposal.t.sol",
+      "packages/contracts/test/MaximumActivation.t.sol",
+      "packages/contracts/test/MixedExecution.t.sol",
+      "packages/contracts/test/MixedInvoice.t.sol",
+      "packages/contracts/test/OutwardRetention.t.sol",
+      "packages/contracts/test/PaymentSwap.t.sol",
+      "packages/contracts/test/Payments.t.sol",
+      "packages/contracts/test/PayoutBracket.t.sol",
+      "packages/contracts/test/PayoutEndpoint.t.sol",
+      "packages/contracts/test/PilotGas.t.sol",
+      "packages/contracts/test/PilotReversal.t.sol",
+      "packages/contracts/test/ReachableComposition.t.sol",
+      "packages/contracts/test/RootBracket.t.sol",
+      "packages/contracts/test/RouterLifecycle.t.sol",
+      "packages/contracts/test/RouterSettlementSecurity.t.sol",
+      "packages/contracts/test/SeedProposal.t.sol",
+      "packages/contracts/test/Settlement.t.sol",
+      "packages/contracts/test/SharedInventory.t.sol",
+      "packages/contracts/test/SignedWide.t.sol",
+      "packages/contracts/test/SlackCertificate.t.sol",
+      "packages/contracts/test/SlackGridRelease.t.sol",
+      "packages/contracts/test/SphereStep.t.sol",
+      "packages/contracts/test/TickGeometry.t.sol",
+      "packages/contracts/test/WideMath.t.sol",
+      "packages/contracts/test/WideMathFast.t.sol",
+      "packages/contracts/test/fixtures/CurvePrimitiveFixtures.sol",
+      "packages/contracts/test/fixtures/InitializerOracleFixtures.sol",
+      "packages/contracts/test/fixtures/LocalUSDC.sol",
+      "packages/contracts/test/fixtures/LowerSheetFixtures.sol",
+      "packages/contracts/test/fixtures/MixedPilotHarness.sol",
+      "packages/contracts/test/fixtures/PilotGasFixtures.sol",
+      "packages/contracts/vendor/aqua/src/Aqua.sol",
+      "packages/contracts/vendor/aqua/src/interfaces/IAqua.sol",
+      "packages/contracts/vendor/aqua/src/libs/Balance.sol",
+      "packages/contracts/vendor/forge-std/src/Base.sol",
+      "packages/contracts/vendor/forge-std/src/StdAssertions.sol",
+      "packages/contracts/vendor/forge-std/src/StdChains.sol",
+      "packages/contracts/vendor/forge-std/src/StdCheats.sol",
+      "packages/contracts/vendor/forge-std/src/StdConstants.sol",
+      "packages/contracts/vendor/forge-std/src/StdError.sol",
+      "packages/contracts/vendor/forge-std/src/StdInvariant.sol",
+      "packages/contracts/vendor/forge-std/src/StdJson.sol",
+      "packages/contracts/vendor/forge-std/src/StdMath.sol",
+      "packages/contracts/vendor/forge-std/src/StdStorage.sol",
+      "packages/contracts/vendor/forge-std/src/StdStyle.sol",
+      "packages/contracts/vendor/forge-std/src/StdToml.sol",
+      "packages/contracts/vendor/forge-std/src/StdUtils.sol",
+      "packages/contracts/vendor/forge-std/src/Test.sol",
+      "packages/contracts/vendor/forge-std/src/Vm.sol",
+      "packages/contracts/vendor/forge-std/src/console.sol",
+      "packages/contracts/vendor/forge-std/src/console2.sol",
+      "packages/contracts/vendor/forge-std/src/interfaces/IMulticall3.sol",
+      "packages/contracts/vendor/forge-std/src/safeconsole.sol",
+      "packages/contracts/vendor/swap-vm-orbital/src/SwapVM.sol",
+      "packages/contracts/vendor/swap-vm-orbital/src/interfaces/IMakerHooks.sol",
+      "packages/contracts/vendor/swap-vm-orbital/src/interfaces/ISwapVM.sol",
+      "packages/contracts/vendor/swap-vm-orbital/src/interfaces/ITakerCallbacks.sol",
+      "packages/contracts/vendor/swap-vm-orbital/src/libs/InstructionArgs.sol",
+      "packages/contracts/vendor/swap-vm-orbital/src/libs/MakerTraits.sol",
+      "packages/contracts/vendor/swap-vm-orbital/src/libs/ProtocolFee.sol",
+      "packages/contracts/vendor/swap-vm-orbital/src/libs/TakerTraits.sol",
+      "packages/contracts/vendor/swap-vm-orbital/src/libs/VM.sol",
+      "test/evidence/engine-suite/contract-source-units.json",
+      "test/evidence/engine-suite/run.py"
+    ],
+    "bounds": {
+      "selection": "All existing repository contract tests; no method, contract or path filters",
+      "source_units": 153,
+      "test_files": 47,
+      "profile": "default",
+      "fuzz_runs": 256,
+      "invariant_runs": 32,
+      "invariant_depth": 64,
+      "threads": 2,
+      "timeout_seconds": 1800,
+      "combined_log_cap_bytes": 8388608
+    },
+    "non_claims": [
+      "Not a new mathematical proof, independent audit, security certification or full release acceptance.",
+      "No additional CI/release fuzz counts, mutation campaign, target-network gas campaign or Privy wallet proof.",
+      "A finite suite cannot establish universal engine liveness, all-size safety or correctness outside the tested cases.",
+      "Windows enforces runner wall/log bounds but no hard process-tree memory or CPU cap is claimed."
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "Foundry 1.5.1 internal deterministic fuzz/invariant generator",
+    "seed": "0x20260908"
+  },
+  "run": {
+    "started_at": "2026-09-09T01:55:12.777705+00:00",
+    "runtime_seconds": 570.657,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 1800.0,
+    "max_output_bytes": 8388608,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 2
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IDaiLikePermit.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IERC20MetadataUppercase.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IERC7597Permit.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IPermit2.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IRescuable.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IWETH.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/Calldata.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/CalldataPtr.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/ECDSA.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/RevertReasonForwarder.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/SafeERC20.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/StringUtil.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/Transient.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/TransientLock.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/TransientLockUnsafe.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/TransientUnsafe.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/UniERC20.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/mixins/EthReceiver.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/mixins/OnlyWethReceiver.sol",
+    "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/mixins/Rescuable.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/access/Ownable.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC1271.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC165.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC20.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/Context.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/Panic.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/Strings.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+    "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
+    "packages/contracts/foundry.toml",
+    "packages/contracts/package.json",
+    "packages/contracts/remappings.txt",
+    "packages/contracts/src/OrbitalDemoDollar.sol",
+    "packages/contracts/src/OrbitalPayments.sol",
+    "packages/contracts/src/OrbitalSwapVMRouter.sol",
+    "packages/contracts/src/interfaces/IOrbitalLifecycle.sol",
+    "packages/contracts/src/interfaces/IOrbitalRouter.sol",
+    "packages/contracts/src/libraries/CurveEvaluation.sol",
+    "packages/contracts/src/libraries/DualCertificate.sol",
+    "packages/contracts/src/libraries/FrontierComposition.sol",
+    "packages/contracts/src/libraries/FrontierEndpoint.sol",
+    "packages/contracts/src/libraries/FrontierEvents.sol",
+    "packages/contracts/src/libraries/FrontierSchedule.sol",
+    "packages/contracts/src/libraries/FrontierTurn.sol",
+    "packages/contracts/src/libraries/InteriorSwap.sol",
+    "packages/contracts/src/libraries/IntervalMath.sol",
+    "packages/contracts/src/libraries/LowerSheetProposal.sol",
+    "packages/contracts/src/libraries/OrbitalMath.sol",
+    "packages/contracts/src/libraries/OrbitalOrderCodec.sol",
+    "packages/contracts/src/libraries/OrbitalSettlement.sol",
+    "packages/contracts/src/libraries/OrbitalStorage.sol",
+    "packages/contracts/src/libraries/RootBracket.sol",
+    "packages/contracts/src/libraries/SignedWide.sol",
+    "packages/contracts/src/libraries/SlackCertificate.sol",
+    "packages/contracts/src/libraries/SphereStep.sol",
+    "packages/contracts/src/libraries/StrategyInitializer.sol",
+    "packages/contracts/src/libraries/TickGeometry.sol",
+    "packages/contracts/src/libraries/WideMath.sol",
+    "packages/contracts/test/Certificate.t.sol",
+    "packages/contracts/test/Codec.t.sol",
+    "packages/contracts/test/CurveEvaluation.t.sol",
+    "packages/contracts/test/DemoDollar.t.sol",
+    "packages/contracts/test/DualCertificate.t.sol",
+    "packages/contracts/test/FeeInstruction.t.sol",
+    "packages/contracts/test/ForkResolution.t.sol",
+    "packages/contracts/test/FrontierComposition.t.sol",
+    "packages/contracts/test/FrontierCompositionGas.t.sol",
+    "packages/contracts/test/FrontierEndpoint.t.sol",
+    "packages/contracts/test/FrontierEvents.t.sol",
+    "packages/contracts/test/FrontierPriceExclusion.t.sol",
+    "packages/contracts/test/FrontierSchedule.t.sol",
+    "packages/contracts/test/FrontierTurn.t.sol",
+    "packages/contracts/test/InitializerOracle.t.sol",
+    "packages/contracts/test/InteriorExecution.t.sol",
+    "packages/contracts/test/InteriorProbe.t.sol",
+    "packages/contracts/test/InteriorStateful.t.sol",
+    "packages/contracts/test/InteriorSwap.t.sol",
+    "packages/contracts/test/IntervalMath.t.sol",
+    "packages/contracts/test/LinkedMath.t.sol",
+    "packages/contracts/test/LocalUSDC.t.sol",
+    "packages/contracts/test/LowerSheetProposal.t.sol",
+    "packages/contracts/test/MaximumActivation.t.sol",
+    "packages/contracts/test/MixedExecution.t.sol",
+    "packages/contracts/test/MixedInvoice.t.sol",
+    "packages/contracts/test/OutwardRetention.t.sol",
+    "packages/contracts/test/PaymentSwap.t.sol",
+    "packages/contracts/test/Payments.t.sol",
+    "packages/contracts/test/PayoutBracket.t.sol",
+    "packages/contracts/test/PayoutEndpoint.t.sol",
+    "packages/contracts/test/PilotGas.t.sol",
+    "packages/contracts/test/PilotReversal.t.sol",
+    "packages/contracts/test/ReachableComposition.t.sol",
+    "packages/contracts/test/RootBracket.t.sol",
+    "packages/contracts/test/RouterLifecycle.t.sol",
+    "packages/contracts/test/RouterSettlementSecurity.t.sol",
+    "packages/contracts/test/SeedProposal.t.sol",
+    "packages/contracts/test/Settlement.t.sol",
+    "packages/contracts/test/SharedInventory.t.sol",
+    "packages/contracts/test/SignedWide.t.sol",
+    "packages/contracts/test/SlackCertificate.t.sol",
+    "packages/contracts/test/SlackGridRelease.t.sol",
+    "packages/contracts/test/SphereStep.t.sol",
+    "packages/contracts/test/TickGeometry.t.sol",
+    "packages/contracts/test/WideMath.t.sol",
+    "packages/contracts/test/WideMathFast.t.sol",
+    "packages/contracts/test/fixtures/CurvePrimitiveFixtures.sol",
+    "packages/contracts/test/fixtures/InitializerOracleFixtures.sol",
+    "packages/contracts/test/fixtures/LocalUSDC.sol",
+    "packages/contracts/test/fixtures/LowerSheetFixtures.sol",
+    "packages/contracts/test/fixtures/MixedPilotHarness.sol",
+    "packages/contracts/test/fixtures/PilotGasFixtures.sol",
+    "packages/contracts/vendor/aqua/src/Aqua.sol",
+    "packages/contracts/vendor/aqua/src/interfaces/IAqua.sol",
+    "packages/contracts/vendor/aqua/src/libs/Balance.sol",
+    "packages/contracts/vendor/forge-std/src/Base.sol",
+    "packages/contracts/vendor/forge-std/src/StdAssertions.sol",
+    "packages/contracts/vendor/forge-std/src/StdChains.sol",
+    "packages/contracts/vendor/forge-std/src/StdCheats.sol",
+    "packages/contracts/vendor/forge-std/src/StdConstants.sol",
+    "packages/contracts/vendor/forge-std/src/StdError.sol",
+    "packages/contracts/vendor/forge-std/src/StdInvariant.sol",
+    "packages/contracts/vendor/forge-std/src/StdJson.sol",
+    "packages/contracts/vendor/forge-std/src/StdMath.sol",
+    "packages/contracts/vendor/forge-std/src/StdStorage.sol",
+    "packages/contracts/vendor/forge-std/src/StdStyle.sol",
+    "packages/contracts/vendor/forge-std/src/StdToml.sol",
+    "packages/contracts/vendor/forge-std/src/StdUtils.sol",
+    "packages/contracts/vendor/forge-std/src/Test.sol",
+    "packages/contracts/vendor/forge-std/src/Vm.sol",
+    "packages/contracts/vendor/forge-std/src/console.sol",
+    "packages/contracts/vendor/forge-std/src/console2.sol",
+    "packages/contracts/vendor/forge-std/src/interfaces/IMulticall3.sol",
+    "packages/contracts/vendor/forge-std/src/safeconsole.sol",
+    "packages/contracts/vendor/swap-vm-orbital/src/SwapVM.sol",
+    "packages/contracts/vendor/swap-vm-orbital/src/interfaces/IMakerHooks.sol",
+    "packages/contracts/vendor/swap-vm-orbital/src/interfaces/ISwapVM.sol",
+    "packages/contracts/vendor/swap-vm-orbital/src/interfaces/ITakerCallbacks.sol",
+    "packages/contracts/vendor/swap-vm-orbital/src/libs/InstructionArgs.sol",
+    "packages/contracts/vendor/swap-vm-orbital/src/libs/MakerTraits.sol",
+    "packages/contracts/vendor/swap-vm-orbital/src/libs/ProtocolFee.sol",
+    "packages/contracts/vendor/swap-vm-orbital/src/libs/TakerTraits.sol",
+    "packages/contracts/vendor/swap-vm-orbital/src/libs/VM.sol",
+    "test/evidence/engine-suite/contract-source-units.json",
+    "test/evidence/engine-suite/run.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IDaiLikePermit.sol",
+      "sha256": "7c336080d80be1974edfd7231ff8b351c75f13138067f746fdbdd974c94daa2d",
+      "sha256_after": "7c336080d80be1974edfd7231ff8b351c75f13138067f746fdbdd974c94daa2d"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IERC20MetadataUppercase.sol",
+      "sha256": "2ef62a595c16158eb5e64c68d25bd337af71b20573a08618c0c982501a750b75",
+      "sha256_after": "2ef62a595c16158eb5e64c68d25bd337af71b20573a08618c0c982501a750b75"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IERC7597Permit.sol",
+      "sha256": "fbe2dee29e3fceb47bcd14dc11fa95241369af50b1eb10dd95bb7b2e9bd141f2",
+      "sha256_after": "fbe2dee29e3fceb47bcd14dc11fa95241369af50b1eb10dd95bb7b2e9bd141f2"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IPermit2.sol",
+      "sha256": "03b403705bdb238185e08116b71d1a06867d77deb5a0f161930397cfd543e9d2",
+      "sha256_after": "03b403705bdb238185e08116b71d1a06867d77deb5a0f161930397cfd543e9d2"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IRescuable.sol",
+      "sha256": "50e9a2049e16efdd02cd503c0a377209390a4e4b72e78498d826476baa224857",
+      "sha256_after": "50e9a2049e16efdd02cd503c0a377209390a4e4b72e78498d826476baa224857"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/interfaces/IWETH.sol",
+      "sha256": "25b83e872fb88d3b36a6e846ab8751bdd32c66cd6c932a40e83344ecb3f0eec3",
+      "sha256_after": "25b83e872fb88d3b36a6e846ab8751bdd32c66cd6c932a40e83344ecb3f0eec3"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/Calldata.sol",
+      "sha256": "d27e185b038d2f1300e8f49cefe2e6567eccb11d0a94e7aad1e5e7fb9aaaa2d2",
+      "sha256_after": "d27e185b038d2f1300e8f49cefe2e6567eccb11d0a94e7aad1e5e7fb9aaaa2d2"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/CalldataPtr.sol",
+      "sha256": "515eb8f6f7c97b19a569e6e59be5a22e37169386b02c218cf1435bcbdeade059",
+      "sha256_after": "515eb8f6f7c97b19a569e6e59be5a22e37169386b02c218cf1435bcbdeade059"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/ECDSA.sol",
+      "sha256": "fa7d47792dccc11e5297d7b31827668171b18310b23657acd247d153358df4da",
+      "sha256_after": "fa7d47792dccc11e5297d7b31827668171b18310b23657acd247d153358df4da"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/RevertReasonForwarder.sol",
+      "sha256": "45f5d2490e8936a782ce873a706f7c52432078686a5f63f4f6c1419893809fb0",
+      "sha256_after": "45f5d2490e8936a782ce873a706f7c52432078686a5f63f4f6c1419893809fb0"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/SafeERC20.sol",
+      "sha256": "83d7d06a2c188a29623a0479fad6683804e076d9c9503ae3298942db05b62e66",
+      "sha256_after": "83d7d06a2c188a29623a0479fad6683804e076d9c9503ae3298942db05b62e66"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/StringUtil.sol",
+      "sha256": "9ea99cb0a134bfabe707ba75a1364903fc29e978ae8ae7e9b60212f135521166",
+      "sha256_after": "9ea99cb0a134bfabe707ba75a1364903fc29e978ae8ae7e9b60212f135521166"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/Transient.sol",
+      "sha256": "ec4be2bf53eeaa071223d6052abc2343e69eacdefda281566c4c99178ae1f4eb",
+      "sha256_after": "ec4be2bf53eeaa071223d6052abc2343e69eacdefda281566c4c99178ae1f4eb"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/TransientLock.sol",
+      "sha256": "f0164f9d0ed253359e16583c051b556f4f76b354bbd1cc6640627056d9c0fea7",
+      "sha256_after": "f0164f9d0ed253359e16583c051b556f4f76b354bbd1cc6640627056d9c0fea7"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/TransientLockUnsafe.sol",
+      "sha256": "51ea363db19ebe2d690be7260c34f5c779bc47f578d192e9cde59fa93fefe0f7",
+      "sha256_after": "51ea363db19ebe2d690be7260c34f5c779bc47f578d192e9cde59fa93fefe0f7"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/TransientUnsafe.sol",
+      "sha256": "728be58acbf81a06821450cf9c397a6cd1006ad6c68ca93affec0492c866a648",
+      "sha256_after": "728be58acbf81a06821450cf9c397a6cd1006ad6c68ca93affec0492c866a648"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/libraries/UniERC20.sol",
+      "sha256": "cfff6c9e845aaed113e460fa13750a6a80d250e074b3610c6f552f1b288ceedd",
+      "sha256_after": "cfff6c9e845aaed113e460fa13750a6a80d250e074b3610c6f552f1b288ceedd"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/mixins/EthReceiver.sol",
+      "sha256": "dd3e08bcd67a9b7458058a9008e0d555d9e5970ff46e5533efe1fa6bb4346051",
+      "sha256_after": "dd3e08bcd67a9b7458058a9008e0d555d9e5970ff46e5533efe1fa6bb4346051"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/mixins/OnlyWethReceiver.sol",
+      "sha256": "983c1d3263bc6d2432239a4d733ab310a9371bfda8affc8c29149b4bbe072b5b",
+      "sha256_after": "983c1d3263bc6d2432239a4d733ab310a9371bfda8affc8c29149b4bbe072b5b"
+    },
+    {
+      "path": "node_modules/.pnpm/@1inch+solidity-utils@6.9.1_134525cdde647b56a1d75b284935a539/node_modules/@1inch/solidity-utils/contracts/mixins/Rescuable.sol",
+      "sha256": "d60b364abeed6be39c628ab9e3579ceb4a8a405b0165b6f68355cd5164335a6c",
+      "sha256_after": "d60b364abeed6be39c628ab9e3579ceb4a8a405b0165b6f68355cd5164335a6c"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/access/Ownable.sol",
+      "sha256": "38578bd71c0a909840e67202db527cc6b4e6b437e0f39f0c909da32c1e30cb81",
+      "sha256_after": "38578bd71c0a909840e67202db527cc6b4e6b437e0f39f0c909da32c1e30cb81"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC1271.sol",
+      "sha256": "2d17bba201aa2f9c55e317315b872272a60361848dfceb6b1e77081265c79a27",
+      "sha256_after": "2d17bba201aa2f9c55e317315b872272a60361848dfceb6b1e77081265c79a27"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC1363.sol",
+      "sha256": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b",
+      "sha256_after": "9c3a75a925a6dac9e88b03cddc58d42fe3131b0aaaad84408521f3f7af2f991b"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC165.sol",
+      "sha256": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368",
+      "sha256_after": "dfb3f56fa928a7c6cae41a7ce2c86b9210fa18d33fa26389099d66a0fa790368"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC20.sol",
+      "sha256": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1",
+      "sha256_after": "0158e2d3e0e28bedd99eec13dcf1a8aa3a70a5b7e4bb2ad709609c95fcc740d1"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/IERC5267.sol",
+      "sha256": "f89772d2d4fafcbef8b73bb10ee9a3373edec2eedb2f1b302320915b351dc3d1",
+      "sha256_after": "f89772d2d4fafcbef8b73bb10ee9a3373edec2eedb2f1b302320915b351dc3d1"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "sha256": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b",
+      "sha256_after": "df936240c9a5d342582cbda70dd773b1c1d0e0dda3042b1c17b902ef0c36827b"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "sha256": "9f906af4cba6e7e091dc12d45e6687e1239cf82d17678198424250fd64ab96bd",
+      "sha256_after": "9f906af4cba6e7e091dc12d45e6687e1239cf82d17678198424250fd64ab96bd"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "sha256_after": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "sha256": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "sha256_after": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol",
+      "sha256": "e3e2cd98b7a5b9cba47c4ccec3685fdaf838a00e5d6f188b289907f9a6d0b58f",
+      "sha256_after": "e3e2cd98b7a5b9cba47c4ccec3685fdaf838a00e5d6f188b289907f9a6d0b58f"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
+      "sha256": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082",
+      "sha256_after": "ac1fd9fa99b194a8db8dfa9ae8e3ff44feaa8f16668241fd2b66ae8b47d7c082"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/Context.sol",
+      "sha256": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "sha256_after": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/Panic.sol",
+      "sha256": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec",
+      "sha256_after": "270fc8401c1a13fae6a7a4a2dd6e381b95d658896701e51f0d3e2688acab3dec"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/ShortStrings.sol",
+      "sha256": "542d5dfe5e4375d83f2e3b5246b2d0d7507406a4b582844dbc73bd31ed2faa83",
+      "sha256_after": "542d5dfe5e4375d83f2e3b5246b2d0d7507406a4b582844dbc73bd31ed2faa83"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/StorageSlot.sol",
+      "sha256": "75704538dcb223239280c6726d9a31cf769a7816718517c997fc7d63bdb70778",
+      "sha256_after": "75704538dcb223239280c6726d9a31cf769a7816718517c997fc7d63bdb70778"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/Strings.sol",
+      "sha256": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3",
+      "sha256_after": "2db7d21151644c57f75ed3ab55e87f3cf7fbf587a65345650fd740e2cfd50be3"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/cryptography/EIP712.sol",
+      "sha256": "c20e0789a53610b2551058e0bd556dcd2caa20a7457348c3c73df037fba88861",
+      "sha256_after": "c20e0789a53610b2551058e0bd556dcd2caa20a7457348c3c73df037fba88861"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol",
+      "sha256": "936a89f512d5da84b0896b66d2398f2bea9eefdf2afa788af5265fcd74302693",
+      "sha256_after": "936a89f512d5da84b0896b66d2398f2bea9eefdf2afa788af5265fcd74302693"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "sha256": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca",
+      "sha256_after": "9055c2994b37dea1a41b7b7926dcb510f05dbe2540b0aafc5fbee9558fffd0ca"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/math/Math.sol",
+      "sha256": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98",
+      "sha256_after": "92fee281fd46a1b058b190cf21d6b1a528f0433a907850ae1c9bcf36c5c0cd98"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/math/SafeCast.sol",
+      "sha256": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9",
+      "sha256_after": "9769274bf53f26a7c7896c526ea1980dc9bea5bf5c2a5fd04870008c4afc1de9"
+    },
+    {
+      "path": "node_modules/.pnpm/@openzeppelin+contracts@5.4.0/node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol",
+      "sha256": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7",
+      "sha256_after": "1ed50b1056af886752f0fb48a0165d381e69bb4a4b18b893b066dc144a7e08d7"
+    },
+    {
+      "path": "packages/contracts/foundry.toml",
+      "sha256": "8837e44a7819ccc323dfe5d24eb65b9a5fe4a9fc2d6c47418a88aaa94bfd4f9a",
+      "sha256_after": "8837e44a7819ccc323dfe5d24eb65b9a5fe4a9fc2d6c47418a88aaa94bfd4f9a"
+    },
+    {
+      "path": "packages/contracts/package.json",
+      "sha256": "4ab1ef88f80fae61f1b3c982d576f66e7377307dc7a332514673e001b6e7fba0",
+      "sha256_after": "4ab1ef88f80fae61f1b3c982d576f66e7377307dc7a332514673e001b6e7fba0"
+    },
+    {
+      "path": "packages/contracts/remappings.txt",
+      "sha256": "8e8c9650a5da34495b3b5bcee7c4d1a7cf9aee03382396a1578143008e66149d",
+      "sha256_after": "8e8c9650a5da34495b3b5bcee7c4d1a7cf9aee03382396a1578143008e66149d"
+    },
+    {
+      "path": "packages/contracts/src/OrbitalDemoDollar.sol",
+      "sha256": "5a0140e4bd04c49f8a2c46f5b877bd68e5829aeed504774b966e6f2af60260c9",
+      "sha256_after": "5a0140e4bd04c49f8a2c46f5b877bd68e5829aeed504774b966e6f2af60260c9"
+    },
+    {
+      "path": "packages/contracts/src/OrbitalPayments.sol",
+      "sha256": "02f8c9d2ff55fea0dae6c78c3b28ac251a9067a189a880c3441c367551bef743",
+      "sha256_after": "02f8c9d2ff55fea0dae6c78c3b28ac251a9067a189a880c3441c367551bef743"
+    },
+    {
+      "path": "packages/contracts/src/OrbitalSwapVMRouter.sol",
+      "sha256": "e6c91e3c134e386369d7f5b39d74ccc8aa05f1e8894e2431630c39a4436c1f4a",
+      "sha256_after": "e6c91e3c134e386369d7f5b39d74ccc8aa05f1e8894e2431630c39a4436c1f4a"
+    },
+    {
+      "path": "packages/contracts/src/interfaces/IOrbitalLifecycle.sol",
+      "sha256": "e00b423829a861235d2464258ef8aa9fb5d8396b404e7167ed6dad25e9c2fc48",
+      "sha256_after": "e00b423829a861235d2464258ef8aa9fb5d8396b404e7167ed6dad25e9c2fc48"
+    },
+    {
+      "path": "packages/contracts/src/interfaces/IOrbitalRouter.sol",
+      "sha256": "74427f23e2643d1bbabc12b0ecba598153e90a7aa12a24cfc7cdbdf646f1c73f",
+      "sha256_after": "74427f23e2643d1bbabc12b0ecba598153e90a7aa12a24cfc7cdbdf646f1c73f"
+    },
+    {
+      "path": "packages/contracts/src/libraries/CurveEvaluation.sol",
+      "sha256": "1537bc49e14837d32279279f99a1f09f937c3a9c17e7226fd7dbceab61a864be",
+      "sha256_after": "1537bc49e14837d32279279f99a1f09f937c3a9c17e7226fd7dbceab61a864be"
+    },
+    {
+      "path": "packages/contracts/src/libraries/DualCertificate.sol",
+      "sha256": "255a4d483f465c976a580df452f91327565c2f5dc17376f524c32d03dd0f0448",
+      "sha256_after": "255a4d483f465c976a580df452f91327565c2f5dc17376f524c32d03dd0f0448"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierComposition.sol",
+      "sha256": "2b0cced7ca334b9eb814d821edbdcd4ebb40b4fc9219dd9beddf7bc07599069f",
+      "sha256_after": "2b0cced7ca334b9eb814d821edbdcd4ebb40b4fc9219dd9beddf7bc07599069f"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierEndpoint.sol",
+      "sha256": "7d7569a25afd6d38dedcf3e59b117f9f3de02f57116a05fb728ebbaa4c937058",
+      "sha256_after": "7d7569a25afd6d38dedcf3e59b117f9f3de02f57116a05fb728ebbaa4c937058"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierEvents.sol",
+      "sha256": "69b8bb0ed565bb5c39782b58adb467c7f49794e1ad7fbb9dceda64874893ba43",
+      "sha256_after": "69b8bb0ed565bb5c39782b58adb467c7f49794e1ad7fbb9dceda64874893ba43"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierSchedule.sol",
+      "sha256": "36a26f299bcb9d3cb59b4b32480364b2cd6fea18752e2c416ef073e7c60662ef",
+      "sha256_after": "36a26f299bcb9d3cb59b4b32480364b2cd6fea18752e2c416ef073e7c60662ef"
+    },
+    {
+      "path": "packages/contracts/src/libraries/FrontierTurn.sol",
+      "sha256": "f1d9fc9cf528310040214af00101907ee011efd2be18f58b9394ea7843378e34",
+      "sha256_after": "f1d9fc9cf528310040214af00101907ee011efd2be18f58b9394ea7843378e34"
+    },
+    {
+      "path": "packages/contracts/src/libraries/InteriorSwap.sol",
+      "sha256": "692b9445961ebb785d7f00ec0f9fc72af98e675fa3f6f8d5c93ab44f0a6716c6",
+      "sha256_after": "692b9445961ebb785d7f00ec0f9fc72af98e675fa3f6f8d5c93ab44f0a6716c6"
+    },
+    {
+      "path": "packages/contracts/src/libraries/IntervalMath.sol",
+      "sha256": "e7ea7cd4aa5bb7a63f52b665f1311667bb52715f8a4a5ad32a4dde30bd820898",
+      "sha256_after": "e7ea7cd4aa5bb7a63f52b665f1311667bb52715f8a4a5ad32a4dde30bd820898"
+    },
+    {
+      "path": "packages/contracts/src/libraries/LowerSheetProposal.sol",
+      "sha256": "30f6f54d6b1491e9ee5d62ee30163c9bc8b1f58a4bc8297c227aecbb1548f9cb",
+      "sha256_after": "30f6f54d6b1491e9ee5d62ee30163c9bc8b1f58a4bc8297c227aecbb1548f9cb"
+    },
+    {
+      "path": "packages/contracts/src/libraries/OrbitalMath.sol",
+      "sha256": "6454e86f8b8bea61506c2f5eead0df7936df8a89415597aabf76d3618acbfaeb",
+      "sha256_after": "6454e86f8b8bea61506c2f5eead0df7936df8a89415597aabf76d3618acbfaeb"
+    },
+    {
+      "path": "packages/contracts/src/libraries/OrbitalOrderCodec.sol",
+      "sha256": "f802e2cd7361c1353c0fa17e98a32454707ceb993274572bb35240b75509e717",
+      "sha256_after": "f802e2cd7361c1353c0fa17e98a32454707ceb993274572bb35240b75509e717"
+    },
+    {
+      "path": "packages/contracts/src/libraries/OrbitalSettlement.sol",
+      "sha256": "ec74cc5714beb38330f02d61bec16791cb9b9f97853a21cd43d091df0811673a",
+      "sha256_after": "ec74cc5714beb38330f02d61bec16791cb9b9f97853a21cd43d091df0811673a"
+    },
+    {
+      "path": "packages/contracts/src/libraries/OrbitalStorage.sol",
+      "sha256": "7565599cc48ffe1080ff37770db0d3b400603a44bb7f9ebd18c163bac0699883",
+      "sha256_after": "7565599cc48ffe1080ff37770db0d3b400603a44bb7f9ebd18c163bac0699883"
+    },
+    {
+      "path": "packages/contracts/src/libraries/RootBracket.sol",
+      "sha256": "0e19eb8cb8c7daa41a3ea4ed32c1f6751d254edf689ff140cb155a554dad529d",
+      "sha256_after": "0e19eb8cb8c7daa41a3ea4ed32c1f6751d254edf689ff140cb155a554dad529d"
+    },
+    {
+      "path": "packages/contracts/src/libraries/SignedWide.sol",
+      "sha256": "8142108db5cc11ddf3a33e17855c7ca4a467f22687194967c28588aef6cb4426",
+      "sha256_after": "8142108db5cc11ddf3a33e17855c7ca4a467f22687194967c28588aef6cb4426"
+    },
+    {
+      "path": "packages/contracts/src/libraries/SlackCertificate.sol",
+      "sha256": "1f4fafba1f78f98fa1ac868ed6ddaad91e40bbef5dc079ca5cdddf50f72c4e17",
+      "sha256_after": "1f4fafba1f78f98fa1ac868ed6ddaad91e40bbef5dc079ca5cdddf50f72c4e17"
+    },
+    {
+      "path": "packages/contracts/src/libraries/SphereStep.sol",
+      "sha256": "fc913149d1c166afd5c15a3a9be37f05a026b1bb5d2fa2573ed867bb9e4f1de6",
+      "sha256_after": "fc913149d1c166afd5c15a3a9be37f05a026b1bb5d2fa2573ed867bb9e4f1de6"
+    },
+    {
+      "path": "packages/contracts/src/libraries/StrategyInitializer.sol",
+      "sha256": "8c6d4566ce4c7c1bcea85714afa1c33997fd72adc3a099a376bed2db266ed8b0",
+      "sha256_after": "8c6d4566ce4c7c1bcea85714afa1c33997fd72adc3a099a376bed2db266ed8b0"
+    },
+    {
+      "path": "packages/contracts/src/libraries/TickGeometry.sol",
+      "sha256": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b",
+      "sha256_after": "930431a7bab7d38ad1fc5b173d91a4f5e9340ca5af04631a46c61fc1fd35204b"
+    },
+    {
+      "path": "packages/contracts/src/libraries/WideMath.sol",
+      "sha256": "61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d",
+      "sha256_after": "61a8fe0c6aa8dfeae0767a095e327c586b87963fdf9877b7dbaef0029d6f8a3d"
+    },
+    {
+      "path": "packages/contracts/test/Certificate.t.sol",
+      "sha256": "251eea7801234631e7438beb81a53651ced99b5ec57b7c5290cdcd488480ead2",
+      "sha256_after": "251eea7801234631e7438beb81a53651ced99b5ec57b7c5290cdcd488480ead2"
+    },
+    {
+      "path": "packages/contracts/test/Codec.t.sol",
+      "sha256": "4a23eae322c39c7d2dde240fc45235e4b11b6c365922816856a098fb162bf115",
+      "sha256_after": "4a23eae322c39c7d2dde240fc45235e4b11b6c365922816856a098fb162bf115"
+    },
+    {
+      "path": "packages/contracts/test/CurveEvaluation.t.sol",
+      "sha256": "34de5ba1aeaea49826d38959cc53e506ddff8b3da3d73149ec59c0c2292cdee4",
+      "sha256_after": "34de5ba1aeaea49826d38959cc53e506ddff8b3da3d73149ec59c0c2292cdee4"
+    },
+    {
+      "path": "packages/contracts/test/DemoDollar.t.sol",
+      "sha256": "8c83228596c0e821ec35bb048912d30fa8b6e33d957462bca1ec629e4a5295ab",
+      "sha256_after": "8c83228596c0e821ec35bb048912d30fa8b6e33d957462bca1ec629e4a5295ab"
+    },
+    {
+      "path": "packages/contracts/test/DualCertificate.t.sol",
+      "sha256": "c2d949595b1d4e824920dd8b411213a0ef3e62923bbb4ea9e047e08f378c86b8",
+      "sha256_after": "c2d949595b1d4e824920dd8b411213a0ef3e62923bbb4ea9e047e08f378c86b8"
+    },
+    {
+      "path": "packages/contracts/test/FeeInstruction.t.sol",
+      "sha256": "40c4340ca1093797c7ecdb0c8b5a621fafaec111c2e6920126b9b83118b51c32",
+      "sha256_after": "40c4340ca1093797c7ecdb0c8b5a621fafaec111c2e6920126b9b83118b51c32"
+    },
+    {
+      "path": "packages/contracts/test/ForkResolution.t.sol",
+      "sha256": "a0fec14391ad4fbe2b4e3a9d0b7093ea34bf667723b332cc5a28f8363dba42d9",
+      "sha256_after": "a0fec14391ad4fbe2b4e3a9d0b7093ea34bf667723b332cc5a28f8363dba42d9"
+    },
+    {
+      "path": "packages/contracts/test/FrontierComposition.t.sol",
+      "sha256": "c8e0a09a2fb3bcc1ebdb56f018527d8d6a33a74e1cc13473373ab5d861cc248f",
+      "sha256_after": "c8e0a09a2fb3bcc1ebdb56f018527d8d6a33a74e1cc13473373ab5d861cc248f"
+    },
+    {
+      "path": "packages/contracts/test/FrontierCompositionGas.t.sol",
+      "sha256": "db8fac5643a75e62605c753deb22089422a1298ce0f1419a34eaffbd10571c71",
+      "sha256_after": "db8fac5643a75e62605c753deb22089422a1298ce0f1419a34eaffbd10571c71"
+    },
+    {
+      "path": "packages/contracts/test/FrontierEndpoint.t.sol",
+      "sha256": "388d2d09b98ca6574f23f6ea47741e9e7b7fbb715c0446eda45c4a01d43a618e",
+      "sha256_after": "388d2d09b98ca6574f23f6ea47741e9e7b7fbb715c0446eda45c4a01d43a618e"
+    },
+    {
+      "path": "packages/contracts/test/FrontierEvents.t.sol",
+      "sha256": "8dede26540626afb1cd817159327fa96cd8a52dfcbfdc7f2fea13cf9986761da",
+      "sha256_after": "8dede26540626afb1cd817159327fa96cd8a52dfcbfdc7f2fea13cf9986761da"
+    },
+    {
+      "path": "packages/contracts/test/FrontierPriceExclusion.t.sol",
+      "sha256": "d1df583e9d344de0060358992b0799af2b5fc5c3d04a554d372670a3f5aa167d",
+      "sha256_after": "d1df583e9d344de0060358992b0799af2b5fc5c3d04a554d372670a3f5aa167d"
+    },
+    {
+      "path": "packages/contracts/test/FrontierSchedule.t.sol",
+      "sha256": "17acdc4350563bfdfc370a79231a14805f644c73e0dcf78f0cc3f9540b4f6239",
+      "sha256_after": "17acdc4350563bfdfc370a79231a14805f644c73e0dcf78f0cc3f9540b4f6239"
+    },
+    {
+      "path": "packages/contracts/test/FrontierTurn.t.sol",
+      "sha256": "0b5d386a1e504fa2447c47895c552b20d464e22a6b1b85ac7d0132207deb188b",
+      "sha256_after": "0b5d386a1e504fa2447c47895c552b20d464e22a6b1b85ac7d0132207deb188b"
+    },
+    {
+      "path": "packages/contracts/test/InitializerOracle.t.sol",
+      "sha256": "37de1a64acf8c382cc032e6f21fbba937db929c108f6f120c23d166589487b12",
+      "sha256_after": "37de1a64acf8c382cc032e6f21fbba937db929c108f6f120c23d166589487b12"
+    },
+    {
+      "path": "packages/contracts/test/InteriorExecution.t.sol",
+      "sha256": "6c6f860dee5f44c0c4f7e2aa0b3fdeff4700ed4401118e0590753c38bc6e4e0a",
+      "sha256_after": "6c6f860dee5f44c0c4f7e2aa0b3fdeff4700ed4401118e0590753c38bc6e4e0a"
+    },
+    {
+      "path": "packages/contracts/test/InteriorProbe.t.sol",
+      "sha256": "ec51c09e9bd0aef2ecc9bbb03cec0ebf92458b7cd9e102de85d115885015f0fc",
+      "sha256_after": "ec51c09e9bd0aef2ecc9bbb03cec0ebf92458b7cd9e102de85d115885015f0fc"
+    },
+    {
+      "path": "packages/contracts/test/InteriorStateful.t.sol",
+      "sha256": "8a565158b8af8514b640b8439c60f2525b3dfa381753f6b36355cddf21196027",
+      "sha256_after": "8a565158b8af8514b640b8439c60f2525b3dfa381753f6b36355cddf21196027"
+    },
+    {
+      "path": "packages/contracts/test/InteriorSwap.t.sol",
+      "sha256": "443a06b3e2aa5054667fbf24522d9bc997cc1e013e65adcebf3f03f0815eb065",
+      "sha256_after": "443a06b3e2aa5054667fbf24522d9bc997cc1e013e65adcebf3f03f0815eb065"
+    },
+    {
+      "path": "packages/contracts/test/IntervalMath.t.sol",
+      "sha256": "95279e7b163bdafbe18caf8e27d27727f1e84c05bf2cd1b953b6c6f64b2d9da4",
+      "sha256_after": "95279e7b163bdafbe18caf8e27d27727f1e84c05bf2cd1b953b6c6f64b2d9da4"
+    },
+    {
+      "path": "packages/contracts/test/LinkedMath.t.sol",
+      "sha256": "bce46f7ddff1c31376bbf3d2c9fc0d0f56818e99d90c3adf4f7ae6a170e5dfe9",
+      "sha256_after": "bce46f7ddff1c31376bbf3d2c9fc0d0f56818e99d90c3adf4f7ae6a170e5dfe9"
+    },
+    {
+      "path": "packages/contracts/test/LocalUSDC.t.sol",
+      "sha256": "4bd6d5004e741d475e5cedcbb00ef626f0e84142b3a03a22b04843844d5d0a26",
+      "sha256_after": "4bd6d5004e741d475e5cedcbb00ef626f0e84142b3a03a22b04843844d5d0a26"
+    },
+    {
+      "path": "packages/contracts/test/LowerSheetProposal.t.sol",
+      "sha256": "dd957d4776e58dcdf4dba9c5222d5b6c642c88b525396a6c678d50b3a5e151c8",
+      "sha256_after": "dd957d4776e58dcdf4dba9c5222d5b6c642c88b525396a6c678d50b3a5e151c8"
+    },
+    {
+      "path": "packages/contracts/test/MaximumActivation.t.sol",
+      "sha256": "3b3761be30c1d627a1529df21ff4af648eeb2db5781f002acc97e687c85afed3",
+      "sha256_after": "3b3761be30c1d627a1529df21ff4af648eeb2db5781f002acc97e687c85afed3"
+    },
+    {
+      "path": "packages/contracts/test/MixedExecution.t.sol",
+      "sha256": "17f9b30499cc69b0cbb7849f7c769aef1585e2873180d7178fafd8a2aab25c4a",
+      "sha256_after": "17f9b30499cc69b0cbb7849f7c769aef1585e2873180d7178fafd8a2aab25c4a"
+    },
+    {
+      "path": "packages/contracts/test/MixedInvoice.t.sol",
+      "sha256": "9c3edbd0308e08f76b79837ad966ecc27631dd713498e9b76db4bb0f913c0344",
+      "sha256_after": "9c3edbd0308e08f76b79837ad966ecc27631dd713498e9b76db4bb0f913c0344"
+    },
+    {
+      "path": "packages/contracts/test/OutwardRetention.t.sol",
+      "sha256": "7875fabbe587e22ac9a6b41aae51e0b9857b2925b409d8baad4a564119db87e0",
+      "sha256_after": "7875fabbe587e22ac9a6b41aae51e0b9857b2925b409d8baad4a564119db87e0"
+    },
+    {
+      "path": "packages/contracts/test/PaymentSwap.t.sol",
+      "sha256": "88e8774581db0305d46f9686c28c5a1ee0765744bae78ccd27d8da0be01326d8",
+      "sha256_after": "88e8774581db0305d46f9686c28c5a1ee0765744bae78ccd27d8da0be01326d8"
+    },
+    {
+      "path": "packages/contracts/test/Payments.t.sol",
+      "sha256": "08f55e1a21a4479597707cd55f65e03e6767b02195e3019fbb766a5a4c9a96d2",
+      "sha256_after": "08f55e1a21a4479597707cd55f65e03e6767b02195e3019fbb766a5a4c9a96d2"
+    },
+    {
+      "path": "packages/contracts/test/PayoutBracket.t.sol",
+      "sha256": "6b4bf37f110c539d9aeaad6ce2bd9ba58b971e3793891ceecc1df98be9a031fe",
+      "sha256_after": "6b4bf37f110c539d9aeaad6ce2bd9ba58b971e3793891ceecc1df98be9a031fe"
+    },
+    {
+      "path": "packages/contracts/test/PayoutEndpoint.t.sol",
+      "sha256": "7e28fce616af6cb7aa35adb0ce8bbc93113f8834f190e9800a41a5bf63d3a736",
+      "sha256_after": "7e28fce616af6cb7aa35adb0ce8bbc93113f8834f190e9800a41a5bf63d3a736"
+    },
+    {
+      "path": "packages/contracts/test/PilotGas.t.sol",
+      "sha256": "4df2c5a4081bb7501d14705ac6bf5cfc6bd283d3bea2e7f0f13da88433f4b59a",
+      "sha256_after": "4df2c5a4081bb7501d14705ac6bf5cfc6bd283d3bea2e7f0f13da88433f4b59a"
+    },
+    {
+      "path": "packages/contracts/test/PilotReversal.t.sol",
+      "sha256": "6270a283dc3b02559c9849ce4d2aa6d02ae67654018239d7f7d796ecf9482597",
+      "sha256_after": "6270a283dc3b02559c9849ce4d2aa6d02ae67654018239d7f7d796ecf9482597"
+    },
+    {
+      "path": "packages/contracts/test/ReachableComposition.t.sol",
+      "sha256": "6a87720431f6bd0b39f6de68a700b34e64ff8c59719f986876d377ce0c075cf3",
+      "sha256_after": "6a87720431f6bd0b39f6de68a700b34e64ff8c59719f986876d377ce0c075cf3"
+    },
+    {
+      "path": "packages/contracts/test/RootBracket.t.sol",
+      "sha256": "2b89df005bf1014a6dcfa5800c2581351e472edbda1ca0265b22809a56554f6b",
+      "sha256_after": "2b89df005bf1014a6dcfa5800c2581351e472edbda1ca0265b22809a56554f6b"
+    },
+    {
+      "path": "packages/contracts/test/RouterLifecycle.t.sol",
+      "sha256": "f41aade4879841fac7b0a4206f12e9e554e48890f757e7d5a7145f8e8dae70d8",
+      "sha256_after": "f41aade4879841fac7b0a4206f12e9e554e48890f757e7d5a7145f8e8dae70d8"
+    },
+    {
+      "path": "packages/contracts/test/RouterSettlementSecurity.t.sol",
+      "sha256": "43b6669f623dcc935b5a21266489f48372ec32e707d25ec953b116922dd2a1e2",
+      "sha256_after": "43b6669f623dcc935b5a21266489f48372ec32e707d25ec953b116922dd2a1e2"
+    },
+    {
+      "path": "packages/contracts/test/SeedProposal.t.sol",
+      "sha256": "eb565a54196ca6dd5090fa4a0f63fc42a0e1e5220cc844bedc05027664a4d39a",
+      "sha256_after": "eb565a54196ca6dd5090fa4a0f63fc42a0e1e5220cc844bedc05027664a4d39a"
+    },
+    {
+      "path": "packages/contracts/test/Settlement.t.sol",
+      "sha256": "5d29e794e46970fa280cd73c8a49851a7b1170f8dbbbab1fa4e34cf94609b07a",
+      "sha256_after": "5d29e794e46970fa280cd73c8a49851a7b1170f8dbbbab1fa4e34cf94609b07a"
+    },
+    {
+      "path": "packages/contracts/test/SharedInventory.t.sol",
+      "sha256": "eef282439a03c0a905c981e9732e11ab496aba207bd35499e6192347f9750392",
+      "sha256_after": "eef282439a03c0a905c981e9732e11ab496aba207bd35499e6192347f9750392"
+    },
+    {
+      "path": "packages/contracts/test/SignedWide.t.sol",
+      "sha256": "0a020a1c93eaf39f5685e12812aa9055e476f6352fea81ee5bf0a10ae49d7a82",
+      "sha256_after": "0a020a1c93eaf39f5685e12812aa9055e476f6352fea81ee5bf0a10ae49d7a82"
+    },
+    {
+      "path": "packages/contracts/test/SlackCertificate.t.sol",
+      "sha256": "5a6631553e3777af5892706f371dc8bc284123743b810a886cbae1f1a0240c11",
+      "sha256_after": "5a6631553e3777af5892706f371dc8bc284123743b810a886cbae1f1a0240c11"
+    },
+    {
+      "path": "packages/contracts/test/SlackGridRelease.t.sol",
+      "sha256": "f0b5ec21cd4248edd243697c910f6c8cddb156ad47e037e62c7f502219523252",
+      "sha256_after": "f0b5ec21cd4248edd243697c910f6c8cddb156ad47e037e62c7f502219523252"
+    },
+    {
+      "path": "packages/contracts/test/SphereStep.t.sol",
+      "sha256": "d10ad7d00744c84fbe0069e8edf698bac7d68e78384bfbe0abd8f309b5869d9c",
+      "sha256_after": "d10ad7d00744c84fbe0069e8edf698bac7d68e78384bfbe0abd8f309b5869d9c"
+    },
+    {
+      "path": "packages/contracts/test/TickGeometry.t.sol",
+      "sha256": "bdfc6f583c0f7da0c3ed5a0eec20ff893f7071a98e4a698598edf0206955f6d7",
+      "sha256_after": "bdfc6f583c0f7da0c3ed5a0eec20ff893f7071a98e4a698598edf0206955f6d7"
+    },
+    {
+      "path": "packages/contracts/test/WideMath.t.sol",
+      "sha256": "abecb4d1fd0940e05bb77e59f8ae3fb8832099390c68bb6f67012d3e889311ef",
+      "sha256_after": "abecb4d1fd0940e05bb77e59f8ae3fb8832099390c68bb6f67012d3e889311ef"
+    },
+    {
+      "path": "packages/contracts/test/WideMathFast.t.sol",
+      "sha256": "213a4ca61912c7a7e89381fe325ac6e454e62915a30a5a40a4a37fd808ab96b5",
+      "sha256_after": "213a4ca61912c7a7e89381fe325ac6e454e62915a30a5a40a4a37fd808ab96b5"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/CurvePrimitiveFixtures.sol",
+      "sha256": "ef0c9b0d9ecc07af1c754a85f5459510c1e9a54fd055b3d058201816a9357d5b",
+      "sha256_after": "ef0c9b0d9ecc07af1c754a85f5459510c1e9a54fd055b3d058201816a9357d5b"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/InitializerOracleFixtures.sol",
+      "sha256": "a7a8320f75fc740ccd9849444c9fee77a2b2fa474058c6e030f3cfed15a2e1e8",
+      "sha256_after": "a7a8320f75fc740ccd9849444c9fee77a2b2fa474058c6e030f3cfed15a2e1e8"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/LocalUSDC.sol",
+      "sha256": "214d19937c70edcf518f929e4e8c426a0105362f34de4ab342898ad7b6b92cad",
+      "sha256_after": "214d19937c70edcf518f929e4e8c426a0105362f34de4ab342898ad7b6b92cad"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/LowerSheetFixtures.sol",
+      "sha256": "c3dc33805e3ca552bd97eaaab6b07f78bcc61c155385c5f25d50904e4ea652cf",
+      "sha256_after": "c3dc33805e3ca552bd97eaaab6b07f78bcc61c155385c5f25d50904e4ea652cf"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/MixedPilotHarness.sol",
+      "sha256": "15cac64a17f28af1ddf4411803800d5205e75bbc0302fb3f8db31b94cf27c52d",
+      "sha256_after": "15cac64a17f28af1ddf4411803800d5205e75bbc0302fb3f8db31b94cf27c52d"
+    },
+    {
+      "path": "packages/contracts/test/fixtures/PilotGasFixtures.sol",
+      "sha256": "24574a6786cb538da06385e78497cfb4c2786fc48a730e6f611e84f3a6046e64",
+      "sha256_after": "24574a6786cb538da06385e78497cfb4c2786fc48a730e6f611e84f3a6046e64"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/src/Aqua.sol",
+      "sha256": "de94a67c58f7b8b9e95c03f6a9c2acbacf525b5f43f8255111a83a0f5156b68c",
+      "sha256_after": "de94a67c58f7b8b9e95c03f6a9c2acbacf525b5f43f8255111a83a0f5156b68c"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/src/interfaces/IAqua.sol",
+      "sha256": "915cbe38c77b46c3927143693a1a1b8ca0f32f75dc34cd5c18526a8103e94fd9",
+      "sha256_after": "915cbe38c77b46c3927143693a1a1b8ca0f32f75dc34cd5c18526a8103e94fd9"
+    },
+    {
+      "path": "packages/contracts/vendor/aqua/src/libs/Balance.sol",
+      "sha256": "b0a33ae9b8864f874b2fac31d8197c2edd5fbb8022b77491c3243fc7949225ce",
+      "sha256_after": "b0a33ae9b8864f874b2fac31d8197c2edd5fbb8022b77491c3243fc7949225ce"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/Base.sol",
+      "sha256": "fc32a987e0555c69c646d995981acbcc57d5cd0173a364d37b9f79e3aa00ff0e",
+      "sha256_after": "fc32a987e0555c69c646d995981acbcc57d5cd0173a364d37b9f79e3aa00ff0e"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdAssertions.sol",
+      "sha256": "dcb4e4fe9fdd74f3f04e6f3b46d4d42375ea1f63ca9488902b4b0c289ada0295",
+      "sha256_after": "dcb4e4fe9fdd74f3f04e6f3b46d4d42375ea1f63ca9488902b4b0c289ada0295"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdChains.sol",
+      "sha256": "a2cb4497c4ee5a2ba0ada8b816ea3bb1c9ba62303b70955dc0a2d99b3f98d326",
+      "sha256_after": "a2cb4497c4ee5a2ba0ada8b816ea3bb1c9ba62303b70955dc0a2d99b3f98d326"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdCheats.sol",
+      "sha256": "29af42f9d670fd22e9fc3ebe3c2da194471e93e210361c41d3d26ef04e9dca28",
+      "sha256_after": "29af42f9d670fd22e9fc3ebe3c2da194471e93e210361c41d3d26ef04e9dca28"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdConstants.sol",
+      "sha256": "6c785abd2fb9d42560f867d8e43e729c55f5bda2c06e5ddae27b17e301de4f04",
+      "sha256_after": "6c785abd2fb9d42560f867d8e43e729c55f5bda2c06e5ddae27b17e301de4f04"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdError.sol",
+      "sha256": "82ca17e33a03775e95b4612bd604a8732c73b2982a0278d214e06c68a886dc11",
+      "sha256_after": "82ca17e33a03775e95b4612bd604a8732c73b2982a0278d214e06c68a886dc11"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdInvariant.sol",
+      "sha256": "f572e991cfe874844b3b75a540e38e2161c29b5d9ab1635a3c4f1a16c548f987",
+      "sha256_after": "f572e991cfe874844b3b75a540e38e2161c29b5d9ab1635a3c4f1a16c548f987"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdJson.sol",
+      "sha256": "0211b47e93dbeb6a7de6112470a77137038ed73b79b015847f013e49fcd7511f",
+      "sha256_after": "0211b47e93dbeb6a7de6112470a77137038ed73b79b015847f013e49fcd7511f"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdMath.sol",
+      "sha256": "f04fc0616741563eb32d66c11af7fdca55a7202221e14282268c7be851fc63ab",
+      "sha256_after": "f04fc0616741563eb32d66c11af7fdca55a7202221e14282268c7be851fc63ab"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdStorage.sol",
+      "sha256": "829b263a1fe1a6637fee1a2129ef3cbc716f6020ed56637c8a5be7277ef812ce",
+      "sha256_after": "829b263a1fe1a6637fee1a2129ef3cbc716f6020ed56637c8a5be7277ef812ce"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdStyle.sol",
+      "sha256": "324c2b0e100e88edbdb75f60f8a4c42f056f8d618ae5f56b1c404df64e8280a7",
+      "sha256_after": "324c2b0e100e88edbdb75f60f8a4c42f056f8d618ae5f56b1c404df64e8280a7"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdToml.sol",
+      "sha256": "de3fb35af79a1fd2a2de9bc4ca7866e4102f9d3fbf11f66f3fe82696412d47e2",
+      "sha256_after": "de3fb35af79a1fd2a2de9bc4ca7866e4102f9d3fbf11f66f3fe82696412d47e2"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/StdUtils.sol",
+      "sha256": "812afd6b5b43b1db9a3da817425b7a789149d7b8baf0670520a2224812799706",
+      "sha256_after": "812afd6b5b43b1db9a3da817425b7a789149d7b8baf0670520a2224812799706"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/Test.sol",
+      "sha256": "b1b48a4dfbd65fed186163326dc8870316679f64a195aa18050f83657d2df39c",
+      "sha256_after": "b1b48a4dfbd65fed186163326dc8870316679f64a195aa18050f83657d2df39c"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/Vm.sol",
+      "sha256": "c44d7bc0c4c4e47df60ee863291632df7947cb58d5395b3a02a4e93d029c6f06",
+      "sha256_after": "c44d7bc0c4c4e47df60ee863291632df7947cb58d5395b3a02a4e93d029c6f06"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/console.sol",
+      "sha256": "896c5a5a5c235cb11a39876d430e1fc2c621e7950c4637ca58251b84b053f178",
+      "sha256_after": "896c5a5a5c235cb11a39876d430e1fc2c621e7950c4637ca58251b84b053f178"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/console2.sol",
+      "sha256": "3bbe2e07ec53d8cf9c091667fe10234fcb3e2b45eab2c711002188806f46e779",
+      "sha256_after": "3bbe2e07ec53d8cf9c091667fe10234fcb3e2b45eab2c711002188806f46e779"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/interfaces/IMulticall3.sol",
+      "sha256": "6620d9c5ea2e2291440e1dcce5072f948b7ec4d65075876a0d0ac9267d3342e3",
+      "sha256_after": "6620d9c5ea2e2291440e1dcce5072f948b7ec4d65075876a0d0ac9267d3342e3"
+    },
+    {
+      "path": "packages/contracts/vendor/forge-std/src/safeconsole.sol",
+      "sha256": "ed11aa2efc83fa8e575215a11dd7a9be385cf49dacbc379630168d7334899e46",
+      "sha256_after": "ed11aa2efc83fa8e575215a11dd7a9be385cf49dacbc379630168d7334899e46"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/SwapVM.sol",
+      "sha256": "56ad0b028912653eb0742c89184b99899396e81912f2e088b220a29fe1f932dc",
+      "sha256_after": "56ad0b028912653eb0742c89184b99899396e81912f2e088b220a29fe1f932dc"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/interfaces/IMakerHooks.sol",
+      "sha256": "a60fc7993839fe88db5e81ef3b6d447b8fc0641a638e14f618d7e5166b5f9c6e",
+      "sha256_after": "a60fc7993839fe88db5e81ef3b6d447b8fc0641a638e14f618d7e5166b5f9c6e"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/interfaces/ISwapVM.sol",
+      "sha256": "3739663b65fa61213dfe5867944cc4a120b0d4899fbbbb4c884001b12821bf46",
+      "sha256_after": "3739663b65fa61213dfe5867944cc4a120b0d4899fbbbb4c884001b12821bf46"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/interfaces/ITakerCallbacks.sol",
+      "sha256": "1a0577f50221291d8eef3a35a6451b0934a42086433c70fa2b841add2496c561",
+      "sha256_after": "1a0577f50221291d8eef3a35a6451b0934a42086433c70fa2b841add2496c561"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/InstructionArgs.sol",
+      "sha256": "035ef4162a56291cfbb265264b0b4bf8f42c8d7d1ae73fe07aa673b5f104b24f",
+      "sha256_after": "035ef4162a56291cfbb265264b0b4bf8f42c8d7d1ae73fe07aa673b5f104b24f"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/MakerTraits.sol",
+      "sha256": "d8fc0d15046c497cf9d53785a052c992abe03960e7cb02ca6ec7f3e609a67ec2",
+      "sha256_after": "d8fc0d15046c497cf9d53785a052c992abe03960e7cb02ca6ec7f3e609a67ec2"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/ProtocolFee.sol",
+      "sha256": "9bf03ea167b4b1c5c8252d040300efd028f4ad3c0e2c50a2ba79f1a21ebd0069",
+      "sha256_after": "9bf03ea167b4b1c5c8252d040300efd028f4ad3c0e2c50a2ba79f1a21ebd0069"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/TakerTraits.sol",
+      "sha256": "197e6d9a35546dc8b2f63998fe4adb16c86f88ce84baad3ac91ca97b8079a525",
+      "sha256_after": "197e6d9a35546dc8b2f63998fe4adb16c86f88ce84baad3ac91ca97b8079a525"
+    },
+    {
+      "path": "packages/contracts/vendor/swap-vm-orbital/src/libs/VM.sol",
+      "sha256": "31707c8697667ef9f09c7346dafcd07d469a454889930ed97b5fef318ee94622",
+      "sha256_after": "31707c8697667ef9f09c7346dafcd07d469a454889930ed97b5fef318ee94622"
+    },
+    {
+      "path": "test/evidence/engine-suite/contract-source-units.json",
+      "sha256": "92e5420861ddac74f6f5d2b66936097f70df713c3480343d3362a1eee6f19a50",
+      "sha256_after": "92e5420861ddac74f6f5d2b66936097f70df713c3480343d3362a1eee6f19a50"
+    },
+    {
+      "path": "test/evidence/engine-suite/run.py",
+      "sha256": "ec24d15da07fc6846f14fcd5ac092c9b524b2d2aade44cad444652f0bf445a86",
+      "sha256_after": "ec24d15da07fc6846f14fcd5ac092c9b524b2d2aade44cad444652f0bf445a86"
+    }
+  ],
+  "output_directory": "test/evidence/engine-suite/contracts",
+  "declared_results": [],
+  "outputs": [
+    {
+      "path": "test/evidence/engine-suite/contracts/stdout.txt",
+      "sha256": "799e8c36d08eaeb91719b45b06f16e68efe7a9c565075dc0770ac591a457123a",
+      "kind": "log"
+    },
+    {
+      "path": "test/evidence/engine-suite/contracts/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    },
+    {
+      "check": "Complete existing suite emitted a nonempty result with zero failures and skips",
+      "passed": true
+    }
+  ],
+  "result": "Existing contracts suite reproduced within its stated bounds; no independent implementation audit or release acceptance established.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

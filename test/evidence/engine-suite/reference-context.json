@@ -1,0 +1,24 @@
+{
+  "environmentOverrides": {},
+  "preRunCommit": "0dc0ac2a44469c797155009d3ae746654ccfb0ac",
+  "preRunDirtyFiles": [
+    " M apps/web/src/app/globals.css",
+    " M apps/web/src/app/loading.tsx",
+    " M apps/web/src/components/Shell.module.css",
+    " M apps/web/src/components/Shell.tsx",
+    " M apps/web/src/features/proofEvidence.ts",
+    " M scripts/evidence.mjs",
+    " M test/evidence/builds/source.json",
+    "?? apps/web/src/app/loading.module.css",
+    "?? test/evidence/engine-suite/",
+    "?? test/evidence/logo-motion/"
+  ],
+  "hardware": "Windows 11, ASUS Vivobook Go E1504FA, 7,817,785,344 bytes physical memory, 8 logical processors",
+  "bounds": {
+    "selection": "All existing unittest-discovered test*.py modules in packages/reference/tests",
+    "test_modules": 25,
+    "precision": "Existing per-test mp.dps and exact arithmetic settings; unchanged",
+    "timeout_seconds": 1800,
+    "combined_log_cap_bytes": 8388608
+  }
+}

@@ -1,0 +1,12 @@
+The initial `python test/evidence/engine-suite/run.py <skill> all` invocation
+completed the contract child process with exit 0 and passed manifest validation.
+contracts-summary.json was written before console output failed at run.py:143:
+
+UnicodeEncodeError: 'charmap' codec can't encode character '\u03bc' in position 372: character maps to <undefined>
+
+This was caused by Windows cp1252 output encoding while echoing captured Forge
+fuzz statistics containing the Greek mu character. The raw UTF-8 stdout/stderr,
+counts, source hashes and successful contract manifest were already preserved.
+
+Continuation (no contract rerun, no driver/source edits):
+python -X utf8 test/evidence/engine-suite/run.py C:/Users/gujja/.codex/plugins/cache/openai-curated-remote/mathbox/3.0.0/skills/computation-audit reference

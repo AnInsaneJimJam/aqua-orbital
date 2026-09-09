@@ -58,6 +58,7 @@ export const evidenceTopics = [
       {label: 'Orbital router source', path: 'packages/contracts/src/OrbitalSwapVMRouter.sol'},
       {label: 'Mixed execution test', path: 'packages/contracts/test/MixedExecution.t.sol'},
       {label: 'Basic engine validation', path: 'test/evidence/engine-basic/README.md'},
+      {label: 'Complete existing test suite', path: 'test/evidence/engine-suite/README.md'},
       {label: 'Execution evidence', path: 'test/evidence/mixed-execution.md'},
       {label: 'Recorded contract run', path: 'test/evidence/contracts-current.json'},
     ],
@@ -114,12 +115,13 @@ export const integrationTopics = [
 /** Only known repository files can be linked from generated status rows. */
 export const checkpointLinks: Record<string, {label: string; path: string}[]> = {
   'local-integration': [{label: 'Local demo runbook', path: 'docs/LOCAL_DEMO.md'}],
-  reference: [{label: 'Reference evidence', path: 'test/evidence/reference-audit/manifest.json'}],
-  contracts: [{label: 'Recorded contract run', path: 'test/evidence/contracts-current.json'}],
+  reference: [{label: 'Current reference test results', path: 'test/evidence/engine-suite/README.md'}, {label: 'Earlier reference evidence', path: 'test/evidence/reference-audit/manifest.json'}],
+  contracts: [{label: 'Current contract test results', path: 'test/evidence/engine-suite/README.md'}],
   sdk: [{label: 'Swap review tests', path: 'packages/sdk/test/swap-review.test.ts'}],
   indexer: [{label: 'Indexer evidence', path: 'test/evidence/backend-reorg.md'}],
   api: [{label: 'API evidence', path: 'test/evidence/backend-api.md'}],
   'engine-basic': [{label: 'Eight-case engine result', path: 'test/evidence/engine-basic/README.md'}],
+  'engine-suite': [{label: 'Full existing suite results', path: 'test/evidence/engine-suite/README.md'}],
   engine: [{label: 'Open mathematical obligations', path: 'docs/audits/RELEASE_GAP_REVIEW.md'}],
   browser: [{label: 'Browser workflow evidence', path: 'test/evidence/payment-flow.md'}],
   'privy-login': [{label: 'Privy login observation', path: 'test/evidence/arc-integration/privy-login.json'}],

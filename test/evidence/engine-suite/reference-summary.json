@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "mode": "reference",
+  "counts": {
+    "passed": 129,
+    "failed": 0,
+    "skipped": 0
+  },
+  "sourceStable": true,
+  "runtimeSeconds": 54.422,
+  "completedAt": "2026-09-09T02:06:11.156071+00:00",
+  "repository": {
+    "commit": "0dc0ac2a44469c797155009d3ae746654ccfb0ac",
+    "dirty": true
+  },
+  "command": [
+    "C:\\Users\\gujja\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "packages/reference/tests",
+    "-v"
+  ],
+  "bounds": {
+    "selection": "All existing unittest-discovered test*.py modules in packages/reference/tests",
+    "test_modules": 25,
+    "precision": "Existing per-test mp.dps and exact arithmetic settings; unchanged",
+    "timeout_seconds": 1800,
+    "combined_log_cap_bytes": 8388608
+  },
+  "manifest": "test/evidence/engine-suite/reference/manifest.json",
+  "stdout": "test/evidence/engine-suite/reference/stdout.txt",
+  "stderr": "test/evidence/engine-suite/reference/stderr.txt",
+  "validation": "test/evidence/engine-suite/reference-validation.txt",
+  "scope": "Complete existing suite at recorded default bounds; separate from an audit and full release acceptance."
+}

@@ -1,5 +1,9 @@
 # Evidence index
 
+Latest complete existing engine run: **404 contract tests / 47 suites and 129 independent-reference tests passed**, zero failures or skips. [Exact commands, default fuzz/invariant bounds, manifests, source stability and limitations](engine-suite/README.md). This supersedes the older full-suite run counts for the current source, without closing mathematical liveness, broader release campaigns or independent audit obligations.
+
+Latest presentation checkpoint: [individual logo rings and shared route loading](logo-motion/README.md). Web typecheck, independent rotation, explicit common-pivot checks and narrow-layout observations passed. The initial whole-mark rotation and incorrect percentage pivot are retained as superseded iterations.
+
 Basic validation: [eight engine integration checks](engine-basic/README.md) and [53 offline wallet/receipt checks](privy-association-basic/README.md) passed. The swap trader and invoice payer match the reconstructed transaction signatures. Authenticated Privy provider evidence remains unavailable; this does not invalidate the recorded Arc financial execution. These checks do not close complete-engine release acceptance or constitute an independent audit.
 
 The generated proof artifact was checked for the corresponding statuses. A final live `/proof` readback could not run because `127.0.0.1:3003` refused the connection; the earlier successful API observation remains a historical frontend checkpoint. No services or wallets were restarted for this offline validation.

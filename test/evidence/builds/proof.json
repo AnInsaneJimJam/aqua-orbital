@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T01:46:33.717Z",
+  "generatedAt": "2026-09-09T02:14:25.649Z",
   "items": [
     {
       "id": "local-integration",
@@ -11,13 +11,13 @@
       "id": "reference",
       "label": "Independent reference fixtures",
       "status": "verified",
-      "detail": "129 recorded bounded numerical regressions; selected 110/160-digit checks. This is not a proof of the production solver."
+      "detail": "129 tests passed in the complete existing reference suite with unchanged inputs and matching output hashes. Existing exact and high-precision checks are finite evidence, not a proof of the production solver."
     },
     {
       "id": "contracts",
       "label": "Local contract tests",
       "status": "verified",
-      "detail": "398 recorded tests, including real six-pair interior Aqua swaps, an initialized mixed outward/reverse sequence, an invoice and local security/cycle checks. Separate receipt probes and frozen campaigns retain their source boundaries. Full release campaigns remain outstanding."
+      "detail": "404 tests across 47 suites passed in the complete existing default-profile run, including arithmetic, curve execution, Aqua settlement, payments and existing fuzz/invariant cases. Input and output hashes match. Full release campaigns remain outstanding."
     },
     {
       "id": "sdk",
@@ -42,6 +42,12 @@
       "label": "Integrated engine smoke tests",
       "status": "verified",
       "detail": "Eight deterministic local tests passed: six directed-pair quotes and actual fills, mixed outward/reverse traversal, read-only quoting, crossing/settlement rollback and recovery, and mixed invoice payout/failure recovery. Selected input and output hashes still match the run. This does not close full engine release acceptance."
+    },
+    {
+      "id": "engine-suite",
+      "label": "Complete existing engine test suite",
+      "status": "verified",
+      "detail": "All 404 contract tests and 129 independent-reference tests passed with unchanged inputs. The default Foundry profile uses 256 fuzz runs and 32 invariant runs of depth 64, with a recorded seed. This finite regression run does not close the separate release campaigns or mathematical obligations."
     },
     {
       "id": "engine",
