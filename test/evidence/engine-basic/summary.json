@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "passedTests": 8,
+  "failedTests": 0,
+  "skippedTests": 0,
+  "selectedTests": [
+    "testProductionStaticQuotesSixPairsMatchIndependentIntegerSphere",
+    "testAllSixPairsMutateOneOrderAndSettleGrossNetFeeExactly",
+    "testInitializedOutwardThenActualReverseSettleIndependentRawOutputs",
+    "testStaticMixedQuotesDoNotWriteStateOrEmitCrossings",
+    "testCrossingBudgetFailureRollsBackThenRecovers",
+    "testPostTransferSettlementFailureRollsBackFeesPrincipalAndEventsThenRecovers",
+    "testMixedSwapPaysInvoiceAndPreservesDonationsAndApprovals",
+    "testSecondRecipientFailureRollsBackRealMixedCurveThenRecovers"
+  ],
+  "executedPassedTests": [
+    "testAllSixPairsMutateOneOrderAndSettleGrossNetFeeExactly",
+    "testProductionStaticQuotesSixPairsMatchIndependentIntegerSphere",
+    "testCrossingBudgetFailureRollsBackThenRecovers",
+    "testInitializedOutwardThenActualReverseSettleIndependentRawOutputs",
+    "testPostTransferSettlementFailureRollsBackFeesPrincipalAndEventsThenRecovers",
+    "testStaticMixedQuotesDoNotWriteStateOrEmitCrossings",
+    "testMixedSwapPaysInvoiceAndPreservesDonationsAndApprovals",
+    "testSecondRecipientFailureRollsBackRealMixedCurveThenRecovers"
+  ],
+  "command": [
+    "C:\\Users\\gujja\\.foundry\\bin\\forge.EXE",
+    "test",
+    "--root",
+    "packages/contracts",
+    "--match-contract",
+    "^(InteriorExecutionTest|MixedExecutionTest|MixedInvoiceTest)$",
+    "--match-test",
+    "^(testProductionStaticQuotesSixPairsMatchIndependentIntegerSphere|testAllSixPairsMutateOneOrderAndSettleGrossNetFeeExactly|testInitializedOutwardThenActualReverseSettleIndependentRawOutputs|testStaticMixedQuotesDoNotWriteStateOrEmitCrossings|testCrossingBudgetFailureRollsBackThenRecovers|testPostTransferSettlementFailureRollsBackFeesPrincipalAndEventsThenRecovers|testMixedSwapPaysInvoiceAndPreservesDonationsAndApprovals|testSecondRecipientFailureRollsBackRealMixedCurveThenRecovers)",
+    "--threads",
+    "1",
+    "--offline",
+    "-vv"
+  ],
+  "sourceStable": true,
+  "completedAt": "2026-09-09T01:43:39.326137+00:00",
+  "runtimeSeconds": 82.766,
+  "repository": {
+    "commit": "0d044ce5a5d89703c0ce1de182db84d866d04323",
+    "dirty": true
+  },
+  "manifest": "test/evidence/engine-basic/verified/manifest.json",
+  "stdout": "test/evidence/engine-basic/verified/stdout.txt",
+  "stderr": "test/evidence/engine-basic/verified/stderr.txt",
+  "validation": "test/evidence/engine-basic/selected-validation.txt",
+  "sourcePins": "test/evidence/engine-basic/source-pins.json",
+  "scope": "Eight deterministic local integration smoke checks; no fuzz, independent audit or complete-engine release acceptance.",
+  "retainedUnacceptedAttempt": "test/evidence/engine-basic/run/manifest.json",
+  "emptyDiscoveryCause": "This Forge build's bare method-name regex with a trailing $ discovers no tests; removing trailing $ discovers the methods. Exact executed names/count are now checked before accepting evidence."
+}

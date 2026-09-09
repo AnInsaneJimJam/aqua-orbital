@@ -1,0 +1,317 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-09T01:46:28.111Z",
+  "scope": "Offline consistency and signed-transaction audit of retained public evidence; no new network or wallet observation",
+  "retainedReceiptMatching": {
+    "status": "passed",
+    "checkCount": 53,
+    "trader": "0x954ace1023cdb3798f69582bbddcbacd878b73a9",
+    "payer": "0x954ACE1023Cdb3798F69582bbdDcBAcd878B73A9",
+    "maker": "0x5eBA55e1b43c8714E4432250Dada7A518780C871",
+    "invoiceId": "0x06b4a62e097fec8c2f62f44268447e2aabffbc50cdd561a0cc8e247626904eaa",
+    "strategyHash": "0xc64a158e90a2b3f9bd211748fe96f1cd59b7f785c18c093b99d033f6ff589eee",
+    "swap": {
+      "transactionHash": "0xc27397b2bb8557175cc1a824e501046eb4c1373fe396f437c7a0b6737c488e56",
+      "sender": "0x954ace1023cdb3798f69582bbddcbacd878b73a9",
+      "target": "0x449420e9042c48eac6e695020613678ad5a55d41",
+      "blockNumber": "61147486",
+      "blockHash": "0x9c14b7ffec61da0e950c19dc1ca8752d81949510dc18ca0d654edd374400c02a",
+      "recordedAt": "2026-09-08T23:36:52.184Z",
+      "receiptStatus": "success"
+    },
+    "payment": {
+      "transactionHash": "0xb785144b6eb1ed84de359553602c8a3b6e429a6303f3312294f5961576b01877",
+      "sender": "0x954ace1023cdb3798f69582bbddcbacd878b73a9",
+      "target": "0xf64e4664d534aea5d240e1e29dae9e80d2e393d6",
+      "blockNumber": "61149658",
+      "blockHash": "0x70f51548dc8306db626d9b9eff0b321c412ec712480821c5cf7a2764fd33c1f1",
+      "recordedAt": "2026-09-08T23:54:08.197Z",
+      "receiptStatus": "success"
+    }
+  },
+  "privyWalletAssociation": {
+    "status": "unverified",
+    "authenticatedProviderEvidenceAvailable": false,
+    "walletCreationVerified": false,
+    "reconnectionVerified": false,
+    "publicLoginUIObserved": true,
+    "publicAppId": "cmtrvczqp00qh0cjv4b16j1ag",
+    "reason": "Retained records show the login modal without authentication and identify no selected Privy embedded wallet. Transaction signatures prove the sending address, not which wallet software controlled it."
+  },
+  "existingApplicationSmoke": {
+    "record": "test/evidence/frontend-polish/README.md",
+    "nineSelectedChecksRecordedPassing": true,
+    "scope": "Previously recorded synthetic HTTP/RPC and injected external-wallet fixtures; no live Privy provider evidence",
+    "cases": [
+      "apps/web/test/wallet.spec.ts",
+      "apps/web/test/payment.spec.ts",
+      "apps/web/test/swap-execution.spec.ts"
+    ]
+  },
+  "limitations": [
+    "Canonical block hashes are compared with the retained RPC observations only; this run did not recheck the live chain or independently reconstruct block/receipt trie inclusion proofs.",
+    "Runtime code and immutable bindings were not re-read; deployment address checks use the retained verified identity report.",
+    "The input scope is exactly the hashed files listed below. Absence of authenticated evidence in these files does not prove the user used an external wallet.",
+    "No identity token, email, private key or signing session was requested or inspected. No synthetic receipt is relabeled as live."
+  ],
+  "inputs": [
+    {
+      "path": "test/evidence/arc-integration/first-swap.json",
+      "sha256": "5eb2e04dbb5ff095b93af509370863ed32e94c82324a1f3e2c8f4ef7599a8563"
+    },
+    {
+      "path": "test/evidence/arc-integration/first-payment.json",
+      "sha256": "25f7edbb8f64125bb4f97c74ff8e8dc69511674a0b38e7ef8cba7d5841a9c3cb"
+    },
+    {
+      "path": "deployments/5042002/manifest.json",
+      "sha256": "3875a6c905433ce1c3b919f8a2f35fd1705a8ecb799f33414c073415fb0eeb20"
+    },
+    {
+      "path": "deployments/5042002/verification.json",
+      "sha256": "aac4cf25ceb1b28b11238d2961ae66a0825333b88dd617ce70d93b5ecd327575"
+    },
+    {
+      "path": "test/evidence/privy-login.json",
+      "sha256": "8f0b984d1305df68125124a1a315eb55b247c86e6a150783adf040107893f128"
+    },
+    {
+      "path": "test/evidence/arc-integration/privy-login.json",
+      "sha256": "94afd690d11e58f867d4656eefc9db03ec1359519ff4bd391beefa2a36b4130f"
+    },
+    {
+      "path": "test/evidence/arc-integration/deployed-ui.json",
+      "sha256": "b994a20e5d9d88092072628bf246ae269db41490a7bb6f7522290315ddefa11c"
+    },
+    {
+      "path": "test/evidence/frontend-polish/README.md",
+      "sha256": "bd5e8c33da363b81575c60cfb7d5650f200565b16b065f4512a5723bb12ab161"
+    },
+    {
+      "path": "packages/contracts/src/OrbitalSwapVMRouter.sol",
+      "sha256": "e6c91e3c134e386369d7f5b39d74ccc8aa05f1e8894e2431630c39a4436c1f4a"
+    },
+    {
+      "path": "packages/contracts/src/OrbitalPayments.sol",
+      "sha256": "02f8c9d2ff55fea0dae6c78c3b28ac251a9067a189a880c3441c367551bef743"
+    },
+    {
+      "path": "scripts/check-privy-association-basic.mjs",
+      "sha256": "036f8061d77095ddaf781ee4ff5dfebfc05496740f26b0d3195713d09a905c6f"
+    }
+  ],
+  "checks": [
+    {
+      "id": "manifest agrees with retained deployment identity",
+      "status": "passed"
+    },
+    {
+      "id": "deployment report is verified on Arc",
+      "status": "passed"
+    },
+    {
+      "id": "deployment receipts retain matching successful transaction identities",
+      "status": "passed"
+    },
+    {
+      "id": "aqua: manifest address appears in deployment receipt",
+      "status": "passed"
+    },
+    {
+      "id": "router: manifest address appears in deployment receipt",
+      "status": "passed"
+    },
+    {
+      "id": "payments: manifest address appears in deployment receipt",
+      "status": "passed"
+    },
+    {
+      "id": "swap: Arc chain identity",
+      "status": "passed"
+    },
+    {
+      "id": "swap: successful receipt",
+      "status": "passed"
+    },
+    {
+      "id": "swap: receipt and transaction identity",
+      "status": "passed"
+    },
+    {
+      "id": "swap: expected transaction target",
+      "status": "passed"
+    },
+    {
+      "id": "swap: retained canonical block agreement",
+      "status": "passed"
+    },
+    {
+      "id": "swap: all receipt logs agree with transaction and retained block",
+      "status": "passed"
+    },
+    {
+      "id": "swap: independently reconstructed signed transaction hash",
+      "status": "passed"
+    },
+    {
+      "id": "swap: recovered signer matches recorded sender",
+      "status": "passed"
+    },
+    {
+      "id": "payment: Arc chain identity",
+      "status": "passed"
+    },
+    {
+      "id": "payment: successful receipt",
+      "status": "passed"
+    },
+    {
+      "id": "payment: receipt and transaction identity",
+      "status": "passed"
+    },
+    {
+      "id": "payment: expected transaction target",
+      "status": "passed"
+    },
+    {
+      "id": "payment: retained canonical block agreement",
+      "status": "passed"
+    },
+    {
+      "id": "payment: all receipt logs agree with transaction and retained block",
+      "status": "passed"
+    },
+    {
+      "id": "payment: independently reconstructed signed transaction hash",
+      "status": "passed"
+    },
+    {
+      "id": "payment: recovered signer matches recorded sender",
+      "status": "passed"
+    },
+    {
+      "id": "standalone swap: one raw event from expected contract",
+      "status": "passed"
+    },
+    {
+      "id": "standalone swap: raw decoded arguments match retained event",
+      "status": "passed"
+    },
+    {
+      "id": "standalone swap: retained event log identity",
+      "status": "passed"
+    },
+    {
+      "id": "payment retains exactly one invoice and one swap event",
+      "status": "passed"
+    },
+    {
+      "id": "invoice payment: one raw event from expected contract",
+      "status": "passed"
+    },
+    {
+      "id": "invoice payment: raw decoded arguments match retained event",
+      "status": "passed"
+    },
+    {
+      "id": "invoice payment: retained event log identity",
+      "status": "passed"
+    },
+    {
+      "id": "invoice curve execution: one raw event from expected contract",
+      "status": "passed"
+    },
+    {
+      "id": "invoice curve execution: raw decoded arguments match retained event",
+      "status": "passed"
+    },
+    {
+      "id": "invoice curve execution: retained event log identity",
+      "status": "passed"
+    },
+    {
+      "id": "same signed wallet traded and paid",
+      "status": "passed"
+    },
+    {
+      "id": "merchant and shared strategy agree",
+      "status": "passed"
+    },
+    {
+      "id": "trader differs from liquidity maker",
+      "status": "passed"
+    },
+    {
+      "id": "invoice adapter is curve taker and recipient",
+      "status": "passed"
+    },
+    {
+      "id": "standalone swap amounts and fee",
+      "status": "passed"
+    },
+    {
+      "id": "invoice input output refund linkage",
+      "status": "passed"
+    },
+    {
+      "id": "payment invoice identifier matches first calldata argument",
+      "status": "passed"
+    },
+    {
+      "id": "swap: USDC signer to router",
+      "status": "passed"
+    },
+    {
+      "id": "swap: USDC router to maker",
+      "status": "passed"
+    },
+    {
+      "id": "swap: oUSD6 maker to signer",
+      "status": "passed"
+    },
+    {
+      "id": "payment: oUSD6 signer to adapter",
+      "status": "passed"
+    },
+    {
+      "id": "payment: oUSD6 adapter to router",
+      "status": "passed"
+    },
+    {
+      "id": "payment: oUSD6 router to maker",
+      "status": "passed"
+    },
+    {
+      "id": "payment: USDC maker to adapter",
+      "status": "passed"
+    },
+    {
+      "id": "payment: exact USDC merchant settlement",
+      "status": "passed"
+    },
+    {
+      "id": "payment: USDC excess refunded to signer",
+      "status": "passed"
+    },
+    {
+      "id": "public Privy login UI was observed",
+      "status": "passed"
+    },
+    {
+      "id": "login record explicitly excludes authentication and wallet creation",
+      "status": "passed"
+    },
+    {
+      "id": "deployed UI record explicitly unauthenticated",
+      "status": "passed"
+    },
+    {
+      "id": "deployment report does not claim Privy association",
+      "status": "passed"
+    },
+    {
+      "id": "payment record explicitly leaves wallet kind unverified",
+      "status": "passed"
+    }
+  ]
+}

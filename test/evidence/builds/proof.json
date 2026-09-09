@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T01:19:12.420Z",
+  "generatedAt": "2026-09-09T01:46:33.717Z",
   "items": [
     {
       "id": "local-integration",
@@ -38,6 +38,12 @@
       "detail": "210 recorded local API tests, including receipt metrics, pinned invoice reads, registered strategy financial observations, coverage checks and readiness/recovery. These use database/RPC fixtures and do not establish live Arc activity or financial eligibility."
     },
     {
+      "id": "engine-basic",
+      "label": "Integrated engine smoke tests",
+      "status": "verified",
+      "detail": "Eight deterministic local tests passed: six directed-pair quotes and actual fills, mixed outward/reverse traversal, read-only quoting, crossing/settlement rollback and recovery, and mixed invoice payout/failure recovery. Selected input and output hashes still match the run. This does not close full engine release acceptance."
+    },
+    {
       "id": "engine",
       "label": "Complete engine release acceptance",
       "status": "not-run",
@@ -62,10 +68,16 @@
       "detail": "Retained accepted swap and payment browser runs cover exact approvals, independent review/signature steps and receipt recovery using injected-wallet HTTP/RPC fixtures. Transcript hashes match their checkpoints. They exercise the shared transaction paths; they do not authenticate a Privy wallet."
     },
     {
+      "id": "receipt-association",
+      "label": "Recorded wallet and receipt matching",
+      "status": "verified",
+      "detail": "53 offline consistency checks passed for signed transaction hashes, recovered sender, raw events, token transfers and retained block identities. The swap trader and invoice payer match. This is not a fresh RPC or wallet authentication check."
+    },
+    {
       "id": "privy-flow",
       "label": "Privy wallet receipt association",
-      "status": "not-run",
-      "detail": "Orbital has financial-flow tests and recorded Arc transactions. The retained live receipts do not identify the wallet provider; an authenticated record linking the demonstrated trader to a Privy wallet remains unrecorded."
+      "status": "unavailable",
+      "detail": "Basic validation ran: the retained swap and payment match the same signing address, but the saved Privy observations stop before authentication. The wallet-provider association remains unrecorded."
     },
     {
       "id": "arc",

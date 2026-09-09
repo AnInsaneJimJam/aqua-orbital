@@ -1,5 +1,9 @@
 # Evidence index
 
+Basic validation: [eight engine integration checks](engine-basic/README.md) and [53 offline wallet/receipt checks](privy-association-basic/README.md) passed. The swap trader and invoice payer match the reconstructed transaction signatures. Authenticated Privy provider evidence remains unavailable; this does not invalidate the recorded Arc financial execution. These checks do not close complete-engine release acceptance or constitute an independent audit.
+
+The generated proof artifact was checked for the corresponding statuses. A final live `/proof` readback could not run because `127.0.0.1:3003` refused the connection; the earlier successful API observation remains a historical frontend checkpoint. No services or wallets were restarted for this offline validation.
+
 Latest frontend refinement: [shared controls, navigation, dialogs, branding and linked evidence](frontend-polish/README.md). Web typecheck, nine focused UI/transaction cases and the final navigation/evidence check passed. The proof API now reflects retained verified Arc identity/financial execution and distinguishes Privy UI/shared-flow smoke from the unrecorded wallet-provider association. No protocol release gate is closed by this presentation work.
 
 Latest UI checkpoint: [automatic invoice input](payment-automatic/README.md), with two helper checks, four focused browser cases, typecheck and desktop/mobile inspection. The payer chooses a token; the quote supplies the read-only amount. Exact approvals, separate payment review and gas checks remain mandatory. Broad testing was not rerun.

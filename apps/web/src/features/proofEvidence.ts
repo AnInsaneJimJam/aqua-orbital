@@ -57,6 +57,7 @@ export const evidenceTopics = [
     links: [
       {label: 'Orbital router source', path: 'packages/contracts/src/OrbitalSwapVMRouter.sol'},
       {label: 'Mixed execution test', path: 'packages/contracts/test/MixedExecution.t.sol'},
+      {label: 'Basic engine validation', path: 'test/evidence/engine-basic/README.md'},
       {label: 'Execution evidence', path: 'test/evidence/mixed-execution.md'},
       {label: 'Recorded contract run', path: 'test/evidence/contracts-current.json'},
     ],
@@ -92,6 +93,7 @@ export const integrationTopics = [
     detail: 'Privy connection, wallet selection and the shared transaction bridge are implemented. Retained checks cover the real sign-in interface and Arc browser reads.',
     links: [
       {label: 'Privy sign-in smoke', path: 'test/evidence/arc-integration/privy-login.json'},
+      {label: 'Wallet receipt validation', path: 'test/evidence/privy-association-basic/README.md'},
       {label: 'Wallet and RPC smoke', path: 'test/evidence/browser-rpc/README.md'},
       {label: 'Privy wallet source', path: 'apps/web/src/wallet/PrivyWallet.tsx'},
     ],
@@ -117,12 +119,14 @@ export const checkpointLinks: Record<string, {label: string; path: string}[]> = 
   sdk: [{label: 'Swap review tests', path: 'packages/sdk/test/swap-review.test.ts'}],
   indexer: [{label: 'Indexer evidence', path: 'test/evidence/backend-reorg.md'}],
   api: [{label: 'API evidence', path: 'test/evidence/backend-api.md'}],
+  'engine-basic': [{label: 'Eight-case engine result', path: 'test/evidence/engine-basic/README.md'}],
   engine: [{label: 'Open mathematical obligations', path: 'docs/audits/RELEASE_GAP_REVIEW.md'}],
   browser: [{label: 'Browser workflow evidence', path: 'test/evidence/payment-flow.md'}],
   'privy-login': [{label: 'Privy login observation', path: 'test/evidence/arc-integration/privy-login.json'}],
   'financial-flow': [{label: 'Recorded Arc swap', path: 'test/evidence/arc-integration/first-swap.json'}, {label: 'Recorded Arc invoice payment', path: 'test/evidence/arc-integration/first-payment.json'}],
   'wallet-flow': [{label: 'Shared swap flow checks', path: 'test/evidence/swap-flow.md'}, {label: 'Shared payment flow checks', path: 'test/evidence/payment-flow.md'}],
-  'privy-flow': [{label: 'Privy qualification requirements', path: 'docs/PRIVY_RESEARCH.md'}],
+  'receipt-association': [{label: 'Receipt validation result', path: 'test/evidence/privy-association-basic/README.md'}],
+  'privy-flow': [{label: 'Basic association validation', path: 'test/evidence/privy-association-basic/README.md'}, {label: 'Privy qualification requirements', path: 'docs/PRIVY_RESEARCH.md'}],
   arc: [{label: 'Arc deployment record', path: 'deployments/5042002/verification.json'}],
   release: [{label: 'Release gap review', path: 'docs/audits/RELEASE_GAP_REVIEW.md'}],
 };

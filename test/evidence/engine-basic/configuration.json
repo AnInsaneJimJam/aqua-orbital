@@ -1,0 +1,16 @@
+{
+  "compiler": "0.8.30+commit.73712a01",
+  "optimizer_runs": 700,
+  "via_ir": true,
+  "evm_version": "cancun",
+  "profile": "default",
+  "test_threads": 1,
+  "hardware": "Windows 11; ASUS Vivobook Go E1504FA; 7,817,785,344 bytes physical memory; 8 logical processors",
+  "environment_policy": "FOUNDRY_ and DAPP_ overrides removed; FOUNDRY_PROFILE=default. No environment values captured.",
+  "fixture_binding": "Passed exact initial-state, both mixed swap outputs, fee and invoice/refund constant checks against the existing reference fixture; fixture generation and precision stability were not rerun.",
+  "skill_runner_sha256": "9f405b1ee477758197218b0e6580d5c1ba4893e90309ca442c57f090dc4514aa",
+  "skill_validator_sha256": "1190c474501d82b2ec7f1f38acf3499ccfa8d81779a57b398ad86574619f329f",
+  "pre_run_git_status": [
+    "?? test/evidence/engine-basic/"
+  ]
+}
