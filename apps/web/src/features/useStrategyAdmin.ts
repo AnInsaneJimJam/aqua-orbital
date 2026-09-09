@@ -15,7 +15,7 @@ type Confirmation={hash:string;gas:string;kind:StrategyAdminReview['kind'];reset
 type State={context:string;phase:Phase;review?:StrategyAdminReview;pending?:PendingStrategyAdmin;message?:string;confirmation?:Confirmation};
 export type StrategyAdminViewState={phase:Phase;owner:boolean;enabled:boolean;wrongChain:boolean;busy:boolean;message?:string;confirmation?:Confirmation;
  pending?:{hash:string;account:string};tokens:{address:Address;symbol:string}[];
- review?:{kind:StrategyAdminReview['kind'];title:string;maker:string;network:string;target:string;gas:string;orderHash:string;amount?:string;spender?:string;reset?:boolean};
+ review?:{kind:StrategyAdminReview['kind'];title:string;maker:string;network:string;target:string;gas:string;orderHash:string;amount?:string;spender?:string;reset?:boolean;demo?:boolean};
  prepare:(intent:StrategyAdminIntent)=>void;submit:()=>void;resume:()=>void;dismiss:()=>void;switchNetwork:()=>void};
 const message=(error:unknown)=>{const e=error as {shortMessage?:string;message?:string};return (e?.shortMessage??e?.message??'Strategy action could not be checked. Try again.').split('\n')[0]!.slice(0,240);};
 export function useStrategyAdmin(id:string,input?:StrategyInput,onReceipt?:()=>void):StrategyAdminViewState{
@@ -85,7 +85,7 @@ export function useStrategyAdmin(id:string,input?:StrategyInput,onReceipt?:()=>v
   pending:state.pending?{hash:state.pending.transaction.hash,account:state.pending.transaction.account}:undefined,
   tokens:input?input.config.tokens.map(address=>({address,symbol:deployment.data?.tokens.find(t=>t.address.toLowerCase()===address.toLowerCase())?.symbol??'Token'})):[],
   review:r?{kind:r.kind,title:r.kind==='ship'?'Publish Aqua allocation':r.kind==='activate'?'Activate Orbital strategy':r.kind==='retire'?'Retire strategy':r.kind==='dock'?'Dock Aqua allocation':r.reset?'Reset Aqua allowance':'Update Aqua approval',maker:r.plan.account,network:selectedChain.name,target:r.plan.to,orderHash:hashOrder(r.input.order),
-   gas:`${formatAmount(r.estimate.gas*r.estimate.maxFeePerGas,18)} ${selectedChain.nativeCurrency.symbol}`,reset:r.reset,
+   gas:`${formatAmount(r.estimate.gas*r.estimate.maxFeePerGas,18)} ${selectedChain.nativeCurrency.symbol}`,reset:r.reset,demo:token?.mock===true,
    amount:token?`${formatAmount(r.reset?0n:r.input.config.initialAmountsRaw[index]!*4n,token.decimals)} ${token.symbol}`:undefined,spender:r.kind==='approval'?r.context.manifest.aqua:undefined}:undefined,
   prepare:intent=>{void prepare(intent);},submit:()=>{void submit();},resume:()=>{void resume();},dismiss:()=>{if(!busy.current&&!state.pending){epoch.current++;setState({context,phase:'idle'});}},
   switchNetwork:()=>{void wallet.switchNetwork?.().catch(error=>{if(mounted.current)setState(s=>({...s,message:message(error)}));});}};

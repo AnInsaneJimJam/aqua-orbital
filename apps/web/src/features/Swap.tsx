@@ -1,10 +1,11 @@
 'use client';
-import Link from 'next/link';
+import Link from '../components/AppLink';
 import {ArrowDown,RotateCw} from 'lucide-react';
 import {useSwap,type SwapViewState} from './useSwap';
 import {copy} from '../content';
 import {SwapExecution} from './SwapExecution';
 import {SwapSettings} from './SwapSettings';
+import {Select} from '../components/Select';
 import styles from './Swap.module.css';
 export function SwapView(state:SwapViewState){
  const {input,output,amount,error,symbols,setInput,setOutput,setAmount,quote}=state;
@@ -13,14 +14,14 @@ export function SwapView(state:SwapViewState){
   <div className={styles.heading}><div><h1>Swap</h1><span className="pill">{state.network}</span></div><SwapSettings state={state.settings}/></div>
   <div className={styles.assetBox}>
    <label htmlFor="amount">You pay</label>
-   <div className={styles.amountRow}><input id="amount" value={amount} onChange={e=>setAmount(e.target.value)} inputMode="decimal" placeholder="0.00" autoComplete="off"/><select aria-label="Input token" value={input} onChange={e=>setInput(e.target.value)}>{symbols.map(s=><option key={s}>{s}</option>)}</select></div>
-   <div className={styles.balanceRow}><span aria-label="Input balance">Balance: {state.balance.loading&&!state.balance.data?'Checking…':state.balance.label}</span><div><button className={styles.max} disabled={state.maxDisabled} onClick={state.max}>{state.maxBusy?'Estimating…':'Max'}</button><button className={styles.refresh} aria-label="Refresh balance" title="Refresh balance" disabled={!state.balance.canRefresh||state.balance.loading} onClick={()=>{void state.balance.refresh();}}><RotateCw size={14} aria-hidden="true"/></button></div></div>
+   <div className={styles.amountRow}><input id="amount" value={amount} onChange={e=>setAmount(e.target.value)} inputMode="decimal" placeholder="0.00" autoComplete="off"/><Select compact className={styles.tokenSelect} aria-label="Input token" value={input} onValueChange={setInput} options={symbols.map(s=>({value:s,label:s}))}/></div>
+   <div className={styles.balanceRow}><span aria-label="Input balance">Balance: {state.balance.loading&&!state.balance.data?'Checking…':state.balance.label}</span>{state.balance.canRefresh&&<div><button className={styles.max} disabled={state.maxDisabled} onClick={state.max}>{state.maxBusy?'Estimating…':'Max'}</button><button className={styles.refresh} aria-label="Refresh balance" title="Refresh balance" disabled={state.balance.loading} onClick={()=>{void state.balance.refresh();}}><RotateCw size={14} aria-hidden="true"/></button></div>}</div>
   </div>
   <div className={styles.reverseRow}><button className={`button secondary ${styles.reverse}`} aria-label="Reverse pair" onClick={state.reverse}><ArrowDown size={18} aria-hidden="true"/></button></div>
   <div className={styles.assetBox}>
    <label htmlFor="output-token">You receive</label>
-   <div className={styles.amountRow}>{state.quoteView&&!executing?<output className={styles.output} aria-label="Quoted output">{state.quoteView.output}</output>:<span className={styles.placeholder}>—</span>}<select id="output-token" value={output} onChange={e=>setOutput(e.target.value)}>{symbols.filter(s=>s!==input).map(s=><option key={s}>{s}</option>)}</select></div>
-   <p className={styles.assetHint}>{executing?'See the reviewed amounts below.':input.startsWith('oUSD')||output.startsWith('oUSD')?'Demo tokens · No redemption value':'Output is confirmed by a fresh quote.'}</p>
+   <div className={styles.amountRow}>{state.quoteView&&!executing?<output className={styles.output} aria-label="Quoted output">{state.quoteView.output}</output>:<span className={styles.placeholder}>—</span>}<Select compact className={styles.tokenSelect} id="output-token" value={output} onValueChange={setOutput} options={symbols.filter(s=>s!==input).map(s=>({value:s,label:s}))}/></div>
+   <p className={styles.assetHint}>{executing?'See the reviewed amounts below.':'Output is confirmed by a fresh quote.'}</p>
   </div>
   {state.maxMessage&&<div className="notice" role="status"><p>{state.maxMessage}</p>{state.conservativeAmount&&<><p>Gas could not be estimated. This editable amount leaves 0.05 USDC; more may be needed.</p><button className="button secondary compact" onClick={state.useConservative}>Use editable amount · {state.conservativeAmount}</button></>}</div>}
   {!executing&&<div className={styles.facts}><div><span>Slippage tolerance</span><span>{state.settings.value?`${state.settings.value.slippageBps/100}%`:'Choose valid settings'}</span></div><div><span>Network fee</span><span>{state.gasAsset} · estimated at review</span></div></div>}
@@ -37,6 +38,6 @@ export function SwapView(state:SwapViewState){
    {state.quoteView&&<button className="button full" onClick={state.execution.prepare} disabled={!state.execution.canPrepare}>Review swap</button>}
    <button className={state.quoteView?styles.refreshQuote:'button full'} onClick={quote} disabled={state.disabled||state.execution.busy}>{state.actionLabel}</button>
   </>}
- </div><div className={styles.footnote}><span>Tokens stay in the maker’s wallet until settlement.</span><Link href="/fund">Get demo tokens ↗</Link></div></section>;
+ </div><div className={styles.footnote}>Tokens stay in the maker’s wallet until settlement.</div></section>;
 }
 export default function Swap(){return <SwapView {...useSwap()}/>;}

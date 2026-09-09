@@ -1,5 +1,7 @@
 'use client';
 import type {PaymentViewState} from './usePayment';
+import {Select} from '../components/Select';
+import {TransactionLink} from '../components/TransactionLink';
 import styles from './Invoice.module.css';
 /** Presentation receives amounts and callbacks only. It never selects a spender
  * or constructs a transaction, so the existing template can be redesigned. */
@@ -9,13 +11,14 @@ export function PaymentView({state:s}:{state:PaymentViewState}){
   <h3>Pay invoice</h3>
   {!s.enabled&&<p className="hint">{!s.connected?'Connect a wallet using the shared wallet control to check payment availability.':s.wrongChain?'Switch your wallet to the invoice network to continue.':'Refresh the invoice and verified deployment to check payment availability.'}</p>}
   {s.enabled&&<div className={styles.fields}>
-   <label>Payment token<select value={s.token} onChange={e=>s.setToken(e.target.value)} disabled={s.busy||!!s.pending}>{s.tokens.map(t=><option key={t}>{t}</option>)}</select></label>
-   <label htmlFor="payment-amount">Amount to pay</label>
-   <output id="payment-amount" aria-label="Calculated payment amount" className={styles.calculated}>{r?.input??(s.busy?'Preparing review…':s.quotedInput??(s.quoting?'Calculating…':'Quote unavailable'))}</output>
-   <p className="hint">Calculated from the invoice and the current quote. The invoice recipient receives the requested USDC.</p>
-   <details><summary>Advanced options</summary><label>Spending limit (optional)<input value={s.maximum} onChange={e=>s.setMaximum(e.target.value)} disabled={s.busy||!!s.pending} inputMode="decimal" autoComplete="off" placeholder="Automatic"/></label><p className="hint">Limit the {s.token} used to calculate a quote. Leave blank to use your available token balance. Approval covers only the reviewed amount; gas is checked separately.</p></details>
+   <div className="field"><label htmlFor="payment-token">Payment token</label><Select id="payment-token" value={s.token} onValueChange={s.setToken} disabled={s.busy||!!s.pending} options={s.tokens.map(t=>({value:t,label:t}))}/></div>
+   <div className="field"><label htmlFor="payment-amount">Amount to pay</label>
+    <output id="payment-amount" aria-label="Calculated payment amount" className={styles.calculated}>{r?.input??(s.busy?'Preparing review…':s.quotedInput??(s.quoting?'Calculating…':'Quote unavailable'))}</output>
+    <p className="hint">Calculated from the current quote. The recipient receives the invoice amount in USDC.</p>
+   </div>
+   <details><summary>Advanced options</summary><div className="field"><label htmlFor="payment-limit">Spending limit (optional)</label><input id="payment-limit" value={s.maximum} onChange={e=>s.setMaximum(e.target.value)} disabled={s.busy||!!s.pending} inputMode="decimal" autoComplete="off" placeholder="Automatic"/><p className="hint">Limit the {s.token} used to calculate a quote. Leave blank to use your available token balance. Approval covers only the reviewed amount; gas is checked separately.</p></div></details>
   </div>}
-  {r&&<div aria-label="Payment review">
+  {r&&<div className={styles.review} aria-label="Payment review">
    <h3>{r.stage==='approval'?'Review token approval':'Review payment'}</h3>
    {r.demo&&<p className="notice">The input asset is a demo token with no redemption value.</p>}
    <dl className={styles.terms}>
@@ -29,8 +32,8 @@ export function PaymentView({state:s}:{state:PaymentViewState}){
    {r.stage==='approval'&&<p className="hint">This approval permits the invoice adapter to spend the amount shown. Payment needs a fresh quote, its own gas estimate and a separate confirmation.</p>}
    <details><summary>Approval and review details</summary><p>Spender</p><p className="mono">{r.spender}</p><p>Review expires: {r.expires}</p>{r.transactionDeadline&&<p>Transaction deadline: {r.transactionDeadline}</p>}</details>
   </div>}
-  {s.pending&&<div className="notice"><p>Submitted {s.pending.stage} · {s.pending.network}</p><p className="mono">{s.pending.hash}</p><p>Payer: <span className="mono">{s.pending.account}</span></p></div>}
-  {s.confirmation&&<details><summary>{s.confirmation.status==='success'?'Confirmed transaction':'Reverted transaction'}</summary><p className="mono">{s.confirmation.hash}</p><p>Gas paid: {s.confirmation.gas}</p></details>}
+  {s.pending&&<div className="notice"><p>Submitted {s.pending.stage} · {s.pending.network}</p><p className="mono">{s.pending.hash}</p><p>Payer: <span className="mono">{s.pending.account}</span></p><TransactionLink hash={s.pending.hash} label="Track transaction"/></div>}
+  {s.confirmation&&<div><TransactionLink hash={s.confirmation.hash} label="View transaction receipt"/><details><summary>{s.confirmation.status==='success'?'Confirmed transaction':'Reverted transaction'}</summary><p className="mono">{s.confirmation.hash}</p><p>Gas paid: {s.confirmation.gas}</p></details></div>}
   <div role="status" aria-live="polite">
    {s.message&&<p className="notice">{s.message}</p>}
    {s.quoteMessage&&!r&&!s.pending&&<p className="notice">{s.quoteMessage}</p>}

@@ -1,3 +1,4 @@
+import {selectValue} from './fixtures/select';
 import {test,expect,type Page} from '@playwright/test';
 import {strategyObservation,strategyListing,strategyRecord,strategyManifest,maker,hash,address} from '../../../packages/sdk/test/fixtures/strategy';
 const id=strategyRecord().orderHash,path=`/liquidity/${id}`,headers={'access-control-allow-origin':'*','cache-control':'no-store'};
@@ -50,8 +51,8 @@ test('owner listing is wallet scoped, filters canonical history and keeps missin
  await page.goto('/liquidity');await expect(page.getByRole('heading',{name:'Your wallet is your starting point.',exact:true})).toBeVisible();expect(requested).toHaveLength(0);
  await page.getByRole('button',{name:'Connect wallet',exact:true}).first().click();await expect(page.getByRole('link',{name:'Manage strategy',exact:true})).toBeVisible();
  await expect(page.getByText('Unactivated shipments are not included in this index.',{exact:true})).toBeVisible();
- await page.getByLabel('Strategy status').selectOption('retired');await expect(page.getByText('No registered strategies match this filter.',{exact:true})).toBeVisible();
- await page.getByLabel('Strategy status').selectOption('all');await expect(page.getByRole('link',{name:'Manage strategy',exact:true})).toBeVisible();
+ await selectValue(page,'Strategy status','retired');await expect(page.getByText('No registered strategies match this filter.',{exact:true})).toBeVisible();
+ await selectValue(page,'Strategy status','all');await expect(page.getByRole('link',{name:'Manage strategy',exact:true})).toBeVisible();
  await page.evaluate(next=>(window as any).strategyWallet.account(next),address(21));
  await expect(page.getByText('No registered strategies in this wallet.',{exact:true})).toBeVisible();await expect(page.getByRole('link',{name:'Manage strategy',exact:true})).toHaveCount(0);
  expect(requested.at(-1)).toContain(address(21));

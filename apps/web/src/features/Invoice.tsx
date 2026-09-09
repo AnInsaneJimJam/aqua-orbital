@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import Link from '../components/AppLink';
 import {copy} from '../content';
 import {useInvoice, type InvoiceViewState} from './useInvoice';
 import {usePayment} from './usePayment';
@@ -14,7 +14,7 @@ export function InvoiceView({state,payment,administration}: {state: InvoiceViewS
   const {phase, terms, observation} = state;
   const unavailable = phase === 'unavailable', invalid = phase === 'invalid', absent = phase === 'not-found';
   return <section className={`page ${styles.page}`}>
-    <Link href="/pay">← Payments</Link>
+    <Link href="/pay" className="back-link"><span aria-hidden="true">←</span> Payments</Link>
     <div className={styles.header}><h1>Invoice</h1></div>
     <div className={`panel ${styles.card}`} aria-busy={state.refreshing}>
       {phase !== 'loaded' ? <div className="empty" role="status">
@@ -24,27 +24,26 @@ export function InvoiceView({state,payment,administration}: {state: InvoiceViewS
         <div className="eyebrow">{terms.network} · USDC settlement</div>
         <h2 className={styles.amount}>{terms.amount}</h2>
         <p className="pill">{terms.status}</p>
-        {terms.demo && <p className="notice">{copy.invoice.demoSettlement}</p>}
         <dl className={styles.terms}>
           <div><dt>Merchant</dt><dd className="mono">{terms.merchant}</dd></div>
           <div><dt>Invoice deadline</dt><dd>{terms.deadline}</dd></div>
         </dl>
         <h3>Recipients</h3>
         <ul className={styles.recipients}>{terms.recipients.map(r => <li key={r.address}>
-          <div className="mono">{r.address}</div><div className={styles.split}><span>{r.share}</span><span className="mono">{r.amount}</span></div>
+          <div className="mono">{r.address}</div><div className={styles.split}><span>{r.share}</span><span>{r.amount}</span></div>
         </li>)}</ul>
         {terms.payment && <div className={styles.payment}>
           <h3>{terms.payment.label}</h3>
           <dl className={styles.terms}><div><dt>Payer</dt><dd className="mono">{terms.payment.payer}</dd></div>
-            <div><dt>Amount spent</dt><dd className="mono">{terms.payment.input}</dd></div>
-            <div><dt>USDC refund</dt><dd className="mono">{terms.payment.refund}</dd></div></dl>
-          {terms.payment.inputDemo && <p className="hint">{copy.invoice.demoInput}</p>}
+            <div><dt>Amount spent</dt><dd>{terms.payment.input}</dd></div>
+            <div><dt>USDC refund</dt><dd>{terms.payment.refund}</dd></div></dl>
         </div>}
 
         {payment}
         {administration}
+        <div className={styles.receiptLinks}>{terms.receipts.filter(r=>r.href).map(r=><a className="inline-link" key={r.label} href={r.href!} target="_blank" rel="noopener noreferrer">{r.label}<span aria-hidden="true">↗</span></a>)}</div>
         <details><summary>Receipt details</summary><p className="mono">Invoice: {state.id}</p><div className="stack">
-          {terms.receipts.map(r => <div key={r.label}>{r.href ? <a href={r.href} target="_blank" rel="noopener noreferrer">{r.label}</a> : <span>{r.label}</span>}<div className="mono">{r.hash}</div></div>)}
+          {terms.receipts.map(r => <div key={r.label}><span>{r.label}</span><div className="mono">{r.hash}</div></div>)}
           <div>Invoice adapter<div className="mono">{terms.adapter}</div></div>
           <div>Reference hash<div className="mono">{terms.memoHash}</div></div>
         </div></details>

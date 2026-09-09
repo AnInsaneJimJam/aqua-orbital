@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import Link from '../components/AppLink';
 import {useState} from 'react';
 import {useQuery} from '@tanstack/react-query';
 import {decodeShipmentList} from '@orbital/sdk';
@@ -17,7 +17,7 @@ export function IncompleteShipments(){
  if(!wallet.connected)return null;
  const data=query.isError?undefined:query.data;
  if(data&&!data.data.items.length&&!current.page)return null;
- return <section className="stack" aria-label="Incomplete Aqua allocations" style={{marginTop:32}}><h2>Unfinished publications</h2><p className="hint">Resume activation with the matching strategy draft saved in this browser.</p>
+ return <section className={styles.unfinished} aria-label="Incomplete Aqua allocations"><h2>Unfinished publications</h2><p className="hint">Resume activation with the matching strategy draft saved in this browser.</p>
  {query.isPending?<p>Checking Aqua receipts…</p>:query.isError?<p className="notice">Aqua shipment history is unavailable. Refresh to restart the listing.</p>:!data?.data.items.length?<p>No incomplete allocations on this page.</p>:data.data.items.map(s=><article className="panel" key={s.hash}><h3>{s.status==='docked'?'Docked before activation':'Awaiting activation'}</h3><p className="mono">{s.hash}</p><details><summary>Commitment and receipt</summary><p className="mono">Config: {s.configHash}</p><p className="mono">Shipped: {s.created.txHash}</p>{s.docked&&<p className="mono">Docked: {s.docked.txHash}</p>}</details>{s.status==='incomplete'&&<Link className="button secondary" href="/liquidity/new">Open saved publication</Link>}</article>)}
  {data&&<p className="hint">Canonical shipment history through block {data.asOf.height}.</p>}
  <div className={styles.actions}><button className="button secondary" disabled={query.isFetching} onClick={()=>{setNav({scope,pages:[undefined],page:0});void query.refetch();}}>Refresh allocations</button><button className="button secondary" disabled={!current.page||query.isFetching} onClick={()=>setNav({...current,page:current.page-1})}>Previous allocations</button><button className="button secondary" disabled={!data?.data.nextCursor||query.isFetching} onClick={()=>{if(data?.data.nextCursor)setNav({...current,pages:[...current.pages.slice(0,current.page+1),data.data.nextCursor],page:current.page+1});}}>Next allocations</button></div>

@@ -35,6 +35,6 @@ export default function LocalDemoWallet({children}:{children:ReactNode}){
  };
  return <SessionProvider value={{ready:true,connected:!!address,address,chainId:31337,kind:address?'local':'none',wallets:accounts.map(address=>({address,kind:'local'})),
   connect:()=>{void connect();},disconnect:()=>{setAddress(undefined);sessionStorage.removeItem('orbital:local-wallet');},select:async next=>{if(!accounts.includes(next))throw Error('Unknown local account');setAddress(next);},identity,send,error}}>
-  <div className="local-mode" role="status">Local demo · Test assets only</div>{children}
+  {children}
  </SessionProvider>;
 }

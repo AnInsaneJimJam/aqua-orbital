@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import Link from '../components/AppLink';
 import type {ReactNode} from 'react';
 import {copy} from '../content';
 import {useStrategy,type StrategyViewState,type StrategyObservationView,type StrategyDataView} from './useStrategy';
@@ -16,7 +16,7 @@ export function StrategyObservation({observation,refreshing}:{observation:Strate
 }
 export function StrategyInventory({strategy,compact=false}:{strategy:StrategyDataView;compact?:boolean}){
  return <div className={styles.inventory}>{strategy.inventory.map(row=><section key={row.token.address} aria-label={`${row.token.symbol} inventory`} className={styles.asset}>
-  <h3>{row.token.symbol} {row.token.mock&&<span className="pill">Demo</span>}</h3>
+  <h3>{row.token.symbol}</h3>
   <dl className={styles.amounts}>
    <div><dt>Available output ceiling</dt><dd>{row.available} {row.token.symbol}</dd></div>
    <div><dt>Cumulative fees received</dt><dd>{row.fees} {row.token.symbol}</dd></div>
@@ -32,7 +32,7 @@ export function StrategyInventory({strategy,compact=false}:{strategy:StrategyDat
 export function StrategyView({state,administration}:{state:StrategyViewState;administration?:ReactNode}){
  const {strategy,observation}=state;
  return <section className={`page ${styles.page}`}>
-  <Link href="/liquidity">← Your liquidity</Link>
+  <Link href="/liquidity" className="back-link"><span aria-hidden="true">←</span> Your liquidity</Link>
   <div className={styles.header}><h1>Strategy details</h1></div>
   <div className="panel" aria-busy={state.refreshing}>
    {state.phase!=='loaded'?<div className="empty" role="status"><h2>{state.phase==='invalid'?'Invalid identifier':state.phase==='unavailable'?'Strategy unavailable':state.phase==='not-found'?'Strategy not found':'Checking strategy history…'}</h2>
@@ -40,10 +40,11 @@ export function StrategyView({state,administration}:{state:StrategyViewState;adm
     <div className="eyebrow">{strategy.network}</div><h2>{strategy.tokens}</h2><p className="pill">{strategy.status}</p>
     <dl className={styles.identity}><div><dt>Maker</dt><dd className="mono">{strategy.maker}</dd></div><div><dt>Swap fee</dt><dd>{strategy.fee}</dd></div><div><dt>State version</dt><dd>{strategy.version}</dd></div></dl>
     <p>{copy.strategy.custody}</p><StrategyInventory strategy={strategy}/><p className="hint">{copy.strategy.capacity}</p><p className="hint">{copy.strategy.fees}</p>{administration}
+    <div className={styles.receiptLinks}>{strategy.receipts.filter(r=>r.href).map(r=><a className="inline-link" key={r.label} href={r.href!} target="_blank" rel="noopener noreferrer">{r.label}<span aria-hidden="true">↗</span></a>)}</div>
     <details className={styles.technical}><summary>Configuration and receipts</summary><p className="mono">{state.id}</p>
      <p>Concentration is defined by these immutable tick keys and radii. No preset name is inferred from an unknown profile.</p>
      <ol className={styles.ticks}>{strategy.ticks.map((tick,i)=><li key={tick.key}><strong>Tick {i+1} · {tick.classification}</strong><p>{tick.fullRange?'Full-range anchor':`Quantized tick key: ${tick.key}`}</p><p className="mono">Radius (internal units): {tick.radius}</p></li>)}</ol>
-     <div className="stack">{strategy.receipts.map(r=><div key={r.label}>{r.href?<a href={r.href} target="_blank" rel="noopener noreferrer">{r.label}</a>:<span>{r.label}</span>}<div className="mono">{r.hash}</div></div>)}
+     <div className="stack">{strategy.receipts.map(r=><div key={r.label}><span>{r.label}</span><div className="mono">{r.hash}</div></div>)}
       <div>Configuration hash<div className="mono">{strategy.configHash}</div></div><div>Orbital router<div className="mono">{strategy.router}</div></div></div>
     </details>
    </>}

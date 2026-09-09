@@ -1,3 +1,4 @@
+import {selectValue} from './fixtures/select';
 import {test, expect, type Page} from '@playwright/test';
 import {encodeAbiParameters, keccak256, type Address} from 'viem';
 import {buildOrder, configFromDTO, decodeSwapQuoteObservation, hashConfig, hashOrder} from '@orbital/sdk';
@@ -57,7 +58,7 @@ async function setup(page:Page, respond:(body:unknown)=>unknown = ()=>fixture().
   await page.goto('/swap');
   await page.getByRole('button',{name:'Connect wallet',exact:true}).first().click();
   await expect(page.getByRole('button',{name:'Manage connected wallet'})).toBeVisible();
-  await page.getByLabel('Input token').selectOption('USDC'); await page.getByLabel('You receive').selectOption('oUSD18');
+  await selectValue(page,'Input token','USDC'); await selectValue(page,'You receive','oUSD18');
 
   // Keep timers running: TanStack schedules notifications through timers too.
   // Install after hydration so cold development compilation does not age data.

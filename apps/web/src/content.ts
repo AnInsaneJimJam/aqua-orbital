@@ -2,7 +2,6 @@ export const copy={
  brand:'Orbital',
  heroTitle:'A new shape for liquidity.',
  heroBody:'Trade stablecoins. Put your liquidity to work. With Aqua, your tokens stay in your wallet until a trade settles.',
- disclosure:'Testnet application. Demo tokens have no redemption value. Concentrated liquidity can lose value.',
  attribution:'Powered by SwapVM — © Degensoft Ltd 2025',
  strategy:{
   invalid:'Use the full 32-byte strategy hash from the correct network.',

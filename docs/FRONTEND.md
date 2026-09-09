@@ -14,13 +14,21 @@ Keep color, spacing, typography and motion tokens centralized. Keep copy in one 
 
 The owner's latest instruction replaces the interim monochrome/neumorphic direction with an identity built around their **Orbital paper video and SVG logo**. The page background matches the video at `#00131B`; warm light text, chartreuse actions and fine diagram rules connect landing and product screens. Self-hosted Instrument Serif supplies the landing headline; Space Grotesk handles navigation, forms and transaction values. `globals.css` owns palette, radii, shadows and duration; `content.ts` owns the media motion defaults. Keep 14px critical financial values, AA contrast, visible focus and 44px controls.
 
-The landing page leads with a short headline, two direct actions and the supplied 4:3 video in a figure with Paradigm credit. A three-link navigation rail exposes swaps, liquidity and payments. The supplied SVG is the shared header mark and favicon; do not substitute a generated Saturn. See [asset provenance](ASSETS.md) for originals, poster generation, checksums and font notices.
+The landing page leads with a short headline, two direct actions and the supplied 4:3 video in a figure with Paradigm credit. Header navigation exposes **Swap, Liquidity, Payments, Demo tokens** (`/fund`) and **Protocol notes** (`/proof`), with an active-page state and access on narrow screens. The supplied SVG is the shared header mark and favicon; do not substitute a generated Saturn. See [asset provenance](ASSETS.md) for originals, poster generation, checksums and font notices.
 
 `components/OrbitalVisual.tsx` isolates media behavior from financial workflows. It uses a still poster before hydration and under reduced motion, explicit play/pause, muted inline playback, viewport/background pausing, and a still-image error fallback. It never loads an animation framework or treats the paper visualization as live financial state. Public content and links work without wallet setup.
 
-Swap uses two asset wells with inline balance/Max controls; settings and raw routing information use disclosures. Payments pairs a focused creation form with invoice history. Optional splits and references expand on demand, while the signing review always shows recipients and amounts.
+Swap uses two asset wells with inline balance/Max controls; settings use a shared modal and raw routing information uses a disclosure. Payments pairs a focused creation form with invoice history. Optional splits and references expand on demand, while the signing review always shows recipients and amounts.
 
-Strategy cards show available output and fees; exact principal and backing remain available in named disclosures. Stale/unavailable warnings stay visible. Empty incomplete-shipment sections disappear while their query continues to refresh. The short local-development banner remains explicit about test assets. No quote, spender, approval, signature or recovery controller is redesigned here.
+Strategy cards show available output and fees; exact principal and backing remain available in named disclosures. Stale/unavailable warnings stay visible. Empty incomplete-shipment sections disappear while their query continues to refresh. Demo-token disclosures belong on funding and transaction reviews, including a restored publication before signing. Do not repeat them in a global banner, footer, passive invoice, or every inventory card. Keep the selected network visible and preserve actionable balance, gas, approval, stale-state and risk warnings. No quote, spender, approval, signature or recovery controller is redesigned here.
+
+### Shared presentation rules
+
+Use Space Grotesk for all application headings, navigation, forms, menu options, dialogs, labels and financial values. Reserve Instrument Serif for the landing display headline and monospace for addresses, transaction hashes and other technical identifiers. Amounts use tabular numerals with exact values preserved. Reuse shared control heights, radii, focus rings and spacing tokens instead of styling each page independently.
+
+`components/Select.tsx` wraps Radix Select for asset, fee, expiry and status choices. Its portal menu uses the shared surface, borders, spacing and selected/focused states; retain keyboard navigation, typeahead, Escape dismissal, focus return and viewport collision handling. Every trigger has a persistent associated label or accessible name. `components/Dialog.module.css` supplies the common overlay, panel, title, description, close target and footer styles for app-owned Radix dialogs. Keep dialog titles/descriptions, focus trapping, Escape behavior, visible close controls and scrolling on small screens. Privy-managed login screens remain owned by Privy.
+
+Use consistent back links, inline links and button links for their respective roles. Invoice and strategy explorer receipts are directly accessible without opening raw technical details; pending and confirmed actions use `components/TransactionLink.tsx` with configured explorer origins; local profiles keep the adjacent full hash without an explorer link. Keep the full receipt hash available. A link must remain clickable across its visible target, including its arrow, without overlapping decorative elements or nested controls. Cosmetic changes must not add wallet requests or change transaction actions.
 
 ## Journeys
 
@@ -33,6 +41,7 @@ Strategy cards show available output and fees; exact principal and backing remai
 | `/liquidity/[strategyHash]` | Inspect live availability, fees, and owner lifecycle actions |
 | `/pay` | Create or inspect immutable invoices |
 | `/pay/[invoiceId]` | Review terms and pay directly or through an Orbital swap |
+| `/fund` | Read funding limits, claim demo tokens, and find the testnet USDC faucet |
 | `/proof` | Inspect real deployment, math, opcode, wallet and receipt evidence |
 
 One primary action per stage. Keep asset/amount, minimum output, fee, gas, network, recipient and approval visible when relevant. Put raw geometry, hashes and detailed traces behind accessible disclosure controls. Never hide an unsafe condition to simplify the screen.
@@ -46,6 +55,9 @@ Changing tokens, copy, layout or decorative motion must leave SDK and transactio
 ## Current implementation map
 
 - `apps/web/src/app/globals.css`: central visual tokens and basic controls. Page/component CSS Modules own local layout. Local fonts and source notices live in `src/fonts`; no Google font network request is required at runtime or build time.
+- `components/Select.tsx`, `Select.module.css`, and `Dialog.module.css`: shared menu and app-owned dialog presentation; feature controllers continue to supply available options, validated state and callbacks. `components/Shell.tsx` owns navigation and the selected-network footer; funding is a first-class navigation destination.
+- `components/AppLink.tsx` preserves Next navigation and exposes its pending state as a subtle underline; `app/loading.tsx` supplies route-loading feedback. Button links retain their own contrasting foreground on hover. `components/TransactionLink.tsx` builds receipt links only from the configured explorer and a validated transaction hash; local profiles keep the parent view's full hash.
+- `features/proofEvidence.ts` curates links to recorded Arc transactions and existing repository evidence/test files. Protocol notes separates those historical receipts from the configured evidence manifest and open release obligations; repository links may require access. Both evidence and demo funding are visible in the main navigation, which wraps into two clear rows on small screens.
 - `apps/web/src/content.ts`: shared product copy. Some feature copy remains colocated in presentation and can move here as the workflows are completed.
 - `features/useSwap.ts`: debounced public observations with five-second background refresh, bounded recovery/backoff, fresh deployment checks, exact SDK decoding/formatting, cancellation, context invalidation and automatic expiry. Background refresh does not disable Review; a validated estimate may remain visible through a transport failure until its actual expiry. `features/Swap.tsx:SwapView` receives typed state/callbacks and builds no calldata. Fees, minimum output and recipient remain visible; coverage and alternatives use the existing disclosure pattern.
 

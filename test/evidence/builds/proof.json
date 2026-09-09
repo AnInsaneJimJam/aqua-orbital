@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-08T18:41:41.658Z",
+  "generatedAt": "2026-09-09T01:19:12.420Z",
   "items": [
     {
       "id": "local-integration",
       "label": "Connected local application",
       "status": "verified",
-      "detail": "Local Anvil contracts, API, indexer and browser flows connected. Fourteen retained browser transaction receipts were checked after an atomic-snapshot restart: swap, swap-funded invoice, funding, publication recovery, retire/dock and invoice creation/cancellation. This is a dated local checkpoint; live Privy/Arc and broad regressions remain unverified."
+      "detail": "Local Anvil contracts, API, indexer and browser flows connected. Fourteen retained browser transaction receipts were checked after an atomic-snapshot restart: swap, swap-funded invoice, funding, publication recovery, retire/dock and invoice creation/cancellation. This is a dated local checkpoint. Arc identity and financial receipts have separate evidence below; broader regressions remain open."
     },
     {
       "id": "reference",
@@ -41,7 +41,7 @@
       "id": "engine",
       "label": "Complete engine release acceptance",
       "status": "not-run",
-      "detail": "Certified interior and mixed paths execute locally through both custom instructions with one final payout and shared crossing/refinement budgets. Equality/discovery liveness, broad differential/economic campaigns and worst-range transaction gas remain open. The local application is connected; live Privy/Arc demonstration remains outstanding."
+      "detail": "Certified interior and mixed paths execute locally through both custom instructions with one final payout and shared crossing/refinement budgets. Equality/discovery liveness, broad differential/economic campaigns and worst-range transaction gas remain open. Local integration and recorded Arc execution are separate from complete engine acceptance."
     },
     {
       "id": "browser",
@@ -51,21 +51,33 @@
     },
     {
       "id": "privy-login",
-      "label": "Privy sign-in interface",
+      "label": "Privy sign-in smoke test",
       "status": "verified",
-      "detail": "Public email/external-wallet sign-in UI only. Wallet creation, reconnection and hosted signatures are not verified."
+      "detail": "The configured Privy email/external-wallet interface loaded in the real Arc application without observed SDK failures. This public-interface check did not authenticate or sign."
+    },
+    {
+      "id": "wallet-flow",
+      "label": "Wallet financial-flow smoke tests",
+      "status": "verified",
+      "detail": "Retained accepted swap and payment browser runs cover exact approvals, independent review/signature steps and receipt recovery using injected-wallet HTTP/RPC fixtures. Transcript hashes match their checkpoints. They exercise the shared transaction paths; they do not authenticate a Privy wallet."
     },
     {
       "id": "privy-flow",
-      "label": "Privy financial-flow qualification",
+      "label": "Privy wallet receipt association",
       "status": "not-run",
-      "detail": "Requires a real embedded-wallet Orbital swap and swap-funded USDC invoice with receipts."
+      "detail": "Orbital has financial-flow tests and recorded Arc transactions. The retained live receipts do not identify the wallet provider; an authenticated record linking the demonstrated trader to a Privy wallet remains unrecorded."
     },
     {
       "id": "arc",
       "label": "Arc deployment identity",
-      "status": "unavailable",
-      "detail": "The recorded Aqua candidate has empty runtime code on Arc Testnet. No verified Orbital deployment or transaction receipts exist."
+      "status": "verified",
+      "detail": "Retained Arc Testnet verification confirms twelve successful deployment receipts, runtime identity and contract bindings. Aqua uses the owner-authorized project deployment of unchanged upstream source; this is separate from canonical 1inch deployment or sponsor acceptance."
+    },
+    {
+      "id": "financial-flow",
+      "label": "Arc swap and invoice execution",
+      "status": "verified",
+      "detail": "Retained canonical successful Arc swap and swap-funded invoice receipts include exact transfer, recipient payout and refund checks. These are historical user-signed transactions; wallet provider is not inferred from chain data."
     },
     {
       "id": "release",

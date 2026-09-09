@@ -1,5 +1,7 @@
 # Evidence index
 
+Latest frontend refinement: [shared controls, navigation, dialogs, branding and linked evidence](frontend-polish/README.md). Web typecheck, nine focused UI/transaction cases and the final navigation/evidence check passed. The proof API now reflects retained verified Arc identity/financial execution and distinguishes Privy UI/shared-flow smoke from the unrecorded wallet-provider association. No protocol release gate is closed by this presentation work.
+
 Latest UI checkpoint: [automatic invoice input](payment-automatic/README.md), with two helper checks, four focused browser cases, typecheck and desktop/mobile inspection. The payer chooses a token; the quote supplies the read-only amount. Exact approvals, separate payment review and gas checks remain mandatory. Broad testing was not rerun.
 
 Latest live financial result: [actual first Arc swap-funded invoice](arc-integration/first-payment.json), **0.5 oUSD6 → 0.500507 USDC**, with **0.5 USDC paid** and **0.000507 USDC refunded**. Canonical success, invoice/swap events and exact recipient/refund transfers verified read-only. This predates the automatic-input UI change. Privy wallet-provider association remains open; this supersedes missing-invoice statements in earlier checkpoints below.

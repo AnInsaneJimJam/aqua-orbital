@@ -1,7 +1,11 @@
- .settings { position: relative; margin: 0; z-index: 5; }
-.settings > summary { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--raised-small); color: var(--ink); list-style: none; }
-.settings > summary::-webkit-details-marker { display: none; }
-.settings[open] > summary { box-shadow: var(--pressed); }
-.settings > fieldset { position: absolute; top: 50px; right: 0; width: min(320px, calc(100vw - 72px)); background: var(--surface); border: 1px solid var(--outline); border-radius: 16px; box-shadow: 8px 8px 24px #0002; margin: 0; }
-.settings > fieldset legend { background: var(--surface); }
-.settings > p { position: absolute; top: 44px; right: 0; width: 260px; }
+.trigger { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--border); border-radius: var(--control-radius); background: transparent; color: var(--muted); transition: color var(--motion), border-color var(--motion), background var(--motion); }
+.trigger:hover, .trigger[data-state=open] { color: var(--ink); border-color: var(--outline); background: var(--inset); }
+.presets { border: 0; border-bottom: 1px solid var(--border); border-radius: 0; margin: 0; padding: 0 0 22px; }
+.presets > legend { padding: 0; margin-bottom: 8px; font-size: 14px; font-weight: 500; color: var(--ink); }
+.help { margin: 0 0 16px; font-size: 13px; line-height: 1.6; }
+.options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.options > button { width: 100%; font-variant-numeric: tabular-nums; }
+.custom { margin-bottom: 0; }
+.custom p { margin: 0; }
+.reset { min-height: 44px; padding: 8px 0; border: 0; background: transparent; color: var(--muted); font-size: 13px; }
+.reset:hover:not(:disabled) { color: var(--ink); }

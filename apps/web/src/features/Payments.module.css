@@ -1,12 +1,18 @@
- .workspace { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: start; }
-.workspace h2 { font-size: 24px; }
-.history { min-width: 0; display: grid; gap: 18px; }
+.workspace { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 32px; align-items: start; }
+.workspace h2 { font-size: 23px; }
+.amountInput { font-size: 24px; font-variant-numeric: tabular-nums; }
+.recipient { display: grid; gap: 16px; padding: 16px; margin-bottom: 12px; border: 1px solid var(--border); border-radius: var(--control-radius); background: var(--inset); }
+.recipient :global(.field) { margin: 0; }
+.recipient input:global(.mono) { font-size: 12px; }
+.history { min-width: 0; display: grid; gap: 16px; }
 .history h2 { margin: 0; }
-.historyHeader { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
-.refresh { min-width: 44px; min-height: 44px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); color: var(--ink); box-shadow: var(--raised-small); }
-.invoice { padding: 22px; }
-.invoice h3 { margin: 0; font-size: 22px; }
-.invoice p { font-size: 12px; margin: 12px 0; }
-.invoice > a { min-height: 44px; display: inline-flex; align-items: center; font-size: 12px; text-decoration: none; }
-.empty { padding: 28px; border: 1px dashed var(--border); border-radius: 18px; color: var(--muted); font-size: 13px; }
-@media (max-width: 800px) { .workspace { grid-template-columns: 1fr; gap: 36px; } }
+.historyHeader { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; }
+.refresh { min-width: 44px; min-height: 44px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: var(--control-radius); background: var(--surface); color: var(--ink); transition: border-color var(--motion), background var(--motion); }
+.refresh:hover:not(:disabled) { border-color: var(--outline); background: var(--inset); }
+.invoice { padding: 24px; }
+.invoiceHeader { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.invoice h3 { margin: 0; font-size: 24px; overflow-wrap: anywhere; min-width: 0; font-variant-numeric: tabular-nums; }
+.invoice p { font-size: 13px; margin: 14px 0; }
+.empty { padding: 32px 24px; border: 1px dashed var(--outline); border-radius: var(--radius); color: var(--muted); font-size: 14px; margin: 0; }
+.pagination { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 12px; font-size: 13px; }
+@media (max-width: 850px) { .workspace { grid-template-columns: 1fr; gap: 36px; } }

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '../components/AppLink';
 import {ArrowDownRight, ArrowUpRight} from 'lucide-react';
 import OrbitalVisual from '../components/OrbitalVisual';
 import {copy} from '../content';

@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import Link from '../components/AppLink';
 import type {ReactNode} from 'react';
 import type {DeploymentManifest} from '@orbital/shared';
 import {IncompleteShipments} from './IncompleteShipments';
@@ -8,12 +8,13 @@ import {useStrategies,type StrategiesViewState} from './useStrategies';
 import {useStrategy} from './useStrategy';
 import {StrategyInventory,StrategyObservation} from './Strategy';
 import styles from './Strategy.module.css';
+import {Select} from '../components/Select';
 
 function StrategyCard({item,deployment}:{item:NonNullable<StrategiesViewState['items']>[number];deployment:DeploymentManifest}){
  const state=useStrategy(item.hash,{maker:item.maker,deployment});
  return <article className="panel" aria-label={`Strategy ${item.hash}`}>
   <div className={styles.cardHeader}><h2>{item.tokens}</h2><Link className="button secondary" href={`/liquidity/${item.hash}`}>Manage strategy</Link></div>
-  <p className="hint" style={{marginTop:16}}>{item.lifecycle} · {item.fee} swap fee</p>
+  <p className={`hint ${styles.cardMeta}`}>{item.lifecycle} · {item.fee} swap fee</p>
   {state.strategy?<><p className="pill">{state.strategy.status}</p><StrategyInventory strategy={state.strategy} compact/>
    <p className="hint">{copy.strategy.capacity}</p></>:<p role="status">{state.phase==='loading'?'Checking current inventory…':'Inventory unavailable. Open or refresh the strategy to check again.'}</p>}
   {state.observation&&<StrategyObservation observation={state.observation} refreshing={state.refreshing}/>}
@@ -23,7 +24,7 @@ export function StrategiesView({state,cards}:{state:StrategiesViewState;cards?:R
  return <section className={`page ${styles.page}`}>
   <div className="page-head"><div><h1>Your liquidity</h1><p>Manage the strategies funded by your wallet.</p></div><Link className="button" href="/liquidity/new">Create strategy <span aria-hidden="true">+</span></Link></div>
   {state.phase==='disconnected'?<div className="panel empty"><h2>Your wallet is your starting point.</h2><p>Connect a wallet to view its strategies and publish a new allocation.</p><button className="button secondary" onClick={state.connect}>Connect wallet</button></div>:<>
-   <div className={styles.filters}><label>Strategy status<select value={state.filter} onChange={e=>state.setFilter(e.target.value as StrategiesViewState['filter'])}><option value="all">All registered</option><option value="active">Active registrations</option><option value="retired">Retired registrations</option></select></label>
+   <div className={styles.filters}><div className="field"><label htmlFor="strategy-status">Strategy status</label><Select id="strategy-status" value={state.filter} onValueChange={v=>state.setFilter(v as StrategiesViewState['filter'])} options={[{value:'all',label:'All registered'},{value:'active',label:'Active registrations'},{value:'retired',label:'Retired registrations'}]}/></div>
     <button className="button secondary" disabled={state.refreshing} onClick={state.restart}>Restart listing</button></div>
    <p className="hint">Strategies share your wallet balance. Their available amounts cannot be added together.</p>
    {state.phase==='loaded'?<div className={styles.list}>{cards}</div>:<div className="panel empty" role="status"><h2>{state.phase==='loading'?'Checking registered strategies…':state.phase==='unavailable'?'Strategy list unavailable':state.filter==='all'?'No registered strategies in this wallet.':'No registered strategies match this filter.'}</h2>

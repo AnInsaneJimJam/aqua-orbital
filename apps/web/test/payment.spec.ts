@@ -1,3 +1,4 @@
+import {selectValue} from './fixtures/select';
 import {test,expect,type Page} from '@playwright/test';
 import {decodeFunctionData,encodeFunctionData,encodeFunctionResult,encodeAbiParameters,keccak256,erc20Abi,type Address,type Hex} from 'viem';
 import {decodePaymentQuoteObservation,paymentsAbi,paymentsReadAbi,buildOrder,buildPaymentTx,buildPaymentApprovalTx,configFromDTO,hashConfig,hashOrder,type PaymentInput,type PlanContext} from '@orbital/sdk';
@@ -22,7 +23,7 @@ function fixture(kind='direct'){
  decodePaymentQuoteObservation(f.payload,200,f.manifest,f.request,now);return f;
 }
 async function setup(page:Page,options:{kind?:'direct'|'swap';approved?:boolean;gasPoor?:boolean;rejected?:boolean;pending?:boolean;reverted?:boolean;mismatched?:boolean;wrongReceiptTransactionHash?:boolean;signatureWait?:boolean}={}){
- const f=fixture(options.kind),m=f.manifest,invoice=f.payload.data!.invoice;let allowance=options.approved?1000n:0n,requests=0;
+ const f=fixture(options.kind),initialDirect=options.kind==='swap'?fixture('direct'):f,m=f.manifest,invoice=f.payload.data!.invoice;let allowance=options.approved?1000n:0n,requests=0;
  const localPlan={...f.payload.data!.plan};
  if(options.kind==='swap'){
   const call=decodeFunctionData({abi:paymentsAbi,data:localPlan.data as Hex});if(call.functionName!=='payWithSwap')throw Error('Invalid swap payment fixture');
@@ -45,7 +46,10 @@ async function setup(page:Page,options:{kind?:'direct'|'swap';approved?:boolean;
  await page.route(`**/invoices/${f.request.invoiceId}`,r=>r.fulfill({headers,json:{schemaVersion:1,status:'available',code:'INVOICES_AVAILABLE',financialExecutionEnabled:false,chainId:m.chainId,deploymentId:f.payload.deploymentId,asOf:f.payload.asOf,currentIndexedBlock:f.payload.currentIndexedBlock,historical:false,freshness:{indexedAt:f.payload.freshness!.indexedAt,ageMs:0,head:'5',stale:false},coverage:f.payload.coverage,data:{invoice}}}));
  await page.route('**/quotes/payment',async r=>{
   if(r.request().method()==='OPTIONS')return r.fulfill({status:204,headers:{...headers,'access-control-allow-methods':'POST','access-control-allow-headers':'content-type'}});
-  requests++;expect(r.request().postDataJSON()).toEqual(f.request);const payload=structuredClone(f.payload) as Extract<PaymentQuoteObservationDTO,{status:'observed'}>;
+  // The default USDC calculation may finish while the user opens the token menu.
+  // Both paths retain their exact request assertions and independently valid payloads.
+  const requested=r.request().postDataJSON(),selected=requested.tokenIn===initialDirect.request.tokenIn?initialDirect:f;
+  requests++;expect(requested).toEqual(selected.request);const payload=structuredClone(selected.payload) as Extract<PaymentQuoteObservationDTO,{status:'observed'}>;
   payload.data!.funding.allowanceRaw=allowance.toString();payload.data!.funding.approvalRequired=allowance<BigInt(payload.data!.amountInRaw);if(!payload.data!.funding.approvalRequired)payload.data!.approval=null;
   return r.fulfill({headers,json:payload});
  });
@@ -78,20 +82,27 @@ async function setup(page:Page,options:{kind?:'direct'|'swap';approved?:boolean;
   return r.fulfill({headers,json:Array.isArray(body)?await Promise.all(body.map(respond)):await respond(body)});
  });
  await page.clock.install({time:new Date(now)});
+ // Keep Date at the pinned block through cold compilation and wallet setup while
+ // timers continue to drive React, Radix focus and the automatic quote debounce.
+ await page.clock.setFixedTime(new Date(now));
  await page.goto(`/pay/${f.request.invoiceId}`);await expect(page.getByRole('heading',{name:'0.0001 USDC',exact:true})).toBeVisible();
  await page.getByRole('button',{name:'Connect wallet',exact:true}).first().click();await expect(page.getByRole('button',{name:'Manage connected wallet'})).toBeVisible();
- if(options.kind==='swap')await page.getByLabel('Payment token').selectOption('oUSD6');
+ if(options.kind==='swap')await selectValue(page,'Payment token','oUSD6');
+ await expect(page.getByLabel('Calculated payment amount')).toHaveText(options.kind==='swap'?'0.000134 oUSD6':'0.0001 USDC');
+ // Playwright's resume() only resumes timers; setSystemTime clears fixed-Date mode
+ // so later fastForward expiry/polling checks still advance wall-clock time.
+ await page.clock.setSystemTime(new Date(now));
  return {calls,requests:()=>requests,ready:()=>{receiptReady=true;},f,localPlan};
 }
 test('exact approval is a separate signature and a fresh payment quote follows its receipt',async({page})=>{
  const f=await setup(page);await page.getByRole('button',{name:'Review payment'}).click();
  await expect(page.getByRole('heading',{name:'Review token approval'})).toBeVisible();
  await page.setViewportSize({width:320,height:680});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
- await page.screenshot({path:'../../test/evidence/payment-automatic/approval-mobile.png',fullPage:true});
+ await page.screenshot({path:'../../test/evidence/frontend-polish/payment-approval-mobile.png',fullPage:true});
  await page.getByRole('button',{name:'Approve 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Approval confirmed/)).toBeVisible();
  expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(1);expect(f.requests()).toBeGreaterThanOrEqual(2);const beforePayment=f.requests();
  await page.getByRole('button',{name:'Review payment'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();
- expect(f.requests()).toBeGreaterThan(beforePayment);await page.setViewportSize({width:1280,height:900});await page.screenshot({path:'../../test/evidence/payment-automatic/review-desktop.png',fullPage:true});
+ expect(f.requests()).toBeGreaterThan(beforePayment);await page.setViewportSize({width:1280,height:900});await page.screenshot({path:'../../test/evidence/frontend-polish/payment-review-desktop.png',fullPage:true});
  await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Payment transaction confirmed/)).toBeVisible();
  const sent=await page.evaluate(()=>(window as any).paymentWallet.sent);expect(sent).toHaveLength(2);expect(sent[0].gas).toBe('0x7530');expect(sent[0].maxFeePerGas).toBeTruthy();expect(sent[1].to.toLowerCase()).toBe(f.f.manifest.payments.toLowerCase());
  // Synthetic receipt confirmation is not permission to invent a paid invoice.

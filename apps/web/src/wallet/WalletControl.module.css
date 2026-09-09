@@ -1,9 +1,23 @@
- .overlay { position: fixed; inset: 0; background: #0005; backdrop-filter: blur(3px); z-index: 40; }
-.content { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(480px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow: auto; background: var(--surface); border: 1px solid var(--outline); border-radius: var(--radius); padding: 28px; z-index: 41; box-shadow: 12px 12px 40px #0003; }
-.content h2 { font-size: 26px; }
-.wallet { display: grid; justify-content: stretch; text-align: left; gap: 8px; }
-.wallet[aria-pressed=true] { border-color: var(--ink); background: var(--inset); box-shadow: var(--pressed); }
-.wallet span:last-child { font-size: 12px; }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
-/* Privy replaces inline logo styles; a class preserves the brand's light mark. */
-.privyLogo { object-fit: contain; filter: invert(96%) sepia(8%) saturate(193%) hue-rotate(5deg) brightness(100%) contrast(91%); }
+.connect { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 10px; max-width: 260px; }
+.connect > p { flex-basis: 100%; max-width: 280px; margin: 0; text-align: right; }
+.trigger { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.connectionDot, .network > span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.network { display: inline-flex; align-items: center; gap: 8px; max-width: 100%; margin: 0 0 22px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; line-height: 1.5; color: var(--muted); }
+.network[data-wrong-network=true] { color: var(--warning); }
+.network[data-wrong-network=true] > span { background: var(--warning); }
+.wallets { display: grid; gap: 10px; }
+.wallet { display: grid; width: 100%; min-width: 0; text-align: left; gap: 9px; padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--inset); color: var(--ink); transition: border-color var(--motion), background var(--motion); }
+.wallet:hover:not(:disabled) { border-color: var(--outline); }
+.wallet[aria-pressed=true] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 4%, var(--inset)); }
+.wallet:disabled { opacity: 1; }
+.walletHeading { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
+.selected { display: inline-flex; align-items: center; flex-shrink: 0; gap: 4px; color: var(--accent); font-size: 11px; font-weight: 500; }
+.address { font-family: var(--font-mono); font-size: 11px; line-height: 1.7; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; color: var(--muted); }
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 22px 0; }
+.actions > :global(.button) { padding-inline: 10px; font-size: 12px; }
+.actions > :first-child:nth-last-child(3) { grid-column: 1 / -1; }
+.disconnect { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 0; border: 0; background: transparent; color: var(--muted); font-size: 13px; }
+.disconnect:hover:not(:disabled) { color: var(--ink); }
+/* The SVG owns the shared cream and chartreuse brand colours. */
+.privyLogo { object-fit: contain; }
+@media (max-width: 400px) { .actions { grid-template-columns: 1fr; } }
