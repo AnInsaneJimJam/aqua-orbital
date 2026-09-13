@@ -3,7 +3,7 @@
 The new `FrontierTurn` primitive proves the sign of one exact-frontier
 discriminant. It does not certify endpoint identity, feasibility, a connected
 path, or a complete swap. This implements the extra lower-key condition in
-[FRONTIER_SEGMENT](../../docs/audits/FRONTIER_SEGMENT.md); the other hypotheses
+[FRONTIER_SEGMENT](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/FRONTIER_SEGMENT.md); the other hypotheses
 of that theorem remain separate caller obligations.
 
 ## Interface and uniform arithmetic argument

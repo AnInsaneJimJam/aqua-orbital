@@ -9,7 +9,7 @@ signing or frontend changes.
 **The full API suite passes 53 tests, including 14 invoice tests. Six database
 regressions, three shared-schema regressions, and API/database/shared typechecks
 pass, with no skips or failures in the final runs.** Database output is retained
-in [invoice-db-regression.txt](invoice-db-regression.txt).
+in [invoice-db-regression.txt](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/invoice-db-regression.txt).
 
 ## Public contract
 
@@ -106,16 +106,16 @@ The initial unavailable stubs failed seven of eight behavioral tests before
 implementation; the eighth negative unavailable test initially passed and was
 strengthened to require the specific post-reorg rejection. The route test
 separately failed HTTP 503 before wiring; its full TAP is retained in
-[invoice-http-red.txt](invoice-http-red.txt).
+[invoice-http-red.txt](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/invoice-http-red.txt).
 
 Self-review added a regression showing that a valid old pin could bypass a
 deleted current deployment marker. It failed HTTP 200 versus 503 before the current
 marker join was added to match readiness. The failing output is retained in
-[invoice-marker-red.txt](invoice-marker-red.txt).
+[invoice-marker-red.txt](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/invoice-marker-red.txt).
 
 Malformed DTO cases exposed a Zod refinement edge: object-level checks can run
 after continuable child format errors, so `BigInt('1e18')` originally threw.
-[invoice-dto-red.txt](invoice-dto-red.txt) retains the failure. The object
+[invoice-dto-red.txt](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/invoice-dto-red.txt) retains the failure. The object
 refinement now validates its numeric operands before BigInt arithmetic, leaving
 the existing wire-format errors intact. The final suite checks malformed due,
 block height and recipient amounts return unsuccessful `safeParse` results.
@@ -152,7 +152,7 @@ were not changed.
 
 The final full API run passed **53/53** with no failures/skips in 92.8 seconds.
 [api.txt](api.txt) is the complete final API TAP artifact; the earlier
-[invoices-focused.txt](invoices-focused.txt) records 14 focused passes before the
+[invoices-focused.txt](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/invoices-focused.txt) records 14 focused passes before the
 additional malformed-text cases were added to the same DTO test.
 
 Reproduction uses Node 22.18.0, pnpm 10.34.5 and the documented local-only

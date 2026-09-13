@@ -29,7 +29,7 @@ The successful core run compiled 133 files with Solidity 0.8.30, optimizer 700,
 via IR and Cancun in 117.54 seconds. Its two suites are the unchanged
 `SwapVMTest` (three limit-order/event tests) and `SwapVMAquaTest` (two Aqua
 swaps, including taker-first transfer). Five tests pass, zero fail/skip; see
-[core fork output](upstream-fork-core.txt). This is standard upstream behavior,
+[core fork output](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/upstream-fork-core.txt). This is standard upstream behavior,
 not an Orbital curve test.
 
 The [reproducer](../../scripts/audit-upstream.py) runs the stock and fork trees

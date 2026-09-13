@@ -61,7 +61,7 @@ a key and does not assert that the ideal curve necessarily crossed it.
 ## Whole-path certificate, including existing slack
 
 Use the real definitions in [MATH](../../docs/MATH.md) and the unchanged rounding
-contract in [NUMERICS](../../docs/NUMERICS.md). Fix all untouched coordinates,
+contract in [NUMERICS](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/NUMERICS.md). Fix all untouched coordinates,
 write input start as `a`, input deficit as `alpha=R-a`, original output deficit
 as `w0=R-X_output`, and exact net input as `d`. Define
 

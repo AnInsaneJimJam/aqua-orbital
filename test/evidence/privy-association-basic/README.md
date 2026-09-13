@@ -13,8 +13,6 @@ Both transactions were signed by `0x954ACE1023Cdb3798F69582bbdDcBAcd878B73A9`, d
 
 The [Privy login observation](../arc-integration/privy-login.json) explicitly excludes authentication and wallet creation. The [public UI observation](../arc-integration/deployed-ui.json) is also unauthenticated, and the [payment record](../arc-integration/first-payment.json) explicitly leaves wallet kind unverified. A signed transaction identifies an address; it does not identify Privy or another wallet provider. The retained evidence cannot establish embedded-wallet creation, active selection, reconnection, or provider association with these receipts.
 
-The existing [nine-check frontend smoke](../frontend-polish/README.md) includes [external-wallet dialog](../../../apps/web/test/wallet.spec.ts), [payment](../../../apps/web/test/payment.spec.ts), and [swap](../../../apps/web/test/swap-execution.spec.ts) cases. Those use synthetic HTTP/RPC and injected-wallet fixtures and are not live Privy evidence. No browser tests were rerun for this check.
-
 Reproduce from the repository root:
 
 ```powershell

@@ -10,9 +10,9 @@ The caller must read `nextMintAt(account)` from the selected token at a confirme
 
 ## Observed checks
 
-- Contract RED: 7 expected failures against the initial compiling stub, retained in [demo-dollar-red.txt](demo-dollar-red.txt).
-- Contract GREEN: `forge test --root packages/contracts --match-contract DemoDollarTest --fuzz-seed 0x20260908`, **7/7 passed** in [demo-dollar-green.txt](demo-dollar-green.txt). Tests cover both precisions and permitted chains, invalid precision/chain, timestamp zero, the exact daily boundary, address-local cooldown across transfers, standard allowance behavior, runtime chain drift and early-retry fuzzing. This uses the local fuzz profile, not a release campaign.
-- SDK RED: 6 expected failures before implementation/ABI generation, retained in [sdk-faucet-red.txt](sdk-faucet-red.txt).
+- Contract RED: 7 expected failures against the initial compiling stub, retained in [demo-dollar-red.txt](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/demo-dollar-red.txt).
+- Contract GREEN: `forge test --root packages/contracts --match-contract DemoDollarTest --fuzz-seed 0x20260908`, **7/7 passed** in [demo-dollar-green.txt](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/demo-dollar-green.txt). Tests cover both precisions and permitted chains, invalid precision/chain, timestamp zero, the exact daily boundary, address-local cooldown across transfers, standard allowance behavior, runtime chain drift and early-retry fuzzing. This uses the local fuzz profile, not a release campaign.
+- SDK RED: 6 expected failures before implementation/ABI generation, retained in [sdk-faucet-red.txt](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/sdk-faucet-red.txt).
 - SDK GREEN: `pnpm --filter @orbital/sdk test`, **44/44 passed**, including 6 new faucet tests in [sdk-green.txt](sdk-green.txt). `pnpm --filter @orbital/sdk typecheck` passed.
 - `pnpm --filter @orbital/sdk exec node scripts/generate-abi.mjs` succeeded. The separately recorded [demo-token ABI provenance](../../packages/sdk/src/generated/demo-token-provenance.json) retains compiler 0.8.30, Cancun, optimizer 700 and via-IR, plus current source hash and selectors. Existing ABI groups remain intact.
 - An independent read-only contract review found no concrete defect; that review did not run additional tests.

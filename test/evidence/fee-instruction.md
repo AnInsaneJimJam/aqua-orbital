@@ -16,11 +16,11 @@ are all required: upstream surplus receivers can collect despite `feeTotal=0`.
 
 - Compiling stub run: four of six tests failed for the intended unavailable
   arithmetic/dispatch; two rejection-only tests already passed. Raw log:
-  [fee-instruction-red.txt](fee-instruction-red.txt).
+  [fee-instruction-red.txt](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/fee-instruction-red.txt).
 - Additional regression was observed failing when nonempty surplus metadata was
-  checked only through `feeTotal`: [fee-surplus-red.txt](fee-surplus-red.txt).
+  checked only through `feeTotal`: [fee-surplus-red.txt](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/fee-surplus-red.txt).
 - Corrected run: **7 fee tests and 22 lifecycle tests pass**; fee fuzz recorded
-  257 cases at the local profile. [Raw output](fee-instruction-green.txt).
+  257 cases at the local profile. [Raw output](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/fee-instruction-green.txt).
 - Six-pair static quotes use a **test-only `net/2` curve probe**, to isolate the
   actual fee wrapper. The instruction-only harness observes fee storage without
   transfers. Neither is a real Orbital quote or settlement demonstration.

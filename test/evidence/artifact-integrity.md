@@ -49,13 +49,13 @@ Existing ABI exports and provenance groups are preserved.
 
 ## Verification
 
-- [Initial RED](artifact-integrity-red.txt): 10 failures against the extracted
+- [Initial RED](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/artifact-integrity-red.txt): 10 failures against the extracted
   previous direct-source check, including accepted stale/missing dependencies.
-- [ABI/selector RED](artifact-integrity-abi-red.txt): the first 10 tests passed,
+- [ABI/selector RED](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/artifact-integrity-abi-red.txt): the first 10 tests passed,
   while altered ABI fields and altered method identifiers remained accepted.
-- [Focused GREEN](artifact-integrity-green.txt): all 12 tests passed after the
+- [Focused GREEN](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/artifact-integrity-green.txt): all 12 tests passed after the
   corresponding implementation changes.
-- [Full SDK TAP](artifact-integrity-sdk.txt): **63 passed, zero failures/skips**,
+- [Full SDK TAP](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/artifact-integrity-sdk.txt): **63 passed, zero failures/skips**,
   including event goldens, invoice reads, plans and execution regressions.
 - SDK TypeScript check and scoped whitespace check passed.
 - Generation succeeded against all six current build targets. Repeating

@@ -15,7 +15,7 @@ Generator: `packages/reference/fixtures_slack_segments.py`.
 Tests: `packages/reference/tests/test_slack_certificate.py`.
 Data and computation manifest: [slack-segment-differential.json](slack-segment-differential.json).
 The finite-point argument is recorded in
-[SLACK_SEGMENT.md](../../docs/audits/SLACK_SEGMENT.md).
+[SLACK_SEGMENT.md](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/SLACK_SEGMENT.md).
 
 The generator never imports or executes a Solidity solver. Canonical partitions
 are found by enumerating candidate prefixes and applying the defining exact

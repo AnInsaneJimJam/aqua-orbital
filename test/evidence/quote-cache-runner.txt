@@ -1,7 +1,0 @@
-test_success_and_failure_keep_exact_output (__main__.RecordedCommandTests.test_success_and_failure_keep_exact_output) ... ok
-test_timeout_keeps_partial_output_and_stops_owned_descendants (__main__.RecordedCommandTests.test_timeout_keeps_partial_output_and_stops_owned_descendants) ... ok
-
-----------------------------------------------------------------------
-Ran 2 tests in 3.355s
-
-OK

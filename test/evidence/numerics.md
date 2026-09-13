@@ -1,6 +1,6 @@
 # Numerical evidence — partial implementation
 
-This is an evidence ledger for mathematical primitives and the integrated certified all-interior path, **not a completed proof of the mixed swap engine**. See [NUMERICS](../../docs/NUMERICS.md) for the normative numerical contract and [paper ledger](../../docs/PAPER_IMPLEMENTATION.md) for source translations and counterexamples.
+This is an evidence ledger for mathematical primitives and the integrated certified all-interior path, **not a completed proof of the mixed swap engine**. See [NUMERICS](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/NUMERICS.md) for the normative numerical contract and [paper ledger](../../docs/PAPER_IMPLEMENTATION.md) for source translations and counterexamples.
 
 ## Implemented domains and bounds
 
@@ -28,9 +28,9 @@ The reconstruction proof and boundary-price reduction are conditional on the sta
 
 ## Certified output-only segments and inward seams
 
-`SlackCertificate.certifyFixedPartition` checks endpoints, the exact variance minimum and the only possible hidden maximum of a boundary coordinate. [The proof](../../docs/audits/SLACK_SEGMENT.md) derives integer moments, signed critical-point inclusion and the wide comparison without evaluating a fractional critical point. Its original-domain products are below `2^393`. Tests include both endpoints below the untouched mean, two-token degenerate moments, equality endpoints, a valid nonsingular release, and rejection of both retained interior-failure mechanisms.
+`SlackCertificate.certifyFixedPartition` checks endpoints, the exact variance minimum and the only possible hidden maximum of a boundary coordinate. [The proof](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/SLACK_SEGMENT.md) derives integer moments, signed critical-point inclusion and the wide comparison without evaluating a fractional critical point. Its original-domain products are below `2^393`. Tests include both endpoints below the untouched mean, two-token degenerate moments, equality endpoints, a valid nonsingular release, and rejection of both retained interior-failure mechanisms.
 
-`certifyInwardRelease` uses exact key-plane coordinates with denominator `2^32`; it does not round a crossing into a raw token amount. `OrbitalMath.certifyGridPoint` accepts proof numerators below `2^192` while leaving stored coordinates/radii below `2^160`. It scales the **original** represented virtual credit and directed sigma contributions. The largest reviewed endpoint product is below `2^454`; segment critical comparisons are below `2^457`. [The independent seam audit](../../docs/audits/SLACK_SEAM.md) reviews explicit-prefix equality checks, inward nesting and conservation of aggregate principal.
+`certifyInwardRelease` uses exact key-plane coordinates with denominator `2^32`; it does not round a crossing into a raw token amount. `OrbitalMath.certifyGridPoint` accepts proof numerators below `2^192` while leaving stored coordinates/radii below `2^160`. It scales the **original** represented virtual credit and directed sigma contributions. The largest reviewed endpoint product is below `2^454`; segment critical comparisons are below `2^457`. [The independent seam audit](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/SLACK_SEAM.md) reviews explicit-prefix equality checks, inward nesting and conservation of aggregate principal.
 
 Every seam is checked using both one-sided reconstructions. The boundary count decreases strictly, so there are at most eight segments and seven inward seams; a zero-distance inward departure counts once. Canonical ending equality remains boundary. This certificate returns only feasibility and the number of inward seams. The future caller must combine that count with subsequent frontier transitions, enforce strict marginal-price rules where required, find the optimum, and establish one combined raw-output/slack budget. It must not treat seven tested seams as a measured complete-swap gas guarantee.
 
@@ -79,7 +79,7 @@ original-radical bracket. It retains a shared caller-supplied budget at most 160
 and returns certified width/status without claiming a raw payout. The cached
 midpoint evaluator has no membership API. [Evidence and limitations](root-bracket.md).
 
-The [exact-frontier segment theorem](../../docs/audits/FRONTIER_SEGMENT.md)
+The [exact-frontier segment theorem](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/FRONTIER_SEGMENT.md)
 separately establishes connected price/principal validity from identified exact
 endpoints and, when needed, a lower-key discriminant comparison. Its hypotheses
 exclude ordinary rounded slack endpoints. [Independent initialization evidence](initializer-oracle.md)
@@ -89,7 +89,7 @@ now compares the linked initializer with paper-derived integer enclosures across
 ## Current composition and remaining G1 obligations
 
 The [fixed-input endpoint coupler](frontier-endpoint.md) originally certified
-same-prefix raw payouts. [Final-retention promotion](outward-retention-promotion.md)
+same-prefix raw payouts. [Final-retention promotion](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/outward-retention-promotion.md)
 now certifies outward prefix changes through reversed GRID release and exact
 one-sided seams, sharing the same crossing ledger. The composed path joins
 actual-start release, identified frontier arcs and final retention with one
@@ -103,7 +103,7 @@ n3/three-tick history, not the required complete distribution. Strict
 [negative-price exclusion](negative-price.md) resolves its named extraneous
 root; exact zero and uncertain sign remain distinct.
 
-The [32-configuration mixed pilot](mixed-pilot.md) adds 128 independent net-input
+The [32-configuration mixed pilot](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/mixed-pilot.md) adds 128 independent net-input
 actions propagated from actual raw payouts. The preserved baseline deferred one
 n3/eight-tick reversal; an exact, independently reviewed lower-sheet proposal
 recovers it and the fresh linked replay matches all 128 actions. This is a
@@ -115,6 +115,6 @@ bracket refinement for the retained ordering deferral; representative discovery
 and liveness; broader independent initialized/actual-state differential checks;
 reachable adversarial fixtures; mixed economic cycles accounting for funded
 slack; full fuzz/invariant/mutation campaigns; and worst-range transaction gas.
-See [the release-gap review](../../docs/audits/RELEASE_GAP_REVIEW.md) for precise
+See [the release-gap review](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/RELEASE_GAP_REVIEW.md) for precise
 source boundaries and priorities. This partial ledger does not authorize a
 verified target deployment or imply G1/G2 release acceptance.

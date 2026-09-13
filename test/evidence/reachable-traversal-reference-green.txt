@@ -1,9 +1,0 @@
-test_each_payment_has_per_tick_path_checks_and_next_raw_support_exclusion (test_reachable_traversal.ReachableTraversalTests.test_each_payment_has_per_tick_path_checks_and_next_raw_support_exclusion) ... ok
-test_first_swap_crosses_outward_and_reverse_swap_crosses_both_ways (test_reachable_traversal.ReachableTraversalTests.test_first_swap_crosses_outward_and_reverse_swap_crosses_both_ways) ... ok
-test_initialized_history_is_precision_stable (test_reachable_traversal.ReachableTraversalTests.test_initialized_history_is_precision_stable) ... ok
-test_second_start_uses_actual_first_payment_and_separate_fee_inventory (test_reachable_traversal.ReachableTraversalTests.test_second_start_uses_actual_first_payment_and_separate_fee_inventory) ... ok
-
-----------------------------------------------------------------------
-Ran 4 tests in 7.005s
-
-OK

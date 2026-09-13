@@ -22,17 +22,17 @@ The paper supplies the mechanism. MATH supplies translated coordinates and expli
 
 ## Open proof obligations
 
-The [initialized mixed pilot](../test/evidence/mixed-pilot.md) links the existing
+The [initialized mixed pilot](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/mixed-pilot.md) links the existing
 per-tick price-space reference to 128 actual-payout net-input steps over 32
 configurations. Its initial failure motivated a repository numerical choice:
-an [exact lower-sheet seed proposal](audits/LOWER_SHEET_PROPOSAL.md), with an
-[independent preservation review](audits/LOWER_SHEET_REVIEW.md). Fresh production
+an [exact lower-sheet seed proposal](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/LOWER_SHEET_PROPOSAL.md), with an
+[independent preservation review](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/LOWER_SHEET_REVIEW.md). Fresh production
 observations match all 128 retained witnesses. The proposal changes discovery,
 not paper geometry, ownership, or any root/path/payout acceptance predicate.
 Exact helper oracles and the finite numerical pilot do not establish general
 liveness; the named large n8 gas cases remain above the provisional target cap.
 
-The component audits below establish conditional results for convex-set minima, consolidated branches, connected arcs, all-token prices, conservative schedules, reconstructed solvency and one final payout. Their composition authorizes only certified paths. [The current release-gap review](audits/RELEASE_GAP_REVIEW.md) identifies the remaining equality, discovery, economic-history and campaign obligations. For every result retain hypotheses, proof or counterexample, tested ranges, source locator and dependent code/tests; component proofs do not establish full supported-range liveness.
+The component audits below establish conditional results for convex-set minima, consolidated branches, connected arcs, all-token prices, conservative schedules, reconstructed solvency and one final payout. Their composition authorizes only certified paths. [The current release-gap review](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/RELEASE_GAP_REVIEW.md) identifies the remaining equality, discovery, economic-history and campaign obligations. For every result retain hypotheses, proof or counterexample, tested ranges, source locator and dependent code/tests; component proofs do not establish full supported-range liveness.
 
 Use explicit per-tick baskets at >=100 decimal digits for reference fixtures, increase precision, and compare small cases by a separate constrained optimization method. Never use a second copy of the production torus solver as its own oracle. Large-dimensional experiments establish only their recorded bounded range.
 
@@ -56,22 +56,22 @@ Retained fixture: n=4, full radius R=2, ordinary radius r=10^-6, exactly quantiz
 
 `packages/reference/tests/test_slack_path.py` reproduces this strengthened fixture at 110 and 160 digits. It is an exact-real small-slack construction; integer transaction reachability remains unproved. The integer embedding in `fixtures_slack.py` retains the interior variance failure between valid endpoints of the same partition; it is also not a claimed reachable raw-token history.
 
-The subsequent [fixed-partition audit](audits/SLACK_SEGMENT.md) proves a sufficient finite certificate: both endpoint certificates, the variance minimum, and the sole possible interior maximum of the largest untouched boundary coordinate. The maximum is separate from both the variance minimum and input/output equality. `SlackCertificate.sol` implements exact wide moment comparisons and retains separate failures for the variance hole and hidden boundary-price peak.
+The subsequent [fixed-partition audit](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/SLACK_SEGMENT.md) proves a sufficient finite certificate: both endpoint certificates, the variance minimum, and the sole possible interior maximum of the largest untouched boundary coordinate. The maximum is separate from both the variance minimum and input/output equality. `SlackCertificate.sol` implements exact wide moment comparisons and retains separate failures for the variance hole and hidden boundary-price peak.
 
-The [inward seam audit](audits/SLACK_SEAM.md) proves feasibility nesting for a boundary-to-interior reclassification with slack. Individual MATH-7 baskets may change, but their per-token changes cancel under single-maker ownership. Exact GRID-denominator seam checks preserve the original represented virtual and sigma contributions. `certifyInwardRelease` concatenates separately certified segments with both one-sided seam checks, at most eight segments/seven inward seams. This is an output-only path certificate, not a root finder or evidence of raw-token reachability.
+The [inward seam audit](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/SLACK_SEAM.md) proves feasibility nesting for a boundary-to-interior reclassification with slack. Individual MATH-7 baskets may change, but their per-token changes cancel under single-maker ownership. Exact GRID-denominator seam checks preserve the original represented virtual and sigma contributions. `certifyInwardRelease` concatenates separately certified segments with both one-sided seam checks, at most eight segments/seven inward seams. This is an output-only path certificate, not a root finder or evidence of raw-token reachability.
 
 These results resolve the particular segment-interior and inward-seam obligations under their stated hypotheses. The later composition supplies conditional rounded-start traversal, event ordering and the combined output/slack budget. Representative liveness, mixed economic histories and the required campaigns continue to block G1/G2 acceptance.
 
 ## Scalar and global-output certificates
 
-The [original-radical audit](audits/CURVE_EVALUATION.md) reviews directed scalar
+The [original-radical audit](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/CURVE_EVALUATION.md) reviews directed scalar
 and normal enclosures without squaring the radical into an unfiltered quartic.
-The [frontier event audit](audits/FRONTIER_EVENTS.md) derives both roots from
+The [frontier event audit](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/FRONTIER_EVENTS.md) derives both roots from
 exact pair sums/differences and separately certifies physicality. Independent
 vector/basket fixtures are retained with their regeneration script and hashes in
 [primitive evidence](../test/evidence/curve-primitives.md).
 
-The [global support-gap proof](audits/ROOT_CERTIFICATE.md) supplies an output
+The [global support-gap proof](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/ROOT_CERTIFICATE.md) supplies an output
 bound from arbitrary exact nonnegative prices with positive output weight.
 Every tick's support branch must come from those prices; a retained strict-slack
 seam counterexample disproves reusing the persisted reserve partition. Directed
@@ -80,7 +80,7 @@ exclusion witness without requiring the proposed prices to be the candidate's
 exact supporting normal. Finding a tight witness, proving candidate/path
 feasibility and composing one final raw-output budget remain separate.
 
-The [fixed-frontier segment theorem](audits/FRONTIER_SEGMENT.md) proves price
+The [fixed-frontier segment theorem](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/FRONTIER_SEGMENT.md) proves price
 and principal validity between identified exact frontier endpoints. Same-branch
 arcs use endpoint certificates; an inward-to-outward arc also needs an upper
 discriminant bound at the largest boundary key to exclude intervening crossings.
@@ -111,7 +111,7 @@ binds actual reserves and immutable token units to a certified original-radical
 root. Its exact normal supplies the global support witness; conservative raw
 flooring and an extended same-partition domain check bound both omitted output
 and radial slack. Independent explicit-basket goldens cover n=2,3,8 at 110/160
-digits. The [derivation and limits](audits/ENDPOINT_IDENTIFICATION.md) separate
+digits. The [derivation and limits](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/ENDPOINT_IDENTIFICATION.md) separate
 endpoint identity from the still-required initial connection, ordered crossings
 and rounded endpoint reclassification. The caller must carry the remaining
 refinement budget across every helper call.
@@ -121,7 +121,7 @@ an exact fractional proof endpoint and selected seam side while preserving the
 original canonical-start API. The [event scheduler](../test/evidence/frontier-schedule.md)
 enumerates both roots in one actual-state frame, checks strict input/output
 order and walks adjacent ideal prefixes. Its independent price-space corpus
-includes fourteen events across eight ticks. The [implemented composition](audits/FRONTIER_COMPOSITION.md)
+includes fourteen events across eight ticks. The [implemented composition](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/FRONTIER_COMPOSITION.md)
 joins these certificates with identified initial/final roots under shared
 refinement/crossing budgets. Nine independent explicit-basket cases agree on
 whole-path output, endpoint enclosures and slack, including inward/outward
@@ -130,7 +130,7 @@ preserve the assumptions of each component. Production router integration now
 passes the initialized history below. Endpoint equality, full supported-range
 liveness and complete gas acceptance remain open.
 
-The [payout-targeted refinement](audits/PAYOUT_REFINEMENT.md) is a numerical
+The [payout-targeted refinement](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/PAYOUT_REFINEMENT.md) is a numerical
 implementation choice derived from NUM-9's existing one-raw-unit allowance,
 not a statement from the paper. Given an independently certified ideal-root
 bracket, it stops only when the combined raw-floor and root-gap bound fits
@@ -141,7 +141,7 @@ independent reference](../test/evidence/payout-refinement.md) exercise both
 phases, retain discovery counterexamples and distinguish helper gas from
 full deployment acceptance.
 
-The [final-retention repartition proof](audits/OUTWARD_RETENTION_PROPOSAL.md)
+The [final-retention repartition proof](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/OUTWARD_RETENTION_PROPOSAL.md)
 is also repository-derived. Reversed GRID release checks every intervening
 one-sided seam, while a triangle inequality shows radial defect cannot jump
 upward at outward reclassification. Its pure-library implementation retains one
@@ -153,7 +153,7 @@ now reproduces both raw outputs, ordered outward/inward crossings, canonical
 actual metadata and principal/fee separation. Only a complete
 `FrontierPathCertified` result may authorize a mixed settlement.
 
-The [strict negative-price exclusion](audits/NEGATIVE_PRICE_EXCLUSION.md) is a
+The [strict negative-price exclusion](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/NEGATIVE_PRICE_EXCLUSION.md) is a
 repository-derived schedule improvement. It excludes only an algebraic event
 branch proved to have a negative common supporting price; an unknown or exact
 zero sign remains retained. Exact rational fixtures bind that distinction. This

@@ -1,7 +1,7 @@
 # Global endpoint dual certificate
 
 Observed 2026-09-08. The proof and implementation contract are in
-[ROOT_CERTIFICATE.md](../../docs/audits/ROOT_CERTIFICATE.md). This is a bounded
+[ROOT_CERTIFICATE.md](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/ROOT_CERTIFICATE.md). This is a bounded
 G1 arithmetic/endpoint result, not a completed swap engine or deployment.
 
 ## Implemented

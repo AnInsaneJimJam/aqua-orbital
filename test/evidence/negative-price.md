@@ -6,7 +6,7 @@ rounded endpoint by 513016094 raw token 0 for net 499750000 raw token 2. The
 second schedule preserves its inward and outward key-1.5 crossings while
 excluding only a strictly proved negative-price key-1.75 algebraic root.
 
-The [proof](../../docs/audits/NEGATIVE_PRICE_EXCLUSION.md) requires original
+The [proof](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/NEGATIVE_PRICE_EXCLUSION.md) requires original
 `atKey` provenance, directed coefficient bounds, the full-range anchor and the
 existing event/arc certificates. The new internal predicate uses lower absolute
 coordinate bounds and strict wide comparison. A failed physical check alone

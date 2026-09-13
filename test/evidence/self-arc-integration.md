@@ -22,4 +22,4 @@ The operator page at `http://127.0.0.1:3100` requires wallet `0x5eBA55e1b43c8714
 
 At this checkpoint, zero transactions are confirmed and no activation occurred. Remaining linked constructors cannot be simulated on the real chain until their dependencies are deployed. No authenticated Privy wallet, Orbital swap or swap-funded invoice on Arc is claimed. Full numerical, security, gas, accessibility and release campaigns were not run for this increment.
 
-See [deployment steps and recovery](../../docs/ARC_DEPLOYMENT.md), [live application profile](../../docs/ARC_DEMO.md) and [progress](../../PROGRESS.md).
+See [deployment steps and recovery](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/ARC_DEPLOYMENT.md), [live application profile](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/ARC_DEMO.md) and [progress](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/PROGRESS.md).

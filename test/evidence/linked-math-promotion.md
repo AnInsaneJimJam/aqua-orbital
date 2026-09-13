@@ -1,7 +1,7 @@
 # Production pure-library visibility promotion
 
 After the two independent reviews of the
-[isolated proposal](../../docs/audits/LINKED_MATH.md), production changes were
+[isolated proposal](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/LINKED_MATH.md), production changes were
 limited to exactly five `internal` → `public` visibility keywords:
 `FrontierComposition.certify` and `FrontierEndpoint.identifyInitial`,
 `exactInput`, `exactInputForPayout`, `resumeExactInput`. Normalizing those five

@@ -27,3 +27,12 @@ docs/sources/cache/
 /deployments/31337/verification.json
 # Browser deployment plans and receipts are local operational state.
 /deployments/5042002/plans/
+
+# Local submission exports and retired workspace material.
+/output/
+/FRONTED-spec/
+/FRONTEND-specs/
+/.serena/
+
+# Generated visual-verification captures.
+/test/evidence/**/*.png

@@ -1,8 +1,0 @@
-Compiler run failed:
-Error (9582): Member "discoverFinal" not found or not visible after argument-dependent lookup in type(library FrontierEndpoint).
-  --> test/PrefixDiscovery.t.sol:21:34:
-   |
-21 |         E.Identity memory actual=E.discoverFinal(c.x,c.ticks,c.decimals,c.input,c.output,c.raw);
-   |                                  ^^^^^^^^^^^^^^^
-
-Error: Compilation failed

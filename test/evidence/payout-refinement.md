@@ -12,7 +12,7 @@ root-gap bound, using an appended `PayoutBounded` status. Ordinary `refine` and
 the original frame and rechecks proposed retained bounds. Composition permits
 one ordinary continuation and separately records both phases' actual work.
 Only its outer path certificate authorizes payout. The conditional argument is
-in [PAYOUT_REFINEMENT](../../docs/audits/PAYOUT_REFINEMENT.md).
+in [PAYOUT_REFINEMENT](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/PAYOUT_REFINEMENT.md).
 
 The first 13 new bracket/endpoint tests failed against compiling revert stubs.
 They then passed after implementation. Two new composition tests initially
@@ -78,7 +78,7 @@ call and its body separately. Caller ABI/call/return work is included in the
 external figure; fixtures, assertions, logs and transaction intrinsic gas are
 excluded. Body figures exclude ABI decode/encode. Historical baseline source
 hashes and commands remain in
-[COMPOSITION_GAS](../../docs/audits/COMPOSITION_GAS.md).
+[COMPOSITION_GAS](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/COMPOSITION_GAS.md).
 
 | Fixture | Baseline external | Current external | Current body | First / resumed / remaining |
 | --- | ---: | ---: | ---: | --- |

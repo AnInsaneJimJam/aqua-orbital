@@ -1,4 +1,0 @@
-
-> @orbital/web@0.1.0 typecheck C:\Users\gujja\aqua-orbital\apps\web
-> tsc --noEmit
-

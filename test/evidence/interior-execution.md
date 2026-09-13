@@ -12,10 +12,10 @@ receipts, and do not establish complete mixed tick traversal or release readines
 --fuzz-seed 0x20260908 -vv` passed **36 tests**: 7 real execution, 7 fee and 22
 lifecycle tests. The final regex term does not match the separate `SettlementTest`
 harness; its 12 standalone tests are documented in [settlement.md](settlement.md),
-and included in subsequent full runs. [Actual output](interior-execution-green.txt).
+and included in subsequent full runs. [Actual output](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/interior-execution-green.txt).
 
 Before integration, the compiling production unavailable-engine boundary caused
-all five initial execution cases to fail. [Red output](interior-execution-red.txt).
+all five initial execution cases to fail. [Red output](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/interior-execution-red.txt).
 Canonical event and economic-cycle checks were then added before the successful
 integration run; they are not described as part of that five-case red checkpoint.
 

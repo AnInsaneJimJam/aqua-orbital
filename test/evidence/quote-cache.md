@@ -71,7 +71,7 @@ the physical batch list and enumerates reachable subsets for every supported
 `E` and stage count, then compares all member counts 0..128 and batch counts
 0..28: **1,081,149 comparisons**. This is a finite work-accounting check, not a numerical-engine proof.
 
-The [earlier isolated payment service review](../../docs/audits/PAYMENT_SERVICE_REVIEW.md)
+The [earlier isolated payment service review](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/PAYMENT_SERVICE_REVIEW.md)
 belongs to its pre-cache source pins. It is not silently extended to this
 change. This increment's source review and regressions check cache-key
 completeness, retention isolation and continued execution of the existing
@@ -82,27 +82,27 @@ neither an internal cache nor TypeScript DTOs authenticate a dishonest provider.
 
 - Five cache tests cover strict expiry, slow completion, copying, entry/byte
   limits, FIFO eviction, duplicate completion, invalid clocks/clear and invalid
-  inputs/stamps. [RED](quote-cache-red.txt), [initial GREEN](quote-cache-green.txt).
+  inputs/stamps. [RED](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-cache-red.txt), [initial GREEN](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-cache-green.txt).
 - Five transport tests cover key dimensions (including chain/router/version,
   payer, minimum and expiry), cold/hot reservations, uncached inspection,
   cancellation, bad replies, independent concurrent misses and invalidated
-  in-flight fills. [RED](quote-cache-rpc-red.txt),
-  [combined ten-test GREEN](quote-cache-rpc-green.txt).
+  in-flight fills. [RED](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-cache-rpc-red.txt),
+  [combined ten-test GREEN](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-cache-rpc-green.txt).
 - Three native HTTP/PostgreSQL runtime tests compare cold/warm swap and payment
   results, verify actual sent-batch counts, re-read allowance/balance, reject a
   final canonical-header mismatch, and reject resync-required source coverage.
-  [RED](quote-cache-runtime-red.txt), [diagnostic rerun](quote-cache-runtime-diagnostic.txt).
+  [RED](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-cache-runtime-red.txt), [diagnostic rerun](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-cache-runtime-diagnostic.txt).
 - A service test validates accounting of injected complete cache hits and
   rejection of duplicate reports. The existing 44-batch case remains a cold
   test and now explicitly expects zero hit counters.
 - One public SDK decoder test covers changed hit/native counters; two count
   helper tests cover independent subset enumeration and unsupported inputs.
-  [Decoder RED](quote-cache-sdk-red.txt),
-  [thirteen-test SDK GREEN](quote-cache-sdk-green.txt).
+  [Decoder RED](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-cache-sdk-red.txt),
+  [thirteen-test SDK GREEN](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-cache-sdk-green.txt).
 
-The [first combined run](quote-cache-runtime-initial.txt) failed only because
+The [first combined run](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-cache-runtime-initial.txt) failed only because
 the old 44-batch assertion omitted the two new zero counters. The
-[next combined run](quote-cache-runtime-unavailable.txt) rejected a fixture's
+[next combined run](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-cache-runtime-unavailable.txt) rejected a fixture's
 initial quote before the cache assertions. That assertion did not retain the
 service code, so the original cause is **unresolved**. Its message now includes
 the complete safe service result. A separate three-test runtime rerun passed;
@@ -117,23 +117,19 @@ identity-checked child was stopped and its exact isolated schema cleaned up.
 HTTP test barriers now reject early responses with bounded status/body evidence
 and a fixed timeout; runtime test barriers also race service completion. An
 additional payment HTTP test reproduces an early 503 and verifies the failure
-message, rather than hanging. [RED](quote-cache-barrier-red.txt),
-[eleven-test HTTP GREEN](quote-cache-barrier-green.txt).
+message, rather than hanging. [RED](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-cache-barrier-red.txt),
+[eleven-test HTTP GREEN](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-cache-barrier-green.txt).
 
 The runner now streams logs immediately and records timeout status while
 terminating only its owned process tree. Two isolated runner tests verify
 success/failure transcript retention and actual timeout cleanup of a spawned
-child and grandchild. [Runner output](quote-cache-runner.txt). A later
+child and grandchild. [Runner output](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-cache-runner.txt). A later
 [read-only clock check](quote-cache-clock-observation.json) measured PostgreSQL
 779..807 ms ahead of the host; this does not establish the earlier rejection's
 cause. Production clock tolerance is unchanged.
 
-Reproduce the complete source-frozen API/SDK/shared/type-check run with:
-
-```powershell
-$env:TEST_DATABASE_URL='postgresql://orbital:orbital_local_only@localhost:5432/orbital'
-python scripts/audit-payment-endpoint.py quote-cache
-```
+The historical source-frozen API/SDK/shared/type-check run used the
+[audit driver](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/scripts/audit-payment-endpoint.py) with the `quote-cache` label and `TEST_DATABASE_URL` set.
 
 Results and exact before/after input identities are in
 [the cache checkpoint](quote-cache/checkpoint.json). The optional runner label
@@ -147,7 +143,7 @@ workspace type checking, with zero failures, cancellations or skips. TAP
 durations were 198.615 seconds for API and 12.972 seconds for SDK. Every
 enumerated input stayed byte-identical throughout all four commands. Current
 `api.txt` and `sdk-green.txt` are exact copies of the accepted run; the preceding
-[195-test API](api-checkpoint-195.txt) and [89-test SDK](sdk-checkpoint-89.txt)
+[195-test API](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/api-checkpoint-195.txt) and [89-test SDK](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/sdk-checkpoint-89.txt)
 transcripts remain archived with their earlier endpoint checkpoint.
 
 ## Remaining work

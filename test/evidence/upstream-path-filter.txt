@@ -1,4 +1,0 @@
-Compiling 91 files with Solc 0.8.30
-Solc 0.8.30 finished in 68.42s
-Compiler run successful!
-No tests found in project! Forge looks for functions that start with `test`

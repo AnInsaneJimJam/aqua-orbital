@@ -16,9 +16,9 @@ arguments below supply the uniform reasoning.
 ## Scope and interfaces
 
 The mathematical definitions remain in [MATH](../../docs/MATH.md) and
-[NUMERICS](../../docs/NUMERICS.md). This implementation uses the
-[fixed-segment proof](../../docs/audits/SLACK_SEGMENT.md) and
-[root-certificate proof, section 6](../../docs/audits/ROOT_CERTIFICATE.md).
+[NUMERICS](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/NUMERICS.md). This implementation uses the
+[fixed-segment proof](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/SLACK_SEGMENT.md) and
+[root-certificate proof, section 6](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/ROOT_CERTIFICATE.md).
 Their stated MATH-7 reconstruction and `rho>=S` sheet are retained.
 
 `RootBracket.refine(xHi,ctx,output,zLo,budget)` accepts one unmodified

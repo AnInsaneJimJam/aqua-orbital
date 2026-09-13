@@ -23,7 +23,6 @@ const identity=await json('deployments/5042002/verification.json');
 const publicLogin=await json('test/evidence/privy-login.json');
 const arcLogin=await json('test/evidence/arc-integration/privy-login.json');
 const deployedUI=await json('test/evidence/arc-integration/deployed-ui.json');
-const smoke=await source('test/evidence/frontend-polish/README.md');
 const routerSource=await source('packages/contracts/src/OrbitalSwapVMRouter.sol');
 const paymentsSource=await source('packages/contracts/src/OrbitalPayments.sol');
 await source(relative(root,fileURLToPath(import.meta.url)).replaceAll('\\','/'));
@@ -110,7 +109,6 @@ const result={
  schemaVersion:1,checkedAt:new Date().toISOString(),scope:'Offline consistency and signed-transaction audit of retained public evidence; no new network or wallet observation',
  retainedReceiptMatching:{status:'passed',checkCount:checks.length,trader,payer:paid.payer,maker,invoiceId:paid.invoiceId,strategyHash:swapEvent.orderHash,swap:swapIdentity,payment:paymentIdentity},
  privyWalletAssociation:{status:'unverified',authenticatedProviderEvidenceAvailable:false,walletCreationVerified:false,reconnectionVerified:false,publicLoginUIObserved:true,publicAppId:publicLogin.appId,reason:'Retained records show the login modal without authentication and identify no selected Privy embedded wallet. Transaction signatures prove the sending address, not which wallet software controlled it.'},
- existingApplicationSmoke:{record:'test/evidence/frontend-polish/README.md',nineSelectedChecksRecordedPassing:/all nine selected checks have passed/.test(smoke),scope:'Previously recorded synthetic HTTP/RPC and injected external-wallet fixtures; no live Privy provider evidence',cases:['apps/web/test/wallet.spec.ts','apps/web/test/payment.spec.ts','apps/web/test/swap-execution.spec.ts']},
  limitations:['Canonical block hashes are compared with the retained RPC observations only; this run did not recheck the live chain or independently reconstruct block/receipt trie inclusion proofs.','Runtime code and immutable bindings were not re-read; deployment address checks use the retained verified identity report.','The input scope is exactly the hashed files listed below. Absence of authenticated evidence in these files does not prove the user used an external wallet.','No identity token, email, private key or signing session was requested or inspected. No synthetic receipt is relabeled as live.'],
  inputs,checks,
 };

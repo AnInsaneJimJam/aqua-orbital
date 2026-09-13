@@ -1,4 +1,4 @@
-/** Curated links to committed records. These are historical evidence, not live state. */
+/** Curated source, runnable tests and historical records; never live state. */
 export const repositoryUrl = 'https://github.com/AnInsaneJimJam/aqua-orbital';
 export const repositoryFile = (path: string) => `${repositoryUrl}/blob/main/${path}`;
 
@@ -70,7 +70,7 @@ export const evidenceTopics = [
       {label: 'Payment adapter source', path: 'packages/contracts/src/OrbitalPayments.sol'},
       {label: 'Payment contract test', path: 'packages/contracts/test/MixedInvoice.t.sol'},
       {label: 'Payment review tests', path: 'packages/sdk/test/payment-review.test.ts'},
-      {label: 'Automatic-input checks', path: 'test/evidence/payment-automatic/README.md'},
+      {label: 'Payment workflow tests', path: 'apps/web/test/payment.spec.ts'},
     ],
   },
 ] as const;
@@ -91,21 +91,21 @@ export const integrationTopics = [
   },
   {
     title: 'Privy wallet integration',
-    detail: 'Privy connection, wallet selection and the shared transaction bridge are implemented. Retained checks cover the real sign-in interface and Arc browser reads.',
+    detail: 'Privy connection and the shared transaction bridge are implemented. The retained sign-in observation is unauthenticated; executable tests use wallet fixtures.',
     links: [
       {label: 'Privy sign-in smoke', path: 'test/evidence/arc-integration/privy-login.json'},
       {label: 'Wallet receipt validation', path: 'test/evidence/privy-association-basic/README.md'},
-      {label: 'Wallet and RPC smoke', path: 'test/evidence/browser-rpc/README.md'},
+      {label: 'Wallet integration tests', path: 'apps/web/test/wallet.spec.ts'},
       {label: 'Privy wallet source', path: 'apps/web/src/wallet/PrivyWallet.tsx'},
     ],
     contracts: [],
   },
   {
-    title: 'Financial-flow smoke',
-    detail: 'Shared swap and payment reviews, bounded approvals and receipt recovery were checked with wallet fixtures. Actual Arc swaps and invoice settlement are recorded above.',
+    title: 'Financial-flow tests',
+    detail: 'Runnable tests cover swap and payment reviews, bounded approvals and receipt recovery with wallet fixtures. Actual Arc transactions are recorded above.',
     links: [
-      {label: 'Swap flow smoke', path: 'test/evidence/swap-flow.md'},
-      {label: 'Payment flow smoke', path: 'test/evidence/payment-flow.md'},
+      {label: 'Swap execution tests', path: 'apps/web/test/swap-execution.spec.ts'},
+      {label: 'Payment workflow tests', path: 'apps/web/test/payment.spec.ts'},
       {label: 'Connected local flow receipts', path: 'test/evidence/local-integration/receipts-after-restart.json'},
     ],
     contracts: [],
@@ -114,21 +114,19 @@ export const integrationTopics = [
 
 /** Only known repository files can be linked from generated status rows. */
 export const checkpointLinks: Record<string, {label: string; path: string}[]> = {
-  'local-integration': [{label: 'Local demo runbook', path: 'docs/LOCAL_DEMO.md'}],
-  reference: [{label: 'Current reference test results', path: 'test/evidence/engine-suite/README.md'}, {label: 'Earlier reference evidence', path: 'test/evidence/reference-audit/manifest.json'}],
-  contracts: [{label: 'Current contract test results', path: 'test/evidence/engine-suite/README.md'}],
+  'local-integration': [{label: 'Recorded local receipts', path: 'test/evidence/local-integration/receipts-after-restart.json'}],
+  reference: [{label: 'Recorded reference test results', path: 'test/evidence/engine-suite/README.md'}, {label: 'Earlier reference evidence', path: 'test/evidence/reference-audit/manifest.json'}],
+  contracts: [{label: 'Recorded contract test results', path: 'test/evidence/engine-suite/README.md'}],
   sdk: [{label: 'Swap review tests', path: 'packages/sdk/test/swap-review.test.ts'}],
   indexer: [{label: 'Indexer evidence', path: 'test/evidence/backend-reorg.md'}],
   api: [{label: 'API evidence', path: 'test/evidence/backend-api.md'}],
   'engine-basic': [{label: 'Eight-case engine result', path: 'test/evidence/engine-basic/README.md'}],
   'engine-suite': [{label: 'Full existing suite results', path: 'test/evidence/engine-suite/README.md'}],
-  engine: [{label: 'Open mathematical obligations', path: 'docs/audits/RELEASE_GAP_REVIEW.md'}],
-  browser: [{label: 'Browser workflow evidence', path: 'test/evidence/payment-flow.md'}],
+  engine: [{label: 'Mathematical scope', path: 'docs/MATH.md'}],
   'privy-login': [{label: 'Privy login observation', path: 'test/evidence/arc-integration/privy-login.json'}],
   'financial-flow': [{label: 'Recorded Arc swap', path: 'test/evidence/arc-integration/first-swap.json'}, {label: 'Recorded Arc invoice payment', path: 'test/evidence/arc-integration/first-payment.json'}],
-  'wallet-flow': [{label: 'Shared swap flow checks', path: 'test/evidence/swap-flow.md'}, {label: 'Shared payment flow checks', path: 'test/evidence/payment-flow.md'}],
   'receipt-association': [{label: 'Receipt validation result', path: 'test/evidence/privy-association-basic/README.md'}],
-  'privy-flow': [{label: 'Basic association validation', path: 'test/evidence/privy-association-basic/README.md'}, {label: 'Privy qualification requirements', path: 'docs/PRIVY_RESEARCH.md'}],
+  'privy-flow': [{label: 'Basic association validation', path: 'test/evidence/privy-association-basic/README.md'}, {label: 'Wallet integration tests', path: 'apps/web/test/wallet.spec.ts'}],
   arc: [{label: 'Arc deployment record', path: 'deployments/5042002/verification.json'}],
-  release: [{label: 'Release gap review', path: 'docs/audits/RELEASE_GAP_REVIEW.md'}],
+  release: [{label: 'Testing scope', path: 'docs/TESTS.md'}],
 };

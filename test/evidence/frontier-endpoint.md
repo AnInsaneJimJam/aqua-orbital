@@ -6,7 +6,7 @@ one final raw payout with at most one output quantum of shortfall and radial
 slack. `EndpointCertified` is deliberately an **endpoint-only** status; the
 helper does not implement initial-release connection, event traversal, fees,
 custody or settlement. The implementation/proof boundary is recorded in
-[ENDPOINT_IDENTIFICATION](../../docs/audits/ENDPOINT_IDENTIFICATION.md).
+[ENDPOINT_IDENTIFICATION](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/ENDPOINT_IDENTIFICATION.md).
 
 ## Accepted result and source review
 

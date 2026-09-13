@@ -1,8 +1,8 @@
 # Mathematical contract
 
-For the Aqua/Arc build, read [MASTER_PROMPT.md](../MASTER_PROMPT.md) first. Its maker-owned strategy lifecycle overrides pooled custody and permanent anchor ownership; the Orbital geometry and corrected crossing equations below are retained.
+For the Aqua/Arc build, read [MASTER_PROMPT.md](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/MASTER_PROMPT.md) first. Its maker-owned strategy lifecycle overrides pooled custody and permanent anchor ownership; the Orbital geometry and corrected crossing equations below are retained.
 
-Normative reference for [SPEC.md](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ff7bd940a1e6b961523b34364163f4599a232e9/SPEC.md). All equations in this file use real, normalized amounts unless explicitly described as integer representation. Implement their certified fixed-point counterpart from [NUMERICS](NUMERICS.md); do not round each displayed equation independently.
+Normative reference for [SPEC.md](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ff7bd940a1e6b961523b34364163f4599a232e9/SPEC.md). All equations in this file use real, normalized amounts unless explicitly described as integer representation. Implement their certified fixed-point counterpart from [NUMERICS](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/NUMERICS.md); do not round each displayed equation independently.
 
 ## 1. Per-tick geometry and canonical coordinates
 
@@ -78,7 +78,7 @@ When `S=0`, simplify **before evaluating**: `F = sum(R-X_i)²`, and `g_i=R-X_i`.
 
 ## 3. Tick partition
 
-`MATH-6` The common interior normalized reserve sum is `h=(A-K)/R`. An ordinary tick is interior when `h<b_t` and boundary when `h>b_t`. At exact equality the two MATH-7 reconstructions have the same aggregate basket. Their individual tick baskets coincide on the exact frontier. With conservative slack they can differ: a reclassification must certify both one-sided reconstructions, preserving aggregate reserves, virtual contributions and the single maker's principal. The [inward slack seam audit](audits/SLACK_SEAM.md) derives this distinction and the conditional inward feasibility implication; it does not permit the reverse implication without its additional checks. This release uses boundary ownership for the canonical persisted equality state, with a direction-aware departure rule in section 6 to permit inward travel immediately. The anchor always remains interior.
+`MATH-6` The common interior normalized reserve sum is `h=(A-K)/R`. An ordinary tick is interior when `h<b_t` and boundary when `h>b_t`. At exact equality the two MATH-7 reconstructions have the same aggregate basket. Their individual tick baskets coincide on the exact frontier. With conservative slack they can differ: a reclassification must certify both one-sided reconstructions, preserving aggregate reserves, virtual contributions and the single maker's principal. The [inward slack seam audit](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/SLACK_SEAM.md) derives this distinction and the conditional inward feasibility implication; it does not permit the reverse implication without its additional checks. This release uses boundary ownership for the canonical persisted equality state, with a direction-aware departure rule in section 6 to permit inward travel immediately. The anchor always remains interior.
 
 Use exact cross multiplication to compare `A-K` with `R b_t`; do not divide to a low-precision display value. All ordinary boundary keys are below or at `h`, and all ordinary interior keys above `h`, subject only to the certified crossing enclosure. An equality enclosure is not permission to classify arbitrary nearby ticks as equal.
 

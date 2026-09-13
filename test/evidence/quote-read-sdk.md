@@ -4,7 +4,7 @@
 then passed. The complete SDK suite passed **72 tests**, zero failed/skipped,
 in 23.665 seconds; SDK TypeScript checking also passed.
 
-- [Focused RED](quote-read-sdk-red.txt), [focused GREEN](quote-read-sdk-green.txt),
+- [Focused RED](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-read-sdk-red.txt), [focused GREEN](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/quote-read-sdk-green.txt),
   [complete SDK output](sdk-green.txt).
 - [Decoder](../../packages/sdk/src/quote-read.ts),
   [tests](../../packages/sdk/test/quote-read.test.ts),

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T02:14:25.649Z",
+  "generatedAt": "2026-09-13T16:21:42.680Z",
   "items": [
     {
       "id": "local-integration",
@@ -11,19 +11,19 @@
       "id": "reference",
       "label": "Independent reference fixtures",
       "status": "verified",
-      "detail": "129 tests passed in the complete existing reference suite with unchanged inputs and matching output hashes. Existing exact and high-precision checks are finite evidence, not a proof of the production solver."
+      "detail": "129 recorded bounded numerical regressions; selected 110/160-digit checks. This is not a proof of the production solver."
     },
     {
       "id": "contracts",
       "label": "Local contract tests",
       "status": "verified",
-      "detail": "404 tests across 47 suites passed in the complete existing default-profile run, including arithmetic, curve execution, Aqua settlement, payments and existing fuzz/invariant cases. Input and output hashes match. Full release campaigns remain outstanding."
+      "detail": "398 recorded tests, including real six-pair interior Aqua swaps, an initialized mixed outward/reverse sequence, an invoice and local security/cycle checks. Separate receipt probes and frozen campaigns retain their source boundaries. Full release campaigns remain outstanding."
     },
     {
       "id": "sdk",
       "label": "SDK transaction plans and recovery",
       "status": "verified",
-      "detail": "129 recorded fixture tests for local calldata construction, review validation and wallet execution recovery. No live wallet transaction is claimed."
+      "detail": "123 recorded fixture tests for local calldata construction, review validation and wallet execution recovery. No live wallet transaction is claimed."
     },
     {
       "id": "indexer",
@@ -40,14 +40,14 @@
     {
       "id": "engine-basic",
       "label": "Integrated engine smoke tests",
-      "status": "verified",
-      "detail": "Eight deterministic local tests passed: six directed-pair quotes and actual fills, mixed outward/reverse traversal, read-only quoting, crossing/settlement rollback and recovery, and mixed invoice payout/failure recovery. Selected input and output hashes still match the run. This does not close full engine release acceptance."
+      "status": "unavailable",
+      "detail": "A current eight-case engine smoke report with matching source and output hashes is required."
     },
     {
       "id": "engine-suite",
       "label": "Complete existing engine test suite",
-      "status": "verified",
-      "detail": "All 404 contract tests and 129 independent-reference tests passed with unchanged inputs. The default Foundry profile uses 256 fuzz runs and 32 invariant runs of depth 64, with a recorded seed. This finite regression run does not close the separate release campaigns or mathematical obligations."
+      "status": "unavailable",
+      "detail": "Both existing contract and reference suites must finish successfully with matching input and output hashes. This status is separate from complete engine release acceptance."
     },
     {
       "id": "engine",
@@ -56,22 +56,10 @@
       "detail": "Certified interior and mixed paths execute locally through both custom instructions with one final payout and shared crossing/refinement budgets. Equality/discovery liveness, broad differential/economic campaigns and worst-range transaction gas remain open. Local integration and recorded Arc execution are separate from complete engine acceptance."
     },
     {
-      "id": "browser",
-      "label": "Development browser workflows",
-      "status": "verified",
-      "detail": "72 recorded tests: public swap/invoice observations, saved settings, debounced refresh, canonical balances, gas-aware Max, network selection, separate approvals/signing, invoice creation/cancellation, receipt event decoding, expiry/account changes and receipt/storage recovery, external-wallet fixtures, navigation and 320px layout. Synthetic HTTP/RPC receipts are not live transactions. Production performance and full accessibility campaigns are outstanding."
-    },
-    {
       "id": "privy-login",
       "label": "Privy sign-in smoke test",
       "status": "verified",
       "detail": "The configured Privy email/external-wallet interface loaded in the real Arc application without observed SDK failures. This public-interface check did not authenticate or sign."
-    },
-    {
-      "id": "wallet-flow",
-      "label": "Wallet financial-flow smoke tests",
-      "status": "verified",
-      "detail": "Retained accepted swap and payment browser runs cover exact approvals, independent review/signature steps and receipt recovery using injected-wallet HTTP/RPC fixtures. Transcript hashes match their checkpoints. They exercise the shared transaction paths; they do not authenticate a Privy wallet."
     },
     {
       "id": "receipt-association",

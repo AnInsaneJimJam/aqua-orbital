@@ -1,11 +1,12 @@
 import {mkdir, writeFile, readFile} from 'node:fs/promises';
+import {existsSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 const tracked = execFileSync('git', ['ls-files'], {encoding:'utf8'}).trim().split('\n').filter(Boolean);
 const untracked = execFileSync('git', ['ls-files', '--others', '--exclude-standard'], {encoding:'utf8'}).trim().split('\n').filter(Boolean);
 const files = {};
 for (const path of [...new Set([...tracked,...untracked])].sort()) {
-  if (path.startsWith('test/evidence/builds/')) continue;
+  if (path.startsWith('test/evidence/builds/') || !existsSync(path)) continue;
   files[path] = createHash('sha256').update(await readFile(path)).digest('hex');
 }
 await mkdir('test/evidence/builds', {recursive:true});
@@ -15,8 +16,7 @@ console.log('Wrote source evidence manifest.');
 async function log(path){try{const data=await readFile(path);return data[0]===255&&data[1]===254?data.subarray(2).toString('utf16le'):data.toString('utf8');}catch{return '';}}
 const reference=await log('test/evidence/reference-audit/tests.txt');
 const contracts=await log('test/evidence/contracts.txt');
-const browser=await log('test/evidence/browser.txt');
-const sdk=await log('test/evidence/strategy-read/final/sdk.txt')||await log('test/evidence/sdk-green.txt');
+const sdk=await log('test/evidence/sdk-green.txt');
 const db=await log('test/evidence/database.txt');
 const indexer=await log('test/evidence/indexer.txt');
 const api=await log('test/evidence/api.txt');
@@ -30,12 +30,10 @@ function tapCount(contents){
  return passed>0&&failed==='0'&&skipped==='0'?passed:0;
 }
 const sdkCount=tapCount(sdk),dbCount=tapCount(db),indexerCount=tapCount(indexer),apiCount=tapCount(api);
-const browserCount=Number([...browser.matchAll(/\b(\d+) passed\s*\(/g)].at(-1)?.[1]??0);
 async function record(path){try{return JSON.parse(await readFile(path,'utf8'));}catch{return undefined;}}
-const [privyObservation,arcIdentity,arcSwap,arcPayment,swapCheckpoint,paymentCheckpoint]=await Promise.all([
+const [privyObservation,arcIdentity,arcSwap,arcPayment]=await Promise.all([
  record('test/evidence/arc-integration/privy-login.json'),record('deployments/5042002/verification.json'),
- record('test/evidence/arc-integration/first-swap.json'),record('test/evidence/arc-integration/first-payment.json'),
- record('test/evidence/swap-flow/checkpoint.json'),record('test/evidence/payment-flow/checkpoint.json')
+ record('test/evidence/arc-integration/first-swap.json'),record('test/evidence/arc-integration/first-payment.json')
 ]);
 const privy=privyObservation?.loginVisible===true&&privyObservation.failures?.length===0;
 // Summarize retained verification reports; this generator performs no new chain check.
@@ -52,12 +50,6 @@ function recordedArcReceipt(report,target){
 }
 const financialFlow=arcVerified&&recordedArcReceipt(arcSwap,arcIdentity.manifest.router)&&recordedArcReceipt(arcPayment,arcIdentity.manifest.payments)
  &&arcSwap.event?.eventName==='OrbitalSwapExecuted'&&arcPayment.payment?.some(event=>event.eventName==='InvoicePaid');
-async function recordedBrowserRun(checkpoint){
- const run=checkpoint?.runs?.find(run=>run.label==='browser');
- if(checkpoint?.accepted!==true||checkpoint.inputsUnchanged!==true||run?.exitStatus!==0||run.timedOut!==false||run.terminal!==true)return false;
- try{return createHash('sha256').update(await readFile(run.transcript)).digest('hex')===run.sha256;}catch{return false;}
-}
-const walletFlow=(await Promise.all([recordedBrowserRun(swapCheckpoint),recordedBrowserRun(paymentCheckpoint)])).every(Boolean);
 const associationCheck=await record('test/evidence/privy-association-basic/result.json');
 async function matchingRecordedInputs(report){
  if(!Array.isArray(report?.inputs)||!report.inputs.length)return false;
@@ -100,9 +92,7 @@ const items=[
  {id:'engine-basic',label:'Integrated engine smoke tests',status:engineBasicVerified?'verified':'unavailable',detail:engineBasicVerified?'Eight deterministic local tests passed: six directed-pair quotes and actual fills, mixed outward/reverse traversal, read-only quoting, crossing/settlement rollback and recovery, and mixed invoice payout/failure recovery. Selected input and output hashes still match the run. This does not close full engine release acceptance.':'A current eight-case engine smoke report with matching source and output hashes is required.'},
  {id:'engine-suite',label:'Complete existing engine test suite',status:completeSuiteVerified?'verified':completeContracts.report||completeReference.report?'unavailable':'not-run',detail:completeSuiteVerified?`All ${completeContracts.report.counts.passed} contract tests and ${completeReference.report.counts.passed} independent-reference tests passed with unchanged inputs. The default Foundry profile uses 256 fuzz runs and 32 invariant runs of depth 64, with a recorded seed. This finite regression run does not close the separate release campaigns or mathematical obligations.`:'Both existing contract and reference suites must finish successfully with matching input and output hashes. This status is separate from complete engine release acceptance.'},
  {id:'engine',label:'Complete engine release acceptance',status:'not-run',detail:'Certified interior and mixed paths execute locally through both custom instructions with one final payout and shared crossing/refinement budgets. Equality/discovery liveness, broad differential/economic campaigns and worst-range transaction gas remain open. Local integration and recorded Arc execution are separate from complete engine acceptance.'},
- {id:'browser',label:'Development browser workflows',status:browserCount&&!/\d+ failed/.test(browser)?'verified':'failed',detail:`${browserCount} recorded tests: public swap/invoice observations, saved settings, debounced refresh, canonical balances, gas-aware Max, network selection, separate approvals/signing, invoice creation/cancellation, receipt event decoding, expiry/account changes and receipt/storage recovery, external-wallet fixtures, navigation and 320px layout. Synthetic HTTP/RPC receipts are not live transactions. Production performance and full accessibility campaigns are outstanding.`},
  {id:'privy-login',label:'Privy sign-in smoke test',status:privy?'verified':'unavailable',detail:'The configured Privy email/external-wallet interface loaded in the real Arc application without observed SDK failures. This public-interface check did not authenticate or sign.'},
- {id:'wallet-flow',label:'Wallet financial-flow smoke tests',status:walletFlow?'verified':'unavailable',detail:'Retained accepted swap and payment browser runs cover exact approvals, independent review/signature steps and receipt recovery using injected-wallet HTTP/RPC fixtures. Transcript hashes match their checkpoints. They exercise the shared transaction paths; they do not authenticate a Privy wallet.'},
  {id:'receipt-association',label:'Recorded wallet and receipt matching',status:receiptMatching?'verified':'unavailable',detail:receiptMatching?`${associationCheck.retainedReceiptMatching.checkCount} offline consistency checks passed for signed transaction hashes, recovered sender, raw events, token transfers and retained block identities. The swap trader and invoice payer match. This is not a fresh RPC or wallet authentication check.`:'A current retained-receipt validation report is required.'},
  {id:'privy-flow',label:'Privy wallet receipt association',status:associationCheck?'unavailable':'not-run',detail:receiptMatching?'Basic validation ran: the retained swap and payment match the same signing address, but the saved Privy observations stop before authentication. The wallet-provider association remains unrecorded.':'Orbital has financial-flow tests and recorded Arc transactions. An authenticated record linking the demonstrated trader to a Privy wallet remains unrecorded.'},
  {id:'arc',label:'Arc deployment identity',status:arcVerified?'verified':'unavailable',detail:arcVerified?'Retained Arc Testnet verification confirms twelve successful deployment receipts, runtime identity and contract bindings. Aqua uses the owner-authorized project deployment of unchanged upstream source; this is separate from canonical 1inch deployment or sponsor acceptance.':'No complete Arc runtime-identity verification record is available.'},

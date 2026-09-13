@@ -3,7 +3,7 @@
 Observed 2026-09-08. `FrontierSchedule.enumerate` produces a conservative ordered
 list of ordinary-key intersections and checks the ideal-prefix transitions in
 the same call. It is a scheduling certificate, not a complete swap/path solver.
-The [proof and remaining obligations](../../docs/audits/FRONTIER_SCHEDULE.md)
+The [proof and remaining obligations](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/FRONTIER_SCHEDULE.md)
 separate initial connection, frontier arcs/turns and final raw rounding.
 
 Every root uses the unchanged actual reserve vector as its progress origin.
@@ -31,7 +31,7 @@ the allowance. This is distinct from the 160-step root-refinement budget.
 ## Verification
 
 - Eleven behavioral tests failed against the compiling initial stub, retained
-  in [frontier-schedule-red.txt](frontier-schedule-red.txt).
+  in [frontier-schedule-red.txt](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/frontier-schedule-red.txt).
 - Fifteen completed Solidity tests pass, including four later independent
   edge-case fixtures. [Focused output](frontier-schedule-green.txt).
 - Seven independent reference tests pass; the 110/160-digit corpora agree

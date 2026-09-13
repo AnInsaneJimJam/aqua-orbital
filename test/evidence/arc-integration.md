@@ -11,14 +11,14 @@ This increment connects live-profile startup and user-signed deployment preparat
 | Database recovery | One real PostgreSQL private-proxy test passed; no shared service stopped and no readiness fabricated |
 | Arc runner | Started web on 3002 and API on 3003 with fixture wallets disabled; verified chain and canonical system USDC observations |
 | App HTTP | Landing and health returned 200; `/ready` returned `503 DEPLOYMENT_UNAVAILABLE` without a manifest; no indexer/database connection started in this profile |
-| Public Privy modal | Fresh Chromium context displayed email and external-wallet entry without browser/Privy response failures; final logo contrast verified. [Observation](arc-integration/privy-login.json), [screenshot](arc-integration/privy-login.png) |
+| Public Privy modal | Fresh Chromium context displayed email and external-wallet entry without browser/Privy response failures; final logo contrast verified. [Observation](arc-integration/privy-login.json) |
 | Node syntax | `node --check` passed for the deployment module/CLI, wallet server, Arc runner and network verifier; helper's embedded browser JavaScript also passed |
 | Prepared deployment | Authenticated artifacts produced eleven unsigned steps; plan ID `f4d8844142e754179f1af65b0cd743d676581f0af1dd355cc344b9d80a05ce3e` |
 | Final status | `blocked`, 0/11 confirmed; no Aqua code at the published address and no reviewed official Arc identity evidence; no transaction offered for signing |
 | Wallet utility HTTP | Page/status 200 with correct wallet/blockers; foreign Origin and missing CSRF 403, invalid hash 400, oversized JSON 413. No hash recorded or activation performed |
 | First library simulation | Arc `eth_estimateGas`/`eth_call` for FrontierEndpoint passed: estimate 5,029,740 gas, reviewed limit 6,045,688, maximum budget 0.242730779933245824 USDC. Returned 22,826-byte runtime matches its compiler template. No immutable slots exist in this library. Nonce remained 0; no contract created. [Pinned observation](arc-integration/first-deployment-simulation.json) |
 
-Plans/state are machine-local files under ignored `deployments/5042002/plans/`. Regenerate them from authenticated artifacts using [the deployment runbook](../../docs/ARC_DEPLOYMENT.md). Earlier receipt/math checkpoints retain their original source boundaries.
+Plans/state are machine-local files under ignored `deployments/5042002/plans/`. Regenerate them from authenticated artifacts using [the deployment runbook](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/ARC_DEPLOYMENT.md). Earlier receipt/math checkpoints retain their original source boundaries.
 
 ## Corrections and limits
 

@@ -54,7 +54,7 @@ Direct USDC needs twenty members in four batches. The retained test with
 32 inspected / 9 eligible candidates reaches fourteen search stages,
 126 quote members and **244 total members in 44 native batches**.
 
-The [isolated service review](../../docs/audits/PAYMENT_SERVICE_REVIEW.md) proves
+The [isolated service review](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/PAYMENT_SERVICE_REVIEW.md) proves
 its stated conditional preservation/accounting claim under authentic database
 and RPC observations and the named route/SDK validator contracts. It found no
 defect in that scope; its twenty source pins were revalidated. Public schemas,
@@ -69,7 +69,7 @@ is the adversarial regression coverage below, not an independent security audit.
 - Four new runtime tests use real native HTTP batches and isolated PostgreSQL
   schemas. They cover materialized invoices/strategies, shared admission under
   blocked SQL, weighted capacity shared with metrics, and shutdown cancellation.
-  [Focused output](payment-runtime-green.txt) also includes four existing swap
+  [Focused output](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/payment-runtime-green.txt) also includes four existing swap
   runtime regressions, eight total.
 - Ten HTTP tests cover both aliases, real PostgreSQL/native-RPC-to-SDK round
   trips, strict input/body handling, final manifest replacement/expiry, altered
@@ -82,18 +82,18 @@ is the adversarial regression coverage below, not an independent security audit.
   with named fixtures, without a live wallet or onchain transaction.
 - Two new shared structural-schema tests supplement the prior five tests.
 
-Retained RED outputs: [service](payment-service-red.txt),
-[runtime](payment-runtime-red.txt), [wire schema](payment-response-red.txt),
-[decoder](payment-read-red.txt), and [HTTP](payment-http-red.txt).
-The [initial service run](payment-service-initial.txt) had a test-selection error:
+Retained RED outputs: [service](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/payment-service-red.txt),
+[runtime](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/payment-runtime-red.txt), [wire schema](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/payment-response-red.txt),
+[decoder](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/payment-read-red.txt), and [HTTP](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/payment-http-red.txt).
+The [initial service run](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/payment-service-initial.txt) had a test-selection error:
 it compared the first same-amount quote instead of the winning order; the test
-now checks the selected order hash. The [decoder availability counterexample](payment-read-availability-red.txt)
+now checks the selected order hash. The [decoder availability counterexample](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/payment-read-availability-red.txt)
 exposed that `OUTPUT_UNAVAILABLE` can label either failed inspection or an
 eligible quote above its funding ceiling. The decoder now uses aggregate stage
 outcomes to distinguish those cases. It does not claim to authenticate omitted
 raw getter results from wire diagnostics alone.
 
-The [initial HTTP RED harness](payment-http-initial.txt) leaked its fixture when
+The [initial HTTP RED harness](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/payment-http-initial.txt) leaked its fixture when
 stub registration threw before `finally`. The owned test child was stopped,
 its uniquely identified PostgreSQL schema removed, and registration moved inside
 the cleanup guard. The retained clean RED rerun has eight failures and no
@@ -102,7 +102,7 @@ expect 400 for an empty payment body, replacing the removed stub's 503 behavior.
 
 Full API/SDK/shared/type-check output and before/after source hashes are recorded
 in [the endpoint checkpoint](payment-endpoint/checkpoint.json), produced by
-`python scripts/audit-payment-endpoint.py` with `TEST_DATABASE_URL` set. It does
+the historical [audit driver](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/scripts/audit-payment-endpoint.py) with `TEST_DATABASE_URL` set. It did
 not hash installed dependency contents, compiler caches or external database
 state. Earlier [foundation evidence](payment-foundation.md) and its source pins
 remain historical. No Solidity, numerical reference or browser campaign was
@@ -112,7 +112,7 @@ The complete run passed **195 API**, **89 SDK**, **7 shared** tests and workspac
 type checking, with zero failures, cancellations or skips. The TAP durations are
 205.739 seconds for API and 15.915 seconds for SDK. Every enumerated source input
 had the same bytes before and after all four commands. The earlier full
-[168-test API](api-checkpoint-168.txt) and [79-test SDK](sdk-checkpoint-79.txt)
+[168-test API](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/api-checkpoint-168.txt) and [79-test SDK](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/sdk-checkpoint-79.txt)
 transcripts are retained separately; current `api.txt` and `sdk-green.txt` are
 exact copies of the accepted endpoint run.
 

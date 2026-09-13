@@ -3,7 +3,7 @@
 The smallest measured design promotes `FrontierComposition.certify` and the
 four original-input `FrontierEndpoint` methods to public pure library calls.
 The experiment changes generated copies only; it precedes any production
-promotion. See [LINKED_MATH](../../docs/audits/LINKED_MATH.md) for the full API,
+promotion. See [LINKED_MATH](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/LINKED_MATH.md) for the full API,
 memory-copy argument, deployment graph, primary sources and budget limits.
 
 - Single linked Composition fails EIP-170 at **30,363 runtime bytes**.

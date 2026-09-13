@@ -211,6 +211,9 @@ test('retained cut-circle brand and protocol evidence remain accessible from res
   await expect(page.locator(`a[href="https://testnet.arcscan.app/tx/${hash}"]`)).toBeVisible();
  }
  await expect(page.getByRole('main').locator('a[href^="https://github.com/AnInsaneJimJam/aqua-orbital/"]')).not.toHaveCount(0);
- for(const name of ['Deployment verification report','Privy sign-in smoke','Swap flow smoke','Payment flow smoke'])await expect(page.getByRole('link',{name,exact:true})).toBeVisible();
+ for(const name of ['Deployment verification report','Privy sign-in smoke','Swap execution tests'])await expect(page.getByRole('link',{name,exact:true})).toBeVisible();
+ const paymentTests=page.getByRole('link',{name:'Payment workflow tests',exact:true});
+ await expect(paymentTests).toHaveCount(2);
+ await expect(paymentTests.first()).toHaveAttribute('href','https://github.com/AnInsaneJimJam/aqua-orbital/blob/main/apps/web/test/payment.spec.ts');
  await capture(page,'protocol-evidence-desktop');
 });

@@ -11,7 +11,7 @@ initial release/root, ordered original-frame events, certified frontier arcs,
 and one final raw-output retention certificate. It remains a pure math helper
 separate from the router, fee accounting and settlement. Its conditional
 acceptance argument and explicit deferrals are recorded in
-[FRONTIER_COMPOSITION](../../docs/audits/FRONTIER_COMPOSITION.md).
+[FRONTIER_COMPOSITION](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/FRONTIER_COMPOSITION.md).
 
 The public inputs to this internal helper contain actual reserves, immutable
 validated ticks/decimals, the pair, exact raw net input and `maxCrossings<=16`.

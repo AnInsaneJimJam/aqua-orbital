@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-09-09T01:46:28.111Z",
+  "checkedAt": "2026-09-13T16:21:03.003Z",
   "scope": "Offline consistency and signed-transaction audit of retained public evidence; no new network or wallet observation",
   "retainedReceiptMatching": {
     "status": "passed",
@@ -38,16 +38,6 @@
     "publicAppId": "cmtrvczqp00qh0cjv4b16j1ag",
     "reason": "Retained records show the login modal without authentication and identify no selected Privy embedded wallet. Transaction signatures prove the sending address, not which wallet software controlled it."
   },
-  "existingApplicationSmoke": {
-    "record": "test/evidence/frontend-polish/README.md",
-    "nineSelectedChecksRecordedPassing": true,
-    "scope": "Previously recorded synthetic HTTP/RPC and injected external-wallet fixtures; no live Privy provider evidence",
-    "cases": [
-      "apps/web/test/wallet.spec.ts",
-      "apps/web/test/payment.spec.ts",
-      "apps/web/test/swap-execution.spec.ts"
-    ]
-  },
   "limitations": [
     "Canonical block hashes are compared with the retained RPC observations only; this run did not recheck the live chain or independently reconstruct block/receipt trie inclusion proofs.",
     "Runtime code and immutable bindings were not re-read; deployment address checks use the retained verified identity report.",
@@ -69,7 +59,7 @@
     },
     {
       "path": "deployments/5042002/verification.json",
-      "sha256": "aac4cf25ceb1b28b11238d2961ae66a0825333b88dd617ce70d93b5ecd327575"
+      "sha256": "d9f135ae14ac6ce98ca4bf4871614c22e4d663e6b7964a82c664dfc54cf498b5"
     },
     {
       "path": "test/evidence/privy-login.json",
@@ -84,10 +74,6 @@
       "sha256": "b994a20e5d9d88092072628bf246ae269db41490a7bb6f7522290315ddefa11c"
     },
     {
-      "path": "test/evidence/frontend-polish/README.md",
-      "sha256": "bd5e8c33da363b81575c60cfb7d5650f200565b16b065f4512a5723bb12ab161"
-    },
-    {
       "path": "packages/contracts/src/OrbitalSwapVMRouter.sol",
       "sha256": "e6c91e3c134e386369d7f5b39d74ccc8aa05f1e8894e2431630c39a4436c1f4a"
     },
@@ -97,7 +83,7 @@
     },
     {
       "path": "scripts/check-privy-association-basic.mjs",
-      "sha256": "036f8061d77095ddaf781ee4ff5dfebfc05496740f26b0d3195713d09a905c6f"
+      "sha256": "0f15673c7a040c11df4c7419e956e056e213941672f766cb2ae0c3e7e19de73a"
     }
   ],
   "checks": [

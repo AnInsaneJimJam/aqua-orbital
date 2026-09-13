@@ -34,7 +34,7 @@ claimed. The existing frontend template and production Solidity are unchanged.
   to the earlier of the invoice expiry and block timestamp plus 20 seconds.
   A retained regression expires during the final database read and now fails
   explicitly. Swap slippage behavior is preserved.
-- `payment-search.ts` implements the [bounded policy](../../docs/audits/PAYMENT_SEARCH_POLICY.md).
+- `payment-search.ts` implements the [bounded policy](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/PAYMENT_SEARCH_POLICY.md).
   It validates complete fixed-order outcomes, retains an isolated sufficient
   witness and checks cancellation/expiry checkpoints. Actual quote sufficiency,
   complete transport accounting and final canonical checks are caller obligations.
@@ -54,11 +54,11 @@ Direct USDC uses the exact due without this search or its two-unit lower bound.
 The invoice's stricter creation-time amount limit is retained from the adapter;
 the creation-only five-minute minimum lifetime is not imposed on payment.
 
-The [independent review](../../docs/audits/PAYMENT_SEARCH_REVIEW.md) proves the
+The [independent review](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/PAYMENT_SEARCH_REVIEW.md) proves the
 scoped pure-search preservation and planned-work claim under explicit callback
 assumptions. It found unrestricted SharedArrayBuffer retention and uncounted
 property names in the payload budget; both were corrected and independently
-rechecked. The [frozen original proposal](../../docs/audits/archive/PAYMENT_QUOTE_PLAN-preimplementation.md)
+rechecked. The [frozen original proposal](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/archive/PAYMENT_QUOTE_PLAN-preimplementation.md)
 matches its historical proposal pin. The separate
 [computation manifest](payment-search/manifest.json) hashes the actual pure
 search inputs before and after its 16-test run. It records finite test bounds
@@ -97,14 +97,14 @@ and [workspace TypeScript transcript](payment-types.txt) are retained. The
 [checkpoint manifest](payment-checkpoint.json) pins the current source and
 transcripts; it does not assert a pre/post source freeze for these full runs.
 The separate pure-search runner does verify its own pre/post input hashes.
-The prior [130-test API](api-checkpoint-130.txt) and
-[76-test SDK](sdk-checkpoint-76.txt) transcripts remain historical.
+The prior [130-test API](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/api-checkpoint-130.txt) and
+[76-test SDK](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/test/evidence/sdk-checkpoint-76.txt) transcripts remain historical.
 
 Reproduce with `pnpm typecheck`, `pnpm test:sdk`, `pnpm test:shared`, and
 `pnpm --filter @orbital/api exec tsx --test --test-concurrency=1 test/*.test.ts`.
 For API tests first set the documented development `TEST_DATABASE_URL` and
 start PostgreSQL; these checks use isolated schemas and deterministic RPC
-fixtures. The pure search alone runs with `python scripts/audit-payment-search.py`.
+fixtures. The pure-search checkpoint used the historical [audit driver](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/scripts/audit-payment-search.py).
 No test here exercises the future public payment service or claims a live chain
 payment. Solidity and browser behavior were not changed or rerun in this increment.
 

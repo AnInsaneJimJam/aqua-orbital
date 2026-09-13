@@ -4,8 +4,8 @@
 reserves to a selected one-sided proof endpoint with denominator `2^32`.
 There is no output floor, financial payout or root-identity claim. The exact
 decomposition, hypotheses and width proof are in
-[GRID_RELEASE](../../docs/audits/GRID_RELEASE.md), extending the existing
-[fixed-partition theorem](../../docs/audits/SLACK_SEGMENT.md).
+[GRID_RELEASE](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/GRID_RELEASE.md), extending the existing
+[fixed-partition theorem](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ab70abc0b313aaed0b665d2e3d0a8a87705d291/docs/audits/SLACK_SEGMENT.md).
 
 The original API retains both original-unit membership checks and canonical
 final equality. Only the subsequent seam loop is shared. The new method
