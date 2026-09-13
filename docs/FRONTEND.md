@@ -10,15 +10,29 @@ Use Next.js App Router, React, CSS Modules, Radix primitives, and the shared big
 
 Keep color, spacing, typography and motion tokens centralized. Keep copy in one content module. Route layouts compose small domain components; do not build a generic page-builder framework. Behavior tests use accessible names and outcomes; screenshots capture current design without making every pixel immutable.
 
-## Current direction — September 9, 2026
+## Current direction — September 13, 2026
 
-The owner's latest instruction replaces the interim monochrome/neumorphic direction with an identity built around their **Orbital paper video and SVG logo**. The page background matches the video at `#00131B`; warm light text, chartreuse actions and fine diagram rules connect landing and product screens. Self-hosted Instrument Serif supplies the landing headline; Space Grotesk handles navigation, forms and transaction values. `globals.css` owns palette, radii, shadows and duration; `content.ts` owns the media motion defaults. Keep 14px critical financial values, AA contrast, visible focus and 44px controls.
+The current app uses a black `#050505` canvas, dark `#101010` / `#161616`
+surfaces, subtle `#282828` borders, and warm white `#F5F5F2` text and actions.
+Space Grotesk is paired with Instrument Serif Regular/Italic for display copy.
+`globals.css` owns the shared palette, spacing, radii, and motion styles.
+Preserve visible focus, readable financial values, and usable touch targets.
 
-The landing page leads with a short headline, two direct actions and the supplied 4:3 video in a figure with Paradigm credit. Header navigation exposes **Swap, Liquidity, Payments, Demo tokens** (`/fund`) and **Protocol notes** (`/proof`), with an active-page state and access on narrow screens. The supplied SVG geometry is used by the shared header mark and favicon; do not substitute a generated Saturn. See [asset provenance](ASSETS.md) for originals, poster generation, checksums and font notices.
+The landing page leads with a centered headline, the Saturn illustration,
+and actions for swaps and the app's own `/docs` page. One responsive header
+serves Swap, Liquidity, Payments, and Demo Tokens, with the selected network
+and wallet controls. Keep technical evidence separate from the protocol
+explanation and ordinary transaction flow.
 
-`components/OrbitMark.tsx` groups the supplied 41 paths into three independently rotating rings and a stationary core. Adjacent rings rotate in opposite directions around the explicit original core coordinates. The header uses 48px/40px sizing and 40/28/18-second periods; hovering or keyboard-focusing the home link pauses all rings. `app/loading.tsx` reuses the mark at 112px/96px with 8/6/4-second periods and a polite status label, only while the framework is loading a route. Size and speed remain CSS variables. Reduced motion stops every ring. [Visual and pivot verification](../test/evidence/logo-motion/README.md).
+`components/Saturn.tsx` draws the stationary dithered planet and orbiting
+token tiles from `saturnScene.ts`. It pauses for reduced motion, hidden tabs,
+and offscreen content; the owner removed the manual pause button.
+`public/brand/saturn-static.svg` provides the matching fallback. The scene is
+illustrative and must not appear to represent live liquidity. The earlier
+video component and its media are retired. See [asset provenance](ASSETS.md).
 
-`components/OrbitalVisual.tsx` isolates media behavior from financial workflows. It uses a still poster before hydration and under reduced motion, explicit play/pause, muted inline playback, viewport/background pausing, and a still-image error fallback. It never loads an animation framework or treats the paper visualization as live financial state. Public content and links work without wallet setup.
+The Orbital mark is shared by navigation, loading states, favicon, and Privy.
+Public content and documentation remain available before wallet connection.
 
 Swap uses two asset wells with inline balance/Max controls; settings use a shared modal and raw routing information uses a disclosure. Payments pairs a focused creation form with invoice history. Optional splits and references expand on demand, while the signing review always shows recipients and amounts.
 
@@ -37,6 +51,7 @@ Use consistent back links, inline links and button links for their respective ro
 | Route | Primary outcome |
 | --- | --- |
 | `/` | Understand wallet-held concentrated liquidity; start a swap or strategy |
+| `/docs` | Learn how strategies, swaps, Aqua settlement, and payments work |
 | `/swap` | Select assets/amount, inspect quote, approve exact input, review and execute |
 | `/liquidity` | Inspect the active wallet’s strategies and start publication |
 | `/liquidity/new` | Assets → Concentration → Review → resumable Publish |

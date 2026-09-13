@@ -2,7 +2,7 @@
 
 For the Aqua/Arc build, the suites and G0–G8 gates in [MASTER_PROMPT.md](../MASTER_PROMPT.md) control acceptance. Retain this file's mathematical/numerical fixtures and test methods; pooled-share, withdrawal and fee-escrow cases are explicitly superseded by the master's migration table and Aqua lifecycle tests.
 
-Originally the acceptance contract for historical [SPEC.md](../SPEC.md). Executable tests now live in the workspace packages; [the evidence index](../test/evidence/INDEX.md) records actual results and source boundaries. Requirements superseded by the master remain historical, while applicable numerical and campaign obligations still control acceptance.
+Originally the acceptance contract for historical [SPEC.md](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ff7bd940a1e6b961523b34364163f4599a232e9/SPEC.md). Executable tests now live in the workspace packages; [the evidence index](../test/evidence/INDEX.md) records actual results and source boundaries. Requirements superseded by the master remain historical, while applicable numerical and campaign obligations still control acceptance.
 
 ## 1. Workflow and evidence
 

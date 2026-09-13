@@ -2,7 +2,7 @@
 
 For the Aqua/Arc build, [MASTER_PROMPT.md](../MASTER_PROMPT.md) defines which requirements are retained and replaces pool-custody/share/fee-growth accounting with maker-strategy accounting. Read its migration table before implementing this reference.
 
-Normative reference for [SPEC.md](../SPEC.md). This contract makes mathematical approximations observable. It deliberately requires evidence for integer solvency before a production implementation can be accepted. A simulator using floating-point numbers is not that evidence.
+Normative reference for [SPEC.md](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ff7bd940a1e6b961523b34364163f4599a232e9/SPEC.md). This contract makes mathematical approximations observable. It deliberately requires evidence for integer solvency before a production implementation can be accepted. A simulator using floating-point numbers is not that evidence.
 
 ## 1. Units, scales, and representable domain
 

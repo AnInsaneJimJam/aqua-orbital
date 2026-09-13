@@ -28,7 +28,6 @@ export const copy={
   demoInput:'The input asset in this test receipt is a demo token with no redemption value.',
  },
 };
-export const motion={autoplayIllustration:true,visibilityThreshold:0.15} as const;
 export const presets=[
  {name:'Wide',description:'More room for changing prices.',shares:[50,30,20],thresholds:['Full range','0.90 reference','0.99 reference']},
  {name:'Balanced',description:'A measured balance of focus and coverage.',shares:[10,30,60],thresholds:['Full range','0.95 reference','0.99 reference']},

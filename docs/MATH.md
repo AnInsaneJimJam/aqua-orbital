@@ -2,7 +2,7 @@
 
 For the Aqua/Arc build, read [MASTER_PROMPT.md](../MASTER_PROMPT.md) first. Its maker-owned strategy lifecycle overrides pooled custody and permanent anchor ownership; the Orbital geometry and corrected crossing equations below are retained.
 
-Normative reference for [SPEC.md](../SPEC.md). All equations in this file use real, normalized amounts unless explicitly described as integer representation. Implement their certified fixed-point counterpart from [NUMERICS](NUMERICS.md); do not round each displayed equation independently.
+Normative reference for [SPEC.md](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ff7bd940a1e6b961523b34364163f4599a232e9/SPEC.md). All equations in this file use real, normalized amounts unless explicitly described as integer representation. Implement their certified fixed-point counterpart from [NUMERICS](NUMERICS.md); do not round each displayed equation independently.
 
 ## 1. Per-tick geometry and canonical coordinates
 

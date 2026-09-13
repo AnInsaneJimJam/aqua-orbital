@@ -7,7 +7,10 @@ The Vercel project is `orbital` in `12anand34s-projects`, with the supplied URL
 `https://orbital-olive-omega.vercel.app`. The Railway project is `orbital`.
 The public API is `https://api-production-2182.up.railway.app`.
 Both platforms are connected to `AnInsaneJimJam/aqua-orbital`, branch `main`.
-Pushing to `main` deploys the frontend, API and indexer automatically.
+Vercel deploys pushes to `main` automatically. Railway push triggers also
+require a connected GitHub account with contributor access and the Railway
+GitHub App installed for the repository; linking a public source alone does
+not enable automatic deployments.
 
 ## Deployment identity
 

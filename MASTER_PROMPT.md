@@ -27,7 +27,7 @@ Read in this order:
 3. [MATH](docs/MATH.md): retained Orbital geometry, root selection, reconstruction, and crossing corrections.
 4. [NUMERICS](docs/NUMERICS.md): retained units, wide arithmetic, interval certification, and conservative principal rounding, with overrides below.
 5. [TESTS](docs/TESTS.md): retained mathematical fixtures and adversarial methods, with Aqua-specific acceptance replacing pooled ownership tests below.
-6. [Original SPEC](SPEC.md) and [original PLAN](docs/PLAN.md) only when resolving historical rationale. Their custodial deployment architecture is superseded.
+6. [Original SPEC](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ff7bd940a1e6b961523b34364163f4599a232e9/SPEC.md) and [original PLAN](https://github.com/AnInsaneJimJam/aqua-orbital/blob/5ff7bd940a1e6b961523b34364163f4599a232e9/docs/PLAN.md) only when resolving historical rationale. Their custodial deployment architecture is superseded.
 
 This prompt wins over conflicting earlier documents for this build. Keep the earlier derivations; do not accidentally build both products.
 
