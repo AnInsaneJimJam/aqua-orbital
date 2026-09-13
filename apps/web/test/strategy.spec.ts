@@ -15,18 +15,19 @@ async function wallet(page:Page){
   }};Object.defineProperty(window,'ethereum',{value:provider,configurable:true});Object.assign(window,{strategyWallet:{account:(next:string)=>{current=next;for(const fn of listeners.get('accountsChanged')??[])fn([next]);}}});
  },{maker});
 }
-test('public strategy detail separates exact principal, received fees and funded capacity on mobile',async({page})=>{
+test('public strategy detail separates exact principal, received fees and funded capacity on mobile',async({page},testInfo)=>{
  await fixture(page);await page.setViewportSize({width:320,height:680});await page.goto(path);
  await expect(page.getByRole('heading',{name:'USDC / oUSD6 / oUSD18',exact:true})).toBeVisible();
  await expect(page.getByText('Active / available at observed block',{exact:true})).toBeVisible();
  const usdc=page.getByRole('region',{name:'USDC inventory'});
+ await usdc.getByText('Principal & backing',{exact:true}).click();
  await expect(usdc.getByText('300.000000000000000001 USDC',{exact:true})).toBeVisible();await expect(usdc.getByText('0.000007 USDC',{exact:true})).toBeVisible();
  await expect(usdc.getByText('300 USDC',{exact:true})).toBeVisible();await expect(page.getByRole('dialog')).toHaveCount(0);
  await page.getByText('Configuration and receipts',{exact:true}).click();
  await expect(page.getByRole('link',{name:'Latest fill receipt'})).toHaveAttribute('href',`https://testnet.arcscan.app/tx/${hash(214)}`);
  await expect(page.getByText('Tick 1 · Interior',{exact:true})).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
- await page.screenshot({path:'../../test/evidence/strategy-read/detail-mobile.png',fullPage:true});
+ await page.screenshot({path:testInfo.outputPath('strategy-detail-mobile.png'),fullPage:true});
 });
 test('failed or wrong-deployment refresh removes earlier financial observations',async({page})=>{
  let response:unknown=strategyObservation();await fixture(page,()=>response);await page.goto(path);
@@ -36,7 +37,7 @@ test('failed or wrong-deployment refresh removes earlier financial observations'
 });
 test('stale and historical strategy observations remain labeled and cannot claim present capacity',async({page})=>{
  const value={...strategyObservation(),status:'stale',code:'STRATEGIES_STALE',historical:true,currentIndexedBlock:{height:'16',hash:hash(116)},freshness:{...strategyObservation().freshness,ageMs:11000,head:'18',stale:true}};
- await fixture(page,()=>value);await page.goto(path);await expect(page.getByText('Historical observation at block 15.',{exact:true})).toBeVisible();
+ await fixture(page,()=>value);await page.goto(path);await page.getByText('Observation details',{exact:true}).click();await expect(page.getByText('Historical observation at block 15.',{exact:true})).toBeVisible();
  await expect(page.getByText('This observation is stale. Refresh before relying on these amounts.',{exact:true})).toBeVisible();
  await expect(page.getByText('Last observed: Active / available',{exact:true})).toBeVisible();
 });
@@ -50,7 +51,8 @@ test('owner listing is wallet scoped, filters canonical history and keeps missin
  await page.route('**/makers/*/strategies?*',route=>{const url=new URL(route.request().url());requested.push(url.pathname+url.search);const found=url.pathname.includes(maker)&&url.searchParams.get('status')==='all';return route.fulfill({headers,json:strategyListing(found?[strategyRecord()]:[])});});
  await page.goto('/liquidity');await expect(page.getByRole('heading',{name:'Your wallet is your starting point.',exact:true})).toBeVisible();expect(requested).toHaveLength(0);
  await page.getByRole('button',{name:'Connect wallet',exact:true}).first().click();await expect(page.getByRole('link',{name:'Manage strategy',exact:true})).toBeVisible();
- await expect(page.getByText('Unactivated shipments are not included in this index.',{exact:true})).toBeVisible();
+ await expect(page.getByRole('region',{name:'Incomplete Aqua allocations'})).toBeVisible();
+ await expect(page.getByText('Resume activation with the matching strategy draft saved in this browser.',{exact:true})).toBeVisible();
  await selectValue(page,'Strategy status','retired');await expect(page.getByText('No registered strategies match this filter.',{exact:true})).toBeVisible();
  await selectValue(page,'Strategy status','all');await expect(page.getByRole('link',{name:'Manage strategy',exact:true})).toBeVisible();
  await page.evaluate(next=>(window as any).strategyWallet.account(next),address(21));

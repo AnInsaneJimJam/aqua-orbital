@@ -18,6 +18,6 @@
 .actions > :first-child:nth-last-child(3) { grid-column: 1 / -1; }
 .disconnect { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 0; border: 0; background: transparent; color: var(--muted); font-size: 13px; }
 .disconnect:hover:not(:disabled) { color: var(--ink); }
-/* The SVG owns the shared cream and chartreuse brand colours. */
+/* The retained cut-circle mark is shared with the header. */
 .privyLogo { object-fit: contain; }
 @media (max-width: 400px) { .actions { grid-template-columns: 1fr; } }

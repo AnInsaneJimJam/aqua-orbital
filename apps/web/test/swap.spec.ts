@@ -58,12 +58,12 @@ async function setup(page:Page, respond:(body:unknown)=>unknown = ()=>fixture().
   await page.goto('/swap');
   await page.getByRole('button',{name:'Connect wallet',exact:true}).first().click();
   await expect(page.getByRole('button',{name:'Manage connected wallet'})).toBeVisible();
-  await selectValue(page,'Input token','USDC'); await selectValue(page,'You receive','oUSD18');
+  await selectValue(page,'Input token','USDC'); await selectValue(page,'Buy','oUSD18');
 
   // Keep timers running: TanStack schedules notifications through timers too.
   // Install after hydration so cold development compilation does not age data.
   await page.clock.install({time:new Date(now)});
-  await page.getByLabel('You pay').fill('9007199254.740993');
+  await page.getByLabel('Sell').fill('9007199254.740993');
 }
 const getQuote=(page:Page)=>page.getByRole('button',{name:/^(Get quote|Refresh quote|Switch to Arc Testnet)$/});
 const refresh=(page:Page)=>page.getByRole('button',{name:'Refresh quote',exact:true});
@@ -77,24 +77,24 @@ test('checked swap observation shows exact amounts, recipient and bounded covera
   expect(body).toEqual(fixture().request);
   await expect(page.getByText('19.98 oUSD18',{exact:true})).toBeVisible();
   await expect(page.getByText('900719.925475 USDC',{exact:true})).toBeVisible();
-  await expect(page.getByText('Quote observation. Review checks current funds, strategy availability and transaction simulation before any signature.',{exact:true})).toBeVisible();
-  await expect(page.getByText(wallet,{exact:true})).toBeVisible();
+  await expect(page.getByRole('region',{name:'Quote observation',exact:true})).toBeVisible();
   await expect(page.getByRole('button',{name:/approve|confirm swap/i})).toHaveCount(0);
   await page.getByText('Quote details',{exact:true}).click();
-  await expect(page.getByText('Best among the strategies checked · 4 inspected.',{exact:true})).toBeVisible();
+  await expect(page.getByText(wallet,{exact:true})).toBeVisible();
+  await expect(page.getByRole('region',{name:'Quote observation',exact:true})).toContainText('4 strategies checked.');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
   const calls=await page.evaluate(()=>(window as unknown as {swapWallet:{calls:string[]}}).swapWallet.calls);
   expect(calls.some(m=>/sendTransaction|sign|estimateGas/i.test(m))).toBeFalsy();
-  await page.screenshot({path:'../../test/evidence/swap-observation-mobile.png',fullPage:true});
+  await page.screenshot({path:'../../.cache/frontend-v2/screenshots/swap-observation-mobile.png',fullPage:true});
   await page.setViewportSize({width:1280,height:900});
-  await page.screenshot({path:'../../test/evidence/swap-observation-desktop.png',fullPage:true});
+  await page.screenshot({path:'../../.cache/frontend-v2/screenshots/swap-observation-desktop.png',fullPage:true});
 });
 
 test('edits clear the previous quote and malformed responses expose no amounts',async({page})=>{
   let malformed=false;await setup(page,()=>{const f=fixture();if(malformed)f.observed.data.best.minimumOutRaw='20000000000000000001';return f.observed;});
   await getQuote(page).click();await expect(output(page)).toBeVisible({timeout:5000});
-  await page.getByLabel('You pay').fill('1');await expect(output(page)).toHaveCount(0);
-  await page.getByLabel('You pay').fill('9007199254.740993');await expect(output(page)).toHaveCount(0);
+  await page.getByLabel('Sell').fill('1');await expect(output(page)).toHaveCount(0);
+  await page.getByLabel('Sell').fill('9007199254.740993');await expect(output(page)).toHaveCount(0);
   malformed=true;await getQuote(page).click();await expect(page.getByRole('main').getByRole('alert')).toContainText('Quote unavailable',{timeout:5000});
   await expect(output(page)).toHaveCount(0);malformed=false;await getQuote(page).click();await expect(output(page)).toBeVisible({timeout:5000});
 });
@@ -138,7 +138,7 @@ test('an interrupted quote cannot restore old amounts after input changes',async
     if(route.request().method()==='OPTIONS')return route.fallback();started++;
     await new Promise<void>(resolve=>{release=resolve;});await route.fulfill({json:fixture().observed,headers}).catch(()=>{});finished++;
   });
-  await getQuote(page).click();await expect.poll(()=>started).toBe(1);await page.getByLabel('You pay').fill('');
+  await getQuote(page).click();await expect.poll(()=>started).toBe(1);await page.getByLabel('Sell').fill('');
   await expect(page.getByRole('button',{name:'Enter an amount',exact:true})).toBeDisabled();release?.();await expect.poll(()=>finished).toBe(1);await expect(output(page)).toHaveCount(0);
 });
 

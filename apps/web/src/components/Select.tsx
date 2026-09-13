@@ -4,11 +4,13 @@ import { useId } from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import styles from './Select.module.css';
+import TokenIcon from './TokenIcon';
 
 export interface SelectOption {
   value: string;
   label: string;
   description?: string;
+  tokenSymbol?: string;
 }
 
 export interface SelectProps {
@@ -46,6 +48,7 @@ export function Select({
         aria-describedby={ariaDescribedBy}
         className={[styles.trigger, compact && styles.compact, className].filter(Boolean).join(' ')}
       >
+        {selected?.tokenSymbol && <TokenIcon symbol={selected.tokenSymbol} size={26}/>}
         <span className={styles.value}>
           {/* Explicit text keeps the initial server render and hydration identical. */}
           <SelectPrimitive.Value placeholder="Choose an option">{selected?.label}</SelectPrimitive.Value>
@@ -75,6 +78,7 @@ export function Select({
                 aria-describedby={option.description ? `${descriptionId}-${index}` : undefined}
                 className={styles.item}
               >
+                {option.tokenSymbol && <TokenIcon symbol={option.tokenSymbol} size={26}/>}
                 <span className={styles.optionText}>
                   <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
                   {option.description && <span id={`${descriptionId}-${index}`} className={styles.description}>{option.description}</span>}

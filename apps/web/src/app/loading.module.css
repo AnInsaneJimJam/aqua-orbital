@@ -15,13 +15,6 @@
  width: 168px;
  height: 168px;
  border-radius: 50%;
- background: radial-gradient(circle, color-mix(in srgb, var(--accent) 5%, transparent), transparent 70%);
-}
-.visual .mark {
- --orbit-size: 112px;
- --orbit-outer-duration: 8s;
- --orbit-middle-duration: 6s;
- --orbit-inner-duration: 4s;
 }
 .label {
  margin: 0;
@@ -35,5 +28,4 @@
 @media (max-width: 600px) {
  .screen { min-height: 340px; padding: 40px 20px; }
  .visual { width: 144px; height: 144px; }
- .visual .mark { --orbit-size: 96px; }
 }

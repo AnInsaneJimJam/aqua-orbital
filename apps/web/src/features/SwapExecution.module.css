@@ -1,6 +1,6 @@
 .execution { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border); }
 .execution:empty { display: none; }
-.execution h2 { font-size: 24px; }
+.execution h2 { font-size: 24px; font-weight: 600; }
 .facts { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 14px 24px; margin: 24px 0; align-items: baseline; }
 .facts > dt, .facts > dd { margin: 0; min-width: 0; font-size: 14px; }
 .facts > dd { text-align: right; }

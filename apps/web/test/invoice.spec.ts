@@ -19,7 +19,7 @@ test('public invoice displays exact terms and recipients in the current template
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
   await page.getByText('Receipt details', {exact: true}).click();
   await expect(page.getByRole('link', {name: 'Creation receipt'})).toHaveAttribute('href', `https://testnet.arcscan.app/tx/${hash(212)}`);
-  await page.screenshot({path: '../../test/evidence/invoice-mobile.png', fullPage: true});
+  await page.screenshot({path: '../../.cache/frontend-v2/screenshots/invoice-mobile.png', fullPage: true});
 });
 test('paid invoice shows swap-funded receipt and removes old status when a refresh becomes unavailable', async ({page}) => {
   const value = invoiceObservation(), invoice = value.data.invoice;
@@ -32,7 +32,7 @@ test('paid invoice shows swap-funded receipt and removes old status when a refre
   await expect(page.getByText('70000000.000000001 oUSD18', {exact: true})).toBeVisible();
   await page.getByText('Receipt details', {exact: true}).click();
   await expect(page.getByRole('link', {name: 'Payment receipt'})).toHaveAttribute('href', `https://testnet.arcscan.app/tx/${hash(214)}`);
-  await page.screenshot({path: '../../test/evidence/invoice-paid-desktop.png', fullPage: true});
+  await page.screenshot({path: '../../.cache/frontend-v2/screenshots/invoice-paid-desktop.png', fullPage: true});
   available = false; await page.getByRole('button', {name: 'Refresh invoice', exact: true}).click();
   await expect(page.getByRole('heading', {name: 'Invoice unavailable', exact: true})).toBeVisible();
   await expect(page.getByText('Paid through an Orbital swap', {exact: true})).toHaveCount(0);
@@ -41,6 +41,7 @@ test('stale historical invoice labels its observation and keeps transaction acti
   const value = {...invoiceObservation(), status: 'stale', code: 'INVOICES_STALE', historical: true,
     currentIndexedBlock: {height: '16', hash: hash(116)}, freshness: {indexedAt: '2026-09-08T06:00:00.000Z', ageMs: 11000, head: '18', stale: true}};
   await fixture(page, () => value); await page.goto(path);
+  await page.getByText('Index observation', {exact: true}).click();
   await expect(page.getByText('Historical observation at block 15.', {exact: true})).toBeVisible();
   await expect(page.getByText('The index is behind or its latest check is old. Refresh to check for updates.', {exact: true})).toBeVisible();
   await expect(page.getByRole('button', {name: 'Payment unavailable', exact: true})).toBeDisabled();

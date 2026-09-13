@@ -3,21 +3,21 @@ import {decodeFunctionData} from 'viem';
 import {directPaymentAbi} from '@orbital/sdk';
 import {setupInvoiceAdmin} from './fixtures/invoice-admin';
 
-test('merchant reviews split amounts and shares only the confirmed creation ID',async({page})=>{
- const f=await setupInvoiceAdmin(page);await page.getByLabel('Amount due in USDC').fill('5.000001');await page.getByRole('button',{name:'Add recipient'}).click();
+test('merchant reviews split amounts and shares only the confirmed creation ID',async({page},testInfo)=>{
+ const f=await setupInvoiceAdmin(page);await page.getByLabel('Amount due in USDC').fill('5.000001');await page.getByText('Invoice options',{exact:true}).click();await page.getByText('Recipients & splits',{exact:true}).click();await page.getByRole('button',{name:'Add recipient'}).click();
  await page.getByLabel('Recipient 1 share (%)').fill('90');await page.getByLabel('Recipient 2',{exact:true}).fill(f.manifest.aqua);await page.getByLabel('Recipient 2 share (%)').fill('10');
- await page.getByLabel('Reference (optional)').fill('Public fixture reference');await page.getByRole('button',{name:'Review invoice',exact:true}).click();
+ await page.getByText('Add a reference',{exact:true}).click();await page.getByLabel('Reference (optional)').fill('Public fixture reference');await page.getByRole('button',{name:'Review invoice',exact:true}).click();
  await expect(page.getByRole('heading',{name:'Review invoice creation'})).toBeVisible();expect(f.calls).toHaveLength(0);
  await expect(page.getByText('4.5 USDC',{exact:true})).toBeVisible();await expect(page.getByText('0.500001 USDC',{exact:true})).toBeVisible();
  await page.setViewportSize({width:320,height:720});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
- await page.screenshot({path:'../../test/evidence/invoice-admin-review-mobile.png',fullPage:true});
+ await page.screenshot({path:testInfo.outputPath('invoice-admin-review-mobile.png'),fullPage:true});
  await page.getByRole('button',{name:'Confirm invoice creation'}).click();await expect(page.getByRole('link',{name:'Open shareable invoice'})).toHaveAttribute('href',`/pay/${f.createdId}`);
  expect(f.calls).toHaveLength(1);expect(f.calls[0]!.to!.toLowerCase()).toBe(f.manifest.payments.toLowerCase());expect(f.calls[0]!.value).toBe('0x0');
  const decoded=decodeFunctionData({abi:directPaymentAbi,data:f.calls[0]!.data as `0x${string}`});expect(decoded.functionName).toBe('createInvoice');
  expect(await page.evaluate(()=>JSON.stringify(localStorage))).not.toContain('Public fixture reference');
 });
 test('invalid invoice shares and inadequate gas never request a signature',async({page})=>{
- const f=await setupInvoiceAdmin(page,{gasPoor:true});await page.getByLabel('Recipient 1 share (%)').fill('99');await page.getByRole('button',{name:'Review invoice',exact:true}).click();
+ const f=await setupInvoiceAdmin(page,{gasPoor:true});await page.getByText('Invoice options',{exact:true}).click();await page.getByText('Recipients & splits',{exact:true}).click();await page.getByLabel('Recipient 1 share (%)').fill('99');await page.getByRole('button',{name:'Review invoice',exact:true}).click();
  await expect(page.getByText(/shares must total 10000/)).toBeVisible();await page.getByLabel('Recipient 1 share (%)').fill('100');await page.getByRole('button',{name:'Review invoice',exact:true}).click();
  await expect(page.getByText(/Insufficient balance for gas/)).toBeVisible();expect(f.calls).toHaveLength(0);
 });

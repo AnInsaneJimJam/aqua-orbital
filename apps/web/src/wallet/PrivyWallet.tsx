@@ -60,7 +60,7 @@ function Bridge({children}:{children:ReactNode}){
 }
 export default function PrivyWallet({appId,children}:{appId:string;children:ReactNode}){
  const [query]=useState(()=>new QueryClient());
- return <PrivyProvider appId={appId} config={{loginMethods:['email','wallet'],defaultChain:selectedChain,supportedChains:[selectedChain],externalWallets:{coinbaseWallet:{config:{preference:{options:'eoaOnly'}}}},embeddedWallets:{ethereum:{createOnLogin:'users-without-wallets'},showWalletUIs:true},appearance:{theme:'dark',accentColor:'#c5f36b',logo:<img src="/brand/orbital.svg" alt="Orbital" width={80} height={80} className={styles.privyLogo}/>,walletChainType:'ethereum-only',walletList:['detected_ethereum_wallets','metamask','coinbase_wallet','wallet_connect']}}}>
+ return <PrivyProvider appId={appId} config={{loginMethods:['email','wallet'],defaultChain:selectedChain,supportedChains:[selectedChain],externalWallets:{coinbaseWallet:{config:{preference:{options:'eoaOnly'}}}},embeddedWallets:{ethereum:{createOnLogin:'users-without-wallets'},showWalletUIs:true},appearance:{theme:'dark',accentColor:'#f5f5f2',logo:<img src="/brand/orbital.svg" alt="Orbital Swap" width={80} height={80} className={styles.privyLogo}/>,walletChainType:'ethereum-only',walletList:['detected_ethereum_wallets','metamask','coinbase_wallet','wallet_connect']}}}>
   <QueryClientProvider client={query}><WagmiProvider config={config}><Bridge>{children}</Bridge></WagmiProvider></QueryClientProvider>
  </PrivyProvider>;
 }

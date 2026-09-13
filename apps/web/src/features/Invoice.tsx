@@ -9,19 +9,20 @@ import {InvoiceAdminView} from './InvoiceAdmin';
 import {useWallet} from '../wallet/WalletProvider';
 import type {ReactNode} from 'react';
 import styles from './Invoice.module.css';
+import TokenIcon from '../components/TokenIcon';
 
 export function InvoiceView({state,payment,administration}: {state: InvoiceViewState;payment?:ReactNode;administration?:ReactNode}) {
   const {phase, terms, observation} = state;
   const unavailable = phase === 'unavailable', invalid = phase === 'invalid', absent = phase === 'not-found';
   return <section className={`page ${styles.page}`}>
     <Link href="/pay" className="back-link"><span aria-hidden="true">←</span> Payments</Link>
-    <div className={styles.header}><h1>Invoice</h1></div>
-    <div className={`panel ${styles.card}`} aria-busy={state.refreshing}>
+    <div className={styles.header}><h1>Invoice <em>details.</em></h1></div>
+    <div className={styles.card} aria-busy={state.refreshing}>
       {phase !== 'loaded' ? <div className="empty" role="status">
         <h2>{invalid ? 'Invalid identifier' : unavailable ? 'Invoice unavailable' : absent ? 'Invoice not found' : 'Checking invoice history…'}</h2>
         <p>{invalid ? copy.invoice.invalid : unavailable ? copy.invoice.unavailable : absent ? `No invoice with this identifier was found in the indexed history through block ${observation!.block}.` : copy.invoice.loading}</p>
       </div> : terms && <>
-        <div className="eyebrow">{terms.network} · USDC settlement</div>
+        <div className={styles.settlement}><TokenIcon symbol="USDC" size={30}/><span>{terms.network} · USDC settlement</span></div>
         <h2 className={styles.amount}>{terms.amount}</h2>
         <p className="pill">{terms.status}</p>
         <dl className={styles.terms}>

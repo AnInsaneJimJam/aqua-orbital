@@ -11,7 +11,7 @@ export function PaymentView({state:s}:{state:PaymentViewState}){
   <h3>Pay invoice</h3>
   {!s.enabled&&<p className="hint">{!s.connected?'Connect a wallet using the shared wallet control to check payment availability.':s.wrongChain?'Switch your wallet to the invoice network to continue.':'Refresh the invoice and verified deployment to check payment availability.'}</p>}
   {s.enabled&&<div className={styles.fields}>
-   <div className="field"><label htmlFor="payment-token">Payment token</label><Select id="payment-token" value={s.token} onValueChange={s.setToken} disabled={s.busy||!!s.pending} options={s.tokens.map(t=>({value:t,label:t}))}/></div>
+   <div className="field"><label htmlFor="payment-token">Payment token</label><Select id="payment-token" value={s.token} onValueChange={s.setToken} disabled={s.busy||!!s.pending} options={s.tokens.map(t=>({value:t,label:t,tokenSymbol:t}))}/></div>
    <div className="field"><label htmlFor="payment-amount">Amount to pay</label>
     <output id="payment-amount" aria-label="Calculated payment amount" className={styles.calculated}>{r?.input??(s.busy?'Preparing review…':s.quotedInput??(s.quoting?'Calculating…':'Quote unavailable'))}</output>
     <p className="hint">Calculated from the current quote. The recipient receives the invoice amount in USDC.</p>

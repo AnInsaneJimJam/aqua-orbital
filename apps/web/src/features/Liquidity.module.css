@@ -1,23 +1,27 @@
-.steps { list-style: none; display: flex; gap: 28px; padding: 0; margin: 0 0 32px; }
+.page { max-width: 1040px; }
+.header { margin: 0 0 40px; }
+.header h1 { font-size: clamp(38px, 4.5vw, 60px); }
+.header p { font-size: 17px; }
+.form { min-width: 0; padding: 30px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.steps { list-style: none; display: flex; gap: 28px; padding: 0; margin: 0 0 36px; }
 .steps li { display: flex; gap: 10px; align-items: center; color: var(--muted); font-size: 13px; }
 .steps span { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); font-size: 12px; font-variant-numeric: tabular-nums; }
 .steps [aria-current] { color: var(--ink); font-weight: 600; }
 .steps [aria-current] span { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-.wizard { display: grid; grid-template-columns: minmax(0, 620px) minmax(0, 280px); gap: 32px; align-items: start; max-width: 940px; }
+.wizard { display: grid; grid-template-columns: minmax(0, 620px) minmax(0, 280px); gap: 32px; align-items: start; }
 .wizard h2 { font-size: 25px; }
-.assets { display: grid; gap: 0; margin: 24px 0; border: 1px solid var(--border); border-radius: var(--control-radius); padding: 0 16px; background: var(--inset); }
+.assets { display: grid; gap: 0; margin: 24px 0; border-block: 1px solid var(--border); }
 .assets > div { justify-content: start; padding: 16px 0; }
 .assets > div + div { border-top: 1px solid var(--border); }
-.assetDot { display: grid; place-items: center; flex: 0 0 40px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--outline); background: var(--surface); color: var(--ink); font-size: 14px; font-weight: 600; }
 .assets strong { font-size: 15px; }
 .presets { display: grid; gap: 12px; margin: 24px 0; }
 .preset { text-align: left; background: var(--inset); border: 1px solid var(--border); padding: 20px; border-radius: var(--control-radius); display: grid; gap: 8px; color: var(--ink); transition: border-color var(--motion), background var(--motion); }
 .preset:hover { border-color: var(--outline); }
-.preset[aria-pressed=true] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 5%, var(--inset)); }
+.preset[aria-pressed=true] { border-color: var(--ink); background: var(--surface-hover); }
 .preset strong { display: flex; align-items: center; justify-content: space-between; font-size: 15px; }
 .preset[aria-pressed=true] strong:after { content: '✓'; color: var(--accent); }
 .preset span { font-size: 13px; color: var(--muted); line-height: 1.6; }
-.preview { position: sticky; top: calc(var(--header-height) + 24px); padding: 24px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--inset); }
+.preview { padding: 24px 0; border-top: 1px solid var(--border); }
 .preview h3 { margin-bottom: 8px; font-size: 20px; }
 .previewNote { margin: 20px 0 0; }
 .share { display: flex; justify-content: space-between; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 14px; font-variant-numeric: tabular-nums; }
@@ -27,8 +31,9 @@
 .backButton { border: 0; background: none; color: var(--muted); font-size: 14px; min-height: 44px; margin-top: 16px; padding: 8px 0; }
 .backButton:hover { color: var(--ink); }
 .allocations { display: grid; gap: 16px; margin: 24px 0; }
-.allocations > div { padding: 16px; background: var(--inset); border: 1px solid var(--border); border-radius: var(--control-radius); }
+.allocations > div { padding: 16px 0; border-bottom: 1px solid var(--border); }
 .allocations dt { font-weight: 600; }
 .allocations dd { margin: 6px 0 0; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
 @media (max-width: 800px) { .wizard { grid-template-columns: 1fr; gap: 28px; }.steps { gap: 10px; justify-content: space-between; }.steps li { font-size: 12px; gap: 6px; }.steps span { width: 28px; height: 28px; }.preview { position: static; }.wizard h2 { font-size: 23px; } }
+@media (max-width: 600px) { .form { padding: 22px; }.header { margin-bottom: 32px; } }
 @media (max-width: 420px) { .steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } }

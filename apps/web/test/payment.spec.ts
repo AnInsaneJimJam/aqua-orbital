@@ -98,11 +98,11 @@ test('exact approval is a separate signature and a fresh payment quote follows i
  const f=await setup(page);await page.getByRole('button',{name:'Review payment'}).click();
  await expect(page.getByRole('heading',{name:'Review token approval'})).toBeVisible();
  await page.setViewportSize({width:320,height:680});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
- await page.screenshot({path:'../../test/evidence/frontend-polish/payment-approval-mobile.png',fullPage:true});
+ await page.screenshot({path:'../../.cache/frontend-v2/screenshots/payment-approval-mobile.png',fullPage:true});
  await page.getByRole('button',{name:'Approve 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Approval confirmed/)).toBeVisible();
  expect(await page.evaluate(()=>(window as any).paymentWallet.sent.length)).toBe(1);expect(f.requests()).toBeGreaterThanOrEqual(2);const beforePayment=f.requests();
  await page.getByRole('button',{name:'Review payment'}).click();await expect(page.getByRole('heading',{name:'Review payment',exact:true})).toBeVisible();
- expect(f.requests()).toBeGreaterThan(beforePayment);await page.setViewportSize({width:1280,height:900});await page.screenshot({path:'../../test/evidence/frontend-polish/payment-review-desktop.png',fullPage:true});
+ expect(f.requests()).toBeGreaterThan(beforePayment);await page.setViewportSize({width:1280,height:900});await page.screenshot({path:'../../.cache/frontend-v2/screenshots/payment-review-desktop.png',fullPage:true});
  await page.getByRole('button',{name:'Pay 0.0001 USDC',exact:true}).click();await expect(page.getByText(/Payment transaction confirmed/)).toBeVisible();
  const sent=await page.evaluate(()=>(window as any).paymentWallet.sent);expect(sent).toHaveLength(2);expect(sent[0].gas).toBe('0x7530');expect(sent[0].maxFeePerGas).toBeTruthy();expect(sent[1].to.toLowerCase()).toBe(f.f.manifest.payments.toLowerCase());
  // Synthetic receipt confirmation is not permission to invent a paid invoice.

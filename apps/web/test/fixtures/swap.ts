@@ -71,6 +71,6 @@ export async function setupSwap(page:Page,options:{approved?:boolean;pending?:bo
   return route.fulfill({headers,json:Array.isArray(body)?body.map(respond):respond(body)});
  });
  await page.goto('/swap');await page.getByRole('button',{name:'Connect wallet',exact:true}).first().click();await expect(page.getByRole('button',{name:'Manage connected wallet'})).toBeVisible();
- await page.clock.install({time:new Date(1700000003200)});if(!options.blank){await selectValue(page,'Input token','USDC');await selectValue(page,'You receive','oUSD18');await page.getByLabel('You pay',{exact:true}).fill('9007199254.740993');}
+ await page.clock.install({time:new Date(1700000003200)});if(!options.blank){await selectValue(page,'Input token','USDC');await selectValue(page,'Buy','oUSD18');await page.getByLabel('Sell',{exact:true}).fill('9007199254.740993');}
  return {f,sent,requests,ready:()=>{ready=true;},quotes:()=>quotes};
 }
