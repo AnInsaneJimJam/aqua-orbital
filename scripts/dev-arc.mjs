@@ -4,6 +4,7 @@ import {createServer} from 'node:net';
 import {resolve} from 'node:path';
 import {parseEnv} from 'node:util';
 import {fileURLToPath} from 'node:url';
+import {testStartBlock} from './lib/arc-test-profile.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const manifestPath = resolve(root, 'deployments/5042002/manifest.json');
@@ -99,6 +100,7 @@ async function verifyRpc(rpcUrl) {
   if (typeof code !== 'string' || !/^0x(?:[0-9a-fA-F]{2})+$/.test(code) ||
       decimals !== `0x${'0'.repeat(63)}6`) throw Error('Arc USDC identity preflight failed: the system address must contain code and expose six ERC-20 decimals.');
   console.log(`Arc Testnet RPC and six-decimal system USDC observed at block ${BigInt(block.number)}. This does not verify an Orbital deployment.`);
+  return BigInt(block.number);
 }
 
 async function verifyIndexerHistory(primaryUrl, indexerUrl, manifest) {
@@ -120,6 +122,8 @@ async function verifyIndexerHistory(primaryUrl, indexerUrl, manifest) {
 async function main() {
   const localEnv = parseEnv(await optionalFile(resolve(root, 'apps/web/.env.local')) ?? '');
   const profileEnv = parseEnv(await optionalFile(resolve(root, '.env.arc.local')) ?? '');
+  const skipDeploymentVerification = (process.env.ORBITAL_SKIP_DEPLOYMENT_VERIFICATION ?? profileEnv.ORBITAL_SKIP_DEPLOYMENT_VERIFICATION) === '1';
+  const testCutoff = process.env.ORBITAL_TEST_START_BLOCK ?? profileEnv.ORBITAL_TEST_START_BLOCK;
   // Read just the public wallet identifier; never import the file into process.env.
   const appId = process.env.NEXT_PUBLIC_PRIVY_APP_ID?.trim() || localEnv.NEXT_PUBLIC_PRIVY_APP_ID?.trim();
   if (!appId || !/^[a-zA-Z0-9_-]{8,100}$/.test(appId)) {
@@ -149,7 +153,8 @@ async function main() {
     throw Error('A custom RPC becomes browser-visible. Set NEXT_PUBLIC_ARC_RPC_URL explicitly to the same public endpoint; do not use an endpoint containing a secret.');
   }
   await Promise.all([availablePort(3002), availablePort(3003)]);
-  await verifyRpc(rpcUrl);
+  const head = await verifyRpc(rpcUrl);
+  const runtimeStartBlock = manifest ? testStartBlock(testCutoff, manifest, head, skipDeploymentVerification) : undefined;
   if (manifest && indexerRpcUrl !== rpcUrl) {
     await verifyRpc(indexerRpcUrl);
     await verifyIndexerHistory(rpcUrl, indexerRpcUrl, manifest);
@@ -164,17 +169,21 @@ async function main() {
     HOST: '127.0.0.1', PORT: '3003', INDEXER_POLL_MS: process.env.INDEXER_POLL_MS ?? '1000',
     INDEXER_RPC_URL: indexerRpcUrl,
     DEPLOYMENT_MANIFEST: manifest ? manifestPath : '',
-    DATABASE_URL: manifest ? process.env.DATABASE_URL ?? 'postgresql://orbital:orbital_local_only@localhost:5432/orbital' : '',
+    DATABASE_URL: manifest ? process.env.DATABASE_URL ?? profileEnv.DATABASE_URL ?? 'postgresql://orbital:orbital_local_only@localhost:5432/orbital' : '',
     PROOF_MANIFEST: process.env.PROOF_MANIFEST || resolve(root, 'test/evidence/builds/proof.json'),
   });
   if (manifest) {
-    await start('Arc deployment verification', ['scripts/arc-deployment.mjs', 'verify-active', '--rpc-url', rpcUrl], root, env, true);
-    // Preserve the historical deployment manifest/report. The application gets
-    // an explicitly selected provider only after it reproduces that identity.
+    if (skipDeploymentVerification) {
+      console.warn('WARNING: deployment artifact verification SKIPPED for Arc Testnet testing. Saved addresses are trusted without re-verifying the deployed build. Use test funds only. Chain/USDC checks and real wallet settlement remain enabled.');
+    } else {
+      await start('Arc deployment verification', ['scripts/arc-deployment.mjs', 'verify-active', '--rpc-url', rpcUrl], root, env, true);
+    }
+    // Preserve historical evidence; the test-only opt-out never changes it.
     const runtimeDirectory = resolve(root, '.cache/arc-runtime');
     const runtimePath = resolve(runtimeDirectory, 'manifest.json');
     await mkdir(runtimeDirectory, {recursive: true});
-    await writeFile(`${runtimePath}.tmp`, JSON.stringify({...manifest, rpcUrl}, null, 2) + '\n');
+    if (testCutoff !== undefined) console.warn(`EMPTY TEST VIEW: indexing from block ${runtimeStartBlock}; earlier strategies, invoices and history are excluded. Original deployment block: ${manifest.startBlock}. Publish new liquidity before trading.`);
+    await writeFile(`${runtimePath}.tmp`, JSON.stringify({...manifest, rpcUrl, startBlock: runtimeStartBlock}, null, 2) + '\n');
     await rename(`${runtimePath}.tmp`, runtimePath);
     env.DEPLOYMENT_MANIFEST = runtimePath;
   }
@@ -186,7 +195,7 @@ async function main() {
   await start('Arc web', ['node_modules/next/dist/bin/next', 'dev', '--hostname', '127.0.0.1', '--port', '3002'], resolve(root, 'apps/web'), env);
   console.log('Arc wallet profile: http://127.0.0.1:3002 — API http://127.0.0.1:3003. Ctrl+C stops only these application processes.');
   if (!manifest) console.log('Login-only mode: no verified Arc deployment. Public browsing and Privy login are available; financial API routes report DEPLOYMENT_UNAVAILABLE. No indexer or database connection is started.');
-  else console.log(`Verified deployment loaded using ${new URL(rpcUrl).hostname}. Wait for indexer readiness before reviewing transactions. This runner never signs or submits transactions.`);
+  else console.log(`${skipDeploymentVerification ? 'Saved deployment loaded WITHOUT fresh artifact verification' : 'Verified deployment loaded'} using ${new URL(rpcUrl).hostname}. Wait for indexer readiness before reviewing transactions. This runner never signs or submits transactions.`);
 }
 
 main().catch(error => {

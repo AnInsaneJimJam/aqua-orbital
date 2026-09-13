@@ -6,7 +6,7 @@
   "releaseAccepted": false,
   "privyVerified": false,
   "sponsorQualificationVerified": false,
-  "planPath": "C:\\Users\\gujja\\aqua-orbital\\deployments\\5042002\\plans\\self-deployment.json",
+  "planPath": "deployments/5042002/plans/self-deployment.json",
   "planId": "be861a38e9ec7fdf9a08a8e3fb46fdb1bce0d85f87aef582b0911961019a4ad1",
   "verifiedAt": "2026-09-08T21:23:44.913Z",
   "manifest": {
