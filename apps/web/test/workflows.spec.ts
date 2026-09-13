@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import wire from '../../../packages/sdk/test/fixtures/payment-observations.json' with {type:'json'};
 
 test('landing leads directly to Orbital swaps',async({page})=>{
  await page.goto('/');
@@ -10,6 +11,7 @@ test('landing leads directly to Orbital swaps',async({page})=>{
 });
 
 test('strategy intent requires both risk acknowledgements before wallet publication',async({page})=>{
+ await page.route('**/deployment',route=>route.fulfill({headers:{'access-control-allow-origin':'*'},json:{...wire[0]!.manifest,chainId:5042002}}));
  await page.goto('/liquidity/new');
  await page.getByRole('button',{name:'Choose concentration',exact:true}).click();
  await page.getByRole('button',{name:'Focused More liquidity close to equal prices.',exact:true}).click();

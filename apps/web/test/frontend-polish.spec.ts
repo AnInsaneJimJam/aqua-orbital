@@ -5,7 +5,7 @@ const evidence='../../.cache/frontend-v2/screenshots';
 const manifest={...structuredClone(wire[0]!.manifest),chainId:5042002};
 const headers={'access-control-allow-origin':'*','cache-control':'no-store'};
 const destinations=['Swap','Liquidity','Payments','Demo Tokens'];
-const docs='https://github.com/AnInsaneJimJam/aqua-orbital/tree/main/docs';
+const docs='/docs';
 
 // Presentation fixtures only. This suite never connects a wallet or submits a plan.
 async function publicPresentation(page:Page){

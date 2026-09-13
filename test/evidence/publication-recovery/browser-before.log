@@ -1,0 +1,52 @@
+[WebServer] (node:490898) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:490927) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:490960) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:490977) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 1 test using 1 worker
+
+(node:491016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/1] test/liquidity-tokens.spec.ts:57:1 › publication preserves the selected pair after reload and restores legacy three-token drafts
+  1) test/liquidity-tokens.spec.ts:57:1 › publication preserves the selected pair after reload and restores legacy three-token drafts 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('region', { name: 'Saved publication' })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('region', { name: 'Saved publication' }) with timeout 10000ms
+      - waiting for getByRole('region', { name: 'Saved publication' })
+
+
+      86 |  await page.goto('/liquidity');
+      87 |  const unfinished=page.getByRole('region',{name:'Saved publication'});
+    > 88 |  await expect(unfinished).toBeVisible({timeout:10000});
+         |                           ^
+      89 |  await expect(unfinished).toContainText('USDC / oUSD18');
+      90 |  await expect(unfinished).toContainText('Approvals alone do not publish a strategy.');
+      91 |  await unfinished.getByRole('link',{name:'Continue publication',exact:true}).click();
+        at /home/anand/aqua-orbital/apps/web/test/liquidity-tokens.spec.ts:88:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../tmp/orbital-publication-red-results/liquidity-tokens-publicati-43d04-s-legacy-three-token-drafts/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../tmp/orbital-publication-red-results/liquidity-tokens-publicati-43d04-s-legacy-three-token-drafts/error-context.md
+
+
+  1 failed
+    test/liquidity-tokens.spec.ts:57:1 › publication preserves the selected pair after reload and restores legacy three-token drafts 

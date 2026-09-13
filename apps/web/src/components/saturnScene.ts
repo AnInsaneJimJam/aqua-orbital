@@ -50,7 +50,7 @@ export function planetCells() {
       if (distance > 0.985) continue;
       const shade = Math.max(0.04, Math.min(1, 0.2 + 0.9 * (-nx * 0.6 - ny * 0.48 + Math.sqrt(1 - distance) * 0.45)));
       const threshold = (bayer[(row % 4) * 4 + column % 4]! + 0.5) / 16;
-      cells.push({x, y, opacity: shade > threshold ? 0.93 : 0.12 + shade * 0.18});
+      cells.push({x, y, opacity: shade > threshold ? 0.93 : 0.12 + shade * 0.18 + 0.24 * Math.sqrt(Math.max(0, nx) * Math.max(0, ny))});
     }
   }
   return cells;

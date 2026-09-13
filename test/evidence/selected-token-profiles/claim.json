@@ -1,0 +1,66 @@
+{
+  "claim_id": "selected-token-initialization-finite-81",
+  "mathematics": {
+    "assertion_tested": "For the 81 recorded initializer configurations, quantized single-coin reference keys and displayed threshold brackets agree with independent high-precision geometry, principal rounds upward within the intended allocation, and raw funding is the required ceiling.",
+    "coefficient_domain": "SDK integers with Q128/Q64 fixed point; independent Python Decimal at 110 and 160 significant digits.",
+    "conventions": "n is selected-token count; GRID=2^32; full-range sentinel=2^64-1; normalized token precision=18; single-coin depeg p in [0,1].",
+    "inputs": [
+      "packages/reference/profile_smoke.py",
+      "test/evidence/selected-token-profiles/initializer.json",
+      "packages/sdk/src/strategy-profile.ts",
+      "packages/sdk/scripts/selected-profile-smoke.ts",
+      "docs/MATH.md"
+    ],
+    "bounds": {
+      "token_counts": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "baskets": "all three pairs of the current deployment plus one basket at each size 3\u20138; extra tokens synthetic",
+      "allocations_per_token": [
+        10,
+        100,
+        1000000
+      ],
+      "presets": [
+        "Wide",
+        "Balanced",
+        "Focused"
+      ],
+      "cases": 81,
+      "decimal_precisions": [
+        110,
+        160
+      ]
+    },
+    "non_claims": [
+      "Not a proof for every allocation, basket, trade size or trajectory.",
+      "Does not add supported Arc assets or deploy/publish any strategy.",
+      "Does not prove global solver liveness, economic safety during a depeg, or all supporting-price claims.",
+      "Initializer observations are recorded read-only RPC evidence; the independent run does not repeat or authenticate historical RPC execution."
+    ]
+  },
+  "execution_artifacts": [
+    "packages/reference/profile_smoke.py",
+    "test/evidence/selected-token-profiles/initializer.json",
+    "packages/sdk/src/strategy-profile.ts",
+    "packages/sdk/scripts/selected-profile-smoke.ts",
+    "docs/MATH.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.13.12"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

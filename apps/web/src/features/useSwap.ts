@@ -139,6 +139,7 @@ export function useSwap() {
     maxDisabled:!enabled||paused||!balance.data,conservativeAmount:fallback&&fallback>0n&&balance.data?`${formatAmount(fallback,balance.data.token.decimals)} ${input}`:undefined,
     useConservative:()=>{if(fallback&&balance.data&&!paused){clear();setAmountValue(formatAmount(fallback,balance.data.token.decimals));}},
     empty: !!observation && !observation.data.best && !expired,
+    emptyMessage: observation?.data.diagnostics.length&&observation.data.diagnostics.every(d=>d.code==='SETTLEMENT_ROLE_CONFLICT')?copy.swap.selfTrade:copy.swap.empty,
     symbols: [...new Set(deployment.data?.tokens.map(t => t.symbol) ?? ['USDC','oUSD6','oUSD18'])],
     network:selectedChain.name, gasAsset:selectedChain.nativeCurrency.symbol,
     setInput:(value:string) => {clear(); if(value===output)setOutputValue(input);setInputValue(value);},

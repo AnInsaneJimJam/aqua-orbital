@@ -20,13 +20,13 @@ export function profileCoefficients(n:number,key:bigint){
  return {equalLo,equalHi,virtualLo:center>offset?center-offset:0n};
 }
 /** ceil(GRID*b_depeg(p)); squaring proves the integer quotient, no floats. */
-function depegKey(numerator:bigint,denominator:bigint){
- const a=(numerator+2n*denominator)*GRID,d=numerator*numerator+2n*denominator*denominator;
- return 3n*GRID-integerSqrt(a*a/d);
+function depegKey(n:number,numerator:bigint,denominator:bigint){
+ const others=BigInt(n-1),a=(numerator+others*denominator)*GRID,d=numerator*numerator+others*denominator*denominator;
+ return BigInt(n)*GRID-integerSqrt(a*a/d);
 }
-function realizedThreshold(key:bigint){
- const scale=1_000_000_000n,distance=3n*GRID-key;let lo=0n,hi=scale;
- while(lo<hi){const mid=(lo+hi)/2n,a=(mid+2n*scale)*GRID,d=mid*mid+2n*scale*scale;if(a*a>=distance*distance*d)hi=mid;else lo=mid+1n;}
+function realizedThreshold(n:number,key:bigint){
+ const scale=1_000_000_000n,others=BigInt(n-1),distance=BigInt(n)*GRID-key;let lo=0n,hi=scale;
+ while(lo<hi){const mid=(lo+hi)/2n,a=(mid+others*scale)*GRID,d=mid*mid+others*scale*scale;if(a*a>=distance*distance*d)hi=mid;else lo=mid+1n;}
  const display=(v:bigint)=>`${v/scale}.${(v%scale).toString().padStart(9,'0')}`;
  return {lower:display(lo>0n?lo-1n:0n),upper:display(lo)};
 }
@@ -36,22 +36,31 @@ export const strategyPresets={
  Focused:{shares:[10,20,70],prices:[99,999],denominators:[100,1000]},
 } as const;
 export type StrategyPreset=keyof typeof strategyPresets;
-export type StrategyProfileInput={allocation:string;preset:StrategyPreset;feePpm:100|500|1000};
+export type StrategyProfileInput={allocation:string;preset:StrategyPreset;feePpm:100|500|1000;tokens?:readonly Address[]};
 export function prepareStrategyProfile(configured:DeploymentManifest,maker:Address,makerNonce:bigint,profile:StrategyProfileInput){
  const manifest=manifestSchema.parse(configured);
  if(!manifest.verified||![31337,5042002].includes(manifest.chainId))throw Error('Verified strategy deployment required');
  if(!/^[0-9]{1,7}$/.test(profile.allocation)||BigInt(profile.allocation)<10n||BigInt(profile.allocation)>1_000_000n)throw Error('Allocate 10–1,000,000 whole units per asset');
  const preset=strategyPresets[profile.preset];if(!preset)throw Error('Unknown concentration preset');
- const expected=[['USDC',6],['oUSD6',6],['oUSD18',18]] as const;
- const tokens=expected.map(([symbol,decimals])=>{
+ // Missing selection preserves the exact three-token configuration of saved v1 drafts.
+ const selected=profile.tokens===undefined?(['USDC','oUSD6','oUSD18'] as const).map(symbol=>{
+  const decimals=symbol==='oUSD18'?18:6;
   const matches=manifest.tokens.filter(t=>t.symbol===symbol&&t.decimals===decimals&&(symbol!=='USDC'||t.address.toLowerCase()===manifest.usdc.toLowerCase()));
-  if(matches.length!==1)throw Error(`Deployment needs one ${symbol} token`);return matches[0]!;
+  if(matches.length!==1)throw Error(`Deployment needs one ${symbol} token`);return matches[0]!.address;
+ }):profile.tokens;
+ if(!Array.isArray(selected)||selected.length<2||selected.length>8)throw Error('Choose 2–8 supported tokens');
+ const tokens=selected.map(address=>{
+  if(typeof address!=='string')throw Error('Choose supported token addresses');
+  const token=manifest.tokens.find(t=>t.address.toLowerCase()===address.toLowerCase());
+  if(!token)throw Error('Selected token is not supported by this deployment');return token;
  }).sort((a,b)=>BigInt(a.address)<BigInt(b.address)?-1:1);
+ if(new Set(tokens.map(t=>t.address.toLowerCase())).size!==tokens.length)throw Error('Choose distinct tokens');
+ const n=tokens.length;
  const capital=BigInt(profile.allocation)*10n**18n*U;
- const ticks=[{key:FULL,share:preset.shares[0],reference:'Full range'},...preset.prices.map((p,i)=>({key:depegKey(BigInt(p),BigInt(preset.denominators[i]!)),share:preset.shares[i+1]!,reference:`${p/preset.denominators[i]!} reference`}))]
+ const ticks=[{key:FULL,share:preset.shares[0],reference:'Full range'},...preset.prices.map((p,i)=>({key:depegKey(n,BigInt(p),BigInt(preset.denominators[i]!)),share:preset.shares[i+1]!,reference:`${p/preset.denominators[i]!} reference`}))]
   .sort((a,b)=>a.key<b.key?-1:1).map(t=>{
-   const c=profileCoefficients(3,t.key),budget=capital*BigInt(t.share)/100n-(t.key===FULL?0n:4n);
-   return {...t,radius:budget*Q/(c.equalHi-c.virtualLo),coefficients:c,threshold:t.key===FULL?null:realizedThreshold(t.key)};
+   const c=profileCoefficients(n,t.key),budget=capital*BigInt(t.share)/100n-(t.key===FULL?0n:4n);
+   return {...t,radius:budget*Q/(c.equalHi-c.virtualLo),coefficients:c,threshold:t.key===FULL?null:realizedThreshold(n,t.key)};
   });
  const radius=ticks.reduce((sum,t)=>sum+t.radius,0n),equal=ticks.at(-1)!.coefficients;
  const coordinate=ceil(radius*equal.equalHi,Q),virtual=ticks.reduce((sum,t)=>sum+t.radius*t.coefficients.virtualLo/Q,0n),principal=coordinate-virtual;

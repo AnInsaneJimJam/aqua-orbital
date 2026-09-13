@@ -16,6 +16,7 @@ export const copy={
   readOnly:'Quote observation. Review checks current funds, strategy availability and transaction simulation before any signature.',
   expired:'Updating the quote automatically. Current amounts will appear when checked.',
   empty:'No route was found in the inspected strategies.',
+  selfTrade:'You cannot swap against your own liquidity. Connect a different wallet to trade with this strategy.',
  },
  invoice:{
   invalid:'Use the full 32-byte invoice identifier from the correct network.',

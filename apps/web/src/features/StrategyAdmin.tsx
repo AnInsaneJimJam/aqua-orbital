@@ -6,7 +6,8 @@ export function StrategyAdminView({state:s,publication=false}:{state:StrategyAdm
  if(!s.owner&&!s.pending&&!s.confirmation)return null;
  const r=s.review;
  return <section aria-label="Strategy administration" className={styles.administration}>
-  <h3>{publication?'Publication steps':'Manage your strategy'}</h3><p>{publication?'Approve, publish, then activate. Review and confirm each step in your wallet.':'Retire the strategy, then dock its Aqua allocation. Each step needs a separate confirmation.'}</p>
+  <h3>{publication?'Publication steps':'Manage your strategy'}</h3><p>{publication?'Approve tokens → Publish allocation → Activate strategy':'Retire the strategy, then dock its Aqua allocation. Each step needs a separate confirmation.'}</p>
+  {publication&&<p className="hint">Each token approval is a separate transaction. Your strategy appears in the active list and becomes tradable only after the final activation.</p>}
   {r&&<div className="review-panel" aria-label="Strategy action review"><h3>{r.title}</h3>{r.demo&&!publication&&<p className="notice">This approval is for a demo token with no redemption value.</p>}<dl className={styles.amounts}>
    <div><dt>Maker</dt><dd className="mono">{r.maker}</dd></div><div><dt>Network</dt><dd>{r.network}</dd></div><div><dt>Gas budget</dt><dd>{r.gas}</dd></div>
    {r.amount&&<div><dt>Allowance cap</dt><dd>{r.amount}</dd></div>}{r.spender&&<div><dt>Approval spender</dt><dd className="mono">{r.spender}</dd></div>}
@@ -18,7 +19,7 @@ export function StrategyAdminView({state:s,publication=false}:{state:StrategyAdm
   <div className={styles.actions}>{s.pending?<button className="button" disabled={s.busy} onClick={s.resume}>Resume strategy receipt</button>
    :s.wrongChain?<button className="button" onClick={s.switchNetwork}>Switch to strategy network</button>
    :r?<><button className="button" disabled={s.busy||!s.enabled} onClick={s.submit}>{s.busy?'Waiting for wallet…':`Confirm: ${r.title}`}</button><button className="button secondary" disabled={s.busy} onClick={s.dismiss}>Back to strategy</button></>
-   :publication?<button className="button" disabled={s.busy||!s.enabled} onClick={()=>s.prepare({kind:'publish'})}>{s.busy?'Preparing review…':'Review next publication step'}</button>:<><button className="button" disabled={s.busy||!s.enabled} onClick={()=>s.prepare({kind:'deactivate'})}>{s.busy?'Preparing review…':'Review deactivation step'}</button>
+   :publication?<button className="button" disabled={s.busy||!s.enabled} onClick={()=>s.prepare({kind:'publish'})}>{s.busy?'Preparing review…':s.confirmation?.status==='success'&&s.confirmation.kind==='ship'?'Review activation':s.confirmation?.status==='success'&&s.confirmation.kind==='approval'?'Continue publication':'Review next publication step'}</button>:<><button className="button" disabled={s.busy||!s.enabled} onClick={()=>s.prepare({kind:'deactivate'})}>{s.busy?'Preparing review…':'Review deactivation step'}</button>
     {s.tokens.map(t=><button key={t.address} className="button secondary" disabled={s.busy||!s.enabled} onClick={()=>s.prepare({kind:'approve',token:t.address})}>Update {t.symbol} approval</button>)}</>}
   </div>
  </section>;

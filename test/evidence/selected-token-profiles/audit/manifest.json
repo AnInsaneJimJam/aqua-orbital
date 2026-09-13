@@ -1,0 +1,171 @@
+{
+  "schema_version": 2,
+  "claim_id": "selected-token-initialization-finite-81",
+  "repository": {
+    "commit": "e5e2a9707598f367a6fea2bf50ba7dde84e179bc",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "packages/reference/profile_smoke.py",
+    "--input",
+    "test/evidence/selected-token-profiles/initializer.json",
+    "--output",
+    "test/evidence/selected-token-profiles/audit/independent.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.12"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.12"
+      }
+    ],
+    "hardware": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39"
+  },
+  "mathematics": {
+    "assertion_tested": "For the 81 recorded initializer configurations, quantized single-coin reference keys and displayed threshold brackets agree with independent high-precision geometry, principal rounds upward within the intended allocation, and raw funding is the required ceiling.",
+    "coefficient_domain": "SDK integers with Q128/Q64 fixed point; independent Python Decimal at 110 and 160 significant digits.",
+    "conventions": "n is selected-token count; GRID=2^32; full-range sentinel=2^64-1; normalized token precision=18; single-coin depeg p in [0,1].",
+    "inputs": [
+      "packages/reference/profile_smoke.py",
+      "test/evidence/selected-token-profiles/initializer.json",
+      "packages/sdk/src/strategy-profile.ts",
+      "packages/sdk/scripts/selected-profile-smoke.ts",
+      "docs/MATH.md"
+    ],
+    "bounds": {
+      "token_counts": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "baskets": "all three pairs of the current deployment plus one basket at each size 3–8; extra tokens synthetic",
+      "allocations_per_token": [
+        10,
+        100,
+        1000000
+      ],
+      "presets": [
+        "Wide",
+        "Balanced",
+        "Focused"
+      ],
+      "cases": 81,
+      "decimal_precisions": [
+        110,
+        160
+      ]
+    },
+    "non_claims": [
+      "Not a proof for every allocation, basket, trade size or trajectory.",
+      "Does not add supported Arc assets or deploy/publish any strategy.",
+      "Does not prove global solver liveness, economic safety during a depeg, or all supporting-price claims.",
+      "Initializer observations are recorded read-only RPC evidence; the independent run does not repeat or authenticate historical RPC execution."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-13T12:35:59.409308+00:00",
+    "runtime_seconds": 0.123245,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": 536870912,
+      "cpu_seconds": 10,
+      "max_cores": 1,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "packages/reference/profile_smoke.py",
+    "test/evidence/selected-token-profiles/initializer.json",
+    "packages/sdk/src/strategy-profile.ts",
+    "packages/sdk/scripts/selected-profile-smoke.ts",
+    "docs/MATH.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "packages/reference/profile_smoke.py",
+      "sha256": "d3574149c6436e2d1eee2782f491da925a43f6da63e95b604a43fdb392f13cd5",
+      "sha256_after": "d3574149c6436e2d1eee2782f491da925a43f6da63e95b604a43fdb392f13cd5"
+    },
+    {
+      "path": "test/evidence/selected-token-profiles/initializer.json",
+      "sha256": "23dd2847594eed5290b5fef732a85b23f1460992857b2358b059c1adc7869a15",
+      "sha256_after": "23dd2847594eed5290b5fef732a85b23f1460992857b2358b059c1adc7869a15"
+    },
+    {
+      "path": "packages/sdk/src/strategy-profile.ts",
+      "sha256": "b6f6a83ad4566009ed56b65eb4a11384367bf19ecf3568a90e4b8ca10a8d932f",
+      "sha256_after": "b6f6a83ad4566009ed56b65eb4a11384367bf19ecf3568a90e4b8ca10a8d932f"
+    },
+    {
+      "path": "packages/sdk/scripts/selected-profile-smoke.ts",
+      "sha256": "ad522f231159e6a8e650b3b327fd858ae4e99774b8e2095e56dbc803d4d132e1",
+      "sha256_after": "ad522f231159e6a8e650b3b327fd858ae4e99774b8e2095e56dbc803d4d132e1"
+    },
+    {
+      "path": "docs/MATH.md",
+      "sha256": "3a73a91b071371869b5d54dd37a76003eb9eb04bdb77d4e33ee895e131ef45e2",
+      "sha256_after": "3a73a91b071371869b5d54dd37a76003eb9eb04bdb77d4e33ee895e131ef45e2"
+    }
+  ],
+  "output_directory": "test/evidence/selected-token-profiles/audit",
+  "declared_results": [
+    "test/evidence/selected-token-profiles/audit/independent.json"
+  ],
+  "outputs": [
+    {
+      "path": "test/evidence/selected-token-profiles/audit/stdout.txt",
+      "sha256": "5fa4638b0d14374fe6a07b5eb29e7d0d630a191063fa3091e5d115a88e42355e",
+      "kind": "log"
+    },
+    {
+      "path": "test/evidence/selected-token-profiles/audit/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "test/evidence/selected-token-profiles/audit/independent.json",
+      "sha256": "51874144dbcc91881517cc8f5cdf3158f6c5d173ccb0181cf9b6040e52228497",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

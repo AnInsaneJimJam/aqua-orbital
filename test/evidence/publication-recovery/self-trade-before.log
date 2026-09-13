@@ -1,0 +1,52 @@
+[WebServer] (node:509450) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:509462) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:509491) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:509515) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 1 test using 1 worker
+
+(node:509556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/1] apps/web/test/swap.spec.ts:124:1 › bounded absence and outage are distinct, and failed refresh removes previously checked amounts
+  1) apps/web/test/swap.spec.ts:124:1 › bounded absence and outage are distinct, and failed refresh removes previously checked amounts 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('You cannot swap against your own liquidity. Connect a different wallet to trade with this strategy.', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('You cannot swap against your own liquidity. Connect a different wallet to trade with this strategy.', { exact: true }) with timeout 5000ms
+      - waiting for getByText('You cannot swap against your own liquidity. Connect a different wallet to trade with this strategy.', { exact: true })
+
+
+      131 |   await getQuote(page).click();await expect(output(page)).toBeVisible({timeout:5000});mode='outage';await refresh(page).click();
+      132 |   await expect(output(page)).toHaveCount(0);await expect(page.getByRole('main').getByRole('alert')).toContainText('Quote unavailable',{timeout:5000});
+    > 133 |   mode='self';await getQuote(page).click();await expect(page.getByText('You cannot swap against your own liquidity. Connect a different wallet to trade with this strategy.',{exact:true})).toBeVisible({timeout:5000});await expect(output(page)).toHaveCount(0);
+          |                                                                                                                                                                                             ^
+      134 |   mode='empty';await getQuote(page).click();await expect(page.getByText('No route was found in the inspected strategies.',{exact:true})).toBeVisible({timeout:5000});
+      135 | });
+      136 |
+        at /home/anand/aqua-orbital/apps/web/test/swap.spec.ts:133:189
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../tmp/orbital-self-trade-red-results/swap-bounded-absence-and-o-15201--previously-checked-amounts/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../tmp/orbital-self-trade-red-results/swap-bounded-absence-and-o-15201--previously-checked-amounts/error-context.md
+
+
+  1 failed
+    apps/web/test/swap.spec.ts:124:1 › bounded absence and outage are distinct, and failed refresh removes previously checked amounts 

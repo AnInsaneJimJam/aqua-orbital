@@ -27,7 +27,7 @@ function Bridge({children}:{children:ReactNode}){
   const next=wallets.find(w=>w.address.toLowerCase()===address.toLowerCase());
   if(!next)throw Error('Wallet is no longer connected');
   selecting.current=true;setSelectionBusy(true);setError(undefined);
-  try{await setActiveWallet(next);try{sessionStorage.setItem('orbital:active-wallet',next.address);}catch{/* Preference storage is optional. */}}
+  try{await setActiveWallet(next);}
   catch(e){setError('Wallet selection did not complete. Finish or dismiss the request in your wallet, then select it again.');throw e;}
   finally{selecting.current=false;setSelectionBusy(false);}
  }
@@ -42,13 +42,13 @@ function Bridge({children}:{children:ReactNode}){
   try{await createWallet();}catch(e){setError('Privy wallet creation did not complete. You can try again.');throw e;}finally{creating.current=false;}
  }
  useEffect(()=>{
-  if(!ready||!walletsReady||selecting.current||!wallets.length||!connectors.length)return;
-  if(requestedAddress&&active?.address.toLowerCase()===requestedAddress.toLowerCase()){setRequestedAddress(undefined);return;}
-  if(!requestedAddress&&active)return;
-  let saved:string|null=null;try{saved=sessionStorage.getItem('orbital:active-wallet');}catch{}
+  // Privy restores existing connections silently. Imperative selection on reload
+  // races that restore and opens another wallet permission request.
+  if(!requestedAddress||!ready||!walletsReady||selecting.current||!wallets.length||!connectors.length)return;
+  if(active?.address.toLowerCase()===requestedAddress.toLowerCase()){setRequestedAddress(undefined);return;}
   // New wallets become connector-ready after the creation callback. Retry when
   // Privy's connector list changes; never create another wallet during recovery.
-  const next=requestedAddress?wallets.find(w=>w.address.toLowerCase()===requestedAddress.toLowerCase()):wallets.find(w=>w.address.toLowerCase()===saved?.toLowerCase())??wallets.find(w=>w.walletClientType==='privy')??wallets[0];
+  const next=wallets.find(w=>w.address.toLowerCase()===requestedAddress.toLowerCase());
   if(!next)return;
   const key=`${next.address.toLowerCase()}:${connectors.map(c=>c.uid).sort().join(',')}`;
   if(lastAutoSelection.current===key)return;lastAutoSelection.current=key;

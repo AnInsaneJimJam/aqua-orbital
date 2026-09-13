@@ -124,11 +124,13 @@ test('wallet and chain changes invalidate observations and wrong chain sends no 
 test('bounded absence and outage are distinct, and failed refresh removes previously checked amounts',async({page})=>{
   let mode='success';await setup(page,()=>{
     const f=fixture();if(mode==='outage')return f.unavailable;
+    if(mode==='self')return {...f.observed,code:'NO_ROUTE_IN_INSPECTED_SET',data:{...f.observed.data,best:null,alternatives:[],counts:{scanned:1,locallyAccepted:0,inspected:0,eligible:0,quoted:0,failed:1,notInspected:0},diagnostics:[{orderHash:f.observed.data.best.orderHash,code:'SETTLEMENT_ROLE_CONFLICT'}]}};
     if(mode==='empty')return {...f.observed,code:'NO_ROUTE_IN_INSPECTED_SET',data:{...f.observed.data,best:null,alternatives:[],counts:{scanned:0,locallyAccepted:0,inspected:0,eligible:0,quoted:0,failed:0,notInspected:0},diagnostics:[]}};
     return f.observed;
   },()=>mode==='outage'?503:200);
   await getQuote(page).click();await expect(output(page)).toBeVisible({timeout:5000});mode='outage';await refresh(page).click();
   await expect(output(page)).toHaveCount(0);await expect(page.getByRole('main').getByRole('alert')).toContainText('Quote unavailable',{timeout:5000});
+  mode='self';await getQuote(page).click();await expect(page.getByText('You cannot swap against your own liquidity. Connect a different wallet to trade with this strategy.',{exact:true})).toBeVisible({timeout:5000});await expect(output(page)).toHaveCount(0);
   mode='empty';await getQuote(page).click();await expect(page.getByText('No route was found in the inspected strategies.',{exact:true})).toBeVisible({timeout:5000});
 });
 

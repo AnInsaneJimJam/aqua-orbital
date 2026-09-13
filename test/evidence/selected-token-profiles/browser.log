@@ -1,0 +1,26 @@
+[WebServer] (node:482579) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:482591) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:482623) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:482640) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 6 tests using 1 worker
+
+(node:482680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/6] test/liquidity-tokens.spec.ts:13:35 › liquidity selection, allocation, and pair preview work at 1440px
+[2/6] test/liquidity-tokens.spec.ts:13:35 › liquidity selection, allocation, and pair preview work at 390px
+[3/6] test/liquidity-tokens.spec.ts:13:35 › liquidity selection, allocation, and pair preview work at 320px
+[4/6] test/liquidity-tokens.spec.ts:41:1 › the selection reads the deployment allowlist and supports eight assets
+[5/6] test/liquidity-tokens.spec.ts:57:1 › publication preserves the selected pair after reload and restores legacy three-token drafts
+[6/6] test/workflows.spec.ts:13:1 › strategy intent requires both risk acknowledgements before wallet publication
+  6 passed (22.8s)

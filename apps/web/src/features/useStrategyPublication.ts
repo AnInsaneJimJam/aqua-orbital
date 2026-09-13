@@ -1,27 +1,32 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {prepareStrategyProfile,configToDTO,configFromDTO,hashConfig,hashOrder,lifecycleAbi,aquaAbi,formatAmount,type StrategyProfileInput} from '@orbital/sdk';
+import {useQuery} from '@tanstack/react-query';
+import {prepareStrategyProfile,configToDTO,hashOrder,lifecycleAbi,aquaAbi,formatAmount,type StrategyProfileInput} from '@orbital/sdk';
 import type {Address} from 'viem';
 import {useWallet} from '../wallet/WalletProvider';
 import {selectedChain} from '../wallet/config';
 import {publicClient} from '../wallet/transactionPort';
+import {readSwapBalance} from '../wallet/balancePort';
 import {useDeployment} from './api';
 import {useStrategyAdmin} from './useStrategyAdmin';
+import {publicationStorageKey,readPublicationDraft} from './publicationStorage';
 type Prepared=ReturnType<typeof prepareStrategyProfile>;
 type Draft={prepared:Prepared;profile:StrategyProfileInput;key:string};
 const zeroHash=`0x${'0'.repeat(64)}`;
 export function useStrategyPublication(){
  const wallet=useWallet(),deployment=useDeployment(),[draft,setDraft]=useState<Draft>(),[error,setError]=useState(''),[busy,setBusy]=useState(false),[storageError,setStorageError]=useState(false),[restored,setRestored]=useState(false),[active,setActive]=useState(false);
- const key=wallet.address&&deployment.data?`orbital:publication:1:${deployment.data.chainId}:${deployment.data.router.toLowerCase()}:${wallet.address.toLowerCase()}`:undefined;
+ const key=wallet.address&&deployment.data?publicationStorageKey(deployment.data,wallet.address):undefined;
  const current=useRef(key);current.current=key;const mounted=useRef(true),working=useRef(false);
+ const supported=deployment.data?.verified&&deployment.data.chainId===selectedChain.id?deployment.data:undefined;
+ const balances=useQuery({queryKey:['liquidity-balances',key,wallet.chainId,supported?.tokens],enabled:!!supported&&wallet.ready&&wallet.connected&&wallet.chainId===selectedChain.id,
+  retry:false,refetchInterval:10000,queryFn:async({signal})=>{
+   const captured=key;return Promise.all(supported!.tokens.map(token=>readSwapBalance(wallet,supported!,token,()=>!signal.aborted&&current.current===captured)));
+  }});
  useEffect(()=>{mounted.current=true;return()=>{mounted.current=false;};},[]);
  useEffect(()=>{
   setDraft(undefined);setError('');setStorageError(false);setActive(false);setRestored(false);if(!key||!wallet.address||!deployment.data)return;
-  try{const raw=localStorage.getItem(key);if(raw){if(raw.length>16000)throw Error('Saved publication is too large');const parsed=JSON.parse(raw),saved=configFromDTO(parsed.config);
-    const prepared=prepareStrategyProfile(deployment.data,wallet.address,saved.makerNonce,parsed.profile);
-    if(parsed.schemaVersion!==1||hashConfig(saved)!==prepared.configHash)throw Error('Saved publication does not match its reviewed configuration');
-    setDraft({key,prepared,profile:parsed.profile});setRestored(true);
-  }}catch{setStorageError(true);setError('Saved publication could not be validated. Keep any transaction hashes and repair its recovery record before starting another draft.');}
+  try{const saved=readPublicationDraft(deployment.data,wallet.address);if(saved){setDraft(saved);setRestored(true);}}
+  catch{setStorageError(true);setError('Saved publication could not be validated. Keep any transaction hashes and repair its recovery record before starting another draft.');}
  },[key]);
  const scoped=draft?.key===key?draft:undefined,admin=useStrategyAdmin(scoped?.prepared.orderHash??zeroHash,scoped?.prepared);
  useEffect(()=>{
@@ -52,8 +57,14 @@ export function useStrategyPublication(){
   }catch(e){if(mounted.current&&current.current===captured)setError((e as Error).message);}finally{working.current=false;if(mounted.current)setBusy(false);}
  }
  const prepared=scoped?.prepared,view=prepared?{hash:prepared.orderHash,nonce:prepared.config.makerNonce.toString(),preset:scoped!.profile.preset,
-  allocations:prepared.config.tokens.map((a,i)=>{const t=deployment.data!.tokens.find(t=>t.address.toLowerCase()===a.toLowerCase())!;return {symbol:t.symbol,amount:formatAmount(prepared.config.initialAmountsRaw[i]!,t.decimals),cap:formatAmount(prepared.config.initialAmountsRaw[i]!*4n,t.decimals)};}),
+  allocations:prepared.config.tokens.map((a,i)=>{const t=deployment.data!.tokens.find(t=>t.address.toLowerCase()===a.toLowerCase())!;return {address:a,symbol:t.symbol,mock:t.mock,amount:formatAmount(prepared.config.initialAmountsRaw[i]!,t.decimals),cap:formatAmount(prepared.config.initialAmountsRaw[i]!*4n,t.decimals)};}),
   ticks:prepared.ticks.map(t=>({key:t.key.toString(),radius:t.radius.toString(),share:t.share,threshold:t.threshold?`${t.threshold.lower}–${t.threshold.upper}`:'Full range'}))}:undefined;
- return {draft:!!scoped,profile:scoped?.profile,view,admin,active,restored,busy,error,network:selectedChain.name,ready:wallet.ready&&wallet.connected&&wallet.chainId===selectedChain.id&&deployment.data?.verified===true,
+ const assets=(supported?.tokens??[]).map(token=>{
+  const observed=!balances.isError&&wallet.connected&&wallet.chainId===selectedChain.id?balances.data?.find(v=>v.token.address.toLowerCase()===token.address.toLowerCase()&&v.expiresAtMs>Date.now()):undefined;
+  return {...token,address:token.address as Address,balanceRaw:observed?.amountRaw,balance:observed?formatAmount(observed.amountRaw,token.decimals):undefined};
+ });
+ return {draft:!!scoped,profile:scoped?.profile,view,admin,active,restored,busy,error,assets,assetsLoading:deployment.isPending,
+  assetsError:!deployment.isPending&&!supported?'Supported assets are unavailable. Refresh to check this deployment again.':undefined,refreshAssets:()=>{void deployment.refetch();},balancesLoading:balances.isFetching,
+  network:selectedChain.name,ready:wallet.ready&&wallet.connected&&wallet.chainId===selectedChain.id&&!!supported,
   editDraft:()=>{void editDraft();},start:(profile:StrategyProfileInput)=>{void start(profile);},newDraft,clearError:()=>{if(!restored)setError('');},connect:wallet.connect,switchNetwork:wallet.switchNetwork,connected:wallet.connected,wrongChain:wallet.connected&&wallet.chainId!==selectedChain.id};
 }

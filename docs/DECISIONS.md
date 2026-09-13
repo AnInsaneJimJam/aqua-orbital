@@ -110,3 +110,9 @@ Expose Demo tokens in navigation and put demo-value warnings on funding and rele
 Internal links retain Next routing and show a pending underline through its documented `useLinkStatus` API, followed by the route-loading state when needed. This acknowledges navigation during cold development compilation without claiming to improve server compilation time. Primary button links explicitly preserve dark text and icons on hover; secondary controls preserve their own foreground. The strategy review view exposes the already-validated token's demo flag solely for a contextual disclosure.
 
 The owner also requested a recoloured SVG and more visible evidence. Preserve every original logo path, apply cream/chartreuse within the SVG, remove display filters, and adapt favicon contrast to browser colour scheme. Move Protocol notes to the main navigation. Curate direct Arc receipt links plus existing source/test/evidence files there; retain generated statuses and distinguish historical receipts, local results and unfinished qualification. These links do not claim that the repository is publicly accessible.
+
+## D45 — Maker-selected token baskets (2026-09-13)
+
+The owner requested liquidity provision for any number of tokens starting at two. The builder accepts 2–8 distinct assets from the verified deployment allowlist, matching the existing contract limit. The current Arc deployment offers three assets: makers can choose any pair or all three, with two selected by default. Each selected pair trades in both directions under one strategy.
+
+Equal initial token amounts, concentration profiles, fees, bounded approvals and the publication lifecycle remain unchanged. The SDK derives quantized tick geometry from the selected token count; saved profiles without a token-selection field preserve their original three-token configuration. This requires no contract deployment or allowlist mutation. [Verification](../test/evidence/selected-token-profiles/README.md).

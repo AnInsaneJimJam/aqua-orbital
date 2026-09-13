@@ -1,0 +1,42 @@
+✔ test/arc-freshness.test.ts (3127.983415ms)
+✔ test/artifact-integrity.test.ts (2702.914283ms)
+✖ test/events.test.ts (2406.233177ms)
+✔ test/execution.test.ts (2474.139292ms)
+✔ test/faucet.test.ts (1970.70369ms)
+✔ test/invoice-admin.test.ts (2601.287617ms)
+✔ test/invoice-read.test.ts (2461.5152ms)
+✔ test/payment-cache-counts.test.ts (1189.565846ms)
+✖ test/payment-read-abi.test.ts (3021.045193ms)
+✔ test/payment-read.test.ts (2905.859184ms)
+✔ test/payment-review.test.ts (2756.706263ms)
+✔ test/plans.test.ts (2651.305568ms)
+✔ test/quote-read.test.ts (2389.98474ms)
+✔ test/sdk.test.ts (2492.366383ms)
+✔ test/strategy-profile.test.ts (2551.641471ms)
+✔ test/strategy-read.test.ts (2739.529263ms)
+✔ test/swap-controls.test.ts (457.572909ms)
+✖ test/swap-events.test.ts (2390.79338ms)
+✔ test/swap-receipt.test.ts (1881.069195ms)
+✔ test/swap-review.test.ts (1447.491115ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 17
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3445.397022
+
+✖ failing tests:
+
+test at test/events.test.ts:1:1
+✖ test/events.test.ts (2406.233177ms)
+  'test failed'
+
+test at test/payment-read-abi.test.ts:1:1
+✖ test/payment-read-abi.test.ts (3021.045193ms)
+  'test failed'
+
+test at test/swap-events.test.ts:1:1
+✖ test/swap-events.test.ts (2390.79338ms)
+  'test failed'

@@ -32,7 +32,7 @@ export function SwapView(state:SwapViewState){
    <details><summary>Quote details</summary><p>You pay: {state.quoteView.input}</p><p>Recipient: <span className="mono">{state.quoteView.recipient}</span></p><p>Approval: Not requested</p><p>{state.quoteView.historical?'Historical observation':'Observed'} at block {state.quoteView.block} · {state.quoteView.inspected} strategies checked.</p><p>Maker: <span className="mono">{state.quoteView.maker}</span></p><p>{state.quoteView.ticks} ticks · maximum 16 crossings</p>{state.quoteView.truncated&&<p>The scan reached its limit; other strategies may exist.</p>}<p className="mono"><Link href={`/liquidity/${state.quoteView.orderHash}`}>Strategy: {state.quoteView.orderHash}</Link></p>{state.quoteView.alternatives.length>0&&<><p>Other inspected results</p><ul>{state.quoteView.alternatives.map(route=><li key={route.orderHash}>{route.output}</li>)}</ul></>}</details>
   </section>}
   {state.expired&&!executing&&<p role="status" className="notice">{copy.swap.expired}</p>}
-  {state.empty&&<p role="status" className="notice">{copy.swap.empty}</p>}
+  {state.empty&&<p role="status" className="notice">{state.emptyMessage}</p>}
   {state.deploymentPending?<p className="hint" role="status">Checking deployment…</p>:state.deploymentError?<div className="notice">{state.deploymentError}</div>:null}
   {error&&<p className="error" role="alert">{error}</p>}
   <SwapExecution state={state.execution} network={state.network}/>

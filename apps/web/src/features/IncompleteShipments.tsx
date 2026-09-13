@@ -2,11 +2,27 @@
 import Link from '../components/AppLink';
 import {useState} from 'react';
 import {useQuery} from '@tanstack/react-query';
-import {decodeShipmentList} from '@orbital/sdk';
+import {decodeShipmentList,lifecycleAbi} from '@orbital/sdk';
 import {manifestSchema} from '@orbital/shared';
 import {useWallet} from '../wallet/WalletProvider';
-import {request,requestPayload} from './api';
+import {request,requestPayload,useDeployment} from './api';
+import {publicClient} from '../wallet/transactionPort';
+import {readPublicationDraft} from './publicationStorage';
 import styles from './Strategy.module.css';
+export function SavedPublication(){
+ const wallet=useWallet(),deployment=useDeployment(),m=deployment.data;
+ const query=useQuery({queryKey:['saved-publication',wallet.address,wallet.chainId,m],enabled:wallet.connected&&!!wallet.address&&!!m?.verified&&wallet.chainId===m.chainId,
+  retry:false,refetchInterval:10000,queryFn:async()=>{
+   const saved=readPublicationDraft(m!,wallet.address!);if(!saved)return null;
+   const c=saved.prepared.config,nonce=await publicClient.readContract({address:c.router,abi:lifecycleAbi,functionName:'nextMakerNonce',args:[c.maker]});
+   return nonce===c.makerNonce?c.tokens.map(a=>m!.tokens.find(t=>t.address.toLowerCase()===a.toLowerCase())!.symbol).join(' / '):null;
+  }});
+ if(!wallet.connected||!m||wallet.chainId!==m.chainId||(!query.data&&!query.isError))return null;
+ return <section className="panel" aria-label="Saved publication"><h3>{query.isError?'Check your saved publication':'Finish publishing your strategy'}</h3>
+  {query.isError?<p>Its saved configuration or onchain status could not be checked. Open it to review the recovery state.</p>:<><p>{query.data}</p><p>Approvals alone do not publish a strategy. Continue your saved draft to publish the allocation and activate trading.</p></>}
+  <Link className="button" href="/liquidity/new">Continue publication</Link>
+ </section>;
+}
 export function IncompleteShipments(){
  const wallet=useWallet(),scope=`${wallet.address}:${wallet.chainId}`,[nav,setNav]=useState<{scope:string;pages:(string|undefined)[];page:number}>({scope,pages:[undefined],page:0});
  const current=nav.scope===scope?nav:{scope,pages:[undefined],page:0},cursor=current.pages[current.page];

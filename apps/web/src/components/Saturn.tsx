@@ -1,17 +1,12 @@
 'use client';
 
 import {useEffect, useRef, useState} from 'react';
-import {Pause, Play} from 'lucide-react';
 import {ORBIT_PERIOD_MS, PLANET_DIAMETER, SATURN_HEIGHT, SATURN_WIDTH, TOKEN_COLORS, TOKEN_TEXTURES, orbitTiles, planetCells, tilePosition} from './saturnScene';
 import styles from './Saturn.module.css';
 
 export default function Saturn() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const paused = useRef(false);
-  const syncRef = useRef<() => void>(() => {});
   const [ready, setReady] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -69,9 +64,7 @@ export default function Saturn() {
     };
     const sync = () => {
       if (disposed) return;
-      setReduced(preference.matches);
-      const run = loaded && visible && !document.hidden && !preference.matches && !paused.current;
-      setPlaying(run);
+      const run = loaded && visible && !document.hidden && !preference.matches;
       if (run && !request) request = window.requestAnimationFrame(animate);
       if (!run) {
         window.cancelAnimationFrame(request);
@@ -88,7 +81,6 @@ export default function Saturn() {
       constrained = width < 600 || navigator.hardwareConcurrency <= 4;
       draw();
     };
-    syncRef.current = sync;
     const observer = new IntersectionObserver(([entry]) => { visible = !!entry?.isIntersecting; sync(); }, {threshold: 0.05});
     observer.observe(canvas);
     const resizer = new ResizeObserver(resize);
@@ -111,15 +103,11 @@ export default function Saturn() {
       resizer.disconnect();
       preference.removeEventListener('change', sync);
       document.removeEventListener('visibilitychange', sync);
-      syncRef.current = () => {};
     };
   }, []);
 
   return <figure className={`${styles.scene} ${ready ? styles.ready : ''}`} aria-label="Abstract stablecoin orbit">
     <img className={styles.fallback} src="/brand/saturn-static.svg" width={960} height={400} alt="" aria-hidden="true"/>
     <canvas ref={canvasRef} className={styles.canvas} width={960} height={400} aria-hidden="true"/>
-    {ready && !reduced && <button className={styles.control} type="button" onClick={() => {paused.current = !paused.current; syncRef.current();}} aria-label={playing ? 'Pause orbital animation' : 'Play orbital animation'}>
-      {playing ? <Pause size={12} aria-hidden="true"/> : <Play size={12} aria-hidden="true"/>}{playing ? 'Pause' : 'Play'}
-    </button>}
   </figure>;
 }

@@ -1,7 +1,6 @@
 import Link from '../components/AppLink';
 import {ArrowRight,ArrowUpRight} from 'lucide-react';
 import Saturn from '../components/Saturn';
-import {repositoryUrl} from '../features/proofEvidence';
 import styles from './page.module.css';
 
 const journeys=[
@@ -17,7 +16,7 @@ export default function Home(){return <div className={styles.landing}>
   <div className={styles.artwork}><Saturn/></div>
   <div className={styles.actions}>
    <Link className="button" href="/swap">Swap Stablecoin <ArrowRight size={20} aria-hidden="true"/></Link>
-   <a className="button secondary" href={`${repositoryUrl}/tree/main/docs`} target="_blank" rel="noreferrer">Docs <ArrowUpRight size={20} aria-hidden="true"/></a>
+   <Link className="button secondary" href="/docs">Docs <ArrowRight size={20} aria-hidden="true"/></Link>
   </div>
  </section>
  <section className={styles.explore} aria-labelledby="how-title">

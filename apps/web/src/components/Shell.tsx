@@ -8,10 +8,8 @@ import {useWallet} from '../wallet/WalletProvider';
 import WalletControl from '../wallet/WalletControl';
 import {selectedChain} from '../wallet/config';
 import {copy} from '../content';
-import {repositoryUrl} from '../features/proofEvidence';
 import styles from './Shell.module.css';
 
-export const docsUrl=`${repositoryUrl}/tree/main/docs`;
 const destinations=[['/swap','Swap'],['/liquidity','Liquidity'],['/pay','Payments'],['/fund','Demo Tokens']] as const;
 
 export default function Shell({children}:{children:React.ReactNode}){
@@ -40,6 +38,6 @@ export default function Shell({children}:{children:React.ReactNode}){
   </header>
   {wallet.error&&<div className="notice" role="alert">{wallet.error}</div>}
   <main id="main" tabIndex={-1} className={styles.main}>{children}</main>
-  <footer className={styles.footer}><nav aria-label="Resources"><a href={docsUrl} target="_blank" rel="noreferrer">Docs ↗</a><Link href="/proof">Protocol notes</Link><a href="https://www.paradigm.xyz/writing/orbital" target="_blank" rel="noreferrer">Orbital paper ↗</a></nav><small>{copy.attribution}</small></footer>
+  <footer className={styles.footer}><nav aria-label="Resources"><Link href="/docs">Docs</Link>{path!=='/docs'&&<Link href="/proof">Protocol notes</Link>}<a href="https://www.paradigm.xyz/writing/orbital" target="_blank" rel="noreferrer">Orbital paper ↗</a></nav><small>{copy.attribution}</small></footer>
  </div>;
 }
