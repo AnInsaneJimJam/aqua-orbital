@@ -5,6 +5,9 @@ one continuously running indexer, and PostgreSQL. Wallets remain the signers.
 
 The Vercel project is `orbital` in `12anand34s-projects`, with the supplied URL
 `https://orbital-olive-omega.vercel.app`. The Railway project is `orbital`.
+The public API is `https://api-production-2182.up.railway.app`.
+Both platforms are connected to `AnInsaneJimJam/aqua-orbital`, branch `main`.
+Pushing to `main` deploys the frontend, API and indexer automatically.
 
 ## Deployment identity
 
@@ -49,6 +52,9 @@ API a public HTTPS domain; the database and indexer need no public endpoint.
 `/ready` is the application readiness check and remains unavailable until
 canonical indexing catches up. A healthy process alone does not establish
 available liquidity or a successful quote.
+A fresh database must replay the configured history; this initial sync can
+take tens of minutes. The indexer resumes from its persisted cursor after
+deployments. Keep the original starting block when redeploying.
 
 The owner selected the **$5 free-trial credit**, with no paid upgrade. On
 2026-09-13 the account reported 30 trial days remaining and no paid usage
@@ -66,7 +72,7 @@ Set these project environment variables for the production deployment:
 
 | Variable | Value |
 | --- | --- |
-| `NEXT_PUBLIC_API_URL` | The API's Railway HTTPS origin |
+| `NEXT_PUBLIC_API_URL` | `https://api-production-2182.up.railway.app` |
 | `NEXT_PUBLIC_CHAIN_ID` | `5042002` |
 | `NEXT_PUBLIC_ARC_RPC_URL` | `https://rpc.blockdaemon.testnet.arc.io` |
 | `NEXT_PUBLIC_PRIVY_APP_ID` | The existing public Privy app ID |
