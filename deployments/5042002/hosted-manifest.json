@@ -1,0 +1,31 @@
+{
+  "verified": true,
+  "chainId": 5042002,
+  "rpcUrl": "https://rpc.blockdaemon.testnet.arc.io",
+  "explorerUrl": "https://testnet.arcscan.app",
+  "aqua": "0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE",
+  "router": "0x449420E9042c48Eac6E695020613678aD5A55D41",
+  "payments": "0xf64e4664D534AeA5d240e1E29DAE9E80D2e393d6",
+  "usdc": "0x3600000000000000000000000000000000000000",
+  "startBlock": "61860436",
+  "tokens": [
+    {
+      "address": "0x3600000000000000000000000000000000000000",
+      "decimals": 6,
+      "symbol": "USDC",
+      "mock": false
+    },
+    {
+      "address": "0x37af59078638387f0416Bef031D8D70B9B6b00f2",
+      "decimals": 6,
+      "symbol": "oUSD6",
+      "mock": true
+    },
+    {
+      "address": "0xCa8c7b1d7489BDd0bbD4e2f51Ee7558e14B2725B",
+      "decimals": 18,
+      "symbol": "oUSD18",
+      "mock": true
+    }
+  ]
+}

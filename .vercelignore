@@ -1,0 +1,15 @@
+.git
+.serena
+.cache
+.tools
+.env*
+**/.env*
+**/node_modules
+**/.next*
+**/test-results
+**/playwright-report
+packages/contracts
+packages/reference
+test/evidence
+FRONTED-spec
+FRONTEND-specs
