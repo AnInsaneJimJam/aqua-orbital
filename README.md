@@ -1,63 +1,122 @@
 <p align="center">
-  <img src="apps/web/public/brand/favicon.svg" alt="Orbital" width="96" height="96">
+  <img src="docs/assets/orbital-cover.png" alt="Orbital — Stablecoin swaps. Liquidity that stays in your wallet." width="100%">
 </p>
 
 <h1 align="center">Orbital</h1>
 
-<p align="center"><strong>Multi-asset concentrated liquidity. Wallet-held capital. USDC settlement.</strong></p>
+<p align="center"><strong>Trade stablecoins. Keep liquidity in your wallet. Get paid in USDC.</strong></p>
 
 <p align="center">
-  <a href="https://orbital-olive-omega.vercel.app">Launch application</a> ·
-  <a href="https://orbital-olive-omega.vercel.app/docs">Read the protocol guide</a> ·
-  <a href="test/evidence/INDEX.md">Explore execution evidence</a>
+  <a href="https://orbital-olive-omega.vercel.app">Launch app</a> ·
+  <a href="https://orbital-olive-omega.vercel.app/docs">Protocol guide</a> ·
+  <a href="#deployed-contracts">Contract addresses</a> ·
+  <a href="#local-development">Run locally</a>
 </p>
 
-Orbital is a multi-asset stablecoin AMM and payments application on **Arc Testnet**. It adapts the [Orbital research](https://www.paradigm.xyz/writing/orbital) into maker-owned liquidity strategies using **1inch Aqua**, a custom **SwapVM** router, and **Privy** wallet onboarding.
+Orbital is a **multi-asset stablecoin AMM and payments application on Arc Testnet**. It adapts the [Orbital research](https://www.paradigm.xyz/writing/orbital) to independent maker-owned strategies, combining concentrated liquidity, **1inch Aqua**, custom **SwapVM** instructions, and **Privy** wallet onboarding.
 
-A provider defines the assets, concentration, allocation, and fee for a strategy. Traders exchange against its shared inventory; merchants use the same execution engine to receive USDC. Assets remain in the provider's wallet until an authorized trade settles.
+A provider chooses the assets and trading rules. Traders exchange against that strategy, and merchants use the same swap engine to receive USDC.
 
-[Product](#product) · [Mathematics](#mathematical-model) · [Architecture](#system-architecture) · [Sponsors](#sponsor-integrations) · [Deployment](#deployment-and-demonstration) · [Development](#local-development) · [Evidence](#verification-and-scope)
+> **Your wallet holds the assets. Your strategy sets the rules.** Liquidity is an allocation over wallet-held tokens. Assets move when an authorized trade settles.
+
+[Product](#product) · [How it works](#how-it-works) · [Mathematics](#mathematical-model) · [Integrations](#sponsor-integrations) · [Evidence](#verification-and-scope)
 
 ## Product
 
-| Workflow | Experience |
+| Trade | Provide liquidity | Accept payments |
+| --- | --- | --- |
+| Get a live quote, review the fee and minimum output, and confirm the swap from your wallet. | Select any pair or all three supported assets. Choose a concentration profile, allocate tokens, and publish your strategy. | Create a shareable USDC invoice. Accept USDC directly or let a payer fund settlement with a supported swap. |
+| [Open Swap →](https://orbital-olive-omega.vercel.app/swap) | [Open Liquidity →](https://orbital-olive-omega.vercel.app/liquidity) | [Open Payments →](https://orbital-olive-omega.vercel.app/pay) |
+
+Connect an existing browser wallet or use the configured Privy email and embedded-wallet flow. Public strategy information and the protocol guide are available without connecting.
+
+## Deployed contracts
+
+**Arc Testnet · Chain ID `5042002` · Gas paid in USDC**
+
+These are the addresses used by the hosted application. Each address links directly to its [Arc explorer](https://testnet.arcscan.app) entry.
+
+### Protocol contracts
+
+| Contract | Address | Responsibility |
+| --- | --- | --- |
+| **AquaRouter** | [0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE](https://testnet.arcscan.app/address/0xE60f79571E7EDba477ff98BAdeE618b5605DF7aE) | Wallet allocations and settlement. |
+| **OrbitalSwapVMRouter** | [0x449420E9042c48Eac6E695020613678aD5A55D41](https://testnet.arcscan.app/address/0x449420E9042c48Eac6E695020613678aD5A55D41) | Strategy lifecycle, fees, and swaps. |
+| **OrbitalPayments** | [0xf64e4664D534AeA5d240e1E29DAE9E80D2e393d6](https://testnet.arcscan.app/address/0xf64e4664D534AeA5d240e1E29DAE9E80D2e393d6) | USDC invoices and atomic payments. |
+
+### Supported tokens
+
+| Token | ERC-20 decimals | Address |
+| --- | --- | --- |
+| **USDC** | 6 | [0x3600000000000000000000000000000000000000](https://testnet.arcscan.app/address/0x3600000000000000000000000000000000000000) |
+| **oUSD6** | 6 | [0x37af59078638387f0416Bef031D8D70B9B6b00f2](https://testnet.arcscan.app/address/0x37af59078638387f0416Bef031D8D70B9B6b00f2) |
+| **oUSD18** | 18 | [0xCa8c7b1d7489BDd0bbD4e2f51Ee7558e14B2725B](https://testnet.arcscan.app/address/0xCa8c7b1d7489BDd0bbD4e2f51Ee7558e14B2725B) |
+
+USDC is Arc's existing system token; it was not deployed by this project. **oUSD6 and oUSD18 are faucet-minted demo assets, not LP receipt tokens, and have no redemption value.** Native USDC pays gas using an eighteen-decimal representation; its ERC-20 interface uses six decimals.
+
+### Linked libraries
+
+The router uses six deployed libraries for curve calculations, configuration, state, and settlement.
+
+| Library | Address |
 | --- | --- |
-| **Trade** | Live strategy quotes, configurable slippage, separate approval and swap reviews, gas estimates, and receipt-based confirmation. |
-| **Provide liquidity** | Select any pair or all three deployed assets; choose a Wide, Balanced, or Focused profile; publish, activate, retire, and dock from your wallet. |
-| **Accept payments** | Create a shareable USDC invoice with an expiry and up to three recipients. Accept USDC directly or fund the payment through a supported swap. |
-| **Connect** | Use an existing browser wallet or the configured Privy email and embedded-wallet flow. Public browsing requires no wallet. |
-| **Inspect** | Read strategy state, indexed activity, actual transaction receipts, mathematical notes, and source-linked verification records. |
+| [FrontierEndpoint](packages/contracts/src/libraries/FrontierEndpoint.sol) | [0xdA2E82aa2f5a1Ec1d103C507219380Cf5002eeD7](https://testnet.arcscan.app/address/0xdA2E82aa2f5a1Ec1d103C507219380Cf5002eeD7) |
+| [FrontierComposition](packages/contracts/src/libraries/FrontierComposition.sol) | [0xDA1C415b6EC73E380a9C83e0e4ba809D7c28e3e5](https://testnet.arcscan.app/address/0xDA1C415b6EC73E380a9C83e0e4ba809D7c28e3e5) |
+| [OrbitalOrderCodec](packages/contracts/src/libraries/OrbitalOrderCodec.sol) | [0x602d4CE6fBC11651ef70CfE273970625A970760A](https://testnet.arcscan.app/address/0x602d4CE6fBC11651ef70CfE273970625A970760A) |
+| [StrategyInitializer](packages/contracts/src/libraries/StrategyInitializer.sol) | [0x63E45d5038eAFff718a15Ef6C474C4A07b53D3A2](https://testnet.arcscan.app/address/0x63E45d5038eAFff718a15Ef6C474C4A07b53D3A2) |
+| [OrbitalStorage](packages/contracts/src/libraries/OrbitalStorage.sol) | [0xbc80763Cad55C35ca534C59246F97290198Ada38](https://testnet.arcscan.app/address/0xbc80763Cad55C35ca534C59246F97290198Ada38) |
+| [OrbitalSettlement](packages/contracts/src/libraries/OrbitalSettlement.sol) | [0xB73ABbFa96AcC4bC40C9ac0dB729FcfAf3728F20](https://testnet.arcscan.app/address/0xB73ABbFa96AcC4bC40C9ac0dB729FcfAf3728F20) |
 
-### One strategy, every supported pair
+**Deployment records:** [Hosted manifest and token allowlist](deployments/5042002/hosted-manifest.json) · [Runtime, bindings, and deployment receipts](deployments/5042002/verification.json)
 
-The three-asset demonstration supports **six directed trading pairs** within one maker's strategy. Every trade updates the inventory used by subsequent trades, including those involving a different pair.
+AquaRouter is a project-deployed copy of the pinned upstream code, separate from the canonical 1inch deployment. The records cover **11 project-deployed contracts**, plus the existing USDC asset listed above.
+
+## How it works
+
+### One strategy. Every pair.
+
+A strategy containing USDC, oUSD6, and oUSD18 supports **six directed trading pairs against one shared inventory and pricing state**. A USDC → oUSD6 swap changes the state used by the next trade—even when that trade uses a different pair. Each maker's strategy has its own inventory and fee accounting.
 
 ```mermaid
 flowchart LR
-  subgraph strategy["One shared strategy"]
-    direction LR
-    usdc(("USDC")) <--> demo6(("oUSD6"))
-    demo6 <--> demo18(("oUSD18"))
-    demo18 <--> usdc
-  end
-  classDef token fill:#e8f4d5,stroke:#527536,color:#183022
-  class usdc,demo6,demo18 token
-  style strategy fill:#f5f8f2,stroke:#82956d,color:#183022
+  USDC(("USDC")) <--> oUSD6(("oUSD6"))
+  oUSD6 <--> oUSD18(("oUSD18"))
+  oUSD18 <--> USDC
 ```
 
-The diagram shows permitted directions, not prices or guaranteed route availability. A published strategy must still have sufficient Aqua allocation, wallet balances, and allowances. A maker cannot trade against their own strategy.
+A pair is available only when the strategy has enough Aqua allocation, wallet balance, and allowance. A maker cannot trade against their own strategy.
 
-### From allocation to settlement
+### Publish the strategy. Keep the custody.
 
-1. **Configure:** select supported assets, equal starting amounts, a concentration profile, and a fee.
-2. **Publish:** approve Aqua, publish the allocation, and activate the Orbital strategy through separate wallet-reviewed steps.
-3. **Quote:** discover eligible strategies and validate their current configuration, backing, and curve output.
-4. **Execute:** review and sign the exact-input transaction. The contracts apply the fee, evaluate the curve, and settle through Aqua.
-5. **Recover:** retain the submitted transaction hash and decode the confirmed receipt, including after an interrupted browser session.
+1. **Configure.** Choose at least two supported assets, equal starting token amounts, a **Wide**, **Balanced**, or **Focused** profile, and a trading fee.
+2. **Approve and publish.** Approve Aqua, publish the allocation, and activate the Orbital strategy. Each step is reviewed in the wallet.
+3. **Trade.** Eligible swaps draw output from your wallet and send gross input back to it. The maker fee stays in your wallet and is accounted for separately from curve principal.
+4. **Manage.** Retire the strategy and dock its Aqua allocation to stop it. Retirement is terminal; a new size or configuration requires a new order. Docking removes the allocation and transfers no tokens.
 
-An active order's token set, tick configuration, and fee are immutable. Retirement is terminal; a new configuration uses a new order. Docking removes the Aqua allocation and transfers no tokens. Maker fees arrive with the gross input and are accounted for separately from curve principal.
+The active order's assets, tick configuration, and fee are immutable. Spending allocated tokens elsewhere or reducing an allowance can make the strategy unavailable.
+
+### From quote to settlement
+
+The trader chooses an exact input amount. Orbital finds an eligible strategy, checks its current backing, and calculates the output. After any necessary token approval, the app refreshes the quote for a final review of the recipient, minimum output, deadline, and gas estimate.
+
+The wallet signs; the contracts apply the fee, validate the curve path, and settle through Aqua. A confirmed receipt records what moved. Submitted transaction hashes support receipt recovery after an interrupted browser session.
+
+### Pay in a supported token. Settle in USDC.
+
+A merchant creates an invoice with a fixed USDC amount, an expiry, and **up to three recipients**. The payer can use USDC directly or fund payment through an available swap.
+
+For a swap-funded payment, the adapter checks the amount due and the payer's minimum output, distributes USDC to the recipients, refunds excess USDC, and marks the invoice paid **in one transaction**. A failed swap or required recipient transfer reverts the payment together. Any required token approval happens beforehand.
+
+[Explore the full protocol guide →](https://orbital-olive-omega.vercel.app/docs)
 
 ## Mathematical model
+
+Orbital concentrates liquidity around the equal-price region while keeping several assets in one trading system. Think of reserves as a point on a curved surface: a swap adds one asset and removes another, moving that point. The curve determines the output; it does not force a fixed one-for-one exchange.
+
+**Tighter ticks** focus capital near equal prices. **Wider ticks** cover a broader range of relative prices. A strategy combines several ticks, including a full-range anchor; the engine recalculates their contributions as a trade crosses boundaries.
+
+<details>
+<summary><strong>Explore the geometry, tick composition, and integer numerics</strong></summary>
 
 The paper supplies the geometric mechanism. The repository adapts ownership to independent Aqua makers and adds numerical validation for integer execution. This overview uses **real, normalized geometric reserves**; wallet balances, funded principal, and fee inventory are separate quantities.
 
@@ -86,8 +145,7 @@ C(r,b)=\left\{\mathbf{x}\in\mathbb{R}^{n}:
 
 Here $b$ is the repository's normalized reserve-sum boundary, related to the paper's projection coordinate by $b=\sqrt{n}\,k/r$. Ordinary boundaries satisfy $n-\sqrt{n}<b<n-1$, with additional quantization and nondegeneracy checks. The full-range anchor is handled separately. Virtual offsets reduce the funded principal needed for concentrated ticks; geometric coordinates must therefore not be read as ERC-20 balances.
 
-<details>
-<summary><strong>How interior and boundary ticks combine</strong></summary>
+### How interior and boundary ticks combine
 
 Let $I$ and $D$ denote the interior and boundary tick sets. The engine tracks three aggregate quantities:
 
@@ -111,7 +169,6 @@ This expression is used with the physical-branch requirements $R>0$, $\rho\ge S$
 
 An integer state satisfying $F\le R^2$ is not sufficient by itself. The implementation also checks the tick partition, per-tick reconstruction, funded principal, supporting-price branch, and bounded rounding slack. Traversal must account for both inward and outward crossings; an endpoint-only check can miss an intervening boundary.
 
-</details>
 
 ### Numerical implementation
 
@@ -128,107 +185,67 @@ The curve prices the net input; Aqua settles the gross input. A fee that consume
 
 **Technical references:** [Mathematical definitions](docs/MATH.md) · [Integer numerics](docs/NUMERICS.md) · [Paper-to-code traceability](docs/PAPER_IMPLEMENTATION.md) · [Independent reference](packages/reference) · [Open release obligations](docs/audits/RELEASE_GAP_REVIEW.md)
 
-## System architecture
-
-The SDK and feature controllers own financial validation and transaction construction. Presentation components receive typed state and callbacks. The API and indexer provide observations; the selected wallet signs, and the contracts determine whether execution can settle.
-
-```mermaid
-flowchart TB
-  app["Next.js application + shared TypeScript SDK"]
-  wallet["User wallet via Privy / wagmi"]
-  api["Fastify API"]
-  db[("PostgreSQL")]
-  indexer["Event indexer"]
-  app -->|"Read strategies, quotes and invoices"| api
-  api -->|"Query projections"| db
-  app -->|"Explicit review and signature"| wallet
-  subgraph arc["Arc Testnet"]
-    payments["USDC invoice adapter"]
-    router["Orbital SwapVM router"]
-    aqua["Aqua allocations and settlement"]
-    payments -->|"Fund invoice"| router
-    router -->|"Push input / pull output"| aqua
-  end
-  wallet -->|"Swap or manage strategy"| router
-  wallet -->|"Create or pay invoice"| payments
-  wallet -->|"Publish or dock allocation"| aqua
-  api -.->|"Live validation"| router
-  arc -.->|"Blocks and logs"| indexer
-  indexer -->|"Persist canonical projections"| db
-  classDef contract fill:#e8f4d5,stroke:#527536,color:#183022
-  classDef service fill:#edf2f5,stroke:#526875,color:#19303d
-  class payments,router,aqua contract
-  class app,wallet,api,indexer,db service
-  style arc fill:#f5f8f2,stroke:#82956d,color:#183022
-```
-
-| Layer | Technologies | Responsibility |
-| --- | --- | --- |
-| Application | Next.js, React, TypeScript, CSS Modules, Radix UI | Public browsing, strategy management, transaction reviews, responsive controls, and documentation. |
-| Wallets | Privy, wagmi, viem | Onboarding, active-wallet selection, chain reads, simulation, user signatures, and receipt recovery. |
-| Protocol | Solidity 0.8.30, Aqua, modified SwapVM | Strategy lifecycle, curve execution, fee accounting, settlement, and atomic payments. |
-| Backend | Fastify, PostgreSQL, Drizzle | Validated financial APIs, event ingestion, indexed projections, freshness checks, and bounded reorg recovery. |
-| Reference and verification | Python, mpmath, Foundry, Anvil, Playwright | Independent numerical fixtures, contract execution, local integration, and browser workflow checks. |
-| Operations | pnpm, Docker Compose, Vercel, Railway | Reproducible workspaces, local services, hosted frontend, API, indexer, and database. |
+</details>
 
 ## Sponsor integrations
 
-### 1inch — Aqua and SwapVM
+### 1inch · Aqua and SwapVM
 
-**Aqua provides wallet-backed allocation and settlement.** A maker approves Aqua and ships the encoded order as a strategy allocation. Orbital validates and activates the corresponding configuration. During a trade, gross input reaches the maker through Aqua's push flow, and output is pulled from the maker to the recipient. Current wallet balances and allowances remain part of execution eligibility.
+**Aqua supplies wallet-backed allocation and settlement.** Makers approve Aqua and publish the full encoded order as an allocation. Orbital activates the corresponding configuration. During a trade, Aqua pushes gross input to the maker and pulls output to the recipient.
 
-**SwapVM provides the programmable execution framework.** The pinned fork adds shared token resolution so a single multi-token order can execute different pairs against the same state. The router accepts a fixed two-instruction program, with both instructions bound to the same configuration hash:
+**SwapVM supplies the execution framework.** The pinned fork adds shared token resolution so one multi-token order can execute different pairs against the same strategy state. The router runs a fixed two-instruction program:
 
-| Opcode | Instruction | Role |
+| Opcode | Instruction | Purpose |
 | --- | --- | --- |
-| `0x72` | `OrbitalFeeIn(configHash)` | Charge the fee once, run pricing with net input, then restore gross input for settlement. |
-| `0x52` | `OrbitalSwap(configHash)` | Compute output and validate the tick path; commit state only during an actual swap. |
+| `0x72` | `OrbitalFeeIn(configHash)` | Charge the fee once, price with net input, then restore gross input for settlement. |
+| `0x52` | `OrbitalSwap(configHash)` | Calculate output and validate the tick path; commit state only during a swap. |
 
-Initialization, numerical, storage, and settlement functionality use linked libraries to fit the EVM contract-size limit. Publication commits the full encoded order; hashing only its instruction bytes would bind a different Aqua strategy.
+Both instructions bind the same configuration hash. The router rejects extra instructions, repeated fees, and mismatched configurations. The full encoded order identifies the Aqua allocation.
 
-**Implementation:** [Custom router and dispatch](packages/contracts/src/OrbitalSwapVMRouter.sol#L112-L149) · [Pinned SwapVM fork](packages/contracts/vendor/swap-vm-orbital) · [Mixed execution tests](packages/contracts/test/MixedExecution.t.sol) · [Integration research](docs/AQUA_RESEARCH.md)
+[Router and dispatch](packages/contracts/src/OrbitalSwapVMRouter.sol) · [Pinned SwapVM fork](packages/contracts/vendor/swap-vm-orbital) · [Mixed execution tests](packages/contracts/test/MixedExecution.t.sol) · [Integration notes](docs/AQUA_RESEARCH.md)
 
-**Deployment provenance:** Arc uses a project-deployed copy of the pinned upstream AquaRouter. It is separate from the canonical 1inch deployment; runtime verification and sponsor acceptance are distinct questions.
+### Arc · USDC settlement and atomic payments
 
-### Arc — USDC trading and atomic payments
+Arc Testnet hosts the strategies, execution contracts, and invoice adapter. USDC serves as both the settlement asset and the native gas currency. The application handles their different decimal representations and reserves USDC for execution.
 
-Arc Testnet hosts the strategies, execution contracts, and invoice adapter. USDC is the settlement asset and also pays network gas. The application handles the six-decimal ERC-20 interface and eighteen-decimal native gas representation separately, reserving enough USDC for execution.
+The payment adapter connects the swap engine to merchant invoices, recipient splits, and excess-output refunds. Required settlement steps succeed together or revert together.
 
-A swap-funded payment converts an allowed input token into USDC, checks the invoice amount and payer's minimum output, distributes the requested recipient splits, and refunds excess USDC. The invoice becomes paid in the same transaction. A failed swap or required recipient transfer reverts the operation; any necessary ERC-20 approval precedes it as a separate transaction.
+[Payment adapter](packages/contracts/src/OrbitalPayments.sol) · [Network configuration](apps/web/src/wallet/config.ts) · [Arc integration notes](docs/ARC_RESEARCH.md)
 
-**Implementation:** [Atomic payment adapter](packages/contracts/src/OrbitalPayments.sol#L55-L102) · [Arc wallet configuration](apps/web/src/wallet/config.ts) · [Verified deployment](deployments/5042002/verification.json) · [Arc integration notes](docs/ARC_RESEARCH.md)
+### Privy · Wallet onboarding
 
-### Privy — wallet onboarding and financial flows
+Privy provides email sign-in, embedded EVM wallet creation, and existing-wallet connection. Its wagmi integration connects the selected wallet to the shared swap, strategy, and payment controllers.
 
-Privy supplies email sign-in, embedded EVM wallet creation, and existing-wallet connection. Its wagmi integration binds the selected wallet to the shared swap, strategy, and payment controllers. Users explicitly review approvals and execution; public browsing remains available before connection.
+Users review and authorize transactions in the wallet. The backend does not receive email identities or sign transactions; onchain invoices contain no Privy identity fields. Receipt recovery does not automatically request another signature.
 
-Provider-specific behavior is isolated in the wallet module. The backend does not receive email identities or sign transactions, and onchain invoices contain no Privy identity fields. Recovery reuses submitted public transaction data without automatically requesting another signature.
+[Privy provider](apps/web/src/wallet/PrivyWallet.tsx) · [Transaction bridge](apps/web/src/wallet/WalletProvider.tsx) · [Integration notes](docs/PRIVY_RESEARCH.md)
 
-**Implementation:** [Privy provider and active-wallet bridge](apps/web/src/wallet/PrivyWallet.tsx) · [Shared transaction bridge](apps/web/src/wallet/WalletProvider.tsx) · [Configuration and qualification scope](docs/PRIVY_RESEARCH.md) · [Receipt association checks](test/evidence/privy-association-basic/README.md)
+The retained checks cover the public login interface and shared application flows. Authenticated association between a Privy embedded wallet and the recorded swap/payment receipts remains unverified.
 
-The retained checks establish the public login interface and shared application flows. Authenticated association between a Privy embedded wallet and the recorded swap/payment receipts remains unverified.
+## System architecture
 
-## Deployment and demonstration
+The SDK and feature controllers validate inputs and construct transactions. The API and indexer provide observations. Wallets authorize execution; contracts determine whether it can settle.
 
-| Resource | Location |
-| --- | --- |
-| Application | [orbital-olive-omega.vercel.app](https://orbital-olive-omega.vercel.app) |
-| User-facing protocol guide | [How Orbital works](https://orbital-olive-omega.vercel.app/docs) |
-| Public API | [api-production-2182.up.railway.app](https://api-production-2182.up.railway.app) |
-| Network | Arc Testnet · chain ID `5042002` |
-| Contract addresses and asset allowlist | [Hosted manifest](deployments/5042002/hosted-manifest.json) |
-| Runtime, bindings, and deployment receipts | [Verification record](deployments/5042002/verification.json) |
-| Hosting configuration | [Vercel and Railway runbook](docs/HOSTING.md) |
+```mermaid
+flowchart LR
+  app["Next.js app + TypeScript SDK"] --> wallet["User wallet · Privy / wagmi"]
+  app --> api["Fastify API"]
+  api --> db[("PostgreSQL")]
+  indexer["Event indexer"] --> db
+  subgraph arc["Arc Testnet"]
+    payments["OrbitalPayments"] --> router["OrbitalSwapVMRouter"]
+    router --> aqua["AquaRouter"]
+  end
+  wallet --> router
+  wallet --> payments
+  wallet --> aqua
+  api -.->|"Live validation"| router
+  arc -.->|"Blocks and logs"| indexer
+```
 
-| Asset | ERC-20 decimals | Role |
-| --- | --- | --- |
-| USDC | 6 | Testnet settlement asset; native USDC also funds gas. |
-| oUSD6 | 6 | Faucet-minted demo token. |
-| oUSD18 | 18 | Faucet-minted demo token for mixed-decimal execution. |
+The frontend runs on **Vercel**. **Railway** hosts the API, indexer, and PostgreSQL. [Public API](https://api-production-2182.up.railway.app) · [Hosting runbook](docs/HOSTING.md)
 
-**oUSD6 and oUSD18 have no redemption value and are not LP receipt tokens.** The current allowlist contains these three assets. Contract shape limits of 2–8 assets, up to 8 ticks, and 16 crossings per swap do not establish execution coverage across every supported configuration. The current publication presets use three ticks.
-
-### Recorded Arc execution
+## Recorded Arc execution
 
 | Operation | Observed result | Evidence |
 | --- | --- | --- |
@@ -289,6 +306,8 @@ Three SDK tests retain stale Aqua ABI-count assertions, documented in the [selec
 
 `GET /health` checks the API process. `GET /ready` also requires a fresh canonical index matching the deployment. A new database needs its initial history sync before liquidity and quotes become available.
 
+The current deployment supports the three listed tokens and uses three-tick publication presets. Contract limits of **2–8 assets**, **up to 8 ticks**, and **16 crossings per swap** describe the supported shape; they do not establish execution coverage for every configuration.
+
 ## Repository and documentation
 
 | Location | Responsibility |
@@ -306,8 +325,8 @@ Three SDK tests retain stale Aqua ABI-count assertions, documented in the [selec
 
 ## Research and attribution
 
-Orbital adapts the [Orbital research](https://www.paradigm.xyz/writing/orbital) by **Dan Robinson, Ciamac Moallemi, and Dave White**, published June 2, 2025. The [source record](docs/sources/orbital.json) and [implementation ledger](docs/PAPER_IMPLEMENTATION.md) distinguish paper statements, repository notation, numerical choices, and the Aqua ownership adaptation.
+Orbital adapts the [Orbital research](https://www.paradigm.xyz/writing/orbital) by **Dan Robinson, Ciamac Moallemi, and Dave White**, published June 2, 2025. The [source record](docs/sources/orbital.json) and [implementation ledger](docs/PAPER_IMPLEMENTATION.md) distinguish the paper's model, repository notation, numerical choices, and the Aqua ownership adaptation.
 
-The implementation uses [1inch Aqua](https://github.com/1inch/aqua) and a pinned [SwapVM](https://github.com/1inch/swap-vm) fork. The interface incorporates the supplied paper visualization and SVG identity; see [asset provenance](docs/ASSETS.md).
+The implementation uses [1inch Aqua](https://github.com/1inch/aqua) and a pinned [SwapVM](https://github.com/1inch/swap-vm) fork. See [asset provenance](docs/ASSETS.md) for the interface artwork and fonts.
 
 Powered by SwapVM — © Degensoft Ltd 2025. Vendored code and fonts retain their upstream licenses and notices. This project does not imply endorsement by Paradigm or the upstream projects.
