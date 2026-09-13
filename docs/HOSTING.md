@@ -26,11 +26,19 @@ backend workspaces, copies the public deployment/proof manifests, and runs as
 the non-root Node user. The existing Dockerfile/Compose development workflow
 is separate.
 
-| Service | Config file | Environment |
+| Service | Start command | Environment |
 | --- | --- | --- |
-| `api` | `/apps/api/railway.json` | `DATABASE_URL=${{Postgres.DATABASE_URL}}`, `PUBLIC_APP_URL=https://orbital-olive-omega.vercel.app` |
-| `indexer` | `/apps/indexer/railway.json` | `DATABASE_URL=${{Postgres.DATABASE_URL}}`, `INDEXER_POLL_MS=1000` |
+| `api` | `node --import ./apps/api/node_modules/tsx/dist/loader.mjs apps/api/src/index.ts` | `DATABASE_URL=${{Postgres.DATABASE_URL}}`, `PUBLIC_APP_URL=https://orbital-olive-omega.vercel.app` |
+| `indexer` | `node --import ./apps/indexer/node_modules/tsx/dist/loader.mjs apps/indexer/src/index.ts` | `DATABASE_URL=${{Postgres.DATABASE_URL}}`, `INDEXER_POLL_MS=1000` |
 | `Postgres` | Railway PostgreSQL service | Private networking and a persistent volume |
+
+Configure these settings directly on the Railway services: Dockerfile path
+`Dockerfile.backend`, repository root `/`, one replica, sleeping disabled,
+restart on failure with at most 10 retries. The API pre-deploy command is
+`node --import ./packages/db/node_modules/tsx/dist/loader.mjs packages/db/src/migrate.ts`;
+its healthcheck is `/health` with a 120-second timeout. New Railway services
+reject the deprecated `railway.json` format, so this deployment uses native
+service settings rather than an additional infrastructure dependency.
 
 The image sets `HOST=0.0.0.0`, `DEPLOYMENT_MANIFEST` and `PROOF_MANIFEST`.
 Railway supplies `PORT`. Run one indexer replica with sleeping disabled.
